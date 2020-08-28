@@ -11,7 +11,7 @@ void main() {
     theme: ThemeData(
       primaryColor: Colors.black,
       primaryColorLight: Colors.black,
-      accentColor: Colors.black,
+      accentColor: Colors.amber,
 
     ),
     initialRoute: '/home',
