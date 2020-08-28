@@ -1,6 +1,6 @@
 # project_doctor
 
-An app created to solve the problem of choosing doctor speciality
+An app Developed to solve the problem of choosing doctor speciality
 
 ## Getting Started
 
