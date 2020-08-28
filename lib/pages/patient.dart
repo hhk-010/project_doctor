@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 class Patient extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
+ // a function to get the user location
+  void _getCurrentLocation() async {
+    final Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +66,7 @@ class Patient extends StatelessWidget {
                   onPressed: () {
                     if (formKey.currentState.validate()){}
                   },
-                  child: Text('Submit'),
+                  child: Text('Search'),
                 ),
               ),
             ],
