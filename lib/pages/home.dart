@@ -28,13 +28,6 @@ class Home extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
-              'i want to search for a doctor',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-              ),
-            ),
             SizedBox(height: 100),
             RaisedButton(
               onPressed: () {
@@ -57,23 +50,12 @@ class Home extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 50.0,
                   ),
-
                 ),
               ),
             ),
-          Text(
-              'i want to Register my data',
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black,
-            ),
-          ),
-
-
           ],
         ),
       ),
     );
   }
 }
-

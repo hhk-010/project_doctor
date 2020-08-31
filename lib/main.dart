@@ -3,7 +3,6 @@ import 'package:project_doctor/pages/home.dart';
 import 'package:project_doctor/pages/patient.dart';
 import 'package:project_doctor/pages/doctor.dart';
 
-
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -12,7 +11,6 @@ void main() {
       primaryColor: Colors.black,
       primaryColorLight: Colors.black,
       accentColor: Colors.green,
-
     ),
     initialRoute: '/home',
     routes: {
@@ -20,7 +18,5 @@ void main() {
       '/patient': (context) => Patient(),
       '/doctor': (context) => Doctor(),
     },
-
   ));
 }
-

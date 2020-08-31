@@ -10,8 +10,8 @@ class Doctor extends StatelessWidget {
   TextEditingController nameController = TextEditingController();
   TextEditingController specialityController = TextEditingController();
   TextEditingController locationController = TextEditingController();
-  TextEditingController phonenumberController = TextEditingController();
-  TextEditingController timeController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController availableTimeController = TextEditingController();
 
   void _submitForm() {
     if (formKey.currentState.validate()) {
@@ -19,8 +19,8 @@ class Doctor extends StatelessWidget {
         nameController.text,
         specialityController.text,
         locationController.text,
-        phonenumberController.text,
-        timeController.text,
+        phoneNumberController.text,
+        availableTimeController.text,
       );
       FormController formController = FormController(
           (String response){
@@ -99,7 +99,7 @@ class Doctor extends StatelessWidget {
                 },
               ),
               TextFormField(
-                controller: phonenumberController,
+                controller: phoneNumberController,
                 cursorColor: Colors.orange,
                 decoration: InputDecoration(
                   hintText: 'Enter your Phone number',
@@ -112,7 +112,7 @@ class Doctor extends StatelessWidget {
                 },
               ),
               TextFormField(
-                controller: timeController,
+                controller: availableTimeController,
                 cursorColor: Colors.orange,
                 decoration: InputDecoration(
                   hintText: 'Enter your Available Time',
