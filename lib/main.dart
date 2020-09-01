@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/pages/home.dart';
 import 'package:project_doctor/pages/patient.dart';
 import 'package:project_doctor/pages/doctor.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.deepOrange,
+  ));
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     title: 'Project demo',
     theme: ThemeData(
-      primaryColor: Colors.black,
-      primaryColorLight: Colors.black,
-      accentColor: Colors.green,
+      fontFamily: 'noto_arabic',
     ),
     initialRoute: '/home',
     routes: {
