@@ -4,8 +4,9 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        backgroundColor: Colors.amber[800],
+        backgroundColor: Colors.deepOrange,
       ),
       body: Container(
         child: Center(
@@ -24,9 +25,12 @@ class Home extends StatelessWidget {
                   child: Ink(
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [Color(0xff374ABE), Color(0xff64B6FF)],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
+                          colors: [
+                            Colors.deepOrange[600],
+                            Colors.deepOrange[200]
+                          ],
+                          begin: Alignment.centerRight,
+                          end: Alignment.centerLeft,
                         ),
                         borderRadius: BorderRadius.circular(30.0)),
                     child: Container(
@@ -58,9 +62,12 @@ class Home extends StatelessWidget {
                   child: Ink(
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [Colors.orange[600], Colors.orange[200]],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
+                          colors: [
+                            Colors.deepOrange[600],
+                            Colors.deepOrange[200]
+                          ],
+                          begin: Alignment.centerRight,
+                          end: Alignment.centerLeft,
                         ),
                         borderRadius: BorderRadius.circular(30.0)),
                     child: Container(
