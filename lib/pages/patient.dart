@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 class Patient extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,8 +23,8 @@ class Patient extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: 'Enter your Name',
                 ),
-                validator: (value){
-                  if (value.isEmpty){
+                validator: (value) {
+                  if (value.isEmpty) {
                     return 'Please enter your Name';
                   }
                   return null;
@@ -37,8 +35,8 @@ class Patient extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: 'Enter your Speciality',
                 ),
-                validator: (value){
-                  if (value.isEmpty){
+                validator: (value) {
+                  if (value.isEmpty) {
                     return 'Please enter your Speciality';
                   }
                   return null;
@@ -60,7 +58,7 @@ class Patient extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: RaisedButton(
                   onPressed: () {
-                    if (formKey.currentState.validate()){}
+                    if (formKey.currentState.validate()) {}
                   },
                   child: Text('Search'),
                 ),

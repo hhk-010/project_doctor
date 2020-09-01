@@ -1,73 +1,87 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              stops: [0.1, 0.4, 0.7, 0.9],
-              colors: [
-                Color(0xFF3594DD),
-                Color(0xFF4563DB),
-                Color(0xFF5036D5),
-                Color(0xFF5B16D0),
-              ],
-            ),
-          ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                ButtonTheme(
-                  height: 60,
-                  minWidth: 300,
-                  child: RaisedButton(
-                    onPressed: () => Navigator.pushNamed(context, '/patient'),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Text(
-                      ' انا مريض واريد البحث عن طبيب',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+      appBar: AppBar(
+        backgroundColor: Colors.amber[800],
+      ),
+      body: Container(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 60.0,
+                width: 300.0,
+                child: RaisedButton(
+                  onPressed: () => Navigator.pushNamed(context, '/patient'),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(80.0)),
+                  padding: EdgeInsets.all(0.0),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0)),
+                    child: Container(
+                      constraints:
+                          BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                      alignment: Alignment.center,
+                      child: Text(
+                        ' انا مريض واريد البحث عن طبيب',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: 50),
-                ButtonTheme(
-                  height: 60,
-                  minWidth: 300,
-                  child: RaisedButton(
-                    onPressed: () => Navigator.pushNamed(context, '/doctor'),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Text(
-                      'انا طبيب واريد التسجيل في التطبيق',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+              ),
+              SizedBox(height: 50),
+              Container(
+                height: 60.0,
+                width: 300.0,
+                child: RaisedButton(
+                  onPressed: () => Navigator.pushNamed(context, '/doctor'),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(80.0)),
+                  padding: EdgeInsets.all(0.0),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Colors.orange[600], Colors.orange[200]],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0)),
+                    child: Container(
+                      constraints:
+                          BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                      alignment: Alignment.center,
+                      child: Text(
+                        'انا طبيب واريد التسجيل في التطبيق',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: 50),
-              ],
-            ),
+              ),
+              SizedBox(height: 50),
+            ],
           ),
         ),
       ),
