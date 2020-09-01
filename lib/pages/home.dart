@@ -1,59 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
-        title: Text('Home Screen Options'),
-        centerTitle: true,
-        elevation: 2,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            RaisedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/patient');
-              },
-              padding: EdgeInsets.all(0.0),
-              child: Text(
-                'Iam a Patient',
-                style: TextStyle(
-                  fontSize: 50.0,
-                ),
-              ),
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              stops: [0.1, 0.4, 0.7, 0.9],
+              colors: [
+                Color(0xFF3594DD),
+                Color(0xFF4563DB),
+                Color(0xFF5036D5),
+                Color(0xFF5B16D0),
+              ],
             ),
-            SizedBox(height: 100),
-            RaisedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/doctor');
-              },
-              textColor: Colors.black,
-              padding: EdgeInsets.all(0.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: <Color>[
-                      Color(0xFF0D47A1),
-                      Color(0xFF1976D2),
-                      Color(0xFF42A5F5),
-                    ],
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ButtonTheme(
+                  height: 60,
+                  minWidth: 200,
+                  child: RaisedButton(
+                    onPressed: () => Navigator.pushNamed(context, '/patient'),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Text(
+                      ' انا مريض واريد البحث عن طبيب',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
-                child: Text(
-                  'Iam a doctor',
-                  style: TextStyle(
-                    fontSize: 50.0,
+                SizedBox(height: 100),
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/doctor');
+                  },
+                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+                  child: Text(
+                    'انا طبيب واريد التسجيل في التطبيق',
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 20,
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

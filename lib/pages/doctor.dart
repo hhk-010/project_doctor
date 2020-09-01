@@ -3,15 +3,14 @@ import 'package:project_doctor/services/controller.dart';
 import 'package:project_doctor/services/feedback_form.dart';
 
 class Doctor extends StatelessWidget {
-
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   //TextFiled Controller
-  TextEditingController nameController = TextEditingController();
-  TextEditingController specialityController = TextEditingController();
-  TextEditingController locationController = TextEditingController();
-  TextEditingController phoneNumberController = TextEditingController();
-  TextEditingController availableTimeController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController specialityController = TextEditingController();
+  final TextEditingController locationController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController availableTimeController = TextEditingController();
 
   void _submitForm() {
     if (formKey.currentState.validate()) {
@@ -22,22 +21,23 @@ class Doctor extends StatelessWidget {
         phoneNumberController.text,
         availableTimeController.text,
       );
-      FormController formController = FormController(
-          (String response){
-            print(response);
-            if (response == FormController.STATUS_SUCCESS){
-              _showSnackBar("Feedback Submitted");
-            }else{
-              _showSnackBar("Error Occured");
-            }
-          }
-      );
+      FormController formController = FormController((String response) {
+        print(response);
+        if (response == FormController.STATUS_SUCCESS) {
+          _showSnackBar("Feedback Submitted");
+        } else {
+          _showSnackBar("Error Occured");
+        }
+      });
       _showSnackBar("Submitting Feedback");
       formController.submitForm(feedbackForm);
-      }
+    }
   }
-  _showSnackBar (String message){
-    final snackBar = SnackBar(content: Text(message),);
+
+  _showSnackBar(String message) {
+    final snackBar = SnackBar(
+      content: Text(message),
+    );
     scaffoldKey.currentState.showSnackBar(snackBar);
   }
 
@@ -65,8 +65,8 @@ class Doctor extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: 'Enter your Name',
                 ),
-                validator: (value){
-                  if (value.isEmpty){
+                validator: (value) {
+                  if (value.isEmpty) {
                     return 'Please enter your Name';
                   }
                   return null;
@@ -78,8 +78,8 @@ class Doctor extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: 'Enter your Speciality',
                 ),
-                validator: (value){
-                  if (value.isEmpty){
+                validator: (value) {
+                  if (value.isEmpty) {
                     return 'Please enter your Speciality';
                   }
                   return null;
@@ -104,8 +104,8 @@ class Doctor extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: 'Enter your Phone number',
                 ),
-                validator: (value){
-                  if (value.isEmpty){
+                validator: (value) {
+                  if (value.isEmpty) {
                     return 'Please enter your Phone number';
                   }
                   return null;
@@ -117,8 +117,8 @@ class Doctor extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: 'Enter your Available Time',
                 ),
-                validator: (value){
-                  if (value.isEmpty){
+                validator: (value) {
+                  if (value.isEmpty) {
                     return 'Please enter your Available Time';
                   }
                   return null;
@@ -129,14 +129,14 @@ class Doctor extends StatelessWidget {
                 child: RaisedButton(
                   onPressed: () {
                     _submitForm();
-                    if (formKey.currentState.validate()){}
+                    if (formKey.currentState.validate()) {}
                   },
                   child: Text('Submit'),
                 ),
               ),
             ],
           ),
-         ),
+        ),
       ),
     );
   }
