@@ -28,7 +28,7 @@ class Home extends StatelessWidget {
               children: [
                 ButtonTheme(
                   height: 60,
-                  minWidth: 200,
+                  minWidth: 300,
                   child: RaisedButton(
                     onPressed: () => Navigator.pushNamed(context, '/patient'),
                     shape: RoundedRectangleBorder(
@@ -36,28 +36,36 @@ class Home extends StatelessWidget {
                     ),
                     child: Text(
                       ' انا مريض واريد البحث عن طبيب',
-                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-                SizedBox(height: 100),
-                RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/doctor');
-                  },
-                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 25),
-                  child: Text(
-                    'انا طبيب واريد التسجيل في التطبيق',
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 20,
-                    style: TextStyle(
-                      fontSize: 30.0,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                SizedBox(height: 50),
+                ButtonTheme(
+                  height: 60,
+                  minWidth: 300,
+                  child: RaisedButton(
+                    onPressed: () => Navigator.pushNamed(context, '/doctor'),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Text(
+                      'انا طبيب واريد التسجيل في التطبيق',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
+                SizedBox(height: 50),
               ],
             ),
           ),
