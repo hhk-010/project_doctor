@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_doctor/services/controller_form.dart';
-import 'package:project_doctor/services/feedback_form.dart';
 //import 'package:weekday_selector/weekday_selector.dart';
 
 class Doctor extends StatefulWidget {
@@ -17,35 +15,6 @@ final TextEditingController specialityController = TextEditingController();
 final TextEditingController locationController = TextEditingController();
 final TextEditingController phoneNumberController = TextEditingController();
 final TextEditingController availableTimeController = TextEditingController();
-
-void _submitForm() {
-  if (formKey.currentState.validate()) {
-    FeedbackForm feedbackForm = FeedbackForm(
-      nameController.text,
-      specialityController.text,
-      locationController.text,
-      phoneNumberController.text,
-      availableTimeController.text,
-    );
-    FormController formController = FormController((String response) {
-      print(response);
-      if (response == FormController.STATUS_SUCCESS) {
-        _showSnackBar("Feedback Submitted");
-      } else {
-        _showSnackBar("Error Occured");
-      }
-    });
-    _showSnackBar("Submitting Feedback");
-    formController.submitForm(feedbackForm);
-  }
-}
-
-_showSnackBar(String message) {
-  final snackBar = SnackBar(
-    content: Text(message),
-  );
-  scaffoldKey.currentState.showSnackBar(snackBar);
-}
 
 //Iraq Mobile Number Validator
 String validateMobile(String value) {
@@ -185,7 +154,7 @@ class _DoctorState extends State<Doctor> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(80.0)),
                             onPressed: () {
-                              _submitForm();
+                              print('ON');
                               if (formKey.currentState.validate()) {
                                 formKey.currentState.save();
                               } else {
