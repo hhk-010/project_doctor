@@ -25,6 +25,11 @@ dependencies:
     sdk: flutter
   geolocator: ^5.3.2+2
   http:
+  weekday_selector: ^0.4.0
+  flutter_localizations:
+    sdk: flutter
+
+
 
 
 

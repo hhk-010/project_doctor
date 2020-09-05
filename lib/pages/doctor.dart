@@ -1,46 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/services/controller_form.dart';
 import 'package:project_doctor/services/feedback_form.dart';
+//import 'package:weekday_selector/weekday_selector.dart';
 
-class Doctor extends StatelessWidget {
-  final formKey = GlobalKey<FormState>();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-  //TextFiled Controller
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController specialityController = TextEditingController();
-  final TextEditingController locationController = TextEditingController();
-  final TextEditingController phoneNumberController = TextEditingController();
-  final TextEditingController availableTimeController = TextEditingController();
+class Doctor extends StatefulWidget {
+  @override
+  _DoctorState createState() => _DoctorState();
+}
 
-  void _submitForm() {
-    if (formKey.currentState.validate()) {
-      FeedbackForm feedbackForm = FeedbackForm(
-        nameController.text,
-        specialityController.text,
-        locationController.text,
-        phoneNumberController.text,
-        availableTimeController.text,
-      );
-      FormController formController = FormController((String response) {
-        print(response);
-        if (response == FormController.STATUS_SUCCESS) {
-          _showSnackBar("Feedback Submitted");
-        } else {
-          _showSnackBar("Error Occured");
-        }
-      });
-      _showSnackBar("Submitting Feedback");
-      formController.submitForm(feedbackForm);
-    }
-  }
+bool _autovalidate = false;
+final formKey = GlobalKey<FormState>();
+final scaffoldKey = GlobalKey<ScaffoldState>();
+//TextField Controller
+final TextEditingController nameController = TextEditingController();
+final TextEditingController specialityController = TextEditingController();
+final TextEditingController locationController = TextEditingController();
+final TextEditingController phoneNumberController = TextEditingController();
+final TextEditingController availableTimeController = TextEditingController();
 
-  _showSnackBar(String message) {
-    final snackBar = SnackBar(
-      content: Text(message),
+void _submitForm() {
+  if (formKey.currentState.validate()) {
+    FeedbackForm feedbackForm = FeedbackForm(
+      nameController.text,
+      specialityController.text,
+      locationController.text,
+      phoneNumberController.text,
+      availableTimeController.text,
     );
-    scaffoldKey.currentState.showSnackBar(snackBar);
+    FormController formController = FormController((String response) {
+      print(response);
+      if (response == FormController.STATUS_SUCCESS) {
+        _showSnackBar("Feedback Submitted");
+      } else {
+        _showSnackBar("Error Occured");
+      }
+    });
+    _showSnackBar("Submitting Feedback");
+    formController.submitForm(feedbackForm);
   }
+}
 
+_showSnackBar(String message) {
+  final snackBar = SnackBar(
+    content: Text(message),
+  );
+  scaffoldKey.currentState.showSnackBar(snackBar);
+}
+
+//Iraq Mobile Number Validator
+String validateMobile(String value) {
+  if (value.length != 11)
+    return 'Mobile Number must be of 11 digit';
+  else
+    return null;
+}
+
+class _DoctorState extends State<Doctor> {
+  String _specialityValue;
+  List<String> _speciality = ['GP', 'Internist', 'Cardiologist'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,103 +73,141 @@ class Doctor extends StatelessWidget {
         elevation: 1,
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 40, horizontal: 25),
+        padding: EdgeInsets.symmetric(vertical: 40, horizontal: 30),
         child: Form(
           key: formKey,
+          autovalidate: _autovalidate,
           child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextFormField(
-                  controller: nameController,
-                  cursorColor: Colors.orange,
-                  decoration: InputDecoration(
-                    hintText: 'ادخل الاسم الثلاثي',
+            child: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextFormField(
+                    controller: nameController,
+                    cursorColor: Colors.deepOrange,
+                    decoration: InputDecoration(
+                      hintText: 'قم بإدخال اسمك الثلاثي',
+                    ),
+                    validator: (value) =>
+                        value == null ? 'رجاءً قم بإدخال الاسم الثلاثي' : null,
                   ),
-                  textAlign: TextAlign.right,
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'رجاء ادخل الاسم الثلاثي';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  controller: specialityController,
-                  cursorColor: Colors.orange,
-                  decoration: InputDecoration(
-                    hintText: 'ادخل اختصاصك الطبي',
+                  SizedBox(height: 15.0),
+                  DropdownButtonFormField<String>(
+                    hint: Text(
+                      'قم بادخال اختصاصك الطبي',
+                    ),
+                    dropdownColor: Colors.grey[200],
+                    elevation: 5,
+                    icon: Icon(Icons.arrow_drop_down),
+                    isExpanded: true,
+                    items: _speciality.map((value) {
+                      return DropdownMenuItem(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    value: _specialityValue,
+                    onChanged: (value) {
+                      setState(() {
+                        _specialityValue = value;
+                      });
+                    },
+                    validator: (value) =>
+                        value == null ? 'رجاءً قم بإدخال اختصاصك الطبي ' : null,
                   ),
-                  textAlign: TextAlign.right,
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'رجاء ادخل اختصاصك الطبي';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  controller: locationController,
-                  cursorColor: Colors.orange,
-                  decoration: InputDecoration(
-                    hintText: 'ادخل موقع عيادلتك',
+                  SizedBox(height: 15.0),
+                  TextFormField(
+                      controller: phoneNumberController,
+                      keyboardType: TextInputType.phone,
+                      cursorColor: Colors.deepOrange,
+                      decoration: InputDecoration(
+                        hintText: 'قم بإدخال رقم هاتف العياده لغرض الحجز',
+                      ),
+                      textAlign: TextAlign.right,
+                      validator: validateMobile),
+                  SizedBox(height: 15.0),
+                  TextFormField(
+                    controller: availableTimeController,
+                    cursorColor: Colors.deepOrange,
+                    decoration: InputDecoration(
+                      hintText: 'قم بإدخال ايام ووقت استقبال المرضى ',
+                    ),
+                    textAlign: TextAlign.right,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'رجاءً قم بإدخال ايام واوقات استقبال المرضى';
+                      }
+                      return null;
+                    },
                   ),
-                  textAlign: TextAlign.right,
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'رجاء ادخل موقع عيادتك';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  controller: phoneNumberController,
-                  cursorColor: Colors.orange,
-                  decoration: InputDecoration(
-                    hintText: 'ادخل رقم هاتف عيادتك',
-                  ),
-                  textAlign: TextAlign.right,
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'رجاء ادخل رقم هاتف حجز عيادلتك';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  controller: availableTimeController,
-                  cursorColor: Colors.orange,
-                  decoration: InputDecoration(
-                    hintText: 'ادخل ',
-                  ),
-                  textAlign: TextAlign.right,
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Please enter your Available Time';
-                    }
-                    return null;
-                  },
-                ),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: RaisedButton(
-                      color: Colors.deepOrange,
-                      onPressed: () {
-                        _submitForm();
-                        if (formKey.currentState.validate()) {}
-                      },
-                      child: Text(
-                        'ارسل',
+                  SizedBox(height: 15.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'قم بادخال موقع عيادتك',
                         style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
+                          color: Colors.grey[600],
+                          fontSize: 18,
+                        ),
+                      ),
+                      ButtonTheme(
+                        height: 30,
+                        child: RaisedButton(
+                          color: Colors.deepOrange,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80.0)),
+                          onPressed: () => print('ON'),
+                          child: Text(
+                            'Google Map',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 60,
+                  ),
+                  Container(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ButtonTheme(
+                          minWidth: double.infinity,
+                          height: 45,
+                          child: RaisedButton(
+                            color: Colors.deepOrange,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(80.0)),
+                            onPressed: () {
+                              _submitForm();
+                              if (formKey.currentState.validate()) {
+                                formKey.currentState.save();
+                              } else {
+                                setState(() {
+                                  _autovalidate = true;
+                                });
+                              }
+                            },
+                            child: Text(
+                              'ارسل',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
