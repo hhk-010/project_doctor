@@ -6,15 +6,7 @@ class Doctor extends StatefulWidget {
   _DoctorState createState() => _DoctorState();
 }
 
-bool _autovalidate = false;
-final formKey = GlobalKey<FormState>();
-final scaffoldKey = GlobalKey<ScaffoldState>();
-//TextField Controller
-final TextEditingController nameController = TextEditingController();
-final TextEditingController specialityController = TextEditingController();
-final TextEditingController locationController = TextEditingController();
-final TextEditingController phoneNumberController = TextEditingController();
-final TextEditingController availableTimeController = TextEditingController();
+final _formKey = GlobalKey<FormState>();
 
 //Iraq Mobile Number Validator
 String validateMobile(String value) {
@@ -30,7 +22,6 @@ class _DoctorState extends State<Doctor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
@@ -44,15 +35,13 @@ class _DoctorState extends State<Doctor> {
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 40, horizontal: 30),
         child: Form(
-          key: formKey,
-          autovalidate: _autovalidate,
+          key: _formKey,
           child: SingleChildScrollView(
             child: Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextFormField(
-                    controller: nameController,
                     cursorColor: Colors.deepOrange,
                     decoration: InputDecoration(
                       hintText: 'قم بإدخال اسمك الثلاثي',
@@ -86,7 +75,6 @@ class _DoctorState extends State<Doctor> {
                   ),
                   SizedBox(height: 15.0),
                   TextFormField(
-                      controller: phoneNumberController,
                       keyboardType: TextInputType.phone,
                       cursorColor: Colors.deepOrange,
                       decoration: InputDecoration(
@@ -96,7 +84,6 @@ class _DoctorState extends State<Doctor> {
                       validator: validateMobile),
                   SizedBox(height: 15.0),
                   TextFormField(
-                    controller: availableTimeController,
                     cursorColor: Colors.deepOrange,
                     decoration: InputDecoration(
                       hintText: 'قم بإدخال ايام ووقت استقبال المرضى ',
@@ -155,12 +142,10 @@ class _DoctorState extends State<Doctor> {
                                 borderRadius: BorderRadius.circular(80.0)),
                             onPressed: () {
                               print('ON');
-                              if (formKey.currentState.validate()) {
-                                formKey.currentState.save();
+                              if (_formKey.currentState.validate()) {
+                                _formKey.currentState.save();
                               } else {
-                                setState(() {
-                                  _autovalidate = true;
-                                });
+                                setState(() {});
                               }
                             },
                             child: Text(
