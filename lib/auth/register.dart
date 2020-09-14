@@ -23,89 +23,101 @@ class _RegisterState extends State<Register> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.brown[100],
+            backgroundColor: Colors.grey[200],
             appBar: AppBar(
-              backgroundColor: Colors.brown[400],
-              title: Text('Sign Up to the App'),
+              backgroundColor: Colors.deepOrange,
+              title: Text('تسجيل الدخول'),
               centerTitle: true,
               elevation: 0.0,
-              actions: [
-                FlatButton.icon(
-                    onPressed: () {
-                      widget.toogleView();
-                    },
-                    icon: Icon(Icons.person),
-                    label: Text('Sign In'))
-              ],
             ),
             body: Container(
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
                 child: Form(
                   key: _formKey,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      TextFormField(
-                        validator: (val) =>
-                            val.isEmpty ? 'Enter an email' : null,
-                        onChanged: (val) {
-                          setState(() => email = val);
-                        },
-                        cursorColor: Colors.black,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration:
-                            textInputdecoration.copyWith(hintText: 'email'),
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      TextFormField(
-                        validator: (val) => val.length < 6
-                            ? 'Enter a password 6 or long'
-                            : null,
-                        obscureText: true,
-                        onChanged: (val) {
-                          setState(() => password = val);
-                        },
-                        cursorColor: Colors.black,
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration:
-                            textInputdecoration.copyWith(hintText: 'password'),
-                      ),
-                      SizedBox(
-                        height: 60.0,
-                      ),
-                      RaisedButton(
-                        onPressed: () async {
-                          if (_formKey.currentState.validate()) {
-                            setState(() {
-                              loading = true;
-                            });
-                            dynamic result = await _auth
-                                .registerWithEmailAndPassword(email, password);
-                            if (result == null) {
-                              setState(() {
-                                error = 'Please supply a valid email';
-                                loading = false;
-                              });
-                            }
-                          }
-                        },
-                        color: Colors.pink,
-                        child: Text(
-                          'Register',
-                          style: TextStyle(
-                            color: Colors.white,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: TextFormField(
+                            validator: (val) =>
+                                val.isEmpty ? 'Enter an Email' : null,
+                            onChanged: (val) {
+                              setState(() => email = val);
+                            },
+                            cursorColor: Colors.black,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: textInputdecoration.copyWith(
+                              hintText: 'Email',
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 12.0,
-                      ),
-                      Text(error),
-                    ],
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: TextFormField(
+                            validator: (val) => val.length < 6
+                                ? 'Enter a password 6 or long'
+                                : null,
+                            obscureText: true,
+                            onChanged: (val) {
+                              setState(() => password = val);
+                            },
+                            cursorColor: Colors.black,
+                            keyboardType: TextInputType.visiblePassword,
+                            decoration: textInputdecoration.copyWith(
+                                hintText: 'Password'),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 60.0,
+                        ),
+                        RaisedButton(
+                          onPressed: () async {
+                            if (_formKey.currentState.validate()) {
+                              setState(() {
+                                loading = true;
+                              });
+                              dynamic result =
+                                  await _auth.registerWithEmailAndPassword(
+                                      email, password);
+                              if (result == null) {
+                                setState(() {
+                                  error = 'Please supply a valid email';
+                                  loading = false;
+                                });
+                              }
+                            }
+                          },
+                          color: Colors.deepOrange,
+                          child: Text(
+                            'Register',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 12.0,
+                        ),
+                        Text(error),
+                        SizedBox(
+                          height: 30.0,
+                        ),
+                        Text('Or Sign Up with google'),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        CircleAvatar(
+                          backgroundColor: Colors.deepOrange,
+                        ),
+                      ],
+                    ),
                   ),
                 )),
           );

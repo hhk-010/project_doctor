@@ -8,7 +8,7 @@ class Authenticate extends StatefulWidget {
 }
 
 class _AuthenticateState extends State<Authenticate> {
-  bool showSignIn = true;
+  bool showSignIn = false;
   void toogleView() {
     setState(() {
       showSignIn = !showSignIn;

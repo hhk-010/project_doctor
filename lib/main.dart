@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/pages/home.dart';
+import 'package:project_doctor/pages/intermediate.dart';
 import 'package:project_doctor/pages/patient.dart';
 import 'package:project_doctor/pages/doctor.dart';
 import 'package:project_doctor/pages/result.dart';
-import 'package:project_doctor/pages/wrapper.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/home',
       routes: {
         '/home': (context) => Home(),
-        '/wrapper': (context) => Wrapper(),
+        '/intermediate': (context) => Intermediate(),
         '/patient': (context) => Patient(),
         '/doctor': (context) => Doctor(),
         '/result': (context) => Result(),

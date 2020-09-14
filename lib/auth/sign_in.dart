@@ -24,20 +24,12 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.brown[100],
+            backgroundColor: Colors.grey[200],
             appBar: AppBar(
-              backgroundColor: Colors.brown[400],
+              backgroundColor: Colors.deepOrange,
               title: Text('Sign In to the App'),
               centerTitle: true,
               elevation: 0.0,
-              actions: [
-                FlatButton.icon(
-                    onPressed: () {
-                      widget.toogleView();
-                    },
-                    icon: Icon(Icons.person),
-                    label: Text('Register'))
-              ],
             ),
             body: Container(
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -48,32 +40,38 @@ class _SignInState extends State<SignIn> {
                       SizedBox(
                         height: 20.0,
                       ),
-                      TextFormField(
-                        validator: (val) =>
-                            val.isEmpty ? 'Enter an email' : null,
-                        onChanged: (val) {
-                          setState(() => email = val);
-                        },
-                        cursorColor: Colors.black,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration:
-                            textInputdecoration.copyWith(hintText: 'email'),
+                      Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: TextFormField(
+                          validator: (val) =>
+                              val.isEmpty ? 'Enter an email' : null,
+                          onChanged: (val) {
+                            setState(() => email = val);
+                          },
+                          cursorColor: Colors.black,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration:
+                              textInputdecoration.copyWith(hintText: 'email'),
+                        ),
                       ),
                       SizedBox(
                         height: 20.0,
                       ),
-                      TextFormField(
-                        validator: (val) => val.length < 6
-                            ? 'Enter a password 6 or long'
-                            : null,
-                        obscureText: true,
-                        onChanged: (val) {
-                          setState(() => password = val);
-                        },
-                        cursorColor: Colors.black,
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration:
-                            textInputdecoration.copyWith(hintText: 'password'),
+                      Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: TextFormField(
+                          validator: (val) => val.length < 6
+                              ? 'Enter a password 6 or long'
+                              : null,
+                          obscureText: true,
+                          onChanged: (val) {
+                            setState(() => password = val);
+                          },
+                          cursorColor: Colors.black,
+                          keyboardType: TextInputType.visiblePassword,
+                          decoration: textInputdecoration.copyWith(
+                              hintText: 'password'),
+                        ),
                       ),
                       SizedBox(
                         height: 60.0,
