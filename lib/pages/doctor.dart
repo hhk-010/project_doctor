@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_doctor/services/constants.dart';
+import 'package:project_doctor/services/auth.dart';
 //import 'package:weekday_selector/weekday_selector.dart';
 
 class Doctor extends StatefulWidget {
@@ -7,6 +9,15 @@ class Doctor extends StatefulWidget {
 }
 
 final _formKey = GlobalKey<FormState>();
+// method for popupmenu items.
+final AuthService _auth = AuthService();
+void choiceAction(String choice) async {
+  if (choice == PopUpMenuConstants.logOut) {
+    await _auth.signOut();
+  } else {
+    print('settings');
+  }
+}
 
 //Iraq Mobile Number Validator
 String validateMobile(String value) {
@@ -31,6 +42,18 @@ class _DoctorState extends State<Doctor> {
         ),
         centerTitle: true,
         elevation: 1,
+        actions: [
+          PopupMenuButton<String>(
+              onSelected: choiceAction,
+              itemBuilder: (BuildContext context) {
+                return PopUpMenuConstants.choices.map((String choice) {
+                  return PopupMenuItem(
+                    value: choice,
+                    child: Text(choice),
+                  );
+                }).toList();
+              }),
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 40, horizontal: 30),

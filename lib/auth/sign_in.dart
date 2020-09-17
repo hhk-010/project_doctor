@@ -27,7 +27,7 @@ class _SignInState extends State<SignIn> {
             backgroundColor: Colors.grey[200],
             appBar: AppBar(
               backgroundColor: Colors.deepOrange,
-              title: Text('Sign In to the App'),
+              title: Text('الدخول الى التطبيق'),
               centerTitle: true,
               elevation: 0.0,
             ),
@@ -51,7 +51,7 @@ class _SignInState extends State<SignIn> {
                           cursorColor: Colors.black,
                           keyboardType: TextInputType.emailAddress,
                           decoration:
-                              textInputdecoration.copyWith(hintText: 'email'),
+                              textInputdecoration.copyWith(hintText: 'Email'),
                         ),
                       ),
                       SizedBox(
@@ -70,7 +70,7 @@ class _SignInState extends State<SignIn> {
                           cursorColor: Colors.black,
                           keyboardType: TextInputType.visiblePassword,
                           decoration: textInputdecoration.copyWith(
-                              hintText: 'password'),
+                              hintText: 'Password'),
                         ),
                       ),
                       SizedBox(
@@ -93,7 +93,7 @@ class _SignInState extends State<SignIn> {
                             }
                           }
                         },
-                        color: Colors.pink,
+                        color: Colors.deepOrange,
                         child: Text(
                           'Sign In',
                           style: TextStyle(
@@ -105,6 +105,33 @@ class _SignInState extends State<SignIn> {
                         height: 12.0,
                       ),
                       Text(error),
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: InkWell(
+                            onTap: () {
+                              widget.toogleView();
+                            },
+                            child: RichText(
+                              text: new TextSpan(
+                                // Note: Styles for TextSpans must be explicitly defined.
+                                // Child text spans will inherit styles from parent
+                                style: new TextStyle(
+                                  fontSize: 14.0,
+                                  color: Colors.black,
+                                ),
+                                children: <TextSpan>[
+                                  new TextSpan(text: 'Does not have account? '),
+                                  new TextSpan(
+                                      text: 'Register',
+                                      style: new TextStyle(
+                                          fontWeight: FontWeight.bold)),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 )),
