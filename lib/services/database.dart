@@ -6,20 +6,29 @@ class DatabaseService {
   DatabaseService({this.uid});
 
   final CollectionReference userCollection =
-      FirebaseFirestore.instance.collection('userInfo');
+      FirebaseFirestore.instance.collection('doctorInfo');
 
-  Future updateUserData(String name, String speciality) async {
-    return await userCollection
-        .doc(uid)
-        .set({'name': name, 'speciality': speciality});
+  Future updateUserData(String name, String speciality, String phoneNumber,
+      String province, String location) async {
+    return await userCollection.doc(uid).set({
+      'name': name,
+      'speciality': speciality,
+      'phoneNumber': phoneNumber,
+      'province': province,
+      'location': location
+    });
   }
 
   // info list from a snapshot
-  List<Info> _infoListFromSnapshot(QuerySnapshot snapshot) {
+  List<DoctorInfo> _infoListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
-      return Info(
-          name: doc.data()['name'] ?? '',
-          speciality: doc.data()['speciality'] ?? '');
+      return DoctorInfo(
+        name: doc.data()['name'] ?? '',
+        speciality: doc.data()['speciality'] ?? '',
+        phoneNumber: doc.data()['phoneNumber'] ?? '',
+        province: doc.data()['province'] ?? '',
+        location: doc.data()['location'] ?? '',
+      );
     }).toList();
   }
 
@@ -32,7 +41,7 @@ class DatabaseService {
     );
   }
 
-  Stream<List<Info>> get info {
+  Stream<List<DoctorInfo>> get doctorInfo {
     return userCollection.snapshots().map(_infoListFromSnapshot);
   }
 
