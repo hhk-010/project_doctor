@@ -17,6 +17,13 @@ class _PatientState extends State<Patient> {
     print(position);
   }
 
+  //checkbox varialbles
+  bool _checkDM = false;
+  bool _checkHTN = false;
+  bool _checkCVA = false;
+  bool _checkSmoking = false;
+  bool _checkAlcohol = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +35,6 @@ class _PatientState extends State<Patient> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
         ),
         centerTitle: true,
-        elevation: 1,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 30),
@@ -39,14 +45,38 @@ class _PatientState extends State<Patient> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Center(
+                    child: Text(
+                      'المعلومات الشخصيه',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(height: 15),
                   TextFormField(
-                    cursorColor: Colors.orange,
                     keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
                       hintText: 'قد بإدخال عمرك',
                     ),
                     validator: (value) =>
-                        value == null ? 'رجاءً قم بإدخال الاسم الثلاثي' : null,
+                        value == null ? 'رجاءً قم بإدخال عمرك' : null,
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'ذكر ام انثى',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  Center(
+                    child: Text(
+                      'الاعراض التي تعاني منها',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
                   ),
                   SizedBox(height: 15),
                   DropdownButtonFormField(
@@ -62,11 +92,185 @@ class _PatientState extends State<Patient> {
                     items: null,
                     onChanged: null,
                     hint: Text(
-                      'اختر علامه المرض الثانويه الذي تعاني منه',
+                      'symptom 01',
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
-                  SizedBox(height: 60),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'symptom 02',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'symptom 03',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'symptom 04',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'symptom 05',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'symptom 06',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'symptom 07',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'symptom 08',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'symptom 09',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'symptom 10',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'symptom 11',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'symptom 12',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'symptom 13',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'symptom 14',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  Center(
+                    child: Text(
+                      'الامراض المزمنه',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  CheckboxListTile(
+                      title: Text('مرض السكري'),
+                      value: _checkDM,
+                      onChanged: (bool value) {
+                        setState(() {
+                          _checkDM = value;
+                        });
+                      }),
+                  CheckboxListTile(
+                      title: Text('ارتفاع الضغط'),
+                      value: _checkHTN,
+                      onChanged: (bool value) {
+                        setState(() {
+                          _checkHTN = value;
+                        });
+                      }),
+                  CheckboxListTile(
+                      title: Text('جلطات سابقه'),
+                      value: _checkCVA,
+                      onChanged: (bool value) {
+                        setState(() {
+                          _checkCVA = value;
+                        });
+                      }),
+                  SizedBox(height: 15),
+                  Center(
+                    child: Text(
+                      'اسلوب الحياه ',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  CheckboxListTile(
+                      title: Text('التدخين'),
+                      value: _checkSmoking,
+                      onChanged: (bool value) {
+                        setState(() {
+                          _checkSmoking = value;
+                        });
+                      }),
+                  CheckboxListTile(
+                      title: Text('الكحول'),
+                      value: _checkAlcohol,
+                      onChanged: (bool value) {
+                        setState(() {
+                          _checkAlcohol = value;
+                        });
+                      }),
                   Container(
                     child: Center(
                       child: Padding(

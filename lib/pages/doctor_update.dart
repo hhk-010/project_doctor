@@ -51,7 +51,7 @@ class _DoctorUpdateState extends State<DoctorUpdate> {
               appBar: AppBar(
                 backgroundColor: Colors.deepOrange,
                 title: Text(
-                  'Update Information ',
+                  'Update ',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                 ),
                 centerTitle: true,
