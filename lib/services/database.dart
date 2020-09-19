@@ -20,9 +20,9 @@ class DatabaseService {
   }
 
   // info list from a snapshot
-  List<DoctorInfo> _infoListFromSnapshot(QuerySnapshot snapshot) {
+  List<Info> _infoListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
-      return DoctorInfo(
+      return Info(
         name: doc.data()['name'] ?? '',
         speciality: doc.data()['speciality'] ?? '',
         phoneNumber: doc.data()['phoneNumber'] ?? '',
@@ -41,7 +41,7 @@ class DatabaseService {
     );
   }
 
-  Stream<List<DoctorInfo>> get doctorInfo {
+  Stream<List<Info>> get doctorInfo {
     return userCollection.snapshots().map(_infoListFromSnapshot);
   }
 

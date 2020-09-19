@@ -22,14 +22,14 @@ class UserData {
       this.location});
 }
 
-class DoctorInfo {
+class Info {
   final String name;
   final String speciality;
   final String phoneNumber;
   final String province;
   final String location;
 
-  DoctorInfo(
+  Info(
       {this.name,
       this.speciality,
       this.phoneNumber,

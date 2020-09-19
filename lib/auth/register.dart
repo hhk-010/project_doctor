@@ -27,7 +27,7 @@ class _RegisterState extends State<Register> {
             backgroundColor: Colors.grey[200],
             appBar: AppBar(
               backgroundColor: Colors.deepOrange,
-              title: Text('تسجيل الدخول'),
+              title: Text('Register'),
               centerTitle: true,
               elevation: 0.0,
             ),

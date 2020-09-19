@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/pages/home.dart';
 import 'package:project_doctor/pages/intermediate.dart';
 import 'package:project_doctor/pages/patient.dart';
-import 'package:project_doctor/pages/doctor.dart';
 import 'package:project_doctor/pages/result.dart';
+import 'package:project_doctor/pages/doctor_update.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:project_doctor/pages/doctor_info.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +44,8 @@ class MyApp extends StatelessWidget {
         '/home': (context) => Home(),
         '/intermediate': (context) => Intermediate(),
         '/patient': (context) => Patient(),
-        '/doctor': (context) => Doctor(),
+        '/doctor_update': (context) => DoctorUpdate(),
+        '/doctor_info': (context) => DoctorInfo(),
         '/result': (context) => Result(),
       },
     );

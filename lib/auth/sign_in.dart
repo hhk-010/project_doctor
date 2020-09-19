@@ -27,7 +27,7 @@ class _SignInState extends State<SignIn> {
             backgroundColor: Colors.grey[200],
             appBar: AppBar(
               backgroundColor: Colors.deepOrange,
-              title: Text('الدخول الى التطبيق'),
+              title: Text('Sign In'),
               centerTitle: true,
               elevation: 0.0,
             ),
