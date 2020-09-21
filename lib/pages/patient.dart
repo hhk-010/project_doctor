@@ -92,7 +92,25 @@ class _PatientState extends State<Patient> {
                     items: null,
                     onChanged: null,
                     hint: Text(
+                      'involved system 01',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
                       'symptom 01',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'involved system 02',
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
@@ -110,7 +128,25 @@ class _PatientState extends State<Patient> {
                     items: null,
                     onChanged: null,
                     hint: Text(
+                      'involved system 03',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
                       'symptom 03',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'involved system 04',
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
@@ -128,7 +164,25 @@ class _PatientState extends State<Patient> {
                     items: null,
                     onChanged: null,
                     hint: Text(
+                      'involved system 05',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
                       'symptom 05',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
+                      'involved system 06',
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
@@ -146,70 +200,16 @@ class _PatientState extends State<Patient> {
                     items: null,
                     onChanged: null,
                     hint: Text(
+                      'involved system 07',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField(
+                    items: null,
+                    onChanged: null,
+                    hint: Text(
                       'symptom 07',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'symptom 08',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'symptom 09',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'symptom 10',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'symptom 11',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'symptom 12',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'symptom 13',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'symptom 14',
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
