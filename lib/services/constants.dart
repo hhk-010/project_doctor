@@ -8,7 +8,7 @@ const textInputdecoration = InputDecoration(
       borderSide: BorderSide(color: Colors.deepOrange, width: 2)),
   focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-      borderSide: BorderSide(color: Colors.deepOrange)),
+      borderSide: BorderSide(color: Colors.red)),
   contentPadding: EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
 );
 
@@ -19,6 +19,13 @@ var boxDecoration = BoxDecoration(
       end: Alignment.centerLeft,
     ),
     borderRadius: BorderRadius.circular(30.0));
+
+var boxDecorationPatient = BoxDecoration(
+    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+    border: Border.all(
+      color: Colors.orange[500],
+      width: 2,
+    ));
 
 class PopUpMenuConstants {
   static const String logOut = 'Log Out';

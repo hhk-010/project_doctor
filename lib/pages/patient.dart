@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:project_doctor/services/constants.dart';
+import 'package:project_doctor/services/dropdown_multi_selection.dart';
 
 class Patient extends StatefulWidget {
   @override
@@ -8,21 +9,142 @@ class Patient extends StatefulWidget {
 }
 
 class _PatientState extends State<Patient> {
-  final _formKey = GlobalKey<FormState>();
+// ------------------the Logic for the Radio Buttons-----------------
+  List gender = ["ذكر", "انثى"];
+  String select;
+  Row addRadioButton(int btnValue, String title) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Radio(
+          activeColor: Theme.of(context).primaryColor,
+          value: gender[btnValue],
+          groupValue: select,
+          onChanged: (value) {
+            setState(() {
+              select = value;
+            });
+          },
+        ),
+        Text(
+          title,
+          style: TextStyle(fontSize: 18),
+        )
+      ],
+    );
+  }
 
-  // a Function that return the user location in LatLong.
+  bool state = false;
+  // ------------------------------END-----------------------------
+
+//-----------------Function to use DropdownMultiSelection-----------------
+  void _showMultiSelect(BuildContext context) async {
+    final items = <MultiSelectDialogItem<int>>[
+      MultiSelectDialogItem(1, 'ارتفاع الضغط'),
+      MultiSelectDialogItem(2, 'مرض السكري'),
+      MultiSelectDialogItem(3, 'مرض الربو'),
+    ];
+
+    final selectedValues = await showDialog<Set<int>>(
+      context: context,
+      builder: (BuildContext context) {
+        return MultiSelectDialog(
+          items: items,
+        );
+      },
+    );
+  }
+
+//----------------------------------END-------------------------------
+
+  // ----------------Conditional DropDownMenu ---------------------
+  var firstSystemValue;
+  var firstSymptomsValue;
+  List<DropdownMenuItem<String>> menuitems = List();
+  bool disabledropdown = true;
+
+  final head = {
+    "1": "Headache",
+    "2": "Fever",
+    "3": "Epilepsy",
+  };
+
+  final chest = {
+    "1": "Chest Pain",
+    "2": "Cough",
+    "3": "Fever",
+  };
+
+  final abdomen = {
+    "1": "Vomiting",
+    "2": "Diarrhea",
+    "3": "Abdominal Pain",
+  };
+
+  void populatehead() {
+    for (String key in head.keys) {
+      menuitems.add(DropdownMenuItem<String>(
+        child: Center(
+          child: Text(head[key]),
+        ),
+        value: head[key],
+      ));
+    }
+  }
+
+  void populatechest() {
+    for (String key in chest.keys) {
+      menuitems.add(DropdownMenuItem<String>(
+        child: Center(
+          child: Text(chest[key]),
+        ),
+        value: chest[key],
+      ));
+    }
+  }
+
+  void populateabdomen() {
+    for (String key in abdomen.keys) {
+      menuitems.add(DropdownMenuItem<String>(
+        child: Center(
+          child: Text(abdomen[key]),
+        ),
+        value: abdomen[key],
+      ));
+    }
+  }
+
+  void selected(_value) {
+    if (_value == "Head") {
+      menuitems = [];
+      populatehead();
+    } else if (_value == "Chest") {
+      menuitems = [];
+      populatechest();
+    } else if (_value == "Abdomen") {
+      menuitems = [];
+      populateabdomen();
+    }
+    setState(() {
+      firstSystemValue = _value;
+      disabledropdown = false;
+    });
+  }
+
+  void secondselected(_value) {
+    setState(() {
+      firstSymptomsValue = _value;
+    });
+  }
+//------------------------------END------------------------------
+
+// ------------------function to get the user location------------------
   void _getCurrentLocation() async {
     final Position position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     print(position);
   }
-
-  //checkbox varialbles
-  bool _checkDM = false;
-  bool _checkHTN = false;
-  bool _checkCVA = false;
-  bool _checkSmoking = false;
-  bool _checkAlcohol = false;
+//-------------------------------END--------------------------------------
 
   @override
   Widget build(BuildContext context) {
@@ -38,269 +160,160 @@ class _PatientState extends State<Patient> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 30),
-        child: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: Text(
-                      'المعلومات الشخصيه',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        child: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  decoration: boxDecorationPatient,
+                  child: Column(
+                    children: [
+                      TextField(
+                        style: TextStyle(fontSize: 18),
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.person),
+                          hintText: 'قد بإدخال عمرك',
+                        ),
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          addRadioButton(0, 'ذكر'),
+                          addRadioButton(1, 'انثى'),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(height: 15),
+                Container(
+                  decoration: boxDecorationPatient,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text('الامراض المزمنه التي تعاني منها'),
+                            FlatButton(
+                              onPressed: () => _showMultiSelect(context),
+                              color: Colors.deepOrange,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(80.0)),
+                              child: Text(
+                                'أختر',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                              ),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [],
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(height: 15),
-                  TextFormField(
-                    keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(
-                      hintText: 'قد بإدخال عمرك',
-                    ),
-                    validator: (value) =>
-                        value == null ? 'رجاءً قم بإدخال عمرك' : null,
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'ذكر ام انثى',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  Center(
-                    child: Text(
-                      'الاعراض التي تعاني منها',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'اختر علامه المرض الاوليه الذي تعاني منه',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'involved system 01',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'symptom 01',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'involved system 02',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'symptom 02',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'involved system 03',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'symptom 03',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'involved system 04',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'symptom 04',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'involved system 05',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'symptom 05',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'involved system 06',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'symptom 06',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'involved system 07',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField(
-                    items: null,
-                    onChanged: null,
-                    hint: Text(
-                      'symptom 07',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  Center(
-                    child: Text(
-                      'الامراض المزمنه',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  CheckboxListTile(
-                      title: Text('مرض السكري'),
-                      value: _checkDM,
-                      onChanged: (bool value) {
-                        setState(() {
-                          _checkDM = value;
-                        });
-                      }),
-                  CheckboxListTile(
-                      title: Text('ارتفاع الضغط'),
-                      value: _checkHTN,
-                      onChanged: (bool value) {
-                        setState(() {
-                          _checkHTN = value;
-                        });
-                      }),
-                  CheckboxListTile(
-                      title: Text('جلطات سابقه'),
-                      value: _checkCVA,
-                      onChanged: (bool value) {
-                        setState(() {
-                          _checkCVA = value;
-                        });
-                      }),
-                  SizedBox(height: 15),
-                  Center(
-                    child: Text(
-                      'اسلوب الحياه ',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  CheckboxListTile(
-                      title: Text('التدخين'),
-                      value: _checkSmoking,
-                      onChanged: (bool value) {
-                        setState(() {
-                          _checkSmoking = value;
-                        });
-                      }),
-                  CheckboxListTile(
-                      title: Text('الكحول'),
-                      value: _checkAlcohol,
-                      onChanged: (bool value) {
-                        setState(() {
-                          _checkAlcohol = value;
-                        });
-                      }),
-                  Container(
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ButtonTheme(
-                          minWidth: double.infinity,
-                          height: 45,
-                          child: RaisedButton(
-                            color: Colors.deepOrange,
-                            onPressed: () {
-                              _getCurrentLocation();
-
-                              Navigator.pushNamed(context, '/result');
-                            },
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(80.0)),
-                            child: Text(
-                              'بحث',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 15),
+                Container(
+                  decoration: boxDecorationPatient,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: firstSystemValue,
+                            items: [
+                              DropdownMenuItem<String>(
+                                value: "Head",
+                                child: Center(
+                                  child: Text("Head"),
+                                ),
+                              ),
+                              DropdownMenuItem<String>(
+                                value: "Chest",
+                                child: Center(
+                                  child: Text("Chest"),
+                                ),
+                              ),
+                              DropdownMenuItem<String>(
+                                value: "Abdomen",
+                                child: Center(
+                                  child: Text("Abdomen"),
+                                ),
+                              ),
+                            ],
+                            onChanged: (_value) => selected(_value),
+                            hint: Text('اختر المنطقه التي تعاني منها'),
+                          ),
+                        ),
+                        DropdownButton<String>(
+                          value: firstSymptomsValue,
+                          items: menuitems,
+                          onChanged: disabledropdown
+                              ? null
+                              : (_value) => secondselected(_value),
+                          hint: Text('اختر الاعراض التي تعاني منها'),
+                          disabledHint:
+                              Text("اولا اختر المنطقه التي تعاني منها "),
+                        ),
+                        Row(children: [
+                          Text(
+                            'هل لديك اعراض اخرى',
+                            style: TextStyle(
+                              fontSize: 18.0,
                             ),
+                          ),
+                          Container(width: 80),
+                          Switch(
+                              activeColor: Colors.deepOrange,
+                              value: state,
+                              onChanged: (bool s) {
+                                setState(() {
+                                  state = s;
+                                });
+                              }),
+                        ]),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 75),
+                Container(
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ButtonTheme(
+                        minWidth: double.infinity,
+                        height: 45,
+                        child: RaisedButton(
+                          color: Colors.deepOrange,
+                          onPressed: () {
+                            _getCurrentLocation();
+
+                            Navigator.pushNamed(context, '/result');
+                          },
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80.0)),
+                          child: Text(
+                            'بحث',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
