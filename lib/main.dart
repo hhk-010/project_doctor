@@ -8,6 +8,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project_doctor/pages/doctor_info.dart';
+import 'package:project_doctor/services/data_model.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +17,7 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.deepOrange,
   ));
-  runApp(MyApp());
+  runApp(Provider(create: (_) => UserID(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -35,6 +37,7 @@ class MyApp extends StatelessWidget {
       locale: Locale("ar", "AE"), // OR Locale('ar', 'AE') OR Other RTL locales,
 
       theme: ThemeData(
+        primaryColor: Colors.deepOrange,
         fontFamily: 'noto_arabic',
       ),
 
