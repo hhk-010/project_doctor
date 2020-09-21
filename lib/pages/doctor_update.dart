@@ -5,7 +5,6 @@ import 'package:project_doctor/auth/loading.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
-//import 'package:weekday_selector/weekday_selector.dart';
 
 class DoctorUpdate extends StatefulWidget {
   @override
@@ -19,6 +18,7 @@ String _currentSpeciality;
 String _currentPhoneNumber;
 String _currentProvince;
 String _currentLocation;
+
 final AuthService _auth = AuthService();
 void choiceAction(String choice) async {
   if (choice == PopUpMenuConstants.logOut) {
