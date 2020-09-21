@@ -160,7 +160,6 @@ class _PatientState extends State<Patient> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 30),
-<<<<<<< HEAD
         child: SingleChildScrollView(
           child: Container(
             child: Column(
