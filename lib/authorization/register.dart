@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_doctor/auth/loading.dart';
+import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/services/auth.dart';
-import 'package:project_doctor/services/constants.dart';
+import 'package:project_doctor/services/theme_const.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 
 class Register extends StatefulWidget {

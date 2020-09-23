@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_doctor/services/constants.dart';
+import 'package:project_doctor/services/theme_const.dart';
 import 'package:project_doctor/services/auth.dart';
-import 'package:project_doctor/auth/loading.dart';
+import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
@@ -39,8 +39,7 @@ String validateMobile(String value) {
 class _DoctorUpdateState extends State<DoctorUpdate> {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserID>(context);
-
+    final user = Provider.of<UserIDModel>(context);
     return StreamBuilder<UserData>(
         stream: DatabaseService(uid: user.uid).userDate,
         builder: (context, snapshot) {

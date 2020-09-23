@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:project_doctor/services/constants.dart';
+import 'package:project_doctor/services/theme_const.dart';
 import 'package:project_doctor/services/dropdown_multi_selection.dart';
 
 class Patient extends StatefulWidget {
@@ -53,6 +53,7 @@ class _PatientState extends State<Patient> {
         );
       },
     );
+    print(selectedValues);
   }
 
 //----------------------------------END-------------------------------

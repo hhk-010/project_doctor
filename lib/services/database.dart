@@ -19,10 +19,16 @@ class DatabaseService {
     });
   }
 
-  // info list from a snapshot
-  List<Info> _infoListFromSnapshot(QuerySnapshot snapshot) {
+  // stream to get userdata from a snapshot and map it to a model data.
+  Stream<List<DoctorDataListModel>> get doctorDataStream {
+    return userCollection.snapshots().map(_doctorDataListFromSnapshot);
+  }
+
+  // doctordatalist model data from snapshot
+  List<DoctorDataListModel> _doctorDataListFromSnapshot(
+      QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
-      return Info(
+      return DoctorDataListModel(
         name: doc.data()['name'] ?? '',
         speciality: doc.data()['speciality'] ?? '',
         phoneNumber: doc.data()['phoneNumber'] ?? '',
@@ -32,17 +38,12 @@ class DatabaseService {
     }).toList();
   }
 
-  // user data from snapshot
   UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
     return UserData(
       uid: uid,
       name: snapshot.data()['name'],
       speciality: snapshot.data()['speciality'],
     );
-  }
-
-  Stream<List<Info>> get doctorInfo {
-    return userCollection.snapshots().map(_infoListFromSnapshot);
   }
 
   Stream<UserData> get userDate {

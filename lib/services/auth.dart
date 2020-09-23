@@ -5,11 +5,11 @@ import 'package:project_doctor/services/data_model.dart';
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  UserID _userfromfirebase(User user) {
-    return user != null ? UserID(uid: user.uid) : null;
+  UserIDModel _userfromfirebase(User user) {
+    return user != null ? UserIDModel(uid: user.uid) : null;
   }
 
-  Stream<UserID> get user {
+  Stream<UserIDModel> get user {
     return _auth.authStateChanges().map((User user) => _userfromfirebase(user));
   }
 
@@ -31,6 +31,7 @@ class AuthService {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
+      // create a new document for the user with the id
       await DatabaseService(uid: user.uid).updateUserData(
           'name', 'speciality', 'phoneNumber', 'province', 'location');
       return _userfromfirebase(user);

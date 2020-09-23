@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/pages/home.dart';
-import 'package:project_doctor/pages/intermediate.dart';
+import 'package:project_doctor/authorization/wrapper.dart';
 import 'package:project_doctor/pages/patient.dart';
 import 'package:project_doctor/pages/result.dart';
 import 'package:project_doctor/pages/doctor_update.dart';
@@ -8,8 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project_doctor/pages/doctor_info.dart';
-import 'package:project_doctor/services/data_model.dart';
-import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,31 +15,39 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.deepOrange,
   ));
-  runApp(Provider(create: (_) => UserID(), child: MyApp()));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of the application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: [
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [
-        Locale("ar", "AE"), // OR Locale('ar', 'AE') OR Other RTL locales
-      ],
-      locale: Locale("ar", "AE"), // OR Locale('ar', 'AE') OR Other RTL locales,
-
+      title: 'Cura',
       theme: ThemeData(
         primaryColor: Colors.deepOrange,
         fontFamily: 'noto_arabic',
       ),
-
-      //set routing for the app
+      supportedLocales: [
+        Locale('en', 'US'),
+        Locale("ar", "IQ"),
+      ],
+      locale: Locale("ar", "AE"),
+      localizationsDelegates: [
+        // AppLocatlizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      localeResolutionCallback: (locale, supportedLocales) {
+        for (var supportedLocale in supportedLocales) {
+          if (supportedLocale.languageCode == locale.languageCode &&
+              supportedLocale.countryCode == locale.countryCode) {
+            return supportedLocale;
+          }
+        }
+        return supportedLocales.first;
+      },
       initialRoute: '/home',
       routes: {
         '/home': (context) => Home(),
