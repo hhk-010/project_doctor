@@ -1,23 +1,8 @@
 // user data model;
-class UserIDModel {
+class UserID {
   final String uid;
 
-  UserIDModel({this.uid});
-}
-
-class DoctorDataListModel {
-  final String name;
-  final String speciality;
-  final String phoneNumber;
-  final String province;
-  final String location;
-
-  DoctorDataListModel(
-      {this.name,
-      this.speciality,
-      this.phoneNumber,
-      this.province,
-      this.location});
+  UserID({this.uid});
 }
 
 class UserData {

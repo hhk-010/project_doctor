@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:project_doctor/pages/doctor_form.dart';
 import 'package:provider/provider.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/auth.dart';
-import 'package:project_doctor/pages/doctor_info.dart';
 import 'package:project_doctor/authorization/register.dart';
 import 'package:project_doctor/authorization/sign_in.dart';
 
 class Intermediate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<UserIDModel>.value(
+    return StreamProvider<UserID>.value(
       value: AuthService().user,
       child: Wrapper(),
     );
@@ -19,12 +19,12 @@ class Intermediate extends StatelessWidget {
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserIDModel>(context);
+    final user = Provider.of<UserID>(context);
 
     if (user == null) {
       return Authenticate();
     } else {
-      return DoctorInfo();
+      return DoctorForm();
     }
   }
 }

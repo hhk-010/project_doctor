@@ -13,6 +13,13 @@
     "patient_complain" : "Your complain",
     "patient_disablehint" : "First choose your complain",
     "patient_other_complain" : "Do you have other complains",
-    "patient_search_button" : "Search"
+    "patient_search_button" : "Search",
+    "doctor_form_name" : "Name",
+    "doctor_form_speciality" : "Speciality",
+    "doctor_form_phoneNumber" : "Phone Number",
+    "doctor_form_province": "Province",
+    "doctor_form_location": "Location",
+    "doctor_form_search": "Search"
+
         
 }

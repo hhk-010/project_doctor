@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/theme_const.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/authorization/loading.dart';
@@ -6,13 +7,13 @@ import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
 
-class DoctorUpdate extends StatefulWidget {
+class DoctorForm extends StatefulWidget {
   @override
-  _DoctorUpdateState createState() => _DoctorUpdateState();
+  _DoctorFormState createState() => _DoctorFormState();
 }
 
 final _formKey = GlobalKey<FormState>();
-final List<String> speciality = ['cardio', 'respiratory', 'GIT'];
+final List<String> specialities = ['Cardio', 'Neuro', 'GIT'];
 String _currentName;
 String _currentSpeciality;
 String _currentPhoneNumber;
@@ -36,12 +37,12 @@ String validateMobile(String value) {
     return null;
 }
 
-class _DoctorUpdateState extends State<DoctorUpdate> {
+class _DoctorFormState extends State<DoctorForm> {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserIDModel>(context);
+    final user = Provider.of<UserID>(context);
     return StreamBuilder<UserData>(
-        stream: DatabaseService(uid: user.uid).userDate,
+        stream: DatabaseService(uid: user.uid).userDataUpdateStream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             UserData userData = snapshot.data;
@@ -69,7 +70,7 @@ class _DoctorUpdateState extends State<DoctorUpdate> {
                 ],
               ),
               body: Padding(
-                padding: EdgeInsets.symmetric(vertical: 40, horizontal: 30),
+                padding: EdgeInsets.symmetric(vertical: 60, horizontal: 40),
                 child: Form(
                   key: _formKey,
                   child: SingleChildScrollView(
@@ -81,32 +82,36 @@ class _DoctorUpdateState extends State<DoctorUpdate> {
                             initialValue: userData.name,
                             cursorColor: Colors.deepOrange,
                             decoration: InputDecoration(
-                              hintText: 'قم بإدخال اسمك الثلاثي',
+                              hintText: AppLocalizations.of(context)
+                                  .translate('doctor_form_name'),
+                              labelText: AppLocalizations.of(context)
+                                  .translate('doctor_form_name'),
                             ),
-                            validator: (value) => value == null
-                                ? 'رجاءً قم بإدخال الاسم الثلاثي'
-                                : null,
+                            validator: (value) =>
+                                value == null ? 'AAAAAA' : null,
                             onChanged: (val) =>
                                 setState(() => _currentName = val),
                           ),
                           SizedBox(height: 15.0),
                           DropdownButtonFormField<String>(
-                            value: _currentSpeciality ?? userData.speciality,
+                            value: _currentSpeciality ?? 'GIT',
                             hint: Text(
-                              'قم بادخال اختصاصك الطبي',
+                              AppLocalizations.of(context)
+                                  .translate('doctor_form_speciality'),
                             ),
                             dropdownColor: Colors.grey[200],
                             elevation: 5,
                             icon: Icon(Icons.arrow_drop_down),
                             isExpanded: true,
-                            items: speciality.map((speciality) {
+                            items: specialities.map((speciality) {
                               return DropdownMenuItem(
                                 value: speciality,
                                 child: Text('$speciality'),
                               );
                             }).toList(),
                             validator: (value) => value == null
-                                ? 'رجاءً قم بإدخال اختصاصك الطبي '
+                                ? AppLocalizations.of(context)
+                                    .translate('doctor_form_speciality')
                                 : null,
                             onChanged: (val) =>
                                 setState(() => _currentSpeciality = val),
@@ -118,30 +123,28 @@ class _DoctorUpdateState extends State<DoctorUpdate> {
                                   setState(() => _currentPhoneNumber = val),
                               keyboardType: TextInputType.phone,
                               decoration: InputDecoration(
-                                hintText:
-                                    'قم بإدخال رقم هاتف العياده لغرض الحجز',
+                                hintText: AppLocalizations.of(context)
+                                    .translate('doctor_form_phoneNumber'),
                               ),
                               validator: validateMobile),
                           SizedBox(height: 15.0),
                           TextFormField(
-                            cursorColor: Colors.deepOrange,
-                            decoration: InputDecoration(
-                              hintText: 'قم بإدخال ايام ووقت استقبال المرضى ',
-                            ),
-                            textAlign: TextAlign.right,
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'رجاءً قم بإدخال ايام واوقات استقبال المرضى';
-                              }
-                              return null;
-                            },
-                          ),
+                              initialValue: userData.province,
+                              onChanged: (val) =>
+                                  setState(() => _currentPhoneNumber = val),
+                              keyboardType: TextInputType.phone,
+                              decoration: InputDecoration(
+                                hintText: AppLocalizations.of(context)
+                                    .translate('doctor_form_province'),
+                              ),
+                              validator: validateMobile),
                           SizedBox(height: 15.0),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'قم بادخال موقع عيادتك',
+                                AppLocalizations.of(context)
+                                    .translate('doctor_form_location'),
                                 style: TextStyle(
                                   color: Colors.grey[600],
                                   fontSize: 18,
@@ -195,11 +198,12 @@ class _DoctorUpdateState extends State<DoctorUpdate> {
                                           _currentLocation ?? userData.location,
                                         );
                                         Navigator.pushNamed(
-                                            context, '/doctor_info');
+                                            context, '/doctor_profile');
                                       }
                                     },
                                     child: Text(
-                                      'ارسل',
+                                      AppLocalizations.of(context)
+                                          .translate('doctor_form_search'),
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,

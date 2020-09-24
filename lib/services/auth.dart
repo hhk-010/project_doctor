@@ -5,11 +5,11 @@ import 'package:project_doctor/services/data_model.dart';
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  UserIDModel _userfromfirebase(User user) {
-    return user != null ? UserIDModel(uid: user.uid) : null;
+  UserID _userfromfirebase(User user) {
+    return user != null ? UserID(uid: user.uid) : null;
   }
 
-  Stream<UserIDModel> get user {
+  Stream<UserID> get user {
     return _auth.authStateChanges().map((User user) => _userfromfirebase(user));
   }
 
