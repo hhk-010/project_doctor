@@ -10,8 +10,6 @@ class DoctorInfo extends StatelessWidget {
   void choiceAction(String choice) async {
     if (choice == PopUpMenuConstants.logOut) {
       await _auth.signOut();
-    } else {
-      print('settings');
     }
   }
 
@@ -64,8 +62,32 @@ class _InfoListState extends State<InfoList> {
       print(element.phoneNumber);
     });
 
-    return ListView(
-      children: [],
+    return ListView.builder(
+        itemCount: doctorListProvider.length,
+        itemBuilder: (context, index) {
+          return InfoTile(dataD: doctorListProvider[index]);
+        });
+  }
+}
+
+class InfoTile extends StatelessWidget {
+  final DoctorDataListModel dataD;
+  InfoTile({this.dataD});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: 8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(dataD.name),
+          Text(dataD.speciality),
+          Text(dataD.phoneNumber),
+          Text(dataD.province),
+          Text(dataD.location),
+        ],
+      ),
     );
   }
 }

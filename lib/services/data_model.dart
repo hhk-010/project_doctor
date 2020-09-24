@@ -5,6 +5,21 @@ class UserIDModel {
   UserIDModel({this.uid});
 }
 
+class DoctorDataListModel {
+  final String name;
+  final String speciality;
+  final String phoneNumber;
+  final String province;
+  final String location;
+
+  DoctorDataListModel(
+      {this.name,
+      this.speciality,
+      this.phoneNumber,
+      this.province,
+      this.location});
+}
+
 class UserData {
   final String uid;
   final String name;
@@ -16,21 +31,6 @@ class UserData {
   UserData(
       {this.uid,
       this.name,
-      this.speciality,
-      this.phoneNumber,
-      this.province,
-      this.location});
-}
-
-class DoctorDataListModel {
-  final String name;
-  final String speciality;
-  final String phoneNumber;
-  final String province;
-  final String location;
-
-  DoctorDataListModel(
-      {this.name,
       this.speciality,
       this.phoneNumber,
       this.province,
