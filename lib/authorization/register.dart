@@ -41,39 +41,31 @@ class _RegisterState extends State<Register> {
                     SizedBox(
                       height: 20.0,
                     ),
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: TextFormField(
-                        validator: (val) =>
-                            val.isEmpty ? 'Enter an Email' : null,
-                        onChanged: (val) {
-                          setState(() => email = val);
-                        },
-                        cursorColor: Colors.black,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: textInputdecoration.copyWith(
-                          hintText: 'Email',
-                        ),
+                    TextFormField(
+                      validator: (val) => val.isEmpty ? 'Enter an Email' : null,
+                      onChanged: (val) {
+                        setState(() => email = val);
+                      },
+                      cursorColor: Colors.black,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: textInputdecoration.copyWith(
+                        hintText: 'Email',
                       ),
                     ),
                     SizedBox(
                       height: 20.0,
                     ),
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: TextFormField(
-                        validator: (val) => val.length < 6
-                            ? 'Enter a password 6 or long'
-                            : null,
-                        obscureText: true,
-                        onChanged: (val) {
-                          setState(() => password = val);
-                        },
-                        cursorColor: Colors.black,
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration:
-                            textInputdecoration.copyWith(hintText: 'Password'),
-                      ),
+                    TextFormField(
+                      validator: (val) =>
+                          val.length < 6 ? 'Enter a password 6 or long' : null,
+                      obscureText: true,
+                      onChanged: (val) {
+                        setState(() => password = val);
+                      },
+                      cursorColor: Colors.black,
+                      keyboardType: TextInputType.visiblePassword,
+                      decoration:
+                          textInputdecoration.copyWith(hintText: 'Password'),
                     ),
                     SizedBox(
                       height: 60.0,
@@ -116,26 +108,20 @@ class _RegisterState extends State<Register> {
                     SizedBox(
                       height: 12.0,
                     ),
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: GoogleSignInButton(
-                        onPressed: () => print('hello'),
-                        splashColor: Colors.blue,
-                        borderRadius: 20.0,
-                        textStyle: TextStyle(fontSize: 15, color: Colors.black),
-                        darkMode: false,
-                      ),
+                    GoogleSignInButton(
+                      onPressed: () => print('hello'),
+                      splashColor: Colors.blue,
+                      borderRadius: 20.0,
+                      textStyle: TextStyle(fontSize: 15, color: Colors.black),
+                      darkMode: false,
                     ),
                     SizedBox(
                       height: 15.0,
                     ),
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: AppleSignInButton(
-                        onPressed: () => print('hello'),
-                        splashColor: Colors.white,
-                        borderRadius: 20.0,
-                      ),
+                    AppleSignInButton(
+                      onPressed: () => print('hello'),
+                      splashColor: Colors.white,
+                      borderRadius: 20.0,
                     ),
                     Expanded(
                       child: Align(

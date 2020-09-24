@@ -40,38 +40,32 @@ class _SignInState extends State<SignIn> {
                       SizedBox(
                         height: 20.0,
                       ),
-                      Directionality(
-                        textDirection: TextDirection.ltr,
-                        child: TextFormField(
-                          validator: (val) =>
-                              val.isEmpty ? 'Enter an email' : null,
-                          onChanged: (val) {
-                            setState(() => email = val);
-                          },
-                          cursorColor: Colors.black,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration:
-                              textInputdecoration.copyWith(hintText: 'Email'),
-                        ),
+                      TextFormField(
+                        validator: (val) =>
+                            val.isEmpty ? 'Enter an email' : null,
+                        onChanged: (val) {
+                          setState(() => email = val);
+                        },
+                        cursorColor: Colors.black,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration:
+                            textInputdecoration.copyWith(hintText: 'Email'),
                       ),
                       SizedBox(
                         height: 20.0,
                       ),
-                      Directionality(
-                        textDirection: TextDirection.ltr,
-                        child: TextFormField(
-                          validator: (val) => val.length < 6
-                              ? 'Enter a password 6 or long'
-                              : null,
-                          obscureText: true,
-                          onChanged: (val) {
-                            setState(() => password = val);
-                          },
-                          cursorColor: Colors.black,
-                          keyboardType: TextInputType.visiblePassword,
-                          decoration: textInputdecoration.copyWith(
-                              hintText: 'Password'),
-                        ),
+                      TextFormField(
+                        validator: (val) => val.length < 6
+                            ? 'Enter a password 6 or long'
+                            : null,
+                        obscureText: true,
+                        onChanged: (val) {
+                          setState(() => password = val);
+                        },
+                        cursorColor: Colors.black,
+                        keyboardType: TextInputType.visiblePassword,
+                        decoration:
+                            textInputdecoration.copyWith(hintText: 'Password'),
                       ),
                       SizedBox(
                         height: 60.0,

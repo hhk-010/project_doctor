@@ -1,0 +1,21 @@
+{
+    "home_title" : "Welcome to Cura",
+    "home_patient" :"I'm a Patient",
+    "home_doctor" : "I'm a Doctor",
+    "about_us" : "About Us",
+    "patient_appbar" : "Fill The Data",
+    "patient_name" : "Name", 
+    "patient_male" : "Male",
+    "patient_female" : "Female", 
+    "patient_chronic_diseases" : "Chronic Diseases",
+    "patient_dialogue_list_button" : "Choose",
+    "patient_area_of_choice" : "The body area of your complain",
+    "patient_complain" : "Your complain",
+    "patient_disablehint" : "First choose your complain",
+    "patient_other_complain" : "Do you have other complains",
+    "patient_search_button" : "Search"
+
+
+
+    
+}

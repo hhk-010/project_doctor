@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/theme_const.dart';
 import 'package:project_doctor/services/dropdown_multi_selection.dart';
 
@@ -154,7 +155,7 @@ class _PatientState extends State<Patient> {
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: Text(
-          'معلومات المريض',
+          AppLocalizations.of(context).translate('patient_appbar'),
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
         ),
         centerTitle: true,
@@ -174,15 +175,22 @@ class _PatientState extends State<Patient> {
                         style: TextStyle(fontSize: 18),
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.person),
-                          hintText: 'قد بإدخال عمرك',
+                          hintText: AppLocalizations.of(context)
+                              .translate('patient_name'),
                         ),
                       ),
                       SizedBox(height: 15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          addRadioButton(0, 'ذكر'),
-                          addRadioButton(1, 'انثى'),
+                          addRadioButton(
+                              0,
+                              AppLocalizations.of(context)
+                                  .translate('patient_male')),
+                          addRadioButton(
+                              1,
+                              AppLocalizations.of(context)
+                                  .translate('patient_female')),
                         ],
                       )
                     ],
@@ -197,14 +205,20 @@ class _PatientState extends State<Patient> {
                       children: [
                         Row(
                           children: [
-                            Text('الامراض المزمنه التي تعاني منها'),
+                            Text(
+                              AppLocalizations.of(context)
+                                  .translate('patient_chronic_diseases'),
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
                             FlatButton(
                               onPressed: () => _showMultiSelect(context),
                               color: Colors.deepOrange,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(80.0)),
                               child: Text(
-                                'أختر',
+                                AppLocalizations.of(context)
+                                    .translate('patient_dialogue_list_button'),
                                 style: TextStyle(
                                     fontSize: 18, color: Colors.white),
                               ),
@@ -251,7 +265,8 @@ class _PatientState extends State<Patient> {
                               ),
                             ],
                             onChanged: (_value) => selected(_value),
-                            hint: Text('اختر المنطقه التي تعاني منها'),
+                            hint: Text(AppLocalizations.of(context)
+                                .translate('patient_area_of_choice')),
                           ),
                         ),
                         DropdownButton<String>(
@@ -260,18 +275,19 @@ class _PatientState extends State<Patient> {
                           onChanged: disabledropdown
                               ? null
                               : (_value) => secondselected(_value),
-                          hint: Text('اختر الاعراض التي تعاني منها'),
-                          disabledHint:
-                              Text("اولا اختر المنطقه التي تعاني منها "),
+                          hint: Text(AppLocalizations.of(context)
+                              .translate('patient_complain')),
+                          disabledHint: Text(AppLocalizations.of(context)
+                              .translate('patient_disablehint')),
                         ),
                         Row(children: [
                           Text(
-                            'هل لديك اعراض اخرى',
+                            AppLocalizations.of(context)
+                                .translate('patient_other_complain'),
                             style: TextStyle(
                               fontSize: 18.0,
                             ),
                           ),
-                          Container(width: 80),
                           Switch(
                               activeColor: Colors.deepOrange,
                               value: state,
@@ -303,7 +319,8 @@ class _PatientState extends State<Patient> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(80.0)),
                           child: Text(
-                            'بحث',
+                            AppLocalizations.of(context)
+                                .translate('patient_search_button'),
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
