@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_doctor/services/app_localizations.dart';
 
 class MultiSelectDialogItem<V> {
   const MultiSelectDialogItem(this.value, this.label);
@@ -49,7 +50,8 @@ class _MultiSelectDialogState<V> extends State<MultiSelectDialog<V>> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('الامراض المزمنه'),
+      title: Text(
+          AppLocalizations.of(context).translate('patient_chronic_diseases')),
       contentPadding: EdgeInsets.only(top: 12.0),
       content: SingleChildScrollView(
         child: ListTileTheme(
@@ -61,11 +63,13 @@ class _MultiSelectDialogState<V> extends State<MultiSelectDialog<V>> {
       ),
       actions: <Widget>[
         FlatButton(
-          child: Text('الغاء'),
+          child: Text(AppLocalizations.of(context)
+              .translate('patient_dialogue_cancel')),
           onPressed: _onCancelTap,
         ),
         FlatButton(
-          child: Text('تم'),
+          child: Text(
+              AppLocalizations.of(context).translate('patient_dialogue_ok')),
           onPressed: _onSubmitTap,
         )
       ],

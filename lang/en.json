@@ -7,9 +7,11 @@
     "patient_name" : "Name", 
     "patient_male" : "Male",
     "patient_female" : "Female", 
-    "patient_chronic_diseases" : "Chronic Diseases",
+    "patient_chronic_diseases" : "Long-term diseases",
     "patient_dialogue_list_button" : "Choose",
-    "patient_area_of_choice" : "The body area of your complain",
+    "patient_dialogue_cancel" : "Cancel",
+    "patient_dialogue_ok" : "OK",
+    "patient_area_of_choice" : "The region you Complain about",
     "patient_complain" : "Your complain",
     "patient_disablehint" : "First choose your complain",
     "patient_other_complain" : "Do you have other complains",
@@ -20,8 +22,16 @@
     "doctor_form_phoneNumber" : "Phone Number",
     "doctor_form_province": "Province",
     "doctor_form_location": "Location",
-    "doctor_form_search": "Submit"
-
+    "doctor_form_search": "Submit",
+    "cd_hyt" : "Elevated Blood Pressure",
+    "cd_DM" : "Diabetus Mellitus",
+    "cd_heart" : "Heart Disease",
+    "cd_ckd" : "Kidney Diseae",
+    "ed_liver" : "Liver Disease",
+    "ed_brain" : "Demantia",
+    "ed_thyroid" : "Goitre",
+    "ed_lung" : "Lung Disease",
+    "ed_ashma" : "Ashma"
 
 
 

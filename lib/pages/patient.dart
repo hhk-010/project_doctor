@@ -11,7 +11,12 @@ class Patient extends StatefulWidget {
 
 class _PatientState extends State<Patient> {
 // ------------------the Logic for the Radio Buttons-----------------
-  List gender = ["ذكر", "انثى"];
+  TextStyle _textStylePatient = TextStyle(
+    fontSize: 18,
+    color: Colors.black,
+  );
+
+  List gender = ['Male', 'Female'];
   String select;
   Row addRadioButton(int btnValue, String title) {
     return Row(
@@ -41,9 +46,11 @@ class _PatientState extends State<Patient> {
 //-----------------Function to use DropdownMultiSelection-----------------
   void _showMultiSelect(BuildContext context) async {
     final items = <MultiSelectDialogItem<int>>[
-      MultiSelectDialogItem(1, 'ارتفاع الضغط'),
-      MultiSelectDialogItem(2, 'مرض السكري'),
-      MultiSelectDialogItem(3, 'مرض الربو'),
+      MultiSelectDialogItem(
+          1, AppLocalizations.of(context).translate('cd_hyt')),
+      MultiSelectDialogItem(2, AppLocalizations.of(context).translate('cd_DM')),
+      MultiSelectDialogItem(
+          3, AppLocalizations.of(context).translate('cd_heart')),
     ];
 
     final selectedValues = await showDialog<Set<int>>(
@@ -60,8 +67,7 @@ class _PatientState extends State<Patient> {
 //----------------------------------END-------------------------------
 
   // ----------------Conditional DropDownMenu ---------------------
-  var firstSystemValue;
-  var firstSymptomsValue;
+  String value = "";
   List<DropdownMenuItem<String>> menuitems = List();
   bool disabledropdown = true;
 
@@ -128,14 +134,15 @@ class _PatientState extends State<Patient> {
       populateabdomen();
     }
     setState(() {
-      firstSystemValue = _value;
+      value = _value;
+
       disabledropdown = false;
     });
   }
 
   void secondselected(_value) {
     setState(() {
-      firstSymptomsValue = _value;
+      value = _value;
     });
   }
 //------------------------------END------------------------------
@@ -200,16 +207,17 @@ class _PatientState extends State<Patient> {
                 Container(
                   decoration: boxDecorationPatient,
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 16.0),
+                    padding: const EdgeInsets.all(8),
                     child: Column(
                       children: [
                         Row(
                           children: [
                             Text(
-                              AppLocalizations.of(context)
-                                  .translate('patient_chronic_diseases'),
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
+                                AppLocalizations.of(context)
+                                    .translate('patient_chronic_diseases'),
+                                style: _textStylePatient),
+                            SizedBox(
+                              width: 50,
                             ),
                             FlatButton(
                               onPressed: () => _showMultiSelect(context),
@@ -222,7 +230,7 @@ class _PatientState extends State<Patient> {
                                 style: TextStyle(
                                     fontSize: 18, color: Colors.white),
                               ),
-                            )
+                            ),
                           ],
                         ),
                         Row(
@@ -236,41 +244,39 @@ class _PatientState extends State<Patient> {
                 Container(
                   decoration: boxDecorationPatient,
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 16.0),
+                    padding: const EdgeInsets.all(8),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            value: firstSystemValue,
-                            items: [
-                              DropdownMenuItem<String>(
-                                value: "Head",
-                                child: Center(
-                                  child: Text("Head"),
-                                ),
+                        DropdownButton<String>(
+                          isExpanded: true,
+                          items: [
+                            DropdownMenuItem<String>(
+                              value: "Head",
+                              child: Center(
+                                child: Text("Head"),
                               ),
-                              DropdownMenuItem<String>(
-                                value: "Chest",
-                                child: Center(
-                                  child: Text("Chest"),
-                                ),
+                            ),
+                            DropdownMenuItem<String>(
+                              value: "Chest",
+                              child: Center(
+                                child: Text("Chest"),
                               ),
-                              DropdownMenuItem<String>(
-                                value: "Abdomen",
-                                child: Center(
-                                  child: Text("Abdomen"),
-                                ),
+                            ),
+                            DropdownMenuItem<String>(
+                              value: "Abdomen",
+                              child: Center(
+                                child: Text("Abdomen"),
                               ),
-                            ],
-                            onChanged: (_value) => selected(_value),
-                            hint: Text(AppLocalizations.of(context)
-                                .translate('patient_area_of_choice')),
-                          ),
+                            ),
+                          ],
+                          onChanged: (_value) => selected(_value),
+                          hint: Text(AppLocalizations.of(context)
+                              .translate('patient_area_of_choice')),
                         ),
                         DropdownButton<String>(
-                          value: firstSymptomsValue,
+                          isExpanded: true,
                           items: menuitems,
                           onChanged: disabledropdown
                               ? null
@@ -279,6 +285,28 @@ class _PatientState extends State<Patient> {
                               .translate('patient_complain')),
                           disabledHint: Text(AppLocalizations.of(context)
                               .translate('patient_disablehint')),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Head",
+                              style: _textStylePatient,
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Text(
+                              "Heahache",
+                              style: _textStylePatient,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 15,
                         ),
                         Row(children: [
                           Text(
