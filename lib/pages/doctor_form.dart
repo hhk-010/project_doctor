@@ -41,17 +41,17 @@ class _DoctorFormState extends State<DoctorForm> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserID>(context);
-    return StreamBuilder<UserData>(
-        stream: DatabaseService(uid: user.uid).userDataUpdateStream,
+    return StreamBuilder<UpdateUserDataModel>(
+        stream: DatabaseService(uid: user.uid).doctorDataFormStream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            UserData userData = snapshot.data;
+            UpdateUserDataModel userData = snapshot.data;
             return Scaffold(
               backgroundColor: Colors.grey[200],
               appBar: AppBar(
                 backgroundColor: Colors.deepOrange,
                 title: Text(
-                  'Update ',
+                  AppLocalizations.of(context).translate('doctor_form_appbar'),
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                 ),
                 centerTitle: true,
@@ -94,7 +94,7 @@ class _DoctorFormState extends State<DoctorForm> {
                           ),
                           SizedBox(height: 15.0),
                           DropdownButtonFormField<String>(
-                            value: _currentSpeciality ?? 'GIT',
+                            value: _currentSpeciality,
                             hint: Text(
                               AppLocalizations.of(context)
                                   .translate('doctor_form_speciality'),
@@ -129,15 +129,14 @@ class _DoctorFormState extends State<DoctorForm> {
                               validator: validateMobile),
                           SizedBox(height: 15.0),
                           TextFormField(
-                              initialValue: userData.province,
-                              onChanged: (val) =>
-                                  setState(() => _currentPhoneNumber = val),
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                hintText: AppLocalizations.of(context)
-                                    .translate('doctor_form_province'),
-                              ),
-                              validator: validateMobile),
+                            initialValue: userData.province,
+                            onChanged: (val) =>
+                                setState(() => _currentProvince = val),
+                            decoration: InputDecoration(
+                              hintText: AppLocalizations.of(context)
+                                  .translate('doctor_form_province'),
+                            ),
+                          ),
                           SizedBox(height: 15.0),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -153,7 +152,7 @@ class _DoctorFormState extends State<DoctorForm> {
                               ButtonTheme(
                                 height: 30,
                                 child: RaisedButton(
-                                  onPressed: () => print('ON'),
+                                  onPressed: () => _currentLocation = 'Baghdad',
                                   color: Colors.deepOrange,
                                   shape: RoundedRectangleBorder(
                                       borderRadius:

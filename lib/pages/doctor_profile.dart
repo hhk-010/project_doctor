@@ -16,7 +16,7 @@ class DoctorProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
-      value: DatabaseService().doctorDataStream,
+      value: DatabaseService().doctorDataProfileStream,
       child: Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
@@ -40,25 +40,32 @@ class DoctorProfile extends StatelessWidget {
                 }),
           ],
         ),
-        body: InfoList(),
+        body: DoctorList(),
       ),
     );
   }
 }
 
-class InfoList extends StatefulWidget {
+class DoctorList extends StatefulWidget {
   @override
-  _InfoListState createState() => _InfoListState();
+  _DoctorListState createState() => _DoctorListState();
 }
 
-class _InfoListState extends State<InfoList> {
+class _DoctorListState extends State<DoctorList> {
   @override
   Widget build(BuildContext context) {
     final doctorListProvider = Provider.of<QuerySnapshot>(context);
+
     for (var doc in doctorListProvider.docs) {
       print(doc.data());
-    }
 
-    return Container();
+      return Container(
+        child: Column(
+          children: [
+            Text(''),
+          ],
+        ),
+      );
+    }
   }
 }

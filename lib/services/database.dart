@@ -19,8 +19,8 @@ class DatabaseService {
     });
   }
 
-  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
-    return UserData(
+  UpdateUserDataModel _userDataFromSnapshot(DocumentSnapshot snapshot) {
+    return UpdateUserDataModel(
       uid: uid,
       name: snapshot.data()['name'],
       speciality: snapshot.data()['speciality'],
@@ -31,17 +31,16 @@ class DatabaseService {
   }
 
   // stream to get userdata from a snapshot and map it to a model data.
-  Stream<QuerySnapshot> get doctorDataStream {
+  Stream<QuerySnapshot> get doctorDataProfileStream {
     return userCollection.snapshots();
   }
 
   // stream to get user data
-  Stream<UserData> get userDataUpdateStream {
+  Stream<UpdateUserDataModel> get doctorDataFormStream {
     return userCollection.doc(uid).snapshots().map(_userDataFromSnapshot);
   }
-}
 
-//   // doctordatalist model data from snapshot
+//     // doctordatalist model data from snapshot
 // List<QuerySnapshot> _doctorDataListFromSnapshot(
 //     QuerySnapshot snapshot) {
 //   return snapshot.docs.map((doc) {
@@ -54,3 +53,5 @@ class DatabaseService {
 //     );
 //   }).toList();
 // }
+
+}

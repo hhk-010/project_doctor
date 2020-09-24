@@ -14,6 +14,7 @@
     "patient_disablehint" : "First choose your complain",
     "patient_other_complain" : "Do you have other complains",
     "patient_search_button" : "Search",
+    "doctor_form_appbar" : "Update Your Information",
     "doctor_form_name" : "Name",
     "doctor_form_speciality" : "Speciality",
     "doctor_form_phoneNumber" : "Phone Number",
