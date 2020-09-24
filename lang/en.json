@@ -2,7 +2,7 @@
     "home_title" : "Welcome to Cura",
     "home_patient" :"I'm a Patient",
     "home_doctor" : "I'm a Doctor",
-    "about_us" : "About Us",
+    "about_us" : "About us",
     "patient_appbar" : "Fill The Data",
     "patient_name" : "Name", 
     "patient_male" : "Male",
@@ -19,7 +19,7 @@
     "doctor_form_phoneNumber" : "Phone Number",
     "doctor_form_province": "Province",
     "doctor_form_location": "Location",
-    "doctor_form_search": "Search"
+    "doctor_form_search": "Submit"
 
 
 

@@ -73,11 +73,11 @@ class _MyAppState extends State<MyApp> {
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
-        localeResolutionCallback: (locale, supportedLocales) {
-          for (var supportedLocale in supportedLocales) {
-            if (supportedLocale.languageCode == locale.languageCode &&
-                supportedLocale.countryCode == locale.countryCode) {
-              return supportedLocale;
+        localeResolutionCallback: (deviceLocale, supportedLocales) {
+          for (var locale in supportedLocales) {
+            if (locale.languageCode == deviceLocale.languageCode &&
+                locale.countryCode == deviceLocale.countryCode) {
+              return deviceLocale;
             }
           }
           return supportedLocales.first;

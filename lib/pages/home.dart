@@ -23,7 +23,12 @@ class _HomeState extends State<Home> {
       drawer: _drawerList(),
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context).translate('home_title')),
+        title: Text(
+          AppLocalizations.of(context).translate('home_title'),
+          style: TextStyle(
+            fontSize: 24,
+          ),
+        ),
         centerTitle: true,
         backgroundColor: Colors.deepOrange,
         brightness: Brightness.dark,
@@ -58,7 +63,6 @@ class _HomeState extends State<Home> {
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   height: 60.0,
@@ -91,7 +95,7 @@ class _HomeState extends State<Home> {
                 SizedBox(height: 50),
                 Container(
                   height: 60.0,
-                  width: 350.0,
+                  width: 300.0,
                   child: RaisedButton(
                     onPressed: () =>
                         Navigator.pushNamed(context, '/intermediate'),
