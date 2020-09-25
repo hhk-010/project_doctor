@@ -4,41 +4,42 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/services/database.dart';
 
 class DocMap extends StatefulWidget {
-  String name;
-  String speciality;
-  String phone;
-  String province;
+  final String name;
+  final String speciality;
+  final String phone;
+  final String province;
 
   DocMap({this.name, this.speciality, this.phone, this.province});
 
   @override
   _DocMapState createState() => _DocMapState(
-      Name: name,
-      Speciality: speciality,
-      PhoneNumber: phone,
-      Province: province);
+      nameM: name,
+      specialityM: speciality,
+      phoneNumberM: phone,
+      provinceM: province);
 }
 
 class _DocMapState extends State<DocMap> {
-  var Name;
-  var Speciality;
-  var PhoneNumber;
-  var Province;
+  var nameM;
+  var specialityM;
+  var phoneNumberM;
+  var provinceM;
 
-  _DocMapState({this.Name, this.Speciality, this.PhoneNumber, this.Province});
+  _DocMapState(
+      {this.nameM, this.specialityM, this.phoneNumberM, this.provinceM});
 
   var uid = FirebaseAuth.instance.currentUser.uid;
 
-  var Latlng;
+  var latLng;
   List<Marker> mymarker = [];
 
   handletap(LatLng tappedpoint) {
     print(tappedpoint);
-    Latlng = tappedpoint.toString();
+    latLng = tappedpoint.toString();
     setState(() {
       mymarker = [];
       mymarker.add(Marker(
-        markerId: MarkerId(Latlng),
+        markerId: MarkerId(latLng),
         position: tappedpoint,
       ));
     });
@@ -79,15 +80,15 @@ class _DocMapState extends State<DocMap> {
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
               child: Text(
-                'R',
+                'Submit',
               ),
               onPressed: () async {
-                await geolocate(latlng: Latlng);
+                await geolocate(latlng: latLng);
                 DatabaseService(uid: uid).updateUserData(
-                  Name,
-                  Speciality,
-                  PhoneNumber,
-                  Province,
+                  nameM,
+                  specialityM,
+                  phoneNumberM,
+                  provinceM,
                   lattt,
                   lnggg,
                 );

@@ -40,32 +40,32 @@ class DoctorProfile extends StatelessWidget {
                 }),
           ],
         ),
-        body: DoctorList(),
+        // body: DoctorList(),
       ),
     );
   }
 }
 
-class DoctorList extends StatefulWidget {
-  @override
-  _DoctorListState createState() => _DoctorListState();
-}
+// class DoctorList extends StatefulWidget {
+//   @override
+//   _DoctorListState createState() => _DoctorListState();
+// }
 
-class _DoctorListState extends State<DoctorList> {
-  @override
-  Widget build(BuildContext context) {
-    final doctorListProvider = Provider.of<QuerySnapshot>(context);
+// class _DoctorListState extends State<DoctorList> {
+//   @override
+//   Widget build(BuildContext context) {
+//     final doctorListProvider = Provider.of<QuerySnapshot>(context);
 
-    for (var doc in doctorListProvider.docs) {
-      print(doc.data());
+//     for (var doc in doctorListProvider.docs) {
+//       print(doc.data());
 
-      return Container(
-        child: Column(
-          children: [
-            Text(''),
-          ],
-        ),
-      );
-    }
-  }
-}
+//       return Container(
+//         child: Column(
+//           children: [
+//             Text(''),
+//           ],
+//         ),
+//       );
+//     }
+//   }
+// }

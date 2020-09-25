@@ -20,7 +20,6 @@ String currentSpeciality;
 String currentPhoneNumber;
 String currentProvince;
 
-
 final AuthService _auth = AuthService();
 void choiceAction(String choice) async {
   if (choice == PopUpMenuConstants.logOut) {
@@ -138,40 +137,16 @@ class _DoctorFormState extends State<DoctorForm> {
                                   .translate('doctor_form_province'),
                             ),
                           ),
-                          SizedBox(height: 15.0),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                AppLocalizations.of(context)
-                                    .translate('doctor_form_location'),
-                                style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontSize: 18,
-                                ),
-                              ),
-                              /* ButtonTheme(
-                                height: 30,
-                                child: RaisedButton(
-                                  onPressed: () => currentLocation = 'Baghdad',
-                                  color: Colors.deepOrange,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(80.0)),
-                                  child: Text(
-                                    'Google Map',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),*/
-                            ],
+                          SizedBox(
+                            height: 100,
+                          ),
+                          Text(
+                            'Specify Your Clinic Location Via Google Map',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 14),
                           ),
                           SizedBox(
-                            height: 60,
+                            height: 15,
                           ),
                           Container(
                             child: Center(
@@ -199,10 +174,10 @@ class _DoctorFormState extends State<DoctorForm> {
                                       }
                                     },
                                     child: Text(
-                                      'go to google map',
+                                      'Google Map',
                                       style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 18,
+                                          fontSize: 20,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
