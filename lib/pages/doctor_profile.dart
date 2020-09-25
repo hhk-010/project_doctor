@@ -41,17 +41,18 @@ class DoctorProfile extends StatelessWidget {
                 }),
           ],
         ),
-        body: DoctorList(),
+        // body: DoctorList(),
       ),
     );
   }
 }
 
-class DoctorList extends StatefulWidget {
-  @override
-  _DoctorListState createState() => _DoctorListState();
-}
+// class DoctorList extends StatefulWidget {
+//   @override
+//   _DoctorListState createState() => _DoctorListState();
+// }
 
+<<<<<<< HEAD
 class _DoctorListState extends State<DoctorList> {
   @override
   Widget build(BuildContext context) {
@@ -124,3 +125,23 @@ class _DoctorListState extends State<DoctorList> {
     );
   }
 }
+=======
+// class _DoctorListState extends State<DoctorList> {
+//   @override
+//   Widget build(BuildContext context) {
+//     final doctorListProvider = Provider.of<QuerySnapshot>(context);
+
+//     for (var doc in doctorListProvider.docs) {
+//       print(doc.data());
+
+//       return Container(
+//         child: Column(
+//           children: [
+//             Text(''),
+//           ],
+//         ),
+//       );
+//     }
+//   }
+// }
+>>>>>>> fdef31d56943919548f9fb599986b539ac44180b

@@ -19,7 +19,10 @@ String currentName;
 String currentSpeciality;
 String currentPhoneNumber;
 String currentProvince;
+<<<<<<< HEAD
 
+=======
+>>>>>>> fdef31d56943919548f9fb599986b539ac44180b
 
 final AuthService _auth = AuthService();
 void choiceAction(String choice) async {
@@ -138,6 +141,7 @@ class _DoctorFormState extends State<DoctorForm> {
                                   .translate('doctor_form_province'),
                             ),
                           ),
+<<<<<<< HEAD
                           SizedBox(height: 15.0),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -169,9 +173,18 @@ class _DoctorFormState extends State<DoctorForm> {
                                 ),
                               ),*/
                             ],
+=======
+                          SizedBox(
+                            height: 100,
+                          ),
+                          Text(
+                            'Specify Your Clinic Location Via Google Map',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 14),
+>>>>>>> fdef31d56943919548f9fb599986b539ac44180b
                           ),
                           SizedBox(
-                            height: 60,
+                            height: 15,
                           ),
                           Container(
                             child: Center(
@@ -199,10 +212,14 @@ class _DoctorFormState extends State<DoctorForm> {
                                       }
                                     },
                                     child: Text(
+<<<<<<< HEAD
                                       'go to google map',
+=======
+                                      'Google Map',
+>>>>>>> fdef31d56943919548f9fb599986b539ac44180b
                                       style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 18,
+                                          fontSize: 20,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),

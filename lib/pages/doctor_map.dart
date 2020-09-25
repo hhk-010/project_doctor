@@ -4,15 +4,23 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/services/database.dart';
 
 class DocMap extends StatefulWidget {
+<<<<<<< HEAD
   String name;
   String speciality;
   String phone;
   String province;
+=======
+  final String name;
+  final String speciality;
+  final String phone;
+  final String province;
+>>>>>>> fdef31d56943919548f9fb599986b539ac44180b
 
   DocMap({this.name, this.speciality, this.phone, this.province});
 
   @override
   _DocMapState createState() => _DocMapState(
+<<<<<<< HEAD
       Name: name,
       Speciality: speciality,
       PhoneNumber: phone,
@@ -30,15 +38,43 @@ class _DocMapState extends State<DocMap> {
   var uid = FirebaseAuth.instance.currentUser.uid;
 
   var Latlng;
+=======
+      nameM: name,
+      specialityM: speciality,
+      phoneNumberM: phone,
+      provinceM: province);
+}
+
+class _DocMapState extends State<DocMap> {
+  var nameM;
+  var specialityM;
+  var phoneNumberM;
+  var provinceM;
+
+  _DocMapState(
+      {this.nameM, this.specialityM, this.phoneNumberM, this.provinceM});
+
+  var uid = FirebaseAuth.instance.currentUser.uid;
+
+  var latLng;
+>>>>>>> fdef31d56943919548f9fb599986b539ac44180b
   List<Marker> mymarker = [];
 
   handletap(LatLng tappedpoint) {
     print(tappedpoint);
+<<<<<<< HEAD
     Latlng = tappedpoint.toString();
     setState(() {
       mymarker = [];
       mymarker.add(Marker(
         markerId: MarkerId(Latlng),
+=======
+    latLng = tappedpoint.toString();
+    setState(() {
+      mymarker = [];
+      mymarker.add(Marker(
+        markerId: MarkerId(latLng),
+>>>>>>> fdef31d56943919548f9fb599986b539ac44180b
         position: tappedpoint,
       ));
     });
@@ -79,6 +115,7 @@ class _DocMapState extends State<DocMap> {
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
               child: Text(
+<<<<<<< HEAD
                 'R',
               ),
               onPressed: () async {
@@ -88,6 +125,17 @@ class _DocMapState extends State<DocMap> {
                   Speciality,
                   PhoneNumber,
                   Province,
+=======
+                'Submit',
+              ),
+              onPressed: () async {
+                await geolocate(latlng: latLng);
+                DatabaseService(uid: uid).updateUserData(
+                  nameM,
+                  specialityM,
+                  phoneNumberM,
+                  provinceM,
+>>>>>>> fdef31d56943919548f9fb599986b539ac44180b
                   lattt,
                   lnggg,
                 );
