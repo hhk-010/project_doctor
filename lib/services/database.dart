@@ -9,13 +9,14 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('doctorInfo');
 
   Future updateUserData(String name, String speciality, String phoneNumber,
-      String province, String location) async {
+      String province, double lat,double lng) async {
     return await userCollection.doc(uid).set({
       'name': name,
       'speciality': speciality,
       'phoneNumber': phoneNumber,
       'province': province,
-      'location': location
+      'lat':lat,
+      'lng':lng
     });
   }
 
