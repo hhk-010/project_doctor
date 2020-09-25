@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_doctor/pages/doctor_map.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/theme_const.dart';
 import 'package:project_doctor/services/auth.dart';
@@ -14,11 +15,11 @@ class DoctorForm extends StatefulWidget {
 
 final _formKey = GlobalKey<FormState>();
 final List<String> specialities = ['Cardio', 'Neuro', 'GIT'];
-String _currentName;
-String _currentSpeciality;
-String _currentPhoneNumber;
-String _currentProvince;
-String _currentLocation;
+String currentName;
+String currentSpeciality;
+String currentPhoneNumber;
+String currentProvince;
+
 
 final AuthService _auth = AuthService();
 void choiceAction(String choice) async {
@@ -90,11 +91,11 @@ class _DoctorFormState extends State<DoctorForm> {
                             validator: (value) =>
                                 value == null ? 'AAAAAA' : null,
                             onChanged: (val) =>
-                                setState(() => _currentName = val),
+                                setState(() => currentName = val),
                           ),
                           SizedBox(height: 15.0),
                           DropdownButtonFormField<String>(
-                            value: _currentSpeciality,
+                            value: currentSpeciality,
                             hint: Text(
                               AppLocalizations.of(context)
                                   .translate('doctor_form_speciality'),
@@ -114,13 +115,13 @@ class _DoctorFormState extends State<DoctorForm> {
                                     .translate('doctor_form_speciality')
                                 : null,
                             onChanged: (val) =>
-                                setState(() => _currentSpeciality = val),
+                                setState(() => currentSpeciality = val),
                           ),
                           SizedBox(height: 15.0),
                           TextFormField(
                               initialValue: userData.phoneNumber,
                               onChanged: (val) =>
-                                  setState(() => _currentPhoneNumber = val),
+                                  setState(() => currentPhoneNumber = val),
                               keyboardType: TextInputType.phone,
                               decoration: InputDecoration(
                                 hintText: AppLocalizations.of(context)
@@ -131,7 +132,7 @@ class _DoctorFormState extends State<DoctorForm> {
                           TextFormField(
                             initialValue: userData.province,
                             onChanged: (val) =>
-                                setState(() => _currentProvince = val),
+                                setState(() => currentProvince = val),
                             decoration: InputDecoration(
                               hintText: AppLocalizations.of(context)
                                   .translate('doctor_form_province'),
@@ -149,10 +150,10 @@ class _DoctorFormState extends State<DoctorForm> {
                                   fontSize: 18,
                                 ),
                               ),
-                              ButtonTheme(
+                              /* ButtonTheme(
                                 height: 30,
                                 child: RaisedButton(
-                                  onPressed: () => _currentLocation = 'Baghdad',
+                                  onPressed: () => currentLocation = 'Baghdad',
                                   color: Colors.deepOrange,
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
@@ -166,7 +167,7 @@ class _DoctorFormState extends State<DoctorForm> {
                                     ),
                                   ),
                                 ),
-                              ),
+                              ),*/
                             ],
                           ),
                           SizedBox(
@@ -186,23 +187,19 @@ class _DoctorFormState extends State<DoctorForm> {
                                             BorderRadius.circular(80.0)),
                                     onPressed: () async {
                                       if (_formKey.currentState.validate()) {
-                                        await DatabaseService(uid: user.uid)
-                                            .updateUserData(
-                                          _currentName ?? userData.name,
-                                          _currentSpeciality ??
-                                              userData.speciality,
-                                          _currentPhoneNumber ??
-                                              userData.phoneNumber,
-                                          _currentProvince ?? userData.province,
-                                          _currentLocation ?? userData.location,
-                                        );
-                                        Navigator.pushNamed(
-                                            context, '/doctor_profile');
+                                        await Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                                builder: (context) => DocMap(
+                                                      name: currentName,
+                                                      speciality:
+                                                          currentSpeciality,
+                                                      phone: currentPhoneNumber,
+                                                      province: currentProvince,
+                                                    )));
                                       }
                                     },
                                     child: Text(
-                                      AppLocalizations.of(context)
-                                          .translate('doctor_form_search'),
+                                      'go to google map',
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
