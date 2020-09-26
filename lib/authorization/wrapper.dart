@@ -6,6 +6,8 @@ import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/authorization/register.dart';
 import 'package:project_doctor/authorization/sign_in.dart';
 
+import '../pages/doctor_profile.dart';
+
 class Intermediate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class Wrapper extends StatelessWidget {
     if (user == null) {
       return Authenticate();
     } else {
-      return DoctorForm();
+      return DoctorProfile();
     }
   }
 }

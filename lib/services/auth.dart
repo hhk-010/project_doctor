@@ -26,13 +26,22 @@ class AuthService {
     }
   }
 
-  Future registerWithEmailAndPassword(String email, String password) async {
+  Future registerWithEmailAndPassword(
+      String email,
+      String password,
+      String name,
+      String Speciality,
+      String number,
+      String province,
+      double lat,
+      double lng) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
       // create a new document for the user with the id
-      await DatabaseService(uid: user.uid).updateUserData('', '', '', '',0.0,0.0);
+      await DatabaseService(uid: user.uid)
+          .updateUserData(name,Speciality,number,province,lat,lng);
       return _userfromfirebase(user);
     } catch (e) {
       print(e.toString());
@@ -47,5 +56,25 @@ class AuthService {
       print(e.toString());
       return null;
     }
+  }
+  passwordisvalid(String passwords)async{
+    return await AuthService().validatepass(passwords);
+  }
+
+  Future<bool> validatepass(String pass) async {
+    User user = await _auth.currentUser;
+    AuthCredential credentials=EmailAuthProvider.credential(email: user.email, password: pass);
+    try{
+      UserCredential cred =
+      await user.reauthenticateWithCredential(credentials);
+      return cred.user != null;
+    }catch(e){
+      print(e);
+      return false;
+    }
+  }
+  void updatepass(String password){
+    User user =FirebaseAuth.instance.currentUser;
+    user.updatePassword(password);
   }
 }

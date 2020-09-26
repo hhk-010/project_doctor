@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_doctor/pages/updateinfo.dart';
 import 'package:project_doctor/services/theme_const.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
@@ -12,6 +13,7 @@ class DoctorProfile extends StatelessWidget {
     if (choice == PopUpMenuConstants.logOut) {
       await _auth.signOut();
     }
+
   }
 
   @override
@@ -29,6 +31,9 @@ class DoctorProfile extends StatelessWidget {
           ),
           elevation: 1,
           actions: [
+            FlatButton(child: Text('update your info'),onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Updateinfo()));
+            },),
             PopupMenuButton<String>(
                 onSelected: choiceAction,
                 itemBuilder: (BuildContext context) {
@@ -41,22 +46,24 @@ class DoctorProfile extends StatelessWidget {
                 }),
           ],
         ),
-        // body: DoctorList(),
+        body: DoctorList(),
       ),
     );
   }
 }
 
-// class DoctorList extends StatefulWidget {
-//   @override
-//   _DoctorListState createState() => _DoctorListState();
-// }
+class DoctorList extends StatefulWidget {
+   @override
+   _DoctorListState createState() => _DoctorListState();
+ }
 
-<<<<<<< HEAD
+
 class _DoctorListState extends State<DoctorList> {
   @override
   Widget build(BuildContext context) {
-    var uid = FirebaseAuth.instance.currentUser.uid;
+      var uid =FirebaseAuth.instance.currentUser.uid ;
+
+
     final doctorListProvider = Provider.of<QuerySnapshot>(context);
 
     String name = '';
@@ -125,7 +132,7 @@ class _DoctorListState extends State<DoctorList> {
     );
   }
 }
-=======
+
 // class _DoctorListState extends State<DoctorList> {
 //   @override
 //   Widget build(BuildContext context) {
@@ -144,4 +151,5 @@ class _DoctorListState extends State<DoctorList> {
 //     }
 //   }
 // }
->>>>>>> fdef31d56943919548f9fb599986b539ac44180b
+
+

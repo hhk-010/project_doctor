@@ -4,6 +4,8 @@ import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/theme_const.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 
+import '../pages/doctor_form.dart';
+
 class Register extends StatefulWidget {
   final Function toogleView;
   Register({this.toogleView});
@@ -79,14 +81,17 @@ class _RegisterState extends State<Register> {
                             setState(() {
                               loading = true;
                             });
-                            dynamic result = await _auth
-                                .registerWithEmailAndPassword(email, password);
-                            if (result == null) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => DoctorForm(
+                                      email: email,
+                                      password: password,
+                                    )));
+                            /*if (result == null) {
                               setState(() {
                                 error = 'Please supply a valid email';
                                 loading = false;
                               });
-                            }
+                            }*/
                           }
                         },
                         shape: RoundedRectangleBorder(

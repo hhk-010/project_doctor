@@ -3,78 +3,68 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/services/database.dart';
 
+import '../services/auth.dart';
+import '../services/auth.dart';
+
 class DocMap extends StatefulWidget {
-<<<<<<< HEAD
+  String email;
+  String password;
   String name;
   String speciality;
   String phone;
   String province;
-=======
-  final String name;
-  final String speciality;
-  final String phone;
-  final String province;
->>>>>>> fdef31d56943919548f9fb599986b539ac44180b
 
-  DocMap({this.name, this.speciality, this.phone, this.province});
+  DocMap(
+      {this.email,
+      this.password,
+      this.name,
+      this.speciality,
+      this.phone,
+      this.province});
 
   @override
   _DocMapState createState() => _DocMapState(
-<<<<<<< HEAD
-      Name: name,
-      Speciality: speciality,
-      PhoneNumber: phone,
-      Province: province);
+      email: email,
+      password: password,
+      name: name,
+      speciality: speciality,
+      phoneNumber: phone,
+      province: province);
 }
 
 class _DocMapState extends State<DocMap> {
-  var Name;
-  var Speciality;
-  var PhoneNumber;
-  var Province;
+  final AuthService _auth = AuthService();
 
-  _DocMapState({this.Name, this.Speciality, this.PhoneNumber, this.Province});
-
-  var uid = FirebaseAuth.instance.currentUser.uid;
-
-  var Latlng;
-=======
-      nameM: name,
-      specialityM: speciality,
-      phoneNumberM: phone,
-      provinceM: province);
-}
-
-class _DocMapState extends State<DocMap> {
-  var nameM;
-  var specialityM;
-  var phoneNumberM;
-  var provinceM;
+  var email;
+  String password;
+  var name;
+  var speciality;
+  var phoneNumber;
+  var province;
 
   _DocMapState(
-      {this.nameM, this.specialityM, this.phoneNumberM, this.provinceM});
+      {this.email,
+      this.password,
+      this.name,
+      this.speciality,
+      this.phoneNumber,
+      this.province});
 
-  var uid = FirebaseAuth.instance.currentUser.uid;
 
-  var latLng;
->>>>>>> fdef31d56943919548f9fb599986b539ac44180b
+
+  var latlng;
+
   List<Marker> mymarker = [];
 
   handletap(LatLng tappedpoint) {
     print(tappedpoint);
-<<<<<<< HEAD
-    Latlng = tappedpoint.toString();
+
+    latlng = tappedpoint.toString();
+
     setState(() {
       mymarker = [];
       mymarker.add(Marker(
-        markerId: MarkerId(Latlng),
-=======
-    latLng = tappedpoint.toString();
-    setState(() {
-      mymarker = [];
-      mymarker.add(Marker(
-        markerId: MarkerId(latLng),
->>>>>>> fdef31d56943919548f9fb599986b539ac44180b
+        markerId: MarkerId(latlng),
         position: tappedpoint,
       ));
     });
@@ -115,31 +105,28 @@ class _DocMapState extends State<DocMap> {
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
               child: Text(
-<<<<<<< HEAD
                 'R',
               ),
               onPressed: () async {
-                await geolocate(latlng: Latlng);
-                DatabaseService(uid: uid).updateUserData(
-                  Name,
-                  Speciality,
-                  PhoneNumber,
-                  Province,
-=======
-                'Submit',
-              ),
-              onPressed: () async {
-                await geolocate(latlng: latLng);
-                DatabaseService(uid: uid).updateUserData(
-                  nameM,
-                  specialityM,
-                  phoneNumberM,
-                  provinceM,
->>>>>>> fdef31d56943919548f9fb599986b539ac44180b
+                await geolocate(latlng: latlng);
+                dynamic result = await _auth.registerWithEmailAndPassword(
+                    email,
+                    password,
+                    name,
+                    speciality,
+                    phoneNumber,
+                    province,
+                    lattt,
+                    lnggg);
+                /*DatabaseService(uid: uid).updateUserData(
+                  name,
+                  speciality,
+                  phoneNumber,
+                  province,
                   lattt,
                   lnggg,
-                );
-                await Navigator.pushNamed(context, '/doctor_profile');
+                );*/
+                await Navigator.pop(context);
               },
             ),
           ),
