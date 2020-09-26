@@ -1,45 +1,64 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:project_doctor/services/database.dart';
+import '../services/auth.dart';
 
 class DocMap extends StatefulWidget {
-  final String name;
-  final String speciality;
-  final String phone;
-  final String province;
+  String email;
+  String password;
+  String name;
+  String speciality;
+  String phone;
+  String province;
 
-  DocMap({this.name, this.speciality, this.phone, this.province});
+  DocMap(
+      {this.email,
+      this.password,
+      this.name,
+      this.speciality,
+      this.phone,
+      this.province});
 
   @override
   _DocMapState createState() => _DocMapState(
-      nameM: name,
-      specialityM: speciality,
-      phoneNumberM: phone,
-      provinceM: province);
+      email: email,
+      password: password,
+      name: name,
+      speciality: speciality,
+      phoneNumber: phone,
+      province: province);
 }
 
 class _DocMapState extends State<DocMap> {
-  var nameM;
-  var specialityM;
-  var phoneNumberM;
-  var provinceM;
+  final AuthService _auth = AuthService();
+
+  var email;
+  String password;
+  var name;
+  var speciality;
+  var phoneNumber;
+  var province;
 
   _DocMapState(
-      {this.nameM, this.specialityM, this.phoneNumberM, this.provinceM});
+      {this.email,
+      this.password,
+      this.name,
+      this.speciality,
+      this.phoneNumber,
+      this.province});
 
-  var uid = FirebaseAuth.instance.currentUser.uid;
+  var latlng;
 
-  var latLng;
   List<Marker> mymarker = [];
 
   handletap(LatLng tappedpoint) {
     print(tappedpoint);
-    latLng = tappedpoint.toString();
+
+    latlng = tappedpoint.toString();
+
     setState(() {
       mymarker = [];
       mymarker.add(Marker(
-        markerId: MarkerId(latLng),
+        markerId: MarkerId(latlng),
         position: tappedpoint,
       ));
     });
@@ -80,19 +99,28 @@ class _DocMapState extends State<DocMap> {
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
               child: Text(
-                'Submit',
+                'R',
               ),
               onPressed: () async {
-                await geolocate(latlng: latLng);
-                DatabaseService(uid: uid).updateUserData(
-                  nameM,
-                  specialityM,
-                  phoneNumberM,
-                  provinceM,
+                await geolocate(latlng: latlng);
+                dynamic result = await _auth.registerWithEmailAndPassword(
+                    email,
+                    password,
+                    name,
+                    speciality,
+                    phoneNumber,
+                    province,
+                    lattt,
+                    lnggg);
+                /*DatabaseService(uid: uid).updateUserData(
+                  name,
+                  speciality,
+                  phoneNumber,
+                  province,
                   lattt,
                   lnggg,
-                );
-                await Navigator.pushNamed(context, '/doctor_profile');
+                );*/
+                await Navigator.pop(context);
               },
             ),
           ),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:project_doctor/pages/doctor_form.dart';
 import 'package:provider/provider.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/authorization/register.dart';
 import 'package:project_doctor/authorization/sign_in.dart';
+
+import '../pages/doctor_profile.dart';
 
 class Intermediate extends StatelessWidget {
   @override
@@ -24,7 +25,7 @@ class Wrapper extends StatelessWidget {
     if (user == null) {
       return Authenticate();
     } else {
-      return DoctorForm();
+      return DoctorProfile();
     }
   }
 }

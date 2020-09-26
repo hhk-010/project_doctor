@@ -86,6 +86,7 @@ class _SignInState extends State<SignIn> {
                               });
                             }
                           }
+                          await Navigator.pushNamed(context, '/doctor_profile');
                         },
                         color: Colors.deepOrange,
                         child: Text(

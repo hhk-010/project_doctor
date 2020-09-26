@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/loading.dart';
-import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/theme_const.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'dart:io';
+
+import '../pages/doctor_form.dart';
 
 class Register extends StatefulWidget {
   final Function toogleView;
@@ -14,7 +15,6 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
-  final AuthService _auth = AuthService();
   bool loading = false;
   String email = '';
   String password = '';
@@ -96,27 +96,24 @@ class _RegisterState extends State<Register> {
                       height: 35.0,
                       width: 190.0,
                       child: RaisedButton(
-                        onPressed: _isInternet
-                            ? () async {
-                                if (_formKey.currentState.validate()) {
-                                  setState(() {
-                                    loading = true;
-                                  });
-                                  dynamic result =
-                                      await _auth.registerWithEmailAndPassword(
-                                          email, password);
-                                  if (result == null) {
-                                    setState(() {
-                                      error = 'Please supply a valid email';
-                                      loading = false;
-                                    });
-                                  }
-                                }
-                              }
-                            : () {
-                                SnackBar(
-                                    content: Text("No internet connection"));
-                              },
+                        onPressed: () async {
+                          if (_formKey.currentState.validate()) {
+                            setState(() {
+                              loading = true;
+                            });
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => DoctorForm(
+                                      email: email,
+                                      password: password,
+                                    )));
+                            /*if (result == null) {
+                              setState(() {
+                                error = 'Please supply a valid email';
+                                loading = false;
+                              });
+                            }*/
+                          }
+                        },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0)),
                         color: Colors.deepOrange,

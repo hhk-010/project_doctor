@@ -54,5 +54,8 @@ class DatabaseService {
 //     );
 //   }).toList();
 // }
+  Stream<QuerySnapshot> get doccol{
+    return userCollection.snapshots();
+}
 
 }
