@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/services/theme_const.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
-import 'dart:io';
+// import 'dart:io';
 
 import '../pages/doctor_form.dart';
 
@@ -21,25 +21,25 @@ class _RegisterState extends State<Register> {
   String error = '';
 
   // check internet connection
-  bool _isInternet = true;
-  checkInternet() async {
-    try {
-      final response = await InternetAddress.lookup('example.com'); // google
-      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
-        _isInternet = true; // internet
-        setState(() {});
-      }
-    } on SocketException catch (_) {
-      _isInternet = false; // no internet
-      setState(() {});
-    }
-  }
+  // bool _isInternet = true;
+  // checkInternet() async {
+  //   try {
+  //     final response = await InternetAddress.lookup('example.com'); // google
+  //     if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
+  //       _isInternet = true; // internet
+  //       setState(() {});
+  //     }
+  //   } on SocketException catch (_) {
+  //     _isInternet = false; // no internet
+  //     setState(() {});
+  //   }
+  // // }
 
-  @override
-  void initState() {
-    checkInternet();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   checkInternet();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {

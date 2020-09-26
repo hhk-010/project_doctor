@@ -1,15 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-import '../services/auth.dart';
 import '../services/database.dart';
 
 class Updatemap extends StatefulWidget {
-  String name;
-  String speciality;
-  String number;
-  String province;
+  final String name;
+  final String speciality;
+  final String number;
+  final String province;
   Updatemap({this.name, this.speciality, this.province, this.number});
   @override
   _UpdatemapState createState() => _UpdatemapState(
@@ -23,8 +21,6 @@ class _UpdatemapState extends State<Updatemap> {
   String province;
 
   var latlng;
-
-  final AuthService _auth = AuthService();
 
   List<Marker> mymarker = [];
 
@@ -81,11 +77,11 @@ class _UpdatemapState extends State<Updatemap> {
               backgroundColor: Colors.deepOrange,
               child: Text('U'),
               onPressed: () async {
-                dynamic result = await DatabaseService(
+                await DatabaseService(
                         uid: FirebaseAuth.instance.currentUser.uid)
                     .updateUserData(
                         name, speciality, number, province, lattt, lnggg);
-                await Navigator.pop(context);
+                Navigator.pop(context);
               },
             ),
           )

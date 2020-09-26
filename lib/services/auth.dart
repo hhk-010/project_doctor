@@ -63,7 +63,7 @@ class AuthService {
   }
 
   Future<bool> validatepass(String pass) async {
-    User user = await _auth.currentUser;
+    User user = _auth.currentUser;
     AuthCredential credentials =
         EmailAuthProvider.credential(email: user.email, password: pass);
     try {

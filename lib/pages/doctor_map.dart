@@ -3,12 +3,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../services/auth.dart';
 
 class DocMap extends StatefulWidget {
-  String email;
-  String password;
-  String name;
-  String speciality;
-  String phone;
-  String province;
+  final String email;
+  final String password;
+  final String name;
+  final String speciality;
+  final String phone;
+  final String province;
 
   DocMap(
       {this.email,
@@ -103,15 +103,8 @@ class _DocMapState extends State<DocMap> {
               ),
               onPressed: () async {
                 await geolocate(latlng: latlng);
-                dynamic result = await _auth.registerWithEmailAndPassword(
-                    email,
-                    password,
-                    name,
-                    speciality,
-                    phoneNumber,
-                    province,
-                    lattt,
-                    lnggg);
+                await _auth.registerWithEmailAndPassword(email, password, name,
+                    speciality, phoneNumber, province, lattt, lnggg);
                 /*DatabaseService(uid: uid).updateUserData(
                   name,
                   speciality,
@@ -120,7 +113,7 @@ class _DocMapState extends State<DocMap> {
                   lattt,
                   lnggg,
                 );*/
-                await Navigator.pop(context);
+                Navigator.pop(context);
               },
             ),
           ),

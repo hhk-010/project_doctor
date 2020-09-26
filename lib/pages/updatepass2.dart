@@ -45,10 +45,10 @@ class _Updatepass2State extends State<Updatepass2> {
               ),
               RaisedButton(
                 child: Text('update my password'),
-                onPressed: ()async{
-                  if (_formkey.currentState.validate()){
-                    await AuthService().updatepass(_password);
-                    await Navigator.pop(context);
+                onPressed: () async {
+                  if (_formkey.currentState.validate()) {
+                    AuthService().updatepass(_password);
+                    Navigator.pop(context);
                   }
                 },
               ),
