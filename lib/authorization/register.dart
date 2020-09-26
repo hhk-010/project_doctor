@@ -3,6 +3,7 @@ import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/theme_const.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
+import 'dart:io';
 
 class Register extends StatefulWidget {
   final Function toogleView;
@@ -18,6 +19,27 @@ class _RegisterState extends State<Register> {
   String email = '';
   String password = '';
   String error = '';
+
+  // check internet connection
+  bool _isInternet = true;
+  checkInternet() async {
+    try {
+      final response = await InternetAddress.lookup('example.com'); // google
+      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
+        _isInternet = true; // internet
+        setState(() {});
+      }
+    } on SocketException catch (_) {
+      _isInternet = false; // no internet
+      setState(() {});
+    }
+  }
+
+  @override
+  void initState() {
+    checkInternet();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,21 +96,27 @@ class _RegisterState extends State<Register> {
                       height: 35.0,
                       width: 190.0,
                       child: RaisedButton(
-                        onPressed: () async {
-                          if (_formKey.currentState.validate()) {
-                            setState(() {
-                              loading = true;
-                            });
-                            dynamic result = await _auth
-                                .registerWithEmailAndPassword(email, password);
-                            if (result == null) {
-                              setState(() {
-                                error = 'Please supply a valid email';
-                                loading = false;
-                              });
-                            }
-                          }
-                        },
+                        onPressed: _isInternet
+                            ? () async {
+                                if (_formKey.currentState.validate()) {
+                                  setState(() {
+                                    loading = true;
+                                  });
+                                  dynamic result =
+                                      await _auth.registerWithEmailAndPassword(
+                                          email, password);
+                                  if (result == null) {
+                                    setState(() {
+                                      error = 'Please supply a valid email';
+                                      loading = false;
+                                    });
+                                  }
+                                }
+                              }
+                            : () {
+                                SnackBar(
+                                    content: Text("No internet connection"));
+                              },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0)),
                         color: Colors.deepOrange,

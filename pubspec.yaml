@@ -36,6 +36,8 @@ dependencies:
   flutter_spinkit: ^4.1.2
   flutter_auth_buttons: ^0.10.0
   shared_preferences: ^0.5.12
+  connectivity: ^0.4.9+3
+
 
 
 
