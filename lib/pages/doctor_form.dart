@@ -73,11 +73,9 @@ class _DoctorFormState extends State<DoctorForm> {
           child: SingleChildScrollView(
             child: Container(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextFormField(
-                    cursorColor: Colors.deepOrange,
-                    decoration: InputDecoration(
+                    decoration: textInputdecoration.copyWith(
                       hintText: AppLocalizations.of(context)
                           .translate('doctor_form_name'),
                       labelText: AppLocalizations.of(context)
@@ -86,9 +84,10 @@ class _DoctorFormState extends State<DoctorForm> {
                     validator: (value) => value == null ? 'AAAAAA' : null,
                     onChanged: (val) => setState(() => currentName = val),
                   ),
-                  SizedBox(height: 15.0),
+                  SizedBox(height: 25.0),
                   DropdownButtonFormField<String>(
                     value: currentSpeciality,
+                    decoration: textInputdecoration,
                     hint: Text(
                       AppLocalizations.of(context)
                           .translate('doctor_form_speciality'),
@@ -109,99 +108,75 @@ class _DoctorFormState extends State<DoctorForm> {
                         : null,
                     onChanged: (val) => setState(() => currentSpeciality = val),
                   ),
-                  SizedBox(height: 15.0),
+                  SizedBox(height: 25.0),
                   TextFormField(
                       onChanged: (val) =>
                           setState(() => currentPhoneNumber = val),
                       keyboardType: TextInputType.phone,
-                      decoration: InputDecoration(
+                      decoration: textInputdecoration.copyWith(
                         hintText: AppLocalizations.of(context)
+                            .translate('doctor_form_phoneNumber'),
+                        labelText: AppLocalizations.of(context)
                             .translate('doctor_form_phoneNumber'),
                       ),
                       validator: validateMobile),
-                  SizedBox(height: 15.0),
+                  SizedBox(height: 25.0),
                   TextFormField(
                     onChanged: (val) => setState(() => currentProvince = val),
-                    decoration: InputDecoration(
+                    decoration: textInputdecoration.copyWith(
                       hintText: AppLocalizations.of(context)
+                          .translate('doctor_form_province'),
+                      labelText: AppLocalizations.of(context)
                           .translate('doctor_form_province'),
                     ),
                   ),
-                  SizedBox(height: 15.0),
-                  /*Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                AppLocalizations.of(context)
-                                    .translate('doctor_form_location'),
-                                style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontSize: 18,
-                                ),
-                              ),
-                              /* ButtonTheme(
-                                height: 30,
-                                child: RaisedButton(
-                                  onPressed: () => currentLocation = 'Baghdad',
-                                  color: Colors.deepOrange,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(80.0)),
-                                  child: Text(
-                                    'Google Map',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),*/
-                            ],*/
                   SizedBox(
                     height: 100,
                   ),
-                  Text(
-                    'Specify Your Clinic Location Via Google Map',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                  Row(
+                    children: [
+                      Text(
+                        'Set up Your Clinic Location',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Icon(
+                        Icons.arrow_downward,
+                        size: 20,
+                      ),
+                    ],
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 10,
                   ),
-                  Container(
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ButtonTheme(
-                          minWidth: double.infinity,
-                          height: 45,
-                          child: RaisedButton(
-                            color: Colors.deepOrange,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(80.0)),
-                            onPressed: () async {
-                              if (_formKey.currentState.validate()) {
-                                await Navigator.of(context)
-                                    .push(MaterialPageRoute(
-                                        builder: (context) => DocMap(
-                                              email: email,
-                                              password: password,
-                                              name: currentName,
-                                              speciality: currentSpeciality,
-                                              phone: currentPhoneNumber,
-                                              province: currentProvince,
-                                            )));
-                              }
-                            },
-                            child: Text(
-                              'go to google map',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
+                  ButtonTheme(
+                    minWidth: double.infinity,
+                    child: RaisedButton.icon(
+                      color: Colors.deepOrange,
+                      icon: Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80.0)),
+                      onPressed: () async {
+                        if (_formKey.currentState.validate()) {
+                          await Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => DocMap(
+                                    email: email,
+                                    password: password,
+                                    name: currentName,
+                                    speciality: currentSpeciality,
+                                    phone: currentPhoneNumber,
+                                    province: currentProvince,
+                                  )));
+                        }
+                      },
+                      label: Text(
+                        'Google Map',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),

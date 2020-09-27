@@ -30,13 +30,6 @@ class DoctorProfile extends StatelessWidget {
           ),
           elevation: 1,
           actions: [
-            FlatButton(
-              child: Text('update your info'),
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Updateinfo()));
-              },
-            ),
             PopupMenuButton<String>(
                 onSelected: choiceAction,
                 itemBuilder: (BuildContext context) {
@@ -63,6 +56,9 @@ class DoctorList extends StatefulWidget {
 class _DoctorListState extends State<DoctorList> {
   @override
   Widget build(BuildContext context) {
+    TextStyle _textStyle = TextStyle(
+        fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold);
+
     var uid = FirebaseAuth.instance.currentUser.uid;
 
     final doctorListProvider = Provider.of<QuerySnapshot>(context);
@@ -83,51 +79,124 @@ class _DoctorListState extends State<DoctorList> {
         province = doc.data()['province'];
       }
     }
-    return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: 20.0,
-        horizontal: 20.0,
-      ),
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 30),
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 20.0,
-            ),
-            Center(
-              child: Text(
-                name,
-                style: TextStyle(fontSize: 20.0),
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: boxDecorationPatient,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Name',
+                              style: _textStyle,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Speciality',
+                              style: _textStyle,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Phone Number',
+                              style: _textStyle,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Province',
+                              style: _textStyle,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          height: 125,
+                          width: 3,
+                          color: Colors.grey,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              name,
+                              style: _textStyle,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              speciality,
+                              style: _textStyle,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              number,
+                              style: _textStyle,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              province,
+                              style: _textStyle,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Center(
-              child: Text(
-                speciality,
-                style: TextStyle(fontSize: 20.0),
+              SizedBox(
+                height: 200,
               ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Center(
-              child: Text(
-                number,
-                style: TextStyle(fontSize: 20.0),
+              Center(
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(80.0)),
+                  child: Text(
+                    'Update Your Information',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18),
+                  ),
+                  color: Colors.deepOrange,
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Updateinfo()));
+                  },
+                ),
               ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Center(
-              child: Text(
-                province,
-                style: TextStyle(fontSize: 20.0),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

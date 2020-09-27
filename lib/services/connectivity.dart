@@ -1,10 +1,21 @@
-import 'dart:io';
+// import 'dart:io';
 
-Future<bool> checkConnection() async {
-  final result = await InternetAddress.lookup('google.com');
-  if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-    return true;
-  } else {
-    return false;
-  }
-}
+//   bool _isInternet = true;
+//   checkInternet() async {
+//     try {
+//       final response = await InternetAddress.lookup('example.com');
+//       if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
+//         _isInternet = true; // internet
+//         setState(() {});
+//       }
+//     } on SocketException catch (_) {
+//       _isInternet = false; // no internet
+//       setState(() {});
+//     }
+//   }
+
+//   @override
+//   void initState() {
+//     checkInternet();
+//     super.initState();
+//   }
