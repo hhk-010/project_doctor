@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/services/app_localizations.dart';
-import 'package:project_doctor/services/theme_const.dart';
-import 'package:project_doctor/services/dropdown_multi_selection.dart';
+import 'package:project_doctor/constants/theme.dart';
+import 'package:project_doctor/constants/multi_selection.dart';
+import 'dart:io';
 
 class Patient extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class _PatientState extends State<Patient> {
 // ------------------the Logic for the Radio Buttons-----------------
   TextStyle _textStylePatient = TextStyle(
     fontSize: 18,
+    fontWeight: FontWeight.w500,
     color: Colors.black,
   );
 
@@ -34,7 +36,7 @@ class _PatientState extends State<Patient> {
         ),
         Text(
           title,
-          style: TextStyle(fontSize: 18),
+          style: _textStylePatient,
         )
       ],
     );
@@ -44,8 +46,8 @@ class _PatientState extends State<Patient> {
   // ------------------------------END-----------------------------
 
 //-----------------Function to use DropdownMultiSelection-----------------
-  void _showMultiSelect(BuildContext context) async {
-    final items = <MultiSelectDialogItem<int>>[
+  void _showChronicDiseaseMultiSelect(BuildContext context) async {
+    final cdItems = <MultiSelectDialogItem<int>>[
       MultiSelectDialogItem(
           1, AppLocalizations.of(context).translate('cd_hyt')),
       MultiSelectDialogItem(2, AppLocalizations.of(context).translate('cd_DM')),
@@ -57,7 +59,27 @@ class _PatientState extends State<Patient> {
       context: context,
       builder: (BuildContext context) {
         return MultiSelectDialog(
-          items: items,
+          items: cdItems,
+        );
+      },
+    );
+    print(selectedValues);
+  }
+
+//----------------------------------END-------------------------------
+//-----------------Function to use DropdownMultiSelection-----------------
+  void _showLifeStyleMultiSelect(BuildContext context) async {
+    final lsItems = <MultiSelectDialogItem<int>>[
+      MultiSelectDialogItem(1, 'Obesity'),
+      MultiSelectDialogItem(2, 'Smoking'),
+      MultiSelectDialogItem(3, 'Drinking'),
+    ];
+
+    final selectedValues = await showDialog<Set<int>>(
+      context: context,
+      builder: (BuildContext context) {
+        return MultiSelectDialog(
+          items: lsItems,
         );
       },
     );
@@ -66,7 +88,7 @@ class _PatientState extends State<Patient> {
 
 //----------------------------------END-------------------------------
 
-  // ----------------Conditional DropDownMenu ---------------------
+  // ----------------Conditional DropDownMenu -------------------------
   String value = "";
   List<DropdownMenuItem<String>> menuitems = List();
   bool disabledropdown = true;
@@ -145,15 +167,36 @@ class _PatientState extends State<Patient> {
       value = _value;
     });
   }
-//------------------------------END------------------------------
+//------------------------------END---------------------------------------
 
-// ------------------function to get the user location------------------
+// ------------------function to get the user location--------------------
   void _getCurrentLocation() async {
     final Position position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     print(position);
   }
+
 //-------------------------------END--------------------------------------
+  // ----------------------check for internet connection--------------------
+  bool _isInternet = true;
+  checkInternet() async {
+    try {
+      final response = await InternetAddress.lookup('example.com');
+      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
+        _isInternet = true; // internet
+        setState(() {});
+      }
+    } on SocketException catch (_) {
+      _isInternet = false; // no internet
+      setState(() {});
+    }
+  }
+
+  @override
+  void initState() {
+    checkInternet();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -166,6 +209,7 @@ class _PatientState extends State<Patient> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
         ),
         centerTitle: true,
+        elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 30),
@@ -220,7 +264,8 @@ class _PatientState extends State<Patient> {
                               width: 50,
                             ),
                             FlatButton(
-                              onPressed: () => _showMultiSelect(context),
+                              onPressed: () =>
+                                  _showChronicDiseaseMultiSelect(context),
                               color: Colors.deepOrange,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(80.0)),
@@ -234,7 +279,25 @@ class _PatientState extends State<Patient> {
                           ],
                         ),
                         Row(
-                          children: [],
+                          children: [
+                            Text('Life Style', style: _textStylePatient),
+                            SizedBox(
+                              width: 135,
+                            ),
+                            FlatButton(
+                              onPressed: () =>
+                                  _showLifeStyleMultiSelect(context),
+                              color: Colors.deepOrange,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(80.0)),
+                              child: Text(
+                                AppLocalizations.of(context)
+                                    .translate('patient_dialogue_list_button'),
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -329,33 +392,34 @@ class _PatientState extends State<Patient> {
                     ),
                   ),
                 ),
-                SizedBox(height: 75),
-                Container(
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ButtonTheme(
-                        minWidth: double.infinity,
-                        height: 45,
-                        child: RaisedButton(
-                          color: Colors.deepOrange,
-                          onPressed: () {
+                SizedBox(height: 30),
+                ButtonTheme(
+                  minWidth: double.infinity,
+                  child: RaisedButton.icon(
+                    onPressed: _isInternet
+                        ? () {
                             _getCurrentLocation();
-
                             Navigator.pushNamed(context, '/result');
+                          }
+                        : () {
+                            SnackBar errorSnackBar = SnackBar(
+                                content: Text('No internet Connection'));
+                            Scaffold.of(context).showSnackBar(errorSnackBar);
                           },
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80.0)),
-                          child: Text(
-                            AppLocalizations.of(context)
-                                .translate('patient_search_button'),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
+                    icon: Icon(
+                      Icons.arrow_forward,
+                      color: Colors.white,
+                    ),
+                    color: Colors.deepOrange,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(80.0)),
+                    label: Text(
+                      AppLocalizations.of(context)
+                          .translate('patient_search_button'),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),

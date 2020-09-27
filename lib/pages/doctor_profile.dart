@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/pages/updateinfo.dart';
-import 'package:project_doctor/services/theme_const.dart';
+import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
@@ -28,9 +28,11 @@ class DoctorProfile extends StatelessWidget {
             'Your Information',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
           ),
-          elevation: 1,
+          elevation: 0,
           actions: [
             PopupMenuButton<String>(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20.0))),
                 onSelected: choiceAction,
                 itemBuilder: (BuildContext context) {
                   return PopUpMenuConstants.choices.map((String choice) {

@@ -3,8 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:project_doctor/main.dart';
 import 'package:project_doctor/services/app_localizations.dart';
-import 'package:project_doctor/services/language.dart';
-import 'package:project_doctor/services/theme_const.dart';
+import 'package:project_doctor/constants/language.dart';
+import 'package:project_doctor/constants/theme.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -32,6 +32,7 @@ class _HomeState extends State<Home> {
         centerTitle: true,
         backgroundColor: Colors.deepOrange,
         brightness: Brightness.dark,
+        elevation: 0,
         actions: [
           Padding(
             padding: EdgeInsets.all(8.0),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/pages/doctor_map.dart';
 import 'package:project_doctor/services/app_localizations.dart';
-import 'package:project_doctor/services/theme_const.dart';
+import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/auth.dart';
 
 class DoctorForm extends StatefulWidget {
@@ -52,9 +52,11 @@ class _DoctorFormState extends State<DoctorForm> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
         ),
         centerTitle: true,
-        elevation: 1,
+        elevation: 0,
         actions: [
           PopupMenuButton<String>(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
               onSelected: choiceAction,
               itemBuilder: (BuildContext context) {
                 return PopUpMenuConstants.choices.map((String choice) {

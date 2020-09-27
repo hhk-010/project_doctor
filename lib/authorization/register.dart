@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/loading.dart';
-import 'package:project_doctor/services/theme_const.dart';
+import 'package:project_doctor/constants/theme.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'dart:io';
 
