@@ -19,6 +19,7 @@ class _UpdateinfoState extends State<Updateinfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: Text('Update your Info'),
@@ -76,8 +77,9 @@ class _UpdateinfoState extends State<Updateinfo> {
                 SizedBox(
                   height: 20.0,
                 ),
+                Center(child: Text('To complete your update , go to google map ',style: TextStyle(color: Colors.pinkAccent,fontSize: 15.0),),),
                 RaisedButton(
-                  child: Text('go to google map'),
+                  child: Text('google map'),
                   onPressed: () {
                     if (_formkey.currentState.validate()){
                       Navigator.of(context).push(MaterialPageRoute(

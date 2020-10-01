@@ -16,6 +16,7 @@ class _Updatepass2State extends State<Updatepass2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: Text('Update your passord'),

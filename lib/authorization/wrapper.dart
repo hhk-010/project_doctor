@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_doctor/authorization/verify.dart';
 import 'package:project_doctor/pages/doctor_form.dart';
 import 'package:provider/provider.dart';
 import 'package:project_doctor/services/data_model.dart';
@@ -26,7 +28,11 @@ class Wrapper extends StatelessWidget {
     if (user == null) {
       return Authenticate();
     } else {
-      return DoctorProfile();
+      if (!FirebaseAuth.instance.currentUser.emailVerified){
+        return Verify();
+      }else{
+        return DoctorProfile();
+      }
     }
   }
 }
@@ -47,9 +53,9 @@ class _AuthenticateState extends State<Authenticate> {
   @override
   Widget build(BuildContext context) {
     if (showSignIn) {
-      return SignIn(toogleView: toogleView);
-    } else {
       return Register(toogleView: toogleView);
+    } else {
+      return SignIn(toogleView: toogleView);
     }
   }
 }

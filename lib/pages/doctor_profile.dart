@@ -61,10 +61,15 @@ class DoctorList extends StatefulWidget {
 class _DoctorListState extends State<DoctorList> {
   @override
   Widget build(BuildContext context) {
-      var uid =FirebaseAuth.instance.currentUser.uid ;
+
 
 
     final doctorListProvider = Provider.of<QuerySnapshot>(context);
+
+      var uid = FirebaseAuth.instance.currentUser.uid;
+
+
+
 
     String name = '';
     String speciality = '';

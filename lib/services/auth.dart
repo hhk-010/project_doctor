@@ -13,6 +13,7 @@ class AuthService {
     return _auth.authStateChanges().map((User user) => _userfromfirebase(user));
   }
 
+
   Future signInWithEmailAndPassword(String email, String password) async {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
@@ -42,9 +43,20 @@ class AuthService {
       // create a new document for the user with the id
       await DatabaseService(uid: user.uid)
           .updateUserData(name,Speciality,number,province,lat,lng);
+      await user.sendEmailVerification();
       return _userfromfirebase(user);
     } catch (e) {
       print(e.toString());
+      return null;
+    }
+  }
+  resendemail(){
+    User user = FirebaseAuth.instance.currentUser;
+    try{
+      user.sendEmailVerification();
+    }
+    catch(e){
+      print(e);
       return null;
     }
   }
