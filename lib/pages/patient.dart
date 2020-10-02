@@ -55,8 +55,7 @@ class _PatientState extends State<Patient> {
       MultiSelectDialogItem(2, AppLocalizations.of(context).translate('cd_DM')),
       MultiSelectDialogItem(
           3, AppLocalizations.of(context).translate('cd_heart')),
-      //MultiSelectDialogItem(
-          //4, AppLocalizations.of(context).translate('cd_connective tissue disease')),
+      //MultiSelectDialogItem(4),
     ];
 
     final selectedValues = await showDialog<Set<int>>(
