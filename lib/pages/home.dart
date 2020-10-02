@@ -25,9 +25,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text(
           AppLocalizations.of(context).translate('home_title'),
-          style: TextStyle(
-            fontSize: 24,
-          ),
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         backgroundColor: Colors.deepOrange,

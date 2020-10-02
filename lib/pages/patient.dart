@@ -256,12 +256,11 @@ class _PatientState extends State<Patient> {
                       children: [
                         Row(
                           children: [
-                            Text(
-                                AppLocalizations.of(context)
-                                    .translate('patient_chronic_diseases'),
-                                style: _textStylePatient),
-                            SizedBox(
-                              width: 50,
+                            Expanded(
+                              child: Text(
+                                  AppLocalizations.of(context)
+                                      .translate('patient_chronic_diseases'),
+                                  style: _textStylePatient),
                             ),
                             FlatButton(
                               onPressed: () =>
@@ -280,10 +279,9 @@ class _PatientState extends State<Patient> {
                         ),
                         Row(
                           children: [
-                            Text('Life Style', style: _textStylePatient),
-                            SizedBox(
-                              width: 135,
-                            ),
+                            Expanded(
+                                child: Text('Life Style',
+                                    style: _textStylePatient)),
                             FlatButton(
                               onPressed: () =>
                                   _showLifeStyleMultiSelect(context),
