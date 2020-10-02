@@ -49,13 +49,15 @@ class _PatientState extends State<Patient> {
   String chronic2 = '';
   String chronic3='';
   void _showMultiSelect(BuildContext context) async {
+    chronic1='';
+    chronic2='';
+    chronic3='';
     final items = <MultiSelectDialogItem<int>>[
       MultiSelectDialogItem(
           1, AppLocalizations.of(context).translate('cd_hyt')),
       MultiSelectDialogItem(2, AppLocalizations.of(context).translate('cd_DM')),
       MultiSelectDialogItem(
           3, AppLocalizations.of(context).translate('cd_heart')),
-      //MultiSelectDialogItem(4),
     ];
 
     final selectedValues = await showDialog<Set<int>>(
@@ -74,10 +76,11 @@ class _PatientState extends State<Patient> {
       if (x == 2) {
         chronic2 = 'abdominal pain';
       }
-      if (x==3){
+      if (x == 3){
         chronic3='chest pain';
       }
     }
+    //chronics must be cleared after the pt proceed
     print(chronic1);
     print(chronic2);
     print(chronic3);
@@ -1159,7 +1162,7 @@ class _PatientState extends State<Patient> {
                           onPressed: () {
                             _getCurrentLocation();
 
-                            Navigator.pushNamed(context, '/result');
+                            Navigator.pushNamed(context, '/pt_risk_f');
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(80.0)),
