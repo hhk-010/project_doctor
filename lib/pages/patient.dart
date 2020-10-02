@@ -394,8 +394,6 @@ class _PatientState extends State<Patient> {
     print(value6);
     print(value7);
   }
-//------------------------------END------------------------------
-//------------------------------END---------------------------------------
 
 // ------------------function to get the user location--------------------
   void _getCurrentLocation() async {
@@ -404,7 +402,6 @@ class _PatientState extends State<Patient> {
     print(position);
   }
 
-//-------------------------------END--------------------------------------
   // ----------------------check for internet connection--------------------
   bool _isInternet = true;
   checkInternet() async {
@@ -543,7 +540,7 @@ class _PatientState extends State<Patient> {
                         ),
                         Center(
                           child: Text(
-                            'cheif complaint',
+                            'chief complaint',
                             style: TextStyle(
                               fontSize: 18.0,
                             ),
@@ -598,42 +595,6 @@ class _PatientState extends State<Patient> {
                         SizedBox(
                           height: 15,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Head",
-                              style: _textStylePatient,
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              "Heahache",
-                              style: _textStylePatient,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        /*Row(children: [
-                          Text(
-                            AppLocalizations.of(context)
-                                .translate('patient_other_complain'),
-                            style: TextStyle(
-                              fontSize: 18.0,
-                            ),
-                          ),
-                          Switch(
-                              activeColor: Colors.deepOrange,
-                              value: state,
-                              onChanged: (bool s) {
-                                setState(() {
-                                  state = s;
-                                });
-                              }),
-                        ]),*/
                       ],
                     ),
                   ),
