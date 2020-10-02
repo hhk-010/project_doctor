@@ -40,7 +40,7 @@ class _MultiSelectDialogState<V> extends State<MultiSelectDialog<V>> {
   }
 
   void _onCancelTap() {
-    Navigator.pop(context);
+    Navigator.pop(context, _selectedValues);
   }
 
   void _onSubmitTap() {

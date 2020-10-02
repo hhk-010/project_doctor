@@ -5,6 +5,8 @@ import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/constants/multi_selection.dart';
 import 'dart:io';
 
+import '../constants/multi_selection.dart';
+
 class Patient extends StatefulWidget {
   @override
   _PatientState createState() => _PatientState();
@@ -47,45 +49,66 @@ class _PatientState extends State<Patient> {
   String chronic1 = '';
   String chronic2 = '';
   String chronic3 = '';
-  void _showMultiSelect(BuildContext context) async {
+  void _showChronicDiseaseMultiSelect(BuildContext context) async {
     chronic1 = '';
     chronic2 = '';
     chronic3 = '';
-    void _showChronicDiseaseMultiSelect(BuildContext context) async {
-      final cdItems = <MultiSelectDialogItem<int>>[
-        MultiSelectDialogItem(
-            1, AppLocalizations.of(context).translate('cd_hyt')),
-        MultiSelectDialogItem(
-            2, AppLocalizations.of(context).translate('cd_DM')),
-        MultiSelectDialogItem(
-            3, AppLocalizations.of(context).translate('cd_heart')),
-      ];
+    final cdItems = <MultiSelectDialogItem<int>>[
+      MultiSelectDialogItem(
+          1, AppLocalizations.of(context).translate('cd_HTN')),
+      MultiSelectDialogItem(2, AppLocalizations.of(context).translate('cd_DM')),
+      MultiSelectDialogItem(
+          3, AppLocalizations.of(context).translate('cd_heart')),
+      MultiSelectDialogItem(
+          4, AppLocalizations.of(context).translate('cd_heartFailure')),
+      MultiSelectDialogItem(
+          5, AppLocalizations.of(context).translate('cd_ctd')),
+      MultiSelectDialogItem(
+          6, AppLocalizations.of(context).translate('cd_ckd')),
+      MultiSelectDialogItem(
+          7, AppLocalizations.of(context).translate('cd_liver')),
+      MultiSelectDialogItem(
+          8, AppLocalizations.of(context).translate('cd_intestine')),
+      MultiSelectDialogItem(
+          9, AppLocalizations.of(context).translate('cd_epilepsy')),
+      MultiSelectDialogItem(
+          10, AppLocalizations.of(context).translate('cd_cva')),
+      MultiSelectDialogItem(
+          11, AppLocalizations.of(context).translate('cd_thyroid')),
+      MultiSelectDialogItem(
+          12, AppLocalizations.of(context).translate('cd_lung')),
+      MultiSelectDialogItem(
+          13, AppLocalizations.of(context).translate('cd_copd')),
+      MultiSelectDialogItem(
+          14, AppLocalizations.of(context).translate('cd_ashma')),
+      MultiSelectDialogItem(
+          15, AppLocalizations.of(context).translate('cd_tumor')),
+    ];
 
-      final selectedValues = await showDialog<Set<int>>(
-        context: context,
-        builder: (BuildContext context) {
-          return MultiSelectDialog(
-            items: cdItems,
-          );
-        },
-      );
-      var mappy = {1: 'headache', 2: 'abdominal pain'};
-      for (var x in selectedValues) {
-        if (x == 1) {
-          chronic1 = 'headache';
-        }
-        if (x == 2) {
-          chronic2 = 'abdominal pain';
-        }
-        if (x == 3) {
-          chronic3 = 'chest pain';
-        }
+    final selectedValues = await showDialog<Set<int>>(
+      context: context,
+      builder: (BuildContext context) {
+        return MultiSelectDialog(
+          items: cdItems,
+        );
+      },
+    );
+    var mappy = {1: 'headache', 2: 'abdominal pain'};
+    for (var x in selectedValues) {
+      if (x == 1) {
+        chronic1 = 'headache';
       }
-      //chronics must be cleared after the pt proceed
-      print(chronic1);
-      print(chronic2);
-      print(chronic3);
+      if (x == 2) {
+        chronic2 = 'abdominal pain';
+      }
+      if (x == 3) {
+        chronic3 = 'chest pain';
+      }
     }
+    //chronics must be cleared after the pt proceed
+    print(chronic1);
+    print(chronic2);
+    print(chronic3);
   }
 
 //-----------------Function to use DropdownMultiSelection-----------------
@@ -475,15 +498,15 @@ class _PatientState extends State<Patient> {
                       children: [
                         Row(
                           children: [
-                            Text(
-                                AppLocalizations.of(context)
-                                    .translate('patient_chronic_diseases'),
-                                style: _textStylePatient),
-                            SizedBox(
-                              width: 50,
+                            Expanded(
+                              child: Text(
+                                  AppLocalizations.of(context)
+                                      .translate('patient_chronic_diseases'),
+                                  style: _textStylePatient),
                             ),
                             FlatButton(
-                              onPressed: () => _showMultiSelect(context),
+                              onPressed: () =>
+                                  _showChronicDiseaseMultiSelect(context),
                               color: Colors.deepOrange,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(80.0)),
@@ -495,9 +518,6 @@ class _PatientState extends State<Patient> {
                               ),
                             ),
                           ],
-                        ),
-                        Row(
-                          children: [],
                         ),
                       ],
                     ),
@@ -591,23 +611,6 @@ class _PatientState extends State<Patient> {
                         SizedBox(
                           height: 15,
                         ),
-                        /*Row(children: [
-                          Text(
-                            AppLocalizations.of(context)
-                                .translate('patient_other_complain'),
-                            style: TextStyle(
-                              fontSize: 18.0,
-                            ),
-                          ),
-                          Switch(
-                              activeColor: Colors.deepOrange,
-                              value: state,
-                              onChanged: (bool s) {
-                                setState(() {
-                                  state = s;
-                                });
-                              }),
-                        ]),*/
                       ],
                     ),
                   ),

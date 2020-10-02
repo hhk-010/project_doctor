@@ -23,24 +23,25 @@
     "register_email" : "Email",
     "register_password" : "Password",
     "register_button": "Register",
-
     "doctor_form_name" : "Name",
     "doctor_form_speciality" : "Speciality",
     "doctor_form_phoneNumber" : "Phone Number",
     "doctor_form_province": "Province",
     "doctor_form_location": "Location",
     "doctor_form_search": "Submit",
-    "cd_hyt" : "Elevated Blood Pressure",
+    "cd_HTN" : "Elevated Blood Pressure",
     "cd_DM" : "Diabetus Mellitus",
-    "cd_heart" : "Heart Disease",
+    "cd_heart" : "Chronic Heart Disease",
+    "cd_heartFailure" : "Heart Failure",
+    "cd_ctd" : "Connective tissue disease",
     "cd_ckd" : "Kidney Diseae",
-    "ed_liver" : "Liver Disease",
-    "ed_brain" : "Demantia",
-    "ed_thyroid" : "Goitre",
-    "ed_lung" : "Lung Disease",
-    "ed_ashma" : "Ashma"
-
-
-
-    
+    "cd_liver" : "Liver Disease",
+    "cd_intestine" : "Chronic Intestinal Disease",
+    "cd_epilepsy" : "Epilespy",
+    "cd_cva" : "Stroke",
+    "cd_thyroid" : "Previous Goitre",
+    "cd_lung" : "Chronic Lung Disease",
+    "cd_copd" : "COPD",
+    "cd_ashma" : "Ashma",
+    "cd_tumor" : "Malignancy"
 }
