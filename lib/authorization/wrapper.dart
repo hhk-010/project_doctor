@@ -6,7 +6,6 @@ import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/authorization/register.dart';
 import 'package:project_doctor/authorization/sign_in.dart';
-
 import '../pages/doctor_profile.dart';
 
 class Intermediate extends StatelessWidget {

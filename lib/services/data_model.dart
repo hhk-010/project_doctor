@@ -1,4 +1,3 @@
-// user data model;
 class UserID {
   final String uid;
 

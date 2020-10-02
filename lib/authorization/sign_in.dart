@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/fogetpass.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/services/auth.dart';
-import 'package:project_doctor/services/theme_const.dart';
+import 'package:project_doctor/constants/theme.dart';
 
 class SignIn extends StatefulWidget {
   final Function toogleView;

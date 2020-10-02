@@ -105,6 +105,14 @@ class _DocMapState extends State<DocMap> {
                 await geolocate(latlng: latlng);
                 await _auth.registerWithEmailAndPassword(email, password, name,
                     speciality, phoneNumber, province, lattt, lnggg);
+                /*DatabaseService(uid: uid).updateUserData(
+                  name,
+                  speciality,
+                  phoneNumber,
+                  province,
+                  lattt,
+                  lnggg,
+                );*/
                 Navigator.pop(context);
               },
             ),

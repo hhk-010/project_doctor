@@ -59,6 +59,14 @@ class _MyAppState extends State<MyApp> {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Cura',
+        builder: (context, navigator) {
+          var lang = Localizations.localeOf(context).languageCode;
+          return Theme(
+            data: ThemeData(
+                fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+            child: navigator,
+          );
+        },
         theme: ThemeData(
           primaryColor: Colors.deepOrange,
         ),

@@ -1,4 +1,6 @@
 {
+    "english" : "ُEnglish",
+    "arabic" : "Arabic",
     "home_title" : "Welcome to Cura",
     "home_patient" :"I'm a Patient",
     "home_doctor" : "I'm a Doctor",
@@ -17,6 +19,11 @@
     "patient_other_complain" : "Do you have other complains",
     "patient_search_button" : "Search",
     "doctor_form_appbar" : "Update Your Info",
+    "register_appbar" : "Register",
+    "register_email" : "Email",
+    "register_password" : "Password",
+    "register_button": "Register",
+
     "doctor_form_name" : "Name",
     "doctor_form_speciality" : "Speciality",
     "doctor_form_phoneNumber" : "Phone Number",

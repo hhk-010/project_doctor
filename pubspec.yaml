@@ -36,6 +36,8 @@ dependencies:
   flutter_spinkit: ^4.1.2
   flutter_auth_buttons: ^0.10.0
   shared_preferences: ^0.5.12
+  connectivity: ^0.4.9+3
+
 
 
 
@@ -84,6 +86,10 @@ flutter:
     - family: noto_arabic
       fonts:
         - asset: assets/fonts/noto_arabic.ttf
+    - family: Helvetica
+      fonts:
+        - asset: assets/fonts/HelveticaNow-Regular.ttf
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

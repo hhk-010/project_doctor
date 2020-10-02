@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/services/app_localizations.dart';
-import 'package:project_doctor/services/theme_const.dart';
-import 'package:project_doctor/services/dropdown_multi_selection.dart';
+import 'package:project_doctor/constants/multi_selection.dart';
+import 'package:project_doctor/constants/theme.dart';
 
 class PatientRisks extends StatefulWidget {
   @override
