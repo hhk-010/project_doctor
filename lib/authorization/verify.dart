@@ -11,14 +11,12 @@ class Verify extends StatefulWidget {
 }
 
 class _VerifyState extends State<Verify> {
-  Timer _timer;
   @override
   void initState() {
     super.initState();
     Future(() async {
-      _timer = Timer.periodic(Duration(seconds: 5), (timer) async {
-        await FirebaseAuth.instance.currentUser
-          ..reload();
+      Timer.periodic(Duration(seconds: 5), (timer) async {
+        FirebaseAuth.instance.currentUser..reload();
       });
     });
   }
@@ -43,8 +41,8 @@ class _VerifyState extends State<Verify> {
             RaisedButton(
               onPressed: () {
                 if (FirebaseAuth.instance.currentUser.emailVerified) {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => Intermediate()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Intermediate()));
                 }
               },
               child: Text('Next'),
@@ -56,7 +54,7 @@ class _VerifyState extends State<Verify> {
               child: Text('To resend email for verification , click below'),
             ),
             RaisedButton(
-              onPressed: () async{
+              onPressed: () async {
                 await AuthService().resendemail();
               },
               child: Text('Resend'),

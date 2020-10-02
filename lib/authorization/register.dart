@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/loading.dart';
-import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/theme_const.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 
@@ -15,7 +14,6 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
-  final AuthService _auth = AuthService();
   bool loading = false;
   String email = '';
   String password = '';

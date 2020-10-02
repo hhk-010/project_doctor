@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/pages/updatemap.dart';
 import 'package:project_doctor/pages/updatepass1.dart';
-import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/services/auth.dart';
 
 class Updateinfo extends StatefulWidget {
   @override
@@ -77,20 +75,24 @@ class _UpdateinfoState extends State<Updateinfo> {
                 SizedBox(
                   height: 20.0,
                 ),
-                Center(child: Text('To complete your update , go to google map ',style: TextStyle(color: Colors.pinkAccent,fontSize: 15.0),),),
+                Center(
+                  child: Text(
+                    'To complete your update , go to google map ',
+                    style: TextStyle(color: Colors.pinkAccent, fontSize: 15.0),
+                  ),
+                ),
                 RaisedButton(
                   child: Text('google map'),
                   onPressed: () {
-                    if (_formkey.currentState.validate()){
+                    if (_formkey.currentState.validate()) {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => Updatemap(
-                            name: name,
-                            speciality: speciality,
-                            number: phonenumber,
-                            province: province,
-                          )));
+                                name: name,
+                                speciality: speciality,
+                                number: phonenumber,
+                                province: province,
+                              )));
                     }
-
                   },
                 ),
                 SizedBox(
@@ -98,8 +100,9 @@ class _UpdateinfoState extends State<Updateinfo> {
                 ),
                 RaisedButton(
                   child: Text('change your password'),
-                  onPressed: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Updatepass1()));
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Updatepass1()));
                   },
                 ),
               ],

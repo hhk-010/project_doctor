@@ -3,14 +3,10 @@ import 'package:project_doctor/pages/doctor_map.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/theme_const.dart';
 import 'package:project_doctor/services/auth.dart';
-import 'package:project_doctor/authorization/loading.dart';
-import 'package:project_doctor/services/data_model.dart';
-import 'package:project_doctor/services/database.dart';
-import 'package:provider/provider.dart';
 
 class DoctorForm extends StatefulWidget {
-  String email;
-  String password;
+  final String email;
+  final String password;
   DoctorForm({this.email, this.password});
   @override
   _DoctorFormState createState() =>

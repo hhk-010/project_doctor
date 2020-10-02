@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/services/auth.dart';
 
 class Forgetpass extends StatefulWidget {
   @override
@@ -52,9 +51,10 @@ class _ForgetpassState extends State<Forgetpass> {
                 ),
                 RaisedButton(
                   child: Text('send email'),
-                  onPressed: ()async{
-                    if (_formkey.currentState.validate()){
-                      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+                  onPressed: () async {
+                    if (_formkey.currentState.validate()) {
+                      await FirebaseAuth.instance
+                          .sendPasswordResetEmail(email: email);
                     }
                   },
                 ),

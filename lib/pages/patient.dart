@@ -47,11 +47,11 @@ class _PatientState extends State<Patient> {
 //-----------------Function to use DropdownMultiSelection-----------------
   String chronic1 = '';
   String chronic2 = '';
-  String chronic3='';
+  String chronic3 = '';
   void _showMultiSelect(BuildContext context) async {
-    chronic1='';
-    chronic2='';
-    chronic3='';
+    chronic1 = '';
+    chronic2 = '';
+    chronic3 = '';
     final items = <MultiSelectDialogItem<int>>[
       MultiSelectDialogItem(
           1, AppLocalizations.of(context).translate('cd_hyt')),
@@ -76,8 +76,8 @@ class _PatientState extends State<Patient> {
       if (x == 2) {
         chronic2 = 'abdominal pain';
       }
-      if (x == 3){
-        chronic3='chest pain';
+      if (x == 3) {
+        chronic3 = 'chest pain';
       }
     }
     //chronics must be cleared after the pt proceed

@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -6,11 +5,6 @@ import 'package:project_doctor/main.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/language.dart';
 import 'package:project_doctor/services/theme_const.dart';
-import 'package:project_doctor/services/auth.dart';
-
-import '../authorization/wrapper.dart';
-import '../authorization/wrapper.dart';
-import 'doctor_profile.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -18,7 +12,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   void _changeLanguage(Language language) async {
     Locale _temp = await setLocale(language.languageCode);
     MyApp.setLocale(context, _temp);
@@ -105,7 +98,8 @@ class _HomeState extends State<Home> {
                   width: 300.0,
                   child: RaisedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context,'/intermediate');},
+                      Navigator.pushNamed(context, '/intermediate');
+                    },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(80.0)),
                     padding: EdgeInsets.all(0.0),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/pages/updatepass2.dart';
 import 'package:project_doctor/services/auth.dart';
-
-import '../services/auth.dart';
 import '../services/auth.dart';
 
 class Updatepass1 extends StatefulWidget {
@@ -13,7 +11,7 @@ class Updatepass1 extends StatefulWidget {
 class _Updatepass1State extends State<Updatepass1> {
   String _password;
   bool passwordvalid;
-  String error='';
+  String error = '';
 
   final _formkey = GlobalKey<FormState>();
 
@@ -49,16 +47,16 @@ class _Updatepass1State extends State<Updatepass1> {
               ),
               RaisedButton(
                 child: Text('change my password'),
-                onPressed: () async{
-                  if (_formkey.currentState.validate()){
+                onPressed: () async {
+                  if (_formkey.currentState.validate()) {
                     AuthService().passwordisvalid(_password);
-                    passwordvalid=await AuthService().validatepass(_password);
-                    if (passwordvalid){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Updatepass2()));
-                    }else{
-                      error='invalid password';
+                    passwordvalid = await AuthService().validatepass(_password);
+                    if (passwordvalid) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Updatepass2()));
+                    } else {
+                      error = 'invalid password';
                     }
-
                   }
                 },
               ),
@@ -66,7 +64,10 @@ class _Updatepass1State extends State<Updatepass1> {
                 height: 20.0,
               ),
               Center(
-                child: Text(error,style: TextStyle(color: Colors.red),),
+                child: Text(
+                  error,
+                  style: TextStyle(color: Colors.red),
+                ),
               )
             ],
           ),

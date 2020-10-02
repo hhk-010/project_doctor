@@ -13,7 +13,6 @@ class AuthService {
     return _auth.authStateChanges().map((User user) => _userfromfirebase(user));
   }
 
-
   Future signInWithEmailAndPassword(String email, String password) async {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
@@ -31,7 +30,7 @@ class AuthService {
       String email,
       String password,
       String name,
-      String Speciality,
+      String speciality,
       String number,
       String province,
       double lat,
@@ -42,7 +41,7 @@ class AuthService {
       User user = result.user;
       // create a new document for the user with the id
       await DatabaseService(uid: user.uid)
-          .updateUserData(name,Speciality,number,province,lat,lng);
+          .updateUserData(name, speciality, number, province, lat, lng);
       await user.sendEmailVerification();
       return _userfromfirebase(user);
     } catch (e) {
@@ -50,12 +49,12 @@ class AuthService {
       return null;
     }
   }
-  resendemail(){
+
+  resendemail() {
     User user = FirebaseAuth.instance.currentUser;
-    try{
+    try {
       user.sendEmailVerification();
-    }
-    catch(e){
+    } catch (e) {
       print(e);
       return null;
     }
@@ -69,24 +68,27 @@ class AuthService {
       return null;
     }
   }
-  passwordisvalid(String passwords)async{
+
+  passwordisvalid(String passwords) async {
     return await AuthService().validatepass(passwords);
   }
 
   Future<bool> validatepass(String pass) async {
-    User user = await _auth.currentUser;
-    AuthCredential credentials=EmailAuthProvider.credential(email: user.email, password: pass);
-    try{
+    User user = _auth.currentUser;
+    AuthCredential credentials =
+        EmailAuthProvider.credential(email: user.email, password: pass);
+    try {
       UserCredential cred =
-      await user.reauthenticateWithCredential(credentials);
+          await user.reauthenticateWithCredential(credentials);
       return cred.user != null;
-    }catch(e){
+    } catch (e) {
       print(e);
       return false;
     }
   }
-  void updatepass(String password){
-    User user =FirebaseAuth.instance.currentUser;
+
+  void updatepass(String password) {
+    User user = FirebaseAuth.instance.currentUser;
     user.updatePassword(password);
   }
 }

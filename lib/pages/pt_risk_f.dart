@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/theme_const.dart';
 import 'package:project_doctor/services/dropdown_multi_selection.dart';
@@ -57,25 +56,29 @@ class _PatientRisksState extends State<PatientRisks> {
     print(chronic2);
     print(chronic3);
   }
+
   //--------checkboxes--------------//
   bool pregnancy = false;
   bool obesity = false;
-  bool smoking=false;
-  bool alcoholism=false;
-  bool physicalinactive=false;
-  bool familyhistory=false;
-  String pregnancies='';
-  String obesities='';
-  String smoke='';
-  String alcohol='';
-  String inactive='';
-  String familyhx='';
+  bool smoking = false;
+  bool alcoholism = false;
+  bool physicalinactive = false;
+  bool familyhistory = false;
+  String pregnancies = '';
+  String obesities = '';
+  String smoke = '';
+  String alcohol = '';
+  String inactive = '';
+  String familyhx = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text('Fill The Data',style: TextStyle(fontSize: 25.0),),
+        title: Text(
+          'Fill The Data',
+          style: TextStyle(fontSize: 25.0),
+        ),
         centerTitle: true,
       ),
       body: Container(
@@ -130,97 +133,152 @@ class _PatientRisksState extends State<PatientRisks> {
                   children: [
                     Row(
                       children: [
-                        Text('Obesity',style: TextStyle(fontSize: 18.0),),
-                        SizedBox(width: 12.0,),
-                        Checkbox(value: obesity, onChanged:(val){
-                          setState(() {
-                            obesity=val;
-                            if(obesity){
-                              obesities='obesity';
-                            }else{
-                              obesities=null;
-                            }
-                            print(obesities);
-                          });
-                        }),
-                        SizedBox(width: 22.0,),
-                        Text('Physical inactivity',style: TextStyle(fontSize: 18.0),),
-                        SizedBox(width: 12.0,),
-                        Checkbox(value: physicalinactive,onChanged:(val){
-                          setState(() {
-                            physicalinactive=val;
-                            if(physicalinactive){
-                              inactive='physical inactivity';
-                            }else{
-                              inactive= '';
-                            }
-                            print(inactive);
-                          });
-                        },),
+                        Text(
+                          'Obesity',
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                        SizedBox(
+                          width: 12.0,
+                        ),
+                        Checkbox(
+                            value: obesity,
+                            onChanged: (val) {
+                              setState(() {
+                                obesity = val;
+                                if (obesity) {
+                                  obesities = 'obesity';
+                                } else {
+                                  obesities = null;
+                                }
+                                print(obesities);
+                              });
+                            }),
+                        SizedBox(
+                          width: 22.0,
+                        ),
+                        Text(
+                          'Physical inactivity',
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                        SizedBox(
+                          width: 12.0,
+                        ),
+                        Checkbox(
+                          value: physicalinactive,
+                          onChanged: (val) {
+                            setState(() {
+                              physicalinactive = val;
+                              if (physicalinactive) {
+                                inactive = 'physical inactivity';
+                              } else {
+                                inactive = '';
+                              }
+                              print(inactive);
+                            });
+                          },
+                        ),
                       ],
                     ),
-                    SizedBox(height: 12.0,),
+                    SizedBox(
+                      height: 12.0,
+                    ),
                     Row(
                       children: [
-                        Text('Pregnancy',style: TextStyle(fontSize: 18.0),),
-                        SizedBox(width: 12.0,),
-                        Checkbox(value: pregnancy, onChanged:(val){
-                          setState(() {
-                            pregnancy=val;
-                            if(pregnancy){
-                              pregnancies='pregnancy';
-                            }else{
-                              pregnancies='';
-                            }
-                            print(pregnancies);
-                          });
-                        }),
-                        SizedBox(width: 22.0,),
-                        Text('Alcoholism',style: TextStyle(fontSize: 18.0),),
-                        SizedBox(width: 12.0,),
-                        Checkbox(value: alcoholism,onChanged:(val){
-                          setState(() {
-                            alcoholism=val;
-                            if(alcoholism){
-                              alcohol='alcoholism';
-                            }else{
-                              alcohol='';
-                            }
-                            print(alcohol);
-                          });
-                        },),
+                        Text(
+                          'Pregnancy',
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                        SizedBox(
+                          width: 12.0,
+                        ),
+                        Checkbox(
+                            value: pregnancy,
+                            onChanged: (val) {
+                              setState(() {
+                                pregnancy = val;
+                                if (pregnancy) {
+                                  pregnancies = 'pregnancy';
+                                } else {
+                                  pregnancies = '';
+                                }
+                                print(pregnancies);
+                              });
+                            }),
+                        SizedBox(
+                          width: 22.0,
+                        ),
+                        Text(
+                          'Alcoholism',
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                        SizedBox(
+                          width: 12.0,
+                        ),
+                        Checkbox(
+                          value: alcoholism,
+                          onChanged: (val) {
+                            setState(() {
+                              alcoholism = val;
+                              if (alcoholism) {
+                                alcohol = 'alcoholism';
+                              } else {
+                                alcohol = '';
+                              }
+                              print(alcohol);
+                            });
+                          },
+                        ),
                       ],
                     ),
-                    SizedBox(height: 15.0,),
+                    SizedBox(
+                      height: 15.0,
+                    ),
                     Row(
                       children: [
-                        Text('Smoking',style: TextStyle(fontSize: 18.0),),
-                        SizedBox(width: 12.0,),
-                        Checkbox(value: smoking, onChanged:(val){
-                          setState(() {
-                            smoking=val;
-                            if(smoking){
-                              smoke='smoking';
-                            }else{
-                              smoke='';
-                            }
-                            print(smoke);
-                          });
-                        }),
-                        SizedBox(width: 22.0,),
-                        Text('Family history',style: TextStyle(fontSize: 18.0),),
-                        SizedBox(width: 12.0,),
-                        Checkbox(value: familyhistory,onChanged:(val){
-                          setState(() {
-                            familyhistory=val;
-                            if(familyhistory){
-                              familyhx='family history';
-                            }else{
-                              familyhx='';
-                            }
-                            print(familyhx);
-                          });
-                        },),
+                        Text(
+                          'Smoking',
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                        SizedBox(
+                          width: 12.0,
+                        ),
+                        Checkbox(
+                            value: smoking,
+                            onChanged: (val) {
+                              setState(() {
+                                smoking = val;
+                                if (smoking) {
+                                  smoke = 'smoking';
+                                } else {
+                                  smoke = '';
+                                }
+                                print(smoke);
+                              });
+                            }),
+                        SizedBox(
+                          width: 22.0,
+                        ),
+                        Text(
+                          'Family history',
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                        SizedBox(
+                          width: 12.0,
+                        ),
+                        Checkbox(
+                          value: familyhistory,
+                          onChanged: (val) {
+                            setState(() {
+                              familyhistory = val;
+                              if (familyhistory) {
+                                familyhx = 'family history';
+                              } else {
+                                familyhx = '';
+                              }
+                              print(familyhx);
+                            });
+                          },
+                        ),
                       ],
                     ),
                   ],

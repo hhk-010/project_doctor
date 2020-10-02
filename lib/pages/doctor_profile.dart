@@ -13,7 +13,6 @@ class DoctorProfile extends StatelessWidget {
     if (choice == PopUpMenuConstants.logOut) {
       await _auth.signOut();
     }
-
   }
 
   @override
@@ -31,9 +30,13 @@ class DoctorProfile extends StatelessWidget {
           ),
           elevation: 1,
           actions: [
-            FlatButton(child: Text('update your info'),onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Updateinfo()));
-            },),
+            FlatButton(
+              child: Text('update your info'),
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Updateinfo()));
+              },
+            ),
             PopupMenuButton<String>(
                 onSelected: choiceAction,
                 itemBuilder: (BuildContext context) {
@@ -53,30 +56,22 @@ class DoctorProfile extends StatelessWidget {
 }
 
 class DoctorList extends StatefulWidget {
-   @override
-   _DoctorListState createState() => _DoctorListState();
- }
-
+  @override
+  _DoctorListState createState() => _DoctorListState();
+}
 
 class _DoctorListState extends State<DoctorList> {
   @override
   Widget build(BuildContext context) {
-
-
-
     final doctorListProvider = Provider.of<QuerySnapshot>(context);
-
-      var uid = FirebaseAuth.instance.currentUser.uid;
-
-
-
+    var uid = FirebaseAuth.instance.currentUser.uid;
 
     String name = '';
     String speciality = '';
     String number = '';
     String province = '';
-    double lattt = 0.0;
-    double lnggg = 0.0;
+    // double lattt = 0.0;
+    // double lnggg = 0.0;
 
     for (var doc in doctorListProvider.docs) {
       if (doc.id == uid) {
@@ -156,5 +151,3 @@ class _DoctorListState extends State<DoctorList> {
 //     }
 //   }
 // }
-
-
