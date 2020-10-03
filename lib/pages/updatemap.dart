@@ -36,6 +36,7 @@ class _UpdatemapState extends State<Updatemap> {
         position: tappedpoint,
       ));
     });
+
   }
 
   double lattt;
@@ -77,6 +78,7 @@ class _UpdatemapState extends State<Updatemap> {
               backgroundColor: Colors.deepOrange,
               child: Text('U'),
               onPressed: () async {
+                await geolocate(latlng:latlng);
                 await DatabaseService(
                         uid: FirebaseAuth.instance.currentUser.uid)
                     .updateUserData(

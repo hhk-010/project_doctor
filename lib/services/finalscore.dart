@@ -1,4 +1,4 @@
-class finalscore {
+class FinalScore {
   static int finale;
   static String speciality='';
   static int cvsscore;
@@ -26,56 +26,54 @@ class finalscore {
 
 countfinal() {
   var _scoremap = {
-    finalscore.cvsscore: 'Cardiologist',
-    finalscore.respscore: 'Pulmonologist',
-    finalscore.endoscore: 'Endocrinologist',
-    finalscore.gitscore: 'Enterologist',
-    finalscore.generalscore: 'General Surgeon',
-    finalscore.thoracicscore: 'Thoracic Surgeon',
-    finalscore.erscore:'Emergency Department',
-    finalscore.internscore:'Internist',
-    finalscore.gynescore:'Gynecologist',
-    finalscore.rheumatoscore:'Rheumatologist',
-    finalscore.nephroscore:'Nephrologist',
-    finalscore.heamatoscore:'Heamatologist',
-    finalscore.neuroscore:'Neurologist',
-    finalscore.uroscore:'Urosurgeon',
-    finalscore.orthoscore:'Orthopaedic Surgeon',
-    finalscore.neurosurgscore:'Neurosurgeon',
-    finalscore.plasticscore:'Plastic Surgeon',
-    finalscore.opthascore:'Ophthalmologist',
-    finalscore.dermascore:"Dermatologist",
-    finalscore.psychoscore:'Psychiatrist',
-    finalscore.entscore:"Laryngologist"
+    FinalScore.cvsscore: 'Cardiologist',
+    FinalScore.respscore: 'Pulmonologist',
+    FinalScore.endoscore: 'Endocrinologist',
+    FinalScore.gitscore: 'Enterologist',
+    FinalScore.generalscore: 'General Surgeon',
+    FinalScore.thoracicscore: 'Thoracic Surgeon',
+    FinalScore.erscore:'Emergency Department',
+    FinalScore.internscore:'Internist',
+    FinalScore.gynescore:'Gynecologist',
+    FinalScore.rheumatoscore:'Rheumatologist',
+    FinalScore.nephroscore:'Nephrologist',
+    FinalScore.heamatoscore:'Heamatologist',
+    FinalScore.neuroscore:'Neurologist',
+    FinalScore.uroscore:'Urosurgeon',
+    FinalScore.orthoscore:'Orthopaedic Surgeon',
+    FinalScore.neurosurgscore:'Neurosurgeon',
+    FinalScore.plasticscore:'Plastic Surgeon',
+    FinalScore.opthascore:'Ophthalmologist',
+    FinalScore.dermascore:"Dermatologist",
+    FinalScore.psychoscore:'Psychiatrist',
+    FinalScore.entscore:"Laryngologist"
   };
+
   var scores = [
-    finalscore.cvsscore,
-    finalscore.respscore,
-    finalscore.endoscore,
-    finalscore.gitscore,
-    finalscore.generalscore,
-    finalscore.thoracicscore,
-    finalscore.erscore,
-    finalscore.internscore,
-    finalscore.gynescore,
-    finalscore.neuroscore,
-    finalscore.rheumatoscore,
-    finalscore.heamatoscore,
-    finalscore.nephroscore,
-    finalscore.uroscore,
-    finalscore.orthoscore,
-    finalscore.neurosurgscore,
-    finalscore.plasticscore,
-    finalscore.opthascore,
-    finalscore.dermascore,
-    finalscore.psychoscore,
-    finalscore.entscore
+    FinalScore.cvsscore,
+    FinalScore.respscore,
+    FinalScore.endoscore,
+    FinalScore.gitscore,
+    FinalScore.generalscore,
+    FinalScore.thoracicscore,
+    FinalScore.erscore,
+    FinalScore.internscore,
+    FinalScore.gynescore,
+    FinalScore.neuroscore,
+    FinalScore.rheumatoscore,
+    FinalScore.heamatoscore,
+    FinalScore.nephroscore,
+    FinalScore.uroscore,
+    FinalScore.orthoscore,
+    FinalScore.neurosurgscore,
+    FinalScore.plasticscore
+
   ];
   var finals = 0;
   for (var x in scores) {
     if (x > finals) {
       finals = x;
-      finalscore.speciality = _scoremap[x];
+      FinalScore.speciality = _scoremap[x];
     }
   }
 }

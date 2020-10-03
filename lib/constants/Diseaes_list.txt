@@ -112,9 +112,6 @@ ent nose=['nasal discharge':'الرشح','nasal bleeding':'نزف الانف ا�
 'nasal deformity':'تشوهات الانف','sneezing':'العطس','nasal itching':'حكة انفية','anosmia':'فقدان الشم','enlarged nose':'تضخم حجم الانف','other ent problems':'مشاكل الانف\الاذن\الحنجرة الاخرى'];
 
 
-
-
-
 ent ear=['deafness','vertigo','tinnitus','ear discharge','ear redness','ear pain','other ent problems'];
 
 ent ear=['deafness':'الصمم\فقدان السمع','vertigo':'الدوار','tinnitus':'الطنين','ear discharge':'خراج من الاذن','ear redness':'احمرار الاذن','ear pain':'الم الاذن','other ent problems':'مشاكل الانف\الاذن\الحنجرة الاخرى'];

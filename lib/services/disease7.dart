@@ -389,8 +389,8 @@ maindisease7(
   print(derscore);
   print(psyscore);
   print(entscore);
-  finalscore.psychoscore=psyscore;
-  finalscore.dermascore=derscore;
-  finalscore.opthascore=opscore;
-  finalscore.entscore=entscore;
+  FinalScore.psychoscore=psyscore;
+  FinalScore.dermascore=derscore;
+  FinalScore.opthascore=opscore;
+  FinalScore.entscore=entscore;
 }
