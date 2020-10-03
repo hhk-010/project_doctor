@@ -5,6 +5,7 @@ import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/constants/multi_selection.dart';
 import 'dart:io';
 import '../constants/multi_selection.dart';
+import 'pt_risk_f.dart';
 
 class Patient extends StatefulWidget {
   @override
@@ -63,21 +64,27 @@ class _PatientState extends State<Patient> {
   bool disabledropdown7 = true;
 
   final head = {
-    "1": "Headache",
-    "2": "Fever",
-    "3": "Epilepsy",
+    "1": "headache",
+    "2": "fever",
+    "3": "epilepsy",
+    "4":"fit",
+    "5":"coma",
+    "6":"syncope",
+    "7":"back pain"
   };
 
   final chest = {
-    "1": "Chest Pain",
-    "2": "Cough",
-    "3": "Fever",
+    "1": "chest pain",
+    "2": "cough",
+    "3": "fever",
   };
 
   final abdomen = {
-    "1": "Vomiting",
-    "2": "Diarrhea",
-    "3": "Abdominal Pain",
+    "1": "vomiting",
+    "2": "watery diarrhea",
+    "3": "abdominal Pain",
+    "4": "amenorrhea",
+    "5":"heamaturia"
   };
 
   final lowerlimb = {
@@ -1067,6 +1074,7 @@ class _PatientState extends State<Patient> {
                 ),
                 SizedBox(height: 75),
                 Container(
+<<<<<<< HEAD
                   child: ButtonTheme(
                     minWidth: double.infinity,
                     height: 45,
@@ -1085,6 +1093,40 @@ class _PatientState extends State<Patient> {
                             color: Colors.white,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
+=======
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ButtonTheme(
+                        minWidth: double.infinity,
+                        height: 45,
+                        child: RaisedButton(
+                          color: Colors.deepOrange,
+                          onPressed: () {
+                            _getCurrentLocation();
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => PatientRisks(
+                                      chiehcomplaint: value,
+                                      sym2: value2,
+                                      sym3: value3,
+                                      sym4: value4,
+                                      sym5: value5,
+                                      sym6: value6,
+                                      sym7: value7,
+                                    )));
+                          },
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80.0)),
+                          child: Text(
+                            AppLocalizations.of(context)
+                                .translate('patient_search_button'),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+>>>>>>> masterbm
                       ),
                     ),
                   ),
