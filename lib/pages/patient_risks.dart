@@ -171,13 +171,9 @@ class _PatientRisksState extends State<PatientRisks> {
         chronic15 = 'malignancy';
       }
     }
-    //chronics must be cleared after the pt proceed
-    print(chronic1);
-    print(chronic2);
-    print(chronic3);
   }
 
-  //--------checkboxes--------------//
+  //-----------------checkboxes------------------//
   bool pregnancy = false;
   bool obesity = false;
   bool smoking = false;
@@ -434,6 +430,35 @@ class _PatientRisksState extends State<PatientRisks> {
                       familyhx,
                       alcohol,
                       smoke);
+                  maindisease6(
+                      cc,
+                      s2,
+                      s3,
+                      s4,
+                      s5,
+                      s6,
+                      s7,
+                      chronic1,
+                      chronic2,
+                      chronic3,
+                      chronic4,
+                      chronic5,
+                      chronic6,
+                      chronic7,
+                      chronic8,
+                      chronic9,
+                      chronic10,
+                      chronic11,
+                      chronic12,
+                      chronic13,
+                      chronic14,
+                      chronic15,
+                      pregnancies,
+                      obesities,
+                      inactive,
+                      familyhx,
+                      alcohol,
+                      smoke);
                   maindisease3(
                       cc,
                       s2,
@@ -493,35 +518,6 @@ class _PatientRisksState extends State<PatientRisks> {
                       alcohol,
                       smoke);
                   maindisease5(
-                      cc,
-                      s2,
-                      s3,
-                      s4,
-                      s5,
-                      s6,
-                      s7,
-                      chronic1,
-                      chronic2,
-                      chronic3,
-                      chronic4,
-                      chronic5,
-                      chronic6,
-                      chronic7,
-                      chronic8,
-                      chronic9,
-                      chronic10,
-                      chronic11,
-                      chronic12,
-                      chronic13,
-                      chronic14,
-                      chronic15,
-                      pregnancies,
-                      obesities,
-                      inactive,
-                      familyhx,
-                      alcohol,
-                      smoke);
-                  maindisease6(
                       cc,
                       s2,
                       s3,

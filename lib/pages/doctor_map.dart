@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project_doctor/authorization/verify.dart';
 import '../services/auth.dart';
 
 class DocMap extends StatefulWidget {
@@ -113,7 +114,7 @@ class _DocMapState extends State<DocMap> {
                   lattt,
                   lnggg,
                 );*/
-                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Verify()));
               },
             ),
           ),
