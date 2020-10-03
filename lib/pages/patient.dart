@@ -162,7 +162,7 @@ class _PatientState extends State<Patient> {
 
   final abdomen = {
     "1": "vomiting",
-    "2": "waterry diarrhea",
+    "2": "watery diarrhea",
     "3": "abdominal Pain",
   };
 

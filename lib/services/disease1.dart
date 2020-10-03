@@ -351,7 +351,29 @@ maindisease1(
   var others = [s2, s3, s4, s5, s6, s7];
   var o = 0;
   var oo = others.length;
-  var riskf = [c1, c2, c3, preg, ob, fam, inact, alcohol, smok];
+  var riskf = [
+    c1,
+    c2,
+    c3,
+    c4,
+    c5,
+    c6,
+    c7,
+    c8,
+    c9,
+    c10,
+    c11,
+    c12,
+    c13,
+    c14,
+    c15,
+    preg,
+    ob,
+    fam,
+    inact,
+    alcohol,
+    smok
+  ];
   var r = 0;
   var rr = riskf.length;
   var cvsscore = 0;
@@ -495,5 +517,8 @@ maindisease1(
   print(cvsscore);
   print(endoscore);
   print(respscore);
-  countfinal(cvsscore, respscore, endoscore);
+  finalscore.cvsscore = cvsscore;
+  finalscore.respscore = respscore;
+  finalscore.endoscore = endoscore;
+
 }

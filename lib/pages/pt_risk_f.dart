@@ -3,6 +3,7 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/multi_selection.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/disease1.dart';
+import 'package:project_doctor/services/disease2.dart';
 
 class PatientRisks extends StatefulWidget {
   String chiehcomplaint;
@@ -406,6 +407,35 @@ class _PatientRisksState extends State<PatientRisks> {
                 child: Text('Show Result'),
                 onPressed: () {
                   maindisease1(
+                      cc,
+                      s2,
+                      s3,
+                      s4,
+                      s5,
+                      s6,
+                      s7,
+                      chronic1,
+                      chronic2,
+                      chronic3,
+                      chronic4,
+                      chronic5,
+                      chronic6,
+                      chronic7,
+                      chronic8,
+                      chronic9,
+                      chronic10,
+                      chronic11,
+                      chronic12,
+                      chronic13,
+                      chronic14,
+                      chronic15,
+                      pregnancies,
+                      obesities,
+                      inactive,
+                      familyhx,
+                      alcohol,
+                      smoke);
+                  maindisease2(
                       cc,
                       s2,
                       s3,
