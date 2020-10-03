@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/pages/home.dart';
 import 'package:project_doctor/authorization/wrapper.dart';
 import 'package:project_doctor/pages/patient.dart';
+import 'package:project_doctor/pages/patient_chronic.dart';
 import 'package:project_doctor/pages/patient_risks.dart';
 import 'package:project_doctor/pages/doctor_form.dart';
 import 'package:flutter/services.dart';
@@ -99,6 +100,7 @@ class _MyAppState extends State<MyApp> {
           '/doctor_form': (context) => DoctorForm(),
           '/doctor_profile': (context) => DoctorProfile(),
           '/pt_risk_f': (context) => PatientRisks(),
+          '/pt_chronic': (context) => PatientChronicDiseases(),
           '/result': (context) => Result(),
         },
       );
