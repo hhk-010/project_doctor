@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
-import 'package:project_doctor/constants/multi_selection.dart';
 import 'dart:io';
-import '../constants/multi_selection.dart';
-import 'pt_risk_f.dart';
+import 'package:project_doctor/pages/patient_risks.dart';
 
 class Patient extends StatefulWidget {
   @override
@@ -389,15 +387,6 @@ class _PatientState extends State<Patient> {
                   decoration: boxDecorationPatient,
                   child: Column(
                     children: [
-                      TextField(
-                        style: TextStyle(fontSize: 18),
-                        decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.person),
-                          hintText: AppLocalizations.of(context)
-                              .translate('patient_name'),
-                        ),
-                      ),
-                      SizedBox(height: 15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -480,28 +469,6 @@ class _PatientState extends State<Patient> {
                           disabledHint: Text(AppLocalizations.of(context)
                               .translate('patient_disablehint')),
                         ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Head",
-                              style: _textStylePatient,
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              "Heahache",
-                              style: _textStylePatient,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
                       ],
                     ),
                   ),
@@ -572,45 +539,6 @@ class _PatientState extends State<Patient> {
                           disabledHint: Text(AppLocalizations.of(context)
                               .translate('patient_disablehint')),
                         ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Head",
-                              style: _textStylePatient,
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              "Heahache",
-                              style: _textStylePatient,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Row(children: [
-                          Text(
-                            AppLocalizations.of(context)
-                                .translate('patient_other_complain'),
-                            style: TextStyle(
-                              fontSize: 18.0,
-                            ),
-                          ),
-                          Switch(
-                              activeColor: Colors.deepOrange,
-                              value: state,
-                              onChanged: (bool s) {
-                                setState(() {
-                                  state = s;
-                                });
-                              }),
-                        ]),
                       ],
                     ),
                   ),
@@ -681,28 +609,6 @@ class _PatientState extends State<Patient> {
                           disabledHint: Text(AppLocalizations.of(context)
                               .translate('patient_disablehint')),
                         ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Head",
-                              style: _textStylePatient,
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              "Heahache",
-                              style: _textStylePatient,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
                       ],
                     ),
                   ),
@@ -772,28 +678,6 @@ class _PatientState extends State<Patient> {
                               .translate('patient_complain')),
                           disabledHint: Text(AppLocalizations.of(context)
                               .translate('patient_disablehint')),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Head",
-                              style: _textStylePatient,
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              "Heahache",
-                              style: _textStylePatient,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 15,
                         ),
                       ],
                     ),
@@ -868,25 +752,6 @@ class _PatientState extends State<Patient> {
                         SizedBox(
                           height: 15,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Head",
-                              style: _textStylePatient,
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              "Heahache",
-                              style: _textStylePatient,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
                       ],
                     ),
                   ),
@@ -957,28 +822,6 @@ class _PatientState extends State<Patient> {
                           disabledHint: Text(AppLocalizations.of(context)
                               .translate('patient_disablehint')),
                         ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Head",
-                              style: _textStylePatient,
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              "Heahache",
-                              style: _textStylePatient,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
                       ],
                     ),
                   ),
@@ -1048,28 +891,6 @@ class _PatientState extends State<Patient> {
                               .translate('patient_complain')),
                           disabledHint: Text(AppLocalizations.of(context)
                               .translate('patient_disablehint')),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Head",
-                              style: _textStylePatient,
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              "Heahache",
-                              style: _textStylePatient,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 15,
                         ),
                       ],
                     ),
