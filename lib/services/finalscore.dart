@@ -7,16 +7,20 @@ class finalscore {
   static int gitscore;
   static int generalscore;
   static int thoracicscore;
+  static int erscore;
+  static int internscore;
 }
 
 countfinal() {
   var _scoremap = {
-    finalscore.cvsscore: 'cardiologist',
-    finalscore.respscore: 'respiratory',
-    finalscore.endoscore: 'endocrinologist',
-    finalscore.gitscore: 'enterologist',
-    finalscore.generalscore: 'general surgeon',
-    finalscore.thoracicscore: 'thoracic surgeon'
+    finalscore.cvsscore: 'Cardiologist',
+    finalscore.respscore: 'Pulmonologist',
+    finalscore.endoscore: 'Endocrinologist',
+    finalscore.gitscore: 'Enterologist',
+    finalscore.generalscore: 'General Surgeon',
+    finalscore.thoracicscore: 'Thoracic Surgeon',
+    finalscore.erscore:'Emergency Department',
+    finalscore.internscore:'Internist'
   };
   var scores = [
     finalscore.cvsscore,
@@ -24,7 +28,9 @@ countfinal() {
     finalscore.endoscore,
     finalscore.gitscore,
     finalscore.generalscore,
-    finalscore.thoracicscore
+    finalscore.thoracicscore,
+    finalscore.erscore,
+    finalscore.internscore
   ];
   var finals = 0;
   for (var x in scores) {
