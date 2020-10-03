@@ -1,6 +1,6 @@
 import 'package:project_doctor/services/finalscore.dart';
 
-class disease2 {
+class Disease2 {
   String name;
   String sym1;
   String sym2;
@@ -10,7 +10,7 @@ class disease2 {
   String rf2;
   String rf3;
   String rf4;
-  disease2(this.name, this.sym1, this.sym2, this.sym3, this.sym4, this.rf1,
+  Disease2(this.name, this.sym1, this.sym2, this.sym3, this.sym4, this.rf1,
       this.rf2, this.rf3, this.rf4);
 }
 
@@ -43,22 +43,22 @@ maindisease2(
     String fam,
     String alcohol,
     String smok) {
-  var achal = disease2('achalasia', 'dysphagia', 'odynophagia', 'null', 'null',
+  var achal = Disease2('achalasia', 'dysphagia', 'odynophagia', 'null', 'null',
       'null', 'null', 'null', 'null');
-  var esospa = disease2('diffuse esophageal spasm', 'dysphagia', 'odynophagia',
+  var esospa = Disease2('diffuse esophageal spasm', 'dysphagia', 'odynophagia',
       'null', 'null', 'null', 'null', 'null', 'null');
-  var nutcrak = disease2('nutcraker esophagus', 'dysphagia', 'odynophagia',
+  var nutcrak = Disease2('nutcraker esophagus', 'dysphagia', 'odynophagia',
       'null', 'null', 'null', 'null', 'null', 'null');
-  var diver = disease2('diverticulae', 'dysphagia', 'odynophagia', 'null',
+  var diver = Disease2('diverticulae', 'dysphagia', 'odynophagia', 'null',
       'null', 'null', 'null', 'null', 'null');
-  var esoring = disease2('esophagial rings', 'dysphagia', 'odynophagia', 'null',
+  var esoring = Disease2('esophagial rings', 'dysphagia', 'odynophagia', 'null',
       'null', 'null', 'null', 'null', 'null');
-  var claud = disease2('claudication', 'leg pain during walking', 'HTN', 'DM',
+  var claud = Disease2('claudication', 'leg pain during walking', 'HTN', 'DM',
       'smoking', 'obesity', 'family history', 'null', 'null');
 
   // peptic ulcer and pancreatitis to be seen
 
-  var gasent = disease2(
+  var gasent = Disease2(
       'gastroenteritis',
       'watery diarrhea',
       'mucousy diarrhea',
@@ -68,7 +68,7 @@ maindisease2(
       'null',
       'null',
       'null');
-  var ibd = disease2(
+  var ibd = Disease2(
       'indflammatory bowel disease',
       'bloody diarrhea',
       'mucousy diarrhea',
@@ -78,9 +78,9 @@ maindisease2(
       'tenesmus',
       'family history',
       'null');
-  var sprue = disease2('tropical sprue', 'watery diahrrea', 'weight loss',
+  var sprue = Disease2('tropical sprue', 'watery diahrrea', 'weight loss',
       'anorexia', 'null', 'null', 'null', 'null', 'null');
-  var bliloop = disease2(
+  var bliloop = Disease2(
       'small bowel bacovergrowth or blind loop syndrome',
       'watery diarrhea',
       'mucousy diarrhea',
@@ -90,7 +90,7 @@ maindisease2(
       'null',
       'null',
       'null');
-  var sbs = disease2(
+  var sbs = Disease2(
       'short bowel syndrome',
       'watery diarrhea',
       'mucousy diarrhea',
@@ -101,9 +101,9 @@ maindisease2(
       'null',
       'null');
   // ple is overlappped with other conditions
-  var ple = disease2('protein losing enteropathy', 'watery diarrhea',
+  var ple = Disease2('protein losing enteropathy', 'watery diarrhea',
       'bilateral leg edema', 'null', 'null', 'null', 'null', 'null', 'null');
-  var ibs = disease2(
+  var ibs = Disease2(
       'irritable bowel syndrome',
       'watery diarrhea',
       'abdominal pain',
@@ -113,11 +113,11 @@ maindisease2(
       'null',
       'null',
       'null');
-  var celiac = disease2('celiac disease', 'watery diarrhea', 'weight loss',
+  var celiac = Disease2('celiac disease', 'watery diarrhea', 'weight loss',
       'bilateral leg edema', 'null', 'null', 'null', 'null', 'null');
-  var vipoma = disease2('vipoma', 'watery diarrhea', 'abdominal pain', 'null',
+  var vipoma = Disease2('vipoma', 'watery diarrhea', 'abdominal pain', 'null',
       'null', 'null', 'null', 'null', 'null');
-  var carcin = disease2(
+  var carcin = Disease2(
       'carcinoid syndrome',
       'watery diarrhea',
       'abdominal pain',
@@ -128,7 +128,7 @@ maindisease2(
       'null',
       'other git problems');
 
-  var liver = disease2(
+  var liver = Disease2(
       'liver disease',
       'jaundice',
       'jaundice',
@@ -140,31 +140,31 @@ maindisease2(
       'connective tissue disease');
   //gastric and pancreatic and mouth diseases will be left and to be viewed
 
-  var gastritis = disease2('gastririts', 'nausea', 'vomiting', 'abdominal pain',
+  var gastritis = Disease2('gastririts', 'nausea', 'vomiting', 'abdominal pain',
       'anorexia', 'alcoholism', 'null', 'null', 'null');
-  var peptic = disease2('peptic ulcer', 'abdominal pain', 'nausea', 'vomiting',
+  var peptic = Disease2('peptic ulcer', 'abdominal pain', 'nausea', 'vomiting',
       'anorexia', 'alcoholism', 'null', 'null', 'null');
-  var gasca = disease2('gastric ca', 'abdominal pain', 'nausea', 'vomitng',
+  var gasca = Disease2('gastric ca', 'abdominal pain', 'nausea', 'vomitng',
       'null', 'anorexia', 'null', 'null', 'null');
-  var panc = disease2('pancreatitis', 'abdominal pain', 'nausea', 'vomiting',
+  var panc = Disease2('pancreatitis', 'abdominal pain', 'nausea', 'vomiting',
       'null', 'alcoholism', 'null', 'null', 'null');
-  var capanc = disease2('pancreatic ca', 'abdominal pain', 'nausea', 'vomiting',
+  var capanc = Disease2('pancreatic ca', 'abdominal pain', 'nausea', 'vomiting',
       'null', 'anorexia', 'alcoholism', 'null', 'null');
-  var livab = disease2('liver abscess', 'abdominal pain', 'fever', 'anorexia',
+  var livab = Disease2('liver abscess', 'abdominal pain', 'fever', 'anorexia',
       'null', 'null', 'null', 'null', 'null');
-  var gallstone = disease2('gallstone', 'abdominal pain', 'nausea', 'vomiting',
+  var gallstone = Disease2('gallstone', 'abdominal pain', 'nausea', 'vomiting',
       'fever', 'null', 'null', 'null', 'null');
-  var cagall = disease2('gallbladder ca', 'abdominal pain', 'nausea',
+  var cagall = Disease2('gallbladder ca', 'abdominal pain', 'nausea',
       'anorexia', 'null', 'null', 'null', 'null', 'null');
   //ca bile duct is overlapped
-  var periton = disease2('peritonitis', 'abdominal pain', 'nausea', 'vomiting',
+  var periton = Disease2('peritonitis', 'abdominal pain', 'nausea', 'vomiting',
       'fever', 'null', 'null', 'null', 'null');
-  var periab = disease2('peritoneal abscess', 'abdominal pain', 'fever',
+  var periab = Disease2('peritoneal abscess', 'abdominal pain', 'fever',
       'anorexia', 'hiccough', 'null', 'null', 'null', 'null');
   //portal hypertension and upper GI bleeding will be left
-  var obs = disease2('intestinal obstruction', 'abdominal pain', 'constipation',
+  var obs = Disease2('intestinal obstruction', 'abdominal pain', 'constipation',
       'abdominal distension', 'vomiting', 'malignancy', 'null', 'null', 'null');
-  var divert = disease2(
+  var divert = Disease2(
       'diverticular disease',
       'abdominal pain',
       'nausea',
@@ -174,7 +174,7 @@ maindisease2(
       'abdominal distension',
       'null',
       'null');
-  var intstumers = disease2(
+  var intstumers = Disease2(
       'small intestinal tumers',
       'abdominal pain',
       'vomiting',
@@ -184,7 +184,7 @@ maindisease2(
       'abdominal distension',
       'smoking',
       'alcoholism');
-  var colotumer = disease2(
+  var colotumer = Disease2(
       'colonic tumers',
       'abdominal pain',
       'vomiting',
@@ -194,7 +194,7 @@ maindisease2(
       'family history',
       'null',
       'null');
-  var perianal = disease2(
+  var perianal = Disease2(
       'perianal diseases',
       'perianal pain',
       'bleeding per rectum',
@@ -204,7 +204,7 @@ maindisease2(
       'anorexia',
       'null',
       'malignancy');
-  var breast = disease2(
+  var breast = Disease2(
       'breast disease',
       'breast mass',
       'breast pain',
@@ -214,15 +214,15 @@ maindisease2(
       'breast skin lesion',
       'other breast problems',
       'gynecomastia');
-  var thyroid = disease2('thyroid swelling', 'neck swelling', 'neck swelling',
+  var thyroid = Disease2('thyroid swelling', 'neck swelling', 'neck swelling',
       'neck swelling', 'gynecomastia', 'gynecomastia', 'null', 'null', 'null');
-  var hernia = disease2('hernia', 'scrotal swelling', 'abdominal wall swelling',
+  var hernia = Disease2('hernia', 'scrotal swelling', 'abdominal wall swelling',
       'null', 'null', 'null', 'null', 'null', 'null');
-  var lumpandulcer = disease2('lump and ulcer', 'lump', 'lump', 'lump', 'ulcer',
+  var lumpandulcer = Disease2('lump and ulcer', 'lump', 'lump', 'lump', 'ulcer',
       'ulcer', 'ulcer', 'null', 'null');
-  var aaa = disease2('AAA', 'abdominal pain', 'null', 'null', 'HTN', 'smoking',
+  var aaa = Disease2('AAA', 'abdominal pain', 'null', 'null', 'HTN', 'smoking',
       'DM', 'null', 'null');
-  var appendix = disease2('acute appendicitis', 'abdominal pain', 'nausea',
+  var appendix = Disease2('acute appendicitis', 'abdominal pain', 'nausea',
       'vomiting', 'fever', 'anorexia', 'null', 'null', 'null');
 
   var thora = [achal, esospa, nutcrak, diver, esoring, claud];
@@ -472,8 +472,8 @@ maindisease2(
   print(gitscore);
   print(gsscore);
   print(thorscore);
-  finalscore.gitscore = gitscore;
-  finalscore.generalscore = gsscore;
-  finalscore.thoracicscore = thorscore;
+  FinalScore.gitscore = gitscore;
+  FinalScore.generalscore = gsscore;
+  FinalScore.thoracicscore = thorscore;
   countfinal();
 }

@@ -10,13 +10,13 @@ import 'package:project_doctor/services/disease5.dart';
 import 'package:project_doctor/services/disease6.dart';
 
 class PatientRisks extends StatefulWidget {
-  String chiehcomplaint;
-  String sym2;
-  String sym3;
-  String sym4;
-  String sym5;
-  String sym6;
-  String sym7;
+  final String chiehcomplaint;
+  final String sym2;
+  final String sym3;
+  final String sym4;
+  final String sym5;
+  final String sym6;
+  final String sym7;
   PatientRisks(
       {this.chiehcomplaint,
       this.sym2,
@@ -391,12 +391,12 @@ class _PatientRisksState extends State<PatientRisks> {
                   ],
                 ),
               ),
-              Container(
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.all(8),
-                decoration: boxDecorationPatient,
-                child: ListView(),
-              ),
+              // Container(
+              //   alignment: Alignment.centerLeft,
+              //   padding: EdgeInsets.all(8),
+              //   decoration: boxDecorationPatient,
+              //   child: ListView(),
+              // ),
               SizedBox(
                 height: 150,
               ),

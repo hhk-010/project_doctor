@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
-import 'dart:io';
 import 'package:project_doctor/pages/patient_risks.dart';
 
 class Patient extends StatefulWidget {
@@ -16,6 +14,9 @@ class _PatientState extends State<Patient> {
     fontWeight: FontWeight.w500,
     color: Colors.black,
   );
+
+  final ageController = TextEditingController();
+
   // -------------------------Radio Buttons-------------------------
   List gender = ['Male', 'Female'];
   String select = '';
@@ -45,7 +46,7 @@ class _PatientState extends State<Patient> {
   bool state = false;
 
   // ----------------Conditional DropDownMenu -------------------------
-  String value = "";
+  String value = '';
   String value2 = '';
   String value3 = '';
   String value4 = '';
@@ -90,6 +91,8 @@ class _PatientState extends State<Patient> {
     '2': 'joint pain',
     '3': 'joint swelling'
   };
+
+  final upperlimb = {};
 
   void populatehead() {
     for (String key in head.keys) {
@@ -334,32 +337,6 @@ class _PatientState extends State<Patient> {
     print(value7);
   }
 
-  void _getCurrentLocation() async {
-    final Position position = await Geolocator()
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    print(position);
-  }
-
-  bool _isInternet = true;
-  checkInternet() async {
-    try {
-      final response = await InternetAddress.lookup('example.com');
-      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
-        _isInternet = true; // internet
-        setState(() {});
-      }
-    } on SocketException catch (_) {
-      _isInternet = false; // no internet
-      setState(() {});
-    }
-  }
-
-  @override
-  void initState() {
-    checkInternet();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -384,6 +361,16 @@ class _PatientState extends State<Patient> {
                   decoration: boxDecorationPatient,
                   child: Column(
                     children: [
+                      TextField(
+                          keyboardType: TextInputType.number,
+                          controller: ageController,
+                          autocorrect: true,
+                          decoration: InputDecoration(
+                            hintText: 'Enter Your Age in Years...',
+                            prefixIcon: Icon(Icons.person_outline),
+                            hintStyle: TextStyle(color: Colors.grey),
+                            filled: true,
+                          )),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -413,15 +400,19 @@ class _PatientState extends State<Patient> {
                           height: 8.0,
                         ),
                         Center(
-                          child: Text(
-                            'Chief Complaint',
-                            style: TextStyle(
-                              fontSize: 18.0,
+                          child: Container(
+                            child: Text(
+                              'Chief Complaint',
+                              style: TextStyle(
+                                  fontSize: 18.0, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: 6.0,
+                        Divider(
+                          color: Colors.grey,
+                          thickness: 2,
+                          indent: 30,
+                          endIndent: 30,
                         ),
                         DropdownButton<String>(
                           isExpanded: true,
@@ -895,26 +886,6 @@ class _PatientState extends State<Patient> {
                 ),
                 SizedBox(height: 75),
                 Container(
-                  /*child: ButtonTheme(
-                    minWidth: double.infinity,
-                    height: 45,
-                    child: RaisedButton(
-                      color: Colors.deepOrange,
-                      onPressed: () {
-                        _getCurrentLocation();
-
-                        Navigator.pushNamed(context, '/pt_risk_f');
-                      },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(80.0)),
-                      child: Text(
-                        "Next",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                  child: Center(
-                    child: Padding(*/
                   padding: const EdgeInsets.all(8.0),
                   child: ButtonTheme(
                     minWidth: double.infinity,
@@ -922,7 +893,6 @@ class _PatientState extends State<Patient> {
                     child: RaisedButton(
                       color: Colors.deepOrange,
                       onPressed: () {
-                        _getCurrentLocation();
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => PatientRisks(
                                   chiehcomplaint: value,
@@ -937,8 +907,7 @@ class _PatientState extends State<Patient> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(80.0)),
                       child: Text(
-                        AppLocalizations.of(context)
-                            .translate('patient_search_button'),
+                        AppLocalizations.of(context).translate('next'),
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,

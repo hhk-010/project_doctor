@@ -25,7 +25,7 @@ class _ResultState extends State<Result> {
             children: [
               Center(
                 child: Text(
-                  finalscore.speciality,
+                  FinalScore.speciality,
                   style: TextStyle(fontSize: 20),
                 ),
               )

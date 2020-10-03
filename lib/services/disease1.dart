@@ -1,6 +1,6 @@
 import 'package:project_doctor/services/finalscore.dart';
 
-class disease1 {
+class Disease1 {
   String name;
   String symp1;
   String symp2;
@@ -11,7 +11,7 @@ class disease1 {
   String rf3;
   String rf4;
 
-  disease1(
+  Disease1(
     this.name,
     this.symp1,
     this.symp2,
@@ -53,9 +53,9 @@ maindisease1(
     String fam,
     String alcohol,
     String smok) {
-  var acs = disease1('acs', 'chest pain', 'dyspnea', 'vomiting', 'palpitation',
+  var acs = Disease1('acs', 'chest pain', 'dyspnea', 'vomiting', 'palpitation',
       'smoking', 'family history', 'DM', 'HTN');
-  var acs2 = disease1(
+  var acs2 = Disease1(
       'acs',
       'left shoulder pain',
       'jaw pain',
@@ -65,9 +65,9 @@ maindisease1(
       'obesity',
       'physical inactivity',
       'alcoholism');
-  var acs3 = disease1('acs', 'hiccough', 'sweating', 'null', 'null', 'male',
+  var acs3 = Disease1('acs', 'hiccough', 'sweating', 'null', 'null', 'male',
       'null', 'null', 'null');
-  var hf = disease1(
+  var hf = Disease1(
     'heart failure',
     'dysnea',
     'cough',
@@ -78,7 +78,7 @@ maindisease1(
     'DM',
     'alcoholism',
   );
-  var hf2 = disease1(
+  var hf2 = Disease1(
       'heart failure',
       'bilaterl leg edema',
       'palpitation',
@@ -88,7 +88,7 @@ maindisease1(
       'chronic heart disease',
       'physical inactivity',
       'smoking');
-  var htn = disease1(
+  var htn = Disease1(
       'hypertension',
       'systolic BP > 140',
       'diastolic BP > 90',
@@ -98,9 +98,9 @@ maindisease1(
       'obesity',
       'physical inactivity',
       'family history');
-  var arrhythm = disease1('arrhythmia', 'palpitation', 'null', 'null', 'null',
+  var arrhythm = Disease1('arrhythmia', 'palpitation', 'null', 'null', 'null',
       'null', 'null', 'null', 'null');
-  var dcm = disease1(
+  var dcm = Disease1(
       'dilated cardiomyopathy',
       'dyspnea',
       'orthopnea',
@@ -110,9 +110,9 @@ maindisease1(
       'palpitation',
       'family history',
       'connective tissue disease');
-  var hocm = disease1('HOCM', 'chest pain', 'syncope', 'dyspnea', 'null',
+  var hocm = Disease1('HOCM', 'chest pain', 'syncope', 'dyspnea', 'null',
       'family history', 'connective tissue disease', 'null', 'null');
-  var rcm = disease1(
+  var rcm = Disease1(
       'restrictive cardiomyopathy',
       'dyspnea',
       'bilateral leg edema',
@@ -122,19 +122,19 @@ maindisease1(
       'null',
       'null',
       'null');
-  var pericard = disease1('pericarditis', 'chest pain', 'fever', 'null', 'null',
+  var pericard = Disease1('pericarditis', 'chest pain', 'fever', 'null', 'null',
       'null', 'null', 'null', 'connective tissue disease');
-  var effusion = disease1('pericardial effusion', 'dyspnea', 'palpitation',
+  var effusion = Disease1('pericardial effusion', 'dyspnea', 'palpitation',
       'null', 'null', 'connective tissue disease', 'null', 'null', 'null');
-  var cperi = disease1('constrictive pericarditis', 'bilateral leg edema',
+  var cperi = Disease1('constrictive pericarditis', 'bilateral leg edema',
       'dyspnea', 'palpitation', 'null', 'null', 'null', 'null', 'null');
-  var thoraneu = disease1('thoracic aortic aneurysm', 'chest pain', 'dyspnea',
+  var thoraneu = Disease1('thoracic aortic aneurysm', 'chest pain', 'dyspnea',
       'null', 'null', 'HTN', 'family history', 'null', 'null');
-  var aodisc = disease1('aortic dissection', 'chest pain', 'null', 'null',
+  var aodisc = Disease1('aortic dissection', 'chest pain', 'null', 'null',
       'null', 'HTN', 'family history', 'pregnancy', 'null');
-  var mvd = disease1('mitral valve disease', 'dyspnea', 'cough', 'sputum',
+  var mvd = Disease1('mitral valve disease', 'dyspnea', 'cough', 'sputum',
       'palpitation', 'family history', 'null', 'null', 'null');
-  var mvd2 = disease1(
+  var mvd2 = Disease1(
       'mitral valve disease',
       'chest pain',
       'bilateral leg edema',
@@ -144,27 +144,27 @@ maindisease1(
       'null',
       'null',
       'null');
-  var avd = disease1('aortic valve disease', 'dyspnea', 'chest pain', 'syncope',
+  var avd = Disease1('aortic valve disease', 'dyspnea', 'chest pain', 'syncope',
       'palpitation', 'null', 'PN dyspnea', 'null', 'connective tissue disease');
-  var tricasp = disease1('tricasped valve disease', 'bilateral leg edema',
+  var tricasp = Disease1('tricasped valve disease', 'bilateral leg edema',
       'null', 'null', 'null', 'null', 'null', 'null', 'null');
-  var achd = disease1('congenital heart disease', 'dyspnea', 'cough', 'sputum',
+  var achd = Disease1('congenital heart disease', 'dyspnea', 'cough', 'sputum',
       'fever', 'palpitation', 'null', 'null', 'null');
-  var endocar = disease1('endocarditis', 'bilateral leg edema', 'cough',
+  var endocar = Disease1('endocarditis', 'bilateral leg edema', 'cough',
       'sputum', 'dyspnea', 'fever', 'CKD', 'null', 'null');
-  var tof = disease1('TOF', 'dyspnea', 'cyanosis', 'null', 'null', 'null',
+  var tof = Disease1('TOF', 'dyspnea', 'cyanosis', 'null', 'null', 'null',
       'null', 'null', 'other cardiac problems');
   //myocarditis will be left to the internist
 
-  var asthma = disease1('asthma', 'dyspnea', 'cough', 'wheeze', 'null',
+  var asthma = Disease1('asthma', 'dyspnea', 'cough', 'wheeze', 'null',
       'family history', 'asthma', 'null', 'null');
-  var copd = disease1('COPD', 'dyspnea', 'cough', 'sputum', 'heamoptysis',
+  var copd = Disease1('COPD', 'dyspnea', 'cough', 'sputum', 'heamoptysis',
       'wheeze', 'smoking', 'chronic lung disease', 'copd');
-  var pneumonia = disease1('pneumonia', 'dyspnea', 'fever', 'cough', 'sputum',
+  var pneumonia = Disease1('pneumonia', 'dyspnea', 'fever', 'cough', 'sputum',
       'alcoholism', 'smoking', 'chronic lung disease', 'CVA');
-  var pneumonia2 = disease1('pneumonia', 'heamoptysis', 'chest pain', 'null',
+  var pneumonia2 = Disease1('pneumonia', 'heamoptysis', 'chest pain', 'null',
       'null', 'null', 'null', 'null', 'null');
-  var pleura = disease1(
+  var pleura = Disease1(
       'pleural effussion',
       'dyspnea',
       'chest pain',
@@ -174,11 +174,11 @@ maindisease1(
       'malignancy',
       'heart failure',
       'connective tissue disease');
-  var pleura2 = disease1('empyema', 'dyspnea', 'chest pain', 'fever', 'null',
+  var pleura2 = Disease1('empyema', 'dyspnea', 'chest pain', 'fever', 'null',
       'null', 'null', 'null', 'null');
-  var pleura3 = disease1('pneumothorax', 'dyspnea', 'chest pain', 'cyanosis',
+  var pleura3 = Disease1('pneumothorax', 'dyspnea', 'chest pain', 'cyanosis',
       'palpitation', 'malignancy', 'chronic lung disease', 'null', 'null');
-  var bronc = disease1(
+  var bronc = Disease1(
       'broncheictasis',
       'fever',
       'cough',
@@ -188,28 +188,28 @@ maindisease1(
       'null',
       'connective tissue disease',
       'chronic lung disease');
-  var calung = disease1('ca lung', 'dyspnea', 'cough', 'sputum', 'heamoptysis',
+  var calung = Disease1('ca lung', 'dyspnea', 'cough', 'sputum', 'heamoptysis',
       'smoking', 'copd', 'chest pain', 'hoarseness');
-  var ards = disease1('ARDS', 'dyspnea', 'cough', 'sputum', 'heamoptysis',
+  var ards = Disease1('ARDS', 'dyspnea', 'cough', 'sputum', 'heamoptysis',
       'cyanosis', 'null', 'null', 'null');
-  var pe = disease1('pulmonary embolism', 'dyspnea', 'chest pain',
+  var pe = Disease1('pulmonary embolism', 'dyspnea', 'chest pain',
       'heamoptysis', 'null', 'pregnancy', 'null', 'null', 'null');
-  var ild = disease1('interstitial lung disease', 'dyspnea', 'cough', 'fever',
+  var ild = Disease1('interstitial lung disease', 'dyspnea', 'cough', 'fever',
       'null', 'null', 'null', 'null', 'null');
-  var ild2 = disease1('interstitial lung disease', 'dyspnea', 'cough', 'fever',
+  var ild2 = Disease1('interstitial lung disease', 'dyspnea', 'cough', 'fever',
       'null', 'null', 'null', 'null', 'null');
-  var ild3 = disease1('interstitial lung disease', 'dyspnea', 'cough', 'fever',
+  var ild3 = Disease1('interstitial lung disease', 'dyspnea', 'cough', 'fever',
       'sputum', 'null', 'null', 'null', 'other respiratory problems');
 
-  var dm = disease1('DM', 'polyuria', 'polydepsia', 'polyphagia', 'weight loss',
+  var dm = Disease1('DM', 'polyuria', 'polydepsia', 'polyphagia', 'weight loss',
       'weight gain', 'family history', 'obesity', 'physical inactivity');
-  var dm2 = disease1('DM', 'polyuria', 'polydepsia', 'null', 'null', 'null',
+  var dm2 = Disease1('DM', 'polyuria', 'polydepsia', 'null', 'null', 'null',
       'pregnancy', 'null', 'null');
-  var thyrotoxicosis = disease1('thyrotoxicosis', 'palpitation', 'sweating',
+  var thyrotoxicosis = Disease1('thyrotoxicosis', 'palpitation', 'sweating',
       'tremer', 'insomnia', 'previous goitre', 'null', 'null', 'null');
-  var thyrotoxicosis2 = disease1('thyrotoxicosis', 'weight loss', 'polyphagia',
+  var thyrotoxicosis2 = Disease1('thyrotoxicosis', 'weight loss', 'polyphagia',
       'heat sensation', 'null', 'null', 'null', 'null', 'null');
-  var hypothyroidism = disease1(
+  var hypothyroidism = Disease1(
       'hypothyroidism',
       'weight gain',
       'cold sensation',
@@ -219,13 +219,13 @@ maindisease1(
       'menorrhagia',
       'null',
       'dry hair');
-  var hypothyroidism2 = disease1('hypothyroidism', 'constipation', 'hoarseness',
+  var hypothyroidism2 = Disease1('hypothyroidism', 'constipation', 'hoarseness',
       'bilateral leg edema', 'null', 'null', 'null', 'null', 'null');
-  var acromeg = disease1('acromegally', 'enlarged hand', 'enlarged foot',
+  var acromeg = Disease1('acromegally', 'enlarged hand', 'enlarged foot',
       'enlarged nose', 'enlarged jaw', 'null', 'null', 'null', 'null');
-  var dwarf = disease1('dwarfisim', 'short stature', 'weight gain', 'null',
+  var dwarf = Disease1('dwarfisim', 'short stature', 'weight gain', 'null',
       'null', 'null', 'null', 'null', 'null');
-  var prolac = disease1(
+  var prolac = Disease1(
       'prolactinemia',
       'galactorrhea',
       'amenorrhea',
@@ -235,17 +235,17 @@ maindisease1(
       'decrease libido',
       'male infertility',
       'female infertility');
-  var dinsip = disease1('diabetes insipdus', 'polyuria', 'polydepsia', 'null',
+  var dinsip = Disease1('diabetes insipdus', 'polyuria', 'polydepsia', 'null',
       'null', 'null', 'null', 'null', 'null');
-  var hyperpth = disease1('hyperparathyroidism', 'polyuria', 'polydepsia',
+  var hyperpth = Disease1('hyperparathyroidism', 'polyuria', 'polydepsia',
       'bone pain', 'null', 'null', 'null', 'null', 'null');
-  var malerep = disease1('male reproductive problems', 'delayed puberty',
+  var malerep = Disease1('male reproductive problems', 'delayed puberty',
       'gynecomastia', 'null', 'null', 'null', 'null', 'null', 'null');
-  var pcos = disease1('PCOS', 'menorrhagia', 'female hirsuitism',
+  var pcos = Disease1('PCOS', 'menorrhagia', 'female hirsuitism',
       'female infertility', 'weight gain', 'null', 'null', 'null', 'null');
-  var cushing = disease1('cushing', 'weight gain', 'straie', 'weight gain',
+  var cushing = Disease1('cushing', 'weight gain', 'straie', 'weight gain',
       'female hirsuitism', 'null', 'null', 'null', 'null');
-  var cah = disease1('CAH', 'female hirsuitism', 'null', 'null', 'null', 'null',
+  var cah = Disease1('CAH', 'female hirsuitism', 'null', 'null', 'null', 'null',
       'null', 'null', 'null');
 
   var cvs = [
@@ -517,8 +517,7 @@ maindisease1(
   print(cvsscore);
   print(endoscore);
   print(respscore);
-  finalscore.cvsscore = cvsscore;
-  finalscore.respscore = respscore;
-  finalscore.endoscore = endoscore;
-
+  FinalScore.cvsscore = cvsscore;
+  FinalScore.respscore = respscore;
+  FinalScore.endoscore = endoscore;
 }

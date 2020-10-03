@@ -1,6 +1,6 @@
 import 'package:project_doctor/services/finalscore.dart';
 
-class disease3 {
+class Disease3 {
   String name;
   String sym1;
   String sym2;
@@ -10,7 +10,7 @@ class disease3 {
   String rf2;
   String rf3;
   String rf4;
-  disease3(this.name, this.sym1, this.sym2, this.sym3, this.sym4, this.rf1,
+  Disease3(this.name, this.sym1, this.sym2, this.sym3, this.sym4, this.rf1,
       this.rf2, this.rf3, this.rf4);
 }
 
@@ -43,13 +43,13 @@ maindisease3(
     String fam,
     String alcohol,
     String smok) {
-  var acs = disease3('ACS', 'chest pain', 'left arm pain', 'jaw pain',
+  var acs = Disease3('ACS', 'chest pain', 'left arm pain', 'jaw pain',
       'abdominal pain', 'smoking', 'alcoholism', 'DM', 'HTN');
-  var acs2 = disease3('ACS', 'dyspnea', 'vomiting', 'sweating', 'palpitation',
+  var acs2 = Disease3('ACS', 'dyspnea', 'vomiting', 'sweating', 'palpitation',
       'syncope', 'family history', 'obesity', 'physical inactivity');
-  var acs3 = disease3('ACS', 'neck pain', 'left shoulder pain', 'hiccough',
+  var acs3 = Disease3('ACS', 'neck pain', 'left shoulder pain', 'hiccough',
       'null', 'male', 'null', 'null', 'null');
-  var hf = disease3(
+  var hf = Disease3(
     'pulmonary edema',
     'dyspnea',
     'cough',
@@ -60,7 +60,7 @@ maindisease3(
     'DM',
     'alcoholism',
   );
-  var hf2 = disease3(
+  var hf2 = Disease3(
       'pulmonary edema',
       'bilaterl leg edema',
       'palpitation',
@@ -70,7 +70,7 @@ maindisease3(
       'chronic heart disease',
       'physical inactivity',
       'smoking');
-  var erhtn = disease3(
+  var erhtn = Disease3(
       'ER hypertension',
       'systolic BP > 180',
       'diastolic BP > 100',
@@ -80,48 +80,48 @@ maindisease3(
       'obesity',
       'physical inactivity',
       'family history');
-  var shock = disease3('shock', 'systolic BP < 90', 'diastolic BP < 60',
+  var shock = Disease3('shock', 'systolic BP < 90', 'diastolic BP < 60',
       'PR > 100', 'PR < 60', 'null', 'null', 'null', 'null');
-  var arrhythm = disease3('arrhytmia', 'palpitation', 'null', 'syncope', 'null',
+  var arrhythm = Disease3('arrhytmia', 'palpitation', 'null', 'syncope', 'null',
       'syncope', 'null', 'null', 'null');
-  var effussion = disease3('pericardial effusion', 'dyspnea', 'palpitation',
+  var effussion = Disease3('pericardial effusion', 'dyspnea', 'palpitation',
       'null', 'null', 'connective tissue disease', 'null', 'null', 'null');
 
-  var asthma = disease3('asthma', 'dyspnea', 'cough', 'wheeze', 'null',
+  var asthma = Disease3('asthma', 'dyspnea', 'cough', 'wheeze', 'null',
       'family history', 'null', 'chronic lung disease', 'asthma');
-  var copd = disease3('COPD', 'dyspnea', 'cough', 'sputum', 'heamoptysis',
+  var copd = Disease3('COPD', 'dyspnea', 'cough', 'sputum', 'heamoptysis',
       'wheeze', 'smoking', 'chronic lung disease', 'copd');
-  var pneumo = disease3('pneumothorax', 'dyspnea', 'systolic BP < 90',
+  var pneumo = Disease3('pneumothorax', 'dyspnea', 'systolic BP < 90',
       'diastolic BP < 60', 'PR > 100', 'cyanosis', 'cyanosis', 'null', 'null');
 
-  var diabetic = disease3('diabetic ER', 'RBS > 200', 'RBS < 55', 'dyspnea',
+  var diabetic = Disease3('diabetic ER', 'RBS > 200', 'RBS < 55', 'dyspnea',
       'abdominal pain', 'vomiting', 'nausea', 'DM', 'CKD');
-  var diabetic2 = disease3('diabetic ER', 'confusion', 'coma', 'polyuria',
+  var diabetic2 = Disease3('diabetic ER', 'confusion', 'coma', 'polyuria',
       'polydepsia', 'null', 'null', 'pregnancy', 'null');
 
-  var ugib = disease3('upper gi bleeding', 'heamatemesis', 'malena',
+  var ugib = Disease3('upper gi bleeding', 'heamatemesis', 'malena',
       'abdominal pain', 'null', 'null', 'liver disease', 'null', 'null');
 
-  var seizure = disease3('seizure', 'fit', 'fit', 'coma', 'confusion',
+  var seizure = Disease3('seizure', 'fit', 'fit', 'coma', 'confusion',
       'confusion', 'DM', 'HTN', 'epilepsy');
-  var dloc = disease3('DLOC', 'coma', 'coma', 'confusion', 'confusion', 'coma',
+  var dloc = Disease3('DLOC', 'coma', 'coma', 'confusion', 'confusion', 'coma',
       'null', 'null', 'null');
-  var ich = disease3('ICH', 'headache', 'vomiting', 'weakness', 'numbness',
+  var ich = Disease3('ICH', 'headache', 'vomiting', 'weakness', 'numbness',
       'coma', 'ataxia', 'HTN', 'null');
 
-  var intox = disease3('intoxication', 'intoxication', 'intoxication',
+  var intox = Disease3('intoxication', 'intoxication', 'intoxication',
       'suicide', 'suicide', 'suicide', 'null', 'null', 'null');
 
-  var trauma = disease3('trauma', 'FFH', 'RTA', 'stab', 'shot',
+  var trauma = Disease3('trauma', 'FFH', 'RTA', 'stab', 'shot',
       'other injuries', 'null', 'null', 'null');
-  var uro = disease3('urological ER', 'scrotal pain', 'scrotal pain',
+  var uro = Disease3('urological ER', 'scrotal pain', 'scrotal pain',
       'priapism', 'praipism', 'null', 'null', 'null', 'null');
 
-  var internist = disease3('internist', 'fever', 'fatigue', 'weight loss',
+  var internist = Disease3('internist', 'fever', 'fatigue', 'weight loss',
       'anorexia', 'insomnia', 'weight gain', 'somnlence', 'malaise');
-  var internist2 = disease3('internist', 'fever', 'fatigue', 'weight loss',
+  var internist2 = Disease3('internist', 'fever', 'fatigue', 'weight loss',
       'anorexia', 'insomnia', 'weight gain', 'somnlence', 'malaise');
-  var internist3 = disease3(
+  var internist3 = Disease3(
       'internist',
       'other health problems',
       'other health problems',
@@ -131,7 +131,7 @@ maindisease3(
       'null',
       'null',
       'null');
-  var internist4 = disease3('internist', 'fever', 'fatigue', 'weight loss',
+  var internist4 = Disease3('internist', 'fever', 'fatigue', 'weight loss',
       'anorexia', 'insomnia', 'weight gain', 'somnlence', 'malaise');
 
   var emrg = [
@@ -309,6 +309,6 @@ maindisease3(
   }
   print(emscore);
   print(intscore);
-  finalscore.erscore=emscore;
-  finalscore.internscore=intscore;
+  FinalScore.erscore = emscore;
+  FinalScore.internscore = intscore;
 }
