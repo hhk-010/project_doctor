@@ -6,6 +6,7 @@ import 'package:project_doctor/constants/multi_selection.dart';
 import 'dart:io';
 
 import '../constants/multi_selection.dart';
+import 'pt_risk_f.dart';
 
 class Patient extends StatefulWidget {
   @override
@@ -148,21 +149,21 @@ class _PatientState extends State<Patient> {
   bool disabledropdown7 = true;
 
   final head = {
-    "1": "Headache",
-    "2": "Fever",
-    "3": "Epilepsy",
+    "1": "headache",
+    "2": "fever",
+    "3": "epilepsy",
   };
 
   final chest = {
-    "1": "Chest Pain",
-    "2": "Cough",
-    "3": "Fever",
+    "1": "chest Pain",
+    "2": "cough",
+    "3": "fever",
   };
 
   final abdomen = {
-    "1": "Vomiting",
-    "2": "Diarrhea",
-    "3": "Abdominal Pain",
+    "1": "vomiting",
+    "2": "waterry diarrhea",
+    "3": "abdominal Pain",
   };
 
   final lowerlimb = {
@@ -1201,8 +1202,16 @@ class _PatientState extends State<Patient> {
                           color: Colors.deepOrange,
                           onPressed: () {
                             _getCurrentLocation();
-
-                            Navigator.pushNamed(context, '/pt_risk_f');
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => PatientRisks(
+                                      chiehcomplaint: value,
+                                      sym2: value2,
+                                      sym3: value3,
+                                      sym4: value4,
+                                      sym5: value5,
+                                      sym6: value6,
+                                      sym7: value7,
+                                    )));
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(80.0)),
