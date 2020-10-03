@@ -7,6 +7,7 @@ import 'package:project_doctor/services/disease2.dart';
 import 'package:project_doctor/services/disease3.dart';
 import 'package:project_doctor/services/disease4.dart';
 import 'package:project_doctor/services/disease5.dart';
+import 'package:project_doctor/services/disease6.dart';
 
 class PatientRisks extends StatefulWidget {
   String chiehcomplaint;
@@ -438,7 +439,15 @@ class _PatientRisksState extends State<PatientRisks> {
                       familyhx,
                       alcohol,
                       smoke);
-                  maindisease3(cc, s2, s3, s4, s5, s6, s7,chronic1,
+                  maindisease3(
+                      cc,
+                      s2,
+                      s3,
+                      s4,
+                      s5,
+                      s6,
+                      s7,
+                      chronic1,
                       chronic2,
                       chronic3,
                       chronic4,
@@ -459,7 +468,15 @@ class _PatientRisksState extends State<PatientRisks> {
                       familyhx,
                       alcohol,
                       smoke);
-                  maindisease4(cc, s2, s3, s4, s5, s6, s7,chronic1,
+                  maindisease4(
+                      cc,
+                      s2,
+                      s3,
+                      s4,
+                      s5,
+                      s6,
+                      s7,
+                      chronic1,
                       chronic2,
                       chronic3,
                       chronic4,
@@ -480,7 +497,44 @@ class _PatientRisksState extends State<PatientRisks> {
                       familyhx,
                       alcohol,
                       smoke);
-                  maindisease5(cc, s2, s3, s4, s5, s6, s7,chronic1,
+                  maindisease5(
+                      cc,
+                      s2,
+                      s3,
+                      s4,
+                      s5,
+                      s6,
+                      s7,
+                      chronic1,
+                      chronic2,
+                      chronic3,
+                      chronic4,
+                      chronic5,
+                      chronic6,
+                      chronic7,
+                      chronic8,
+                      chronic9,
+                      chronic10,
+                      chronic11,
+                      chronic12,
+                      chronic13,
+                      chronic14,
+                      chronic15,
+                      pregnancies,
+                      obesities,
+                      inactive,
+                      familyhx,
+                      alcohol,
+                      smoke);
+                  maindisease6(
+                      cc,
+                      s2,
+                      s3,
+                      s4,
+                      s5,
+                      s6,
+                      s7,
+                      chronic1,
                       chronic2,
                       chronic3,
                       chronic4,

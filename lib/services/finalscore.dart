@@ -14,6 +14,10 @@ class finalscore {
   static int rheumatoscore;
   static int heamatoscore;
   static int nephroscore;
+  static int uroscore;
+  static int orthoscore;
+  static int neurosurgscore;
+  static int plasticscore;
 }
 
 countfinal() {
@@ -30,7 +34,11 @@ countfinal() {
     finalscore.rheumatoscore:'Rheumatologist',
     finalscore.nephroscore:'Nephrologist',
     finalscore.heamatoscore:'Heamatologist',
-    finalscore.neuroscore:'Neurologist'
+    finalscore.neuroscore:'Neurologist',
+    finalscore.uroscore:'Urosurgeon',
+    finalscore.orthoscore:'Orthopaedic Surgeon',
+    finalscore.neurosurgscore:'Neurosurgeon',
+    finalscore.plasticscore:'Plastic Surgeon'
   };
   var scores = [
     finalscore.cvsscore,
@@ -45,7 +53,11 @@ countfinal() {
     finalscore.neuroscore,
     finalscore.rheumatoscore,
     finalscore.heamatoscore,
-    finalscore.nephroscore
+    finalscore.nephroscore,
+    finalscore.uroscore,
+    finalscore.orthoscore,
+    finalscore.neurosurgscore,
+    finalscore.plasticscore
   ];
   var finals = 0;
   for (var x in scores) {

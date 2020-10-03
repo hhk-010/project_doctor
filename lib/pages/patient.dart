@@ -152,6 +152,10 @@ class _PatientState extends State<Patient> {
     "1": "headache",
     "2": "fever",
     "3": "epilepsy",
+    "4":"fit",
+    "5":"coma",
+    "6":"syncope",
+    "7":"back pain"
   };
 
   final chest = {
@@ -164,7 +168,8 @@ class _PatientState extends State<Patient> {
     "1": "vomiting",
     "2": "watery diarrhea",
     "3": "abdominal Pain",
-    "4": "amenorrhea"
+    "4": "amenorrhea",
+    "5":"heamaturia"
   };
 
   final lowerlimb = {
