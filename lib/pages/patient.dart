@@ -4,7 +4,6 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/constants/multi_selection.dart';
 import 'dart:io';
-
 import '../constants/multi_selection.dart';
 
 class Patient extends StatefulWidget {
@@ -18,6 +17,7 @@ class _PatientState extends State<Patient> {
     fontWeight: FontWeight.w500,
     color: Colors.black,
   );
+  // -------------------------Radio Buttons-------------------------
   List gender = ['Male', 'Female'];
   String select = '';
   Row addRadioButton(int btnValue, String title) {
@@ -44,91 +44,6 @@ class _PatientState extends State<Patient> {
   }
 
   bool state = false;
-
-//-----------------Function to use DropdownMultiSelection-----------------
-  String chronic1 = '';
-  String chronic2 = '';
-  String chronic3 = '';
-  void _showChronicDiseaseMultiSelect(BuildContext context) async {
-    chronic1 = '';
-    chronic2 = '';
-    chronic3 = '';
-    final cdItems = <MultiSelectDialogItem<int>>[
-      MultiSelectDialogItem(
-          1, AppLocalizations.of(context).translate('cd_HTN')),
-      MultiSelectDialogItem(2, AppLocalizations.of(context).translate('cd_DM')),
-      MultiSelectDialogItem(
-          3, AppLocalizations.of(context).translate('cd_heart')),
-      MultiSelectDialogItem(
-          4, AppLocalizations.of(context).translate('cd_heartFailure')),
-      MultiSelectDialogItem(
-          5, AppLocalizations.of(context).translate('cd_ctd')),
-      MultiSelectDialogItem(
-          6, AppLocalizations.of(context).translate('cd_ckd')),
-      MultiSelectDialogItem(
-          7, AppLocalizations.of(context).translate('cd_liver')),
-      MultiSelectDialogItem(
-          8, AppLocalizations.of(context).translate('cd_intestine')),
-      MultiSelectDialogItem(
-          9, AppLocalizations.of(context).translate('cd_epilepsy')),
-      MultiSelectDialogItem(
-          10, AppLocalizations.of(context).translate('cd_cva')),
-      MultiSelectDialogItem(
-          11, AppLocalizations.of(context).translate('cd_thyroid')),
-      MultiSelectDialogItem(
-          12, AppLocalizations.of(context).translate('cd_lung')),
-      MultiSelectDialogItem(
-          13, AppLocalizations.of(context).translate('cd_copd')),
-      MultiSelectDialogItem(
-          14, AppLocalizations.of(context).translate('cd_ashma')),
-      MultiSelectDialogItem(
-          15, AppLocalizations.of(context).translate('cd_tumor')),
-    ];
-
-    final selectedValues = await showDialog<Set<int>>(
-      context: context,
-      builder: (BuildContext context) {
-        return MultiSelectDialog(
-          items: cdItems,
-        );
-      },
-    );
-    var mappy = {1: 'headache', 2: 'abdominal pain'};
-    for (var x in selectedValues) {
-      if (x == 1) {
-        chronic1 = 'headache';
-      }
-      if (x == 2) {
-        chronic2 = 'abdominal pain';
-      }
-      if (x == 3) {
-        chronic3 = 'chest pain';
-      }
-    }
-    //chronics must be cleared after the pt proceed
-    print(chronic1);
-    print(chronic2);
-    print(chronic3);
-  }
-
-//-----------------Function to use DropdownMultiSelection-----------------
-  void _showLifeStyleMultiSelect(BuildContext context) async {
-    final lsItems = <MultiSelectDialogItem<int>>[
-      MultiSelectDialogItem(1, 'Obesity'),
-      MultiSelectDialogItem(2, 'Smoking'),
-      MultiSelectDialogItem(3, 'Drinking'),
-    ];
-
-    final selectedValues = await showDialog<Set<int>>(
-      context: context,
-      builder: (BuildContext context) {
-        return MultiSelectDialog(
-          items: lsItems,
-        );
-      },
-    );
-    print(selectedValues);
-  }
 
   // ----------------Conditional DropDownMenu -------------------------
   String value = "";
@@ -495,40 +410,6 @@ class _PatientState extends State<Patient> {
                   child: Padding(
                     padding: const EdgeInsets.all(8),
                     child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                  AppLocalizations.of(context)
-                                      .translate('patient_chronic_diseases'),
-                                  style: _textStylePatient),
-                            ),
-                            FlatButton(
-                              onPressed: () =>
-                                  _showChronicDiseaseMultiSelect(context),
-                              color: Colors.deepOrange,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(80.0)),
-                              child: Text(
-                                AppLocalizations.of(context)
-                                    .translate('patient_dialogue_list_button'),
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.white),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(height: 15),
-                Container(
-                  decoration: boxDecorationPatient,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -537,7 +418,7 @@ class _PatientState extends State<Patient> {
                         ),
                         Center(
                           child: Text(
-                            'cheif complaint',
+                            'Chief Complaint',
                             style: TextStyle(
                               fontSize: 18.0,
                             ),
@@ -1185,36 +1066,25 @@ class _PatientState extends State<Patient> {
                   ),
                 ),
                 SizedBox(height: 75),
-                RaisedButton(
-                  onPressed: () {
-                    val();
-                  },
-                ),
                 Container(
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ButtonTheme(
-                        minWidth: double.infinity,
-                        height: 45,
-                        child: RaisedButton(
-                          color: Colors.deepOrange,
-                          onPressed: () {
-                            _getCurrentLocation();
+                  child: ButtonTheme(
+                    minWidth: double.infinity,
+                    height: 45,
+                    child: RaisedButton(
+                      color: Colors.deepOrange,
+                      onPressed: () {
+                        _getCurrentLocation();
 
-                            Navigator.pushNamed(context, '/pt_risk_f');
-                          },
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80.0)),
-                          child: Text(
-                            AppLocalizations.of(context)
-                                .translate('patient_search_button'),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
+                        Navigator.pushNamed(context, '/pt_risk_f');
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80.0)),
+                      child: Text(
+                        "Next",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
