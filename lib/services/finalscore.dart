@@ -9,6 +9,7 @@ class finalscore {
   static int thoracicscore;
   static int erscore;
   static int internscore;
+  static int gynescore;
 }
 
 countfinal() {
@@ -20,7 +21,8 @@ countfinal() {
     finalscore.generalscore: 'General Surgeon',
     finalscore.thoracicscore: 'Thoracic Surgeon',
     finalscore.erscore:'Emergency Department',
-    finalscore.internscore:'Internist'
+    finalscore.internscore:'Internist',
+    finalscore.gynescore:'Gynecologist'
   };
   var scores = [
     finalscore.cvsscore,
@@ -30,7 +32,8 @@ countfinal() {
     finalscore.generalscore,
     finalscore.thoracicscore,
     finalscore.erscore,
-    finalscore.internscore
+    finalscore.internscore,
+    finalscore.gynescore
   ];
   var finals = 0;
   for (var x in scores) {

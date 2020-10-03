@@ -5,6 +5,7 @@ import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/disease1.dart';
 import 'package:project_doctor/services/disease2.dart';
 import 'package:project_doctor/services/disease3.dart';
+import 'package:project_doctor/services/disease4.dart';
 
 class PatientRisks extends StatefulWidget {
   String chiehcomplaint;
@@ -437,6 +438,27 @@ class _PatientRisksState extends State<PatientRisks> {
                       alcohol,
                       smoke);
                   maindisease3(cc, s2, s3, s4, s5, s6, s7,chronic1,
+                      chronic2,
+                      chronic3,
+                      chronic4,
+                      chronic5,
+                      chronic6,
+                      chronic7,
+                      chronic8,
+                      chronic9,
+                      chronic10,
+                      chronic11,
+                      chronic12,
+                      chronic13,
+                      chronic14,
+                      chronic15,
+                      pregnancies,
+                      obesities,
+                      inactive,
+                      familyhx,
+                      alcohol,
+                      smoke);
+                  maindisease4(cc, s2, s3, s4, s5, s6, s7,chronic1,
                       chronic2,
                       chronic3,
                       chronic4,
