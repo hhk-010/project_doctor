@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
-import 'package:project_doctor/constants/multi_selection.dart';
 import 'dart:io';
-import '../constants/multi_selection.dart';
 import 'pt_risk_f.dart';
 
 class Patient extends StatefulWidget {
@@ -67,10 +65,10 @@ class _PatientState extends State<Patient> {
     "1": "headache",
     "2": "fever",
     "3": "epilepsy",
-    "4":"fit",
-    "5":"coma",
-    "6":"syncope",
-    "7":"back pain"
+    "4": "fit",
+    "5": "coma",
+    "6": "syncope",
+    "7": "back pain"
   };
 
   final chest = {
@@ -84,7 +82,7 @@ class _PatientState extends State<Patient> {
     "2": "watery diarrhea",
     "3": "abdominal Pain",
     "4": "amenorrhea",
-    "5":"heamaturia"
+    "5": "heamaturia"
   };
 
   final lowerlimb = {
@@ -1074,26 +1072,6 @@ class _PatientState extends State<Patient> {
                 ),
                 SizedBox(height: 75),
                 Container(
-<<<<<<< HEAD
-                  child: ButtonTheme(
-                    minWidth: double.infinity,
-                    height: 45,
-                    child: RaisedButton(
-                      color: Colors.deepOrange,
-                      onPressed: () {
-                        _getCurrentLocation();
-
-                        Navigator.pushNamed(context, '/pt_risk_f');
-                      },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(80.0)),
-                      child: Text(
-                        "Next",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-=======
                   child: Center(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -1126,7 +1104,6 @@ class _PatientState extends State<Patient> {
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
->>>>>>> masterbm
                       ),
                     ),
                   ),

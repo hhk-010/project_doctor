@@ -404,6 +404,12 @@ class _PatientRisksState extends State<PatientRisks> {
                   ],
                 ),
               ),
+              Container(
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.all(8),
+                decoration: boxDecorationPatient,
+                child: ListView(),
+              ),
               SizedBox(
                 height: 150,
               ),
