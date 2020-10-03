@@ -114,7 +114,7 @@ class _DocMapState extends State<DocMap> {
                   lattt,
                   lnggg,
                 );*/
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Verify()));
+                Navigator.pushNamed(context, '/verify');
               },
             ),
           ),

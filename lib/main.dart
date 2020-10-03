@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project_doctor/authorization/verify.dart';
 import 'package:project_doctor/pages/Patientmap.dart';
+import 'package:project_doctor/pages/docLocmap.dart';
 import 'package:project_doctor/pages/home.dart';
 import 'package:project_doctor/authorization/wrapper.dart';
 import 'package:project_doctor/pages/patient.dart';
@@ -104,8 +106,10 @@ class _MyAppState extends State<MyApp> {
           '/pt_risk_f': (context) => PatientRisks(),
           '/pt_chronic': (context) => PatientChronicDiseases(),
           '/result': (context) => Result(),
-          '/result2':(context)=>Result2(),
-          '/patmap':(context)=>PatientMap(),
+          '/result2': (context) => Result2(),
+          '/patmap': (context) => PatientMap(),
+          '/doctorlocate': (context) => Doclocmap(),
+          '/verify':(context)=>Verify()
         },
       );
     }
