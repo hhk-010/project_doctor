@@ -895,37 +895,54 @@ class _PatientState extends State<Patient> {
                 ),
                 SizedBox(height: 75),
                 Container(
+                  /*child: ButtonTheme(
+                    minWidth: double.infinity,
+                    height: 45,
+                    child: RaisedButton(
+                      color: Colors.deepOrange,
+                      onPressed: () {
+                        _getCurrentLocation();
+
+                        Navigator.pushNamed(context, '/pt_risk_f');
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80.0)),
+                      child: Text(
+                        "Next",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
                   child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ButtonTheme(
-                        minWidth: double.infinity,
-                        height: 45,
-                        child: RaisedButton(
-                          color: Colors.deepOrange,
-                          onPressed: () {
-                            _getCurrentLocation();
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => PatientRisks(
-                                      chiehcomplaint: value,
-                                      sym2: value2,
-                                      sym3: value3,
-                                      sym4: value4,
-                                      sym5: value5,
-                                      sym6: value6,
-                                      sym7: value7,
-                                    )));
-                          },
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80.0)),
-                          child: Text(
-                            AppLocalizations.of(context).translate('next'),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
+                    child: Padding(*/
+                  padding: const EdgeInsets.all(8.0),
+                  child: ButtonTheme(
+                    minWidth: double.infinity,
+                    height: 45,
+                    child: RaisedButton(
+                      color: Colors.deepOrange,
+                      onPressed: () {
+                        _getCurrentLocation();
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => PatientRisks(
+                                  chiehcomplaint: value,
+                                  sym2: value2,
+                                  sym3: value3,
+                                  sym4: value4,
+                                  sym5: value5,
+                                  sym6: value6,
+                                  sym7: value7,
+                                )));
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80.0)),
+                      child: Text(
+                        AppLocalizations.of(context)
+                            .translate('patient_search_button'),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
