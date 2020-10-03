@@ -403,7 +403,7 @@ class _PatientRisksState extends State<PatientRisks> {
                 height: 150,
               ),
               RaisedButton(
-                child: Text('Next'),
+                child: Text('Show Result'),
                 onPressed: () {
                   maindisease1(
                       cc,

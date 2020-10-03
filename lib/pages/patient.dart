@@ -155,7 +155,7 @@ class _PatientState extends State<Patient> {
   };
 
   final chest = {
-    "1": "chest Pain",
+    "1": "chest pain",
     "2": "cough",
     "3": "fever",
   };
