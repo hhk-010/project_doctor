@@ -214,12 +214,11 @@ class _PatientRisksState extends State<PatientRisks> {
                     children: [
                       Row(
                         children: [
-                          Text(
-                              AppLocalizations.of(context)
-                                  .translate('patient_chronic_diseases'),
-                              style: _textStylePatient),
-                          SizedBox(
-                            width: 50,
+                          Expanded(
+                            child: Text(
+                                AppLocalizations.of(context)
+                                    .translate('patient_chronic_diseases'),
+                                style: _textStylePatient),
                           ),
                           FlatButton(
                             onPressed: () =>
@@ -235,9 +234,6 @@ class _PatientRisksState extends State<PatientRisks> {
                             ),
                           ),
                         ],
-                      ),
-                      Row(
-                        children: [],
                       ),
                     ],
                   ),
@@ -257,9 +253,6 @@ class _PatientRisksState extends State<PatientRisks> {
                           'Obesity',
                           style: TextStyle(fontSize: 18.0),
                         ),
-                        SizedBox(
-                          width: 9.0,
-                        ),
                         Checkbox(
                             value: obesity,
                             onChanged: (val) {
@@ -273,15 +266,9 @@ class _PatientRisksState extends State<PatientRisks> {
                                 print(obesities);
                               });
                             }),
-                        SizedBox(
-                          width: 19.0,
-                        ),
                         Text(
                           'Physical inactivity',
                           style: TextStyle(fontSize: 18.0),
-                        ),
-                        SizedBox(
-                          width: 9.0,
                         ),
                         Checkbox(
                           value: physicalinactive,
