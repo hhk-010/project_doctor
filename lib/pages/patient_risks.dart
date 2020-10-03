@@ -46,7 +46,7 @@ class _PatientRisksState extends State<PatientRisks> {
   String s7;
   _PatientRisksState(
       {this.cc, this.s2, this.s3, this.s4, this.s5, this.s6, this.s7});
-  TextStyle _textStylePatient = TextStyle(
+  TextStyle _textStyle = TextStyle(
     fontSize: 18,
     color: Colors.black,
   );
@@ -214,7 +214,7 @@ class _PatientRisksState extends State<PatientRisks> {
                             child: Text(
                                 AppLocalizations.of(context)
                                     .translate('patient_chronic_diseases'),
-                                style: _textStylePatient),
+                                style: _textStyle),
                           ),
                           FlatButton(
                             onPressed: () =>

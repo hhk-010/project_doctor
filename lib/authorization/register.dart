@@ -23,7 +23,7 @@ class _RegisterState extends State<Register> {
   bool _isInternet = true;
   checkInternet() async {
     try {
-      final response = await InternetAddress.lookup('example.com');
+      final response = await InternetAddress.lookup('google.com');
       if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
         _isInternet = true; // internet
         setState(() {});
@@ -40,6 +40,11 @@ class _RegisterState extends State<Register> {
     super.initState();
   }
 
+  TextStyle _textStyle = TextStyle(
+    fontSize: 18,
+    color: Colors.black,
+  );
+
   @override
   Widget build(BuildContext context) {
     return loading
@@ -48,7 +53,7 @@ class _RegisterState extends State<Register> {
             backgroundColor: Colors.grey[200],
             appBar: AppBar(
               backgroundColor: Colors.deepOrange,
-              title: Text('Register'),
+              title: Text('Register', style: _textStyle),
               centerTitle: true,
               elevation: 0.0,
             ),
