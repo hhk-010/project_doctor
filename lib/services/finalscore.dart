@@ -1,6 +1,6 @@
 class finalscore {
   static int finale;
-  static String speciality;
+  static String speciality='';
   static int cvsscore;
   static int respscore;
   static int endoscore;
@@ -18,6 +18,10 @@ class finalscore {
   static int orthoscore;
   static int neurosurgscore;
   static int plasticscore;
+  static int opthascore;
+  static int dermascore;
+  static int psychoscore;
+  static int entscore;
 }
 
 countfinal() {
@@ -38,7 +42,11 @@ countfinal() {
     finalscore.uroscore:'Urosurgeon',
     finalscore.orthoscore:'Orthopaedic Surgeon',
     finalscore.neurosurgscore:'Neurosurgeon',
-    finalscore.plasticscore:'Plastic Surgeon'
+    finalscore.plasticscore:'Plastic Surgeon',
+    finalscore.opthascore:'Ophthalmologist',
+    finalscore.dermascore:"Dermatologist",
+    finalscore.psychoscore:'Psychiatrist',
+    finalscore.entscore:"Laryngologist"
   };
   var scores = [
     finalscore.cvsscore,
@@ -57,7 +65,11 @@ countfinal() {
     finalscore.uroscore,
     finalscore.orthoscore,
     finalscore.neurosurgscore,
-    finalscore.plasticscore
+    finalscore.plasticscore,
+    finalscore.opthascore,
+    finalscore.dermascore,
+    finalscore.psychoscore,
+    finalscore.entscore
   ];
   var finals = 0;
   for (var x in scores) {

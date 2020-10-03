@@ -77,6 +77,9 @@ class _PatientState extends State<Patient> {
     "1": "chest pain",
     "2": "cough",
     "3": "fever",
+    "4":"dyspnea",
+    "5":"heamoptysis",
+    "6" : "wheeze"
   };
 
   final abdomen = {
