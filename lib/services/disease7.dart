@@ -42,7 +42,7 @@ maindisease7(
     String inact,
     String fam,
     String alcohol,
-    String smok) {
+    String smok,String gender) {
   var ophth = disease7(
       'ophthalmic disease',
       'blurred vision',
@@ -201,7 +201,7 @@ maindisease7(
     fam,
     inact,
     smok,
-    alcohol
+    alcohol,gender
   ];
   var o = 0;
   var oo = others.length;

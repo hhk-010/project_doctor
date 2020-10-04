@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/pages/patient_risks.dart';
+import 'package:project_doctor/services/finalscore.dart';
 
 class Patient extends StatefulWidget {
   @override
@@ -14,8 +15,14 @@ class _PatientState extends State<Patient> {
     fontWeight: FontWeight.w500,
     color: Colors.black,
   );
-
+  String age = '';
   final ageController = TextEditingController();
+  getage() {
+    setState(() {
+      age = ageController.text;
+      FinalScore.age = int.parse(age);
+    });
+  }
 
   // -------------------------Radio Buttons-------------------------
   List gender = ['Male', 'Female'];
@@ -32,6 +39,7 @@ class _PatientState extends State<Patient> {
             setState(() {
               select = value;
               print(select);
+              //genders.gender=select;
             });
           },
         ),
@@ -76,15 +84,15 @@ class _PatientState extends State<Patient> {
     "1": "chest pain",
     "2": "cough",
     "3": "fever",
-    "4":"dyspnea",
-    "5":"heamoptysis",
-    "6" : "wheeze"
+    "4": "dyspnea",
+    "5": "heamoptysis",
+    "6": "wheeze"
   };
 
   final abdomen = {
     "1": "vomiting",
     "2": "watery diarrhea",
-    "3": "abdominal Pain",
+    "3": "abdominal pain",
     "4": "amenorrhea",
     "5": "heamaturia"
   };
@@ -896,6 +904,7 @@ class _PatientState extends State<Patient> {
                     child: RaisedButton(
                       color: Colors.deepOrange,
                       onPressed: () {
+                        getage();
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => PatientRisks(
                                   chiehcomplaint: value,
@@ -905,6 +914,7 @@ class _PatientState extends State<Patient> {
                                   sym5: value5,
                                   sym6: value6,
                                   sym7: value7,
+                                  gender: select
                                 )));
                       },
                       shape: RoundedRectangleBorder(

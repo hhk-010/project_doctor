@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/verify.dart';
@@ -17,12 +19,41 @@ class Intermediate extends StatelessWidget {
     );
   }
 }
+class isverified{
+  static bool verification = false ;
+}
 
-class Wrapper extends StatelessWidget {
+
+
+class Wrapper extends StatefulWidget {
+  @override
+  _WrapperState createState() => _WrapperState();
+}
+
+class _WrapperState extends State<Wrapper> {
+  Timer _timer;
+  @override
+  void initState() {
+    super.initState();
+    Future(() async {
+      Timer.periodic(Duration(seconds: 5), (timer) async {
+        FirebaseAuth.instance.currentUser..reload();
+
+          setState(() {
+          if (FirebaseAuth.instance.currentUser.emailVerified){
+            isverified.verification=FirebaseAuth.instance.currentUser.emailVerified;
+          }
+          });
+
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserID>(context);
-
+    useri()async{
+      return await user;
+    }
     if (user == null) {
       return Authenticate();
     } else {
@@ -32,8 +63,10 @@ class Wrapper extends StatelessWidget {
         return DoctorProfile();
       }
     }
+
   }
 }
+
 
 class Authenticate extends StatefulWidget {
   @override

@@ -22,6 +22,7 @@ class FinalScore {
   static int dermascore;
   static int psychoscore;
   static int entscore;
+  static int age;
 }
 
 countfinal() {
@@ -48,6 +49,18 @@ countfinal() {
     FinalScore.psychoscore:'Psychiatrist',
     FinalScore.entscore:"Laryngologist"
   };
+  if (FinalScore.age<15){
+    _scoremap[FinalScore.cvsscore]='Pediatrician';
+    _scoremap[FinalScore.respscore]='Pediatrician';
+    _scoremap[FinalScore.endoscore]='Pediatrician';
+    _scoremap[FinalScore.gitscore]='Pediatrician';
+    _scoremap[FinalScore.generalscore]='Pediatric Surgeon';
+    _scoremap[FinalScore.internscore]='Pediatrician';
+    _scoremap[FinalScore.rheumatoscore]='Pediatrician';
+    _scoremap[FinalScore.nephroscore]='Pediatrician';
+    _scoremap[FinalScore.heamatoscore]='Pediatrician';
+    _scoremap[FinalScore.neuroscore]='Pediatrician';
+  }
 
   var scores = [
     FinalScore.cvsscore,

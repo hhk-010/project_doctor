@@ -42,7 +42,7 @@ maindisease5(
     String inact,
     String fam,
     String alcohol,
-    String smok) {
+    String smok,String gender) {
   //bleeding mean spontaneous not traumatic or un stoppable traumatic
   var ida = Disease5(
       'iron deficiency anemia',
@@ -360,7 +360,8 @@ maindisease5(
     fam,
     inact,
     smok,
-    alcohol
+    alcohol,
+    gender
   ];
   var r = 0;
   var rr = riskf.length;

@@ -42,7 +42,8 @@ maindisease2(
     String inact,
     String fam,
     String alcohol,
-    String smok) {
+    String smok,
+    String gender) {
   var achal = Disease2('achalasia', 'dysphagia', 'odynophagia', 'null', 'null',
       'null', 'null', 'null', 'null');
   var esospa = Disease2('diffuse esophageal spasm', 'dysphagia', 'odynophagia',
@@ -332,7 +333,8 @@ maindisease2(
     fam,
     inact,
     smok,
-    alcohol
+    alcohol,
+    gender
   ];
   var r = 0;
   var rr = riskf.length;

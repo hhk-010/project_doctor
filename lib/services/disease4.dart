@@ -42,7 +42,8 @@ maindisease4(
     String inact,
     String fam,
     String alcohol,
-    String smok) {
+    String smok,
+    gender) {
   var obs = Disease4(
       'obstetric diseases',
       'abnormal vaginal bleeding',
@@ -113,7 +114,7 @@ maindisease4(
     fam,
     inact,
     smok,
-    alcohol
+    alcohol,gender
   ];
   var o = 0;
   var oo = others.length;

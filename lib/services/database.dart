@@ -32,8 +32,8 @@ class DatabaseService {
   }
 
   // stream to get userdata from a snapshot and map it to a model data.
-  Stream<QuerySnapshot> get doctorDataProfileStream {
-    return userCollection.snapshots();
+  Stream<QuerySnapshot> get doctorDataProfileStream  {
+    return  userCollection.snapshots();
   }
 
   // stream to get user data

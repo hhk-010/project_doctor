@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_doctor/pages/patient.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/multi_selection.dart';
 import 'package:project_doctor/constants/theme.dart';
@@ -18,6 +19,7 @@ class PatientRisks extends StatefulWidget {
   final String sym5;
   final String sym6;
   final String sym7;
+  final String gender;
   PatientRisks(
       {this.chiehcomplaint,
       this.sym2,
@@ -25,7 +27,8 @@ class PatientRisks extends StatefulWidget {
       this.sym4,
       this.sym5,
       this.sym6,
-      this.sym7});
+      this.sym7,
+      this.gender});
   @override
   _PatientRisksState createState() => _PatientRisksState(
       cc: chiehcomplaint,
@@ -34,7 +37,8 @@ class PatientRisks extends StatefulWidget {
       s4: sym4,
       s5: sym5,
       s6: sym6,
-      s7: sym7);
+      s7: sym7,
+      gender: gender);
 }
 
 class _PatientRisksState extends State<PatientRisks> {
@@ -45,8 +49,16 @@ class _PatientRisksState extends State<PatientRisks> {
   String s5;
   String s6;
   String s7;
+  String gender;
   _PatientRisksState(
-      {this.cc, this.s2, this.s3, this.s4, this.s5, this.s6, this.s7});
+      {this.cc,
+      this.s2,
+      this.s3,
+      this.s4,
+      this.s5,
+      this.s6,
+      this.s7,
+      this.gender});
   TextStyle _textStylePatient = TextStyle(
     fontSize: 18,
     color: Colors.black,
@@ -400,7 +412,6 @@ class _PatientRisksState extends State<PatientRisks> {
               RaisedButton(
                 child: Text('Show Result'),
                 onPressed: () {
-
                   maindisease1(
                       cc,
                       s2,
@@ -429,7 +440,7 @@ class _PatientRisksState extends State<PatientRisks> {
                       inactive,
                       familyhx,
                       alcohol,
-                      smoke);
+                      smoke,gender);
                   maindisease6(
                       cc,
                       s2,
@@ -458,7 +469,7 @@ class _PatientRisksState extends State<PatientRisks> {
                       inactive,
                       familyhx,
                       alcohol,
-                      smoke);
+                      smoke,gender);
                   maindisease3(
                       cc,
                       s2,
@@ -487,7 +498,7 @@ class _PatientRisksState extends State<PatientRisks> {
                       inactive,
                       familyhx,
                       alcohol,
-                      smoke);
+                      smoke,gender);
                   maindisease4(
                       cc,
                       s2,
@@ -516,7 +527,7 @@ class _PatientRisksState extends State<PatientRisks> {
                       inactive,
                       familyhx,
                       alcohol,
-                      smoke);
+                      smoke,gender);
                   maindisease5(
                       cc,
                       s2,
@@ -545,7 +556,7 @@ class _PatientRisksState extends State<PatientRisks> {
                       inactive,
                       familyhx,
                       alcohol,
-                      smoke);
+                      smoke,gender);
                   maindisease7(
                       cc,
                       s2,
@@ -574,7 +585,7 @@ class _PatientRisksState extends State<PatientRisks> {
                       inactive,
                       familyhx,
                       alcohol,
-                      smoke);
+                      smoke,gender);
                   maindisease2(
                       cc,
                       s2,
@@ -603,7 +614,7 @@ class _PatientRisksState extends State<PatientRisks> {
                       inactive,
                       familyhx,
                       alcohol,
-                      smoke);
+                      smoke,gender);
 
                   Navigator.pushNamed(context, '/result');
                 },

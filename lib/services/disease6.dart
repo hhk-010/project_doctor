@@ -42,7 +42,8 @@ maindisease6(
     String inact,
     String fam,
     String alcohol,
-    String smok) {
+    String smok,
+    String gender) {
   var undtest = Disease6('undescended testes', 'empty scrotum', 'null', 'null',
       'null', 'null', 'null', 'null', 'other urological problems');
   var hypsp = Disease6(
@@ -272,7 +273,8 @@ maindisease6(
     fam,
     inact,
     smok,
-    alcohol
+    alcohol,
+    gender
   ];
   var o = 0;
   var oo = others.length;

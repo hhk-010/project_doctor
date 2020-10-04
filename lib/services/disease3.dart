@@ -42,7 +42,8 @@ maindisease3(
     String inact,
     String fam,
     String alcohol,
-    String smok) {
+    String smok,
+    String gender) {
   var acs = Disease3('ACS', 'chest pain', 'left arm pain', 'jaw pain',
       'abdominal pain', 'smoking', 'alcoholism', 'DM', 'HTN');
   var acs2 = Disease3('ACS', 'dyspnea', 'vomiting', 'sweating', 'palpitation',
@@ -213,7 +214,8 @@ maindisease3(
     fam,
     inact,
     smok,
-    alcohol
+    alcohol,
+    gender
   ];
   var r = 0;
   var rr = riskf.length;
