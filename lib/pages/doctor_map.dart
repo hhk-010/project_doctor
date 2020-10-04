@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/authorization/verify.dart';
@@ -84,7 +86,11 @@ class _DocMapState extends State<DocMap> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text('confirm location'),
+        title: Text(
+          'Confirm Location',
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
       ),
       body: Stack(
         children: [
@@ -100,7 +106,8 @@ class _DocMapState extends State<DocMap> {
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
               child: Text(
-                'R',
+                'OK',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               onPressed: () async {
                 await geolocate(latlng: latlng);

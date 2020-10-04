@@ -23,7 +23,7 @@ class _RegisterState extends State<Register> {
   bool _isInternet = true;
   checkInternet() async {
     try {
-      final response = await InternetAddress.lookup('example.com');
+      final response = await InternetAddress.lookup('google.com');
       if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
         _isInternet = true; // internet
         setState(() {});
@@ -40,6 +40,8 @@ class _RegisterState extends State<Register> {
     super.initState();
   }
 
+  TextStyle _textStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
+
   @override
   Widget build(BuildContext context) {
     return loading
@@ -48,7 +50,7 @@ class _RegisterState extends State<Register> {
             backgroundColor: Colors.grey[200],
             appBar: AppBar(
               backgroundColor: Colors.deepOrange,
-              title: Text('Register'),
+              title: Text('Register', style: _textStyle.copyWith(fontSize: 25)),
               centerTitle: true,
               elevation: 0.0,
             ),
@@ -59,6 +61,9 @@ class _RegisterState extends State<Register> {
                   key: _formKey,
                   child: Column(
                     children: [
+                      SizedBox(
+                        height: 20.0,
+                      ),
                       TextFormField(
                         validator: (val) =>
                             val.isEmpty ? 'Enter an Email' : null,
@@ -88,12 +93,12 @@ class _RegisterState extends State<Register> {
                             textInputdecoration.copyWith(hintText: 'Password'),
                       ),
                       SizedBox(
-                        height: 100.0,
+                        height: 250.0,
                       ),
                       Builder(builder: (context) {
                         return Container(
-                          height: 35.0,
-                          width: 190.0,
+                          height: 40.0,
+                          width: 200.0,
                           child: RaisedButton(
                             onPressed: _isInternet
                                 ? () async {
@@ -117,44 +122,19 @@ class _RegisterState extends State<Register> {
                                         .showSnackBar(errorSnackBar);
                                   },
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.0)),
+                                borderRadius: BorderRadius.circular(80.0)),
                             color: Colors.deepOrange,
-                            child: Text(
-                              'Register',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                              ),
-                            ),
+                            child: Text('Register',
+                                style:
+                                    _textStyle.copyWith(color: Colors.white)),
                           ),
                         );
                       }),
-                      SizedBox(
-                        height: 75.0,
-                      ),
                       Text(error),
+                      SizedBox(
+                        height: 90,
+                      ),
                       Divider(color: Colors.black),
-                      SizedBox(
-                        height: 12.0,
-                      ),
-                      GoogleSignInButton(
-                        onPressed: () => print('hello'),
-                        splashColor: Colors.blue,
-                        borderRadius: 20.0,
-                        textStyle: TextStyle(fontSize: 15, color: Colors.black),
-                        darkMode: false,
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      AppleSignInButton(
-                        onPressed: () => print('hello'),
-                        splashColor: Colors.white,
-                        borderRadius: 20.0,
-                      ),
-                      SizedBox(
-                        height: 50.0,
-                      ),
                       InkWell(
                         onTap: () {
                           widget.toogleView();

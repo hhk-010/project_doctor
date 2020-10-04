@@ -14,7 +14,25 @@ class DoctorForm extends StatefulWidget {
 }
 
 final _formKey = GlobalKey<FormState>();
-final List<String> specialities = ['Cardio', 'Neuro', 'GIT'];
+final List<String> specialities = [
+  'Cardiologist',
+  'Pulmonologist',
+  'Endocrinologist',
+  'Enterologist',
+  'General Surgeon',
+  'Thoracic Surgeon',
+  'Emergency Department',
+  'Internist',
+  'Gynecologist',
+  'Rheumatologist',
+  'Nephrologist',
+  'Heamatologist',
+  'Neurologist',
+  'Urosurgeon',
+  'Orthopaedic Surgeon',
+  'Neurosurgeon',
+  'Plastic Surgeon'
+];
 String currentName;
 String currentSpeciality;
 String currentPhoneNumber;
