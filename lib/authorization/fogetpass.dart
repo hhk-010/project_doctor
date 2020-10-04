@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_doctor/constants/theme.dart';
 
 class Forgetpass extends StatefulWidget {
   @override
@@ -10,6 +13,10 @@ class _ForgetpassState extends State<Forgetpass> {
   String email;
 
   final _formkey = GlobalKey<FormState>();
+  TextStyle _textStyle = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +24,14 @@ class _ForgetpassState extends State<Forgetpass> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text('Reset my password'),
+        title: Text(
+          'Reset my password',
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+        padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 50.0),
         child: Form(
             key: _formkey,
             child: Column(
@@ -29,8 +40,10 @@ class _ForgetpassState extends State<Forgetpass> {
                   height: 20.0,
                 ),
                 TextFormField(
-                  decoration:
-                      InputDecoration(hintText: 'enter your email address'),
+                  decoration: textInputdecoration.copyWith(
+                      hintText: 'Enter your Email Address'),
+                  cursorColor: Colors.black,
+                  keyboardType: TextInputType.emailAddress,
                   onChanged: (val) {
                     email = val;
                   },
@@ -38,19 +51,21 @@ class _ForgetpassState extends State<Forgetpass> {
                       val.isEmpty ? 'enter a valid email address' : null,
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 100.0,
                 ),
-                Center(
-                  child: Text(
-                    'by clicking an email will be sent to you',
-                    style: TextStyle(color: Colors.pinkAccent),
+                RaisedButton.icon(
+                  icon: Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
                   ),
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                RaisedButton(
-                  child: Text('send email'),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(80.0)),
+                  color: Colors.deepOrange,
+                  label: Text(
+                    'Send Email To Reset Password',
+                    style:
+                        _textStyle.copyWith(color: Colors.white, fontSize: 16),
+                  ),
                   onPressed: () async {
                     if (_formkey.currentState.validate()) {
                       await FirebaseAuth.instance

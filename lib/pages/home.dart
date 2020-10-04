@@ -121,11 +121,6 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/pt_chronic');
-                  },
-                ),
                 SizedBox(height: 50),
               ],
             ),

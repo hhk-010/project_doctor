@@ -36,7 +36,6 @@ class _UpdatemapState extends State<Updatemap> {
         position: tappedpoint,
       ));
     });
-
   }
 
   double lattt;
@@ -53,10 +52,24 @@ class _UpdatemapState extends State<Updatemap> {
     lnggg = double.parse(lng);
   }
 
+  //==============snackbar for empty latlng============
+  final _scaffoldkey = GlobalKey<ScaffoldState>();
+  /*_showSnackBar() {
+    final snackBar = new SnackBar(
+      content: new Text(
+        'Tap on your location',
+        style: TextStyle(fontSize: 18),
+      ),
+      duration: new Duration(seconds: 3),
+      backgroundColor: Colors.deepOrange,
+    );
+  }*/
+
   _UpdatemapState({this.name, this.speciality, this.number, this.province});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldkey,
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: Text('update your location'),
@@ -78,15 +91,17 @@ class _UpdatemapState extends State<Updatemap> {
               backgroundColor: Colors.deepOrange,
               child: Text('U'),
               onPressed: () async {
-                await geolocate(latlng:latlng);
-                await DatabaseService(
-                        uid: FirebaseAuth.instance.currentUser.uid)
-                    .updateUserData(
-                        name, speciality, number, province, lattt, lnggg);
-                Navigator.pop(context);
+                await geolocate(latlng: latlng);
+                if (lattt != null && lnggg != null) {
+                  await DatabaseService(
+                      uid: FirebaseAuth.instance.currentUser.uid)
+                      .updateUserData(
+                      name, speciality, number, province, lattt, lnggg);
+                  Navigator.pop(context);
+                }
               },
             ),
-          )
+          ),
         ],
       ),
     );

@@ -41,6 +41,17 @@ class _DoclocmapState extends State<Doclocmap> {
                 CameraPosition(target: LatLng(lat, lng), zoom: 10),
             markers: _marker,
           ),
+          Container(
+            padding: EdgeInsets.all(25.0),
+            alignment: Alignment.bottomLeft,
+            child: FloatingActionButton(
+              backgroundColor: Colors.deepOrange,
+              child: Text('N'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/home');
+              },
+            ),
+          ),
         ],
       ),
     );

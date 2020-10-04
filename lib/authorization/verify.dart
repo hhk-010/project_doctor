@@ -41,8 +41,7 @@ class _VerifyState extends State<Verify> {
             RaisedButton(
               onPressed: () {
                 if (FirebaseAuth.instance.currentUser.emailVerified) {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Intermediate()));
+                  Navigator.pushNamed(context, '/intermediate');
                 }
               },
               child: Text('Next'),

@@ -21,6 +21,9 @@ class _SignInState extends State<SignIn> {
   String password = '';
   String error = '';
 
+  TextStyle _textStyle =
+      TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white);
+
   @override
   Widget build(BuildContext context) {
     return loading
@@ -29,50 +32,55 @@ class _SignInState extends State<SignIn> {
             backgroundColor: Colors.grey[200],
             appBar: AppBar(
               backgroundColor: Colors.deepOrange,
-              title: Text('Sign In'),
+              title: Text(
+                'Sign In',
+                style: _textStyle.copyWith(fontSize: 25.0),
+              ),
               centerTitle: true,
               elevation: 0.0,
             ),
-            body: Container(
-                padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+            body: SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 50.0),
                 child: Form(
                   key: _formKey,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        TextFormField(
-                          validator: (val) =>
-                              val.isEmpty ? 'Enter an email' : null,
-                          onChanged: (val) {
-                            setState(() => email = val);
-                          },
-                          cursorColor: Colors.black,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration:
-                              textInputdecoration.copyWith(hintText: 'Email'),
-                        ),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        TextFormField(
-                          validator: (val) => val.length < 6
-                              ? 'Enter a password 6 or long'
-                              : null,
-                          obscureText: true,
-                          onChanged: (val) {
-                            setState(() => password = val);
-                          },
-                          cursorColor: Colors.black,
-                          keyboardType: TextInputType.visiblePassword,
-                          decoration:
-                              textInputdecoration.copyWith(hintText: 'Password'),
-                        ),
-                        SizedBox(
-                          height: 60.0,
-                        ),
-                        RaisedButton(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      TextFormField(
+                        validator: (val) =>
+                            val.isEmpty ? 'Enter an email' : null,
+                        onChanged: (val) {
+                          setState(() => email = val);
+                        },
+                        cursorColor: Colors.black,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration:
+                            textInputdecoration.copyWith(hintText: 'Email'),
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      TextFormField(
+                        validator: (val) => val.length < 6
+                            ? 'Enter a password 6 or long'
+                            : null,
+                        obscureText: true,
+                        onChanged: (val) {
+                          setState(() => password = val);
+                        },
+                        cursorColor: Colors.black,
+                        keyboardType: TextInputType.visiblePassword,
+                        decoration:
+                            textInputdecoration.copyWith(hintText: 'Password'),
+                      ),
+                      SizedBox(height: 250.0),
+                      Container(
+                        height: 40.0,
+                        width: 200.0,
+                        child: RaisedButton(
                           onPressed: () async {
                             if (_formKey.currentState.validate()) {
                               setState(
@@ -90,60 +98,58 @@ class _SignInState extends State<SignIn> {
                             }
                           },
                           color: Colors.deepOrange,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80.0)),
                           child: Text(
                             'Sign In',
-                            style: TextStyle(
-                              color: Colors.white,
+                            style: _textStyle.copyWith(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      FlatButton.icon(
+                        icon: Icon(Icons.arrow_forward),
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Forgetpass()));
+                        },
+                        label: Text(
+                          'Forget Your Password?',
+                          style: _textStyle.copyWith(
+                              color: Colors.black, fontSize: 16),
+                        ),
+                      ),
+                      Text(error),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Divider(color: Colors.black),
+                      InkWell(
+                        onTap: () {
+                          widget.toogleView();
+                        },
+                        child: RichText(
+                          text: new TextSpan(
+                            // Note: Styles for TextSpans must be explicitly defined.
+                            // Child text spans will inherit styles from parent
+                            style: new TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.black,
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 12.0,
-                        ),
-                        SizedBox(
-                          height: 12.0,
-                        ),
-                        FlatButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Forgetpass()));
-                          },
-                          child: Text(
-                            'Forget my password',
-                            style: TextStyle(color: Colors.blue),
-                          ),
-                        ),
-                        Text(error),
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: InkWell(
-                              onTap: () {
-                                widget.toogleView();
-                              },
-                              child: RichText(
-                                text: new TextSpan(
-                                  // Note: Styles for TextSpans must be explicitly defined.
-                                  // Child text spans will inherit styles from parent
+                            children: <TextSpan>[
+                              new TextSpan(text: 'Does not have account? '),
+                              new TextSpan(
+                                  text: 'Register',
                                   style: new TextStyle(
-                                    fontSize: 14.0,
-                                    color: Colors.black,
-                                  ),
-                                  children: <TextSpan>[
-                                    new TextSpan(text: 'Does not have account? '),
-                                    new TextSpan(
-                                        text: 'Register',
-                                        style: new TextStyle(
-                                            fontWeight: FontWeight.bold)),
-                                  ],
-                                ),
-                              ),
-                            ),
+                                      fontWeight: FontWeight.bold)),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
+              ),
+            ),
           );
   }
 }

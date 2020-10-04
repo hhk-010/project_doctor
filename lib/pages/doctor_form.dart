@@ -14,7 +14,25 @@ class DoctorForm extends StatefulWidget {
 }
 
 final _formKey = GlobalKey<FormState>();
-final List<String> specialities = ['Cardio', 'Neuro', 'GIT'];
+final List<String> specialities = [
+  'Cardiologist',
+  'Pulmonologist',
+  'Endocrinologist',
+  'Enterologist',
+  'General Surgeon',
+  'Thoracic Surgeon',
+  'Emergency Department',
+  'Internist',
+  'Gynecologist',
+  'Rheumatologist',
+  'Nephrologist',
+  'Heamatologist',
+  'Neurologist',
+  'Urosurgeon',
+  'Orthopaedic Surgeon',
+  'Neurosurgeon',
+  'Plastic Surgeon'
+];
 String currentName;
 String currentSpeciality;
 String currentPhoneNumber;
@@ -124,6 +142,8 @@ class _DoctorFormState extends State<DoctorForm> {
                       validator: validateMobile),
                   SizedBox(height: 25.0),
                   TextFormField(
+                    validator: (_value) =>
+                        _value == null ? 'Enter your province' : null,
                     onChanged: (val) => setState(() => currentProvince = val),
                     decoration: textInputdecoration.copyWith(
                       hintText: AppLocalizations.of(context)
@@ -162,15 +182,20 @@ class _DoctorFormState extends State<DoctorForm> {
                           borderRadius: BorderRadius.circular(80.0)),
                       onPressed: () async {
                         if (_formKey.currentState.validate()) {
-                          await Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => DocMap(
-                                    email: email,
-                                    password: password,
-                                    name: currentName,
-                                    speciality: currentSpeciality,
-                                    phone: currentPhoneNumber,
-                                    province: currentProvince,
-                                  )));
+                          if (currentName != null &&
+                              currentSpeciality != null &&
+                              currentPhoneNumber != null &&
+                              currentProvince != null) {
+                            await Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => DocMap(
+                                      email: email,
+                                      password: password,
+                                      name: currentName,
+                                      speciality: currentSpeciality,
+                                      phone: currentPhoneNumber,
+                                      province: currentProvince,
+                                    )));
+                          }
                         }
                       },
                       label: Text(

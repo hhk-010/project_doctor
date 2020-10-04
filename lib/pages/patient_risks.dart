@@ -59,8 +59,9 @@ class _PatientRisksState extends State<PatientRisks> {
       this.s6,
       this.s7,
       this.gender});
-  TextStyle _textStylePatient = TextStyle(
+  TextStyle _textStyle = TextStyle(
     fontSize: 18,
+    fontWeight: FontWeight.w500,
     color: Colors.black,
   );
 
@@ -227,7 +228,7 @@ class _PatientRisksState extends State<PatientRisks> {
                             child: Text(
                                 AppLocalizations.of(context)
                                     .translate('patient_chronic_diseases'),
-                                style: _textStylePatient),
+                                style: _textStyle),
                           ),
                           FlatButton(
                             onPressed: () =>
@@ -440,7 +441,8 @@ class _PatientRisksState extends State<PatientRisks> {
                       inactive,
                       familyhx,
                       alcohol,
-                      smoke,gender);
+                      smoke,
+                      gender);
                   maindisease6(
                       cc,
                       s2,
@@ -469,7 +471,8 @@ class _PatientRisksState extends State<PatientRisks> {
                       inactive,
                       familyhx,
                       alcohol,
-                      smoke,gender);
+                      smoke,
+                      gender);
                   maindisease3(
                       cc,
                       s2,
@@ -498,7 +501,8 @@ class _PatientRisksState extends State<PatientRisks> {
                       inactive,
                       familyhx,
                       alcohol,
-                      smoke,gender);
+                      smoke,
+                      gender);
                   maindisease4(
                       cc,
                       s2,
@@ -527,7 +531,8 @@ class _PatientRisksState extends State<PatientRisks> {
                       inactive,
                       familyhx,
                       alcohol,
-                      smoke,gender);
+                      smoke,
+                      gender);
                   maindisease5(
                       cc,
                       s2,
@@ -556,7 +561,8 @@ class _PatientRisksState extends State<PatientRisks> {
                       inactive,
                       familyhx,
                       alcohol,
-                      smoke,gender);
+                      smoke,
+                      gender);
                   maindisease7(
                       cc,
                       s2,
@@ -585,7 +591,8 @@ class _PatientRisksState extends State<PatientRisks> {
                       inactive,
                       familyhx,
                       alcohol,
-                      smoke,gender);
+                      smoke,
+                      gender);
                   maindisease2(
                       cc,
                       s2,
@@ -614,7 +621,8 @@ class _PatientRisksState extends State<PatientRisks> {
                       inactive,
                       familyhx,
                       alcohol,
-                      smoke,gender);
+                      smoke,
+                      gender);
 
                   Navigator.pushNamed(context, '/result');
                 },

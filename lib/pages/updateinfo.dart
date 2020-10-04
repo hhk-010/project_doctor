@@ -85,13 +85,15 @@ class _UpdateinfoState extends State<Updateinfo> {
                   child: Text('google map'),
                   onPressed: () {
                     if (_formkey.currentState.validate()) {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Updatemap(
-                                name: name,
-                                speciality: speciality,
-                                number: phonenumber,
-                                province: province,
-                              )));
+                      if(name!=null && speciality!=null && phonenumber!=null && province!=null){
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Updatemap(
+                              name: name,
+                              speciality: speciality,
+                              number: phonenumber,
+                              province: province,
+                            )));
+                      }
                     }
                   },
                 ),
