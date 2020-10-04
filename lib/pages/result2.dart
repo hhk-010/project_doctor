@@ -32,8 +32,9 @@ class _Result2State extends State<Result2> {
     );
   }
 }
-class distance{
-  static double distances=0.0;
+
+class Distance {
+  static double distances = 0.0;
 }
 
 class TheProfile extends StatefulWidget {
@@ -52,7 +53,7 @@ class _TheProfileState extends State<TheProfile> {
     double _lat = 0.0;
     double _lng = 0.0;
     double sum = 0.0;
-    double result=0.0;
+    double result = 0.0;
     for (var docu in doctorListProvider.docs) {
       sum = ((docu.data()['lat'] - myvariables.lat) *
               (docu.data()['lat'] - myvariables.lat)) +
@@ -60,9 +61,9 @@ class _TheProfileState extends State<TheProfile> {
               (docu.data()['lng'] - myvariables.long));
       result = sqrt(sum);
 
-      if (result > distance.distances &&
+      if (result > Distance.distances &&
           docu.data()['speciality'] == myvariables.speciality) {
-        distance.distances = result;
+        Distance.distances = result;
       }
     }
     for (var docu in doctorListProvider.docs) {
@@ -72,9 +73,9 @@ class _TheProfileState extends State<TheProfile> {
               (docu.data()['lng'] - myvariables.long));
       result = sqrt(sum);
 
-      if (result <= distance.distances &&
+      if (result <= Distance.distances &&
           docu.data()['speciality'] == myvariables.speciality) {
-        distance.distances = result;
+        Distance.distances = result;
         _name = docu.data()['name'];
         _speciality = docu.data()['speciality'];
         _number = docu.data()['phoneNumber'];
