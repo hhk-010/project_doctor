@@ -1,6 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:project_doctor/main.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/language.dart';
@@ -25,11 +26,10 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text(
           AppLocalizations.of(context).translate('home_title'),
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         backgroundColor: Colors.deepOrange,
-        brightness: Brightness.dark,
         elevation: 0,
         actions: [
           Padding(
@@ -56,74 +56,74 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.dark,
-        child: Container(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: 60.0,
-                  width: 300.0,
-                  child: RaisedButton(
-                    onPressed: () => Navigator.pushNamed(context, '/patient'),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80.0)),
-                    padding: EdgeInsets.all(0.0),
-                    child: Ink(
-                      decoration: boxDecoration,
-                      child: Container(
-                        constraints:
-                            BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
-                        alignment: Alignment.center,
-                        child: Text(
-                          AppLocalizations.of(context)
-                              .translate('home_patient'),
-                          textAlign: TextAlign.center,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 50),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RaisedButton.icon(
+                onPressed: () => Navigator.pushNamed(context, '/patient'),
+                icon: Icon(
+                  Icons.search,
+                  size: 50,
+                  color: Colors.white,
+                ),
+                label: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: RichText(
+                    text: TextSpan(children: [
+                      TextSpan(
+                          text: 'Iam a Patient\n',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                    ),
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                      TextSpan(
+                          text: 'I want to Search',
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                    ]),
                   ),
                 ),
-                SizedBox(height: 50),
-                Container(
-                  height: 60.0,
-                  width: 300.0,
-                  child: RaisedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/intermediate');
-                    },
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80.0)),
-                    padding: EdgeInsets.all(0.0),
-                    child: Ink(
-                      decoration: boxDecoration,
-                      child: Container(
-                        constraints:
-                            BoxConstraints(maxWidth: 350.0, minHeight: 50.0),
-                        alignment: Alignment.center,
-                        child: Text(
-                          AppLocalizations.of(context).translate('home_doctor'),
-                          textAlign: TextAlign.center,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(80.0)),
+                color: Colors.deepOrange,
+              ),
+              SizedBox(height: 50),
+              RaisedButton.icon(
+                onPressed: () => Navigator.pushNamed(context, '/intermediate'),
+                icon: Icon(
+                  Icons.people_sharp,
+                  size: 50,
+                  color: Colors.white,
+                ),
+                label: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: RichText(
+                    text: TextSpan(children: [
+                      TextSpan(
+                          text: 'Iam a Doctor\n',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                    ),
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                      TextSpan(
+                          text: 'I want to Register',
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                    ]),
                   ),
                 ),
-                SizedBox(height: 50),
-              ],
-            ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(80.0)),
+                color: Colors.deepOrange,
+              ),
+            ],
           ),
         ),
       ),

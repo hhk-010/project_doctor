@@ -25,18 +25,11 @@ class DoctorProfile extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.deepOrange,
           title: Text(
-            'Your Information',
+            'Profile',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
           ),
           elevation: 0,
           actions: [
-            FlatButton(
-              child: Text('update your info'),
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Updateinfo()));
-              },
-            ),
             PopupMenuButton<String>(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20.0))),
@@ -73,8 +66,8 @@ class _DoctorListState extends State<DoctorList> {
     String speciality = '';
     String number = '';
     String province = '';
-    // double lattt = 0.0;
-    // double lnggg = 0.0;
+    double lattt = 0.0;
+    double lnggg = 0.0;
 
     for (var doc in doctorListProvider.docs) {
       if (doc.id == uid) {

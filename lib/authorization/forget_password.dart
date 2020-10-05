@@ -4,12 +4,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
 
-class Forgetpass extends StatefulWidget {
+class ForgetPassword extends StatefulWidget {
   @override
-  _ForgetpassState createState() => _ForgetpassState();
+  _ForgetPasswordState createState() => _ForgetPasswordState();
 }
 
-class _ForgetpassState extends State<Forgetpass> {
+class _ForgetPasswordState extends State<ForgetPassword> {
   String email;
 
   final _formkey = GlobalKey<FormState>();

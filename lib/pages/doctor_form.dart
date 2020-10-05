@@ -101,7 +101,8 @@ class _DoctorFormState extends State<DoctorForm> {
                       labelText: AppLocalizations.of(context)
                           .translate('doctor_form_name'),
                     ),
-                    validator: (value) => value == null ? 'AAAAAA' : null,
+                    validator: (value) =>
+                        value == null ? 'Enter Your Name Please' : null,
                     onChanged: (val) => setState(() => currentName = val),
                   ),
                   SizedBox(height: 25.0),

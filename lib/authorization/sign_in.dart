@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_doctor/authorization/fogetpass.dart';
+import 'package:project_doctor/authorization/forget_password.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/constants/theme.dart';
@@ -109,7 +109,7 @@ class _SignInState extends State<SignIn> {
                         icon: Icon(Icons.arrow_forward),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Forgetpass()));
+                              builder: (context) => ForgetPassword()));
                         },
                         label: Text(
                           'Forget Your Password?',
@@ -127,19 +127,19 @@ class _SignInState extends State<SignIn> {
                           widget.toogleView();
                         },
                         child: RichText(
-                          text: new TextSpan(
+                          text: TextSpan(
                             // Note: Styles for TextSpans must be explicitly defined.
                             // Child text spans will inherit styles from parent
-                            style: new TextStyle(
+                            style: TextStyle(
                               fontSize: 14.0,
                               color: Colors.black,
                             ),
                             children: <TextSpan>[
-                              new TextSpan(text: 'Does not have account? '),
-                              new TextSpan(
+                              TextSpan(text: 'Does not have account? '),
+                              TextSpan(
                                   text: 'Register',
-                                  style: new TextStyle(
-                                      fontWeight: FontWeight.bold)),
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
                             ],
                           ),
                         ),

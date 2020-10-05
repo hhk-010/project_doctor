@@ -72,12 +72,12 @@ class _PatientMapState extends State<PatientMap> {
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
               child: Text('S'),
-              onPressed: (){
+              onPressed: () {
                 setState(() {
-                  myvariables.speciality=speciality;
-                  myvariables.province=province;
-                  myvariables.lat=patlatt;
-                  myvariables.long=patlngg;
+                  MyVariables.speciality = speciality;
+                  MyVariables.province = province;
+                  MyVariables.lat = patlatt;
+                  MyVariables.long = patlngg;
                   Navigator.pushNamed(context, '/result2');
                 });
               },
@@ -89,9 +89,9 @@ class _PatientMapState extends State<PatientMap> {
   }
 }
 
-class myvariables{
-  static String speciality='';
-  static String province='';
-  static double lat=0.0;
-  static double long=0.0;
+class MyVariables {
+  static String speciality = '';
+  static String province = '';
+  static double lat = 0.0;
+  static double long = 0.0;
 }

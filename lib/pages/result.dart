@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/pages/Patientmap.dart';
-import 'package:project_doctor/services/finalscore.dart';
+import 'package:project_doctor/matching_algorithm/final_score.dart';
 
 class Result extends StatefulWidget {
   @override
