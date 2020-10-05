@@ -72,6 +72,9 @@ flutter:
     - lang/en.json
     - lang/ar.json
     - assets/images/email.png
+    - assets/images/doctor.png
+
+
    
 
   # An image asset can refer to one or more resolution-specific "variants", see
