@@ -76,8 +76,8 @@ class _UpdatePassword01State extends State<UpdatePassword01> {
                       AuthService().passwordisvalid(_oldPassword);
                       passwordvalid =
                           await AuthService().validatepass(_oldPassword);
-                      AuthService().updatepass(_newPassword);
                       if (passwordvalid) {
+                        AuthService().updatepass(_newPassword);
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => DoctorProfile()));
                       } else {
