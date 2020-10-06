@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/verify.dart';
-import 'package:project_doctor/pages/Patientmap.dart';
-import 'package:project_doctor/pages/docLocmap.dart';
+import 'package:project_doctor/pages/patient_pages/Patientmap.dart';
+import 'package:project_doctor/pages/patient_pages/docLocmap.dart';
 import 'package:project_doctor/pages/home.dart';
 import 'package:project_doctor/authorization/wrapper.dart';
-import 'package:project_doctor/pages/patient.dart';
-import 'package:project_doctor/pages/patient_risks.dart';
-import 'package:project_doctor/pages/doctor_form.dart';
+import 'package:project_doctor/pages/patient_pages/patient_complain.dart';
+import 'package:project_doctor/pages/patient_pages/patient_risk_factors.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor_form.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:project_doctor/pages/doctor_profile.dart';
-import 'package:project_doctor/pages/result.dart';
-import 'package:project_doctor/pages/result2.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor_profile.dart';
+import 'package:project_doctor/pages/patient_pages/result.dart';
+import 'package:project_doctor/pages/patient_pages/result2.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 
 void main() async {
@@ -99,7 +99,7 @@ class _MyAppState extends State<MyApp> {
         routes: {
           '/home': (context) => Home(),
           '/intermediate': (context) => Intermediate(),
-          '/patient': (context) => Patient(),
+          '/patient': (context) => PatientComplain(),
           '/doctor_form': (context) => DoctorForm(),
           '/doctor_profile': (context) => DoctorProfile(),
           '/pt_risk_f': (context) => PatientRisks(),
@@ -107,7 +107,7 @@ class _MyAppState extends State<MyApp> {
           '/result2': (context) => Result2(),
           '/patmap': (context) => PatientMap(),
           '/doctorlocate': (context) => Doclocmap(),
-          '/verify':(context)=>Verify()
+          '/verify': (context) => Verify()
         },
       );
     }

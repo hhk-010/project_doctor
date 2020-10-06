@@ -1,4 +1,4 @@
-import 'package:project_doctor/services/finalscore.dart';
+import 'package:project_doctor/matching_algorithm/final_score.dart';
 
 class Disease1 {
   String name;

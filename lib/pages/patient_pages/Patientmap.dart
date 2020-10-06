@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class PatientMap extends StatefulWidget {
-  String speciality;
-
-  String province;
+  final String speciality;
+  final String province;
   PatientMap({this.speciality, this.province});
   @override
   _PatientMapState createState() =>
@@ -75,10 +74,10 @@ class _PatientMapState extends State<PatientMap> {
               child: Text('S'),
               onPressed: () {
                 setState(() {
-                  myvariables.speciality = speciality;
-                  myvariables.province = province;
-                  myvariables.lat = patlatt;
-                  myvariables.long = patlngg;
+                  MyVariables.speciality = speciality;
+                  MyVariables.province = province;
+                  MyVariables.lat = patlatt;
+                  MyVariables.long = patlngg;
                   Navigator.pushNamed(context, '/result2');
                 });
               },
@@ -90,7 +89,7 @@ class _PatientMapState extends State<PatientMap> {
   }
 }
 
-class myvariables {
+class MyVariables {
   static String speciality = '';
   static String speciality2 = '';
   static String province = '';

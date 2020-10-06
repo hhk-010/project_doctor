@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:project_doctor/pages/patient.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/multi_selection.dart';
 import 'package:project_doctor/constants/theme.dart';
-import 'package:project_doctor/services/disease1.dart';
-import 'package:project_doctor/services/disease2.dart';
-import 'package:project_doctor/services/disease3.dart';
-import 'package:project_doctor/services/disease4.dart';
-import 'package:project_doctor/services/disease5.dart';
-import 'package:project_doctor/services/disease6.dart';
-import 'package:project_doctor/services/disease7.dart';
+import 'package:project_doctor/matching_algorithm/disease1.dart';
+import 'package:project_doctor/matching_algorithm/disease2.dart';
+import 'package:project_doctor/matching_algorithm/disease3.dart';
+import 'package:project_doctor/matching_algorithm/disease4.dart';
+import 'package:project_doctor/matching_algorithm/disease5.dart';
+import 'package:project_doctor/matching_algorithm/disease6.dart';
+import 'package:project_doctor/matching_algorithm/disease7.dart';
 
 class PatientRisks extends StatefulWidget {
   final String chiehcomplaint;

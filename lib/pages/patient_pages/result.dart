@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
-import 'package:project_doctor/pages/Patientmap.dart';
-import 'package:project_doctor/services/finalscore.dart';
+import 'package:project_doctor/pages/patient_pages/Patientmap.dart';
+import 'package:project_doctor/matching_algorithm/final_score.dart';
+import 'package:geolocator/geolocator.dart';
 
 class Result extends StatefulWidget {
   @override
@@ -17,6 +18,12 @@ class _ResultState extends State<Result> {
     '3': 'southern region',
     '4': 'western region'
   };
+
+  void _getCurrentLocation() async {
+    final Position position = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    print(position);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +127,9 @@ class _ResultState extends State<Result> {
               ),
               RaisedButton(
                 child: Text('Use Geolocator'),
-                onPressed: null,
+                onPressed: () {
+                  _getCurrentLocation();
+                },
               ),
             ],
           ),

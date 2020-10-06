@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_doctor/pages/doctor_map.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor_map.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/auth.dart';
@@ -101,7 +101,8 @@ class _DoctorFormState extends State<DoctorForm> {
                       labelText: AppLocalizations.of(context)
                           .translate('doctor_form_name'),
                     ),
-                    validator: (value) => value == null ? 'AAAAAA' : null,
+                    validator: (value) =>
+                        value == null ? 'Enter Your Name Please' : null,
                     onChanged: (val) => setState(() => currentName = val),
                   ),
                   SizedBox(height: 25.0),

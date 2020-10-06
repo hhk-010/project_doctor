@@ -2,10 +2,9 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/pages/Patientmap.dart';
-import 'package:project_doctor/pages/docLocmap.dart';
+import 'package:project_doctor/pages/patient_pages/Patientmap.dart';
+import 'package:project_doctor/pages/patient_pages/docLocmap.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/services/finalscore.dart';
 import 'package:provider/provider.dart';
 
 class Result2 extends StatefulWidget {
@@ -52,28 +51,28 @@ class _TheProfileState extends State<TheProfile> {
     double _distance = 0.0;
     double sum = 0.0;
     double result = 0.0;
-    if (doctorListProvider!=null){
+    if (doctorListProvider != null) {
       for (var docu in doctorListProvider.docs) {
-        sum = ((docu.data()['lat'] - myvariables.lat) *
-            (docu.data()['lat'] - myvariables.lat)) +
-            ((docu.data()['lng'] - myvariables.long) *
-                (docu.data()['lng'] - myvariables.long));
+        sum = ((docu.data()['lat'] - MyVariables.lat) *
+                (docu.data()['lat'] - MyVariables.lat)) +
+            ((docu.data()['lng'] - MyVariables.long) *
+                (docu.data()['lng'] - MyVariables.long));
         result = sqrt(sum);
 
         if (result > _distance &&
-            docu.data()['speciality'] == myvariables.speciality) {
+            docu.data()['speciality'] == MyVariables.speciality) {
           _distance = result;
         }
       }
       for (var docu in doctorListProvider.docs) {
-        sum = ((docu.data()['lat'] - myvariables.lat) *
-            (docu.data()['lat'] - myvariables.lat)) +
-            ((docu.data()['lng'] - myvariables.long) *
-                (docu.data()['lng'] - myvariables.long));
+        sum = ((docu.data()['lat'] - MyVariables.lat) *
+                (docu.data()['lat'] - MyVariables.lat)) +
+            ((docu.data()['lng'] - MyVariables.long) *
+                (docu.data()['lng'] - MyVariables.long));
         result = sqrt(sum);
 
         if (result <= _distance &&
-            docu.data()['speciality'] == myvariables.speciality) {
+            docu.data()['speciality'] == MyVariables.speciality) {
           _distance = result;
           _name = docu.data()['name'];
           _speciality = docu.data()['speciality'];

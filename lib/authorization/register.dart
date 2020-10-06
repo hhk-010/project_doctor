@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/constants/theme.dart';
-import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'dart:io';
-import '../pages/doctor_form.dart';
+import '../pages/doctor_pages/doctor_form.dart';
 
 class Register extends StatefulWidget {
   final Function toogleView;
@@ -106,15 +105,15 @@ class _RegisterState extends State<Register> {
                                       setState(() {
                                         loading = true;
                                       });
-                                      if (email!='' && password!=''){
-                                        Navigator.of(context)
-                                            .push(MaterialPageRoute(
-                                            builder: (context) => DoctorForm(
-                                              email: email,
-                                              password: password,
-                                            )));
+                                      if (email != '' && password != '') {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DoctorForm(
+                                                      email: email,
+                                                      password: password,
+                                                    )));
                                       }
-
                                     }
                                   }
                                 : () {

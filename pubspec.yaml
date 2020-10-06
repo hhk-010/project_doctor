@@ -37,6 +37,8 @@ dependencies:
   flutter_auth_buttons: ^0.10.0
   shared_preferences: ^0.5.12
   connectivity: ^0.4.9+3
+  flutter_svg: ^0.19.0
+
 
 
 
@@ -69,6 +71,10 @@ flutter:
   assets:
     - lang/en.json
     - lang/ar.json
+    - assets/images/email.png
+    - assets/images/doctor.png
+
+
    
 
   # An image asset can refer to one or more resolution-specific "variants", see
