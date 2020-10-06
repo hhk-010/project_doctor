@@ -46,8 +46,6 @@ class _TheProfileState extends State<TheProfile> {
     final doctorListProvider = Provider.of<QuerySnapshot>(context);
     String _name = '';
     String _speciality = '';
-    String _spec1 = '';
-    String _spec2 = '';
     String _number = '';
     String _province = '';
     double _lat = 0.0;
@@ -55,8 +53,6 @@ class _TheProfileState extends State<TheProfile> {
     double distance = 0.0;
     double sum = 0.0;
     double result = 0.0;
-    double ltsit = 0.0;
-    double ltsqr = 0.0;
     if (doctorListProvider != null) {
       for (var docu in doctorListProvider.docs) {
         sum = ((docu.data()['lat'] - myvariables.lat) *
@@ -84,13 +80,9 @@ class _TheProfileState extends State<TheProfile> {
             (FinalScore.speciality == docu.data()['speciality'] ||
                 FinalScore.speciality2 == docu.data()['speciality'])) {
           setState(() {
-            ltsit = docu.data()['lat'] - myvariables.lat;
-            ltsqr = ltsit * ltsit;
             distance = result;
             _name = docu.data()['name'];
             _speciality = docu.data()['speciality'];
-            _spec1 = FinalScore.speciality;
-            _spec2 = FinalScore.speciality2;
             _number = docu.data()['phoneNumber'];
             _province = docu.data()['province'];
             _lat = docu.data()['lat'];
