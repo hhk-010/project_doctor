@@ -3,6 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class PatientMap extends StatefulWidget {
   String speciality;
+
   String province;
   PatientMap({this.speciality, this.province});
   @override
@@ -72,12 +73,12 @@ class _PatientMapState extends State<PatientMap> {
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
               child: Text('S'),
-              onPressed: (){
+              onPressed: () {
                 setState(() {
-                  myvariables.speciality=speciality;
-                  myvariables.province=province;
-                  myvariables.lat=patlatt;
-                  myvariables.long=patlngg;
+                  myvariables.speciality = speciality;
+                  myvariables.province = province;
+                  myvariables.lat = patlatt;
+                  myvariables.long = patlngg;
                   Navigator.pushNamed(context, '/result2');
                 });
               },
@@ -89,9 +90,10 @@ class _PatientMapState extends State<PatientMap> {
   }
 }
 
-class myvariables{
-  static String speciality='';
-  static String province='';
-  static double lat=0.0;
-  static double long=0.0;
+class myvariables {
+  static String speciality = '';
+  static String speciality2 = '';
+  static String province = '';
+  static double lat = 0.0;
+  static double long = 0.0;
 }

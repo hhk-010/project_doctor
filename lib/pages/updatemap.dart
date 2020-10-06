@@ -60,9 +60,10 @@ class _UpdatemapState extends State<Updatemap> {
         'Tap on your location',
         style: TextStyle(fontSize: 18),
       ),
-      duration: new Duration(seconds: 3),
+      //duration: new Duration(seconds: 3),
       backgroundColor: Colors.deepOrange,
     );
+    _scaffoldkey.currentState.showSnackBar(snackBar);
   }*/
 
   _UpdatemapState({this.name, this.speciality, this.number, this.province});
@@ -73,6 +74,11 @@ class _UpdatemapState extends State<Updatemap> {
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: Text('update your location'),
+        /*actions: [FlatButton(onPressed: (){
+          setState(() {
+            _showSnackBar();
+          });
+        }, child: Text('here'))],*/
       ),
       body: Stack(
         children: [

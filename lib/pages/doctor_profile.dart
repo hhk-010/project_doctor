@@ -7,7 +7,12 @@ import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
 
-class DoctorProfile extends StatelessWidget {
+class DoctorProfile extends StatefulWidget {
+  @override
+  _DoctorProfileState createState() => _DoctorProfileState();
+}
+
+class _DoctorProfileState extends State<DoctorProfile> {
   final AuthService _auth = AuthService();
   void choiceAction(String choice) async {
     if (choice == PopUpMenuConstants.logOut) {
@@ -75,14 +80,15 @@ class _DoctorListState extends State<DoctorList> {
     String province = '';
     // double lattt = 0.0;
     // double lnggg = 0.0;
-
-    for (var doc in doctorListProvider.docs) {
-      if (doc.id == uid) {
-        print(doc.data()['name']);
-        name = doc.data()['name'];
-        speciality = doc.data()['speciality'];
-        number = doc.data()['phoneNumber'];
-        province = doc.data()['province'];
+    if (doctorListProvider != null) {
+      for (var doc in doctorListProvider.docs) {
+        if (doc.id == uid) {
+          print(doc.data()['name']);
+          name = doc.data()['name'];
+          speciality = doc.data()['speciality'];
+          number = doc.data()['phoneNumber'];
+          province = doc.data()['province'];
+        }
       }
     }
 

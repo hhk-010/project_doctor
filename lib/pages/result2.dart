@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/pages/Patientmap.dart';
 import 'package:project_doctor/pages/docLocmap.dart';
 import 'package:project_doctor/services/database.dart';
+import 'package:project_doctor/services/finalscore.dart';
 import 'package:provider/provider.dart';
 
 class Result2 extends StatefulWidget {
@@ -32,9 +33,6 @@ class _Result2State extends State<Result2> {
     );
   }
 }
-class distance{
-  static double distances=0.0;
-}
 
 class TheProfile extends StatefulWidget {
   @override
@@ -51,38 +49,42 @@ class _TheProfileState extends State<TheProfile> {
     String _province = '';
     double _lat = 0.0;
     double _lng = 0.0;
+    double _distance = 0.0;
     double sum = 0.0;
-    double result=0.0;
-    for (var docu in doctorListProvider.docs) {
-      sum = ((docu.data()['lat'] - myvariables.lat) *
-              (docu.data()['lat'] - myvariables.lat)) +
-          ((docu.data()['lng'] - myvariables.long) *
-              (docu.data()['lng'] - myvariables.long));
-      result = sqrt(sum);
+    double result = 0.0;
+    if (doctorListProvider!=null){
+      for (var docu in doctorListProvider.docs) {
+        sum = ((docu.data()['lat'] - myvariables.lat) *
+            (docu.data()['lat'] - myvariables.lat)) +
+            ((docu.data()['lng'] - myvariables.long) *
+                (docu.data()['lng'] - myvariables.long));
+        result = sqrt(sum);
 
-      if (result > distance.distances &&
-          docu.data()['speciality'] == myvariables.speciality) {
-        distance.distances = result;
+        if (result > _distance &&
+            docu.data()['speciality'] == myvariables.speciality) {
+          _distance = result;
+        }
+      }
+      for (var docu in doctorListProvider.docs) {
+        sum = ((docu.data()['lat'] - myvariables.lat) *
+            (docu.data()['lat'] - myvariables.lat)) +
+            ((docu.data()['lng'] - myvariables.long) *
+                (docu.data()['lng'] - myvariables.long));
+        result = sqrt(sum);
+
+        if (result <= _distance &&
+            docu.data()['speciality'] == myvariables.speciality) {
+          _distance = result;
+          _name = docu.data()['name'];
+          _speciality = docu.data()['speciality'];
+          _number = docu.data()['phoneNumber'];
+          _province = docu.data()['province'];
+          _lat = docu.data()['lat'];
+          _lng = docu.data()['lng'];
+        }
       }
     }
-    for (var docu in doctorListProvider.docs) {
-      sum = ((docu.data()['lat'] - myvariables.lat) *
-              (docu.data()['lat'] - myvariables.lat)) +
-          ((docu.data()['lng'] - myvariables.long) *
-              (docu.data()['lng'] - myvariables.long));
-      result = sqrt(sum);
 
-      if (result <= distance.distances &&
-          docu.data()['speciality'] == myvariables.speciality) {
-        distance.distances = result;
-        _name = docu.data()['name'];
-        _speciality = docu.data()['speciality'];
-        _number = docu.data()['phoneNumber'];
-        _province = docu.data()['province'];
-        _lat = docu.data()['lat'];
-        _lng = docu.data()['lng'];
-      }
-    }
     return Container(
       padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
       child: Column(

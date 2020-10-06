@@ -42,6 +42,15 @@ class _ResultState extends State<Result> {
                 ),
               ),
               SizedBox(
+                height: 10,
+              ),
+              Center(
+                child: Text(
+                  FinalScore.speciality2,
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+              SizedBox(
                 height: 25,
               ),
               Container(
