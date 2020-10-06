@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project_doctor/pages/result.dart';
 
 class PatientMap extends StatefulWidget {
   String speciality;
@@ -37,7 +38,7 @@ class _PatientMapState extends State<PatientMap> {
   double patlatt = 0.0;
   double patlngg = 0.0;
 
-  geolocate({String latlng}) {
+  geolocate(String latlng) {
     var firstindex = latlng.indexOf('(');
     var secondindex = latlng.indexOf(',');
     var thirdindex = latlng.indexOf(')');
@@ -74,6 +75,7 @@ class _PatientMapState extends State<PatientMap> {
               backgroundColor: Colors.deepOrange,
               child: Text('S'),
               onPressed: () {
+                geolocate(patientlatlng);
                 setState(() {
                   myvariables.speciality = speciality;
                   myvariables.province = province;
@@ -90,10 +92,4 @@ class _PatientMapState extends State<PatientMap> {
   }
 }
 
-class myvariables {
-  static String speciality = '';
-  static String speciality2 = '';
-  static String province = '';
-  static double lat = 0.0;
-  static double long = 0.0;
-}
+
