@@ -63,6 +63,46 @@ maindisease7(
       'ophthalmoplegia',
       'other ophthalmological problems',
       'null');
+  var ophth3 = disease7(
+      'ophthalmic disease',
+      'blurred vision',
+      'squint',
+      'eye redness',
+      'eye pain',
+      'eye discharge',
+      'eye itching',
+      'eye pigmentation',
+      'photophobia');
+  var ophth4 = disease7(
+      'ophthalmic disease',
+      'periorbital edema',
+      'eyelid deformity',
+      'dry eye',
+      'null',
+      'blindness',
+      'ophthalmoplegia',
+      'other ophthalmological problems',
+      'null');
+  var ophth5 = disease7(
+      'ophthalmic disease',
+      'blurred vision',
+      'squint',
+      'eye redness',
+      'eye pain',
+      'eye discharge',
+      'eye itching',
+      'eye pigmentation',
+      'photophobia');
+  var ophth6 = disease7(
+      'ophthalmic disease',
+      'periorbital edema',
+      'eyelid deformity',
+      'dry eye',
+      'null',
+      'blindness',
+      'ophthalmoplegia',
+      'other ophthalmological problems',
+      'null');
 
   var derma = disease7(
       'dermatology',
@@ -76,6 +116,30 @@ maindisease7(
       'other dermatological problems');
   var derma2 = disease7('dermatology', 'skin lesion', 'skin rash',
       'nail problems', 'null', 'null', 'null', 'null', 'null');
+  var derma3 = disease7(
+      'dermatology',
+      'skin appendage',
+      'skin redness',
+      'skin itching',
+      'ulcer',
+      'hair problems',
+      'acnes',
+      'skin pigmentation',
+      'other dermatological problems');
+  var derma4 = disease7('dermatology', 'skin lesion', 'skin rash',
+      'nail problems', 'null', 'null', 'null', 'null', 'null');
+  var derma5 = disease7(
+      'dermatology',
+      'skin appendage',
+      'skin redness',
+      'skin itching',
+      'ulcer',
+      'hair problems',
+      'acnes',
+      'skin pigmentation',
+      'other dermatological problems');
+  var derma6 = disease7('dermatology', 'skin lesion', 'skin rash',
+      'nail problems', 'null', 'null', 'null', 'null', 'null');
 
   var psych = disease7(
       'psychaitry',
@@ -88,6 +152,46 @@ maindisease7(
       'hyperactivity',
       'null');
   var psych2 = disease7(
+      'psychiatry',
+      'stress',
+      'psychological trauma',
+      'addiction',
+      'enuresis',
+      'incorporesis',
+      'polyphagia',
+      'other psychological problems',
+      'null');
+  var psych3 = disease7(
+      'psychaitry',
+      'depression',
+      'hallucination/delusion',
+      'phobia',
+      'null',
+      'obsession',
+      'attention deficit',
+      'hyperactivity',
+      'null');
+  var psych4 = disease7(
+      'psychiatry',
+      'stress',
+      'psychological trauma',
+      'addiction',
+      'enuresis',
+      'incorporesis',
+      'polyphagia',
+      'other psychological problems',
+      'null');
+  var psych5 = disease7(
+      'psychaitry',
+      'depression',
+      'hallucination/delusion',
+      'phobia',
+      'null',
+      'obsession',
+      'attention deficit',
+      'hyperactivity',
+      'null');
+  var psych6 = disease7(
       'psychiatry',
       'stress',
       'psychological trauma',
@@ -113,8 +217,36 @@ maindisease7(
       'ear discharge');
   var ent3 = disease7('ent', 'ear redness', 'other ent problems', 'null',
       'null', 'null', 'null', 'null', 'null');
+  var ent4 = disease7('ent', 'sorethroat', 'hoarseness', 'deafness', 'vertigo',
+      'nasal discharge', 'nasal bleeding', 'nasal obstruction', 'tinnitus');
+  var ent5 = disease7(
+      'ent',
+      'nasal pain',
+      'ear pain',
+      'nasal mass',
+      'nasal deformity',
+      'sneezing',
+      'nasal itching',
+      'anosmia',
+      'ear discharge');
+  var ent6 = disease7('ent', 'ear redness', 'other ent problems', 'null',
+      'null', 'null', 'null', 'null', 'null');
+  var ent7 = disease7('ent', 'sorethroat', 'hoarseness', 'deafness', 'vertigo',
+      'nasal discharge', 'nasal bleeding', 'nasal obstruction', 'tinnitus');
+  var ent8 = disease7(
+      'ent',
+      'nasal pain',
+      'ear pain',
+      'nasal mass',
+      'nasal deformity',
+      'sneezing',
+      'nasal itching',
+      'anosmia',
+      'ear discharge');
+  var ent9 = disease7('ent', 'ear redness', 'other ent problems', 'null',
+      'null', 'null', 'null', 'null', 'null');
 
-  var optha = [ophth, ophth2];
+  var optha = [ophth, ophth2,ophth3,ophth4,ophth5,ophth6];
   var op = 0;
   var opt = optha.length;
   var opsym = [
@@ -130,7 +262,7 @@ maindisease7(
   var opkey = 0;
   var oplen = opsym.length;
 
-  var psyc = [psych, psych2];
+  var psyc = [psych, psych2,psych3,psych4,psych5,psych6];
   var psy = 0;
   var pslen = psyc.length;
   var psysym = [
@@ -146,7 +278,7 @@ maindisease7(
   var psylen = psysym.length;
   var psykey = 0;
 
-  var derm = [derma, derma2];
+  var derm = [derma, derma2,derma3,derma4,derma5,derma6];
   var d = 0;
   var dd = derm.length;
   var dersym = [
@@ -162,7 +294,7 @@ maindisease7(
   var derkey = 0;
   var derlen = dersym.length;
 
-  var ents = [ent, ent2, ent3];
+  var ents = [ent, ent2, ent3,ent4,ent5,ent6,ent7,ent8,ent9];
   var e = 0;
   var ee = ents.length;
   var entsym = [
