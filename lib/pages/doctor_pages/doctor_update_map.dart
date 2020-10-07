@@ -1,20 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../services/database.dart';
+import '../../services/database.dart';
 
-class Updatemap extends StatefulWidget {
+class UpdateMap extends StatefulWidget {
   final String name;
   final String speciality;
   final String number;
   final String province;
-  Updatemap({this.name, this.speciality, this.province, this.number});
+  UpdateMap({this.name, this.speciality, this.province, this.number});
   @override
-  _UpdatemapState createState() => _UpdatemapState(
+  _UpdateMapState createState() => _UpdateMapState(
       name: name, speciality: speciality, number: number, province: province);
 }
 
-class _UpdatemapState extends State<Updatemap> {
+class _UpdateMapState extends State<UpdateMap> {
   String name;
   String speciality;
   String number;
@@ -66,7 +66,7 @@ class _UpdatemapState extends State<Updatemap> {
     _scaffoldkey.currentState.showSnackBar(snackBar);
   }*/
 
-  _UpdatemapState({this.name, this.speciality, this.number, this.province});
+  _UpdateMapState({this.name, this.speciality, this.number, this.province});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,9 +100,9 @@ class _UpdatemapState extends State<Updatemap> {
                 await geolocate(latlng: latlng);
                 if (lattt != null && lnggg != null) {
                   await DatabaseService(
-                      uid: FirebaseAuth.instance.currentUser.uid)
+                          uid: FirebaseAuth.instance.currentUser.uid)
                       .updateUserData(
-                      name, speciality, number, province, lattt, lnggg);
+                          name, speciality, number, province, lattt, lnggg);
                   Navigator.pop(context);
                 }
               },

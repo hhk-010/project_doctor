@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/pages/updateinfo.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor_update_info.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
@@ -30,18 +30,11 @@ class _DoctorProfileState extends State<DoctorProfile> {
           centerTitle: true,
           backgroundColor: Colors.deepOrange,
           title: Text(
-            'Your Information',
+            'Profile',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
           ),
           elevation: 0,
           actions: [
-            FlatButton(
-              child: Text('update your info'),
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Updateinfo()));
-              },
-            ),
             PopupMenuButton<String>(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20.0))),
@@ -93,7 +86,7 @@ class _DoctorListState extends State<DoctorList> {
     }
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 30),
+      padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 50),
       child: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -102,99 +95,63 @@ class _DoctorListState extends State<DoctorList> {
               Container(
                 decoration: boxDecorationPatient,
                 child: Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: Alignment.center,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Row(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Name',
-                              style: _textStyle,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'Speciality',
-                              style: _textStyle,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'Phone Number',
-                              style: _textStyle,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'Province',
-                              style: _textStyle,
-                            ),
-                          ],
+                        CircleAvatar(
+                          backgroundColor: Colors.deepOrange,
+                          radius: 75,
+                          backgroundImage:
+                              AssetImage('assets/images/doctor.png'),
                         ),
                         SizedBox(
-                          width: 10,
+                          height: 10,
                         ),
-                        Container(
-                          height: 125,
-                          width: 3,
-                          color: Colors.grey,
+                        Text(
+                          name,
+                          style: _textStyle,
                         ),
                         SizedBox(
-                          width: 10,
+                          height: 10,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              name,
-                              style: _textStyle,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              speciality,
-                              style: _textStyle,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              number,
-                              style: _textStyle,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              province,
-                              style: _textStyle,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        )
+                        Text(
+                          speciality,
+                          style: _textStyle,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          number,
+                          style: _textStyle,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          province,
+                          style: _textStyle,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   ),
                 ),
               ),
               SizedBox(
-                height: 200,
+                height: 100,
               ),
               Center(
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(80.0)),
                   child: Text(
-                    'Update Your Information',
+                    'Update Your Information!',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

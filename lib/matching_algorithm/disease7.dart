@@ -1,4 +1,4 @@
-import 'package:project_doctor/services/finalscore.dart';
+import 'package:project_doctor/matching_algorithm/final_score.dart';
 
 class disease7 {
   String name;
@@ -521,8 +521,8 @@ maindisease7(
   print(derscore);
   print(psyscore);
   print(entscore);
-  FinalScore.psychoscore=psyscore;
-  FinalScore.dermascore=derscore;
-  FinalScore.opthascore=opscore;
-  FinalScore.entscore=entscore;
+  FinalScore.psychoscore = psyscore;
+  FinalScore.dermascore = derscore;
+  FinalScore.opthascore = opscore;
+  FinalScore.entscore = entscore;
 }

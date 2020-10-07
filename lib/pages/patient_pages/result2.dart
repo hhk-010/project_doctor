@@ -2,12 +2,12 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/pages/Patientmap.dart';
-import 'package:project_doctor/pages/docLocmap.dart';
+import 'package:project_doctor/matching_algorithm/final_score.dart';
+import 'package:project_doctor/pages/patient_pages/Patientmap.dart';
+import 'package:project_doctor/pages/patient_pages/docLocmap.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/services/finalscore.dart';
 import 'package:provider/provider.dart';
-import 'package:project_doctor/pages/result.dart';
+import 'package:project_doctor/pages/patient_pages/result.dart';
 
 class Result2 extends StatefulWidget {
   @override
@@ -90,51 +90,51 @@ class _TheProfileState extends State<TheProfile> {
           });
         }
       }
-    }
 
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 15,
-          ),
-          Center(
-            child: Text(_name),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Center(
-            child: Text(_speciality),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Center(
-            child: Text(_province),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Center(
-            child: Text(_number),
-          ),
-          SizedBox(
-            height: 200,
-          ),
-          RaisedButton(
-            child: Text('Show Doctor Location'),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Doclocmap(
-                        lat: _lat,
-                        lng: _lng,
-                      )));
-            },
-          ),
-        ],
-      ),
-    );
+      return Container(
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 15,
+            ),
+            Center(
+              child: Text(_name),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Center(
+              child: Text(_speciality),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Center(
+              child: Text(_province),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Center(
+              child: Text(_number),
+            ),
+            SizedBox(
+              height: 200,
+            ),
+            RaisedButton(
+              child: Text('Show Doctor Location'),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => Doclocmap(
+                          lat: _lat,
+                          lng: _lng,
+                        )));
+              },
+            ),
+          ],
+        ),
+      );
+    }
   }
 }

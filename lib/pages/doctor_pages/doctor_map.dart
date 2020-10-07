@@ -1,9 +1,7 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:project_doctor/authorization/verify.dart';
-import '../services/auth.dart';
+import '../../services/auth.dart';
 
 class DocMap extends StatefulWidget {
   final String email;
@@ -111,9 +109,9 @@ class _DocMapState extends State<DocMap> {
               ),
               onPressed: () async {
                 await geolocate(latlng: latlng);
-                if (lattt!=null && lnggg!=null){
-                  await _auth.registerWithEmailAndPassword(email, password, name,
-                      speciality, phoneNumber, province, lattt, lnggg);
+                if (lattt != null && lnggg != null) {
+                  await _auth.registerWithEmailAndPassword(email, password,
+                      name, speciality, phoneNumber, province, lattt, lnggg);
                   Navigator.pushNamed(context, '/verify');
                 }
 
@@ -125,7 +123,6 @@ class _DocMapState extends State<DocMap> {
                   lattt,
                   lnggg,
                 );*/
-
               },
             ),
           ),

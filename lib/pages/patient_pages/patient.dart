@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:project_doctor/pages/patient_pages/patient_risk_factors.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
-import 'package:project_doctor/pages/patient_risks.dart';
-import 'package:project_doctor/services/finalscore.dart';
+import 'package:project_doctor/matching_algorithm/final_score.dart';
 
 class Patient extends StatefulWidget {
   @override
@@ -907,15 +907,14 @@ class _PatientState extends State<Patient> {
                         getage();
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => PatientRisks(
-                                  chiehcomplaint: value,
-                                  sym2: value2,
-                                  sym3: value3,
-                                  sym4: value4,
-                                  sym5: value5,
-                                  sym6: value6,
-                                  sym7: value7,
-                                  gender: select
-                                )));
+                                chiehcomplaint: value,
+                                sym2: value2,
+                                sym3: value3,
+                                sym4: value4,
+                                sym5: value5,
+                                sym6: value6,
+                                sym7: value7,
+                                gender: select)));
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(80.0)),
