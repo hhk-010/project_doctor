@@ -3,6 +3,7 @@ import 'package:project_doctor/authorization/forget_password.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/constants/theme.dart';
+import 'dart:io';
 
 class SignIn extends StatefulWidget {
   final Function toogleView;
@@ -19,15 +20,37 @@ class _SignInState extends State<SignIn> {
   String email = '';
   String password = '';
   String error = '';
-
+  bool _passwordVisible;
   TextStyle _textStyle =
       TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white);
+
+  bool _isInternet = true;
+  checkInternet() async {
+    try {
+      final response = await InternetAddress.lookup('google.com');
+      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
+        _isInternet = true; // internet
+        setState(() {});
+      }
+    } on SocketException catch (_) {
+      _isInternet = false; // no internet
+      setState(() {});
+    }
+  }
+
+  @override
+  void initState() {
+    _passwordVisible = false;
+    checkInternet();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return loading
         ? Loading()
         : Scaffold(
+            resizeToAvoidBottomInset: false,
             backgroundColor: Colors.grey[200],
             appBar: AppBar(
               backgroundColor: Colors.deepOrange,
@@ -38,114 +61,133 @@ class _SignInState extends State<SignIn> {
               centerTitle: true,
               elevation: 0.0,
             ),
-            body: SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 50.0),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 20.0,
+            body: Container(
+              height: double.maxFinite,
+              padding: EdgeInsets.symmetric(vertical: 75.0, horizontal: 50.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      validator: (val) => val.isEmpty ? 'Enter an email' : null,
+                      onChanged: (val) {
+                        setState(() => email = val);
+                      },
+                      cursorColor: Colors.black,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: textInputdecoration.copyWith(
+                        hintText: 'Enter Your Email',
+                        labelText: 'Email',
                       ),
-                      TextFormField(
-                        validator: (val) =>
-                            val.isEmpty ? 'Enter an email' : null,
-                        onChanged: (val) {
-                          setState(() => email = val);
-                        },
-                        cursorColor: Colors.black,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration:
-                            textInputdecoration.copyWith(hintText: 'Email'),
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      TextFormField(
-                        validator: (val) => val.length < 6
-                            ? 'Enter a password 6 or long'
-                            : null,
-                        obscureText: true,
-                        onChanged: (val) {
-                          setState(() => password = val);
-                        },
-                        cursorColor: Colors.black,
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration:
-                            textInputdecoration.copyWith(hintText: 'Password'),
-                      ),
-                      SizedBox(height: 250.0),
-                      Container(
-                        height: 40.0,
-                        width: 200.0,
-                        child: RaisedButton(
-                          onPressed: () async {
-                            if (_formKey.currentState.validate()) {
-                              setState(
-                                () => loading = true,
-                              );
-                              dynamic result = await _auth
-                                  .signInWithEmailAndPassword(email, password);
-                              if (result == null) {
-                                setState(() {
-                                  error =
-                                      'could not signed in with those credentials';
-                                  loading = false;
-                                });
-                              }
-                            }
+                    ),
+                    Spacer(),
+                    TextFormField(
+                      validator: (val) => val.length < 8
+                          ? 'password should contain more than 8 characters'
+                          : null,
+                      obscureText: !_passwordVisible,
+                      onChanged: (val) {
+                        setState(() => password = val);
+                      },
+                      cursorColor: Colors.black,
+                      keyboardType: TextInputType.text,
+                      decoration: textInputdecoration.copyWith(
+                        hintText: 'Enter Your Password',
+                        labelText: 'Password',
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            // Based on passwordVisible state choose the icon
+                            _passwordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.deepOrange,
+                          ),
+                          onPressed: () {
+                            // Update the state i.e. toogle the state of passwordVisible variable
+                            setState(() {
+                              _passwordVisible = !_passwordVisible;
+                            });
                           },
-                          color: Colors.deepOrange,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80.0)),
-                          child: Text(
-                            'Sign In',
-                            style: _textStyle.copyWith(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    Spacer(
+                      flex: 10,
+                    ),
+                    Container(
+                      height: 40.0,
+                      width: 200.0,
+                      child: RaisedButton(
+                        onPressed: _isInternet
+                            ? () async {
+                                if (_formKey.currentState.validate()) {
+                                  setState(
+                                    () => loading = true,
+                                  );
+                                  dynamic result =
+                                      await _auth.signInWithEmailAndPassword(
+                                          email, password);
+                                  if (result == null) {
+                                    setState(() {
+                                      error =
+                                          'could not signed in with those credentials';
+                                      loading = false;
+                                    });
+                                  }
+                                }
+                              }
+                            : () {
+                                SnackBar errorSnackBar = SnackBar(
+                                    content: Text('No internet Connection'));
+                                Scaffold.of(context)
+                                    .showSnackBar(errorSnackBar);
+                              },
+                        color: Colors.deepOrange,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80.0)),
+                        child: Text(
+                          'Sign In',
+                          style: _textStyle.copyWith(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    FlatButton.icon(
+                      icon: Icon(Icons.arrow_forward),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ForgetPassword()));
+                      },
+                      label: Text(
+                        'Forget Your Password?',
+                        style: _textStyle.copyWith(
+                            color: Colors.black, fontSize: 16),
+                      ),
+                    ),
+                    Spacer(),
+                    Text(error),
+                    Divider(color: Colors.black),
+                    InkWell(
+                      onTap: () {
+                        widget.toogleView();
+                      },
+                      child: RichText(
+                        text: TextSpan(
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.black,
                           ),
+                          children: <TextSpan>[
+                            TextSpan(text: 'Does not have account? '),
+                            TextSpan(
+                                text: 'Register',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.redAccent)),
+                          ],
                         ),
                       ),
-                      FlatButton.icon(
-                        icon: Icon(Icons.arrow_forward),
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ForgetPassword()));
-                        },
-                        label: Text(
-                          'Forget Your Password?',
-                          style: _textStyle.copyWith(
-                              color: Colors.black, fontSize: 16),
-                        ),
-                      ),
-                      Text(error),
-                      SizedBox(
-                        height: 50,
-                      ),
-                      Divider(color: Colors.black),
-                      InkWell(
-                        onTap: () {
-                          widget.toogleView();
-                        },
-                        child: RichText(
-                          text: TextSpan(
-                            // Note: Styles for TextSpans must be explicitly defined.
-                            // Child text spans will inherit styles from parent
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.black,
-                            ),
-                            children: <TextSpan>[
-                              TextSpan(text: 'Does not have account? '),
-                              TextSpan(
-                                  text: 'Register',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    )
+                  ],
                 ),
               ),
             ),

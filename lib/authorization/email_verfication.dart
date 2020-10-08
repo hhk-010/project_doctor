@@ -10,6 +10,8 @@ class Verify extends StatefulWidget {
 }
 
 class _VerifyState extends State<Verify> {
+  final AuthService _auth = AuthService();
+
   @override
   void initState() {
     super.initState();
@@ -33,9 +35,20 @@ class _VerifyState extends State<Verify> {
           ),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.logout,
+            ),
+            onPressed: () async {
+              await _auth.signOut();
+            },
+          )
+        ],
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 50.0),
+        height: double.maxFinite,
+        padding: EdgeInsets.symmetric(vertical: 75.0, horizontal: 50.0),
         child: Column(
           children: [
             SizedBox(
@@ -44,30 +57,30 @@ class _VerifyState extends State<Verify> {
                 image: AssetImage('assets/images/email.png'),
               ),
             ),
-            SizedBox(
-              height: 50,
+            Spacer(
+              flex: 3,
             ),
             Text(
               'We Sent a Confirmation Email to: ',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
-              height: 15,
+            Spacer(
+              flex: 1,
             ),
             Text(
               'email@gmail.com',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
-              height: 25,
+            Spacer(
+              flex: 2,
             ),
             Text(
               'Check your email and click on the confirmation link then',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
               textAlign: TextAlign.center,
             ),
-            SizedBox(
-              height: 50,
+            Spacer(
+              flex: 3,
             ),
             RaisedButton.icon(
               icon: Icon(
@@ -88,27 +101,25 @@ class _VerifyState extends State<Verify> {
                 }
               },
             ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: InkWell(
-                  onTap: () async {
-                    await AuthService().resendemail();
-                  },
-                  child: RichText(
-                    text: new TextSpan(
-                      style: new TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                      children: <TextSpan>[
-                        new TextSpan(text: " Didn't receive email ?"),
-                        new TextSpan(
-                            text: 'Resent Email',
-                            style: new TextStyle(color: Colors.deepOrange)),
-                      ],
-                    ),
-                  ),
+            Spacer(
+              flex: 2,
+            ),
+            InkWell(
+              onTap: () async {
+                await AuthService().resendemail();
+              },
+              child: RichText(
+                text: new TextSpan(
+                  style: new TextStyle(
+                      fontSize: 14.0,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                  children: <TextSpan>[
+                    new TextSpan(text: " Didn't receive email ?"),
+                    new TextSpan(
+                        text: 'Resent Email',
+                        style: new TextStyle(color: Colors.deepOrange)),
+                  ],
                 ),
               ),
             ),

@@ -17,6 +17,7 @@ class _RegisterState extends State<Register> {
   String email = '';
   String password = '';
   String error = '';
+  bool _passwordVisible;
 
   // check internet connection
   bool _isInternet = true;
@@ -35,6 +36,7 @@ class _RegisterState extends State<Register> {
 
   @override
   void initState() {
+    _passwordVisible = false;
     checkInternet();
     super.initState();
   }
@@ -46,6 +48,7 @@ class _RegisterState extends State<Register> {
     return loading
         ? Loading()
         : Scaffold(
+            resizeToAvoidBottomInset: false,
             backgroundColor: Colors.grey[200],
             appBar: AppBar(
               backgroundColor: Colors.deepOrange,
@@ -53,16 +56,14 @@ class _RegisterState extends State<Register> {
               centerTitle: true,
               elevation: 0.0,
             ),
-            body: SingleChildScrollView(
+            body: Container(
+              height: double.maxFinite,
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 50.0),
+                padding: EdgeInsets.symmetric(vertical: 75.0, horizontal: 50.0),
                 child: Form(
                   key: _formKey,
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 20.0,
-                      ),
                       TextFormField(
                         validator: (val) =>
                             val.isEmpty ? 'Enter an Email' : null,
@@ -72,27 +73,43 @@ class _RegisterState extends State<Register> {
                         cursorColor: Colors.black,
                         keyboardType: TextInputType.emailAddress,
                         decoration: textInputdecoration.copyWith(
-                          hintText: 'Email',
+                          hintText: 'Enter Your Email',
+                          labelText: 'Email',
                         ),
                       ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
+                      Spacer(),
                       TextFormField(
-                        validator: (val) => val.length < 6
-                            ? 'Enter a password 6 or long'
+                        validator: (val) => val.length < 8
+                            ? 'Password should contain more than 8 characters'
                             : null,
-                        obscureText: true,
+                        obscureText: !_passwordVisible,
                         onChanged: (val) {
                           setState(() => password = val);
                         },
                         cursorColor: Colors.black,
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration:
-                            textInputdecoration.copyWith(hintText: 'Password'),
+                        keyboardType: TextInputType.text,
+                        decoration: textInputdecoration.copyWith(
+                          hintText: 'Enter Your Password',
+                          labelText: 'Password',
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              // Based on passwordVisible state choose the icon
+                              _passwordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Colors.deepOrange,
+                            ),
+                            onPressed: () {
+                              // Update the state i.e. toogle the state of passwordVisible variable
+                              setState(() {
+                                _passwordVisible = !_passwordVisible;
+                              });
+                            },
+                          ),
+                        ),
                       ),
-                      SizedBox(
-                        height: 250.0,
+                      Spacer(
+                        flex: 10,
                       ),
                       Builder(builder: (context) {
                         return Container(
@@ -132,10 +149,8 @@ class _RegisterState extends State<Register> {
                           ),
                         );
                       }),
+                      Spacer(),
                       Text(error),
-                      SizedBox(
-                        height: 90,
-                      ),
                       Divider(color: Colors.black),
                       InkWell(
                         onTap: () {
@@ -150,11 +165,12 @@ class _RegisterState extends State<Register> {
                               color: Colors.black,
                             ),
                             children: <TextSpan>[
-                              new TextSpan(text: 'Already have an account? '),
-                              new TextSpan(
+                              TextSpan(text: 'Already have an account?'),
+                              TextSpan(
                                   text: 'Sign In',
-                                  style: new TextStyle(
-                                      fontWeight: FontWeight.bold)),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.redAccent)),
                             ],
                           ),
                         ),

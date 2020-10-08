@@ -14,11 +14,6 @@ class DoctorProfile extends StatefulWidget {
 
 class _DoctorProfileState extends State<DoctorProfile> {
   final AuthService _auth = AuthService();
-  void choiceAction(String choice) async {
-    if (choice == PopUpMenuConstants.logOut) {
-      await _auth.signOut();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,18 +30,14 @@ class _DoctorProfileState extends State<DoctorProfile> {
           ),
           elevation: 0,
           actions: [
-            PopupMenuButton<String>(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                onSelected: choiceAction,
-                itemBuilder: (BuildContext context) {
-                  return PopUpMenuConstants.choices.map((String choice) {
-                    return PopupMenuItem(
-                      value: choice,
-                      child: Text(choice),
-                    );
-                  }).toList();
-                }),
+            IconButton(
+              icon: Icon(
+                Icons.logout,
+              ),
+              onPressed: () async {
+                await _auth.signOut();
+              },
+            )
           ],
         ),
         body: DoctorList(),
@@ -86,86 +77,80 @@ class _DoctorListState extends State<DoctorList> {
     }
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 50),
-      child: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                decoration: boxDecorationPatient,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.deepOrange,
-                          radius: 75,
-                          backgroundImage:
-                              AssetImage('assets/images/doctor.png'),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          name,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          speciality,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          number,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          province,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                      ],
-                    ),
+      padding: const EdgeInsets.symmetric(vertical: 75, horizontal: 50),
+      child: Container(
+        height: double.maxFinite,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              decoration: boxDecorationPatient,
+              child: Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Colors.deepOrange,
+                        radius: 75,
+                        backgroundImage: AssetImage('assets/images/doctor.png'),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        name,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        speciality,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        number,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        province,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ],
                   ),
                 ),
               ),
-              SizedBox(
-                height: 100,
+            ),
+            Spacer(),
+            RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(80.0)),
+              child: Text(
+                'Update Your Information!',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
               ),
-              Center(
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0)),
-                  child: Text(
-                    'Update Your Information!',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                  ),
-                  color: Colors.deepOrange,
-                  onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => Updateinfo()));
-                  },
-                ),
-              ),
-            ],
-          ),
+              color: Colors.deepOrange,
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Updateinfo()));
+              },
+            ),
+          ],
         ),
       ),
     );

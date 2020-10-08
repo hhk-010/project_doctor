@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_doctor/authorization/verify.dart';
+import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/pages/patient_pages/Patientmap.dart';
 import 'package:project_doctor/pages/patient_pages/docLocmap.dart';
 import 'package:project_doctor/pages/home.dart';
