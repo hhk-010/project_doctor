@@ -55,13 +55,13 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 50),
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 75),
         child: Container(
           height: double.maxFinite,
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
                 RaisedButton.icon(
@@ -94,7 +94,6 @@ class _HomeState extends State<Home> {
                       borderRadius: BorderRadius.circular(80.0)),
                   color: Colors.deepOrange,
                 ),
-                SizedBox(height: 50),
                 RaisedButton.icon(
                   onPressed: () =>
                       Navigator.pushNamed(context, '/intermediate'),
