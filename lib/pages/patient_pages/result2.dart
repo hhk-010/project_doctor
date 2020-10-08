@@ -2,10 +2,11 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/pages/patient_pages/Patientmap.dart';
+import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:project_doctor/pages/patient_pages/docLocmap.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
+import 'package:project_doctor/pages/patient_pages/result.dart';
 
 class Result2 extends StatefulWidget {
   @override
@@ -48,7 +49,7 @@ class _TheProfileState extends State<TheProfile> {
     String _province = '';
     double _lat = 0.0;
     double _lng = 0.0;
-    double _distance = 0.0;
+    double distance = 0.0;
     double sum = 0.0;
     double result = 0.0;
     if (doctorListProvider != null) {
@@ -59,9 +60,12 @@ class _TheProfileState extends State<TheProfile> {
                 (docu.data()['lng'] - MyVariables.long));
         result = sqrt(sum);
 
-        if (result > _distance &&
-            docu.data()['speciality'] == MyVariables.speciality) {
-          _distance = result;
+        if (result > distance &&
+            (FinalScore.speciality == docu.data()['speciality'] ||
+                FinalScore.speciality2 == docu.data()['speciality'])) {
+          setState(() {
+            distance = result;
+          });
         }
       }
       for (var docu in doctorListProvider.docs) {
@@ -71,62 +75,65 @@ class _TheProfileState extends State<TheProfile> {
                 (docu.data()['lng'] - MyVariables.long));
         result = sqrt(sum);
 
-        if (result <= _distance &&
-            docu.data()['speciality'] == MyVariables.speciality) {
-          _distance = result;
-          _name = docu.data()['name'];
-          _speciality = docu.data()['speciality'];
-          _number = docu.data()['phoneNumber'];
-          _province = docu.data()['province'];
-          _lat = docu.data()['lat'];
-          _lng = docu.data()['lng'];
+        if (result <= distance &&
+            (FinalScore.speciality == docu.data()['speciality'] ||
+                FinalScore.speciality2 == docu.data()['speciality'])) {
+          setState(() {
+            distance = result;
+            _name = docu.data()['name'];
+            _speciality = docu.data()['speciality'];
+            _number = docu.data()['phoneNumber'];
+            _province = docu.data()['province'];
+            _lat = docu.data()['lat'];
+            _lng = docu.data()['lng'];
+          });
         }
       }
-    }
 
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 15,
-          ),
-          Center(
-            child: Text(_name),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Center(
-            child: Text(_speciality),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Center(
-            child: Text(_province),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Center(
-            child: Text(_number),
-          ),
-          SizedBox(
-            height: 200,
-          ),
-          RaisedButton(
-            child: Text('Show Doctor Location'),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Doclocmap(
-                        lat: _lat,
-                        lng: _lng,
-                      )));
-            },
-          ),
-        ],
-      ),
-    );
+      return Container(
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 15,
+            ),
+            Center(
+              child: Text(_name),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Center(
+              child: Text(_speciality),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Center(
+              child: Text(_province),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Center(
+              child: Text(_number),
+            ),
+            SizedBox(
+              height: 200,
+            ),
+            RaisedButton(
+              child: Text('Show Doctor Location'),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => Doclocmap(
+                          lat: _lat,
+                          lng: _lng,
+                        )));
+              },
+            ),
+          ],
+        ),
+      );
+    }
   }
 }

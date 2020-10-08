@@ -138,3 +138,10 @@ class _ResultState extends State<Result> {
     );
   }
 }
+class MyVariables {
+  static String speciality = '';
+  static String speciality2 = '';
+  static String province = '';
+  static double lat = 0.0;
+  static double long = 0.0;
+}

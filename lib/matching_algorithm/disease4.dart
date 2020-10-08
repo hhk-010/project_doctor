@@ -74,8 +74,68 @@ maindisease4(
       'null',
       'null',
       'null');
+  var obs2 = Disease4(
+      'obstetric diseases',
+      'abnormal vaginal bleeding',
+      'prolong pregnancy',
+      'abdominal pain',
+      'vaginal discharge',
+      'miscarriage',
+      'null',
+      'null',
+      'pregnancy');
+  var gyne3 = Disease4(
+      'gyne diseases',
+      'amenorrhea',
+      'abnormal cycle',
+      'abnormal vaginal bleeding',
+      'vaginal discharge',
+      'decrease  libido',
+      'genital region mass',
+      'pain during cycle',
+      'female infertility');
+  var gyne4 = Disease4(
+      'gyne diseases',
+      'oligomenorrhea',
+      'postmenopausal bleeding',
+      'abdominal pain',
+      'other gynecological and obstetrical problems',
+      'null',
+      'null',
+      'null',
+      'null');
+  var obs3 = Disease4(
+      'obstetric diseases',
+      'abnormal vaginal bleeding',
+      'prolong pregnancy',
+      'abdominal pain',
+      'vaginal discharge',
+      'miscarriage',
+      'null',
+      'null',
+      'pregnancy');
+  var gyne5 = Disease4(
+      'gyne diseases',
+      'amenorrhea',
+      'abnormal cycle',
+      'abnormal vaginal bleeding',
+      'vaginal discharge',
+      'decrease  libido',
+      'genital region mass',
+      'pain during cycle',
+      'female infertility');
+  var gyne6 = Disease4(
+      'gyne diseases',
+      'oligomenorrhea',
+      'postmenopausal bleeding',
+      'abdominal pain',
+      'other gynecological and obstetrical problems',
+      'null',
+      'null',
+      'null',
+      'null');
 
-  var obst = [obs, gyne, gyne2];
+  var obst = [obs,obs2,obs3, gyne, gyne2,gyne3,gyne4,gyne5,gyne6];
   var ob = 0;
   var obgy = obst.length;
   var obsym = [

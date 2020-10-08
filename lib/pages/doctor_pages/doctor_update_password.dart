@@ -1,8 +1,6 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
-import 'package:project_doctor/pages/doctor_pages/doctor_profile.dart';
 import 'package:project_doctor/services/auth.dart';
 import '../../services/auth.dart';
 
@@ -102,8 +100,11 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                           await AuthService().validatepass(_oldPassword);
                       if (passwordvalid) {
                         AuthService().updatepass(_newPassword);
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => DoctorProfile()));
+                        //====when using push masterial page rout to the profle
+                        // there will be routing errors
+                        /*Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => DoctorProfile()));*/
+                        Navigator.pop(context);
                       } else {
                         error = 'Invalid Password';
                       }

@@ -55,7 +55,7 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 50),
+        padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 50),
         child: Container(
           height: double.maxFinite,
           child: Center(
@@ -99,7 +99,7 @@ class _HomeState extends State<Home> {
                   onPressed: () =>
                       Navigator.pushNamed(context, '/intermediate'),
                   icon: Icon(
-                    Icons.people_sharp,
+                    Icons.people,
                     size: 50,
                     color: Colors.white,
                   ),
