@@ -29,30 +29,11 @@ class Wrapper extends StatefulWidget {
 }
 
 class _WrapperState extends State<Wrapper> {
-  Timer _timer;
-  @override
-  void initState() {
-    super.initState();
-    Future(() async {
-      Timer.periodic(Duration(seconds: 5), (timer) async {
-        FirebaseAuth.instance.currentUser..reload();
-
-        setState(() {
-          if (FirebaseAuth.instance.currentUser.emailVerified) {
-            IsVerified.verification =
-                FirebaseAuth.instance.currentUser.emailVerified;
-          }
-        });
-      });
-    });
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserID>(context);
-    useri() async {
-      return await user;
-    }
 
     if (user == null) {
       return Authenticate();

@@ -78,8 +78,11 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                           await AuthService().validatepass(_oldPassword);
                       if (passwordvalid) {
                         AuthService().updatepass(_newPassword);
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => DoctorProfile()));
+                        //====when using push masterial page rout to the profle
+                        // there will be routing errors
+                        /*Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => DoctorProfile()));*/
+                        Navigator.pop(context);
                       } else {
                         error = 'Invalid Password';
                       }

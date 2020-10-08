@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/pages/patient_pages/patient_risk_factors.dart';
@@ -15,7 +16,10 @@ class _PatientComplainState extends State<PatientComplain> {
     color: Colors.black,
   );
   final ageController = TextEditingController();
-
+  String age='';
+  getage(){
+      FinalScore.age=int.parse(age);
+  }
   // --------------------Radio Buttons--------------------
   List gender = ['Male', 'Female'];
   String select = '';
@@ -1287,6 +1291,11 @@ class _PatientComplainState extends State<PatientComplain> {
                       TextField(
                           keyboardType: TextInputType.number,
                           controller: ageController,
+                          onChanged: (ageController){
+                            setState(() {
+                              age=ageController.toString();
+                            });
+                          },
                           autocorrect: true,
                           decoration: InputDecoration(
                             hintText: 'Enter Your Age in Years...',
@@ -2060,6 +2069,7 @@ class _PatientComplainState extends State<PatientComplain> {
                     child: RaisedButton(
                       color: Colors.deepOrange,
                       onPressed: () {
+                        getage();
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => PatientRisks(
                                   chiehcomplaint: value01,

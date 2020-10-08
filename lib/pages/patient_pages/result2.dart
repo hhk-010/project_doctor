@@ -55,10 +55,10 @@ class _TheProfileState extends State<TheProfile> {
     double result = 0.0;
     if (doctorListProvider != null) {
       for (var docu in doctorListProvider.docs) {
-        sum = ((docu.data()['lat'] - myvariables.lat) *
-                (docu.data()['lat'] - myvariables.lat)) +
-            ((docu.data()['lng'] - myvariables.long) *
-                (docu.data()['lng'] - myvariables.long));
+        sum = ((docu.data()['lat'] - MyVariables.lat) *
+                (docu.data()['lat'] - MyVariables.lat)) +
+            ((docu.data()['lng'] - MyVariables.long) *
+                (docu.data()['lng'] - MyVariables.long));
         result = sqrt(sum);
 
         if (result > distance &&
@@ -70,10 +70,10 @@ class _TheProfileState extends State<TheProfile> {
         }
       }
       for (var docu in doctorListProvider.docs) {
-        sum = ((docu.data()['lat'] - myvariables.lat) *
-                (docu.data()['lat'] - myvariables.lat)) +
-            ((docu.data()['lng'] - myvariables.long) *
-                (docu.data()['lng'] - myvariables.long));
+        sum = ((docu.data()['lat'] - MyVariables.lat) *
+                (docu.data()['lat'] - MyVariables.lat)) +
+            ((docu.data()['lng'] - MyVariables.long) *
+                (docu.data()['lng'] - MyVariables.long));
         result = sqrt(sum);
 
         if (result <= distance &&
