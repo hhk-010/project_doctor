@@ -107,7 +107,7 @@ class _MyAppState extends State<MyApp> {
           '/result2': (context) => Result2(),
           '/patmap': (context) => PatientMap(),
           '/doctorlocate': (context) => Doclocmap(),
-          '/verify': (context) => Verify()
+          '/email_verfication': (context) => EmailVerification()
         },
       );
     }
