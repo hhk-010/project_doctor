@@ -20,9 +20,11 @@ final List<String> specialities = [
   'Endocrinologist',
   'Enterologist',
   'General Surgeon',
+  'Pediatric Surgeon',
   'Thoracic Surgeon',
   'Emergency Department',
   'Internist',
+  'Pediatrician',
   'Gynecologist',
   'Rheumatologist',
   'Nephrologist',
@@ -47,14 +49,6 @@ void choiceAction(String choice) async {
   }
 }
 
-//Iraq Mobile Number Validator
-String validateMobile(String value) {
-  if (value.length != 11)
-    return 'Mobile Number must be of 11 digit';
-  else
-    return null;
-}
-
 class _DoctorFormState extends State<DoctorForm> {
   String email;
   String password;
@@ -62,6 +56,7 @@ class _DoctorFormState extends State<DoctorForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
@@ -71,145 +66,129 @@ class _DoctorFormState extends State<DoctorForm> {
         ),
         centerTitle: true,
         elevation: 0,
-        actions: [
-          PopupMenuButton<String>(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
-              onSelected: choiceAction,
-              itemBuilder: (BuildContext context) {
-                return PopUpMenuConstants.choices.map((String choice) {
-                  return PopupMenuItem(
-                    value: choice,
-                    child: Text(choice),
-                  );
-                }).toList();
-              }),
-        ],
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 60, horizontal: 40),
+        padding: EdgeInsets.symmetric(vertical: 75, horizontal: 50),
         child: Form(
           key: _formKey,
-          child: SingleChildScrollView(
-            child: Container(
-              child: Column(
-                children: [
-                  TextFormField(
-                    decoration: textInputdecoration.copyWith(
-                      hintText: AppLocalizations.of(context)
-                          .translate('doctor_form_name'),
-                      labelText: AppLocalizations.of(context)
-                          .translate('doctor_form_name'),
+          child: Container(
+            height: double.maxFinite,
+            child: Column(
+              children: [
+                TextFormField(
+                  decoration: textInputdecoration.copyWith(
+                    hintText: AppLocalizations.of(context)
+                        .translate('doctor_form_name'),
+                    labelText: AppLocalizations.of(context)
+                        .translate('doctor_form_name'),
+                  ),
+                  validator: (val) => val.isEmpty ? 'Enter Your Name' : null,
+                  onChanged: (val) => setState(() => currentName = val),
+                ),
+                Spacer(),
+                DropdownButtonFormField<String>(
+                  value: currentSpeciality,
+                  decoration: textInputdecoration,
+                  hint: Text(
+                    AppLocalizations.of(context)
+                        .translate('doctor_form_speciality'),
+                  ),
+                  dropdownColor: Colors.grey[200],
+                  elevation: 5,
+                  icon: Icon(Icons.arrow_drop_down),
+                  isExpanded: true,
+                  items: specialities.map((speciality) {
+                    return DropdownMenuItem(
+                      value: speciality,
+                      child: Text('$speciality'),
+                    );
+                  }).toList(),
+                  validator: (value) =>
+                      value == null ? "Choose Your Speciality" : null,
+                  onChanged: (val) => setState(() => currentSpeciality = val),
+                ),
+                Spacer(),
+                TextFormField(
+                  onChanged: (val) => setState(() => currentPhoneNumber = val),
+                  keyboardType: TextInputType.phone,
+                  decoration: textInputdecoration.copyWith(
+                    hintText: AppLocalizations.of(context)
+                        .translate('doctor_form_phoneNumber'),
+                    labelText: AppLocalizations.of(context)
+                        .translate('doctor_form_phoneNumber'),
+                  ),
+                  validator: (val) => val.length < 11
+                      ? 'Phone Number should be 11 digits'
+                      : null,
+                ),
+                Spacer(),
+                TextFormField(
+                  validator: (val) =>
+                      val.isEmpty ? 'Enter your province' : null,
+                  onChanged: (val) => setState(() => currentProvince = val),
+                  decoration: textInputdecoration.copyWith(
+                    hintText: AppLocalizations.of(context)
+                        .translate('doctor_form_province'),
+                    labelText: AppLocalizations.of(context)
+                        .translate('doctor_form_province'),
+                  ),
+                ),
+                Spacer(
+                  flex: 5,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Set up Your Clinic Location',
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    validator: (value) =>
-                        value == null ? 'Enter Your Name Please' : null,
-                    onChanged: (val) => setState(() => currentName = val),
-                  ),
-                  SizedBox(height: 25.0),
-                  DropdownButtonFormField<String>(
-                    value: currentSpeciality,
-                    decoration: textInputdecoration,
-                    hint: Text(
-                      AppLocalizations.of(context)
-                          .translate('doctor_form_speciality'),
+                    Icon(
+                      Icons.arrow_downward,
+                      size: 20,
                     ),
-                    dropdownColor: Colors.grey[200],
-                    elevation: 5,
-                    icon: Icon(Icons.arrow_drop_down),
-                    isExpanded: true,
-                    items: specialities.map((speciality) {
-                      return DropdownMenuItem(
-                        value: speciality,
-                        child: Text('$speciality'),
-                      );
-                    }).toList(),
-                    validator: (value) => value == null
-                        ? AppLocalizations.of(context)
-                            .translate('doctor_form_speciality')
-                        : null,
-                    onChanged: (val) => setState(() => currentSpeciality = val),
-                  ),
-                  SizedBox(height: 25.0),
-                  TextFormField(
-                      onChanged: (val) =>
-                          setState(() => currentPhoneNumber = val),
-                      keyboardType: TextInputType.phone,
-                      decoration: textInputdecoration.copyWith(
-                        hintText: AppLocalizations.of(context)
-                            .translate('doctor_form_phoneNumber'),
-                        labelText: AppLocalizations.of(context)
-                            .translate('doctor_form_phoneNumber'),
-                      ),
-                      validator: validateMobile),
-                  SizedBox(height: 25.0),
-                  TextFormField(
-                    validator: (_value) =>
-                        _value == null ? 'Enter your province' : null,
-                    onChanged: (val) => setState(() => currentProvince = val),
-                    decoration: textInputdecoration.copyWith(
-                      hintText: AppLocalizations.of(context)
-                          .translate('doctor_form_province'),
-                      labelText: AppLocalizations.of(context)
-                          .translate('doctor_form_province'),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                ButtonTheme(
+                  minWidth: double.infinity,
+                  child: RaisedButton.icon(
+                    color: Colors.deepOrange,
+                    icon: Icon(
+                      Icons.arrow_forward,
+                      color: Colors.white,
                     ),
-                  ),
-                  SizedBox(
-                    height: 100,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'Set up Your Clinic Location',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Icon(
-                        Icons.arrow_downward,
-                        size: 20,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  ButtonTheme(
-                    minWidth: double.infinity,
-                    child: RaisedButton.icon(
-                      color: Colors.deepOrange,
-                      icon: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(80.0)),
-                      onPressed: () async {
-                        if (_formKey.currentState.validate()) {
-                          if (currentName != null &&
-                              currentSpeciality != null &&
-                              currentPhoneNumber != null &&
-                              currentProvince != null) {
-                            await Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => DocMap(
-                                      email: email,
-                                      password: password,
-                                      name: currentName,
-                                      speciality: currentSpeciality,
-                                      phone: currentPhoneNumber,
-                                      province: currentProvince,
-                                    )));
-                          }
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(80.0)),
+                    onPressed: () async {
+                      if (_formKey.currentState.validate()) {
+                        if (currentName != null &&
+                            currentSpeciality != null &&
+                            currentPhoneNumber != null &&
+                            currentProvince != null) {
+                          await Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => DocMap(
+                                    email: email,
+                                    password: password,
+                                    name: currentName,
+                                    speciality: currentSpeciality,
+                                    phone: currentPhoneNumber,
+                                    province: currentProvince,
+                                  )));
                         }
-                      },
-                      label: Text(
-                        'Google Map',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
+                      }
+                    },
+                    label: Text(
+                      'Google Map',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
-                ],
-              ),
+                )
+              ],
             ),
           ),
         ),

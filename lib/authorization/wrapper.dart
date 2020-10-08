@@ -1,7 +1,6 @@
-import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/authorization/verify.dart';
+import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:provider/provider.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/auth.dart';
@@ -29,8 +28,6 @@ class Wrapper extends StatefulWidget {
 }
 
 class _WrapperState extends State<Wrapper> {
- 
-
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserID>(context);

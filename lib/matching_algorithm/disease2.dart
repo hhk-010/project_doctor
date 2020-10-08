@@ -203,7 +203,7 @@ maindisease2(
       'anal incontinence',
       'perianal itching',
       'anorexia',
-      'null',
+      'perianal pain',
       'malignancy');
   var breast = Disease2(
       'breast disease',

@@ -42,7 +42,8 @@ maindisease7(
     String inact,
     String fam,
     String alcohol,
-    String smok,String gender) {
+    String smok,
+    String gender) {
   var ophth = disease7(
       'ophthalmic disease',
       'blurred vision',
@@ -115,7 +116,7 @@ maindisease7(
       'skin pigmentation',
       'other dermatological problems');
   var derma2 = disease7('dermatology', 'skin lesion', 'skin rash',
-      'nail problems', 'null', 'null', 'null', 'null', 'null');
+      'nail problems', 'dry skin', 'dry hair', 'skin lesion', 'null', 'null');
   var derma3 = disease7(
       'dermatology',
       'skin appendage',
@@ -127,7 +128,7 @@ maindisease7(
       'skin pigmentation',
       'other dermatological problems');
   var derma4 = disease7('dermatology', 'skin lesion', 'skin rash',
-      'nail problems', 'null', 'null', 'null', 'null', 'null');
+      'nail problems', 'dry skin', 'dry hair', 'skin lesion', 'null', 'null');
   var derma5 = disease7(
       'dermatology',
       'skin appendage',
@@ -139,7 +140,7 @@ maindisease7(
       'skin pigmentation',
       'other dermatological problems');
   var derma6 = disease7('dermatology', 'skin lesion', 'skin rash',
-      'nail problems', 'null', 'null', 'null', 'null', 'null');
+      'nail problems', 'dry skin', 'dry hair', 'skin lesion', 'null', 'null');
 
   var psych = disease7(
       'psychaitry',
@@ -156,9 +157,9 @@ maindisease7(
       'stress',
       'psychological trauma',
       'addiction',
-      'enuresis',
+      'null',
       'incorporesis',
-      'polyphagia',
+      'null',
       'other psychological problems',
       'null');
   var psych3 = disease7(
@@ -176,9 +177,9 @@ maindisease7(
       'stress',
       'psychological trauma',
       'addiction',
-      'enuresis',
+      'null',
       'incorporesis',
-      'polyphagia',
+      'null',
       'other psychological problems',
       'null');
   var psych5 = disease7(
@@ -196,9 +197,9 @@ maindisease7(
       'stress',
       'psychological trauma',
       'addiction',
-      'enuresis',
+      'null',
       'incorporesis',
-      'polyphagia',
+      'null',
       'other psychological problems',
       'null');
 
@@ -246,7 +247,7 @@ maindisease7(
   var ent9 = disease7('ent', 'ear redness', 'other ent problems', 'null',
       'null', 'null', 'null', 'null', 'null');
 
-  var optha = [ophth, ophth2,ophth3,ophth4,ophth5,ophth6];
+  var optha = [ophth, ophth2, ophth3, ophth4, ophth5, ophth6];
   var op = 0;
   var opt = optha.length;
   var opsym = [
@@ -262,7 +263,7 @@ maindisease7(
   var opkey = 0;
   var oplen = opsym.length;
 
-  var psyc = [psych, psych2,psych3,psych4,psych5,psych6];
+  var psyc = [psych, psych2, psych3, psych4, psych5, psych6];
   var psy = 0;
   var pslen = psyc.length;
   var psysym = [
@@ -278,7 +279,7 @@ maindisease7(
   var psylen = psysym.length;
   var psykey = 0;
 
-  var derm = [derma, derma2,derma3,derma4,derma5,derma6];
+  var derm = [derma, derma2, derma3, derma4, derma5, derma6];
   var d = 0;
   var dd = derm.length;
   var dersym = [
@@ -294,7 +295,7 @@ maindisease7(
   var derkey = 0;
   var derlen = dersym.length;
 
-  var ents = [ent, ent2, ent3,ent4,ent5,ent6,ent7,ent8,ent9];
+  var ents = [ent, ent2, ent3, ent4, ent5, ent6, ent7, ent8, ent9];
   var e = 0;
   var ee = ents.length;
   var entsym = [
@@ -333,7 +334,8 @@ maindisease7(
     fam,
     inact,
     smok,
-    alcohol,gender
+    alcohol,
+    gender
   ];
   var o = 0;
   var oo = others.length;

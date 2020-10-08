@@ -55,73 +55,78 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 50),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              RaisedButton.icon(
-                onPressed: () => Navigator.pushNamed(context, '/patient'),
-                icon: Icon(
-                  Icons.search,
-                  size: 50,
-                  color: Colors.white,
-                ),
-                label: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: RichText(
-                    text: TextSpan(children: [
-                      TextSpan(
-                          text: 'Iam a Patient\n',
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white)),
-                      TextSpan(
-                          text: 'I want to Search',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white)),
-                    ]),
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 75),
+        child: Container(
+          height: double.maxFinite,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                RaisedButton.icon(
+                  onPressed: () => Navigator.pushNamed(context, '/patient'),
+                  icon: Icon(
+                    Icons.search,
+                    size: 50,
+                    color: Colors.white,
                   ),
-                ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(80.0)),
-                color: Colors.deepOrange,
-              ),
-              SizedBox(height: 50),
-              RaisedButton.icon(
-                onPressed: () => Navigator.pushNamed(context, '/intermediate'),
-                icon: Icon(
-                  Icons.people,
-                  size: 50,
-                  color: Colors.white,
-                ),
-                label: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: RichText(
-                    text: TextSpan(children: [
-                      TextSpan(
-                          text: 'Iam a Doctor\n',
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white)),
-                      TextSpan(
-                          text: 'I want to Register',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white)),
-                    ]),
+                  label: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: RichText(
+                      text: TextSpan(children: [
+                        TextSpan(
+                            text: 'Iam a Patient\n',
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white)),
+                        TextSpan(
+                            text: 'I want to Search',
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white)),
+                      ]),
+                    ),
                   ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(80.0)),
+                  color: Colors.deepOrange,
                 ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(80.0)),
-                color: Colors.deepOrange,
-              ),
-            ],
+                RaisedButton.icon(
+                  onPressed: () =>
+                      Navigator.pushNamed(context, '/intermediate'),
+                  icon: Icon(
+                    Icons.people,
+                    size: 50,
+                    color: Colors.white,
+                  ),
+                  label: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: RichText(
+                      text: TextSpan(children: [
+                        TextSpan(
+                            text: 'Iam a Doctor\n',
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white)),
+                        TextSpan(
+                            text: 'I want to Register',
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white)),
+                      ]),
+                    ),
+                  ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(80.0)),
+                  color: Colors.deepOrange,
+                ),
+              ],
+            ),
           ),
         ),
       ),

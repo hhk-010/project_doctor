@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
-import 'package:project_doctor/pages/patient_pages/Patientmap.dart';
 import 'package:project_doctor/pages/patient_pages/docLocmap.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
