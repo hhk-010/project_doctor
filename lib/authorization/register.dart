@@ -79,8 +79,8 @@ class _RegisterState extends State<Register> {
                         height: 20.0,
                       ),
                       TextFormField(
-                        validator: (val) => val.length < 6
-                            ? 'Enter a password 6 or long'
+                        validator: (val) => val.length < 8
+                            ? 'Enter a password 8 or long'
                             : null,
                         obscureText: true,
                         onChanged: (val) {

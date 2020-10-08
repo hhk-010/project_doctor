@@ -161,7 +161,7 @@ maindisease2(
   var periton = Disease2('peritonitis', 'abdominal pain', 'nausea', 'vomiting',
       'fever', 'null', 'null', 'null', 'null');
   var periab = Disease2('peritoneal abscess', 'abdominal pain', 'fever',
-      'anorexia', 'hiccough', 'null', 'null', 'null', 'null');
+      'anorexia', 'hiccough', 'hiccough', 'null', 'null', 'null');
   //portal hypertension and upper GI bleeding will be left
   var obs = Disease2('intestinal obstruction', 'abdominal pain', 'constipation',
       'abdominal distension', 'vomiting', 'malignancy', 'null', 'null', 'null');
