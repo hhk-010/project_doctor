@@ -16,10 +16,11 @@ class _PatientComplainState extends State<PatientComplain> {
     color: Colors.black,
   );
   final ageController = TextEditingController();
-  String age='';
-  getage(){
-      FinalScore.age=int.parse(age);
+  String age = '';
+  getage() {
+    FinalScore.age = int.parse(age);
   }
+
   // --------------------Radio Buttons--------------------
   List gender = ['Male', 'Female'];
   String select = '';
@@ -1291,9 +1292,9 @@ class _PatientComplainState extends State<PatientComplain> {
                       TextField(
                           keyboardType: TextInputType.number,
                           controller: ageController,
-                          onChanged: (ageController){
+                          onChanged: (ageController) {
                             setState(() {
-                              age=ageController.toString();
+                              age = ageController.toString();
                             });
                           },
                           autocorrect: true,
@@ -2071,7 +2072,7 @@ class _PatientComplainState extends State<PatientComplain> {
                       onPressed: () {
                         getage();
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => PatientRisks(
+                            builder: (context) => PatientRiskFactors(
                                   chiehcomplaint: value01,
                                   sym2: value02,
                                   sym3: value03,

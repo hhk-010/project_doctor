@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/forget_password.dart';
 import 'package:project_doctor/authorization/loading.dart';
@@ -83,7 +84,7 @@ class _SignInState extends State<SignIn> {
                     Spacer(),
                     TextFormField(
                       validator: (val) => val.length < 8
-                          ? 'password should contain more than 8 characters'
+                          ? 'password should be > 8 Character'
                           : null,
                       obscureText: !_passwordVisible,
                       onChanged: (val) {
@@ -121,18 +122,16 @@ class _SignInState extends State<SignIn> {
                         onPressed: _isInternet
                             ? () async {
                                 if (_formKey.currentState.validate()) {
-                                  setState(
-                                    () => loading = true,
-                                  );
-                                  dynamic result =
-                                      await _auth.signInWithEmailAndPassword(
-                                          email, password);
-                                  if (result == null) {
+                                  try {
+                                    _auth.signInWithEmailAndPassword(
+                                        email, password);
+                                    setState(() => loading = true);
+                                  } on FirebaseAuthException catch (e) {
                                     setState(() {
-                                      error =
-                                          'could not signed in with those credentials';
                                       loading = false;
                                     });
+                                    Scaffold.of(context).showSnackBar(
+                                        SnackBar(content: Text(e.message)));
                                   }
                                 }
                               }

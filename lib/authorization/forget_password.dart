@@ -67,10 +67,10 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     if (_formkey.currentState.validate()) {
                       await FirebaseAuth.instance
                           .sendPasswordResetEmail(email: email);
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              PasswordResetContinue(email: email)));
                     }
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            PasswordResetContinue(email: email)));
                   },
                 ),
               ],
@@ -102,7 +102,9 @@ class PasswordResetContinue extends StatelessWidget {
           SizedBox(
             height: 150,
             child: Image(
-              image: AssetImage('assets/images/password.png'),
+              image: AssetImage(
+                'assets/images/password.png',
+              ),
             ),
           ),
           Spacer(
