@@ -11,7 +11,7 @@ import 'package:project_doctor/matching_algorithm/disease6.dart';
 import 'package:project_doctor/matching_algorithm/disease7.dart';
 
 class PatientRiskFactors extends StatefulWidget {
-  final String chiehcomplaint;
+  final String chiefcomplaint;
   final String sym2;
   final String sym3;
   final String sym4;
@@ -20,7 +20,7 @@ class PatientRiskFactors extends StatefulWidget {
   final String sym7;
   final String gender;
   PatientRiskFactors(
-      {this.chiehcomplaint,
+      {this.chiefcomplaint,
       this.sym2,
       this.sym3,
       this.sym4,
@@ -30,7 +30,7 @@ class PatientRiskFactors extends StatefulWidget {
       this.gender});
   @override
   _PatientRiskFactorsState createState() => _PatientRiskFactorsState(
-      cc: chiehcomplaint,
+      cc: chiefcomplaint,
       s2: sym2,
       s3: sym3,
       s4: sym4,
