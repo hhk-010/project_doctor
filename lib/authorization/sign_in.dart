@@ -7,6 +7,7 @@ import 'dart:io';
 
 class SignIn extends StatefulWidget {
   final Function toogleView;
+  //final Function intermediate;
   SignIn({this.toogleView});
 
   @override
@@ -60,6 +61,15 @@ class _SignInState extends State<SignIn> {
               ),
               centerTitle: true,
               elevation: 0.0,
+              /*actions: [
+                FlatButton.icon(
+                  onPressed: () {
+                    //widget.intermediate();
+                  },
+                  icon: Icon(Icons.arrow_back),
+                  label: Text('Back'),
+                ),
+              ],*/
             ),
             body: Container(
               height: double.maxFinite,

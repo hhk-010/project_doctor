@@ -5,6 +5,7 @@ import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/pages/patient_pages/patient_risk_factors.dart';
 
 class PatientComplain extends StatefulWidget {
+
   @override
   _PatientComplainState createState() => _PatientComplainState();
 }
@@ -16,10 +17,11 @@ class _PatientComplainState extends State<PatientComplain> {
     color: Colors.black,
   );
   final ageController = TextEditingController();
-  String age='';
-  getage(){
-      FinalScore.age=int.parse(age);
+  String age = '';
+  getage() {
+    FinalScore.age = int.parse(age);
   }
+
   // --------------------Radio Buttons--------------------
   List gender = ['Male', 'Female'];
   String select = '';
@@ -1291,9 +1293,9 @@ class _PatientComplainState extends State<PatientComplain> {
                       TextField(
                           keyboardType: TextInputType.number,
                           controller: ageController,
-                          onChanged: (ageController){
+                          onChanged: (ageController) {
                             setState(() {
-                              age=ageController.toString();
+                              age = ageController.toString();
                             });
                           },
                           autocorrect: true,

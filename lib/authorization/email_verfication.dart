@@ -11,12 +11,12 @@ class Verify extends StatefulWidget {
 
 class _VerifyState extends State<Verify> {
   final AuthService _auth = AuthService();
-
+  Timer _timer;
   @override
   void initState() {
     super.initState();
     Future(() async {
-      Timer.periodic(Duration(seconds: 5), (timer) async {
+      _timer= Timer.periodic(Duration(seconds: 50), (timer) async {
         FirebaseAuth.instance.currentUser..reload();
       });
     });
@@ -37,9 +37,10 @@ class _VerifyState extends State<Verify> {
         centerTitle: true,
         actions: [
           IconButton(
-            /*icon: Icon(
-              Icons.logout,
-            ),*/
+            icon: Icon(
+              //========changed beacause it is not defined on my device
+              Icons.account_box,
+            ),
             onPressed: () async {
               await _auth.signOut();
             },
@@ -127,5 +128,12 @@ class _VerifyState extends State<Verify> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    if (_timer!=null){
+      _timer.cancel();
+    }
   }
 }
