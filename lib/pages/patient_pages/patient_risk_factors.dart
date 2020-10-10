@@ -60,354 +60,386 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
       this.gender});
   TextStyle _textStyle = TextStyle(
     fontSize: 18,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.bold,
     color: Colors.black,
   );
-
-  String chronic1 = '';
-  String chronic2 = '';
-  String chronic3 = '';
-  String chronic4 = '';
-  String chronic5 = '';
-  String chronic6 = '';
-  String chronic7 = '';
-  String chronic8 = '';
-  String chronic9 = '';
-  String chronic10 = '';
-  String chronic11 = '';
-  String chronic12 = '';
-  String chronic13 = '';
-  String chronic14 = '';
-  String chronic15 = '';
-  void _showChronicDiseaseMultiSelect(BuildContext context) async {
-    chronic1 = '';
-    chronic2 = '';
-    chronic3 = '';
-    chronic4 = '';
-    chronic5 = '';
-    chronic6 = '';
-    chronic7 = '';
-    chronic8 = '';
-    chronic9 = '';
-    chronic10 = '';
-    chronic11 = '';
-    chronic12 = '';
-    chronic13 = '';
-    chronic14 = '';
-    chronic15 = '';
-    final cdItems = <MultiSelectDialogItem<int>>[
-      MultiSelectDialogItem(
-          1, AppLocalizations.of(context).translate('cd_HTN')),
-      MultiSelectDialogItem(2, AppLocalizations.of(context).translate('cd_DM')),
-      MultiSelectDialogItem(
-          3, AppLocalizations.of(context).translate('cd_heart')),
-      MultiSelectDialogItem(
-          4, AppLocalizations.of(context).translate('cd_heartFailure')),
-      MultiSelectDialogItem(
-          5, AppLocalizations.of(context).translate('cd_ctd')),
-      MultiSelectDialogItem(
-          6, AppLocalizations.of(context).translate('cd_ckd')),
-      MultiSelectDialogItem(
-          7, AppLocalizations.of(context).translate('cd_liver')),
-      MultiSelectDialogItem(
-          8, AppLocalizations.of(context).translate('cd_intestine')),
-      MultiSelectDialogItem(
-          9, AppLocalizations.of(context).translate('cd_epilepsy')),
-      MultiSelectDialogItem(
-          10, AppLocalizations.of(context).translate('cd_cva')),
-      MultiSelectDialogItem(
-          11, AppLocalizations.of(context).translate('cd_thyroid')),
-      MultiSelectDialogItem(
-          12, AppLocalizations.of(context).translate('cd_lung')),
-      MultiSelectDialogItem(
-          13, AppLocalizations.of(context).translate('cd_copd')),
-      MultiSelectDialogItem(
-          14, AppLocalizations.of(context).translate('cd_ashma')),
-      MultiSelectDialogItem(
-          15, AppLocalizations.of(context).translate('cd_tumor')),
-    ];
-
-    final selectedValues = await showDialog<Set<int>>(
-      context: context,
-      builder: (BuildContext context) {
-        return MultiSelectDialog(
-          items: cdItems,
-        );
-      },
-    );
-    var mappy = {1: 'headache', 2: 'abdominal pain'};
-    for (var x in selectedValues) {
-      if (x == 1) {
-        chronic1 = 'HTN';
-      }
-      if (x == 2) {
-        chronic2 = 'DM';
-      }
-      if (x == 3) {
-        chronic3 = 'chronic heart disease';
-      }
-      if (x == 4) {
-        chronic4 = 'heart failure';
-      }
-      if (x == 5) {
-        chronic5 = 'connective tissue disease';
-      }
-      if (x == 6) {
-        chronic6 = 'CKD';
-      }
-      if (x == 7) {
-        chronic7 = 'liver disease';
-      }
-      if (x == 8) {
-        chronic8 = 'chronic intestinal disease';
-      }
-      if (x == 9) {
-        chronic9 = 'epilepsy';
-      }
-      if (x == 10) {
-        chronic10 = 'CVA';
-      }
-      if (x == 11) {
-        chronic11 = 'previous goitre';
-      }
-      if (x == 12) {
-        chronic12 = 'chronic lung disease';
-      }
-      if (x == 13) {
-        chronic13 = 'copd';
-      }
-      if (x == 14) {
-        chronic14 = 'asthma';
-      }
-      if (x == 15) {
-        chronic15 = 'malignancy';
-      }
-    }
-  }
-
   //-----------------checkboxes------------------//
-  bool pregnancy = false;
-  bool obesity = false;
-  bool smoking = false;
-  bool alcoholism = false;
-  bool physicalinactive = false;
-  bool familyhistory = false;
-  String pregnancies = '';
-  String obesities = '';
-  String smoke = '';
+
+  bool htnSelected = false;
+  bool dmSelected = false;
+  bool chdSelected = false;
+  bool hfSelected = false;
+  bool ctdSelected = false;
+  bool ckdSelected = false;
+  bool ldSelected = false;
+  bool cidSelected = false;
+  bool epilepsySelected = false;
+  bool cvaSelected = false;
+  bool goitreSelected = false;
+  bool cldSelected = false;
+  bool copdSelected = false;
+  bool ashmaSelected = false;
+  bool malignancySelected = false;
+
+  String htn = '';
+  String dm = '';
+  String chd = '';
+  String hf = '';
+  String ctd = '';
+  String ckd = '';
+  String ld = '';
+  String cid = '';
+  String epilepsy = '';
+  String cva = '';
+  String goitre = '';
+  String cld = '';
+  String copd = '';
+  String ashma = '';
+  String malignancy = '';
+  bool pregnancySelected = false;
+  bool obesitySelected = false;
+  bool smokingSelected = false;
+  bool alcoholismSelected = false;
+  bool physicalinactiveSelected = false;
+  bool familyhistorySelected = false;
+  String pregnancy = '';
+  String obesity = '';
+  String smoking = '';
   String alcohol = '';
-  String inactive = '';
-  String familyhx = '';
+  String inactivity = '';
+  String familyHistory = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: Text(
-          'Fill The Data',
-          style: TextStyle(fontSize: 25.0),
+          'Choose one or more',
+          style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
+        elevation: 0,
       ),
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 40.0),
           child: Column(
             children: [
-              SizedBox(height: 15),
               Container(
                 decoration: boxDecorationPatient,
-                child: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                                AppLocalizations.of(context)
-                                    .translate('patient_chronic_diseases'),
-                                style: _textStyle),
-                          ),
-                          FlatButton(
-                            onPressed: () =>
-                                _showChronicDiseaseMultiSelect(context),
-                            color: Colors.deepOrange,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(80.0)),
-                            child: Text(
-                              AppLocalizations.of(context)
-                                  .translate('patient_dialogue_list_button'),
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.white),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Container(
-                decoration: boxDecorationPatient,
-                padding: EdgeInsets.all(8),
+                padding: EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          'Obesity',
-                          style: TextStyle(fontSize: 18.0),
-                        ),
-                        Checkbox(
-                            value: obesity,
-                            onChanged: (val) {
-                              setState(() {
-                                obesity = val;
-                                if (obesity) {
-                                  obesities = 'obesity';
-                                } else {
-                                  obesities = null;
-                                }
-                                print(obesities);
-                              });
-                            }),
-                        Text(
-                          'Physical inactivity',
-                          style: TextStyle(fontSize: 18.0),
-                        ),
-                        Checkbox(
-                          value: physicalinactive,
-                          onChanged: (val) {
-                            setState(() {
-                              physicalinactive = val;
-                              if (physicalinactive) {
-                                inactive = 'physical inactivity';
-                              } else {
-                                inactive = '';
-                              }
-                              print(inactive);
-                            });
-                          },
-                        ),
-                      ],
+                    Text(
+                      'Long-Term Diseaes',
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
-                      height: 15.0,
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 2,
+                      indent: 30,
+                      endIndent: 30,
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          'Pregnancy',
-                          style: TextStyle(fontSize: 18.0),
+                    CheckboxListTile(
+                        title: Text(
+                          'Hypertension',
+                          style: _textStyle,
                         ),
-                        SizedBox(
-                          width: 11.0,
-                        ),
-                        Checkbox(
-                            value: pregnancy,
-                            onChanged: (val) {
-                              setState(() {
-                                pregnancy = val;
-                                if (pregnancy) {
-                                  pregnancies = 'pregnancy';
-                                } else {
-                                  pregnancies = '';
-                                }
-                                print(pregnancies);
-                              });
-                            }),
-                        SizedBox(
-                          width: 21.0,
-                        ),
-                        Text(
-                          'Alcoholism',
-                          style: TextStyle(fontSize: 18.0),
-                        ),
-                        SizedBox(
-                          width: 11.0,
-                        ),
-                        Checkbox(
-                          value: alcoholism,
-                          onChanged: (val) {
-                            setState(() {
-                              alcoholism = val;
-                              if (alcoholism) {
-                                alcohol = 'alcoholism';
-                              } else {
-                                alcohol = '';
-                              }
-                              print(alcohol);
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15.0,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Smoking',
-                          style: TextStyle(fontSize: 18.0),
-                        ),
-                        SizedBox(
-                          width: 11.0,
-                        ),
-                        Checkbox(
-                            value: smoking,
-                            onChanged: (val) {
-                              setState(() {
-                                smoking = val;
-                                if (smoking) {
-                                  smoke = 'smoking';
-                                } else {
-                                  smoke = '';
-                                }
-                                print(smoke);
-                              });
-                            }),
-                        SizedBox(
-                          width: 21.0,
-                        ),
-                        Text(
-                          'Family history',
-                          style: TextStyle(fontSize: 18.0),
-                        ),
-                        SizedBox(
-                          width: 11.0,
-                        ),
-                        Checkbox(
-                          value: familyhistory,
-                          onChanged: (val) {
-                            setState(() {
-                              familyhistory = val;
-                              if (familyhistory) {
-                                familyhx = 'family history';
-                              } else {
-                                familyhx = '';
-                              }
-                              print(familyhx);
-                            });
-                          },
-                        ),
-                      ],
-                    ),
+                        value: htnSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            htnSelected = val;
+                            if (htnSelected) {
+                              htn = 'HTN';
+                            } else {
+                              htn = null;
+                            }
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Diabetus Mellitus', style: _textStyle),
+                        value: dmSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            dmSelected = val;
+                            if (dmSelected) {
+                              dm = 'DM';
+                            } else {
+                              dm = '';
+                            }
+                            print(dm);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Chronic Heart Disease', style: _textStyle),
+                        value: chdSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            chdSelected = val;
+                            if (chdSelected) {
+                              chd = 'chronic heart disease';
+                            } else {
+                              chd = '';
+                            }
+                            print(chd);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Heart Failure', style: _textStyle),
+                        value: hfSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            hfSelected = val;
+                            if (hfSelected) {
+                              hf = 'heart failure';
+                            } else {
+                              hf = '';
+                            }
+                            print(hf);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title:
+                            Text('Chronic Kideny Disease', style: _textStyle),
+                        value: ckdSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            ckdSelected = val;
+                            if (ckdSelected) {
+                              ckd = 'CKD';
+                            } else {
+                              ckd = '';
+                            }
+                            print(ckd);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Liver Disease', style: _textStyle),
+                        value: ldSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            ldSelected = val;
+                            if (ldSelected) {
+                              ld = 'liver disease';
+                            } else {
+                              ld = '';
+                            }
+                            print(ld);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Chronic Lung Disease', style: _textStyle),
+                        value: cldSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            cldSelected = val;
+                            if (cldSelected) {
+                              cld = 'chronic lung disease';
+                            } else {
+                              cld = '';
+                            }
+                            print(cld);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Asthma', style: _textStyle),
+                        value: ashmaSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            ashmaSelected = val;
+                            if (ashmaSelected) {
+                              ashma = 'asthma';
+                            } else {
+                              ashma = '';
+                            }
+                            print(ashma);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Previous Goitre', style: _textStyle),
+                        value: goitreSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            goitreSelected = val;
+                            if (goitreSelected) {
+                              goitre = 'previous goitre';
+                            } else {
+                              goitre = '';
+                            }
+                            print(goitre);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Epilepsy', style: _textStyle),
+                        value: epilepsySelected,
+                        onChanged: (val) {
+                          setState(() {
+                            epilepsySelected = val;
+                            if (epilepsySelected) {
+                              epilepsy = 'epilepsy';
+                            } else {
+                              epilepsy = '';
+                            }
+                            print(epilepsy);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Chronic Intestinal Disease',
+                            style: _textStyle),
+                        value: cidSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            cidSelected = val;
+                            if (cidSelected) {
+                              cid = 'chronic intestinal disease';
+                            } else {
+                              cid = '';
+                            }
+                            print(cid);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Stroke', style: _textStyle),
+                        value: cvaSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            cvaSelected = val;
+                            if (cvaSelected) {
+                              cva = 'CVA';
+                            } else {
+                              cva = '';
+                            }
+                            print(cva);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Malignancy', style: _textStyle),
+                        value: malignancySelected,
+                        onChanged: (val) {
+                          setState(() {
+                            malignancySelected = val;
+                            if (malignancySelected) {
+                              malignancy = 'malignancy';
+                            } else {
+                              malignancy = '';
+                            }
+                            print(malignancy);
+                          });
+                        }),
                   ],
                 ),
               ),
-              // Container(
-              //   alignment: Alignment.centerLeft,
-              //   padding: EdgeInsets.all(8),
-              //   decoration: boxDecorationPatient,
-              //   child: ListView(),
-              // ),
               SizedBox(
-                height: 150,
+                height: 25,
+              ),
+              Container(
+                decoration: boxDecorationPatient,
+                padding: EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Text(
+                      'Life Style',
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 2,
+                      indent: 30,
+                      endIndent: 30,
+                    ),
+                    CheckboxListTile(
+                        title: Text(
+                          'Obesity',
+                          style: _textStyle,
+                        ),
+                        value: obesitySelected,
+                        onChanged: (val) {
+                          setState(() {
+                            obesitySelected = val;
+                            if (obesitySelected) {
+                              obesity = 'obesity';
+                            } else {
+                              obesity = null;
+                            }
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Physical Inactivity', style: _textStyle),
+                        value: physicalinactiveSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            physicalinactiveSelected = val;
+                            if (physicalinactiveSelected) {
+                              inactivity = 'physical inactivity';
+                            } else {
+                              inactivity = '';
+                            }
+                            print(inactivity);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Pregnancy', style: _textStyle),
+                        value: pregnancySelected,
+                        onChanged: (val) {
+                          setState(() {
+                            pregnancySelected = val;
+                            if (pregnancySelected) {
+                              pregnancy = 'pregnancy';
+                            } else {
+                              pregnancy = '';
+                            }
+                            print(pregnancy);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Alcoholism', style: _textStyle),
+                        value: alcoholismSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            alcoholismSelected = val;
+                            if (alcoholismSelected) {
+                              alcohol = 'alcoholism';
+                            } else {
+                              alcohol = '';
+                            }
+                            print(alcohol);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Smoking', style: _textStyle),
+                        value: smokingSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            smokingSelected = val;
+                            if (smokingSelected) {
+                              smoking = 'smoking';
+                            } else {
+                              smoking = '';
+                            }
+                            print(smoking);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Family History', style: _textStyle),
+                        value: familyhistorySelected,
+                        onChanged: (val) {
+                          setState(() {
+                            familyhistorySelected = val;
+                            if (familyhistorySelected) {
+                              familyHistory = 'family history';
+                            } else {
+                              familyHistory = '';
+                            }
+                            print(familyHistory);
+                          });
+                        }),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 25,
               ),
               RaisedButton(
                 child: Text('Show Result'),
@@ -420,27 +452,27 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                       s5,
                       s6,
                       s7,
-                      chronic1,
-                      chronic2,
-                      chronic3,
-                      chronic4,
-                      chronic5,
-                      chronic6,
-                      chronic7,
-                      chronic8,
-                      chronic9,
-                      chronic10,
-                      chronic11,
-                      chronic12,
-                      chronic13,
-                      chronic14,
-                      chronic15,
-                      pregnancies,
-                      obesities,
-                      inactive,
-                      familyhx,
+                      htn,
+                      dm,
+                      chd,
+                      hf,
+                      ctd,
+                      ckd,
+                      ld,
+                      cid,
+                      epilepsy,
+                      cva,
+                      goitre,
+                      cld,
+                      copd,
+                      ashma,
+                      malignancy,
+                      pregnancy,
+                      obesity,
+                      inactivity,
+                      familyHistory,
                       alcohol,
-                      smoke,
+                      smoking,
                       gender);
                   maindisease6(
                       cc,
@@ -450,27 +482,27 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                       s5,
                       s6,
                       s7,
-                      chronic1,
-                      chronic2,
-                      chronic3,
-                      chronic4,
-                      chronic5,
-                      chronic6,
-                      chronic7,
-                      chronic8,
-                      chronic9,
-                      chronic10,
-                      chronic11,
-                      chronic12,
-                      chronic13,
-                      chronic14,
-                      chronic15,
-                      pregnancies,
-                      obesities,
-                      inactive,
-                      familyhx,
+                      htn,
+                      dm,
+                      chd,
+                      hf,
+                      ctd,
+                      ckd,
+                      ld,
+                      cid,
+                      epilepsy,
+                      cva,
+                      goitre,
+                      cld,
+                      copd,
+                      ashma,
+                      malignancy,
+                      pregnancy,
+                      obesity,
+                      inactivity,
+                      familyHistory,
                       alcohol,
-                      smoke,
+                      smoking,
                       gender);
                   maindisease3(
                       cc,
@@ -480,27 +512,27 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                       s5,
                       s6,
                       s7,
-                      chronic1,
-                      chronic2,
-                      chronic3,
-                      chronic4,
-                      chronic5,
-                      chronic6,
-                      chronic7,
-                      chronic8,
-                      chronic9,
-                      chronic10,
-                      chronic11,
-                      chronic12,
-                      chronic13,
-                      chronic14,
-                      chronic15,
-                      pregnancies,
-                      obesities,
-                      inactive,
-                      familyhx,
+                      htn,
+                      dm,
+                      chd,
+                      hf,
+                      ctd,
+                      ckd,
+                      ld,
+                      cid,
+                      epilepsy,
+                      cva,
+                      goitre,
+                      cld,
+                      copd,
+                      ashma,
+                      malignancy,
+                      pregnancy,
+                      obesity,
+                      inactivity,
+                      familyHistory,
                       alcohol,
-                      smoke,
+                      smoking,
                       gender);
                   maindisease4(
                       cc,
@@ -510,27 +542,27 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                       s5,
                       s6,
                       s7,
-                      chronic1,
-                      chronic2,
-                      chronic3,
-                      chronic4,
-                      chronic5,
-                      chronic6,
-                      chronic7,
-                      chronic8,
-                      chronic9,
-                      chronic10,
-                      chronic11,
-                      chronic12,
-                      chronic13,
-                      chronic14,
-                      chronic15,
-                      pregnancies,
-                      obesities,
-                      inactive,
-                      familyhx,
+                      htn,
+                      dm,
+                      chd,
+                      hf,
+                      ctd,
+                      ckd,
+                      ld,
+                      cid,
+                      epilepsy,
+                      cva,
+                      goitre,
+                      cld,
+                      copd,
+                      ashma,
+                      malignancy,
+                      pregnancy,
+                      obesity,
+                      inactivity,
+                      familyHistory,
                       alcohol,
-                      smoke,
+                      smoking,
                       gender);
                   maindisease5(
                       cc,
@@ -540,27 +572,27 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                       s5,
                       s6,
                       s7,
-                      chronic1,
-                      chronic2,
-                      chronic3,
-                      chronic4,
-                      chronic5,
-                      chronic6,
-                      chronic7,
-                      chronic8,
-                      chronic9,
-                      chronic10,
-                      chronic11,
-                      chronic12,
-                      chronic13,
-                      chronic14,
-                      chronic15,
-                      pregnancies,
-                      obesities,
-                      inactive,
-                      familyhx,
+                      htn,
+                      dm,
+                      chd,
+                      hf,
+                      ctd,
+                      ckd,
+                      ld,
+                      cid,
+                      epilepsy,
+                      cva,
+                      goitre,
+                      cld,
+                      copd,
+                      ashma,
+                      malignancy,
+                      pregnancy,
+                      obesity,
+                      inactivity,
+                      familyHistory,
                       alcohol,
-                      smoke,
+                      smoking,
                       gender);
                   maindisease7(
                       cc,
@@ -570,27 +602,27 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                       s5,
                       s6,
                       s7,
-                      chronic1,
-                      chronic2,
-                      chronic3,
-                      chronic4,
-                      chronic5,
-                      chronic6,
-                      chronic7,
-                      chronic8,
-                      chronic9,
-                      chronic10,
-                      chronic11,
-                      chronic12,
-                      chronic13,
-                      chronic14,
-                      chronic15,
-                      pregnancies,
-                      obesities,
-                      inactive,
-                      familyhx,
+                      htn,
+                      dm,
+                      chd,
+                      hf,
+                      ctd,
+                      ckd,
+                      ld,
+                      cid,
+                      epilepsy,
+                      cva,
+                      goitre,
+                      cld,
+                      copd,
+                      ashma,
+                      malignancy,
+                      pregnancy,
+                      obesity,
+                      inactivity,
+                      familyHistory,
                       alcohol,
-                      smoke,
+                      smoking,
                       gender);
                   maindisease2(
                       cc,
@@ -600,30 +632,29 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                       s5,
                       s6,
                       s7,
-                      chronic1,
-                      chronic2,
-                      chronic3,
-                      chronic4,
-                      chronic5,
-                      chronic6,
-                      chronic7,
-                      chronic8,
-                      chronic9,
-                      chronic10,
-                      chronic11,
-                      chronic12,
-                      chronic13,
-                      chronic14,
-                      chronic15,
-                      pregnancies,
-                      obesities,
-                      inactive,
-                      familyhx,
+                      htn,
+                      dm,
+                      chd,
+                      hf,
+                      ctd,
+                      ckd,
+                      ld,
+                      cid,
+                      epilepsy,
+                      cva,
+                      goitre,
+                      cld,
+                      copd,
+                      ashma,
+                      malignancy,
+                      pregnancy,
+                      obesity,
+                      inactivity,
+                      familyHistory,
                       alcohol,
-                      smoke,
+                      smoking,
                       gender);
-
-                  Navigator.pushNamed(context, '/result');
+                  Navigator.pushNamed(context, '/patient_location');
                 },
               ),
             ],

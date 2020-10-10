@@ -17,7 +17,6 @@ class _PatientMapState extends State<PatientMap> {
   _PatientMapState({this.speciality, this.province});
 
   var patientlatlng;
-
   List<Marker> _mymarker = [];
 
   handletap(LatLng tappedpoint) {
@@ -43,7 +42,6 @@ class _PatientMapState extends State<PatientMap> {
     var thirdindex = latlng.indexOf(')');
     String lat = latlng.substring(firstindex + 1, secondindex);
     String lng = latlng.substring(secondindex + 1, thirdindex);
-
     patlatt = double.parse(lat);
     patlngg = double.parse(lng);
   }
@@ -68,11 +66,11 @@ class _PatientMapState extends State<PatientMap> {
             onTap: handletap,
           ),
           Container(
-            alignment: Alignment.bottomLeft,
+            alignment: Alignment.bottomCenter,
             padding: EdgeInsets.all(25.0),
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
-              child: Text('S'),
+              child: Text('OK'),
               onPressed: () {
                 geolocate(patientlatlng);
                 setState(() {
@@ -80,7 +78,7 @@ class _PatientMapState extends State<PatientMap> {
                   MyVariables.province = province;
                   MyVariables.lat = patlatt;
                   MyVariables.long = patlngg;
-                  Navigator.pushNamed(context, '/result2');
+                  Navigator.pushNamed(context, '/patient_result');
                 });
               },
             ),

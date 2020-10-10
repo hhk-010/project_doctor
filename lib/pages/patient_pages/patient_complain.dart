@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:project_doctor/services/app_localizations.dart';
@@ -31,7 +30,7 @@ class _PatientComplainState extends State<PatientComplain> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Radio(
-          activeColor: Theme.of(context).primaryColor,
+          activeColor: Colors.deepOrange,
           value: gender[btnValue],
           groupValue: select,
           onChanged: (value) {
@@ -51,13 +50,20 @@ class _PatientComplainState extends State<PatientComplain> {
   bool state = false;
 
   // ----------------Conditional DropDownMenu ------------------
-  String value01 = '';
-  String value02 = '';
-  String value03 = '';
-  String value04 = '';
-  String value05 = '';
-  String value06 = '';
-  String value07 = '';
+  String regionSelected01;
+  String regionSelected02;
+  String regionSelected03;
+  String regionSelected04;
+  String regionSelected05;
+  String regionSelected06;
+  String regionSelected07;
+  String complainSelected01 = "";
+  String complainSelected02 = "";
+  String complainSelected03 = "";
+  String complainSelected04 = "";
+  String complainSelected05 = "";
+  String complainSelected06 = "";
+  String complainSelected07 = "";
   List<DropdownMenuItem<String>> menuitems = List();
   bool disabledropdown01 = true;
   bool disabledropdown02 = true;
@@ -675,7 +681,7 @@ class _PatientComplainState extends State<PatientComplain> {
       populatBreast();
     }
     setState(() {
-      value01 = _value;
+      regionSelected01 = _value;
       disabledropdown01 = false;
     });
   }
@@ -755,7 +761,7 @@ class _PatientComplainState extends State<PatientComplain> {
       populatBreast();
     }
     setState(() {
-      value02 = _value;
+      regionSelected02 = _value;
 
       disabledropdown02 = false;
     });
@@ -836,7 +842,7 @@ class _PatientComplainState extends State<PatientComplain> {
       populatBreast();
     }
     setState(() {
-      value03 = _value;
+      regionSelected03 = _value;
 
       disabledropdown03 = false;
     });
@@ -917,7 +923,7 @@ class _PatientComplainState extends State<PatientComplain> {
       populatBreast();
     }
     setState(() {
-      value04 = _value;
+      regionSelected04 = _value;
 
       disabledropdown04 = false;
     });
@@ -998,7 +1004,7 @@ class _PatientComplainState extends State<PatientComplain> {
       populatBreast();
     }
     setState(() {
-      value05 = _value;
+      regionSelected05 = _value;
 
       disabledropdown05 = false;
     });
@@ -1079,7 +1085,7 @@ class _PatientComplainState extends State<PatientComplain> {
       populatBreast();
     }
     setState(() {
-      value06 = _value;
+      regionSelected06 = _value;
 
       disabledropdown06 = false;
     });
@@ -1160,7 +1166,7 @@ class _PatientComplainState extends State<PatientComplain> {
       populatBreast();
     }
     setState(() {
-      value07 = _value;
+      regionSelected07 = _value;
 
       disabledropdown07 = false;
     });
@@ -1168,54 +1174,44 @@ class _PatientComplainState extends State<PatientComplain> {
 
   void secondselected(_value) {
     setState(() {
-      value01 = _value;
+      complainSelected01 = _value;
     });
   }
 
   void secondselected2(_value) {
     setState(() {
-      value02 = _value;
+      complainSelected02 = _value;
     });
   }
 
   void secondselected3(_value) {
     setState(() {
-      value03 = _value;
+      complainSelected03 = _value;
     });
   }
 
   void secondselected4(_value) {
     setState(() {
-      value04 = _value;
+      complainSelected04 = _value;
     });
   }
 
   void secondselected5(_value) {
     setState(() {
-      value05 = _value;
+      complainSelected05 = _value;
     });
   }
 
   void secondselected6(_value) {
     setState(() {
-      value06 = _value;
+      complainSelected06 = _value;
     });
   }
 
   void secondselected7(_value) {
     setState(() {
-      value07 = _value;
+      complainSelected07 = _value;
     });
-  }
-
-  void val() {
-    print(value01);
-    print(value02);
-    print(value03);
-    print(value04);
-    print(value05);
-    print(value06);
-    print(value07);
   }
 
   bool _visibile01 = false;
@@ -1224,6 +1220,8 @@ class _PatientComplainState extends State<PatientComplain> {
   bool _switch02 = false;
   bool _visibile03 = false;
   bool _switch03 = false;
+
+  var regionSelected = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -1402,6 +1400,7 @@ class _PatientComplainState extends State<PatientComplain> {
                           child: Text("Breast"),
                         ),
                       ],
+                      value: regionSelected01,
                       onChanged: (_value) => selected01(_value),
                       hint: Text(AppLocalizations.of(context)
                           .translate('patient_area_of_choice')),
@@ -1566,6 +1565,7 @@ class _PatientComplainState extends State<PatientComplain> {
                             child: Text("Breast"),
                           ),
                         ],
+                        value: regionSelected02,
                         onChanged: (_value) => selected02(_value),
                         hint: Text(AppLocalizations.of(context)
                             .translate('patient_area_of_choice')),
@@ -1790,13 +1790,13 @@ class _PatientComplainState extends State<PatientComplain> {
                 getage();
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => PatientRiskFactors(
-                          chiefcomplaint: value01,
-                          sym2: value02,
-                          sym3: value03,
-                          sym4: value04,
-                          sym5: value05,
-                          sym6: value06,
-                          sym7: value07,
+                          chiefcomplaint: complainSelected01,
+                          sym2: complainSelected02,
+                          sym3: complainSelected03,
+                          sym4: complainSelected04,
+                          sym5: complainSelected05,
+                          sym6: complainSelected06,
+                          sym7: complainSelected07,
                         )));
               },
             ),
