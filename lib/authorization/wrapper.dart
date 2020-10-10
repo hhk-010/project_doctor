@@ -81,17 +81,15 @@ class _AuthenticateState extends State<Authenticate> {
   @override
   Widget build(BuildContext context) {
     if (showSignIn) {
-      if(showprmcq){
-        return Premcqs(toogleView: toogleView,premcq:premcqtoggle,);
-      }
-      else{
-        if(showmcq){
-          return Mcqs(premcq:premcqtoggle,mcq:mcqtoggle,);
+      if (showprmcq){
+        return Premcqs(premcq:premcqtoggle,toogleView: toogleView,);
+      }else{
+        if (showmcq){
+          return Mcqs(mcq: mcqtoggle,premcq: premcqtoggle,);
         }
-        else{
-          return Register(mcq:mcqtoggle,);
-        }
+        return Register(mcq: mcqtoggle,);
       }
+
     } else {
       return SignIn(toogleView: toogleView);
     }

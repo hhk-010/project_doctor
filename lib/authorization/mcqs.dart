@@ -8,7 +8,8 @@ import 'package:provider/provider.dart';
 class Mcqs extends StatefulWidget {
   final Function premcq;
   final Function mcq;
-  Mcqs({this.premcq, this.mcq});
+  final Function toggleview;
+  Mcqs({this.premcq, this.mcq,this.toggleview});
   @override
   _McqsState createState() => _McqsState();
 }
