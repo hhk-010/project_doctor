@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project_doctor/authorization/email_verfication.dart';
 import '../../services/auth.dart';
 
 class DocMap extends StatefulWidget {
@@ -112,17 +113,9 @@ class _DocMapState extends State<DocMap> {
                 if (lattt != null && lnggg != null) {
                   await _auth.registerWithEmailAndPassword(email, password,
                       name, speciality, phoneNumber, province, lattt, lnggg);
-                  Navigator.pushNamed(context, '/verify');
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => EmailVerification(email: email)));
                 }
-
-                /*DatabaseService(uid: uid).updateUserData(
-                  name,
-                  speciality,
-                  phoneNumber,
-                  province,
-                  lattt,
-                  lnggg,
-                );*/
               },
             ),
           ),

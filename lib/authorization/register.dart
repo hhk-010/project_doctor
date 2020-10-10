@@ -80,7 +80,7 @@ class _RegisterState extends State<Register> {
                       Spacer(),
                       TextFormField(
                         validator: (val) => val.length < 8
-                            ? 'Password should contain more than 8 characters'
+                            ? 'Password should be > 8 characters'
                             : null,
                         obscureText: !_passwordVisible,
                         onChanged: (val) {
@@ -135,8 +135,10 @@ class _RegisterState extends State<Register> {
                                   }
                                 : () {
                                     SnackBar errorSnackBar = SnackBar(
-                                        content:
-                                            Text('No internet Connection'));
+                                        content: Text(
+                                      'No internet Connection',
+                                      style: _textStyle,
+                                    ));
                                     Scaffold.of(context)
                                         .showSnackBar(errorSnackBar);
                                   },

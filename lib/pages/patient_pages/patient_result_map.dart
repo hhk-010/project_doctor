@@ -4,18 +4,19 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 //this file is to show the location of the doctor on the map to the patient
 
-class Doclocmap extends StatefulWidget {
+class PatientResultMap extends StatefulWidget {
   double lat;
   double lng;
-  Doclocmap({this.lat, this.lng});
+  PatientResultMap({this.lat, this.lng});
   @override
-  _DoclocmapState createState() => _DoclocmapState(lat: lat, lng: lng);
+  _PatientResultMapState createState() =>
+      _PatientResultMapState(lat: lat, lng: lng);
 }
 
-class _DoclocmapState extends State<Doclocmap> {
+class _PatientResultMapState extends State<PatientResultMap> {
   double lat;
   double lng;
-  _DoclocmapState({this.lat, this.lng});
+  _PatientResultMapState({this.lat, this.lng});
   Set<Marker> _marker = HashSet<Marker>();
   GoogleMapController _mapController;
   void _onmapcreated(GoogleMapController controller) {

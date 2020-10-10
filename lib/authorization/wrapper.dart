@@ -36,7 +36,7 @@ class _WrapperState extends State<Wrapper> {
       return Authenticate();
     } else {
       if (!FirebaseAuth.instance.currentUser.emailVerified) {
-        return Verify();
+        return EmailVerification();
       } else {
         return DoctorProfile();
       }

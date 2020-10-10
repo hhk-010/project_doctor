@@ -4,12 +4,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/services/auth.dart';
 
-class Verify extends StatefulWidget {
+class EmailVerification extends StatefulWidget {
+  final String email;
+  EmailVerification({this.email});
+
   @override
-  _VerifyState createState() => _VerifyState();
+  _EmailVerificationState createState() =>
+      _EmailVerificationState(email: email);
 }
 
-class _VerifyState extends State<Verify> {
+class _EmailVerificationState extends State<EmailVerification> {
+  String email;
+  _EmailVerificationState({this.email});
   final AuthService _auth = AuthService();
 
   @override
@@ -61,14 +67,14 @@ class _VerifyState extends State<Verify> {
               flex: 3,
             ),
             Text(
-              'We Sent a Confirmation Email to: ',
+              'We Sent an Email to: ',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Spacer(
               flex: 1,
             ),
             Text(
-              'email@gmail.com',
+              '$email',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             Spacer(
