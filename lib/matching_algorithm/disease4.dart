@@ -51,7 +51,7 @@ maindisease4(
       'abdominal pain',
       'vaginal discharge',
       'miscarriage',
-      'null',
+      'menorrhagia',
       'null',
       'pregnancy');
   var gyne = Disease4(
@@ -81,7 +81,7 @@ maindisease4(
       'abdominal pain',
       'vaginal discharge',
       'miscarriage',
-      'null',
+      'menorrhagia',
       'null',
       'pregnancy');
   var gyne3 = Disease4(
@@ -111,7 +111,7 @@ maindisease4(
       'abdominal pain',
       'vaginal discharge',
       'miscarriage',
-      'null',
+      'menorrhagia',
       'null',
       'pregnancy');
   var gyne5 = Disease4(

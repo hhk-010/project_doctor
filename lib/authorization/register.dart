@@ -6,7 +6,8 @@ import '../pages/doctor_pages/doctor_form.dart';
 
 class Register extends StatefulWidget {
   final Function toogleView;
-  Register({this.toogleView});
+  final Function mcq;
+  Register({this.toogleView,this.mcq});
   @override
   _RegisterState createState() => _RegisterState();
 }
@@ -82,6 +83,7 @@ class _RegisterState extends State<Register> {
                         validator: (val) => val.length < 8
                             ? 'Password should be > 8 characters'
                             : null,
+                        //? 'Enter a password 8 or long'
                         obscureText: !_passwordVisible,
                         onChanged: (val) {
                           setState(() => password = val);
@@ -156,7 +158,8 @@ class _RegisterState extends State<Register> {
                       Divider(color: Colors.black),
                       InkWell(
                         onTap: () {
-                          widget.toogleView();
+                          //widget.toogleView();
+                          widget.mcq();
                         },
                         child: RichText(
                           text: new TextSpan(

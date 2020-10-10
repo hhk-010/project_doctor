@@ -17,12 +17,12 @@ class _EmailVerificationState extends State<EmailVerification> {
   String email;
   _EmailVerificationState({this.email});
   final AuthService _auth = AuthService();
-
+  Timer _timer;
   @override
   void initState() {
     super.initState();
     Future(() async {
-      Timer.periodic(Duration(seconds: 5), (timer) async {
+      _timer= Timer.periodic(Duration(seconds: 50), (timer) async {
         FirebaseAuth.instance.currentUser..reload();
       });
     });
@@ -44,7 +44,8 @@ class _EmailVerificationState extends State<EmailVerification> {
         actions: [
           IconButton(
             icon: Icon(
-              Icons.logout,
+              //========changed beacause it is not defined on my device
+              Icons.account_box,
             ),
             onPressed: () async {
               await _auth.signOut();
@@ -133,5 +134,12 @@ class _EmailVerificationState extends State<EmailVerification> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    if (_timer!=null){
+      _timer.cancel();
+    }
   }
 }

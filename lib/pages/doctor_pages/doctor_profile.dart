@@ -32,7 +32,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
           actions: [
             IconButton(
               icon: Icon(
-                Icons.logout,
+                //i changed it because it is not defined on my device
+                Icons.access_alarm,
               ),
               onPressed: () async {
                 await _auth.signOut();
