@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
-import 'package:project_doctor/pages/patient_pages/Patientmap.dart';
+import 'package:project_doctor/pages/patient_pages/patient_map.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:geolocator/geolocator.dart';
 
-class Result extends StatefulWidget {
+class PatientLocation extends StatefulWidget {
   @override
-  _ResultState createState() => _ResultState();
+  _PatientLocationState createState() => _PatientLocationState();
 }
 
-class _ResultState extends State<Result> {
+class _PatientLocationState extends State<PatientLocation> {
   String region = '';
   List<DropdownMenuItem<String>> regions = List();
   final regionsa = {
@@ -138,6 +138,7 @@ class _ResultState extends State<Result> {
     );
   }
 }
+
 class MyVariables {
   static String speciality = '';
   static String speciality2 = '';

@@ -67,11 +67,88 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     if (_formkey.currentState.validate()) {
                       await FirebaseAuth.instance
                           .sendPasswordResetEmail(email: email);
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              PasswordResetContinue(email: email)));
                     }
                   },
                 ),
               ],
             )),
+      ),
+    );
+  }
+}
+
+class PasswordResetContinue extends StatelessWidget {
+  final String email;
+  PasswordResetContinue({this.email});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(
+        backgroundColor: Colors.deepOrange,
+        title: Text(
+          'Password Reset',
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+      ),
+      body: Container(
+        height: double.maxFinite,
+        padding: EdgeInsets.symmetric(vertical: 75.0, horizontal: 50.0),
+        child: Column(children: [
+          SizedBox(
+            height: 150,
+            child: Image(
+              image: AssetImage(
+                'assets/images/password.png',
+              ),
+            ),
+          ),
+          Spacer(
+            flex: 3,
+          ),
+          Text(
+            'We Sent an Email to',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          Spacer(
+            flex: 1,
+          ),
+          Text(
+            '$email',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          Spacer(
+            flex: 2,
+          ),
+          Text(
+            'Check your Email and click on the link to Reset your Password',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
+            textAlign: TextAlign.center,
+          ),
+          Spacer(
+            flex: 3,
+          ),
+          RaisedButton.icon(
+              icon: Icon(
+                Icons.arrow_forward,
+                color: Colors.white,
+              ),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(80.0)),
+              color: Colors.deepOrange,
+              label: Text('Continue',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold)),
+              onPressed: () {
+                Navigator.pushNamed(context, '/intermediate');
+              }),
+        ]),
       ),
     );
   }

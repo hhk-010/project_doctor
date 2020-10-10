@@ -21,7 +21,7 @@ class AuthService {
 
       return _userfromfirebase(user);
     } catch (e) {
-      print(e.toString());
+      print(e.message);
       return null;
     }
   }

@@ -1,19 +1,18 @@
 import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
-import 'package:project_doctor/pages/patient_pages/docLocmap.dart';
+import 'package:project_doctor/pages/patient_pages/patient_result_map.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:project_doctor/pages/patient_pages/result.dart';
+import 'package:project_doctor/pages/patient_pages/patient_location.dart';
 
-class Result2 extends StatefulWidget {
+class PatientResult extends StatefulWidget {
   @override
-  _Result2State createState() => _Result2State();
+  _PatientResultState createState() => _PatientResultState();
 }
 
-class _Result2State extends State<Result2> {
+class _PatientResultState extends State<PatientResult> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
@@ -125,7 +124,7 @@ class _TheProfileState extends State<TheProfile> {
               child: Text('Show Doctor Location'),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Doclocmap(
+                    builder: (context) => PatientResultMap(
                           lat: _lat,
                           lng: _lng,
                         )));
