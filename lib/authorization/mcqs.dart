@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/authorization/premcqs.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
@@ -53,13 +52,13 @@ class _McqsState extends State<Mcqs> {
                       questa.lenght = 4;
                     });
                   }
-                DatabaseService(uid: questa.uid).updateUserData(
-                    questa.counter.toString(),
-                    'counter',
-                    '0101001101010022',
-                    questa.lenght.toString(),
-                    0.0000023003,
-                    0.0000054003);
+                  DatabaseService(uid: questa.uid).updateUserData(
+                      questa.counter.toString(),
+                      'counter',
+                      '0101001101010022',
+                      questa.lenght.toString(),
+                      0.0000023003,
+                      0.0000054003);
                   widget.mcq();
                 }
                 setState(() {
@@ -112,7 +111,7 @@ class _QuestionsState extends State<Questions> {
             Center(
               child: Text(
                 'To register , answer the following :',
-                style: TextStyle(color: Colors.black,fontSize: 20.0),
+                style: TextStyle(color: Colors.black, fontSize: 20.0),
               ),
             ),
             SizedBox(
