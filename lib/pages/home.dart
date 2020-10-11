@@ -65,7 +65,8 @@ class _HomeState extends State<Home> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 RaisedButton.icon(
-                  onPressed: ()=>Navigator.pushNamed(context, '/patient'),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, '/patient_complain'),
                   icon: Icon(
                     Icons.search,
                     size: 50,
