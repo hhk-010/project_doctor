@@ -81,7 +81,7 @@ maindisease1(
   );
   var hf2 = Disease1(
       'heart failure',
-      'bilaterl leg edema',
+      'bilateral leg edema',
       'palpitation',
       'PN dyspnea',
       'heamoptysis',

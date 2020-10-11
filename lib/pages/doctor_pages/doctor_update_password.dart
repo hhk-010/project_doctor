@@ -103,7 +103,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                         //====when using push masterial page rout to the profle
                         // there will be routing errors
                         /*Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => DoctorProfile()));*/
+                                builder: (context) => DoctorProfile()));*/
                         Navigator.pop(context);
                       } else {
                         error = 'Invalid Password';

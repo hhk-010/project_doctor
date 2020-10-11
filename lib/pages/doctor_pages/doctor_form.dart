@@ -167,15 +167,18 @@ class _DoctorFormState extends State<DoctorForm> {
                             currentSpeciality != null &&
                             currentPhoneNumber != null &&
                             currentProvince != null) {
-                          await Navigator.of(context).push(MaterialPageRoute(
+                          await Navigator.of(context).push(
+                            MaterialPageRoute(
                               builder: (context) => DocMap(
-                                    email: email,
-                                    password: password,
-                                    name: currentName,
-                                    speciality: currentSpeciality,
-                                    phone: currentPhoneNumber,
-                                    province: currentProvince,
-                                  )));
+                                email: email,
+                                password: password,
+                                name: currentName,
+                                speciality: currentSpeciality,
+                                phone: currentPhoneNumber,
+                                province: currentProvince,
+                              ),
+                            ),
+                          );
                         }
                       }
                     },
