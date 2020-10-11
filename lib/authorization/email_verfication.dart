@@ -22,7 +22,7 @@ class _EmailVerificationState extends State<EmailVerification> {
   void initState() {
     super.initState();
     Future(() async {
-      _timer= Timer.periodic(Duration(seconds: 50), (timer) async {
+      _timer= Timer.periodic(Duration(seconds: 10), (timer) async {
         FirebaseAuth.instance.currentUser..reload();
       });
     });
@@ -102,7 +102,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                       color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.bold)),
-              onPressed: () async {
+              onPressed: () {
                 if (FirebaseAuth.instance.currentUser.emailVerified) {
                   Navigator.pushNamed(context, '/intermediate');
                 }
@@ -122,7 +122,10 @@ class _EmailVerificationState extends State<EmailVerification> {
                       color: Colors.black,
                       fontWeight: FontWeight.bold),
                   children: <TextSpan>[
-                    new TextSpan(text: " Didn't receive email ?"),
+                    //----text has been changed because if the client clicked resend
+                    // for two time with less than one to twe minutes in between
+                    // firebase will consider it as unusual activity -----
+                    new TextSpan(text: " Didn't receive email ? Please wait for few minutes then "),
                     new TextSpan(
                         text: 'Resent Email',
                         style: new TextStyle(color: Colors.deepOrange)),

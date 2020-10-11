@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class mcqss {
   static var uid;
   static int counter = 0;
-  static int length = 0;
+  static int length = 28;
 }
 
 class Premcqs extends StatefulWidget {
@@ -45,14 +45,14 @@ class _PremcqsState extends State<Premcqs> {
             ),
             FlatButton.icon(
               onPressed: () {
-                if (mcqss.length > 2) {
+                if (mcqss.length > 4) {
                   setState(() {
-                    mcqss.length -= 2;
-                    mcqss.counter += 2;
+                    mcqss.length -= 4;
+                    mcqss.counter += 4;
                   });
                 } else {
                   setState(() {
-                    mcqss.length = 4;
+                    mcqss.length = 28;
                     mcqss.counter = 0;
                   });
                 }
@@ -117,8 +117,20 @@ class _PostpremcqState extends State<Postpremcq> {
                   ),
                   Center(
                     child: Text(
-                      ' Welcome to you in cura , to create a new account click register',
+                      ' Welcome to you in Cura , to',
                       style: TextStyle(fontSize: 20.0, color: Colors.black),
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      'create a new account click',
+                      style: TextStyle(fontSize: 20.0, color: Colors.black),
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      'Register',
+                      style: TextStyle(fontSize: 20.0, color: Colors.deepOrange),
                     ),
                   ),
                   SizedBox(
@@ -139,8 +151,14 @@ class _PostpremcqState extends State<Postpremcq> {
                   ),
                   Center(
                     child: Text(
-                      'If you have an account click sign in',
+                      'If you have an account click',
                       style: TextStyle(fontSize: 20.0, color: Colors.black),
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      'Sign in',
+                      style: TextStyle(fontSize: 20.0, color: Colors.deepOrange),
                     ),
                   ),
                   SizedBox(

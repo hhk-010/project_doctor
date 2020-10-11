@@ -1255,7 +1255,9 @@ class _PatientComplainState extends State<PatientComplain> {
                       decoration: InputDecoration(
                         hintText: 'Enter Your Age in Years',
                         prefixIcon: Icon(
-                          Icons.person_search,
+                          Icons.account_box,
+                          //changed beacause its not defined here , you can return it back
+                          //Icons.person_search,
                           color: Colors.deepOrange,
                         ),
                         filled: true,

@@ -14,7 +14,8 @@ const textInputdecoration = InputDecoration(
 
 var boxDecoration = BoxDecoration(
     gradient: LinearGradient(
-      colors: [Colors.deepOrange[600], Colors.deepOrange[200]],
+      // changed because it is not defined in my device
+      //colors: [Colors.deepOrange[600], Colors.deepOrange[200]],
       begin: Alignment.centerRight,
       end: Alignment.centerLeft,
     ),
