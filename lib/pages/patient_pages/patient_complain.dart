@@ -22,7 +22,7 @@ class _PatientComplainState extends State<PatientComplain> {
     FinalScore.age = int.parse(age);
   }
 
-  // --------------------Radio Buttons--------------------
+  // =============================================Radio Buttons
   List gender = ['Male', 'Female'];
   String select = '';
   Row addRadioButton(int btnValue, String title) {

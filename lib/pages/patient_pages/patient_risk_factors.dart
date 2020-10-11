@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_doctor/services/app_localizations.dart';
-import 'package:project_doctor/constants/multi_selection.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/matching_algorithm/disease1.dart';
 import 'package:project_doctor/matching_algorithm/disease2.dart';
@@ -9,6 +7,9 @@ import 'package:project_doctor/matching_algorithm/disease4.dart';
 import 'package:project_doctor/matching_algorithm/disease5.dart';
 import 'package:project_doctor/matching_algorithm/disease6.dart';
 import 'package:project_doctor/matching_algorithm/disease7.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:project_doctor/matching_algorithm/final_score.dart';
+import 'package:project_doctor/pages/patient_pages/patient_map.dart';
 
 class PatientRiskFactors extends StatefulWidget {
   final String chiefcomplaint;
@@ -108,6 +109,22 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
   String alcohol = '';
   String inactivity = '';
   String familyHistory = '';
+
+  String region = '';
+  List<DropdownMenuItem<String>> regions = List();
+  final regionsa = {
+    '1': 'Baghdad',
+    '2': 'Northern Region',
+    '3': 'Southern Region',
+    '4': 'Western Region'
+  };
+
+  void _getCurrentLocation() async {
+    final Position position = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    print(position);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -440,6 +457,126 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
               ),
               SizedBox(
                 height: 25,
+              ),
+              Container(
+                decoration: boxDecorationPatient,
+                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                child: Column(
+                  children: [
+                    Text(
+                      'Province',
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 2,
+                      indent: 30,
+                      endIndent: 30,
+                    ),
+                    DropdownButton(
+                      value: region,
+                      hint: Text('Select your Province'),
+                      isExpanded: true,
+                      items: [
+                        DropdownMenuItem<String>(
+                          value: "Baghdad",
+                          child: Text("Baghdad"),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: "Northern Region",
+                          child: Text("Northern Region"),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: "Southern Region",
+                          child: Text("Southern Region"),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: "Western Region",
+                          child: Text("Western Region"),
+                        ),
+                      ],
+                      onChanged: (_value) {
+                        setState(() {
+                          region = _value;
+                        });
+                        print(region);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              Container(
+                decoration: boxDecorationPatient,
+                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                child: Column(
+                  children: [
+                    Center(
+                      child: Text(
+                        'to Continue, you Must Specify your current location through the:',
+                        style: TextStyle(
+                            fontSize: 18.0, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 2,
+                      indent: 30,
+                      endIndent: 30,
+                    ),
+                    RaisedButton.icon(
+                      color: Colors.deepOrange,
+                      icon: Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80.0)),
+                      onPressed: () async {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => PatientMap(
+                                  speciality: FinalScore.speciality,
+                                  province: region,
+                                )));
+                      },
+                      label: Text(
+                        'Google Map',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    RaisedButton.icon(
+                      color: Colors.deepOrange,
+                      icon: Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80.0)),
+                      onPressed: () async {
+                        _getCurrentLocation();
+                      },
+                      label: Text(
+                        'Google Map',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 15,
               ),
               RaisedButton(
                 child: Text('Show Result'),
