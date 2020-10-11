@@ -99,12 +99,12 @@ class _MyAppState extends State<MyApp> {
         routes: {
           '/home': (context) => Home(),
           '/intermediate': (context) => Intermediate(),
-          '/patient': (context) => PatientComplain(),
+          '/patient_complain': (context) => PatientComplain(),
           '/doctor_form': (context) => DoctorForm(),
           '/doctor_profile': (context) => DoctorProfile(),
-          '/pt_risk_f': (context) => PatientRiskFactors(),
-          '/result': (context) => PatientLocation(),
-          '/result2': (context) => PatientResult(),
+          '/patient_risk_factors': (context) => PatientRiskFactors(),
+          '/patient_location': (context) => PatientLocation(),
+          '/patient_result': (context) => PatientResult(),
           '/patmap': (context) => PatientMap(),
           '/doctorlocate': (context) => PatientResultMap(),
           '/email_verfication': (context) => EmailVerification()

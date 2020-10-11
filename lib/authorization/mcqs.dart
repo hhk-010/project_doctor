@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/authorization/premcqs.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
