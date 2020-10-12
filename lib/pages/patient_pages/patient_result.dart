@@ -1,11 +1,12 @@
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:project_doctor/pages/patient_pages/patient_result_map.dart';
+import 'package:project_doctor/pages/patient_pages/patient_risk_factors.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:project_doctor/pages/patient_pages/patient_location.dart';
 
 class PatientResult extends StatefulWidget {
   @override
@@ -22,10 +23,11 @@ class _PatientResultState extends State<PatientResult> {
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
           title: Text(
-            'The Result',
+            'Search Result',
             style: TextStyle(fontSize: 25.0),
           ),
           centerTitle: true,
+          elevation: 0,
         ),
         body: TheProfile(),
       ),
@@ -58,7 +60,6 @@ class _TheProfileState extends State<TheProfile> {
             ((docu.data()['lng'] - MyVariables.long) *
                 (docu.data()['lng'] - MyVariables.long));
         result = sqrt(sum);
-
         if (result > distance &&
             (FinalScore.speciality == docu.data()['speciality'] ||
                 FinalScore.speciality2 == docu.data()['speciality'])) {
@@ -90,12 +91,10 @@ class _TheProfileState extends State<TheProfile> {
       }
 
       return Container(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+        decoration: boxDecorationPatient,
+        padding: EdgeInsets.symmetric(vertical: 50, horizontal: 50),
         child: Column(
           children: [
-            SizedBox(
-              height: 15,
-            ),
             Center(
               child: Text(_name),
             ),
@@ -121,7 +120,7 @@ class _TheProfileState extends State<TheProfile> {
               height: 200,
             ),
             RaisedButton(
-              child: Text('Show Doctor Location'),
+              child: Text('View Doctor Location on Google Map'),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => PatientResultMap(

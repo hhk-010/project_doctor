@@ -32,14 +32,14 @@ class _PatientLocationState extends State<PatientLocation> {
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: Text(
-          'Search Result',
+          'Search',
           style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         elevation: 0,
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 50.0),
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
         child: SingleChildScrollView(
           child: Column(
             children: [

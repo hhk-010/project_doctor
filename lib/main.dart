@@ -11,7 +11,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor_profile.dart';
-import 'package:project_doctor/pages/patient_pages/patient_location.dart';
 import 'package:project_doctor/pages/patient_pages/patient_result.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 
@@ -103,7 +102,6 @@ class _MyAppState extends State<MyApp> {
           '/doctor_form': (context) => DoctorForm(),
           '/doctor_profile': (context) => DoctorProfile(),
           '/patient_risk_factors': (context) => PatientRiskFactors(),
-          '/patient_location': (context) => PatientLocation(),
           '/patient_result': (context) => PatientResult(),
           '/patmap': (context) => PatientMap(),
           '/doctorlocate': (context) => PatientResultMap(),
