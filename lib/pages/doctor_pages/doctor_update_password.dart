@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
@@ -16,15 +17,47 @@ class _UpdatePasswordState extends State<UpdatePassword> {
   String error = '';
   bool _passwordVisible;
   final _formkey = GlobalKey<FormState>();
+
+  //--------------checking internet connection
+  bool _isInternet = true;
+  checkInternet() async {
+    try {
+      final response = await InternetAddress.lookup('google.com');
+      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
+        _isInternet = true; // internet
+        setState(() {});
+      }
+    } on SocketException catch (_) {
+      _isInternet = false; // no internet
+      setState(() {});
+    }
+  }
+
+  //------------the end --------------------
+  //-----------------this function will return a snackbar instead of the old one
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  _showSnackBar() {
+    final _snackbar = new SnackBar(
+      content: Text(
+        error,
+        style: TextStyle(fontSize: 15),
+      ),
+      backgroundColor: Colors.deepOrange,
+    );
+    _scaffoldkey.currentState.showSnackBar(_snackbar);
+  }
+
+  //-------------------the end ----------------------
   @override
   void initState() {
     _passwordVisible = false;
+    checkInternet();
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldkey,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
@@ -94,20 +127,32 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(80.0)),
                   onPressed: () async {
-                    if (_formkey.currentState.validate()) {
-                      AuthService().passwordisvalid(_oldPassword);
-                      passwordvalid =
-                          await AuthService().validatepass(_oldPassword);
-                      if (passwordvalid) {
-                        AuthService().updatepass(_newPassword);
-                        //====when using push masterial page rout to the profle
-                        // there will be routing errors
-                        /*Navigator.of(context).push(MaterialPageRoute(
+                    checkInternet();
+                    if (_isInternet) {
+                      if (_formkey.currentState.validate()) {
+                        AuthService().passwordisvalid(_oldPassword);
+                        passwordvalid =
+                            await AuthService().validatepass(_oldPassword);
+                        if (passwordvalid) {
+                          AuthService().updatepass(_newPassword);
+                          //====when using push masterial page rout to the profle
+                          // there will be routing errors
+                          /*Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => DoctorProfile()));*/
-                        Navigator.pop(context);
-                      } else {
-                        error = 'Invalid Password';
+                          Navigator.pop(context);
+                        } else {
+                          setState(() {
+                            error = 'Invalid Password';
+                          });
+                          //--------snackbar problem
+                          _showSnackBar();
+                        }
                       }
+                    } else {
+                      setState(() {
+                        error = 'No internet connection';
+                      });
+                      _showSnackBar();
                     }
                   },
                   label: Text(
@@ -125,8 +170,8 @@ class _UpdatePasswordState extends State<UpdatePassword> {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Center(
-                  child: Text(
-                    error,
+                  child: Text('',
+                    //error,
                     style: TextStyle(
                         color: Colors.red, fontWeight: FontWeight.bold),
                   ),

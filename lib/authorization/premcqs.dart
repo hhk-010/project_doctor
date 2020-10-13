@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
@@ -7,7 +9,8 @@ import 'package:provider/provider.dart';
 class mcqss {
   static var uid;
   static int counter = 0;
-  static int length = 28;
+  static int length = 27;
+  static String snackerror='';
 }
 
 class Premcqs extends StatefulWidget {
@@ -20,11 +23,47 @@ class Premcqs extends StatefulWidget {
 }
 
 class _PremcqsState extends State<Premcqs> {
+
+  //-------------------checking internet connection
+  bool _isInternet= true;
+  checkInternet() async {
+    try {
+      final response = await InternetAddress.lookup('google.com');
+      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
+        _isInternet = true; // internet
+        setState(() {});
+      }
+    } on SocketException catch (_) {
+      _isInternet = false; // no internet
+      setState(() {});
+    }
+  }
+  //------------the end --------------------
+  //-----------------this function will return a snackbar instead of the old one
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  _showSnackBar() {
+    final _snackbar = new SnackBar(
+      content: Text(
+        mcqss.snackerror,
+        style: TextStyle(fontSize: 15),
+      ),
+      backgroundColor: Colors.deepOrange,
+    );
+    _scaffoldkey.currentState.showSnackBar(_snackbar);
+  }
+
+  //-------------------the end ----------------------
+  @override
+  void initState() {
+    checkInternet();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
       value: DatabaseService().doctorDataProfileStream,
       child: Scaffold(
+        key: _scaffoldkey,
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
@@ -45,25 +84,33 @@ class _PremcqsState extends State<Premcqs> {
             ),
             FlatButton.icon(
               onPressed: () {
-                if (mcqss.length > 4) {
+                checkInternet();
+                if (_isInternet){
+                  if (mcqss.length > 4) {
+                    setState(() {
+                      mcqss.length -= 4;
+                      mcqss.counter += 4;
+                    });
+                  } else {
+                    setState(() {
+                      mcqss.length = 27;
+                      mcqss.counter = 0;
+                    });
+                  }
+                  DatabaseService(uid: mcqss.uid).updateUserData(
+                      mcqss.counter.toString(),
+                      'tester',
+                      '0101001101010022',
+                      mcqss.length.toString(),
+                      0.000000230033,
+                      0.000000032044);
+                  widget.premcq();
+                }else{
                   setState(() {
-                    mcqss.length -= 4;
-                    mcqss.counter += 4;
+                    mcqss.snackerror='No internet connection';
                   });
-                } else {
-                  setState(() {
-                    mcqss.length = 28;
-                    mcqss.counter = 0;
-                  });
+                  _showSnackBar();
                 }
-                DatabaseService(uid: mcqss.uid).updateUserData(
-                    mcqss.counter.toString(),
-                    'tester',
-                    '0101001101010022',
-                    mcqss.length.toString(),
-                    0.000000230033,
-                    0.000000032044);
-                widget.premcq();
               },
               icon: Icon(
                 Icons.arrow_forward,
@@ -88,6 +135,8 @@ class Postpremcq extends StatefulWidget {
 }
 
 class _PostpremcqState extends State<Postpremcq> {
+
+
   @override
   Widget build(BuildContext context) {
     final premcqsnap = Provider.of<QuerySnapshot>(context);

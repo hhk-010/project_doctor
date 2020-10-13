@@ -6,9 +6,14 @@ import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'dart:io';
 
+//------this class is for the snackbar text
+class snacktext {
+  static String error = '';
+}
+//------------------the end ---------------
+
 class SignIn extends StatefulWidget {
   final Function toogleView;
-  //final Function intermediate;
   SignIn({this.toogleView});
 
   @override
@@ -40,6 +45,22 @@ class _SignInState extends State<SignIn> {
     }
   }
 
+  //-----------------there was a problem in the old snackbar
+  //-----------------this function will return a snackbar instead of the old one
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  _showSnackBar() {
+    final _snackbar = new SnackBar(
+      content: Text(
+        snacktext.error,
+        style: TextStyle(fontSize: 15),
+      ),
+      backgroundColor: Colors.deepOrange,
+    );
+    _scaffoldkey.currentState.showSnackBar(_snackbar);
+  }
+
+  //-------------------the end ----------------------
+
   @override
   void initState() {
     _passwordVisible = false;
@@ -52,6 +73,7 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
+            key: _scaffoldkey,
             resizeToAvoidBottomInset: false,
             backgroundColor: Colors.grey[200],
             appBar: AppBar(
@@ -62,15 +84,6 @@ class _SignInState extends State<SignIn> {
               ),
               centerTitle: true,
               elevation: 0.0,
-              /*actions: [
-                FlatButton.icon(
-                  onPressed: () {
-                    //widget.intermediate();
-                  },
-                  icon: Icon(Icons.arrow_back),
-                  label: Text('Back'),
-                ),
-              ],*/
             ),
             body: Container(
               height: double.maxFinite,
@@ -129,13 +142,57 @@ class _SignInState extends State<SignIn> {
                       height: 40.0,
                       width: 200.0,
                       child: RaisedButton(
-                        onPressed: _isInternet
+                        onPressed: () async {
+           //conection will be checked after pressing not only in the begining
+           // so the error message will be changed
+                          checkInternet();
+                          if (_isInternet) {
+                            if (_formKey.currentState.validate()) {
+                              try {
+                                final result =
+                                    await _auth.signInWithEmailAndPassword(
+                                        email, password);
+                                //if the credentials are in valid or internet connection is interrupted
+                                //after entering this page and pressing sign in the loading is activated
+                                // so it was better by this following if condition
+                                if (result != null) {
+                                  setState(() => loading = true);
+                                } else {
+                                  setState(() {
+                                    snacktext.error = 'Error signing in';
+                                  });
+                                  _showSnackBar();
+                                }
+                              } on FirebaseAuthException catch (e) {
+                                setState(() {
+                                  loading = false;
+                                });
+                              }
+                            }
+                          }else{
+                            setState(() {
+                              snacktext.error='No internet connection';
+                            });
+                            _showSnackBar();
+                          }
+                        },
+                        //----------I tried to make the following code cleaner by doing the above
+                        /*_isInternet
                             ? () async {
                                 if (_formKey.currentState.validate()) {
                                   try {
-                                    _auth.signInWithEmailAndPassword(
+                                    final result = await _auth.signInWithEmailAndPassword(
                                         email, password);
-                                    setState(() => loading = true);
+                    //if the credentials are in valid or internet connection is interrupted
+                    //after entering this page , after pressing sign in the loading is activated
+                    // so it was better by this following condition
+                                    if (result!=null){
+                                      setState(() => loading = true);
+                                    }else{
+                                      setState(() {
+                                        error='Error signing in';
+                                      });
+                                    }
                                   } on FirebaseAuthException catch (e) {
                                     setState(() {
                                       loading = false;
@@ -145,12 +202,15 @@ class _SignInState extends State<SignIn> {
                                   }
                                 }
                               }
-                            : () {
+                            :
+                        _showSnackBar(),*/
+                        // there was an error in the following snackbar function so I added the above
+                        /*() {
                                 SnackBar errorSnackBar = SnackBar(
                                     content: Text('No internet Connection'));
                                 Scaffold.of(context)
                                     .showSnackBar(errorSnackBar);
-                              },
+                              },*/
                         color: Colors.deepOrange,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
@@ -173,7 +233,10 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     Spacer(),
-                    Text(error),
+                    Text(
+                      error,
+                      style: TextStyle(color: Colors.deepOrange),
+                    ),
                     Divider(color: Colors.black),
                     InkWell(
                       onTap: () {
