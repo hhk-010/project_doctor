@@ -1,17 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
-import 'package:project_doctor/authorization/mcqs.dart';
-import 'package:project_doctor/authorization/premcqs.dart';
+import 'package:project_doctor/authorization/04_mcqs.dart';
+import 'package:project_doctor/authorization/03_pre_mcqs.dart';
 import 'package:provider/provider.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/auth.dart';
-import 'package:project_doctor/authorization/register.dart';
-import 'package:project_doctor/authorization/sign_in.dart';
-import '../pages/doctor_pages/doctor_profile.dart';
+import 'package:project_doctor/authorization/05_register.dart';
+import 'package:project_doctor/authorization/02_sign_in.dart';
+import '../pages/doctor_pages/doctor03_profile.dart';
 
 class Intermediate extends StatefulWidget {
-
   @override
   _IntermediateState createState() => _IntermediateState();
 }
@@ -26,9 +25,7 @@ class _IntermediateState extends State<Intermediate> {
   }
 }
 
-
 class Wrapper extends StatefulWidget {
-
   @override
   _WrapperState createState() => _WrapperState();
 }
@@ -51,7 +48,6 @@ class _WrapperState extends State<Wrapper> {
 }
 
 class Authenticate extends StatefulWidget {
-
   @override
   _AuthenticateState createState() => _AuthenticateState();
 }
@@ -63,33 +59,42 @@ class _AuthenticateState extends State<Authenticate> {
       showSignIn = !showSignIn;
     });
   }
+
   //---------------bools and functions  to toggle bt sign in / premcqs
   // mcqs and register------------------------------------------------
-  bool showprmcq = true;
-  void premcqtoggle(){
+  bool showPrMCQ = true;
+  void premcqtoggle() {
     setState(() {
-      showprmcq=!showprmcq;
+      showPrMCQ = !showPrMCQ;
     });
   }
-  bool showmcq = true;
-  void mcqtoggle(){
+
+  bool showMCQ = true;
+  void mcqtoggle() {
     setState(() {
-      showmcq=!showmcq;
+      showMCQ = !showMCQ;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     if (showSignIn) {
-      if (showprmcq){
-        return Premcqs(premcq:premcqtoggle,toogleView: toogleView,);
-      }else{
-        if (showmcq){
-          return Mcqs(mcq: mcqtoggle,premcq: premcqtoggle,);
+      if (showPrMCQ) {
+        return Premcqs(
+          premcq: premcqtoggle,
+          toogleView: toogleView,
+        );
+      } else {
+        if (showMCQ) {
+          return Mcqs(
+            mcq: mcqtoggle,
+            premcq: premcqtoggle,
+          );
         }
-        return Register(mcq: mcqtoggle,);
+        return Register(
+          mcq: mcqtoggle,
+        );
       }
-
     } else {
       return SignIn(toogleView: toogleView);
     }

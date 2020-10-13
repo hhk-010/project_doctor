@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
-import 'package:project_doctor/authorization/wrapper.dart';
+import 'package:project_doctor/authorization/01_wrapper.dart';
 import '../../services/auth.dart';
 
 class DocMap extends StatefulWidget {

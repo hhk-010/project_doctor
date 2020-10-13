@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'dart:io';
-import '../pages/doctor_pages/doctor_form.dart';
+import '../pages/doctor_pages/doctor01_form.dart';
 
 class Register extends StatefulWidget {
   final Function toogleView;

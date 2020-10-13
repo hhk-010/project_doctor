@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
-import 'package:project_doctor/pages/patient_pages/patient_risk_factors.dart';
+import 'package:project_doctor/pages/patient_pages/patient02_risk_factors.dart';
 
 class PatientComplain extends StatefulWidget {
   @override
@@ -22,7 +22,7 @@ class _PatientComplainState extends State<PatientComplain> {
     FinalScore.age = int.parse(age);
   }
 
-  // --------------------Radio Buttons--------------------
+  // =============================================Radio Buttons
   List gender = ['Male', 'Female'];
   String select = '';
   Row addRadioButton(int btnValue, String title) {
@@ -1786,7 +1786,7 @@ class _PatientComplainState extends State<PatientComplain> {
               label: Text('Continue',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold)),
               onPressed: () async {
                 getage();

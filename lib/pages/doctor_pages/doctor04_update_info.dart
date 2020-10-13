@@ -2,8 +2,8 @@ import 'dart:ui';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
-import 'package:project_doctor/pages/doctor_pages/doctor_update_map.dart';
-import 'package:project_doctor/pages/doctor_pages/doctor_update_password.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor05_update_map.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor05_update_password.dart';
 
 class Updateinfo extends StatefulWidget {
   @override
