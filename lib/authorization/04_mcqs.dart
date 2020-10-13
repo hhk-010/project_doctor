@@ -6,17 +6,17 @@ import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
 
-class Mcqs extends StatefulWidget {
+class MCQS extends StatefulWidget {
   final Function premcq;
   final Function mcq;
   final Function toggleview;
-  Mcqs({this.premcq, this.mcq, this.toggleview});
+  MCQS({this.premcq, this.mcq, this.toggleview});
   @override
-  _McqsState createState() => _McqsState();
+  _MCQSState createState() => _MCQSState();
 }
 
-class _McqsState extends State<Mcqs> {
-  bool _isInternet=true ;
+class _MCQSState extends State<MCQS> {
+  bool _isInternet = true;
   checkInternet() async {
     try {
       final response = await InternetAddress.lookup('google.com');
@@ -36,7 +36,7 @@ class _McqsState extends State<Mcqs> {
   _showSnackBar() {
     final _snackbar = new SnackBar(
       content: Text(
-        questa.snackerror,
+        QuestionsShuffle.snackerror,
         style: TextStyle(fontSize: 15),
       ),
       backgroundColor: Colors.deepOrange,
@@ -50,6 +50,7 @@ class _McqsState extends State<Mcqs> {
     checkInternet();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
@@ -59,7 +60,7 @@ class _McqsState extends State<Mcqs> {
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Questions'),
+          title: Text(''),
           actions: [
             FlatButton.icon(
               onPressed: () {
@@ -77,48 +78,48 @@ class _McqsState extends State<Mcqs> {
             FlatButton.icon(
               onPressed: () {
                 checkInternet();
-                if (_isInternet){
-                  getscoreb();
+                if (_isInternet) {
+                  getscore1b();
                   getscore2b();
                   getscore3b();
                   getscore4b();
-                  if (questa.score >= 4) {
-                    if (questa.lenght > 4) {
+                  if (QuestionsShuffle.score >= 4) {
+                    if (QuestionsShuffle.lenght > 4) {
                       setState(() {
-                        questa.counter += 4;
-                        questa.lenght -= 4;
+                        QuestionsShuffle.counter += 4;
+                        QuestionsShuffle.lenght -= 4;
                       });
                     } else {
                       setState(() {
-                        questa.counter = 0;
-                        questa.lenght = 27;
+                        QuestionsShuffle.counter = 0;
+                        QuestionsShuffle.lenght = 27;
                       });
                     }
-                    if(questa.score<4){
+                    if (QuestionsShuffle.score < 4) {
                       setState(() {
-                        questa.snackerror='Please , answer the questions correctly';
+                        QuestionsShuffle.snackerror =
+                            'Please , answer the questions correctly';
                       });
                       _showSnackBar();
                     }
-                    DatabaseService(uid: questa.uid).updateUserData(
-                        questa.counter.toString(),
+                    DatabaseService(uid: QuestionsShuffle.uid).updateUserData(
+                        QuestionsShuffle.counter.toString(),
                         'counter',
                         '0101001101010022',
-                        questa.lenght.toString(),
+                        QuestionsShuffle.lenght.toString(),
                         0.0000023003,
                         0.0000054003);
                     widget.mcq();
                     setState(() {
-                      questa.score = 0;
+                      QuestionsShuffle.score = 0;
                     });
                   }
-                }else{
+                } else {
                   setState(() {
-                    questa.snackerror='No internet connection';
+                    QuestionsShuffle.snackerror = 'No internet connection';
                   });
                   _showSnackBar();
                 }
-
               },
               icon: Icon(
                 Icons.arrow_forward,
@@ -145,13 +146,13 @@ class Questions extends StatefulWidget {
 class _QuestionsState extends State<Questions> {
   @override
   Widget build(BuildContext context) {
-    final questinfo = Provider.of<QuerySnapshot>(context);
-    if (questinfo != null) {
-      for (var y in questinfo.docs) {
+    final questInfo = Provider.of<QuerySnapshot>(context);
+    if (questInfo != null) {
+      for (var y in questInfo.docs) {
         if (y.data()['phoneNumber'] == '0101001101010022') {
-          questa.uid = y.id;
-          questa.counter = int.parse(y.data()['name']);
-          questa.lenght = int.parse(y.data()['province']);
+          QuestionsShuffle.uid = y.id;
+          QuestionsShuffle.counter = int.parse(y.data()['name']);
+          QuestionsShuffle.lenght = int.parse(y.data()['province']);
         }
       }
     }
@@ -163,11 +164,9 @@ class _QuestionsState extends State<Questions> {
             SizedBox(
               height: 15.0,
             ),
-            Center(
-              child: Text(
-                'To register , answer the following :',
-                style: TextStyle(color: Colors.black, fontSize: 20.0),
-              ),
+            Text(
+              'To register , answer the following :',
+              style: TextStyle(color: Colors.black, fontSize: 18.0),
             ),
             SizedBox(
               height: 15.0,
@@ -179,8 +178,11 @@ class _QuestionsState extends State<Questions> {
                 children: [
                   Center(
                     child: Text(
-                      questa.qss[questa.counter],
-                      style: TextStyle(fontSize: 20.0),
+                      QuestionsShuffle.questions[QuestionsShuffle.counter],
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontSize: 16.0,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -192,48 +194,36 @@ class _QuestionsState extends State<Questions> {
                     items: [
                       DropdownMenuItem<String>(
                         value: '0',
-                        child: Center(
-                          child: Text(
-                              questa.choices[questa.qss[questa.counter]][0]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter]][0]),
                       ),
                       DropdownMenuItem<String>(
                         value: '1',
-                        child: Center(
-                          child: Text(
-                              questa.choices[questa.qss[questa.counter]][1]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter]][1]),
                       ),
                       DropdownMenuItem<String>(
                         value: '2',
-                        child: Center(
-                          child: Text(
-                              questa.choices[questa.qss[questa.counter]][2]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter]][2]),
                       ),
                       DropdownMenuItem<String>(
                         value: '3',
-                        child: Center(
-                          child: Text(
-                              questa.choices[questa.qss[questa.counter]][3]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter]][3]),
                       ),
                       DropdownMenuItem<String>(
                         value: '4',
-                        child: Center(
-                          child: Text(
-                              questa.choices[questa.qss[questa.counter]][4]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter]][4]),
                       ),
                       DropdownMenuItem<String>(
                         value: '5',
-                        child: Center(
-                          child: Text(
-                              questa.choices[questa.qss[questa.counter]][5]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter]][5]),
                       ),
                     ],
-                    onChanged: (value) => selectedb(value),
+                    onChanged: (value) => selected1b(value),
                   ),
                 ],
               ),
@@ -248,8 +238,8 @@ class _QuestionsState extends State<Questions> {
                 children: [
                   Center(
                     child: Text(
-                      questa.qss[questa.counter + 1],
-                      style: TextStyle(fontSize: 20.0),
+                      QuestionsShuffle.questions[QuestionsShuffle.counter + 1],
+                      style: TextStyle(fontSize: 16.0),
                     ),
                   ),
                   SizedBox(
@@ -261,48 +251,36 @@ class _QuestionsState extends State<Questions> {
                     items: [
                       DropdownMenuItem<String>(
                         value: '0',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 1]][0]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 1]][0]),
                       ),
                       DropdownMenuItem<String>(
                         value: '1',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 1]][1]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 1]][1]),
                       ),
                       DropdownMenuItem<String>(
                         value: '2',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 1]][2]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 1]][2]),
                       ),
                       DropdownMenuItem<String>(
                         value: '3',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 1]][3]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 1]][3]),
                       ),
                       DropdownMenuItem<String>(
                         value: '4',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 1]][4]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 1]][4]),
                       ),
                       DropdownMenuItem<String>(
                         value: '5',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 1]][5]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 1]][5]),
                       ),
                     ],
-                    onChanged: (value22) => selected2b(value22),
+                    onChanged: (value) => selected2b(value),
                   ),
                 ],
               ),
@@ -317,8 +295,8 @@ class _QuestionsState extends State<Questions> {
                 children: [
                   Center(
                     child: Text(
-                      questa.qss[questa.counter + 2],
-                      style: TextStyle(fontSize: 20.0),
+                      QuestionsShuffle.questions[QuestionsShuffle.counter + 2],
+                      style: TextStyle(fontSize: 16.0),
                     ),
                   ),
                   SizedBox(
@@ -330,48 +308,36 @@ class _QuestionsState extends State<Questions> {
                     items: [
                       DropdownMenuItem<String>(
                         value: '0',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 2]][0]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 2]][0]),
                       ),
                       DropdownMenuItem<String>(
                         value: '1',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 2]][1]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 2]][1]),
                       ),
                       DropdownMenuItem<String>(
                         value: '2',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 2]][2]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 2]][2]),
                       ),
                       DropdownMenuItem<String>(
                         value: '3',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 2]][3]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 2]][3]),
                       ),
                       DropdownMenuItem<String>(
                         value: '4',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 2]][4]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 2]][4]),
                       ),
                       DropdownMenuItem<String>(
                         value: '5',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 2]][5]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 2]][5]),
                       ),
                     ],
-                    onChanged: (value22) => selected3b(value22),
+                    onChanged: (value) => selected3b(value),
                   ),
                 ],
               ),
@@ -386,8 +352,8 @@ class _QuestionsState extends State<Questions> {
                 children: [
                   Center(
                     child: Text(
-                      questa.qss[questa.counter + 3],
-                      style: TextStyle(fontSize: 20.0),
+                      QuestionsShuffle.questions[QuestionsShuffle.counter + 3],
+                      style: TextStyle(fontSize: 16.0),
                     ),
                   ),
                   SizedBox(
@@ -399,48 +365,36 @@ class _QuestionsState extends State<Questions> {
                     items: [
                       DropdownMenuItem<String>(
                         value: '0',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 3]][0]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 3]][0]),
                       ),
                       DropdownMenuItem<String>(
                         value: '1',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 3]][1]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 3]][1]),
                       ),
                       DropdownMenuItem<String>(
                         value: '2',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 3]][2]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 3]][2]),
                       ),
                       DropdownMenuItem<String>(
                         value: '3',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 3]][3]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 3]][3]),
                       ),
                       DropdownMenuItem<String>(
                         value: '4',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 3]][4]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 3]][4]),
                       ),
                       DropdownMenuItem<String>(
                         value: '5',
-                        child: Center(
-                          child: Text(questa
-                              .choices[questa.qss[questa.counter + 3]][5]),
-                        ),
+                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 3]][5]),
                       ),
                     ],
-                    onChanged: (value22) => selected4b(value22),
+                    onChanged: (value) => selected4b(value),
                   ),
                 ],
               ),
@@ -452,17 +406,17 @@ class _QuestionsState extends State<Questions> {
   }
 }
 
-class questa {
+class QuestionsShuffle {
   static var uid;
   static int counter = 0;
   static int lenght = 28;
-  static String value;
+  static String value1;
   static String value2;
   static String value3;
   static String value4;
   static int score = 0;
   static String snackerror = '';
-  static List qss = [
+  static List questions = [
     '60 years old male with +ve PMH for HTN and DM presented to the ER complaining of central suffocating chest pain, dyspnea and vomiting OE conscious ,alert ,oriented ,looks ill ,BP 190/100,ecg shows St segment elevation in L1,avL,V5,V6 with reciprocal changes with elevated troponin,what is the most likely dx?',
     '65 years old male with +ve PMH for HTN,ischemic heart disease with previous CCU admissions,presented with dyspnea ,cough and white colored sputum ,OE he was dyspneic ,BP 100/60 ,chest auscultation reveals bilateral basal crepitations he brought his previous investigations with him and his echocardiogram shows EF=30%, and his current ecg shows old ischemic changes and his current WBC count is normal but his PCV is relatively low ,what is the most likely dx?',
     '15 years old female pt known case of type 1 DM developed ,flu like illness and fever followed by polyuria , polydepsia,abdominal pain and vomiting , associated with fruity odor breathing ,presented to the ER , her pulse rate is 120 bpm,temp is 38 C axillary corrected, she looks tachypneic, her RBS is about 500 mg/dl and her ABG shows elevated pH,what is the most likely dx?',
@@ -806,49 +760,62 @@ class questa {
   };
 }
 
-void selectedb(_value) {
-  questa.value = questa.choices[questa.qss[questa.counter]][int.parse(_value)];
-  print(questa.value);
+void selected1b(_value) {
+  QuestionsShuffle.value1 = QuestionsShuffle
+          .choices[QuestionsShuffle.questions[QuestionsShuffle.counter]]
+      [int.parse(_value)];
+  print(QuestionsShuffle.value1);
 }
 
 void selected2b(_value) {
-  questa.value2 =
-      questa.choices[questa.qss[questa.counter + 1]][int.parse(_value)];
-  print(questa.value2);
+  QuestionsShuffle.value2 = QuestionsShuffle
+          .choices[QuestionsShuffle.questions[QuestionsShuffle.counter + 1]]
+      [int.parse(_value)];
+  print(QuestionsShuffle.value2);
 }
 
 void selected3b(_value) {
-  questa.value3 =
-      questa.choices[questa.qss[questa.counter + 2]][int.parse(_value)];
-  print(questa.value3);
+  QuestionsShuffle.value3 = QuestionsShuffle
+          .choices[QuestionsShuffle.questions[QuestionsShuffle.counter + 2]]
+      [int.parse(_value)];
+  print(QuestionsShuffle.value3);
 }
 
 void selected4b(_value) {
-  questa.value4 =
-      questa.choices[questa.qss[questa.counter + 3]][int.parse(_value)];
-  print(questa.value4);
+  QuestionsShuffle.value4 = QuestionsShuffle
+          .choices[QuestionsShuffle.questions[QuestionsShuffle.counter + 3]]
+      [int.parse(_value)];
+  print(QuestionsShuffle.value4);
 }
 
-getscoreb() {
-  if (questa.value == questa.answers[questa.qss[questa.counter]]) {
-    questa.score += 1;
+getscore1b() {
+  if (QuestionsShuffle.value1 ==
+      QuestionsShuffle
+          .answers[QuestionsShuffle.questions[QuestionsShuffle.counter]]) {
+    QuestionsShuffle.score += 1;
   }
 }
 
 getscore2b() {
-  if (questa.value2 == questa.answers[questa.qss[questa.counter + 1]]) {
-    questa.score += 1;
+  if (QuestionsShuffle.value2 ==
+      QuestionsShuffle
+          .answers[QuestionsShuffle.questions[QuestionsShuffle.counter + 1]]) {
+    QuestionsShuffle.score += 1;
   }
 }
 
 getscore3b() {
-  if (questa.value3 == questa.answers[questa.qss[questa.counter + 2]]) {
-    questa.score += 1;
+  if (QuestionsShuffle.value3 ==
+      QuestionsShuffle
+          .answers[QuestionsShuffle.questions[QuestionsShuffle.counter + 2]]) {
+    QuestionsShuffle.score += 1;
   }
 }
 
 getscore4b() {
-  if (questa.value4 == questa.answers[questa.qss[questa.counter + 3]]) {
-    questa.score += 1;
+  if (QuestionsShuffle.value4 ==
+      QuestionsShuffle
+          .answers[QuestionsShuffle.questions[QuestionsShuffle.counter + 3]]) {
+    QuestionsShuffle.score += 1;
   }
 }

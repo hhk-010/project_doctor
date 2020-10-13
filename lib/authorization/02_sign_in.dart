@@ -10,6 +10,7 @@ import 'dart:io';
 class snacktext {
   static String error = '';
 }
+
 //------------------the end ---------------
 
 class SignIn extends StatefulWidget {
@@ -45,8 +46,8 @@ class _SignInState extends State<SignIn> {
     }
   }
 
-  //-----------------there was a problem in the old snackbar
-  //-----------------this function will return a snackbar instead of the old one
+  //there was a problem in the old snackbar
+  //this function will return a snackbar instead of the old one
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
     final _snackbar = new SnackBar(
@@ -143,8 +144,8 @@ class _SignInState extends State<SignIn> {
                       width: 200.0,
                       child: RaisedButton(
                         onPressed: () async {
-           //conection will be checked after pressing not only in the begining
-           // so the error message will be changed
+                          //conection will be checked after pressing not only in the begining
+                          // so the error message will be changed
                           checkInternet();
                           if (_isInternet) {
                             if (_formKey.currentState.validate()) {
@@ -169,48 +170,13 @@ class _SignInState extends State<SignIn> {
                                 });
                               }
                             }
-                          }else{
+                          } else {
                             setState(() {
-                              snacktext.error='No internet connection';
+                              snacktext.error = 'No internet connection';
                             });
                             _showSnackBar();
                           }
                         },
-                        //----------I tried to make the following code cleaner by doing the above
-                        /*_isInternet
-                            ? () async {
-                                if (_formKey.currentState.validate()) {
-                                  try {
-                                    final result = await _auth.signInWithEmailAndPassword(
-                                        email, password);
-                    //if the credentials are in valid or internet connection is interrupted
-                    //after entering this page , after pressing sign in the loading is activated
-                    // so it was better by this following condition
-                                    if (result!=null){
-                                      setState(() => loading = true);
-                                    }else{
-                                      setState(() {
-                                        error='Error signing in';
-                                      });
-                                    }
-                                  } on FirebaseAuthException catch (e) {
-                                    setState(() {
-                                      loading = false;
-                                    });
-                                    Scaffold.of(context).showSnackBar(
-                                        SnackBar(content: Text(e.message)));
-                                  }
-                                }
-                              }
-                            :
-                        _showSnackBar(),*/
-                        // there was an error in the following snackbar function so I added the above
-                        /*() {
-                                SnackBar errorSnackBar = SnackBar(
-                                    content: Text('No internet Connection'));
-                                Scaffold.of(context)
-                                    .showSnackBar(errorSnackBar);
-                              },*/
                         color: Colors.deepOrange,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
