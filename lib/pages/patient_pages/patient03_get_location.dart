@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
-import 'package:project_doctor/pages/patient_pages/patient_map.dart';
+import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:geolocator/geolocator.dart';
 

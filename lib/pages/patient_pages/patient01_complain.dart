@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
-import 'package:project_doctor/pages/patient_pages/patient_risk_factors.dart';
+import 'package:project_doctor/pages/patient_pages/patient02_risk_factors.dart';
 
 class PatientComplain extends StatefulWidget {
   @override

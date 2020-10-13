@@ -2,13 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/mcqs.dart';
-import 'package:project_doctor/authorization/premcqs.dart';
+import 'package:project_doctor/authorization/pre_mcqs.dart';
 import 'package:provider/provider.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/authorization/register.dart';
 import 'package:project_doctor/authorization/sign_in.dart';
-import '../pages/doctor_pages/doctor_profile.dart';
+import '../pages/doctor_pages/doctor03_profile.dart';
 
 class Intermediate extends StatefulWidget {
   @override

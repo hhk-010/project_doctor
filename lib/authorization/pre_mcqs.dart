@@ -90,9 +90,9 @@ class Postpremcq extends StatefulWidget {
 class _PostpremcqState extends State<Postpremcq> {
   @override
   Widget build(BuildContext context) {
-    final premcqsnap = Provider.of<QuerySnapshot>(context);
-    if (premcqsnap != null) {
-      for (var x in premcqsnap.docs) {
+    final preMcqSnap = Provider.of<QuerySnapshot>(context);
+    if (preMcqSnap != null) {
+      for (var x in preMcqSnap.docs) {
         if (x.data()['phoneNumber'] == '0101001101010022') {
           MCQss.uid = x.id;
           MCQss.counter = int.parse(x.data()['name']);
@@ -101,76 +101,72 @@ class _PostpremcqState extends State<Postpremcq> {
       }
     }
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 30.0,
+      padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 50.0),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 30.0,
+          ),
+          Container(
+            decoration: boxDecorationPatient,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 15.0,
+                ),
+                Center(
+                  child: Text(
+                    ' Welcome to you in Cura , to',
+                    style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  ),
+                ),
+                Center(
+                  child: Text(
+                    'create a new account click',
+                    style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  ),
+                ),
+                Center(
+                  child: Text(
+                    'Register',
+                    style: TextStyle(fontSize: 20.0, color: Colors.deepOrange),
+                  ),
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+              ],
             ),
-            Container(
-              decoration: boxDecorationPatient,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 15.0,
+          ),
+          SizedBox(
+            height: 30.0,
+          ),
+          Container(
+            decoration: boxDecorationPatient,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 15.0,
+                ),
+                Center(
+                  child: Text(
+                    'If you have an account click',
+                    style: TextStyle(fontSize: 20.0, color: Colors.black),
                   ),
-                  Center(
-                    child: Text(
-                      ' Welcome to you in Cura , to',
-                      style: TextStyle(fontSize: 20.0, color: Colors.black),
-                    ),
+                ),
+                Center(
+                  child: Text(
+                    'Sign in',
+                    style: TextStyle(fontSize: 20.0, color: Colors.deepOrange),
                   ),
-                  Center(
-                    child: Text(
-                      'create a new account click',
-                      style: TextStyle(fontSize: 20.0, color: Colors.black),
-                    ),
-                  ),
-                  Center(
-                    child: Text(
-                      'Register',
-                      style:
-                          TextStyle(fontSize: 20.0, color: Colors.deepOrange),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+              ],
             ),
-            SizedBox(
-              height: 30.0,
-            ),
-            Container(
-              decoration: boxDecorationPatient,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  Center(
-                    child: Text(
-                      'If you have an account click',
-                      style: TextStyle(fontSize: 20.0, color: Colors.black),
-                    ),
-                  ),
-                  Center(
-                    child: Text(
-                      'Sign in',
-                      style:
-                          TextStyle(fontSize: 20.0, color: Colors.deepOrange),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

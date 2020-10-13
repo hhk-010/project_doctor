@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
-import 'package:project_doctor/pages/patient_pages/patient_get_location.dart';
-import 'package:project_doctor/pages/patient_pages/patient_map.dart';
-import 'package:project_doctor/pages/patient_pages/patient_result_map.dart';
+import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
+import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
+import 'package:project_doctor/pages/patient_pages/patient06_result_map.dart';
 import 'package:project_doctor/pages/home.dart';
 import 'package:project_doctor/authorization/wrapper.dart';
-import 'package:project_doctor/pages/patient_pages/patient_complain.dart';
-import 'package:project_doctor/pages/patient_pages/patient_risk_factors.dart';
-import 'package:project_doctor/pages/doctor_pages/doctor_form.dart';
+import 'package:project_doctor/pages/patient_pages/patient01_complain.dart';
+import 'package:project_doctor/pages/patient_pages/patient02_risk_factors.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor01_form.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:project_doctor/pages/doctor_pages/doctor_profile.dart';
-import 'package:project_doctor/pages/patient_pages/patient_result.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor03_profile.dart';
+import 'package:project_doctor/pages/patient_pages/patient05_result.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 
 void main() async {

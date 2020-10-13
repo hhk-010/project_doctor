@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_doctor/pages/doctor_pages/doctor_map.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor02_map.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/auth.dart';
