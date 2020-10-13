@@ -10,16 +10,16 @@ class MCQss {
   static int length = 28;
 }
 
-class Premcqs extends StatefulWidget {
-  final Function toogleView;
-  final Function premcq;
-  Premcqs({this.toogleView, this.premcq});
+class PreMCQs extends StatefulWidget {
+  final Function signInToogleView;
+  final Function preMCQToogleView;
+  PreMCQs({this.signInToogleView, this.preMCQToogleView});
 
   @override
-  _PremcqsState createState() => _PremcqsState();
+  _PreMCQsState createState() => _PreMCQsState();
 }
 
-class _PremcqsState extends State<Premcqs> {
+class _PreMCQsState extends State<PreMCQs> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
@@ -28,11 +28,11 @@ class _PremcqsState extends State<Premcqs> {
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text('Welcome'),
+          title: Text(''),
           actions: [
             FlatButton.icon(
               onPressed: () {
-                widget.toogleView();
+                widget.signInToogleView();
               },
               icon: Icon(
                 Icons.arrow_back,
@@ -63,7 +63,7 @@ class _PremcqsState extends State<Premcqs> {
                     MCQss.length.toString(),
                     0.000000230033,
                     0.000000032044);
-                widget.premcq();
+                widget.preMCQToogleView();
               },
               icon: Icon(
                 Icons.arrow_forward,
@@ -104,66 +104,38 @@ class _PostpremcqState extends State<Postpremcq> {
       padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 50.0),
       child: Column(
         children: [
-          SizedBox(
-            height: 30.0,
-          ),
           Container(
+            width: double.infinity,
             decoration: boxDecorationPatient,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 15.0,
-                ),
-                Center(
-                  child: Text(
-                    ' Welcome to you in Cura , to',
-                    style: TextStyle(fontSize: 20.0, color: Colors.black),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Text(
+                    ' Welcome to Cura',
+                    style:
+                        TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
                   ),
-                ),
-                Center(
-                  child: Text(
-                    'create a new account click',
-                    style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  SizedBox(
+                    height: 20,
                   ),
-                ),
-                Center(
-                  child: Text(
-                    'Register',
-                    style: TextStyle(fontSize: 20.0, color: Colors.deepOrange),
+                  Text(
+                    'To Create a new account you must answer a few Medical Questions to Verify your Identity',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 15.0,
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 30.0,
-          ),
-          Container(
-            decoration: boxDecorationPatient,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 15.0,
-                ),
-                Center(
-                  child: Text(
-                    'If you have an account click',
-                    style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  SizedBox(
+                    height: 20,
                   ),
-                ),
-                Center(
-                  child: Text(
-                    'Sign in',
-                    style: TextStyle(fontSize: 20.0, color: Colors.deepOrange),
+                  Text(
+                    'if you allready have an account return to the sign in page',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 15.0,
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

@@ -53,24 +53,23 @@ class Authenticate extends StatefulWidget {
 }
 
 class _AuthenticateState extends State<Authenticate> {
+//=================================
   bool showSignIn = false;
-  void toogleView() {
+  void signInToogleView() {
     setState(() {
       showSignIn = !showSignIn;
     });
   }
 
-  //---------------bools and functions  to toggle bt sign in / premcqs
-  // mcqs and register------------------------------------------------
-  bool showPrMCQ = true;
-  void premcqtoggle() {
+  bool showPreMCQ = true;
+  void preMCQToogleView() {
     setState(() {
-      showPrMCQ = !showPrMCQ;
+      showPreMCQ = !showPreMCQ;
     });
   }
 
   bool showMCQ = true;
-  void mcqtoggle() {
+  void mcqToogleView() {
     setState(() {
       showMCQ = !showMCQ;
     });
@@ -79,24 +78,24 @@ class _AuthenticateState extends State<Authenticate> {
   @override
   Widget build(BuildContext context) {
     if (showSignIn) {
-      if (showPrMCQ) {
-        return Premcqs(
-          premcq: premcqtoggle,
-          toogleView: toogleView,
+      if (showPreMCQ) {
+        return PreMCQs(
+          preMCQToogleView: preMCQToogleView,
+          signInToogleView: signInToogleView,
         );
       } else {
         if (showMCQ) {
-          return Mcqs(
-            mcq: mcqtoggle,
-            premcq: premcqtoggle,
+          return MCQS(
+            mcq: mcqToogleView,
+            premcq: preMCQToogleView,
           );
         }
         return Register(
-          mcq: mcqtoggle,
+          mcq: mcqToogleView,
         );
       }
     } else {
-      return SignIn(toogleView: toogleView);
+      return SignIn(toogleView: signInToogleView);
     }
   }
 }
