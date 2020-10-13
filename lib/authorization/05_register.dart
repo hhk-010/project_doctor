@@ -21,7 +21,7 @@ class _RegisterState extends State<Register> {
   bool _passwordVisible;
 
   // check internet connection
-  bool _isInternet = true;
+  bool _isInternet;
   checkInternet() async {
     try {
       final response = await InternetAddress.lookup('google.com');
@@ -42,6 +42,7 @@ class _RegisterState extends State<Register> {
     super.initState();
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   TextStyle _textStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
 
   @override
@@ -49,6 +50,7 @@ class _RegisterState extends State<Register> {
     return loading
         ? Loading()
         : Scaffold(
+            key: _scaffoldkey,
             resizeToAvoidBottomInset: false,
             backgroundColor: Colors.grey[200],
             appBar: AppBar(
@@ -126,21 +128,24 @@ class _RegisterState extends State<Register> {
                                       });
                                       if (email != '' && password != '') {
                                         Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    DoctorForm(
-                                                      email: email,
-                                                      password: password,
-                                                    )));
+                                          MaterialPageRoute(
+                                            builder: (context) => DoctorForm(
+                                              email: email,
+                                              password: password,
+                                            ),
+                                          ),
+                                        );
                                       }
                                     }
                                   }
                                 : () {
                                     SnackBar errorSnackBar = SnackBar(
-                                        content: Text(
-                                      'No internet Connection',
-                                      style: _textStyle,
-                                    ));
+                                      content: Text(
+                                        'No internet Connection',
+                                        style: _textStyle,
+                                      ),
+                                      backgroundColor: Colors.deepOrange,
+                                    );
                                     Scaffold.of(context)
                                         .showSnackBar(errorSnackBar);
                                   },

@@ -1,7 +1,14 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../services/database.dart';
+
+// ----------------class for snackbar error
+class snackbarerror{
+  static String error='';
+}
 
 class UpdateMap extends StatefulWidget {
   final String name;
@@ -53,32 +60,50 @@ class _UpdateMapState extends State<UpdateMap> {
   }
 
   //==============snackbar for empty latlng============
-  final _scaffoldkey = GlobalKey<ScaffoldState>();
-  /*_showSnackBar() {
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  _showSnackBar() {
     final snackBar = new SnackBar(
       content: new Text(
-        'Tap on your location',
-        style: TextStyle(fontSize: 18),
+        snackbarerror.error,
+        style: TextStyle(fontSize: 15),
       ),
       //duration: new Duration(seconds: 3),
       backgroundColor: Colors.deepOrange,
     );
     _scaffoldkey.currentState.showSnackBar(snackBar);
-  }*/
+  }
+  //-------------------checking internet connection
+  bool _isInternet = true;
+  checkInternet() async {
+    try {
+      final response = await InternetAddress.lookup('google.com');
+      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
+        _isInternet = true; // internet
+        setState(() {});
+      }
+    } on SocketException catch (_) {
+      _isInternet = false; // no internet
+      setState(() {});
+    }
+  }
+  //------------the end --------------------
 
   _UpdateMapState({this.name, this.speciality, this.number, this.province});
+
+
+  @override
+  void initState() {
+    checkInternet();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldkey,
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text('update your location'),
-        /*actions: [FlatButton(onPressed: (){
-          setState(() {
-            _showSnackBar();
-          });
-        }, child: Text('here'))],*/
+        title: Text('Update your location'),
+        centerTitle: true,
       ),
       body: Stack(
         children: [
@@ -92,18 +117,33 @@ class _UpdateMapState extends State<UpdateMap> {
           ),
           Container(
             alignment: Alignment.bottomLeft,
-            padding: EdgeInsets.all(25.0),
+            padding: EdgeInsets.symmetric(vertical:45.0,horizontal:15.0),
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
               child: Text('U'),
               onPressed: () async {
-                await geolocate(latlng: latlng);
-                if (lattt != null && lnggg != null) {
-                  await DatabaseService(
+                checkInternet();
+                if (_isInternet){
+                  if (latlng==null){
+                    setState(() {
+                      snackbarerror.error='Please , tap on your location';
+                    });
+                    _showSnackBar();
+                  }else{
+                    await geolocate(latlng: latlng);
+                    if (lattt != null && lnggg != null) {
+                      await DatabaseService(
                           uid: FirebaseAuth.instance.currentUser.uid)
-                      .updateUserData(
+                          .updateUserData(
                           name, speciality, number, province, lattt, lnggg);
-                  Navigator.pop(context);
+                      Navigator.pop(context);
+                    }
+                  }
+                }else {
+                  setState(() {
+                    snackbarerror.error='No internet connection';
+                  });
+                  _showSnackBar();
                 }
               },
             ),

@@ -4,6 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/services/auth.dart';
 
+//---------class for launching the registered email
+class newclient{
+  static String email='';
+}
 class EmailVerification extends StatefulWidget {
   final String email;
   EmailVerification({this.email});
@@ -27,7 +31,6 @@ class _EmailVerificationState extends State<EmailVerification> {
       });
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +78,8 @@ class _EmailVerificationState extends State<EmailVerification> {
               flex: 1,
             ),
             Text(
-              '$email',
+              newclient.email,
+              //'$email',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             Spacer(

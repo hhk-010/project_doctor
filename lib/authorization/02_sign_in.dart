@@ -6,6 +6,13 @@ import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'dart:io';
 
+//------this class is for the snackbar text
+class snacktext {
+  static String error = '';
+}
+
+//------------------the end ---------------
+
 class SignIn extends StatefulWidget {
   final Function toogleView;
   SignIn({this.toogleView});
@@ -39,6 +46,22 @@ class _SignInState extends State<SignIn> {
     }
   }
 
+  //there was a problem in the old snackbar
+  //this function will return a snackbar instead of the old one
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  _showSnackBar() {
+    final _snackbar = new SnackBar(
+      content: Text(
+        snacktext.error,
+        style: TextStyle(fontSize: 15),
+      ),
+      backgroundColor: Colors.deepOrange,
+    );
+    _scaffoldkey.currentState.showSnackBar(_snackbar);
+  }
+
+  //-------------------the end ----------------------
+
   @override
   void initState() {
     _passwordVisible = false;
@@ -51,6 +74,7 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
+            key: _scaffoldkey,
             resizeToAvoidBottomInset: false,
             backgroundColor: Colors.grey[200],
             appBar: AppBar(
@@ -119,28 +143,40 @@ class _SignInState extends State<SignIn> {
                       height: 40.0,
                       width: 200.0,
                       child: RaisedButton(
-                        onPressed: _isInternet
-                            ? () async {
-                                if (_formKey.currentState.validate()) {
-                                  try {
-                                    _auth.signInWithEmailAndPassword(
+                        onPressed: () async {
+                          //conection will be checked after pressing not only in the begining
+                          // so the error message will be changed
+                          checkInternet();
+                          if (_isInternet) {
+                            if (_formKey.currentState.validate()) {
+                              try {
+                                final result =
+                                    await _auth.signInWithEmailAndPassword(
                                         email, password);
-                                    setState(() => loading = true);
-                                  } on FirebaseAuthException catch (e) {
-                                    setState(() {
-                                      loading = false;
-                                    });
-                                    Scaffold.of(context).showSnackBar(
-                                        SnackBar(content: Text(e.message)));
-                                  }
+                                //if the credentials are in valid or internet connection is interrupted
+                                //after entering this page and pressing sign in the loading is activated
+                                // so it was better by this following if condition
+                                if (result != null) {
+                                  setState(() => loading = true);
+                                } else {
+                                  setState(() {
+                                    snacktext.error = 'Error signing in';
+                                  });
+                                  _showSnackBar();
                                 }
+                              } on FirebaseAuthException catch (e) {
+                                setState(() {
+                                  loading = false;
+                                });
                               }
-                            : () {
-                                SnackBar errorSnackBar = SnackBar(
-                                    content: Text('No internet Connection'));
-                                Scaffold.of(context)
-                                    .showSnackBar(errorSnackBar);
-                              },
+                            }
+                          } else {
+                            setState(() {
+                              snacktext.error = 'No internet connection';
+                            });
+                            _showSnackBar();
+                          }
+                        },
                         color: Colors.deepOrange,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
@@ -163,7 +199,10 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     Spacer(),
-                    Text(error),
+                    Text(
+                      error,
+                      style: TextStyle(color: Colors.deepOrange),
+                    ),
                     Divider(color: Colors.black),
                     InkWell(
                       onTap: () {

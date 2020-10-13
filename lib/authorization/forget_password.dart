@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,16 +11,53 @@ class ForgetPassword extends StatefulWidget {
 
 class _ForgetPasswordState extends State<ForgetPassword> {
   String email;
+  String error='';
 
   final _formkey = GlobalKey<FormState>();
   TextStyle _textStyle = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.bold,
   );
+  //-----------function for internet connection
+  bool _isInternet = true;
+  checkInternet() async {
+    try {
+      final response = await InternetAddress.lookup('google.com');
+      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
+        _isInternet = true; // internet
+        setState(() {});
+      }
+    } on SocketException catch (_) {
+      _isInternet = false; // no internet
+      setState(() {});
+    }
+  }
+
+  //-----------------there was a problem in the old snackbar
+  //-----------------this function will return a snackbar instead of the old one
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  _showSnackBar() {
+    final _snackbar = new SnackBar(
+      content: Text(
+        error,
+        style: TextStyle(fontSize: 15),
+      ),
+      backgroundColor: Colors.deepOrange,
+    );
+    _scaffoldkey.currentState.showSnackBar(_snackbar);
+  }
+
+  //-------------------the end ----------------------
+  @override
+  void initState() {
+    checkInternet();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldkey,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
@@ -64,13 +102,22 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         _textStyle.copyWith(color: Colors.white, fontSize: 16),
                   ),
                   onPressed: () async {
-                    if (_formkey.currentState.validate()) {
-                      await FirebaseAuth.instance
-                          .sendPasswordResetEmail(email: email);
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              PasswordResetContinue(email: email)));
+                    checkInternet();
+                    if (_isInternet){
+                      if (_formkey.currentState.validate()) {
+                        await FirebaseAuth.instance
+                            .sendPasswordResetEmail(email: email);
+                        await Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                PasswordResetContinue(email: email)));
+                      }
+                    }else{
+                      setState(() {
+                        error='No internet connection';
+                      });
+                      _showSnackBar();
                     }
+
                   },
                 ),
               ],

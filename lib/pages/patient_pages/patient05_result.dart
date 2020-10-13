@@ -53,7 +53,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   double result = 0.0;
 
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-  String _currentAddress;
+  String _currentAddress='';
   _getAddressFromLatLng() async {
     List<Placemark> p = await geolocator.placemarkFromCoordinates(_lat, _lng);
     Placemark place = p[0];
