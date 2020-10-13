@@ -7,9 +7,6 @@ import 'package:project_doctor/matching_algorithm/disease4.dart';
 import 'package:project_doctor/matching_algorithm/disease5.dart';
 import 'package:project_doctor/matching_algorithm/disease6.dart';
 import 'package:project_doctor/matching_algorithm/disease7.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:project_doctor/matching_algorithm/final_score.dart';
-import 'package:project_doctor/pages/patient_pages/patient_map.dart';
 
 class PatientRiskFactors extends StatefulWidget {
   final String chiefcomplaint;
@@ -109,21 +106,6 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
   String alcohol = '';
   String inactivity = '';
   String familyHistory = '';
-
-  String region = '';
-  List<DropdownMenuItem<String>> regions = List();
-  final regionsa = {
-    '1': 'Baghdad',
-    '2': 'Northern Region',
-    '3': 'Southern Region',
-    '4': 'Western Region'
-  };
-
-  void _getCurrentLocation() async {
-    final Position position = await Geolocator()
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    print(position);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -459,329 +441,235 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                 height: 25,
               ),
               Container(
-                decoration: boxDecorationPatient,
-                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                child: Column(
-                  children: [
-                    Text(
-                      'Province',
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
-                    ),
-                    Divider(
-                      color: Colors.grey,
-                      thickness: 2,
-                      indent: 30,
-                      endIndent: 30,
-                    ),
-                    DropdownButton(
-                      hint: Text('Select your Province'),
-                      isExpanded: true,
-                      items: [
-                        DropdownMenuItem<String>(
-                          value: "Baghdad",
-                          child: Text("Baghdad"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "Northern Region",
-                          child: Text("Northern Region"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "Southern Region",
-                          child: Text("Southern Region"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "Western Region",
-                          child: Text("Western Region"),
-                        ),
-                      ],
-                      onChanged: (_value) {
-                        setState(() {
-                          region = _value;
-                        });
-                        print(region);
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Container(
-                decoration: boxDecorationPatient,
-                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                child: Column(
-                  children: [
-                    Center(
-                      child: Text(
-                        'To Continue, you Must Specify your current location through either:',
-                        style: TextStyle(
-                            fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    RaisedButton.icon(
-                      color: Colors.deepOrange,
-                      icon: Icon(
-                        Icons.map,
+                width: double.maxFinite,
+                child: RaisedButton.icon(
+                  color: Colors.deepOrange,
+                  icon: Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                  ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(80.0)),
+                  onPressed: () async {
+                    maindisease1(
+                        cc,
+                        s2,
+                        s3,
+                        s4,
+                        s5,
+                        s6,
+                        s7,
+                        htn,
+                        dm,
+                        chd,
+                        hf,
+                        ctd,
+                        ckd,
+                        ld,
+                        cid,
+                        epilepsy,
+                        cva,
+                        goitre,
+                        cld,
+                        copd,
+                        ashma,
+                        malignancy,
+                        pregnancy,
+                        obesity,
+                        inactivity,
+                        familyHistory,
+                        alcohol,
+                        smoking,
+                        gender);
+                    maindisease6(
+                        cc,
+                        s2,
+                        s3,
+                        s4,
+                        s5,
+                        s6,
+                        s7,
+                        htn,
+                        dm,
+                        chd,
+                        hf,
+                        ctd,
+                        ckd,
+                        ld,
+                        cid,
+                        epilepsy,
+                        cva,
+                        goitre,
+                        cld,
+                        copd,
+                        ashma,
+                        malignancy,
+                        pregnancy,
+                        obesity,
+                        inactivity,
+                        familyHistory,
+                        alcohol,
+                        smoking,
+                        gender);
+                    maindisease3(
+                        cc,
+                        s2,
+                        s3,
+                        s4,
+                        s5,
+                        s6,
+                        s7,
+                        htn,
+                        dm,
+                        chd,
+                        hf,
+                        ctd,
+                        ckd,
+                        ld,
+                        cid,
+                        epilepsy,
+                        cva,
+                        goitre,
+                        cld,
+                        copd,
+                        ashma,
+                        malignancy,
+                        pregnancy,
+                        obesity,
+                        inactivity,
+                        familyHistory,
+                        alcohol,
+                        smoking,
+                        gender);
+                    maindisease4(
+                        cc,
+                        s2,
+                        s3,
+                        s4,
+                        s5,
+                        s6,
+                        s7,
+                        htn,
+                        dm,
+                        chd,
+                        hf,
+                        ctd,
+                        ckd,
+                        ld,
+                        cid,
+                        epilepsy,
+                        cva,
+                        goitre,
+                        cld,
+                        copd,
+                        ashma,
+                        malignancy,
+                        pregnancy,
+                        obesity,
+                        inactivity,
+                        familyHistory,
+                        alcohol,
+                        smoking,
+                        gender);
+                    maindisease5(
+                        cc,
+                        s2,
+                        s3,
+                        s4,
+                        s5,
+                        s6,
+                        s7,
+                        htn,
+                        dm,
+                        chd,
+                        hf,
+                        ctd,
+                        ckd,
+                        ld,
+                        cid,
+                        epilepsy,
+                        cva,
+                        goitre,
+                        cld,
+                        copd,
+                        ashma,
+                        malignancy,
+                        pregnancy,
+                        obesity,
+                        inactivity,
+                        familyHistory,
+                        alcohol,
+                        smoking,
+                        gender);
+                    maindisease7(
+                        cc,
+                        s2,
+                        s3,
+                        s4,
+                        s5,
+                        s6,
+                        s7,
+                        htn,
+                        dm,
+                        chd,
+                        hf,
+                        ctd,
+                        ckd,
+                        ld,
+                        cid,
+                        epilepsy,
+                        cva,
+                        goitre,
+                        cld,
+                        copd,
+                        ashma,
+                        malignancy,
+                        pregnancy,
+                        obesity,
+                        inactivity,
+                        familyHistory,
+                        alcohol,
+                        smoking,
+                        gender);
+                    maindisease2(
+                        cc,
+                        s2,
+                        s3,
+                        s4,
+                        s5,
+                        s6,
+                        s7,
+                        htn,
+                        dm,
+                        chd,
+                        hf,
+                        ctd,
+                        ckd,
+                        ld,
+                        cid,
+                        epilepsy,
+                        cva,
+                        goitre,
+                        cld,
+                        copd,
+                        ashma,
+                        malignancy,
+                        pregnancy,
+                        obesity,
+                        inactivity,
+                        familyHistory,
+                        alcohol,
+                        smoking,
+                        gender);
+                    Navigator.pushNamed(context, '/patient_get_location');
+                  },
+                  label: Text(
+                    'Next',
+                    style: TextStyle(
                         color: Colors.white,
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(80.0)),
-                      onPressed: () async {
-                        _getCurrentLocation();
-                        maindisease1(
-                            cc,
-                            s2,
-                            s3,
-                            s4,
-                            s5,
-                            s6,
-                            s7,
-                            htn,
-                            dm,
-                            chd,
-                            hf,
-                            ctd,
-                            ckd,
-                            ld,
-                            cid,
-                            epilepsy,
-                            cva,
-                            goitre,
-                            cld,
-                            copd,
-                            ashma,
-                            malignancy,
-                            pregnancy,
-                            obesity,
-                            inactivity,
-                            familyHistory,
-                            alcohol,
-                            smoking,
-                            gender);
-                        maindisease6(
-                            cc,
-                            s2,
-                            s3,
-                            s4,
-                            s5,
-                            s6,
-                            s7,
-                            htn,
-                            dm,
-                            chd,
-                            hf,
-                            ctd,
-                            ckd,
-                            ld,
-                            cid,
-                            epilepsy,
-                            cva,
-                            goitre,
-                            cld,
-                            copd,
-                            ashma,
-                            malignancy,
-                            pregnancy,
-                            obesity,
-                            inactivity,
-                            familyHistory,
-                            alcohol,
-                            smoking,
-                            gender);
-                        maindisease3(
-                            cc,
-                            s2,
-                            s3,
-                            s4,
-                            s5,
-                            s6,
-                            s7,
-                            htn,
-                            dm,
-                            chd,
-                            hf,
-                            ctd,
-                            ckd,
-                            ld,
-                            cid,
-                            epilepsy,
-                            cva,
-                            goitre,
-                            cld,
-                            copd,
-                            ashma,
-                            malignancy,
-                            pregnancy,
-                            obesity,
-                            inactivity,
-                            familyHistory,
-                            alcohol,
-                            smoking,
-                            gender);
-                        maindisease4(
-                            cc,
-                            s2,
-                            s3,
-                            s4,
-                            s5,
-                            s6,
-                            s7,
-                            htn,
-                            dm,
-                            chd,
-                            hf,
-                            ctd,
-                            ckd,
-                            ld,
-                            cid,
-                            epilepsy,
-                            cva,
-                            goitre,
-                            cld,
-                            copd,
-                            ashma,
-                            malignancy,
-                            pregnancy,
-                            obesity,
-                            inactivity,
-                            familyHistory,
-                            alcohol,
-                            smoking,
-                            gender);
-                        maindisease5(
-                            cc,
-                            s2,
-                            s3,
-                            s4,
-                            s5,
-                            s6,
-                            s7,
-                            htn,
-                            dm,
-                            chd,
-                            hf,
-                            ctd,
-                            ckd,
-                            ld,
-                            cid,
-                            epilepsy,
-                            cva,
-                            goitre,
-                            cld,
-                            copd,
-                            ashma,
-                            malignancy,
-                            pregnancy,
-                            obesity,
-                            inactivity,
-                            familyHistory,
-                            alcohol,
-                            smoking,
-                            gender);
-                        maindisease7(
-                            cc,
-                            s2,
-                            s3,
-                            s4,
-                            s5,
-                            s6,
-                            s7,
-                            htn,
-                            dm,
-                            chd,
-                            hf,
-                            ctd,
-                            ckd,
-                            ld,
-                            cid,
-                            epilepsy,
-                            cva,
-                            goitre,
-                            cld,
-                            copd,
-                            ashma,
-                            malignancy,
-                            pregnancy,
-                            obesity,
-                            inactivity,
-                            familyHistory,
-                            alcohol,
-                            smoking,
-                            gender);
-                        maindisease2(
-                            cc,
-                            s2,
-                            s3,
-                            s4,
-                            s5,
-                            s6,
-                            s7,
-                            htn,
-                            dm,
-                            chd,
-                            hf,
-                            ctd,
-                            ckd,
-                            ld,
-                            cid,
-                            epilepsy,
-                            cva,
-                            goitre,
-                            cld,
-                            copd,
-                            ashma,
-                            malignancy,
-                            pregnancy,
-                            obesity,
-                            inactivity,
-                            familyHistory,
-                            alcohol,
-                            smoking,
-                            gender);
-                        Navigator.pushNamed(context, '/patient_result');
-                      },
-                      label: Text(
-                        'Device Location',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'or',
-                        style: TextStyle(
-                            fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    RaisedButton.icon(
-                      color: Colors.deepOrange,
-                      icon: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(80.0)),
-                      onPressed: () async {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => PatientMap(
-                                  speciality: FinalScore.speciality,
-                                  province: region,
-                                )));
-                      },
-                      label: Text(
-                        'Google Map',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ],
@@ -790,12 +678,4 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
       ),
     );
   }
-}
-
-class MyVariables {
-  static String speciality = '';
-  static String speciality2 = '';
-  static String province = '';
-  static double lat = 0.0;
-  static double long = 0.0;
 }

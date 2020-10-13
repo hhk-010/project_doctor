@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
+import 'package:project_doctor/pages/patient_pages/patient_get_location.dart';
 import 'package:project_doctor/pages/patient_pages/patient_map.dart';
 import 'package:project_doctor/pages/patient_pages/patient_result_map.dart';
 import 'package:project_doctor/pages/home.dart';
@@ -102,6 +103,7 @@ class _MyAppState extends State<MyApp> {
           '/doctor_form': (context) => DoctorForm(),
           '/doctor_profile': (context) => DoctorProfile(),
           '/patient_risk_factors': (context) => PatientRiskFactors(),
+          '/patient_get_location': (context) => PatientGetLocation(),
           '/patient_result': (context) => PatientResult(),
           '/patmap': (context) => PatientMap(),
           '/doctorlocate': (context) => PatientResultMap(),

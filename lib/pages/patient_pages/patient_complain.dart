@@ -1786,7 +1786,7 @@ class _PatientComplainState extends State<PatientComplain> {
               label: Text('Continue',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold)),
               onPressed: () async {
                 getage();

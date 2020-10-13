@@ -3,10 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
+import 'package:project_doctor/pages/patient_pages/patient_get_location.dart';
 import 'package:project_doctor/pages/patient_pages/patient_result_map.dart';
-import 'package:project_doctor/pages/patient_pages/patient_risk_factors.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
+import 'package:geolocator/geolocator.dart';
 
 class PatientResult extends StatefulWidget {
   @override
@@ -24,35 +25,47 @@ class _PatientResultState extends State<PatientResult> {
           backgroundColor: Colors.deepOrange,
           title: Text(
             'Search Result',
-            style: TextStyle(fontSize: 25.0),
+            style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
           elevation: 0,
         ),
-        body: TheProfile(),
+        body: ResultDoctorProfile(),
       ),
     );
   }
 }
 
-class TheProfile extends StatefulWidget {
+class ResultDoctorProfile extends StatefulWidget {
   @override
-  _TheProfileState createState() => _TheProfileState();
+  _ResultDoctorProfileState createState() => _ResultDoctorProfileState();
 }
 
-class _TheProfileState extends State<TheProfile> {
+class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
+  String _name = '';
+  String _speciality = '';
+  String _number = '';
+  String _province = '';
+  double _lat = 0.0;
+  double _lng = 0.0;
+  double distance = 0.0;
+  double sum = 0.0;
+  double result = 0.0;
+
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  String _currentAddress;
+  _getAddressFromLatLng() async {
+    List<Placemark> p = await geolocator.placemarkFromCoordinates(_lat, _lng);
+    Placemark place = p[0];
+    setState(() {
+      _currentAddress = "${place.locality}, ${place.country}";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final doctorListProvider = Provider.of<QuerySnapshot>(context);
-    String _name = '';
-    String _speciality = '';
-    String _number = '';
-    String _province = '';
-    double _lat = 0.0;
-    double _lng = 0.0;
-    double distance = 0.0;
-    double sum = 0.0;
-    double result = 0.0;
+
     if (doctorListProvider != null) {
       for (var docu in doctorListProvider.docs) {
         sum = ((docu.data()['lat'] - MyVariables.lat) *
@@ -86,52 +99,77 @@ class _TheProfileState extends State<TheProfile> {
             _province = docu.data()['province'];
             _lat = docu.data()['lat'];
             _lng = docu.data()['lng'];
+            _getAddressFromLatLng();
           });
         }
       }
+    }
 
-      return Container(
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 40),
+      child: Container(
         decoration: boxDecorationPatient,
-        padding: EdgeInsets.symmetric(vertical: 50, horizontal: 50),
         child: Column(
           children: [
             Center(
               child: Text(_name),
             ),
-            SizedBox(
-              height: 15,
+            Spacer(
+              flex: 1,
             ),
             Center(
               child: Text(_speciality),
             ),
-            SizedBox(
-              height: 15,
+            Spacer(
+              flex: 1,
             ),
             Center(
               child: Text(_province),
             ),
-            SizedBox(
-              height: 15,
+            Spacer(
+              flex: 1,
             ),
             Center(
               child: Text(_number),
             ),
-            SizedBox(
-              height: 200,
+            Spacer(
+              flex: 1,
             ),
-            RaisedButton(
-              child: Text('View Doctor Location on Google Map'),
-              onPressed: () {
+            Center(
+              child: Text(_currentAddress),
+            ),
+            Spacer(
+              flex: 5,
+            ),
+            RaisedButton.icon(
+              color: Colors.deepOrange,
+              icon: Icon(
+                Icons.arrow_forward,
+                color: Colors.white,
+              ),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(80.0)),
+              onPressed: () async {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => PatientResultMap(
                           lat: _lat,
                           lng: _lng,
                         )));
               },
+              label: Text(
+                'View Doctor Location',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            Spacer(
+              flex: 3,
             ),
           ],
         ),
-      );
-    }
+      ),
+    );
   }
 }

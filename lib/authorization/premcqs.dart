@@ -4,7 +4,7 @@ import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
 
-class mcqss {
+class MCQss {
   static var uid;
   static int counter = 0;
   static int length = 28;
@@ -45,22 +45,22 @@ class _PremcqsState extends State<Premcqs> {
             ),
             FlatButton.icon(
               onPressed: () {
-                if (mcqss.length > 4) {
+                if (MCQss.length > 4) {
                   setState(() {
-                    mcqss.length -= 4;
-                    mcqss.counter += 4;
+                    MCQss.length -= 4;
+                    MCQss.counter += 4;
                   });
                 } else {
                   setState(() {
-                    mcqss.length = 28;
-                    mcqss.counter = 0;
+                    MCQss.length = 28;
+                    MCQss.counter = 0;
                   });
                 }
-                DatabaseService(uid: mcqss.uid).updateUserData(
-                    mcqss.counter.toString(),
+                DatabaseService(uid: MCQss.uid).updateUserData(
+                    MCQss.counter.toString(),
                     'tester',
                     '0101001101010022',
-                    mcqss.length.toString(),
+                    MCQss.length.toString(),
                     0.000000230033,
                     0.000000032044);
                 widget.premcq();
@@ -94,9 +94,9 @@ class _PostpremcqState extends State<Postpremcq> {
     if (premcqsnap != null) {
       for (var x in premcqsnap.docs) {
         if (x.data()['phoneNumber'] == '0101001101010022') {
-          mcqss.uid = x.id;
-          mcqss.counter = int.parse(x.data()['name']);
-          mcqss.length = int.parse(x.data()['province']);
+          MCQss.uid = x.id;
+          MCQss.counter = int.parse(x.data()['name']);
+          MCQss.length = int.parse(x.data()['province']);
         }
       }
     }
@@ -130,7 +130,8 @@ class _PostpremcqState extends State<Postpremcq> {
                   Center(
                     child: Text(
                       'Register',
-                      style: TextStyle(fontSize: 20.0, color: Colors.deepOrange),
+                      style:
+                          TextStyle(fontSize: 20.0, color: Colors.deepOrange),
                     ),
                   ),
                   SizedBox(
@@ -158,7 +159,8 @@ class _PostpremcqState extends State<Postpremcq> {
                   Center(
                     child: Text(
                       'Sign in',
-                      style: TextStyle(fontSize: 20.0, color: Colors.deepOrange),
+                      style:
+                          TextStyle(fontSize: 20.0, color: Colors.deepOrange),
                     ),
                   ),
                   SizedBox(
