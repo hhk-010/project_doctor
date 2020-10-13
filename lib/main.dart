@@ -4,7 +4,7 @@ import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
 import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
 import 'package:project_doctor/pages/patient_pages/patient06_result_map.dart';
 import 'package:project_doctor/pages/home.dart';
-import 'package:project_doctor/authorization/wrapper.dart';
+import 'package:project_doctor/authorization/01_wrapper.dart';
 import 'package:project_doctor/pages/patient_pages/patient01_complain.dart';
 import 'package:project_doctor/pages/patient_pages/patient02_risk_factors.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor01_form.dart';

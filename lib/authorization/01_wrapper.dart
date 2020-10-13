@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
-import 'package:project_doctor/authorization/mcqs.dart';
-import 'package:project_doctor/authorization/pre_mcqs.dart';
+import 'package:project_doctor/authorization/04_mcqs.dart';
+import 'package:project_doctor/authorization/03_pre_mcqs.dart';
 import 'package:provider/provider.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/auth.dart';
-import 'package:project_doctor/authorization/register.dart';
-import 'package:project_doctor/authorization/sign_in.dart';
+import 'package:project_doctor/authorization/05_register.dart';
+import 'package:project_doctor/authorization/02_sign_in.dart';
 import '../pages/doctor_pages/doctor03_profile.dart';
 
 class Intermediate extends StatefulWidget {
