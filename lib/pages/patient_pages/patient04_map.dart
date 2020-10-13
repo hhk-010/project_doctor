@@ -55,7 +55,7 @@ class _PatientMapState extends State<PatientMap> {
   _showSnackBar() {
     final _snackBar = new SnackBar(
       content: Text(
-        'Please , tap on your location',
+        _error,
         style: TextStyle(fontSize: 15),
       ),
       backgroundColor: Colors.deepOrange,
@@ -91,7 +91,7 @@ class _PatientMapState extends State<PatientMap> {
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: Text(
-          _error,
+          'Tap on your location',
           style: TextStyle(fontSize: 25),
         ),
         centerTitle: true,
