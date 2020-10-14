@@ -53,7 +53,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   double result = 0.0;
 
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-  String _currentAddress='';
+  String _currentAddress = '';
   _getAddressFromLatLng() async {
     List<Placemark> p = await geolocator.placemarkFromCoordinates(_lat, _lng);
     Placemark place = p[0];
@@ -64,8 +64,9 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
 
   @override
   Widget build(BuildContext context) {
+    TextStyle _textStyle = TextStyle(
+        fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold);
     final doctorListProvider = Provider.of<QuerySnapshot>(context);
-
     if (doctorListProvider != null) {
       for (var docu in doctorListProvider.docs) {
         sum = ((docu.data()['lat'] - MyVariables.lat) *
@@ -104,43 +105,64 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
         }
       }
     }
-
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 40),
+      padding: const EdgeInsets.symmetric(vertical: 75, horizontal: 40),
       child: Container(
-        decoration: boxDecorationPatient,
+        height: double.maxFinite,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Center(
-              child: Text(_name),
+            Container(
+              decoration: boxDecorationPatient,
+              child: Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Colors.deepOrange,
+                        radius: 75,
+                        backgroundImage: AssetImage('assets/images/doctor.png'),
+                      ),
+                      SizedBox(
+                        height: 25,
+                      ),
+                      Text(
+                        _name,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        _speciality,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        _number,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        _currentAddress,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-            Spacer(
-              flex: 1,
-            ),
-            Center(
-              child: Text(_speciality),
-            ),
-            Spacer(
-              flex: 1,
-            ),
-            Center(
-              child: Text(_province),
-            ),
-            Spacer(
-              flex: 1,
-            ),
-            Center(
-              child: Text(_number),
-            ),
-            Spacer(
-              flex: 1,
-            ),
-            Center(
-              child: Text(_currentAddress),
-            ),
-            Spacer(
-              flex: 5,
-            ),
+            Spacer(),
             RaisedButton.icon(
               color: Colors.deepOrange,
               icon: Icon(
@@ -160,12 +182,9 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                 'View Doctor Location',
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 20,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold),
               ),
-            ),
-            Spacer(
-              flex: 3,
             ),
           ],
         ),

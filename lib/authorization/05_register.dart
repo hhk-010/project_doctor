@@ -168,8 +168,6 @@ class _RegisterState extends State<Register> {
                         },
                         child: RichText(
                           text: new TextSpan(
-                            // Note: Styles for TextSpans must be explicitly defined.
-                            // Child text spans will inherit styles from parent
                             style: new TextStyle(
                               fontSize: 14.0,
                               color: Colors.black,

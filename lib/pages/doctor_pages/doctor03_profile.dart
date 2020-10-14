@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor04_update_info.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/auth.dart';
@@ -53,26 +54,44 @@ class DoctorList extends StatefulWidget {
 }
 
 class _DoctorListState extends State<DoctorList> {
+  String name = '';
+  String speciality = '';
+  String number = '';
+  String province = '';
+  double lat = 0.0;
+  double lng = 0.0;
+
+//get the user address from lat and lng
+  String _doctorAddress = '';
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  _getAddressFromLatLng() async {
+    List<Placemark> p = await geolocator.placemarkFromCoordinates(lat, lng);
+    Placemark place = p[0];
+    setState(() {
+      _doctorAddress = "${place.locality}, ${place.country}";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     TextStyle _textStyle = TextStyle(
         fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold);
     var uid = FirebaseAuth.instance.currentUser.uid;
     final doctorListProvider = Provider.of<QuerySnapshot>(context);
-    String name = '';
-    String speciality = '';
-    String number = '';
-    String province = '';
-    // double lattt = 0.0;
-    // double lnggg = 0.0;
+
     if (doctorListProvider != null) {
       for (var doc in doctorListProvider.docs) {
         if (doc.id == uid) {
           print(doc.data()['name']);
-          name = doc.data()['name'];
-          speciality = doc.data()['speciality'];
-          number = doc.data()['phoneNumber'];
-          province = doc.data()['province'];
+          setState(() {
+            name = doc.data()['name'];
+            speciality = doc.data()['speciality'];
+            number = doc.data()['phoneNumber'];
+            province = doc.data()['province'];
+            lat = doc.data()['lat'];
+            lng = doc.data()['lng'];
+            _getAddressFromLatLng();
+          });
         }
       }
     }
@@ -123,7 +142,7 @@ class _DoctorListState extends State<DoctorList> {
                         height: 10,
                       ),
                       Text(
-                        province,
+                        _doctorAddress,
                         style: _textStyle,
                       ),
                       SizedBox(
