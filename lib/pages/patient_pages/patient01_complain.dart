@@ -1220,6 +1220,12 @@ class _PatientComplainState extends State<PatientComplain> {
   bool _switch02 = false;
   bool _visibile03 = false;
   bool _switch03 = false;
+  bool _visibile04 = false;
+  bool _switch04 = false;
+  bool _visibile05 = false;
+  bool _switch05 = false;
+  bool _visibile06 = false;
+  bool _switch06 = false;
 
   var regionSelected = TextEditingController();
 
@@ -1772,6 +1778,666 @@ class _PatientComplainState extends State<PatientComplain> {
                 ),
               ),
             ),
+            SizedBox(height: 20),
+            Visibility(
+              visible: _visibile03,
+              child: Container(
+                decoration: boxDecorationPatient,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      Center(
+                        child: Container(
+                          child: Text(
+                            'Additional Complains',
+                            style: TextStyle(
+                                fontSize: 18.0, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      Divider(
+                        color: Colors.grey,
+                        thickness: 2,
+                        indent: 30,
+                        endIndent: 30,
+                      ),
+                      DropdownButton<String>(
+                        isExpanded: true,
+                        items: [
+                          DropdownMenuItem<String>(
+                            value: "cardioRespiratory",
+                            child: Text("Heart and Lungs"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "gastroIntestinal",
+                            child: Text("Gastro Intestinal Tract"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "peiranalAbdomen",
+                            child: Text("Peri-Anal Area"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "neurology",
+                            child: Text("Brain"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "psychology",
+                            child: Text("Psychology"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "musckuloskeletal",
+                            child: Text("Skeleton and Muscles"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "headNeckBack",
+                            child: Text("Head, Neck and Back"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "upperLimb",
+                            child: Text("upper Limb"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "hand",
+                            child: Text("Hand"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "lowerLimb",
+                            child: Text("Lower Limb"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "others",
+                            child: Text("Other Symptoms"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "bpPrLab",
+                            child: Text(
+                                "Blood Pressure, Pulse and Lab Investigation"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "injuriesSuicideIntoxicationBurn",
+                            child: Text(
+                                "Injuries, Suicide, Intoxication and Burn"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "mouth",
+                            child: Text("Mouth"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "appetite",
+                            child: Text("Appetite"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "entThroat",
+                            child: Text("Throat"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "entNose",
+                            child: Text("Nose"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "entEar",
+                            child: Text("Ear"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dermatology",
+                            child: Text("Skin Problems"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "gynecology",
+                            child: Text("Female Menstrual Health"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "uroKidney",
+                            child: Text("Urinary Tract"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "maleGenital",
+                            child: Text("Male Genital Health"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "ophthalmology",
+                            child: Text("Eye Problems"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "breast",
+                            child: Text("Breast"),
+                          ),
+                        ],
+                        onChanged: (_value) => selected04(_value),
+                        hint: Text(AppLocalizations.of(context)
+                            .translate('patient_area_of_choice')),
+                      ),
+                      DropdownButton<String>(
+                        isExpanded: true,
+                        items: menuitems,
+                        onChanged: disabledropdown04
+                            ? null
+                            : (value) => secondselected4(value),
+                        hint: Text(AppLocalizations.of(context)
+                            .translate('patient_complain')),
+                        disabledHint: Text(AppLocalizations.of(context)
+                            .translate('patient_disablehint')),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Do you have another Complain',
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.bold),
+                          ),
+                          Switch(
+                              value: _switch04,
+                              activeColor: Colors.deepOrange,
+                              onChanged: (bool s) {
+                                setState(() {
+                                  _switch04 = s;
+                                  _visibile04 = !_visibile04;
+                                });
+                              })
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            Visibility(
+              visible: _visibile04,
+              child: Container(
+                decoration: boxDecorationPatient,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      Center(
+                        child: Container(
+                          child: Text(
+                            'Additional Complains',
+                            style: TextStyle(
+                                fontSize: 18.0, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      Divider(
+                        color: Colors.grey,
+                        thickness: 2,
+                        indent: 30,
+                        endIndent: 30,
+                      ),
+                      DropdownButton<String>(
+                        isExpanded: true,
+                        items: [
+                          DropdownMenuItem<String>(
+                            value: "cardioRespiratory",
+                            child: Text("Heart and Lungs"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "gastroIntestinal",
+                            child: Text("Gastro Intestinal Tract"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "peiranalAbdomen",
+                            child: Text("Peri-Anal Area"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "neurology",
+                            child: Text("Brain"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "psychology",
+                            child: Text("Psychology"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "musckuloskeletal",
+                            child: Text("Skeleton and Muscles"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "headNeckBack",
+                            child: Text("Head, Neck and Back"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "upperLimb",
+                            child: Text("upper Limb"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "hand",
+                            child: Text("Hand"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "lowerLimb",
+                            child: Text("Lower Limb"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "others",
+                            child: Text("Other Symptoms"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "bpPrLab",
+                            child: Text(
+                                "Blood Pressure, Pulse and Lab Investigation"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "injuriesSuicideIntoxicationBurn",
+                            child: Text(
+                                "Injuries, Suicide, Intoxication and Burn"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "mouth",
+                            child: Text("Mouth"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "appetite",
+                            child: Text("Appetite"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "entThroat",
+                            child: Text("Throat"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "entNose",
+                            child: Text("Nose"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "entEar",
+                            child: Text("Ear"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dermatology",
+                            child: Text("Skin Problems"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "gynecology",
+                            child: Text("Female Menstrual Health"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "uroKidney",
+                            child: Text("Urinary Tract"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "maleGenital",
+                            child: Text("Male Genital Health"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "ophthalmology",
+                            child: Text("Eye Problems"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "breast",
+                            child: Text("Breast"),
+                          ),
+                        ],
+                        onChanged: (_value) => selected05(_value),
+                        hint: Text(AppLocalizations.of(context)
+                            .translate('patient_area_of_choice')),
+                      ),
+                      DropdownButton<String>(
+                        isExpanded: true,
+                        items: menuitems,
+                        onChanged: disabledropdown05
+                            ? null
+                            : (value) => secondselected5(value),
+                        hint: Text(AppLocalizations.of(context)
+                            .translate('patient_complain')),
+                        disabledHint: Text(AppLocalizations.of(context)
+                            .translate('patient_disablehint')),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Do you have another Complain',
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.bold),
+                          ),
+                          Switch(
+                              value: _switch05,
+                              activeColor: Colors.deepOrange,
+                              onChanged: (bool s) {
+                                setState(() {
+                                  _switch05 = s;
+                                  _visibile05 = !_visibile05;
+                                });
+                              })
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            Visibility(
+              visible: _visibile05,
+              child: Container(
+                decoration: boxDecorationPatient,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      Center(
+                        child: Container(
+                          child: Text(
+                            'Additional Complains',
+                            style: TextStyle(
+                                fontSize: 18.0, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      Divider(
+                        color: Colors.grey,
+                        thickness: 2,
+                        indent: 30,
+                        endIndent: 30,
+                      ),
+                      DropdownButton<String>(
+                        isExpanded: true,
+                        items: [
+                          DropdownMenuItem<String>(
+                            value: "cardioRespiratory",
+                            child: Text("Heart and Lungs"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "gastroIntestinal",
+                            child: Text("Gastro Intestinal Tract"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "peiranalAbdomen",
+                            child: Text("Peri-Anal Area"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "neurology",
+                            child: Text("Brain"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "psychology",
+                            child: Text("Psychology"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "musckuloskeletal",
+                            child: Text("Skeleton and Muscles"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "headNeckBack",
+                            child: Text("Head, Neck and Back"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "upperLimb",
+                            child: Text("upper Limb"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "hand",
+                            child: Text("Hand"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "lowerLimb",
+                            child: Text("Lower Limb"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "others",
+                            child: Text("Other Symptoms"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "bpPrLab",
+                            child: Text(
+                                "Blood Pressure, Pulse and Lab Investigation"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "injuriesSuicideIntoxicationBurn",
+                            child: Text(
+                                "Injuries, Suicide, Intoxication and Burn"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "mouth",
+                            child: Text("Mouth"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "appetite",
+                            child: Text("Appetite"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "entThroat",
+                            child: Text("Throat"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "entNose",
+                            child: Text("Nose"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "entEar",
+                            child: Text("Ear"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dermatology",
+                            child: Text("Skin Problems"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "gynecology",
+                            child: Text("Female Menstrual Health"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "uroKidney",
+                            child: Text("Urinary Tract"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "maleGenital",
+                            child: Text("Male Genital Health"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "ophthalmology",
+                            child: Text("Eye Problems"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "breast",
+                            child: Text("Breast"),
+                          ),
+                        ],
+                        onChanged: (_value) => selected05(_value),
+                        hint: Text(AppLocalizations.of(context)
+                            .translate('patient_area_of_choice')),
+                      ),
+                      DropdownButton<String>(
+                        isExpanded: true,
+                        items: menuitems,
+                        onChanged: disabledropdown05
+                            ? null
+                            : (value) => secondselected5(value),
+                        hint: Text(AppLocalizations.of(context)
+                            .translate('patient_complain')),
+                        disabledHint: Text(AppLocalizations.of(context)
+                            .translate('patient_disablehint')),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Do you have another Complain',
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.bold),
+                          ),
+                          Switch(
+                              value: _switch06,
+                              activeColor: Colors.deepOrange,
+                              onChanged: (bool s) {
+                                setState(() {
+                                  _switch06 = s;
+                                  _visibile06 = !_visibile06;
+                                });
+                              })
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Visibility(
+              visible: _visibile06,
+              child: Container(
+                decoration: boxDecorationPatient,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      Center(
+                        child: Container(
+                          child: Text(
+                            'Additional Complains',
+                            style: TextStyle(
+                                fontSize: 18.0, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      Divider(
+                        color: Colors.grey,
+                        thickness: 2,
+                        indent: 30,
+                        endIndent: 30,
+                      ),
+                      DropdownButton<String>(
+                        isExpanded: true,
+                        items: [
+                          DropdownMenuItem<String>(
+                            value: "cardioRespiratory",
+                            child: Text("Heart and Lungs"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "gastroIntestinal",
+                            child: Text("Gastro Intestinal Tract"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "peiranalAbdomen",
+                            child: Text("Peri-Anal Area"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "neurology",
+                            child: Text("Brain"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "psychology",
+                            child: Text("Psychology"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "musckuloskeletal",
+                            child: Text("Skeleton and Muscles"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "headNeckBack",
+                            child: Text("Head, Neck and Back"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "upperLimb",
+                            child: Text("upper Limb"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "hand",
+                            child: Text("Hand"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "lowerLimb",
+                            child: Text("Lower Limb"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "others",
+                            child: Text("Other Symptoms"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "bpPrLab",
+                            child: Text(
+                                "Blood Pressure, Pulse and Lab Investigation"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "injuriesSuicideIntoxicationBurn",
+                            child: Text(
+                                "Injuries, Suicide, Intoxication and Burn"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "mouth",
+                            child: Text("Mouth"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "appetite",
+                            child: Text("Appetite"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "entThroat",
+                            child: Text("Throat"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "entNose",
+                            child: Text("Nose"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "entEar",
+                            child: Text("Ear"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dermatology",
+                            child: Text("Skin Problems"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "gynecology",
+                            child: Text("Female Menstrual Health"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "uroKidney",
+                            child: Text("Urinary Tract"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "maleGenital",
+                            child: Text("Male Genital Health"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "ophthalmology",
+                            child: Text("Eye Problems"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "breast",
+                            child: Text("Breast"),
+                          ),
+                        ],
+                        onChanged: (_value) => selected07(_value),
+                        hint: Text(AppLocalizations.of(context)
+                            .translate('patient_area_of_choice')),
+                      ),
+                      DropdownButton<String>(
+                        isExpanded: true,
+                        items: menuitems,
+                        onChanged: disabledropdown07
+                            ? null
+                            : (value) => secondselected7(value),
+                        hint: Text(AppLocalizations.of(context)
+                            .translate('patient_complain')),
+                        disabledHint: Text(AppLocalizations.of(context)
+                            .translate('patient_disablehint')),
+                      ),
+                      // it is the last box so the row should be removed
+                      /*Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Do you have another Complain',
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.bold),
+                          ),
+                          Switch(
+                              value: _switch06,
+                              activeColor: Colors.deepOrange,
+                              onChanged: (bool s) {
+                                setState(() {
+                                  _switch06 = s;
+                                  _visibile06 = !_visibile06;
+                                });
+                              })
+                        ],
+                      )*/
+                    ],
+                  ),
+                ),
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
@@ -1790,16 +2456,19 @@ class _PatientComplainState extends State<PatientComplain> {
                       fontWeight: FontWeight.bold)),
               onPressed: () async {
                 getage();
-                Navigator.of(context).push(MaterialPageRoute(
+                Navigator.of(context).push(
+                  MaterialPageRoute(
                     builder: (context) => PatientRiskFactors(
-                          chiefcomplaint: complainSelected01,
-                          sym2: complainSelected02,
-                          sym3: complainSelected03,
-                          sym4: complainSelected04,
-                          sym5: complainSelected05,
-                          sym6: complainSelected06,
-                          sym7: complainSelected07,
-                        )));
+                      chiefcomplaint: complainSelected01,
+                      sym2: complainSelected02,
+                      sym3: complainSelected03,
+                      sym4: complainSelected04,
+                      sym5: complainSelected05,
+                      sym6: complainSelected06,
+                      sym7: complainSelected07,
+                    ),
+                  ),
+                );
               },
             ),
           ],

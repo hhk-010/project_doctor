@@ -165,14 +165,18 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                       SizedBox(
                         height: 10,
                       ),
+                      Text(
+                        'Distance to the Doctor is about ',
+                        style: TextStyle(fontSize:16),
+                      ),
+                      Text(
+                        realnearby + ' Km',
+                        style:TextStyle(color: Colors.deepOrange,fontSize: 20),
+                      ),
                     ],
                   ),
                 ),
               ),
-            ),
-            Center(
-              child:
-                  Text('Distance to the Doctor is about ' + realnearby + ' Km'),
             ),
             Spacer(
               flex: 5,
