@@ -53,7 +53,7 @@ class Authenticate extends StatefulWidget {
 }
 
 class _AuthenticateState extends State<Authenticate> {
-//=================================
+//=================================toogle_functions
   bool showSignIn = false;
   void signInToogleView() {
     setState(() {

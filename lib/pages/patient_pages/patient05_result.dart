@@ -51,13 +51,13 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   double distance = 0.0;
   double sum = 0.0;
   double result = 0.0;
-  double realdistance=0.0;
-  String realdist='';
-  int dotindex=0;
-  String realnearby='';
+  double realdistance = 0.0;
+  String realdist = '';
+  int dotindex = 0;
+  String realnearby = '';
 
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-  String _currentAddress='';
+  String _currentAddress = '';
   _getAddressFromLatLng() async {
     List<Placemark> p = await geolocator.placemarkFromCoordinates(_lat, _lng);
     Placemark place = p[0];
@@ -68,8 +68,9 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
 
   @override
   Widget build(BuildContext context) {
+    TextStyle _textStyle = TextStyle(
+        fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold);
     final doctorListProvider = Provider.of<QuerySnapshot>(context);
-
     if (doctorListProvider != null) {
       for (var docu in doctorListProvider.docs) {
         sum = ((docu.data()['lat'] - MyVariables.lat) *
@@ -103,54 +104,75 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             _province = docu.data()['province'];
             _lat = docu.data()['lat'];
             _lng = docu.data()['lng'];
-            realdistance=distance*100;
-            realdist=realdistance.toString();
-            dotindex=realdist.indexOf('.')+3;
-            realnearby=realdist.substring(0,dotindex);
+            realdistance = distance * 100;
+            realdist = realdistance.toString();
+            dotindex = realdist.indexOf('.') + 3;
+            realnearby = realdist.substring(0, dotindex);
             _getAddressFromLatLng();
           });
         }
       }
     }
-
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 40),
+      padding: const EdgeInsets.symmetric(vertical: 75, horizontal: 40),
       child: Container(
-        decoration: boxDecorationPatient,
+        height: double.maxFinite,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Container(
+              decoration: boxDecorationPatient,
+              child: Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Colors.deepOrange,
+                        radius: 75,
+                        backgroundImage: AssetImage('assets/images/doctor.png'),
+                      ),
+                      SizedBox(
+                        height: 25,
+                      ),
+                      Text(
+                        _name,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        _speciality,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        _number,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        _currentAddress,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             Center(
-              child: Text(_name),
-            ),
-            Spacer(
-              flex: 1,
-            ),
-            Center(
-              child: Text(_speciality),
-            ),
-            Spacer(
-              flex: 1,
-            ),
-            Center(
-              child: Text(_province),
-            ),
-            Spacer(
-              flex: 1,
-            ),
-            Center(
-              child: Text(_number),
-            ),
-            Spacer(
-              flex: 1,
-            ),
-            Center(
-              child: Text(_currentAddress),
-            ),
-            Spacer(
-              flex: 5,
-            ),
-            Center(
-              child: Text('Distance to the Doctor is about '+realnearby+' Km'),
+              child:
+                  Text('Distance to the Doctor is about ' + realnearby + ' Km'),
             ),
             Spacer(
               flex: 5,
@@ -174,12 +196,9 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                 'View Doctor Location',
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 20,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold),
               ),
-            ),
-            Spacer(
-              flex: 3,
             ),
           ],
         ),

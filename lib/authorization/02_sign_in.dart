@@ -7,11 +7,9 @@ import 'package:project_doctor/constants/theme.dart';
 import 'dart:io';
 
 //------this class is for the snackbar text
-class snacktext {
+class SnackText {
   static String error = '';
 }
-
-//------------------the end ---------------
 
 class SignIn extends StatefulWidget {
   final Function toogleView;
@@ -46,13 +44,12 @@ class _SignInState extends State<SignIn> {
     }
   }
 
-  //there was a problem in the old snackbar
-  //this function will return a snackbar instead of the old one
+// snackbar functions
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
     final _snackbar = new SnackBar(
       content: Text(
-        snacktext.error,
+        SnackText.error,
         style: TextStyle(fontSize: 15),
       ),
       backgroundColor: Colors.deepOrange,
@@ -160,7 +157,7 @@ class _SignInState extends State<SignIn> {
                                   setState(() => loading = true);
                                 } else {
                                   setState(() {
-                                    snacktext.error = 'Error signing in';
+                                    SnackText.error = 'Error signing in';
                                   });
                                   _showSnackBar();
                                 }
@@ -172,7 +169,7 @@ class _SignInState extends State<SignIn> {
                             }
                           } else {
                             setState(() {
-                              snacktext.error = 'No internet connection';
+                              SnackText.error = 'No internet connection';
                             });
                             _showSnackBar();
                           }

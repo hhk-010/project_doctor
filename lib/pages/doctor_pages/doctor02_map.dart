@@ -49,7 +49,7 @@ class _DocMapState extends State<DocMap> {
       this.speciality,
       this.phoneNumber,
       this.province});
-  String error='';
+  String error = '';
   var latlng;
 
   List<Marker> mymarker = [];
@@ -82,8 +82,7 @@ class _DocMapState extends State<DocMap> {
     lnggg = double.parse(lng);
   }
 
-  //--------------function to show a snackbar if the user didn't tap
-  //ont the location -----------------------------------------------
+  //function to show a snackbar if the user didn't tap on the location
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
     final _snackBar = new SnackBar(
@@ -95,7 +94,8 @@ class _DocMapState extends State<DocMap> {
     );
     _scaffoldkey.currentState.showSnackBar(_snackBar);
   }
-  //-------------------checking internet connection
+
+  //==========================checking internet connection
   bool _isInternet = true;
   checkInternet() async {
     try {
@@ -109,7 +109,7 @@ class _DocMapState extends State<DocMap> {
       setState(() {});
     }
   }
-  //------------the end --------------------
+
   @override
   void initState() {
     checkInternet();
@@ -147,9 +147,9 @@ class _DocMapState extends State<DocMap> {
               ),
               onPressed: () async {
                 checkInternet();
-                if (_isInternet){
+                if (_isInternet) {
                   if (latlng == null) {
-                    error='Please , tap on your location';
+                    error = 'Please , tap on your location';
                     _showSnackBar();
                   } else {
                     await geolocate(latlng: latlng);
@@ -164,7 +164,7 @@ class _DocMapState extends State<DocMap> {
                           lattt,
                           lnggg);
                       setState(() {
-                        newclient.email=email;
+                        newclient.email = email;
                       });
                       //========Navigation to EmailVerification without the following
                       // condition is a bug(emails Already in use can navigate)
@@ -177,21 +177,21 @@ class _DocMapState extends State<DocMap> {
                             builder: (context) => Intermediate(),
                           ),
                         );
-                      }else{
+                      } else {
                         setState(() {
-                          error='Registeration error , please enter valid credentials';
+                          error =
+                              'Registeration error , please enter valid credentials';
                         });
                         _showSnackBar();
                       }
                     }
                   }
-                }
-                else{
+                } else {
                   setState(() {
-                    error='No internet connection';
+                    error = 'No internet connection';
                   });
                 }
-               _showSnackBar();
+                _showSnackBar();
               },
             ),
           ),
