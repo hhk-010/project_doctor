@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
@@ -18,14 +20,49 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
     '3': 'Southern Region',
     '4': 'Western Region'
   };
-
+  String _error='';
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
   Position _currentPosition;
   String _currentAddress;
+  //------------------function to show snackbar if the patient didn't
+  // tap on the location-------------------------------------------
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  _showSnackBar() {
+    final _snackBar = new SnackBar(
+      content: Text(
+        _error,
+        style: TextStyle(fontSize: 15),
+      ),
+      backgroundColor: Colors.deepOrange,
+    );
+    _scaffoldkey.currentState.showSnackBar(_snackBar);
+  }
+  //---------------------the end ----------------------
+  //-------------------checking internet connection
+  bool _isInternet = true;
+  checkInternet() async {
+    try {
+      final response = await InternetAddress.lookup('google.com');
+      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
+        _isInternet = true; // internet
+        setState(() {});
+      }
+    } on SocketException catch (_) {
+      _isInternet = false; // no internet
+      setState(() {});
+    }
+  }
+  //------------the end --------------------
+  @override
+  void initState() {
+    checkInternet();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldkey,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
@@ -122,15 +159,23 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                       ),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(80.0)),
-                      onPressed: () async {
-                        _getCurrentLocation();
-                        setState(() {
-                          MyVariables.speciality = FinalScore.speciality;
-                          MyVariables.province = region;
-                          MyVariables.lat = _currentPosition.latitude;
-                          MyVariables.long = _currentPosition.longitude;
-                        });
-                        Navigator.pushNamed(context, '/patient_result');
+                      onPressed: () {
+                        checkInternet();
+                        if (_isInternet){
+                          _getCurrentLocation();
+                          setState(() {
+                            MyVariables.speciality = FinalScore.speciality;
+                            MyVariables.province = region;
+                            MyVariables.lat = _currentPosition.latitude;
+                            MyVariables.long = _currentPosition.longitude;
+                          });
+                          Navigator.pushNamed(context, '/patient_result');
+                        }else{
+                         setState(() {
+                           _error='No internet connection';
+                         });
+                         _showSnackBar();
+                        }
                       },
                       label: Text(
                         'Auto Device Location',

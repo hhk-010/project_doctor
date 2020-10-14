@@ -92,7 +92,7 @@ maindisease5(
       'weight loss', 'null', 'null', 'null');
   //non hodgkin and mm will be left to internist
   var heamoly = Disease5('heamolytic anemia', 'fatigue', 'palpitation',
-      'pallor', 'dyspnea', 'jaundice', 'family hsitory', 'null', 'null');
+      'pallor', 'dyspnea', 'jaundice', 'family history', 'null', 'null');
 
   var headache = Disease5(
       'primary and seconadary headache',
@@ -116,8 +116,8 @@ maindisease5(
       'null', 'null', 'DM', 'connective tissue disease', 'null', 'null');
   var als = Disease5('ALS', 'weakness', 'null', 'null', 'null', 'null', 'null',
       'null', 'null');
-  var dementia = Disease5('dementia', 'memory loss', 'cognitive impairement',
-      'behavioral impairement', 'null', 'null', 'null', 'null', 'null');
+  var dementia = Disease5('dementia', 'memory loss', 'cognitive impairment',
+      'behavioral impairment', 'null', 'null', 'null', 'null', 'null');
   var ataxia = Disease5('ataxia', 'ataxia', 'tremer', 'slurred speech', 'fever',
       'DM', 'HTN', 'alcoholism', 'family history');
   var wernick = Disease5(
@@ -178,7 +178,7 @@ maindisease5(
       'psoiatic arithritis',
       'joint pain',
       'joint swelling',
-      'limlitation of movement',
+      'limitation of movement',
       'skin lesion',
       'deformity',
       'family history',
@@ -211,12 +211,12 @@ maindisease5(
       'joint pain',
       'limitation of movement',
       'dyspnea',
-      'heamoptysis',
+      'hemoptysis',
       'cough',
       'skin lesion',
       'confusion',
       'connective tissue disease');
-  var vasculitis2 = Disease5('vasculitis', 'heamaturia', 'null', 'null', 'null',
+  var vasculitis2 = Disease5('vasculitis', 'hematuria', 'null', 'null', 'null',
       'null', 'null', 'null', 'null');
 
   var akickd = Disease5('AKI and CKD', 'high blood urea > 90',

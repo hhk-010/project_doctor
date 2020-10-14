@@ -136,6 +136,12 @@ class _RegisterState extends State<Register> {
                                           ),
                                         );
                                       }
+                                      //added because if the user return to this page
+                                      // without registeration loading will run without showing register
+                                      // page
+                                      setState(() {
+                                        loading = false;
+                                      });
                                     }
                                   }
                                 : () {

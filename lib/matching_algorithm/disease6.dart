@@ -48,7 +48,7 @@ maindisease6(
       'null', 'null', 'null', 'null', 'other urological problems');
   var hypsp = Disease6(
       'hypospadias and others',
-      'abnormal urethral openning site',
+      'abnormal urethral opening site',
       'abnormal penile size',
       'penile mass',
       'other penile problems',
@@ -56,7 +56,7 @@ maindisease6(
       'null',
       'null',
       'null');
-  var uti = Disease6('uti', 'heamaturia', 'dysuria', 'polyuria',
+  var uti = Disease6('uti', 'hematuria', 'dysuria', 'polyuria',
       'suprapubic pain', 'flank pain', 'nausea', 'vomiting', 'fever');
   var uti2 = Disease6('uti', 'frequency', 'urgency', 'perianal pain',
       'scrotal pain', 'scrotal swelling', 'female', 'pregnancy', 'null');
@@ -66,8 +66,8 @@ maindisease6(
   var neurblad = Disease6('neuropathic bladder', 'incontinence', 'frequency',
       'urgency', 'retention', 'DM', 'null', 'null', 'null');
   var stone = Disease6('urinary stone', 'flank pain', 'nausea', 'vomiting',
-      'fever', 'dysuria', 'frequency', 'urgency', 'heamaturia');
-  var mass = Disease6('renal tumer', 'heamaturia', 'flank pain', 'fever',
+      'fever', 'dysuria', 'frequency', 'urgency', 'hematuria');
+  var mass = Disease6('renal tumer', 'hematuria', 'flank pain', 'fever',
       'nausea', 'vomiting', 'null', 'null', 'null');
   var hydro = Disease6('hydrocele', 'scrotal swelling', 'null', 'null', 'null',
       'null', 'null', 'null', 'null');
@@ -83,11 +83,11 @@ maindisease6(
       'null',
       'null',
       'null');
-  var bladca = Disease6('bladder ca', 'heamaturia', 'frequency', 'urgency',
+  var bladca = Disease6('bladder ca', 'hematuria', 'frequency', 'urgency',
       'dysuria', 'smoking', 'family history', 'null', 'null');
   var bph = Disease6('bph', 'retention', 'frequency', 'urgency', 'dysuria',
       'nocturia', 'null', 'null', 'null');
-  var caprost = Disease6('prostatic ca', 'heamaturia', 'heamatospermia',
+  var caprost = Disease6('prostatic ca', 'hematuria', 'hematospermia',
       'retention', 'null', 'null', 'family history', 'null', 'null');
   var impo = Disease6('impotence', 'impotence', 'impotence', 'null', 'null',
       'DM', 'null', 'null', 'null');
@@ -118,12 +118,12 @@ maindisease6(
       'deformity', 'null', 'null', 'null', 'null', 'other msk problems');
   //hand should be transferred to the plastic surgery
   //var hadef=disease('hand deformity','deformity','deformity','deformity','skin appendage','extra digit','joined digit','loss digit','lump');
-  var hipdef = Disease6('hip deformity', 'diformity', 'deformity', 'null',
+  var hipdef = Disease6('hip deformity', 'deformity', 'deformity', 'null',
       'null', 'null', 'null', 'null', 'null');
   var knedef = Disease6('knee deformity', 'deformity', 'deformity', 'deformity',
       'null', 'null', 'null', 'null', 'null');
 
-  var ntd = Disease6('neural tube defect', 'back openning', 'back mass', 'null',
+  var ntd = Disease6('neural tube defect', 'back opening', 'back mass', 'null',
       'null', 'null', 'null', 'null', 'null');
   var hydroce = Disease6('hydrocephalus', 'large head', 'large head', 'null',
       'null', 'null', 'null', 'null', 'null');

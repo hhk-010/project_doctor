@@ -84,7 +84,7 @@ maindisease1(
       'bilateral leg edema',
       'palpitation',
       'PN dyspnea',
-      'heamoptysis',
+      'hemoptysis',
       'family history',
       'chronic heart disease',
       'physical inactivity',
@@ -139,7 +139,7 @@ maindisease1(
       'mitral valve disease',
       'chest pain',
       'bilateral leg edema',
-      'heamoptysis',
+      'hemoptysis',
       'null',
       'null',
       'null',
@@ -159,14 +159,14 @@ maindisease1(
 
   var asthma = Disease1('asthma', 'dyspnea', 'cough', 'wheeze', 'null',
       'family history', 'asthma', 'null', 'null');
-  var copd = Disease1('COPD', 'dyspnea', 'cough', 'sputum', 'heamoptysis',
+  var copd = Disease1('COPD', 'dyspnea', 'cough', 'sputum', 'hemoptysis',
       'wheeze', 'smoking', 'chronic lung disease', 'copd');
   var pneumonia = Disease1('pneumonia', 'dyspnea', 'fever', 'cough', 'sputum',
       'alcoholism', 'smoking', 'chronic lung disease', 'CVA');
-  var pneumonia2 = Disease1('pneumonia', 'heamoptysis', 'chest pain', 'null',
+  var pneumonia2 = Disease1('pneumonia', 'hemoptysis', 'chest pain', 'null',
       'null', 'null', 'null', 'null', 'null');
   var pleura = Disease1(
-      'pleural effussion',
+      'pleural effusion',
       'dyspnea',
       'chest pain',
       'fever',
@@ -185,16 +185,16 @@ maindisease1(
       'cough',
       'sputum',
       'dyspnea',
-      'heamoptysis',
+      'hemoptysis',
       'null',
       'connective tissue disease',
       'chronic lung disease');
-  var calung = Disease1('ca lung', 'dyspnea', 'cough', 'sputum', 'heamoptysis',
+  var calung = Disease1('ca lung', 'dyspnea', 'cough', 'sputum', 'hemoptysis',
       'smoking', 'copd', 'chest pain', 'hoarseness');
-  var ards = Disease1('ARDS', 'dyspnea', 'cough', 'sputum', 'heamoptysis',
+  var ards = Disease1('ARDS', 'dyspnea', 'cough', 'sputum', 'hemoptysis',
       'cyanosis', 'null', 'null', 'null');
   var pe = Disease1('pulmonary embolism', 'dyspnea', 'chest pain',
-      'heamoptysis', 'null', 'pregnancy', 'null', 'null', 'null');
+      'hemoptysis', 'null', 'pregnancy', 'null', 'null', 'null');
   var ild = Disease1('interstitial lung disease', 'dyspnea', 'cough', 'fever',
       'null', 'null', 'null', 'null', 'null');
   var ild2 = Disease1('interstitial lung disease', 'dyspnea', 'cough', 'fever',
@@ -202,9 +202,9 @@ maindisease1(
   var ild3 = Disease1('interstitial lung disease', 'dyspnea', 'cough', 'fever',
       'sputum', 'null', 'null', 'null', 'other respiratory problems');
 
-  var dm = Disease1('DM', 'polyuria', 'polydepsia', 'polyphagia', 'weight loss',
+  var dm = Disease1('DM', 'polyuria', 'polydipsia', 'polyphagia', 'weight loss',
       'weight gain', 'family history', 'obesity', 'physical inactivity');
-  var dm2 = Disease1('DM', 'polyuria', 'polydepsia', 'null', 'null', 'null',
+  var dm2 = Disease1('DM', 'polyuria', 'polydipsia', 'null', 'null', 'null',
       'pregnancy', 'null', 'null');
   var thyrotoxicosis = Disease1('thyrotoxicosis', 'palpitation', 'sweating',
       'tremer', 'insomnia', 'previous goitre', 'null', 'null', 'null');
@@ -215,7 +215,7 @@ maindisease1(
       'weight gain',
       'cold sensation',
       'anorexia',
-      'somnlence',
+      'somnolence',
       'dry skin',
       'menorrhagia',
       'null',
@@ -232,21 +232,21 @@ maindisease1(
       'amenorrhea',
       'oligomenorrhea',
       'gynecomastia',
-      'female hirsuitism',
+      'female hirsutism',
       'decrease libido',
       'male infertility',
       'female infertility');
-  var dinsip = Disease1('diabetes insipdus', 'polyuria', 'polydepsia', 'null',
+  var dinsip = Disease1('diabetes insipdus', 'polyuria', 'polydipsia', 'null',
       'null', 'null', 'null', 'null', 'null');
-  var hyperpth = Disease1('hyperparathyroidism', 'polyuria', 'polydepsia',
-      'bone pain', 'null', 'null', 'null', 'null', 'null');
+  var hyperpth = Disease1('hyperparathyroidism', 'polyuria', 'polydipsia',
+      'generalized bone pain', 'null', 'null', 'null', 'null', 'null');
   var malerep = Disease1('male reproductive problems', 'delayed puberty',
       'gynecomastia', 'null', 'null', 'null', 'null', 'null', 'null');
-  var pcos = Disease1('PCOS', 'menorrhagia', 'female hirsuitism',
+  var pcos = Disease1('PCOS', 'menorrhagia', 'female hirsutism',
       'female infertility', 'weight gain', 'null', 'null', 'null', 'null');
-  var cushing = Disease1('cushing', 'weight gain', 'straie', 'weight gain',
-      'female hirsuitism', 'null', 'null', 'null', 'null');
-  var cah = Disease1('CAH', 'female hirsuitism', 'null', 'null', 'null', 'null',
+  var cushing = Disease1('cushing', 'weight gain', 'striae', 'weight gain',
+      'female hirsutism', 'null', 'null', 'null', 'null');
+  var cah = Disease1('CAH', 'female hirsutism', 'null', 'null', 'null', 'null',
       'null', 'null', 'null');
 
   var cvs = [

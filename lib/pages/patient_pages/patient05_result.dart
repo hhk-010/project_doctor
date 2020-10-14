@@ -51,6 +51,10 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   double distance = 0.0;
   double sum = 0.0;
   double result = 0.0;
+  double realdistance=0.0;
+  String realdist='';
+  int dotindex=0;
+  String realnearby='';
 
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
   String _currentAddress='';
@@ -99,6 +103,10 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             _province = docu.data()['province'];
             _lat = docu.data()['lat'];
             _lng = docu.data()['lng'];
+            realdistance=distance*100;
+            realdist=realdistance.toString();
+            dotindex=realdist.indexOf('.')+3;
+            realnearby=realdist.substring(0,dotindex);
             _getAddressFromLatLng();
           });
         }
@@ -137,6 +145,12 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             ),
             Center(
               child: Text(_currentAddress),
+            ),
+            Spacer(
+              flex: 5,
+            ),
+            Center(
+              child: Text('Distance to the Doctor is about '+realnearby+' Km'),
             ),
             Spacer(
               flex: 5,

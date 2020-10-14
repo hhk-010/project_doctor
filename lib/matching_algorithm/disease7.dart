@@ -112,7 +112,7 @@ maindisease7(
       'skin itching',
       'ulcer',
       'hair problems',
-      'acnes',
+      'acne',
       'skin pigmentation',
       'other dermatological problems');
   var derma2 = disease7('dermatology', 'skin lesion', 'skin rash',
@@ -124,7 +124,7 @@ maindisease7(
       'skin itching',
       'ulcer',
       'hair problems',
-      'acnes',
+      'acne',
       'skin pigmentation',
       'other dermatological problems');
   var derma4 = disease7('dermatology', 'skin lesion', 'skin rash',
@@ -136,7 +136,7 @@ maindisease7(
       'skin itching',
       'ulcer',
       'hair problems',
-      'acnes',
+      'acne',
       'skin pigmentation',
       'other dermatological problems');
   var derma6 = disease7('dermatology', 'skin lesion', 'skin rash',
@@ -158,7 +158,7 @@ maindisease7(
       'psychological trauma',
       'addiction',
       'null',
-      'incorporesis',
+      'encorporesis',
       'null',
       'other psychological problems',
       'null');
@@ -178,7 +178,7 @@ maindisease7(
       'psychological trauma',
       'addiction',
       'null',
-      'incorporesis',
+      'encorporesis',
       'null',
       'other psychological problems',
       'null');
@@ -198,13 +198,13 @@ maindisease7(
       'psychological trauma',
       'addiction',
       'null',
-      'incorporesis',
+      'encorporesis',
       'null',
       'other psychological problems',
       'null');
 
   //neck mass will be left
-  var ent = disease7('ent', 'sorethroat', 'hoarseness', 'deafness', 'vertigo',
+  var ent = disease7('ent', 'sore throat', 'hoarseness', 'deafness', 'vertigo',
       'nasal discharge', 'nasal bleeding', 'nasal obstruction', 'tinnitus');
   var ent2 = disease7(
       'ent',
@@ -218,7 +218,7 @@ maindisease7(
       'ear discharge');
   var ent3 = disease7('ent', 'ear redness', 'other ent problems', 'null',
       'null', 'null', 'null', 'null', 'null');
-  var ent4 = disease7('ent', 'sorethroat', 'hoarseness', 'deafness', 'vertigo',
+  var ent4 = disease7('ent', 'sore throat', 'hoarseness', 'deafness', 'vertigo',
       'nasal discharge', 'nasal bleeding', 'nasal obstruction', 'tinnitus');
   var ent5 = disease7(
       'ent',
@@ -232,7 +232,7 @@ maindisease7(
       'ear discharge');
   var ent6 = disease7('ent', 'ear redness', 'other ent problems', 'null',
       'null', 'null', 'null', 'null', 'null');
-  var ent7 = disease7('ent', 'sorethroat', 'hoarseness', 'deafness', 'vertigo',
+  var ent7 = disease7('ent', 'sore sthroat', 'hoarseness', 'deafness', 'vertigo',
       'nasal discharge', 'nasal bleeding', 'nasal obstruction', 'tinnitus');
   var ent8 = disease7(
       'ent',

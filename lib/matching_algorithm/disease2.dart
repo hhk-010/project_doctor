@@ -79,7 +79,7 @@ maindisease2(
       'tenesmus',
       'family history',
       'null');
-  var sprue = Disease2('tropical sprue', 'watery diahrrea', 'weight loss',
+  var sprue = Disease2('tropical sprue', 'watery diarrhea', 'weight loss',
       'anorexia', 'null', 'null', 'null', 'null', 'null');
   var bliloop = Disease2(
       'small bowel bacovergrowth or blind loop syndrome',
@@ -145,7 +145,7 @@ maindisease2(
       'anorexia', 'alcoholism', 'null', 'null', 'null');
   var peptic = Disease2('peptic ulcer', 'abdominal pain', 'nausea', 'vomiting',
       'anorexia', 'alcoholism', 'null', 'null', 'null');
-  var gasca = Disease2('gastric ca', 'abdominal pain', 'nausea', 'vomitng',
+  var gasca = Disease2('gastric ca', 'abdominal pain', 'nausea', 'vomiting',
       'null', 'anorexia', 'null', 'null', 'null');
   var panc = Disease2('pancreatitis', 'abdominal pain', 'nausea', 'vomiting',
       'null', 'alcoholism', 'null', 'null', 'null');
