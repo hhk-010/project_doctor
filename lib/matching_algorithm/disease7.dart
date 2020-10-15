@@ -232,8 +232,16 @@ maindisease7(
       'ear discharge');
   var ent6 = disease7('ent', 'ear redness', 'other ent problems', 'null',
       'null', 'null', 'null', 'null', 'null');
-  var ent7 = disease7('ent', 'sore throat', 'hoarseness', 'deafness', 'vertigo',
-      'nasal discharge', 'nasal bleeding', 'nasal obstruction', 'tinnitus');
+  var ent7 = disease7(
+      'ent',
+      'sore sthroat',
+      'hoarseness',
+      'deafness',
+      'vertigo',
+      'nasal discharge',
+      'nasal bleeding',
+      'nasal obstruction',
+      'tinnitus');
   var ent8 = disease7(
       'ent',
       'nasal pain',

@@ -63,7 +63,7 @@ maindisease3(
   );
   var hf2 = Disease3(
       'pulmonary edema',
-      'bilaterl leg edema',
+      'bilateral leg edema',
       'palpitation',
       'PN dyspnea',
       'hemoptysis',

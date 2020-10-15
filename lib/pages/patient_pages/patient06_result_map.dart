@@ -31,7 +31,7 @@ class _PatientResultMapState extends State<PatientResultMap> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text('Doctor location on G.map'),
+        title: Text('Doctor location on G.P.S'),
         centerTitle: true,
       ),
       body: Stack(

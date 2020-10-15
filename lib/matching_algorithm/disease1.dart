@@ -166,7 +166,7 @@ maindisease1(
   var pneumonia2 = Disease1('pneumonia', 'hemoptysis', 'chest pain', 'null',
       'null', 'null', 'null', 'null', 'null');
   var pleura = Disease1(
-      'pleural effussion',
+      'pleural effusion',
       'dyspnea',
       'chest pain',
       'fever',

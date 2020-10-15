@@ -80,7 +80,8 @@ class _PatientComplainState extends State<PatientComplain> {
     "4": "palpitation",
     "5": "chest pain",
     "6": "cough",
-    "7": "cyanosis",
+    ""
+        "7": "cyanosis",
     "8": "other cardiac problems",
     "9": "wheeze",
     "10": "other respiratory problems",

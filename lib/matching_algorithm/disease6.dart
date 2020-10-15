@@ -118,7 +118,7 @@ maindisease6(
       'deformity', 'null', 'null', 'null', 'null', 'other msk problems');
   //hand should be transferred to the plastic surgery
   //var hadef=disease('hand deformity','deformity','deformity','deformity','skin appendage','extra digit','joined digit','loss digit','lump');
-  var hipdef = Disease6('hip deformity', 'diformity', 'deformity', 'null',
+  var hipdef = Disease6('hip deformity', 'deformity', 'deformity', 'null',
       'null', 'null', 'null', 'null', 'null');
   var knedef = Disease6('knee deformity', 'deformity', 'deformity', 'deformity',
       'null', 'null', 'null', 'null', 'null');
