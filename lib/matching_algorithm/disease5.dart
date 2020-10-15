@@ -116,7 +116,7 @@ maindisease5(
       'null', 'null', 'DM', 'connective tissue disease', 'null', 'null');
   var als = Disease5('ALS', 'weakness', 'null', 'null', 'null', 'null', 'null',
       'null', 'null');
-  var dementia = Disease5('dementia', 'memory loss', 'cognitive impairement',
+  var dementia = Disease5('dementia', 'memory loss', 'cognitive impairment',
       'behavioral impairement', 'null', 'null', 'null', 'null', 'null');
   var ataxia = Disease5('ataxia', 'ataxia', 'tremer', 'slurred speech', 'fever',
       'DM', 'HTN', 'alcoholism', 'family history');
@@ -211,12 +211,12 @@ maindisease5(
       'joint pain',
       'limitation of movement',
       'dyspnea',
-      'heamoptysis',
+      'hemoptysis',
       'cough',
       'skin lesion',
       'confusion',
       'connective tissue disease');
-  var vasculitis2 = Disease5('vasculitis', 'heamaturia', 'null', 'null', 'null',
+  var vasculitis2 = Disease5('vasculitis', 'hematuria', 'null', 'null', 'null',
       'null', 'null', 'null', 'null');
 
   var akickd = Disease5('AKI and CKD', 'high blood urea > 90',

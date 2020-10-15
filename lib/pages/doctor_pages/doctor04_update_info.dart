@@ -24,7 +24,7 @@ class _UpdateinfoState extends State<Updateinfo> {
     'Enterologist',
     'General Surgeon',
     'Pediatric Surgeon',
-    'Thoracic Surgeon',
+    'ThoracoVascular Surgeon',
     'Emergency Department',
     'Internist',
     'Pediatrician',
@@ -36,7 +36,11 @@ class _UpdateinfoState extends State<Updateinfo> {
     'Urosurgeon',
     'Orthopaedic Surgeon',
     'Neurosurgeon',
-    'Plastic Surgeon'
+    'Plastic Surgeon',
+    'Dermatologist',
+    'Ophthalmologist',
+    'Psychiatrist',
+    'Laryngologist'
   ];
 
   @override

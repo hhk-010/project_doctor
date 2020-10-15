@@ -74,7 +74,7 @@ class _PatientComplainState extends State<PatientComplain> {
   bool disabledropdown07 = true;
 
   final cardioRespiratory = {
-    "1": "heamoptysis",
+    "1": "hemoptysis",
     "2": "orthopnea",
     "3": "PN dyspnea",
     "4": "palpitation",
@@ -87,20 +87,19 @@ class _PatientComplainState extends State<PatientComplain> {
   };
   final gastroIntestinal = {
     "1": "abdominal pain",
-    "2": "hiccough",
-    "3": "vomiting",
-    "4": "constipation",
-    "5": "bloody diarrhea",
-    "6": "watery diarrhea",
-    "7": "dysphagia",
-    "8": "odynophagia",
-    "9": "mucousy diarrhea",
-    "10": "other git problems",
-    "11": "abdominal distension",
-    "12": "bleeding per rectum",
-    "13": "nausea",
-    "14": "heamatemesis",
-    "15": "malena",
+    "2": "vomiting",
+    "3": "constipation",
+    "4": "bloody diarrhea",
+    "5": "watery diarrhea",
+    "6": "dysphagia",
+    "7": "odynophagia",
+    "8": "mucousy diarrhea",
+    "9": "other git problems",
+    "10": "abdominal distension",
+    "11": "bleeding per rectum",
+    "12": "nausea",
+    "13": "hematemesis",
+    "14": "malena",
   };
   final peiranalAbdomen = {
     "1": "perianal pain",
@@ -127,7 +126,7 @@ class _PatientComplainState extends State<PatientComplain> {
   };
 
   final psychology = {
-    "1": "cognitive impairement",
+    "1": "cognitive impairment",
     "2": "behavioral impairement",
     "3": "depression",
     "4": "hallucination/delusion",
@@ -139,13 +138,12 @@ class _PatientComplainState extends State<PatientComplain> {
     "10": "stress",
     "11": "psychological trauma",
     "12": "addiction",
-    "13": "enuresis",
-    "14": "incorporesis",
-    "15": "polyphagia",
-    "16": "other psychological problems",
+    "13": "encorporesis",
+    "14": "polyphagia",
+    "15": "other psychological problems",
   };
   final musckuloskeletal = {
-    "1": "bone pain",
+    "1": "generalized bone pain",
     "2": "joint pain",
     "3": "deformity",
     "4": "joint swelling",
@@ -160,7 +158,7 @@ class _PatientComplainState extends State<PatientComplain> {
     "2": "neck pain",
     "3": "enlarged jaw",
     "4": "neck swelling",
-    "5": "back openning",
+    "5": "back opening",
     "6": "back mass",
     "7": "back pain",
     "8": "headache",
@@ -171,7 +169,7 @@ class _PatientComplainState extends State<PatientComplain> {
   final upperLimb = {
     "1": "left arm pain",
     "2": "left shoulder pain",
-    "3": "bone pain",
+    "3": "generalized bone pain",
     "4": "joint pain",
     "5": "deformity",
     "6": "joint swelling",
@@ -190,7 +188,7 @@ class _PatientComplainState extends State<PatientComplain> {
     "6": "other hand problems",
     "7": "hand swelling",
     "8": "hand lump",
-    "9": "bone pain",
+    "9": "generalized bone pain",
     "10": "joint pain",
     "11": "joint swelling",
     "12": "fracture",
@@ -199,7 +197,7 @@ class _PatientComplainState extends State<PatientComplain> {
   final lowerLimb = {
     "1": "bilateral leg edema",
     "2": "enlarged foot",
-    "3": "bone pain",
+    "3": "generalized bone pain",
     "4": "joint pain'",
     "5": "unilateral leg swelling",
     "6": "unilateral leg pain",
@@ -220,8 +218,8 @@ class _PatientComplainState extends State<PatientComplain> {
     "4": "ulcer",
     "5": "insomnia",
     "6": "cold sensation",
-    "7": "somnlence",
-    "8": "polydepsia",
+    "7": "somnolence",
+    "8": "polydipsia",
     "9": "delayed puberty",
     "10": "bleeding",
     "11": "bleeding",
@@ -276,7 +274,7 @@ class _PatientComplainState extends State<PatientComplain> {
 
   final entThroat = {
     "1": "hoarseness",
-    "2": "sorethroat",
+    "2": "sore throat",
     "3": "other ent problems",
   };
   final entNose = {
@@ -312,9 +310,9 @@ class _PatientComplainState extends State<PatientComplain> {
     "6": "skin lesion",
     "7": "skin appendage",
     "8": "skin itching",
-    "9": "acnes",
+    "9": "acne",
     "10": "bruising",
-    "11": "female hirsuitism",
+    "11": "female hirsutism",
   };
 
   final gynecology = {
@@ -323,7 +321,7 @@ class _PatientComplainState extends State<PatientComplain> {
     "3": "decrease libido",
     "4": "menorrhagia",
     "5": "female infertility",
-    "6": "female hirsuitism",
+    "6": "female hirsutism",
     "7": "prolong pregnancy",
     "8": "postmenopausal bleeding",
     "9": "other gynecological and obstetrical problems",
@@ -333,14 +331,14 @@ class _PatientComplainState extends State<PatientComplain> {
   final uroKidney = {
     "1": "incontinence",
     "2": "polyuria",
-    "3": "abnormal urethral openning site",
+    "3": "abnormal urethral opening site",
     "4": "suprapubic pain",
     "5": "frequency",
     "6": "flank pain",
     "7": "retention",
     "8": "urgency",
     "9": "dysuria",
-    "10": "heamaturia",
+    "10": "hematuria",
     "11": "other urological problems",
     "12": "nocturia",
   };
@@ -357,7 +355,7 @@ class _PatientComplainState extends State<PatientComplain> {
     "9": "scrotal pain",
     "10": "priapism",
     "11": "impotence",
-    "12": "heamatospermia",
+    "12": "hematospermia",
   };
 
   final ophthalmology = {
@@ -1313,7 +1311,7 @@ class _PatientComplainState extends State<PatientComplain> {
                         ),
                         DropdownMenuItem<String>(
                           value: "peiranalAbdomen",
-                          child: Text("Peri-Anal Area"),
+                          child: Text("Perianal & Abdominal Wall"),
                         ),
                         DropdownMenuItem<String>(
                           value: "neurology",
@@ -1478,7 +1476,7 @@ class _PatientComplainState extends State<PatientComplain> {
                           ),
                           DropdownMenuItem<String>(
                             value: "peiranalAbdomen",
-                            child: Text("Peri-Anal Area"),
+                            child: Text("Perianal & Abdominal Wall"),
                           ),
                           DropdownMenuItem<String>(
                             value: "neurology",
@@ -1644,7 +1642,7 @@ class _PatientComplainState extends State<PatientComplain> {
                           ),
                           DropdownMenuItem<String>(
                             value: "peiranalAbdomen",
-                            child: Text("Peri-Anal Area"),
+                            child: Text("Perianal & Abdominal Wall"),
                           ),
                           DropdownMenuItem<String>(
                             value: "neurology",

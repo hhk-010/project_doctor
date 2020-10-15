@@ -66,7 +66,7 @@ maindisease3(
       'bilaterl leg edema',
       'palpitation',
       'PN dyspnea',
-      'heamoptysis',
+      'hemoptysis',
       'family history',
       'chronic heart disease',
       'physical inactivity',
@@ -90,7 +90,7 @@ maindisease3(
 
   var asthma = Disease3('asthma', 'dyspnea', 'cough', 'wheeze', 'null',
       'family history', 'null', 'chronic lung disease', 'asthma');
-  var copd = Disease3('COPD', 'dyspnea', 'cough', 'sputum', 'heamoptysis',
+  var copd = Disease3('COPD', 'dyspnea', 'cough', 'sputum', 'hemoptysis',
       'wheeze', 'smoking', 'chronic lung disease', 'copd');
   var pneumo = Disease3('pneumothorax', 'dyspnea', 'systolic BP < 90',
       'diastolic BP < 60', 'PR > 100', 'cyanosis', 'cyanosis', 'null', 'null');
@@ -98,9 +98,9 @@ maindisease3(
   var diabetic = Disease3('diabetic ER', 'RBS > 200', 'RBS < 55', 'dyspnea',
       'abdominal pain', 'vomiting', 'nausea', 'DM', 'CKD');
   var diabetic2 = Disease3('diabetic ER', 'confusion', 'coma', 'polyuria',
-      'polydepsia', 'null', 'null', 'pregnancy', 'null');
+      'polydipsia', 'null', 'null', 'pregnancy', 'null');
 
-  var ugib = Disease3('upper gi bleeding', 'heamatemesis', 'malena',
+  var ugib = Disease3('upper gi bleeding', 'hematemesis', 'malena',
       'abdominal pain', 'null', 'null', 'liver disease', 'null', 'null');
 
   var seizure = Disease3('seizure', 'fit', 'fit', 'coma', 'confusion',
@@ -119,9 +119,9 @@ maindisease3(
       'priapism', 'praipism', 'scrotal pain', 'null', 'null', 'null');
 
   var internist = Disease3('internist', 'fever', 'fatigue', 'weight loss',
-      'anorexia', 'insomnia', 'weight gain', 'somnlence', 'malaise');
+      'anorexia', 'insomnia', 'weight gain', 'somnolence', 'malaise');
   var internist2 = Disease3('internist', 'fever', 'fatigue', 'weight loss',
-      'anorexia', 'insomnia', 'weight gain', 'somnlence', 'malaise');
+      'anorexia', 'insomnia', 'weight gain', 'somnolence', 'malaise');
   var internist3 = Disease3(
       'internist',
       'other health problems',
@@ -133,7 +133,7 @@ maindisease3(
       'null',
       'null');
   var internist4 = Disease3('internist', 'fever', 'fatigue', 'weight loss',
-      'anorexia', 'insomnia', 'weight gain', 'somnlence', 'malaise');
+      'anorexia', 'insomnia', 'weight gain', 'somnolence', 'malaise');
 
   var emrg = [
     acs,

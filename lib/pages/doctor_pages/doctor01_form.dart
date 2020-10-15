@@ -21,7 +21,7 @@ final List<String> specialities = [
   'Enterologist',
   'General Surgeon',
   'Pediatric Surgeon',
-  'Thoracic Surgeon',
+  'ThoracoVascular Surgeon',
   'Emergency Department',
   'Internist',
   'Pediatrician',
@@ -33,7 +33,11 @@ final List<String> specialities = [
   'Urosurgeon',
   'Orthopaedic Surgeon',
   'Neurosurgeon',
-  'Plastic Surgeon'
+  'Plastic Surgeon',
+  'Dermatologist',
+  'Ophthalmologist',
+  'Psychiatrist',
+  'Laryngologist'
 ];
 String currentName;
 String currentSpeciality;

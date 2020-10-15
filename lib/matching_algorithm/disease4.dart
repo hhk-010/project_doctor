@@ -135,7 +135,7 @@ maindisease4(
       'null',
       'null');
 
-  var obst = [obs,obs2,obs3, gyne, gyne2,gyne3,gyne4,gyne5,gyne6];
+  var obst = [obs, obs2, obs3, gyne, gyne2, gyne3, gyne4, gyne5, gyne6];
   var ob = 0;
   var obgy = obst.length;
   var obsym = [
@@ -174,7 +174,8 @@ maindisease4(
     fam,
     inact,
     smok,
-    alcohol,gender
+    alcohol,
+    gender
   ];
   var o = 0;
   var oo = others.length;
