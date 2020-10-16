@@ -21,7 +21,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
     '3': 'Southern Region',
     '4': 'Western Region'
   };
-  String _error='';
+  String _error = '';
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
   Position _currentPosition;
   String _currentAddress;
@@ -38,6 +38,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
     );
     _scaffoldkey.currentState.showSnackBar(_snackBar);
   }
+
   //---------------------the end ----------------------
   //-------------------checking internet connection
   bool _isInternet = true;
@@ -53,6 +54,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
       setState(() {});
     }
   }
+
   //------------the end --------------------
   @override
   void initState() {
@@ -199,22 +201,22 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                           borderRadius: BorderRadius.circular(80.0)),
                       onPressed: () {
                         checkInternet();
-                        if (_isInternet){
+                        if (_isInternet) {
                           _getCurrentLocation();
                           setState(() {
                             MyVariables.speciality = FinalScore.speciality;
                             MyVariables.province = region;
                             //MyVariables.lat = double.parse(_currentPosition.latitude.toString() );
                             //MyVariables.long = double.parse(_currentPosition.longitude.toString() );
-                            MyVariables.lat=_currentPosition.latitude;
-                            MyVariables.long=_currentPosition.longitude;
+                            MyVariables.lat = _currentPosition.latitude;
+                            MyVariables.long = _currentPosition.longitude;
                           });
                           Navigator.pushNamed(context, '/patient_result');
-                        }else{
-                         setState(() {
-                           _error='No internet connection';
-                         });
-                         _showSnackBar();
+                        } else {
+                          setState(() {
+                            _error = 'No internet connection';
+                          });
+                          _showSnackBar();
                         }
                       },
                       label: Text(
