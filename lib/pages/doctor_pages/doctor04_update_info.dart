@@ -15,6 +15,9 @@ class _UpdateinfoState extends State<Updateinfo> {
   String speciality;
   String phonenumber;
   String province;
+  String address = '';
+  String vacation = '';
+  String workinghours = '';
 
   final _formkey = GlobalKey<FormState>();
   final List<String> specialities = [
@@ -112,6 +115,42 @@ class _UpdateinfoState extends State<Updateinfo> {
                 ),
                 validator: (val) => val.isEmpty ? '' : null,
               ),
+              Spacer(),
+              TextFormField(
+                onChanged: (val) => setState(() => address = val),
+                decoration: textInputdecoration.copyWith(
+                  hintText: 'detailed address'/*AppLocalizations.of(context)
+                      .translate('doctor_form_province'),
+                  labelText: AppLocalizations.of(context)
+                      .translate('doctor_form_province'),*/
+                ),
+                validator: (val) =>
+                    val.isEmpty ? 'enter a valid address' : null,
+              ),
+              Spacer(),
+              TextFormField(
+                onChanged: (val) => setState(() => vacation = val),
+                decoration: textInputdecoration.copyWith(
+                  hintText: 'clinic vacation'/*AppLocalizations.of(context)
+                      .translate('doctor_form_province'),
+                  labelText: AppLocalizations.of(context)
+                      .translate('doctor_form_province'),*/
+                ),
+                validator: (val) =>
+                    val.isEmpty ? 'enter a valid clinic vacation days' : null,
+              ),
+              Spacer(),
+              TextFormField(
+                onChanged: (val) => setState(() => workinghours = val),
+                decoration: textInputdecoration.copyWith(
+                  hintText: 'working hours'/*AppLocalizations.of(context)
+                      .translate('doctor_form_province'),
+                  labelText: AppLocalizations.of(context)
+                      .translate('doctor_form_province'),*/
+                ),
+                validator: (val) =>
+                    val.isEmpty ? 'enter valid working hours' : null,
+              ),
               Spacer(
                 flex: 3,
               ),
@@ -142,13 +181,19 @@ class _UpdateinfoState extends State<Updateinfo> {
                       borderRadius: BorderRadius.circular(80.0)),
                   onPressed: () {
                     if (_formkey.currentState.validate()) {
-                      Navigator.of(context).push(MaterialPageRoute(
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
                           builder: (context) => UpdateMap(
-                                name: name,
-                                speciality: speciality,
-                                number: phonenumber,
-                                province: province,
-                              )));
+                            name: name,
+                            speciality: speciality,
+                            number: phonenumber,
+                            province: province,
+                            address: address,
+                            vacation: vacation,
+                            workinghours: workinghours,
+                          ),
+                        ),
+                      );
                     }
                   },
                   label: Text(

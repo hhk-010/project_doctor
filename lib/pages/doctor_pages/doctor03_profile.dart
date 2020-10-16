@@ -60,6 +60,9 @@ class _DoctorListState extends State<DoctorList> {
   String province = '';
   double lat = 0.0;
   double lng = 0.0;
+  String _address='';
+  String _vacation='';
+  String _workinghours='';
 
 //get the user address from lat and lng
   String _doctorAddress = '';
@@ -90,6 +93,9 @@ class _DoctorListState extends State<DoctorList> {
             province = doc.data()['province'];
             lat = doc.data()['lat'];
             lng = doc.data()['lng'];
+            _address = doc.data()['address'];
+            _vacation = doc.data()['vacation'];
+            _workinghours = doc.data()['workinghours'];
             _getAddressFromLatLng();
           });
         }
@@ -118,35 +124,56 @@ class _DoctorListState extends State<DoctorList> {
                         backgroundImage: AssetImage('assets/images/doctor.png'),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Text(
                         name,
                         style: _textStyle,
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Text(
                         speciality,
                         style: _textStyle,
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Text(
                         number,
                         style: _textStyle,
                       ),
                       SizedBox(
-                        height: 10,
+                        height:5,
                       ),
                       Text(
                         _doctorAddress,
                         style: _textStyle,
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
+                      ),
+                      Text(
+                        _address,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'clinic vacation is '+_vacation,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        _workinghours,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 5,
                       ),
                     ],
                   ),

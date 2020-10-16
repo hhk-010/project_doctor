@@ -21,6 +21,18 @@ class _PatientComplainState extends State<PatientComplain> {
   getage() {
     FinalScore.age = int.parse(age);
   }
+  //-------------snackbar for age==null---------
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  _showSnackBar() {
+    final _snackBar = new SnackBar(
+      content: Text(
+        'Please , enter your age',
+        style: TextStyle(fontSize: 15),
+      ),
+      backgroundColor: Colors.deepOrange,
+    );
+    _scaffoldkey.currentState.showSnackBar(_snackBar);
+  }
 
   // =============================================Radio Buttons
   List gender = ['Male', 'Female'];
@@ -1232,6 +1244,7 @@ class _PatientComplainState extends State<PatientComplain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldkey,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
@@ -2454,7 +2467,10 @@ class _PatientComplainState extends State<PatientComplain> {
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold)),
-              onPressed: () async {
+              onPressed: () {
+                if (age==''){
+                  _showSnackBar;
+                }
                 getage();
                 Navigator.of(context).push(
                   MaterialPageRoute(

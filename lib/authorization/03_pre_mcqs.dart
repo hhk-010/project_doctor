@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:project_doctor/authorization/04_mcqs.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +10,7 @@ import 'package:provider/provider.dart';
 class MCQss {
   static var uid;
   static int counter = 0;
-  static int length = 28;
+  static int length = QuestionsShuffle.questions.length - 1;
   static String error = '';
 }
 
@@ -87,14 +88,14 @@ class _PreMCQsState extends State<PreMCQs> {
               onPressed: () {
                 checkInternet();
                 if (_isInternet) {
-                  if (MCQss.length > 4) {
+                  if (MCQss.length > 3) {
                     setState(() {
-                      MCQss.length -= 4;
-                      MCQss.counter += 4;
+                      MCQss.length -= 3;
+                      MCQss.counter += 3;
                     });
                   } else {
                     setState(() {
-                      MCQss.length = 28;
+                      MCQss.length = QuestionsShuffle.questions.length - 1;
                       MCQss.counter = 0;
                     });
                   }
@@ -104,7 +105,10 @@ class _PreMCQsState extends State<PreMCQs> {
                       '0101001101010022',
                       MCQss.length.toString(),
                       0.000000230033,
-                      0.000000032044);
+                      0.000000032044,
+                      '',
+                      '',
+                      '');
                   widget.preMCQToogleView();
                 } else {
                   setState(() {

@@ -13,6 +13,9 @@ class DocMap extends StatefulWidget {
   final String speciality;
   final String phone;
   final String province;
+  final String address;
+  final String vacation;
+  final String workinghours;
 
   DocMap(
       {this.email,
@@ -20,7 +23,10 @@ class DocMap extends StatefulWidget {
       this.name,
       this.speciality,
       this.phone,
-      this.province});
+      this.province,
+      this.address,
+      this.vacation,
+      this.workinghours});
 
   @override
   _DocMapState createState() => _DocMapState(
@@ -29,7 +35,10 @@ class DocMap extends StatefulWidget {
       name: name,
       speciality: speciality,
       phoneNumber: phone,
-      province: province);
+      province: province,
+      address: address,
+      vacation: vacation,
+      workinghours: workinghours);
 }
 
 class _DocMapState extends State<DocMap> {
@@ -41,6 +50,9 @@ class _DocMapState extends State<DocMap> {
   var speciality;
   var phoneNumber;
   var province;
+  String address = '';
+  String vacation = '';
+  String workinghours = '';
 
   _DocMapState(
       {this.email,
@@ -48,7 +60,10 @@ class _DocMapState extends State<DocMap> {
       this.name,
       this.speciality,
       this.phoneNumber,
-      this.province});
+      this.province,
+      this.address,
+      this.vacation,
+      this.workinghours});
   String error = '';
   var latlng;
 
@@ -162,7 +177,10 @@ class _DocMapState extends State<DocMap> {
                           phoneNumber,
                           province,
                           lattt,
-                          lnggg);
+                          lnggg,
+                          address,
+                          vacation,
+                          workinghours);
                       setState(() {
                         newclient.email = email;
                       });

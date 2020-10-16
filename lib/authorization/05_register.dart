@@ -18,10 +18,10 @@ class _RegisterState extends State<Register> {
   String email = '';
   String password = '';
   String error = '';
-  bool _passwordVisible;
+  bool _passwordVisible=false;
 
   // check internet connection
-  bool _isInternet;
+  bool _isInternet=true;
   checkInternet() async {
     try {
       final response = await InternetAddress.lookup('google.com');
@@ -59,141 +59,141 @@ class _RegisterState extends State<Register> {
               centerTitle: true,
               elevation: 0.0,
             ),
-            body: Container(
-              height: double.maxFinite,
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 75.0, horizontal: 50.0),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        validator: (val) =>
-                            val.isEmpty ? 'Enter an Email' : null,
-                        onChanged: (val) {
-                          setState(() => email = val);
-                        },
-                        cursorColor: Colors.black,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: textInputdecoration.copyWith(
-                          hintText: 'Enter Your Email',
-                          labelText: 'Email',
-                        ),
-                      ),
-                      Spacer(),
-                      TextFormField(
-                        validator: (val) => val.length < 8
-                            ? 'Password should be > 8 characters'
-                            : null,
-                        //? 'Enter a password 8 or long'
-                        obscureText: !_passwordVisible,
-                        onChanged: (val) {
-                          setState(() => password = val);
-                        },
-                        cursorColor: Colors.black,
-                        keyboardType: TextInputType.text,
-                        decoration: textInputdecoration.copyWith(
-                          hintText: 'Enter Your Password',
-                          labelText: 'Password',
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              // Based on passwordVisible state choose the icon
-                              _passwordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              color: Colors.deepOrange,
-                            ),
-                            onPressed: () {
-                              // Update the state i.e. toogle the state of passwordVisible variable
-                              setState(() {
-                                _passwordVisible = !_passwordVisible;
-                              });
-                            },
+            body:Container(
+                height: double.maxFinite,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 75.0, horizontal: 50.0),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          validator: (val) =>
+                              val.isEmpty ? 'Enter an Email' : null,
+                          onChanged: (val) {
+                            setState(() => email = val);
+                          },
+                          cursorColor: Colors.black,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: textInputdecoration.copyWith(
+                            hintText: 'Enter Your Email',
+                            labelText: 'Email',
                           ),
                         ),
-                      ),
-                      Spacer(
-                        flex: 10,
-                      ),
-                      Builder(builder: (context) {
-                        return Container(
-                          height: 40.0,
-                          width: 200.0,
-                          child: RaisedButton(
-                            onPressed: _isInternet
-                                ? () async {
-                                    if (_formKey.currentState.validate()) {
-                                      setState(() {
-                                        loading = true;
-                                      });
-                                      if (email != '' && password != '') {
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                            builder: (context) => DoctorForm(
-                                              email: email,
-                                              password: password,
+                        Spacer(),
+                        TextFormField(
+                          validator: (val) => val.length < 8
+                              ? 'Password should be > 8 characters'
+                              : null,
+                          //? 'Enter a password 8 or long'
+                          obscureText: !_passwordVisible,
+                          onChanged: (val) {
+                            setState(() => password = val);
+                          },
+                          cursorColor: Colors.black,
+                          keyboardType: TextInputType.text,
+                          decoration: textInputdecoration.copyWith(
+                            hintText: 'Enter Your Password',
+                            labelText: 'Password',
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                // Based on passwordVisible state choose the icon
+                                _passwordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Colors.deepOrange,
+                              ),
+                              onPressed: () {
+                                // Update the state i.e. toogle the state of passwordVisible variable
+                                setState(() {
+                                  _passwordVisible = !_passwordVisible;
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                        Spacer(
+                          flex: 10,
+                        ),
+                        Builder(builder: (context) {
+                          return Container(
+                            height: 40.0,
+                            width: 200.0,
+                            child: RaisedButton(
+                              onPressed: _isInternet
+                                  ? () async {
+                                      if (_formKey.currentState.validate()) {
+                                        setState(() {
+                                          loading = true;
+                                        });
+                                        if (email != '' && password != '') {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) => DoctorForm(
+                                                email: email,
+                                                password: password,
+                                              ),
                                             ),
-                                          ),
-                                        );
+                                          );
+                                        }
+                                        //added because if the user return to this page
+                                        // without registeration loading will run without showing register
+                                        // page
+                                        setState(() {
+                                          loading = false;
+                                        });
                                       }
-                                      //added because if the user return to this page
-                                      // without registeration loading will run without showing register
-                                      // page
-                                      setState(() {
-                                        loading = false;
-                                      });
                                     }
-                                  }
-                                : () {
-                                    SnackBar errorSnackBar = SnackBar(
-                                      content: Text(
-                                        'No internet Connection',
-                                        style: _textStyle,
-                                      ),
-                                      backgroundColor: Colors.deepOrange,
-                                    );
-                                    Scaffold.of(context)
-                                        .showSnackBar(errorSnackBar);
-                                  },
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(80.0)),
-                            color: Colors.deepOrange,
-                            child: Text('Register',
-                                style:
-                                    _textStyle.copyWith(color: Colors.white)),
-                          ),
-                        );
-                      }),
-                      Spacer(),
-                      Text(error),
-                      Divider(color: Colors.black),
-                      InkWell(
-                        onTap: () {
-                          //widget.toogleView();
-                          widget.mcq();
-                        },
-                        child: RichText(
-                          text: new TextSpan(
-                            style: new TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.black,
+                                  : () {
+                                      SnackBar errorSnackBar = SnackBar(
+                                        content: Text(
+                                          'No internet Connection',
+                                          style: _textStyle,
+                                        ),
+                                        backgroundColor: Colors.deepOrange,
+                                      );
+                                      Scaffold.of(context)
+                                          .showSnackBar(errorSnackBar);
+                                    },
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(80.0)),
+                              color: Colors.deepOrange,
+                              child: Text('Register',
+                                  style:
+                                      _textStyle.copyWith(color: Colors.white)),
                             ),
-                            children: <TextSpan>[
-                              TextSpan(text: 'Already have an account?'),
-                              TextSpan(
-                                  text: 'Sign In',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.redAccent)),
-                            ],
+                          );
+                        }),
+                        Spacer(),
+                        Text(error),
+                        Divider(color: Colors.black),
+                        InkWell(
+                          onTap: () {
+                            //widget.toogleView();
+                            widget.mcq();
+                          },
+                          child: RichText(
+                            text: new TextSpan(
+                              style: new TextStyle(
+                                fontSize: 14.0,
+                                color: Colors.black,
+                              ),
+                              children: <TextSpan>[
+                                TextSpan(text: 'Already have an account?'),
+                                TextSpan(
+                                    text: 'Sign In',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.redAccent)),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
           );
   }
 }

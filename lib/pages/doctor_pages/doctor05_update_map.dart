@@ -6,8 +6,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../services/database.dart';
 
 // ----------------class for snackbar error
-class snackbarerror{
-  static String error='';
+class snackbarerror {
+  static String error = '';
 }
 
 class UpdateMap extends StatefulWidget {
@@ -15,10 +15,26 @@ class UpdateMap extends StatefulWidget {
   final String speciality;
   final String number;
   final String province;
-  UpdateMap({this.name, this.speciality, this.province, this.number});
+  final String address;
+  final String vacation;
+  final String workinghours;
+  UpdateMap(
+      {this.name,
+      this.speciality,
+      this.province,
+      this.number,
+      this.address,
+      this.vacation,
+      this.workinghours});
   @override
   _UpdateMapState createState() => _UpdateMapState(
-      name: name, speciality: speciality, number: number, province: province);
+      name: name,
+      speciality: speciality,
+      number: number,
+      province: province,
+      address: address,
+      vacation: vacation,
+      workinghours: workinghours);
 }
 
 class _UpdateMapState extends State<UpdateMap> {
@@ -26,6 +42,9 @@ class _UpdateMapState extends State<UpdateMap> {
   String speciality;
   String number;
   String province;
+  String address = '';
+  String vacation = '';
+  String workinghours = '';
 
   var latlng;
 
@@ -72,6 +91,7 @@ class _UpdateMapState extends State<UpdateMap> {
     );
     _scaffoldkey.currentState.showSnackBar(snackBar);
   }
+
   //-------------------checking internet connection
   bool _isInternet = true;
   checkInternet() async {
@@ -88,14 +108,21 @@ class _UpdateMapState extends State<UpdateMap> {
   }
   //------------the end --------------------
 
-  _UpdateMapState({this.name, this.speciality, this.number, this.province});
-
+  _UpdateMapState(
+      {this.name,
+      this.speciality,
+      this.number,
+      this.province,
+      this.address,
+      this.vacation,
+      this.workinghours});
 
   @override
   void initState() {
     checkInternet();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,31 +144,31 @@ class _UpdateMapState extends State<UpdateMap> {
           ),
           Container(
             alignment: Alignment.bottomLeft,
-            padding: EdgeInsets.symmetric(vertical:45.0,horizontal:15.0),
+            padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
               child: Text('U'),
               onPressed: () async {
                 checkInternet();
-                if (_isInternet){
-                  if (latlng==null){
+                if (_isInternet) {
+                  if (latlng == null) {
                     setState(() {
-                      snackbarerror.error='Please , tap on your location';
+                      snackbarerror.error = 'Please , tap on your location';
                     });
                     _showSnackBar();
-                  }else{
+                  } else {
                     await geolocate(latlng: latlng);
                     if (lattt != null && lnggg != null) {
                       await DatabaseService(
-                          uid: FirebaseAuth.instance.currentUser.uid)
-                          .updateUserData(
-                          name, speciality, number, province, lattt, lnggg);
+                              uid: FirebaseAuth.instance.currentUser.uid)
+                          .updateUserData(name, speciality, number, province,
+                              lattt, lnggg, address, vacation, workinghours);
                       Navigator.pop(context);
                     }
                   }
-                }else {
+                } else {
                   setState(() {
-                    snackbarerror.error='No internet connection';
+                    snackbarerror.error = 'No internet connection';
                   });
                   _showSnackBar();
                 }

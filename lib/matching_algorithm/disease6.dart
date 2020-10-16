@@ -140,7 +140,7 @@ maindisease6(
   var neck = Disease6('cervical spondylosis', 'neck pain', 'neck pain',
       'numbness', 'weakness', 'null', 'null', 'null', 'null');
   var back = Disease6('limber spodylosis', 'back pain', 'back pain', 'weakness',
-      'numbness', 'incontinence', 'retention', 'null', 'null');
+      'numbness', 'incontinence', 'retention', 'back pain', 'back pain');
 
   var burn = Disease6(
       'burn', 'burn', 'burn', 'null', 'null', 'null', 'null', 'null', 'null');

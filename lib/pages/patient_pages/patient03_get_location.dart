@@ -166,8 +166,10 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                           setState(() {
                             MyVariables.speciality = FinalScore.speciality;
                             MyVariables.province = region;
-                            MyVariables.lat = _currentPosition.latitude;
-                            MyVariables.long = _currentPosition.longitude;
+                            //MyVariables.lat = double.parse(_currentPosition.latitude.toString() );
+                            //MyVariables.long = double.parse(_currentPosition.longitude.toString() );
+                            MyVariables.lat=_currentPosition.latitude;
+                            MyVariables.long=_currentPosition.longitude;
                           });
                           Navigator.pushNamed(context, '/patient_result');
                         }else{

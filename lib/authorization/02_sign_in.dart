@@ -26,7 +26,7 @@ class _SignInState extends State<SignIn> {
   String email = '';
   String password = '';
   String error = '';
-  bool _passwordVisible;
+  bool _passwordVisible=false;
   TextStyle _textStyle =
       TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white);
 

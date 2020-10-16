@@ -48,6 +48,9 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   String _province = '';
   double _lat = 0.0;
   double _lng = 0.0;
+  String _address = '';
+  String _vacation = '';
+  String _workinghours = '';
   double distance = 0.0;
   double sum = 0.0;
   double result = 0.0;
@@ -104,6 +107,9 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             _province = docu.data()['province'];
             _lat = docu.data()['lat'];
             _lng = docu.data()['lng'];
+            _address = docu.data()['address'];
+            _vacation = docu.data()['vacation'];
+            _workinghours = docu.data()['workinghours'];
             realdistance = distance * 100;
             realdist = realdistance.toString();
             dotindex = realdist.indexOf('.') + 3;
@@ -135,43 +141,65 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                         backgroundImage: AssetImage('assets/images/doctor.png'),
                       ),
                       SizedBox(
-                        height: 25,
+                        height: 5,
                       ),
                       Text(
                         _name,
                         style: _textStyle,
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Text(
                         _speciality,
                         style: _textStyle,
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Text(
                         _number,
                         style: _textStyle,
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Text(
                         _currentAddress,
                         style: _textStyle,
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
+                      ),
+                      Text(
+                        _address,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'clinic vacation is '+_vacation,
+                        style: _textStyle,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                          _workinghours,
+                          style: _textStyle,
+                        ),
+                      SizedBox(
+                        height: 5,
                       ),
                       Text(
                         'Distance to the Doctor is about ',
-                        style: TextStyle(fontSize:16),
+                        style: TextStyle(fontSize: 16),
                       ),
                       Text(
-                        realnearby + ' Km',
-                        style:TextStyle(color: Colors.deepOrange,fontSize: 20),
+                        realnearby + ' Km away',
+                        style:
+                            TextStyle(color: Colors.deepOrange, fontSize: 20),
                       ),
                     ],
                   ),

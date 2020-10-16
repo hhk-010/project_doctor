@@ -39,6 +39,9 @@ String currentName;
 String currentSpeciality;
 String currentPhoneNumber;
 String currentProvince;
+String currentaddress='';
+String currentvacation='';
+String currentworkinghours='';
 
 final AuthService _auth = AuthService();
 void choiceAction(String choice) async {
@@ -133,6 +136,42 @@ class _DoctorFormState extends State<DoctorForm> {
                         .translate('doctor_form_province'),
                   ),
                 ),
+                Spacer(),
+                TextFormField(
+                  validator: (val) =>
+                  val.isEmpty ? 'Enter your address' : null,
+                  onChanged: (val) => setState(() => currentaddress = val),
+                  decoration: textInputdecoration.copyWith(
+                    hintText: 'detailed address'/*AppLocalizations.of(context)
+                        .translate('doctor_form_province'),
+                    labelText: AppLocalizations.of(context)
+                        .translate('doctor_form_province'),*/
+                  ),
+                ),
+                Spacer(),
+                TextFormField(
+                  validator: (val) =>
+                  val.isEmpty ? 'Enter your clinic vacation days' : null,
+                  onChanged: (val) => setState(() => currentvacation = val),
+                  decoration: textInputdecoration.copyWith(
+                    hintText: 'clinic vacation days'/*AppLocalizations.of(context)
+                        .translate('doctor_form_province'),
+                    labelText: AppLocalizations.of(context)
+                        .translate('doctor_form_province'),*/
+                  ),
+                ),
+                Spacer(),
+                TextFormField(
+                  validator: (val) =>
+                  val.isEmpty ? 'Enter your clinic working hours' : null,
+                  onChanged: (val) => setState(() => currentworkinghours = val),
+                  decoration: textInputdecoration.copyWith(
+                    hintText:'clinic working hours' /*AppLocalizations.of(context)
+                        .translate('doctor_form_province'),
+                    labelText: AppLocalizations.of(context)
+                        .translate('doctor_form_province'),*/
+                  ),
+                ),
                 Spacer(
                   flex: 5,
                 ),
@@ -176,6 +215,9 @@ class _DoctorFormState extends State<DoctorForm> {
                                 speciality: currentSpeciality,
                                 phone: currentPhoneNumber,
                                 province: currentProvince,
+                                address: currentaddress,
+                                vacation: currentvacation,
+                                workinghours: currentworkinghours,
                               ),
                             ),
                           );

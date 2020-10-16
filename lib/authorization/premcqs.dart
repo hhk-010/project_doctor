@@ -10,7 +10,7 @@ class mcqss {
   static var uid;
   static int counter = 0;
   static int length = 27;
-  static String snackerror='';
+  static String snackerror = '';
 }
 
 class Premcqs extends StatefulWidget {
@@ -23,9 +23,8 @@ class Premcqs extends StatefulWidget {
 }
 
 class _PremcqsState extends State<Premcqs> {
-
   //-------------------checking internet connection
-  bool _isInternet= true;
+  bool _isInternet = true;
   checkInternet() async {
     try {
       final response = await InternetAddress.lookup('google.com');
@@ -38,6 +37,7 @@ class _PremcqsState extends State<Premcqs> {
       setState(() {});
     }
   }
+
   //------------the end --------------------
   //-----------------this function will return a snackbar instead of the old one
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
@@ -58,6 +58,7 @@ class _PremcqsState extends State<Premcqs> {
     checkInternet();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
@@ -85,7 +86,7 @@ class _PremcqsState extends State<Premcqs> {
             FlatButton.icon(
               onPressed: () {
                 checkInternet();
-                if (_isInternet){
+                if (_isInternet) {
                   if (mcqss.length > 4) {
                     setState(() {
                       mcqss.length -= 4;
@@ -103,11 +104,14 @@ class _PremcqsState extends State<Premcqs> {
                       '0101001101010022',
                       mcqss.length.toString(),
                       0.000000230033,
-                      0.000000032044);
+                      0.000000032044,
+                      '',
+                      '',
+                      '');
                   widget.premcq();
-                }else{
+                } else {
                   setState(() {
-                    mcqss.snackerror='No internet connection';
+                    mcqss.snackerror = 'No internet connection';
                   });
                   _showSnackBar();
                 }
@@ -135,8 +139,6 @@ class Postpremcq extends StatefulWidget {
 }
 
 class _PostpremcqState extends State<Postpremcq> {
-
-
   @override
   Widget build(BuildContext context) {
     final premcqsnap = Provider.of<QuerySnapshot>(context);
@@ -179,7 +181,8 @@ class _PostpremcqState extends State<Postpremcq> {
                   Center(
                     child: Text(
                       'Register',
-                      style: TextStyle(fontSize: 20.0, color: Colors.deepOrange),
+                      style:
+                          TextStyle(fontSize: 20.0, color: Colors.deepOrange),
                     ),
                   ),
                   SizedBox(
@@ -207,7 +210,8 @@ class _PostpremcqState extends State<Postpremcq> {
                   Center(
                     child: Text(
                       'Sign in',
-                      style: TextStyle(fontSize: 20.0, color: Colors.deepOrange),
+                      style:
+                          TextStyle(fontSize: 20.0, color: Colors.deepOrange),
                     ),
                   ),
                   SizedBox(
