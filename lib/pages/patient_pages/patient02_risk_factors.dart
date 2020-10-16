@@ -242,6 +242,20 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                           });
                         }),
                     CheckboxListTile(
+                        title: Text('COPD', style: _textStyle),
+                        value: copdSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            copdSelected = val;
+                            if (copdSelected) {
+                              copd = 'chronic lung disease';
+                            } else {
+                              copd = '';
+                            }
+                            print(copd);
+                          });
+                        }),
+                    CheckboxListTile(
                         title: Text('Asthma', style: _textStyle),
                         value: ashmaSelected,
                         onChanged: (val) {

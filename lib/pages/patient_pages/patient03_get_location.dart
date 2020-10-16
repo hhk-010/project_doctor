@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor01_form.dart';
 import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:geolocator/geolocator.dart';
@@ -79,6 +80,43 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
           children: [
             Container(
               decoration: boxDecorationPatient,
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              child: Column(
+                children: [
+                  Text(
+                    'Your complains are associated with the Following Speciality:',
+                    style:
+                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                  Divider(
+                    color: Colors.grey,
+                    thickness: 2,
+                    indent: 30,
+                    endIndent: 30,
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.deepOrange,
+                      radius: 30,
+                      backgroundImage:
+                          AssetImage('assets/images/speciality.png'),
+                    ),
+                    title: Text(
+                      FinalScore.speciality,
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Spacer(
+              flex: 1,
+            ),
+            Container(
+              decoration: boxDecorationPatient,
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               child: Column(
                 children: [
@@ -124,8 +162,8 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 25,
+            Spacer(
+              flex: 2,
             ),
             Container(
               decoration: boxDecorationPatient,

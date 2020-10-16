@@ -98,7 +98,7 @@ maindisease3(
   var diabetic = Disease3('diabetic ER', 'RBS > 200', 'RBS < 55', 'dyspnea',
       'abdominal pain', 'vomiting', 'nausea', 'DM', 'CKD');
   var diabetic2 = Disease3('diabetic ER', 'confusion', 'coma', 'polyuria',
-      'polydepsia', 'null', 'null', 'pregnancy', 'null');
+      'polydipsia', 'null', 'null', 'pregnancy', 'null');
 
   var ugib = Disease3('upper gi bleeding', 'hematemesis', 'malena',
       'abdominal pain', 'null', 'null', 'liver disease', 'null', 'null');

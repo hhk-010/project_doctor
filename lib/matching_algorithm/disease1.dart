@@ -193,8 +193,8 @@ maindisease1(
       'smoking', 'copd', 'chest pain', 'hoarseness');
   var ards = Disease1('ARDS', 'dyspnea', 'cough', 'sputum', 'hemoptysis',
       'cyanosis', 'null', 'null', 'null');
-  var pe = Disease1('pulmonary embolism', 'dyspnea', 'chest pain',
-      'hemoptysis', 'null', 'pregnancy', 'null', 'null', 'null');
+  var pe = Disease1('pulmonary embolism', 'dyspnea', 'chest pain', 'hemoptysis',
+      'null', 'pregnancy', 'null', 'null', 'null');
   var ild = Disease1('interstitial lung disease', 'dyspnea', 'cough', 'fever',
       'null', 'null', 'null', 'null', 'null');
   var ild2 = Disease1('interstitial lung disease', 'dyspnea', 'cough', 'fever',
