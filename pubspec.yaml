@@ -36,6 +36,8 @@ dependencies:
   shared_preferences: ^0.5.12
   connectivity: ^0.4.9+3
   dropdownfield: ^1.0.3
+  auto_size_text: ^2.1.0
+
 
 
 

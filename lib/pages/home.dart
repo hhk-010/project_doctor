@@ -22,9 +22,12 @@ class _HomeState extends State<Home> {
       drawer: _drawerList(),
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text(
-          AppLocalizations.of(context).translate('home_title'),
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        title: FittedBox(
+          fit: BoxFit.fitWidth,
+          child: Text(
+            AppLocalizations.of(context).translate('home_title'),
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.deepOrange,
@@ -55,7 +58,7 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 75),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 75),
         child: Container(
           height: double.maxFinite,
           child: Center(
@@ -69,7 +72,7 @@ class _HomeState extends State<Home> {
                       Navigator.pushNamed(context, '/patient_complain'),
                   icon: Icon(
                     Icons.search,
-                    size: 50,
+                    size: 70,
                     color: Colors.white,
                   ),
                   label: Padding(
@@ -79,13 +82,13 @@ class _HomeState extends State<Home> {
                         TextSpan(
                             text: 'Iam a Patient\n',
                             style: TextStyle(
-                                fontSize: 25,
+                                fontSize: 30,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
                         TextSpan(
                             text: 'I want to Search',
                             style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
                       ]),
@@ -100,7 +103,7 @@ class _HomeState extends State<Home> {
                       Navigator.pushNamed(context, '/intermediate'),
                   icon: Icon(
                     Icons.people,
-                    size: 50,
+                    size: 70,
                     color: Colors.white,
                   ),
                   label: Padding(
@@ -110,13 +113,13 @@ class _HomeState extends State<Home> {
                         TextSpan(
                             text: 'Iam a Doctor\n',
                             style: TextStyle(
-                                fontSize: 25,
+                                fontSize: 30,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
                         TextSpan(
                             text: 'I want to Register',
                             style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
                       ]),
