@@ -2,6 +2,7 @@ class FinalScore {
   static int finale;
   static String speciality = '';
   static String speciality2 = '';
+  static String soeciality22='';
   static int cvsscore;
   static int respscore;
   static int endoscore;
@@ -34,8 +35,8 @@ countfinal() {
     FinalScore.gitscore: ['Enterologist', 'Internist'],
     FinalScore.generalscore: ['General Surgeon', 'General Surgeon'],
     FinalScore.thoracicscore: [
-      'Thoracovascular Surgeon',
-      'Thoracovascular Surgeon'
+      'ThoracoVascular Surgeon',
+      'ThoracoVascular Surgeon'
     ],
     FinalScore.erscore: ['Emergency Department', 'Emergency Department'],
     FinalScore.internscore: ['Internist', 'Internist'],
@@ -106,9 +107,12 @@ countfinal() {
       FinalScore.speciality = _scoremap[x][0];
       if (_scoremap[x][0] != _scoremap[x][1]) {
         FinalScore.speciality2 = _scoremap[x][1];
+        FinalScore.soeciality22=' or '+FinalScore.speciality2;
       } else {
         FinalScore.speciality2 = '';
+        FinalScore.soeciality22='';
       }
+
     }
   }
 }

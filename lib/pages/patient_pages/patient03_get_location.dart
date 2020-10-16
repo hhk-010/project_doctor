@@ -106,7 +106,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                           AssetImage('assets/images/speciality.png'),
                     ),
                     title: Text(
-                      FinalScore.speciality,
+                      FinalScore.speciality + FinalScore.soeciality22,
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),

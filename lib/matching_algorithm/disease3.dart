@@ -128,10 +128,10 @@ maindisease3(
       'other health problems',
       'disease of the mouth',
       'disease of the mouth',
-      'null',
-      'null',
-      'null',
-      'null');
+      'generalized bone pain',
+      'generalized bone pain',
+      'generalized bone pain',
+      'generalized bone pain');
   var internist4 = Disease3('internist', 'fever', 'fatigue', 'weight loss',
       'anorexia', 'insomnia', 'weight gain', 'somnolence', 'malaise');
 

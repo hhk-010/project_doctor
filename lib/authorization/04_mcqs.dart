@@ -421,14 +421,14 @@ class QuestionsShuffle {
   static int score = 0;
   static String snackerror = '';
   static List questions = [
-    '60 years old male with +ve PMH for HTN and DM presented to the ER complaining of central suffocating chest pain, dyspnea and vomiting OE conscious ,alert ,oriented ,looks ill ,BP 190/100,ecg shows St segment elevation in L1,avL,V5,V6 with reciprocal changes with elevated troponin,what is the most likely dx?',
+    '60 years old male with +ve PMH for HTN and DM presented to the ER complaining of central suffocating chest pain, dyspnea and vomiting OE conscious ,alert ,oriented ,looks ill ,BP 190/100,ecg shows St segment elevation in L1,avL,V5,V6 with reciprocal changes and elevated troponin,what is the most likely dx?',
     '65 years old male with +ve PMH for HTN,ischemic heart disease with previous CCU admissions,presented with dyspnea ,cough and white colored sputum ,OE he was dyspneic ,BP 100/60 ,chest auscultation reveals bilateral basal crepitations he brought his previous investigations with him and his echocardiogram shows EF=30%, and his current ecg shows old ischemic changes and his current WBC count is normal but his PCV is relatively low ,what is the most likely dx?',
     '15 years old female pt known case of type 1 DM developed ,flu like illness and fever followed by polyuria , polydipsia,abdominal pain and vomiting , associated with fruity odor breathing ,presented to the ER , her pulse rate is 120 bpm,temp is 38 C axillary corrected, she looks tachypneic, her RBS is about 500 mg/dl and her ABG shows elevated pH,what is the most likely dx?',
     '6 years old girl with -v PMH presented to the ER with moderate to severe abdominal pain (started few hours before presentation) in the umbilical area and shifted to the Rt iliac fossa , associated with nausea, vomiting , anorexia, fever, OE she looks ill with tachycardia , her abdominal examination shows Rt iliac fossa tenderness and positive rebound tenderness, her WBC count was > 13000,what is the most likely dx?',
     '70 years old male patient with +ve PMH for DM,chronic renal failure on insulin and scheduled hemodialysis presented to the ER with coma which he developed right before presentation his BP was 140/90, PR was normal ,neurological examination shows no focal neurological deficit as a matter of urgency he was given hypertonic solution with rapid regaining of his consciousness level his brain imaging was normal and his biochemistry (apart from low RBS) was acceptable, what is the most likely dx?',
     '65 years old male heavy smoker (5 packs/day) with -ve PMH presented to the clinic with dyspnea,cough ,sputum,general examination reveals generalized muscle wasting ,chest auscultation reveals decrease air entry , normal vesicular breathing ,wheeze all over the chest,his chest X-ray reveals mediastinal narrowing and flattened diaphragm, what is the most likely dx?',
     '18 years old female presented to the ER with motor vehicle accident,regarding ABC of trauma ,her airway was patent ,she was looking dyspneic,OE she was hypotensive and her PR was 130 BPM ,her chest examination reveals deviation of trachea and apex beat to the left side,and diminished air entry in the right side and audible S1,S2,what is the most likely dx?',
-    '6 years old girl with -ve PMH , healthy wealthy was eating peanut for the first time, she suddenly developed generalized skin redness her parents brought her to the ER on there way she deteriorated in the ER  BP was very low ,her PR was elevated and she developed cold extremities , she was given IM adrenaline with good response, what is the most likely dx?',
+    '6 years old girl with -ve PMH , healthy wealthy was eating peanut for the first time, she suddenly developed generalized skin redness her parents brought her to the ER on there way her condition had been deteriorated, in the ER  BP was very low ,her PR was elevated and she developed cold extremities , she was given IM adrenaline with good response, what is the most likely dx?',
     '34 years old male ,heavy weight lifter with -ve PMH , developed back pain after his exercise,treated by mobic 7.5 mg twice daily with good response after few weeks without discontinuing his treatment,he presented to the ER with abdominal pain and coffee ground vomiting,what is the most likely dx?',
     '30 years old female with -ve PMH developed Rt leg pain and swelling associated with redness of the leg , OE her leg was hot and red with +ve homans sign with no other significant abnormality in examination , her D-dimer level was elevated , what is the most likely dx?',
     '58 years old female with history of unresectable CA colon developed colicky abdominal pain and constipation , the pain increased in severity and she also developed abdominal distension and vomiting,in the ER she was dehydrated and her pulse rate was elevated,abdominal auscultation reveals absent bowel sounds , her abdominal plain X-ray shows dilated bowel loops with air fluid level , what is the most likely dx?',
@@ -451,7 +451,7 @@ class QuestionsShuffle {
     '56 years old male non diabetic with untreated benign prostatic hyperplasia , presented to the ER with confusion associated with bilateral leg edema and generalized swelling of the body , his general examination reveals hypertension and near normal pulse , his chest examination shows decrease air entry on the right side , his abdominal examination reveals abdominal distension , his chest X-ray show Rt lower zone radio-opacity obliterating Rt costophrenic angle , his B.urea was 145 mg/dl and his S. creatinine was 2.5 mg/dl , and S.k was 5.5 mmol/l ,what is the most likely dx ?',
   ];
   static Map choices = {
-    '60 years old male with +ve PMH for HTN and DM presented to the ER complaining of central suffocating chest pain, dyspnea and vomiting OE conscious ,alert ,oriented ,looks ill ,BP 190/100,ecg shows St segment elevation in L1,avL,V5,V6 with reciprocal changes with elevated troponin,what is the most likely dx?':
+    '60 years old male with +ve PMH for HTN and DM presented to the ER complaining of central suffocating chest pain, dyspnea and vomiting OE conscious ,alert ,oriented ,looks ill ,BP 190/100,ecg shows St segment elevation in L1,avL,V5,V6 with reciprocal changes and elevated troponin,what is the most likely dx?':
         [
       '-stroke',
       '-pericarditis',
@@ -514,7 +514,7 @@ class QuestionsShuffle {
       '-asthma exacerbation',
       '-HYS'
     ],
-    '6 years old girl with -ve PMH , healthy wealthy was eating peanut for the first time, she suddenly developed generalized skin redness her parents brought her to the ER on there way she deteriorated in the ER  BP was very low ,her PR was elevated and she developed cold extremities , she was given IM adrenaline with good response, what is the most likely dx?':
+    '6 years old girl with -ve PMH , healthy wealthy was eating peanut for the first time, she suddenly developed generalized skin redness her parents brought her to the ER on there way her condition had been deteriorated, in the ER  BP was very low ,her PR was elevated and she developed cold extremities , she was given IM adrenaline with good response, what is the most likely dx?':
         [
       '-septic shock',
       '-pneumothorax',
@@ -705,7 +705,7 @@ class QuestionsShuffle {
     ],
   };
   static Map answers = {
-    '60 years old male with +ve PMH for HTN and DM presented to the ER complaining of central suffocating chest pain, dyspnea and vomiting OE conscious ,alert ,oriented ,looks ill ,BP 190/100,ecg shows St segment elevation in L1,avL,V5,V6 with reciprocal changes with elevated troponin,what is the most likely dx?':
+    '60 years old male with +ve PMH for HTN and DM presented to the ER complaining of central suffocating chest pain, dyspnea and vomiting OE conscious ,alert ,oriented ,looks ill ,BP 190/100,ecg shows St segment elevation in L1,avL,V5,V6 with reciprocal changes and elevated troponin,what is the most likely dx?':
         '-acute MI',
     '65 years old male with +ve PMH for HTN,ischemic heart disease with previous CCU admissions,presented with dyspnea ,cough and white colored sputum ,OE he was dyspneic ,BP 100/60 ,chest auscultation reveals bilateral basal crepitations he brought his previous investigations with him and his echocardiogram shows EF=30%, and his current ecg shows old ischemic changes and his current WBC count is normal but his PCV is relatively low ,what is the most likely dx?':
         '-heart failure exacerbation',
@@ -719,7 +719,7 @@ class QuestionsShuffle {
         '-COPD',
     '18 years old female presented to the ER with motor vehicle accident,regarding ABC of trauma ,her airway was patent ,she was looking dyspneic,OE she was hypotensive and her PR was 130 BPM ,her chest examination reveals deviation of trachea and apex beat to the left side,and diminished air entry in the right side and audible S1,S2,what is the most likely dx?':
         '-tension pneumothorax',
-    '6 years old girl with -ve PMH , healthy wealthy was eating peanut for the first time, she suddenly developed generalized skin redness her parents brought her to the ER on there way she deteriorated in the ER  BP was very low ,her PR was elevated and she developed cold extremities , she was given IM adrenaline with good response, what is the most likely dx?':
+    '6 years old girl with -ve PMH , healthy wealthy was eating peanut for the first time, she suddenly developed generalized skin redness her parents brought her to the ER on there way her condition had been deteriorated, in the ER  BP was very low ,her PR was elevated and she developed cold extremities , she was given IM adrenaline with good response, what is the most likely dx?':
         '-anaphylaxis',
     '34 years old male ,heavy weight lifter with -ve PMH , developed back pain after his exercise,treated by mobic 7.5 mg twice daily with good response after few weeks without discontinuing his treatment,he presented to the ER with abdominal pain and coffee ground vomiting,what is the most likely dx?':
         '-peptic ulcer disease',

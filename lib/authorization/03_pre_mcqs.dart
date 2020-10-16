@@ -181,7 +181,7 @@ class _PostpremcqState extends State<Postpremcq> {
                     height: 20,
                   ),
                   Text(
-                    'if you allready have an account return to the sign in page',
+                    'if you already have an account return to the sign in page',
                     style: TextStyle(
                       fontSize: 18.0,
                     ),

@@ -160,7 +160,7 @@ maindisease1(
   var asthma = Disease1('asthma', 'dyspnea', 'cough', 'wheeze', 'null',
       'family history', 'asthma', 'null', 'null');
   var copd = Disease1('COPD', 'dyspnea', 'cough', 'sputum', 'hemoptysis',
-      'wheeze', 'smoking', 'chronic lung disease', 'copd');
+      'wheeze', 'smoking', 'chronic lung disease', 'COPD');
   var pneumonia = Disease1('pneumonia', 'dyspnea', 'fever', 'cough', 'sputum',
       'alcoholism', 'smoking', 'chronic lung disease', 'CVA');
   var pneumonia2 = Disease1('pneumonia', 'hemoptysis', 'chest pain', 'null',
@@ -190,7 +190,7 @@ maindisease1(
       'connective tissue disease',
       'chronic lung disease');
   var calung = Disease1('ca lung', 'dyspnea', 'cough', 'sputum', 'hemoptysis',
-      'smoking', 'copd', 'chest pain', 'hoarseness');
+      'smoking', 'COPD', 'chest pain', 'hoarseness');
   var ards = Disease1('ARDS', 'dyspnea', 'cough', 'sputum', 'hemoptysis',
       'cyanosis', 'null', 'null', 'null');
   var pe = Disease1('pulmonary embolism', 'dyspnea', 'chest pain', 'hemoptysis',

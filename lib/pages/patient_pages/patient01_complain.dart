@@ -16,17 +16,20 @@ class _PatientComplainState extends State<PatientComplain> {
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );
+
+  //--------------------------------------------------
   final ageController = TextEditingController();
-  String age = '';
+  String _age = '1022';
+  String _error='';
   getage() {
-    FinalScore.age = int.parse(age);
+    FinalScore.age = int.parse(_age);
   }
   //-------------snackbar for age==null---------
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
     final _snackBar = new SnackBar(
       content: Text(
-        'Please , enter your age',
+        _error,
         style: TextStyle(fontSize: 15),
       ),
       backgroundColor: Colors.deepOrange,
@@ -1267,7 +1270,7 @@ class _PatientComplainState extends State<PatientComplain> {
                       controller: ageController,
                       onChanged: (ageController) {
                         setState(() {
-                          age = ageController.toString();
+                          _age = ageController.toString();
                         });
                       },
                       decoration: InputDecoration(
@@ -2467,23 +2470,36 @@ class _PatientComplainState extends State<PatientComplain> {
                       fontSize: 20,
                       fontWeight: FontWeight.bold)),
               onPressed: () {
-                if (age==''){
-                  _showSnackBar;
+                print(_age);
+                if (_age=='1022'){
+                  setState(() {
+                    _error='Please , enter your age';
+                  });
+                  _showSnackBar();
+                }else{
+                  getage();
+                  if(complainSelected01==""){
+                    setState(() {
+                      _error='Please , choose a complaint';
+                    });
+                    _showSnackBar();
+                  }
+                  else{
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => PatientRiskFactors(
+                          chiefcomplaint: complainSelected01,
+                          sym2: complainSelected02,
+                          sym3: complainSelected03,
+                          sym4: complainSelected04,
+                          sym5: complainSelected05,
+                          sym6: complainSelected06,
+                          sym7: complainSelected07,
+                        ),
+                      ),
+                    );
+                  }
                 }
-                getage();
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => PatientRiskFactors(
-                      chiefcomplaint: complainSelected01,
-                      sym2: complainSelected02,
-                      sym3: complainSelected03,
-                      sym4: complainSelected04,
-                      sym5: complainSelected05,
-                      sym6: complainSelected06,
-                      sym7: complainSelected07,
-                    ),
-                  ),
-                );
               },
             ),
           ],
