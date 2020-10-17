@@ -8,7 +8,7 @@ import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/authorization/02_sign_in.dart';
-import '../pages/doctor_pages/doctor03_profile.dart';
+import '../pages/doctor_pages/doctor04_profile.dart';
 
 class Intermediate extends StatefulWidget {
   @override

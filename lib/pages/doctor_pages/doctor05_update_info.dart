@@ -2,8 +2,8 @@ import 'dart:ui';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
-import 'package:project_doctor/pages/doctor_pages/doctor05_update_map.dart';
-import 'package:project_doctor/pages/doctor_pages/doctor05_update_password.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor06_update_map.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor07_update_password.dart';
 
 class Updateinfo extends StatefulWidget {
   @override
@@ -11,10 +11,10 @@ class Updateinfo extends StatefulWidget {
 }
 
 class _UpdateinfoState extends State<Updateinfo> {
-  String name;
-  String speciality;
-  String phonenumber;
-  String province;
+  String name='';
+  String speciality='';
+  String phonenumber='';
+  String province='';
   String address = '';
   String vacation = '';
   String workinghours = '';
@@ -123,11 +123,12 @@ class _UpdateinfoState extends State<Updateinfo> {
               TextFormField(
                 onChanged: (val) => setState(() => address = val),
                 decoration: textInputdecoration.copyWith(
-                  hintText: 'detailed address'/*AppLocalizations.of(context)
+                    hintText:
+                        'detailed address' /*AppLocalizations.of(context)
                       .translate('doctor_form_province'),
                   labelText: AppLocalizations.of(context)
                       .translate('doctor_form_province'),*/
-                ),
+                    ),
                 validator: (val) =>
                     val.isEmpty ? 'enter a valid address' : null,
               ),
@@ -135,11 +136,12 @@ class _UpdateinfoState extends State<Updateinfo> {
               TextFormField(
                 onChanged: (val) => setState(() => vacation = val),
                 decoration: textInputdecoration.copyWith(
-                  hintText: 'clinic vacation'/*AppLocalizations.of(context)
+                    hintText:
+                        'clinic vacation' /*AppLocalizations.of(context)
                       .translate('doctor_form_province'),
                   labelText: AppLocalizations.of(context)
                       .translate('doctor_form_province'),*/
-                ),
+                    ),
                 validator: (val) =>
                     val.isEmpty ? 'enter a valid clinic vacation days' : null,
               ),
@@ -147,11 +149,12 @@ class _UpdateinfoState extends State<Updateinfo> {
               TextFormField(
                 onChanged: (val) => setState(() => workinghours = val),
                 decoration: textInputdecoration.copyWith(
-                  hintText: 'working hours'/*AppLocalizations.of(context)
+                    hintText:
+                        'working hours' /*AppLocalizations.of(context)
                       .translate('doctor_form_province'),
                   labelText: AppLocalizations.of(context)
                       .translate('doctor_form_province'),*/
-                ),
+                    ),
                 validator: (val) =>
                     val.isEmpty ? 'enter valid working hours' : null,
               ),
@@ -219,7 +222,7 @@ class _UpdateinfoState extends State<Updateinfo> {
                       builder: (context) => UpdatePassword()));
                 },
                 child: RichText(
-                  text: TextSpan(
+                  text: TextSpan(text: '',
                     style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.black,

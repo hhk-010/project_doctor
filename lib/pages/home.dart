@@ -18,13 +18,23 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    var lang = Localizations.localeOf(context).languageCode;
     return Scaffold(
-      drawer: _drawerList(),
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text(
-          AppLocalizations.of(context).translate('home_title'),
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        leading: IconButton(
+          icon: Icon(Icons.info),
+          tooltip: AppLocalizations.of(context).translate('about_us'),
+          onPressed: () {
+            Navigator.pushNamed(context, '/about_us');
+          },
+        ),
+        title: FittedBox(
+          fit: BoxFit.fitWidth,
+          child: Text(
+            AppLocalizations.of(context).translate('home_title'),
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.deepOrange,
@@ -52,6 +62,12 @@ class _HomeState extends State<Home> {
                   .toList(),
             ),
           ),
+          IconButton(
+            icon: Icon(Icons.email),
+            onPressed: () {
+              Navigator.pushNamed(context, '/register');
+            },
+          ),
         ],
       ),
       body: Padding(
@@ -64,109 +80,94 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
-                RaisedButton.icon(
-                  onPressed: () =>
-                      Navigator.pushNamed(context, '/patient_complain'),
-                  icon: Icon(
-                    Icons.search,
-                    size: 50,
-                    color: Colors.white,
-                  ),
-                  label: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: RichText(
-                      text: TextSpan(children: [
-                        TextSpan(
-                            text: 'Iam a Patient\n',
-                            style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                        TextSpan(
-                            text: 'I want to Search',
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                      ]),
+                Container(
+                  width: double.maxFinite,
+                  child: RaisedButton.icon(
+                    onPressed: () =>
+                        Navigator.pushNamed(context, '/patient_complain'),
+                    icon: Icon(
+                      Icons.search,
+                      size: 70,
+                      color: Colors.white,
                     ),
+                    label: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: RichText(
+                        text: TextSpan(children: [
+                          TextSpan(
+                              text: AppLocalizations.of(context)
+                                  .translate('home_patient_title'),
+                              style: TextStyle(
+                                  fontFamily: lang == 'ar'
+                                      ? 'noto_arabic'
+                                      : 'Helvetica',
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white)),
+                          TextSpan(
+                              text: AppLocalizations.of(context)
+                                  .translate('home_patient_subtitle'),
+                              style: TextStyle(
+                                  fontFamily: lang == 'ar'
+                                      ? 'noto_arabic'
+                                      : 'Helvetica',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white)),
+                        ]),
+                      ),
+                    ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(80.0)),
+                    color: Colors.deepOrange,
                   ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0)),
-                  color: Colors.deepOrange,
                 ),
-                RaisedButton.icon(
-                  onPressed: () =>
-                      Navigator.pushNamed(context, '/intermediate'),
-                  icon: Icon(
-                    Icons.people,
-                    size: 50,
-                    color: Colors.white,
-                  ),
-                  label: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: RichText(
-                      text: TextSpan(children: [
-                        TextSpan(
-                            text: 'Iam a Doctor\n',
-                            style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                        TextSpan(
-                            text: 'I want to Register',
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                      ]),
+                Container(
+                  width: double.maxFinite,
+                  child: RaisedButton.icon(
+                    onPressed: () =>
+                        Navigator.pushNamed(context, '/intermediate'),
+                    icon: Icon(
+                      Icons.people,
+                      size: 70,
+                      color: Colors.white,
                     ),
+                    label: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: RichText(
+                        text: TextSpan(children: [
+                          TextSpan(
+                              text: AppLocalizations.of(context)
+                                  .translate('home_doctor_title'),
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontFamily: lang == 'ar'
+                                      ? 'noto_arabic'
+                                      : 'Helvetica',
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white)),
+                          TextSpan(
+                              text: AppLocalizations.of(context)
+                                  .translate('home_doctor_subtitle'),
+                              style: TextStyle(
+                                  fontFamily: lang == 'ar'
+                                      ? 'noto_arabic'
+                                      : 'Helvetica',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white)),
+                        ]),
+                      ),
+                    ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(80.0)),
+                    color: Colors.deepOrange,
                   ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0)),
-                  color: Colors.deepOrange,
                 ),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Container _drawerList() {
-    TextStyle _textStyle = TextStyle(
-      fontSize: 24,
-      color: Colors.white,
-    );
-    return Container(
-      width: MediaQuery.of(context).size.width / 1.5,
-      color: Theme.of(context).primaryColor,
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          DrawerHeader(
-            child: Container(
-              height: 100,
-              child: CircleAvatar(),
-            ),
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.info,
-              color: Colors.white,
-              size: 30,
-            ),
-            title: Text(
-              AppLocalizations.of(context).translate('about_us'),
-              style: _textStyle,
-            ),
-            onTap: () {
-              Navigator.pop(context);
-              // Navigator.pushNamed(context, routeName),
-            },
-          ),
-        ],
       ),
     );
   }

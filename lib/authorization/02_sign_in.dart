@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/forget_password.dart';
 import 'package:project_doctor/authorization/loading.dart';
+import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'dart:io';
@@ -26,7 +27,7 @@ class _SignInState extends State<SignIn> {
   String email = '';
   String password = '';
   String error = '';
-  bool _passwordVisible=false;
+  bool _passwordVisible = false;
   TextStyle _textStyle =
       TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white);
 
@@ -57,8 +58,6 @@ class _SignInState extends State<SignIn> {
     _scaffoldkey.currentState.showSnackBar(_snackbar);
   }
 
-  //-------------------the end ----------------------
-
   @override
   void initState() {
     _passwordVisible = false;
@@ -68,6 +67,8 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+    var lang = Localizations.localeOf(context).languageCode;
+
     return loading
         ? Loading()
         : Scaffold(
@@ -76,36 +77,45 @@ class _SignInState extends State<SignIn> {
             backgroundColor: Colors.grey[200],
             appBar: AppBar(
               backgroundColor: Colors.deepOrange,
-              title: Text(
-                'Sign In',
-                style: _textStyle.copyWith(fontSize: 25.0),
+              title: FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                  AppLocalizations.of(context).translate('sign_in'),
+                  style: _textStyle.copyWith(fontSize: 25.0),
+                ),
               ),
               centerTitle: true,
               elevation: 0.0,
             ),
             body: Container(
               height: double.maxFinite,
-              padding: EdgeInsets.symmetric(vertical: 75.0, horizontal: 50.0),
+              padding: EdgeInsets.fromLTRB(50, 75, 50, 25),
               child: Form(
                 key: _formKey,
                 child: Column(
                   children: [
                     TextFormField(
-                      validator: (val) => val.isEmpty ? 'Enter an email' : null,
+                      validator: (val) => val.isEmpty
+                          ? AppLocalizations.of(context)
+                              .translate('enter_your_email')
+                          : null,
                       onChanged: (val) {
                         setState(() => email = val);
                       },
                       cursorColor: Colors.black,
                       keyboardType: TextInputType.emailAddress,
                       decoration: textInputdecoration.copyWith(
-                        hintText: 'Enter Your Email',
-                        labelText: 'Email',
+                        hintText: AppLocalizations.of(context)
+                            .translate('enter_your_email'),
+                        labelText:
+                            AppLocalizations.of(context).translate('email'),
                       ),
                     ),
                     Spacer(),
                     TextFormField(
                       validator: (val) => val.length < 8
-                          ? 'password should be > 8 Character'
+                          ? AppLocalizations.of(context)
+                              .translate('password_validator')
                           : null,
                       obscureText: !_passwordVisible,
                       onChanged: (val) {
@@ -114,8 +124,10 @@ class _SignInState extends State<SignIn> {
                       cursorColor: Colors.black,
                       keyboardType: TextInputType.text,
                       decoration: textInputdecoration.copyWith(
-                        hintText: 'Enter Your Password',
-                        labelText: 'Password',
+                        hintText: AppLocalizations.of(context)
+                            .translate('enter_your_password'),
+                        labelText:
+                            AppLocalizations.of(context).translate('password'),
                         suffixIcon: IconButton(
                           icon: Icon(
                             // Based on passwordVisible state choose the icon
@@ -157,7 +169,9 @@ class _SignInState extends State<SignIn> {
                                   setState(() => loading = true);
                                 } else {
                                   setState(() {
-                                    SnackText.error = 'Error signing in';
+                                    SnackText.error =
+                                        AppLocalizations.of(context)
+                                            .translate('snack_error_sign');
                                   });
                                   _showSnackBar();
                                 }
@@ -169,7 +183,8 @@ class _SignInState extends State<SignIn> {
                             }
                           } else {
                             setState(() {
-                              SnackText.error = 'No internet connection';
+                              SnackText.error = AppLocalizations.of(context)
+                                  .translate('snack_connectivity');
                             });
                             _showSnackBar();
                           }
@@ -178,7 +193,7 @@ class _SignInState extends State<SignIn> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
                         child: Text(
-                          'Sign In',
+                          AppLocalizations.of(context).translate('sign_in'),
                           style: _textStyle.copyWith(color: Colors.white),
                         ),
                       ),
@@ -190,7 +205,8 @@ class _SignInState extends State<SignIn> {
                             builder: (context) => ForgetPassword()));
                       },
                       label: Text(
-                        'Forget Your Password?',
+                        AppLocalizations.of(context)
+                            .translate('forget_password'),
                         style: _textStyle.copyWith(
                             color: Colors.black, fontSize: 16),
                       ),
@@ -208,13 +224,17 @@ class _SignInState extends State<SignIn> {
                       child: RichText(
                         text: TextSpan(
                           style: TextStyle(
-                            fontSize: 14.0,
-                            color: Colors.black,
-                          ),
+                              fontSize: 14.0,
+                              color: Colors.black,
+                              fontFamily:
+                                  lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
                           children: <TextSpan>[
-                            TextSpan(text: 'Does not have account? '),
                             TextSpan(
-                                text: 'Register',
+                                text: AppLocalizations.of(context)
+                                    .translate('does_not_have_account')),
+                            TextSpan(
+                                text: AppLocalizations.of(context)
+                                    .translate('register'),
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.redAccent)),

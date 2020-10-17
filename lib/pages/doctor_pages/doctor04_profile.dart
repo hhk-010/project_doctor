@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:project_doctor/pages/doctor_pages/doctor04_update_info.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor05_update_info.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
@@ -60,9 +60,9 @@ class _DoctorListState extends State<DoctorList> {
   String province = '';
   double lat = 0.0;
   double lng = 0.0;
-  String _address='';
-  String _vacation='';
-  String _workinghours='';
+  String _address = '';
+  String _vacation = '';
+  String _workinghours = '';
 
 //get the user address from lat and lng
   String _doctorAddress = '';
@@ -145,7 +145,7 @@ class _DoctorListState extends State<DoctorList> {
                         style: _textStyle,
                       ),
                       SizedBox(
-                        height:5,
+                        height: 5,
                       ),
                       Text(
                         _doctorAddress,
@@ -162,7 +162,7 @@ class _DoctorListState extends State<DoctorList> {
                         height: 5,
                       ),
                       Text(
-                        'clinic vacation is '+_vacation,
+                        'clinic vacation is ' + _vacation,
                         style: _textStyle,
                       ),
                       SizedBox(
