@@ -1,12 +1,24 @@
 {
+
+"common" : "=======================================",
     "next": "التالي",
     "english" : "انكليزي",
     "arabic" : "عربي",
     "search" :  "ابحث",
     "submit" : "تم",
+    "update" : "Update",
+    "OK" : "تم",
     "google_map" : "كوكل ماب",
-    "snack_error_sign" : "خطا في الدخول",
+
+
+"Snacks" : "=======================================",
+    "snack_sign_in" : "خطا في الدخول",
     "snack_connectivity" : "لا يوجد اتصال بالشبكه",
+    "snack_register" : "خطا في التسجيل اضف معلومات صحيحه اولا",
+    "snack_map" : "حدد مكان عيادتك اولا",
+
+
+"doctor_page" : "=======================================",
     "home_title" : "اهلا بك في كيورا",
     "home_patient_title" :"انا مريض\n",
     "home_patient_subtitle" :"اريد البحث عن طبيب",
@@ -33,8 +45,26 @@
     "province": "المحافظه",
     "province_validator" : "قم بادخال محافظتك",
     "location": "الموقع",
+    "add_location" : "اضف موقع عيادتك",
     "location_setup" : "حدد موقع عيادتك من خلال",
+    "clinic_form" : "معلومات العياده",
+    "profile" : "الملف الشخصي",
+    "update_info" : "تحديث المعلومات",
+    "update_password" : "تحديث الرقم السري",
+    "current_password" : "ادخل الرقم السري الحالي",
+    "old_password" : "الرقم السري القديم",
+    "new_password" : "الرقم السري الجديد",
+    "new_password_hint" : "ادخل الرقم السري الجديد",
+    "valid_password" : "رجاء ادخل الرقم السري المعرف",
+    "invalid_password" : "الرقم السري غير معرف",
+    "finish_update" : "اكمل تحديث معلوماتك بال",
+    "change_password" : "هل تريد تغيير الرقم السري؟",
+    "change" : "تغيير",
 
+
+
+
+"specialities" : "=======================================",
     "Cardiologist" : "قلبيه",
     "Pulmonologist" : "تنفسيه",
     "Endocrinologist" : "غدد صماء",
@@ -61,8 +91,30 @@
 
 
 
+"patient_page" : "=======================================",
+    "male" : "ذكر",
+    "female" : "انثى",
+    "age" : "ادخل عمرك (سنوات)",
+    "snack_age" : "رجاء ادخل عمرك",
+    "patient_complain" : "الاعراض",
+    "main_complain" : "العرض الرئيسي الذي تعاني منه",
+    "other_complain" : "هل لديك اعراض اخرى",
+    "complain_area" : "اختر منطقه الاعراض التي تعاني منها",
+    "choose_complain" : "اختر الاعراض",
+    "first_choose_complain" : "اولا اختر المنطقه",
+    "add_complains" : "الاعراض الاخرى",
+
+
    
-    
+"symptoms" : "=========================================",
+
+
+
+
+
+
+
+"chronic_diseases" : "=======================================",
     "cd_HTN" : "Elevated Blood Pressure",
     "cd_DM" : "Diabetus Mellitus",
     "cd_heart" : "Chronic Heart Disease",

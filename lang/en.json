@@ -1,12 +1,24 @@
 {
+"common" : "=======================================",
     "next": "Next",
     "english" : "ُEnglish",
     "arabic" : "Arabic",
     "search" :  "Search",
     "submit" : "Submit",
+    "update" : "Update",
+    "OK" : "OK",
     "google_map" : "Google Map",
-    "snack_error_sign" : "Error Signing in",
+
+
+"Snacks" : "=======================================",
+    "snack_sign_in" : "Error Signing in",
     "snack_connectivity" : "No Internet Connection",
+    "snack_register" : "Registeration Error, Please enter valid credentials",
+    "snack_map" : "add your clinic location first",
+
+
+
+"doctor_page" : "=======================================",
     "home_title" : "Welcome to Cura",
     "home_patient_title" :"I'm a Patient\n",
     "home_patient_subtitle" :"I want to search",
@@ -33,11 +45,26 @@
     "province": "Province",
     "province_validator" : "Enter Your Province",
     "location": "Location",
+    "add_location" : "add clinic Location",
     "location_setup" : "Set up Your Clinic Location",
+    "clinic_form" : "Clinic Form",
+    "profile" : "Profile",
+    "update_info" : "Update Your Information",
+    "update_password" : "Updating Password",
+    "current_password" : "Enter Your Current Password",
+    "old_password" : "Old Password",
+    "new_password" : "New Password",
+    "new_password_hint" : "Enter The New Password",
+    "valid_password" : "Enter a valid Password",
+    "invalid_password" : "Invalid Password",
+    "finish_update" : "Finish Updating your Information by ",
+    "change_password" : "Change Your Password?",
+    "change" : "Change",
+
+
     
 
-
-
+"specialities" : "=======================================",
     "Cardiologist" : "Cardiologist",
     "Pulmonologist" : "Pulmonologist",
     "Endocrinologist" : "Endocrinologist",
@@ -64,6 +91,18 @@
 
 
 
+"patient_page" : "=======================================",
+"male" : "Male",
+"female" : "Female",
+"age" : "Enter your age in Years",
+"snack_age" : "Please, Enter your Age",
+"patient_complain" : "Complains",
+"main_complain" : "The Main Complain",
+"other_complain" : "Do you have another Complain",
+"complain_area" : "Choose the area of your Complain",
+"choose_complain" : "Choose your Complain",
+"first_choose_complain" : "First choose your Complain ",
+"add_complains" : "Additional Complains",
 
 
 
@@ -71,6 +110,7 @@
 
 
 
+"symptoms" : "=========================================",
 
 
 
@@ -78,8 +118,7 @@
 
 
 
-
-
+"chronic_diseases" : "=======================================",
     "cd_HTN" : "Elevated Blood Pressure",
     "cd_DM" : "Diabetus Mellitus",
     "cd_heart" : "Chronic Heart Disease",

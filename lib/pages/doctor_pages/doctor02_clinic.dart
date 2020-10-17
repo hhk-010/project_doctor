@@ -72,7 +72,6 @@ class _ClinicFormState extends State<ClinicForm> {
             height: double.maxFinite,
             child: Column(
               children: [
-                Spacer(),
                 TextFormField(
                   validator: (val) => val.isEmpty ? 'Enter your address' : null,
                   onChanged: (val) => setState(() => currentaddress = val),
@@ -109,6 +108,9 @@ class _ClinicFormState extends State<ClinicForm> {
                     labelText: AppLocalizations.of(context)
                         .translate('doctor_province'),*/
                       ),
+                ),
+                Spacer(
+                  flex: 3,
                 ),
                 Row(
                   children: [

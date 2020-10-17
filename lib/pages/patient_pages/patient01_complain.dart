@@ -39,29 +39,6 @@ class _PatientComplainState extends State<PatientComplain> {
   }
 
   // =============================================Radio Buttons
-  List gender = ['Male', 'Female'];
-  String select = '';
-  Row addRadioButton(int btnValue, String title) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        Radio(
-          activeColor: Colors.deepOrange,
-          value: gender[btnValue],
-          groupValue: select,
-          onChanged: (value) {
-            setState(() {
-              select = value;
-            });
-          },
-        ),
-        Text(
-          title,
-          style: _textStylePatient,
-        )
-      ],
-    );
-  }
 
   bool state = false;
 
@@ -1248,13 +1225,41 @@ class _PatientComplainState extends State<PatientComplain> {
 
   @override
   Widget build(BuildContext context) {
+    //================Male and Female Radio Buttons
+    List gender = [
+      AppLocalizations.of(context).translate('male'),
+      AppLocalizations.of(context).translate('female')
+    ];
+    String select = '';
+    Row addRadioButton(int btnValue, String title) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Radio(
+            activeColor: Colors.deepOrange,
+            value: gender[btnValue],
+            groupValue: select,
+            onChanged: (value) {
+              setState(() {
+                select = value;
+              });
+            },
+          ),
+          Text(
+            title,
+            style: _textStylePatient,
+          )
+        ],
+      );
+    }
+
     return Scaffold(
       key: _scaffoldkey,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: Text(
-          AppLocalizations.of(context).translate('patient_appbar'),
+          AppLocalizations.of(context).translate('patient_complain'),
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
         ),
         centerTitle: true,
@@ -1283,7 +1288,7 @@ class _PatientComplainState extends State<PatientComplain> {
                         }
                       },
                       decoration: InputDecoration(
-                        hintText: 'Enter Your Age in Years',
+                        hintText: AppLocalizations.of(context).translate('age'),
                         prefixIcon: Icon(
                           Icons.account_box,
                           //changed beacause its not defined here , you can return it back
@@ -1296,13 +1301,9 @@ class _PatientComplainState extends State<PatientComplain> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       addRadioButton(
-                          0,
-                          AppLocalizations.of(context)
-                              .translate('patient_male')),
+                          0, AppLocalizations.of(context).translate('male')),
                       addRadioButton(
-                          1,
-                          AppLocalizations.of(context)
-                              .translate('patient_female')),
+                          1, AppLocalizations.of(context).translate('female')),
                     ],
                   ),
                 ],
@@ -1318,7 +1319,8 @@ class _PatientComplainState extends State<PatientComplain> {
                     Center(
                       child: Container(
                         child: Text(
-                          'The Main Complain',
+                          AppLocalizations.of(context)
+                              .translate('main_complain'),
                           style: TextStyle(
                               fontSize: 18.0, fontWeight: FontWeight.bold),
                         ),
@@ -1435,7 +1437,7 @@ class _PatientComplainState extends State<PatientComplain> {
                       value: regionSelected01,
                       onChanged: (_value) => selected01(_value),
                       hint: Text(AppLocalizations.of(context)
-                          .translate('patient_area_of_choice')),
+                          .translate('complain_area')),
                     ),
                     DropdownButton<String>(
                       isExpanded: true,
@@ -1444,15 +1446,16 @@ class _PatientComplainState extends State<PatientComplain> {
                           ? null
                           : (value) => secondselected(value),
                       hint: Text(AppLocalizations.of(context)
-                          .translate('patient_complain')),
+                          .translate('choose_complain')),
                       disabledHint: Text(AppLocalizations.of(context)
-                          .translate('patient_disablehint')),
+                          .translate('first_choose_complain')),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Do you have another Complain',
+                          AppLocalizations.of(context)
+                              .translate('other_complain'),
                           style: TextStyle(
                               fontSize: 14, fontWeight: FontWeight.bold),
                         ),
@@ -1483,7 +1486,8 @@ class _PatientComplainState extends State<PatientComplain> {
                       Center(
                         child: Container(
                           child: Text(
-                            'Additional Complains',
+                            AppLocalizations.of(context)
+                                .translate('add_complains'),
                             style: TextStyle(
                                 fontSize: 18.0, fontWeight: FontWeight.bold),
                           ),
@@ -1600,24 +1604,25 @@ class _PatientComplainState extends State<PatientComplain> {
                         value: regionSelected02,
                         onChanged: (_value) => selected02(_value),
                         hint: Text(AppLocalizations.of(context)
-                            .translate('patient_area_of_choice')),
+                            .translate('complain_area')),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
                         items: menuitems,
-                        onChanged: disabledropdown02
+                        onChanged: disabledropdown01
                             ? null
-                            : (value) => secondselected2(value),
+                            : (value) => secondselected(value),
                         hint: Text(AppLocalizations.of(context)
-                            .translate('patient_complain')),
+                            .translate('choose_complain')),
                         disabledHint: Text(AppLocalizations.of(context)
-                            .translate('patient_disablehint')),
+                            .translate('first_choose_complain')),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Do you have another Complain',
+                            AppLocalizations.of(context)
+                                .translate('other_complain'),
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.bold),
                           ),
@@ -1649,7 +1654,8 @@ class _PatientComplainState extends State<PatientComplain> {
                       Center(
                         child: Container(
                           child: Text(
-                            'Additional Complains',
+                            AppLocalizations.of(context)
+                                .translate('add_complains'),
                             style: TextStyle(
                                 fontSize: 18.0, fontWeight: FontWeight.bold),
                           ),
@@ -1765,24 +1771,25 @@ class _PatientComplainState extends State<PatientComplain> {
                         ],
                         onChanged: (_value) => selected03(_value),
                         hint: Text(AppLocalizations.of(context)
-                            .translate('patient_area_of_choice')),
+                            .translate('complain_area')),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
                         items: menuitems,
-                        onChanged: disabledropdown03
+                        onChanged: disabledropdown02
                             ? null
-                            : (value) => secondselected3(value),
+                            : (value) => secondselected(value),
                         hint: Text(AppLocalizations.of(context)
-                            .translate('patient_complain')),
+                            .translate('choose_complain')),
                         disabledHint: Text(AppLocalizations.of(context)
-                            .translate('patient_disablehint')),
+                            .translate('first_choose_complain')),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Do you have another Complain',
+                            AppLocalizations.of(context)
+                                .translate('other_complain'),
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.bold),
                           ),
@@ -1814,7 +1821,8 @@ class _PatientComplainState extends State<PatientComplain> {
                       Center(
                         child: Container(
                           child: Text(
-                            'Additional Complains',
+                            AppLocalizations.of(context)
+                                .translate('add_complains'),
                             style: TextStyle(
                                 fontSize: 18.0, fontWeight: FontWeight.bold),
                           ),
@@ -1930,24 +1938,25 @@ class _PatientComplainState extends State<PatientComplain> {
                         ],
                         onChanged: (_value) => selected04(_value),
                         hint: Text(AppLocalizations.of(context)
-                            .translate('patient_area_of_choice')),
+                            .translate('complain_area')),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
                         items: menuitems,
-                        onChanged: disabledropdown04
+                        onChanged: disabledropdown03
                             ? null
-                            : (value) => secondselected4(value),
+                            : (value) => secondselected(value),
                         hint: Text(AppLocalizations.of(context)
-                            .translate('patient_complain')),
+                            .translate('choose_complain')),
                         disabledHint: Text(AppLocalizations.of(context)
-                            .translate('patient_disablehint')),
+                            .translate('first_choose_complain')),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Do you have another Complain',
+                            AppLocalizations.of(context)
+                                .translate('other_complain'),
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.bold),
                           ),
@@ -1979,7 +1988,8 @@ class _PatientComplainState extends State<PatientComplain> {
                       Center(
                         child: Container(
                           child: Text(
-                            'Additional Complains',
+                            AppLocalizations.of(context)
+                                .translate('add_complains'),
                             style: TextStyle(
                                 fontSize: 18.0, fontWeight: FontWeight.bold),
                           ),
@@ -2095,24 +2105,25 @@ class _PatientComplainState extends State<PatientComplain> {
                         ],
                         onChanged: (_value) => selected05(_value),
                         hint: Text(AppLocalizations.of(context)
-                            .translate('patient_area_of_choice')),
+                            .translate('complain_area')),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
                         items: menuitems,
-                        onChanged: disabledropdown05
+                        onChanged: disabledropdown04
                             ? null
-                            : (value) => secondselected5(value),
+                            : (value) => secondselected(value),
                         hint: Text(AppLocalizations.of(context)
-                            .translate('patient_complain')),
+                            .translate('choose_complain')),
                         disabledHint: Text(AppLocalizations.of(context)
-                            .translate('patient_disablehint')),
+                            .translate('first_choose_complain')),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Do you have another Complain',
+                            AppLocalizations.of(context)
+                                .translate('other_complain'),
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.bold),
                           ),
@@ -2144,7 +2155,8 @@ class _PatientComplainState extends State<PatientComplain> {
                       Center(
                         child: Container(
                           child: Text(
-                            'Additional Complains',
+                            AppLocalizations.of(context)
+                                .translate('add_complains'),
                             style: TextStyle(
                                 fontSize: 18.0, fontWeight: FontWeight.bold),
                           ),
@@ -2260,24 +2272,25 @@ class _PatientComplainState extends State<PatientComplain> {
                         ],
                         onChanged: (_value) => selected05(_value),
                         hint: Text(AppLocalizations.of(context)
-                            .translate('patient_area_of_choice')),
+                            .translate('complain_area')),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
                         items: menuitems,
                         onChanged: disabledropdown05
                             ? null
-                            : (value) => secondselected5(value),
+                            : (value) => secondselected(value),
                         hint: Text(AppLocalizations.of(context)
-                            .translate('patient_complain')),
+                            .translate('choose_complain')),
                         disabledHint: Text(AppLocalizations.of(context)
-                            .translate('patient_disablehint')),
+                            .translate('first_choose_complain')),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Do you have another Complain',
+                            AppLocalizations.of(context)
+                                .translate('other_complain'),
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.bold),
                           ),
@@ -2308,7 +2321,8 @@ class _PatientComplainState extends State<PatientComplain> {
                       Center(
                         child: Container(
                           child: Text(
-                            'Additional Complains',
+                            AppLocalizations.of(context)
+                                .translate('add_complains'),
                             style: TextStyle(
                                 fontSize: 18.0, fontWeight: FontWeight.bold),
                           ),
@@ -2424,7 +2438,7 @@ class _PatientComplainState extends State<PatientComplain> {
                         ],
                         onChanged: (_value) => selected07(_value),
                         hint: Text(AppLocalizations.of(context)
-                            .translate('patient_area_of_choice')),
+                            .translate('complain_area')),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
@@ -2433,30 +2447,10 @@ class _PatientComplainState extends State<PatientComplain> {
                             ? null
                             : (value) => secondselected7(value),
                         hint: Text(AppLocalizations.of(context)
-                            .translate('patient_complain')),
+                            .translate('choose_complain')),
                         disabledHint: Text(AppLocalizations.of(context)
-                            .translate('patient_disablehint')),
+                            .translate('first_choose_complain')),
                       ),
-                      // it is the last box so the row should be removed
-                      /*Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Do you have another Complain',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
-                          ),
-                          Switch(
-                              value: _switch06,
-                              activeColor: Colors.deepOrange,
-                              onChanged: (bool s) {
-                                setState(() {
-                                  _switch06 = s;
-                                  _visibile06 = !_visibile06;
-                                });
-                              })
-                        ],
-                      )*/
                     ],
                   ),
                 ),
@@ -2473,7 +2467,7 @@ class _PatientComplainState extends State<PatientComplain> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(80.0)),
               color: Colors.deepOrange,
-              label: Text('Continue',
+              label: Text(AppLocalizations.of(context).translate('next'),
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -2492,12 +2486,12 @@ class _PatientComplainState extends State<PatientComplain> {
                   _showSnackBar();
                 } else {
                   getage();
-                  if (select == '') {
+                  /*if (select == '') {
                     setState(() {
                       _error = 'Please , select a gender';
                     });
-                    _showSnackBar();
-                  } else {
+                    _showSnackBar();*/
+                  //} else {
                     if (complainSelected01 == "") {
                       setState(() {
                         _error = 'Please , select a main complaint';
@@ -2518,7 +2512,7 @@ class _PatientComplainState extends State<PatientComplain> {
                         ),
                       );
                     }
-                  }
+                  //}
                 }
               },
             ),

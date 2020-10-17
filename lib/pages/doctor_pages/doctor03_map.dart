@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/01_wrapper.dart';
+import 'package:project_doctor/services/app_localizations.dart';
 import '../../services/auth.dart';
 
 class DocMap extends StatefulWidget {
@@ -137,9 +138,12 @@ class _DocMapState extends State<DocMap> {
       key: _scaffoldkey,
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text(
-          'Confirm Location',
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        title: FittedBox(
+          fit: BoxFit.fitWidth,
+          child: Text(
+            AppLocalizations.of(context).translate('add_location'),
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          ),
         ),
         centerTitle: true,
       ),
@@ -157,14 +161,14 @@ class _DocMapState extends State<DocMap> {
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
               child: Text(
-                'OK',
+                AppLocalizations.of(context).translate('ok'),
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               onPressed: () async {
                 checkInternet();
                 if (_isInternet) {
                   if (latlng == null) {
-                    error = 'Please , tap on your location';
+                    error = AppLocalizations.of(context).translate('snack_map');
                     _showSnackBar();
                   } else {
                     await geolocate(latlng: latlng);
@@ -197,8 +201,8 @@ class _DocMapState extends State<DocMap> {
                         );
                       } else {
                         setState(() {
-                          error =
-                              'Registeration error , please enter valid credentials';
+                          error = AppLocalizations.of(context)
+                              .translate('snack_register');
                         });
                         _showSnackBar();
                       }
@@ -206,7 +210,8 @@ class _DocMapState extends State<DocMap> {
                   }
                 } else {
                   setState(() {
-                    error = 'No internet connection';
+                    error = AppLocalizations.of(context)
+                        .translate('snack_connectivity');
                   });
                 }
                 _showSnackBar();

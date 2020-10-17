@@ -20,42 +20,43 @@ class _UpdateinfoState extends State<Updateinfo> {
   String workinghours = '';
 
   final _formkey = GlobalKey<FormState>();
-  final List<String> specialities = [
-    'Cardiologist',
-    'Pulmonologist',
-    'Endocrinologist',
-    'Enterologist',
-    'General Surgeon',
-    'Pediatric Surgeon',
-    'ThoracoVascular Surgeon',
-    'Emergency Department',
-    'Internist',
-    'Pediatrician',
-    'Gynecologist',
-    'Rheumatologist',
-    'Nephrologist',
-    'Heamatologist',
-    'Neurologist',
-    'Urosurgeon',
-    'Orthopaedic Surgeon',
-    'Neurosurgeon',
-    'Plastic Surgeon',
-    'Dermatologist',
-    'Ophthalmologist',
-    'Psychiatrist',
-    'Laryngologist'
-  ];
 
   @override
   Widget build(BuildContext context) {
+    final List<String> specialities = [
+      AppLocalizations.of(context).translate('Internist'),
+      AppLocalizations.of(context).translate('Pediatrician'),
+      AppLocalizations.of(context).translate('Cardiologist'),
+      AppLocalizations.of(context).translate('Pulmonologist'),
+      AppLocalizations.of(context).translate('Enterologist'),
+      AppLocalizations.of(context).translate('Neurologist'),
+      AppLocalizations.of(context).translate('Heamatologist'),
+      AppLocalizations.of(context).translate('Nephrologist'),
+      AppLocalizations.of(context).translate('Rheumatologist'),
+      AppLocalizations.of(context).translate('Emergency physician'),
+      AppLocalizations.of(context).translate('Dermatologist'),
+      AppLocalizations.of(context).translate('Psychiatrist'),
+      AppLocalizations.of(context).translate('Gynecologist'),
+      AppLocalizations.of(context).translate('General Surgeon'),
+      AppLocalizations.of(context).translate('Pediatric Surgeon'),
+      AppLocalizations.of(context).translate('ThoracoVascular Surgeon'),
+      AppLocalizations.of(context).translate('Orthopaedic Surgeon'),
+      AppLocalizations.of(context).translate('Urosurgeon'),
+      AppLocalizations.of(context).translate('Plastic Surgeon'),
+      AppLocalizations.of(context).translate('Ophthalmologist'),
+      AppLocalizations.of(context).translate('Laryngologist'),
+    ];
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text(
-          'Update your Information',
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        title: FittedBox(
+          fit: BoxFit.fitWidth,
+          child: Text(
+            AppLocalizations.of(context).translate('update_info'),
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          ),
         ),
         centerTitle: true,
       ),
@@ -68,18 +69,20 @@ class _UpdateinfoState extends State<Updateinfo> {
             children: [
               TextFormField(
                 decoration: textInputdecoration.copyWith(
-                    hintText: 'Name', labelText: 'Name'),
+                    hintText: AppLocalizations.of(context).translate('name'),
+                    labelText: AppLocalizations.of(context).translate('name')),
                 onChanged: (val) {
                   name = val;
                 },
-                validator: (val) => val.isEmpty ? 'Enter Your Name' : null,
+                validator: (val) => val.isEmpty
+                    ? AppLocalizations.of(context).translate('name_validator')
+                    : null,
               ),
               Spacer(),
               DropdownButtonFormField<String>(
                 decoration: textInputdecoration,
                 hint: Text(
-                  AppLocalizations.of(context)
-                      .translate('doctor_form_speciality'),
+                  AppLocalizations.of(context).translate('speciality'),
                 ),
                 dropdownColor: Colors.grey[200],
                 elevation: 5,
@@ -91,8 +94,10 @@ class _UpdateinfoState extends State<Updateinfo> {
                     child: Text('$speciality'),
                   );
                 }).toList(),
-                validator: (value) =>
-                    value == null ? 'Choose your Speciality' : null,
+                validator: (value) => value == null
+                    ? AppLocalizations.of(context)
+                        .translate('speciality_validator')
+                    : null,
                 onChanged: (val) => setState(() => speciality = val),
               ),
               Spacer(),
@@ -100,61 +105,48 @@ class _UpdateinfoState extends State<Updateinfo> {
                   onChanged: (val) => setState(() => phonenumber = val),
                   keyboardType: TextInputType.phone,
                   decoration: textInputdecoration.copyWith(
-                    hintText: AppLocalizations.of(context)
-                        .translate('doctor_form_phoneNumber'),
-                    labelText: AppLocalizations.of(context)
-                        .translate('doctor_form_phoneNumber'),
+                    hintText:
+                        AppLocalizations.of(context).translate('phoneNumber'),
+                    labelText:
+                        AppLocalizations.of(context).translate('phoneNumber'),
                   ),
                   validator: (val) => val.length < 11
-                      ? "Phone Number must be 11 digits"
+                      ? AppLocalizations.of(context)
+                          .translate('phoneNumber_validator')
                       : null),
               Spacer(),
               TextFormField(
                 onChanged: (val) => setState(() => province = val),
                 decoration: textInputdecoration.copyWith(
-                  hintText: AppLocalizations.of(context)
-                      .translate('doctor_form_province'),
-                  labelText: AppLocalizations.of(context)
-                      .translate('doctor_form_province'),
+                  hintText: AppLocalizations.of(context).translate('province'),
+                  labelText: AppLocalizations.of(context).translate('province'),
                 ),
-                validator: (val) => val.isEmpty ? '' : null,
+                validator: (val) => val.isEmpty
+                    ? AppLocalizations.of(context)
+                        .translate('province_validator')
+                    : null,
               ),
               Spacer(),
               TextFormField(
                 onChanged: (val) => setState(() => address = val),
-                decoration: textInputdecoration.copyWith(
-                    hintText:
-                        'detailed address' /*AppLocalizations.of(context)
-                      .translate('doctor_form_province'),
-                  labelText: AppLocalizations.of(context)
-                      .translate('doctor_form_province'),*/
-                    ),
+                decoration:
+                    textInputdecoration.copyWith(hintText: 'detailed address'),
                 validator: (val) =>
                     val.isEmpty ? 'enter a valid address' : null,
               ),
               Spacer(),
               TextFormField(
                 onChanged: (val) => setState(() => vacation = val),
-                decoration: textInputdecoration.copyWith(
-                    hintText:
-                        'clinic vacation' /*AppLocalizations.of(context)
-                      .translate('doctor_form_province'),
-                  labelText: AppLocalizations.of(context)
-                      .translate('doctor_form_province'),*/
-                    ),
+                decoration:
+                    textInputdecoration.copyWith(hintText: 'clinic vacation'),
                 validator: (val) =>
                     val.isEmpty ? 'enter a valid clinic vacation days' : null,
               ),
               Spacer(),
               TextFormField(
                 onChanged: (val) => setState(() => workinghours = val),
-                decoration: textInputdecoration.copyWith(
-                    hintText:
-                        'working hours' /*AppLocalizations.of(context)
-                      .translate('doctor_form_province'),
-                  labelText: AppLocalizations.of(context)
-                      .translate('doctor_form_province'),*/
-                    ),
+                decoration:
+                    textInputdecoration.copyWith(hintText: 'working hours'),
                 validator: (val) =>
                     val.isEmpty ? 'enter valid working hours' : null,
               ),
@@ -164,7 +156,7 @@ class _UpdateinfoState extends State<Updateinfo> {
               Row(
                 children: [
                   Text(
-                    'Finish Updating your Information by ',
+                    AppLocalizations.of(context).translate('finish_update'),
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Icon(
@@ -204,7 +196,7 @@ class _UpdateinfoState extends State<Updateinfo> {
                     }
                   },
                   label: Text(
-                    'Google Map',
+                    AppLocalizations.of(context).translate('google_map'),
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -228,9 +220,12 @@ class _UpdateinfoState extends State<Updateinfo> {
                       color: Colors.black,
                     ),
                     children: <TextSpan>[
-                      TextSpan(text: 'Change Your Password?'),
                       TextSpan(
-                          text: ' Change',
+                          text: AppLocalizations.of(context)
+                              .translate('change_password')),
+                      TextSpan(
+                          text:
+                              AppLocalizations.of(context).translate('change'),
                           style: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.red)),
                     ],
