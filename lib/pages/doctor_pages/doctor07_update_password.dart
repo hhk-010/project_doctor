@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
+import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import '../../services/auth.dart';
 
@@ -54,6 +55,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
     checkInternet();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,11 +63,14 @@ class _UpdatePasswordState extends State<UpdatePassword> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text(
-          'Updating Password',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
+        title: FittedBox(
+          fit: BoxFit.fitWidth,
+          child: Text(
+            AppLocalizations.of(context).translate('update_password'),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 25,
+            ),
           ),
         ),
       ),
@@ -78,13 +83,17 @@ class _UpdatePasswordState extends State<UpdatePassword> {
             children: [
               TextFormField(
                 decoration: textInputdecoration.copyWith(
-                    hintText: 'Enter your Current Password',
-                    labelText: 'Old Password'),
+                  hintText: AppLocalizations.of(context)
+                      .translate('current_password'),
+                  labelText:
+                      AppLocalizations.of(context).translate('old_password'),
+                ),
                 onChanged: (val) {
                   _oldPassword = val;
                 },
-                validator: (val) =>
-                    val.length < 8 ? 'Enter a Valid Password' : null,
+                validator: (val) => val.length < 8
+                    ? AppLocalizations.of(context).translate('valid_password')
+                    : null,
               ),
               Spacer(),
               TextFormField(
@@ -93,8 +102,10 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                   setState(() => _newPassword = val);
                 },
                 decoration: textInputdecoration.copyWith(
-                  hintText: 'Enter The New Password',
-                  labelText: 'New Password',
+                  hintText: AppLocalizations.of(context)
+                      .translate('new_password_hint'),
+                  labelText:
+                      AppLocalizations.of(context).translate('new_password'),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _passwordVisible
@@ -110,7 +121,8 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                   ),
                 ),
                 validator: (val) => val.length < 8
-                    ? 'password should contain more than 8 characters'
+                    ? AppLocalizations.of(context)
+                        .translate('password_validator')
                     : null,
               ),
               Spacer(
@@ -142,7 +154,8 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                           Navigator.pop(context);
                         } else {
                           setState(() {
-                            error = 'Invalid Password';
+                            error = AppLocalizations.of(context)
+                                .translate('invalid_password');
                           });
                           //--------snackbar problem
                           _showSnackBar();
@@ -150,7 +163,8 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                       }
                     } else {
                       setState(() {
-                        error = 'No internet connection';
+                        error = AppLocalizations.of(context)
+                            .translate('snack_connectivity');
                       });
                       _showSnackBar();
                     }
@@ -170,7 +184,8 @@ class _UpdatePasswordState extends State<UpdatePassword> {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Center(
-                  child: Text('',
+                  child: Text(
+                    '',
                     //error,
                     style: TextStyle(
                         color: Colors.red, fontWeight: FontWeight.bold),

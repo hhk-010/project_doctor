@@ -171,7 +171,7 @@ class _SignInState extends State<SignIn> {
                                   setState(() {
                                     SnackText.error =
                                         AppLocalizations.of(context)
-                                            .translate('snack_error_sign');
+                                            .translate('snack_sign_in');
                                   });
                                   _showSnackBar();
                                 }

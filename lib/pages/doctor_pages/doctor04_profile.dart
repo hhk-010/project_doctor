@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor05_update_info.dart';
 import 'package:project_doctor/constants/theme.dart';
+import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
@@ -25,9 +26,12 @@ class _DoctorProfileState extends State<DoctorProfile> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.deepOrange,
-          title: Text(
-            'Profile',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          title: FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Text(
+              AppLocalizations.of(context).translate('profile'),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            ),
           ),
           elevation: 0,
           actions: [
@@ -185,7 +189,7 @@ class _DoctorListState extends State<DoctorList> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(80.0)),
               child: Text(
-                'Update Your Information!',
+                AppLocalizations.of(context).translate('update_info'),
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
