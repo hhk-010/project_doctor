@@ -152,7 +152,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                             if (htnSelected) {
                               htn = 'HTN';
                             } else {
-                              htn = null;
+                              htn = '';
                             }
                           });
                         }),
@@ -196,6 +196,20 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                               hf = '';
                             }
                             print(hf);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text('Connective Tissue Disease', style: _textStyle),
+                        value: ctdSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            ctdSelected = val;
+                            if (ctdSelected) {
+                              ctd = 'connective tissue disease';
+                            } else {
+                              ctd = '';
+                            }
+                            print(ctd);
                           });
                         }),
                     CheckboxListTile(
@@ -248,7 +262,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                           setState(() {
                             copdSelected = val;
                             if (copdSelected) {
-                              copd = 'chronic lung disease';
+                              copd = 'copd';
                             } else {
                               copd = '';
                             }
@@ -270,7 +284,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                           });
                         }),
                     CheckboxListTile(
-                        title: Text('Previous Goitre', style: _textStyle),
+                        title: Text('Previous Goiter', style: _textStyle),
                         value: goitreSelected,
                         onChanged: (val) {
                           setState(() {

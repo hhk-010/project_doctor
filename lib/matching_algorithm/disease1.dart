@@ -160,7 +160,7 @@ maindisease1(
   var asthma = Disease1('asthma', 'dyspnea', 'cough', 'wheeze', 'null',
       'family history', 'asthma', 'null', 'null');
   var copd = Disease1('COPD', 'dyspnea', 'cough', 'sputum', 'hemoptysis',
-      'wheeze', 'smoking', 'chronic lung disease', 'COPD');
+      'wheeze', 'smoking', 'chronic lung disease', 'copd');
   var pneumonia = Disease1('pneumonia', 'dyspnea', 'fever', 'cough', 'sputum',
       'alcoholism', 'smoking', 'chronic lung disease', 'CVA');
   var pneumonia2 = Disease1('pneumonia', 'hemoptysis', 'chest pain', 'null',
@@ -190,7 +190,7 @@ maindisease1(
       'connective tissue disease',
       'chronic lung disease');
   var calung = Disease1('ca lung', 'dyspnea', 'cough', 'sputum', 'hemoptysis',
-      'smoking', 'COPD', 'chest pain', 'hoarseness');
+      'smoking', 'copd', 'chest pain', 'hoarseness');
   var ards = Disease1('ARDS', 'dyspnea', 'cough', 'sputum', 'hemoptysis',
       'cyanosis', 'null', 'null', 'null');
   var pe = Disease1('pulmonary embolism', 'dyspnea', 'chest pain', 'hemoptysis',
@@ -391,7 +391,7 @@ maindisease1(
       //}
       while (oo > 0) {
         if (others[o] == cvssym[cvskey]) {
-          cvsscore += 1;
+          cvsscore += 2;
         }
         o += 1;
         oo -= 1;
@@ -437,7 +437,7 @@ maindisease1(
       }
       while (oo > 0) {
         if (others[o] == respsym[respkey]) {
-          respscore += 1;
+          respscore += 2;
         }
         o += 1;
         oo -= 1;
@@ -480,7 +480,7 @@ maindisease1(
       }
       while (oo > 0) {
         if (others[o] == endosym[endokey]) {
-          endoscore += 1;
+          endoscore += 2;
         }
         o += 1;
         oo -= 1;

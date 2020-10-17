@@ -1,4 +1,4 @@
-package hhk.project_doctor
+package hhk.projectdoctor
 
 import io.flutter.embedding.android.FlutterActivity
 

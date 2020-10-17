@@ -36,6 +36,7 @@ dependencies:
   shared_preferences: ^0.5.12
   connectivity: ^0.4.9+3
   dropdownfield: ^1.0.3
+  change_app_package_name: ^0.1.2
 
 
 

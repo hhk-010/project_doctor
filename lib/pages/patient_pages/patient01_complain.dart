@@ -19,11 +19,12 @@ class _PatientComplainState extends State<PatientComplain> {
 
   //--------------------------------------------------
   final ageController = TextEditingController();
-  String _age = '1022';
-  String _error='';
+  String _age = '';
+  String _error = '';
   getage() {
     FinalScore.age = int.parse(_age);
   }
+
   //-------------snackbar for age==null---------
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
@@ -95,11 +96,11 @@ class _PatientComplainState extends State<PatientComplain> {
     "4": "palpitation",
     "5": "chest pain",
     "6": "cough",
-    ""
-        "7": "cyanosis",
-    "8": "other cardiac problems",
-    "9": "wheeze",
-    "10": "other respiratory problems",
+    "7": "dyspnea",
+    "8": "cyanosis",
+    "9": "other cardiac problems",
+    "10": "wheeze",
+    "11": "other respiratory problems",
   };
   final gastroIntestinal = {
     "1": "abdominal pain",
@@ -238,7 +239,7 @@ class _PatientComplainState extends State<PatientComplain> {
     "8": "polydipsia",
     "9": "delayed puberty",
     "10": "bleeding",
-    "11": "bleeding",
+    //"11": "bleeding",
     "12": "fatigue",
     "13": "pallor",
     "14": "lump",
@@ -329,6 +330,7 @@ class _PatientComplainState extends State<PatientComplain> {
     "9": "acne",
     "10": "bruising",
     "11": "female hirsutism",
+    "12": "other skin problems"
   };
 
   final gynecology = {
@@ -391,7 +393,8 @@ class _PatientComplainState extends State<PatientComplain> {
     "14": "eyelid deformity",
     "15": "dry eye",
     "16": "ophthalmoplegia",
-    "17": "other ophthalmological problems",
+    "17": "jaundice",
+    "18": "other ophthalmological problems",
   };
   final breast = {
     "1": "gynecomastia",
@@ -1269,9 +1272,15 @@ class _PatientComplainState extends State<PatientComplain> {
                       keyboardType: TextInputType.number,
                       controller: ageController,
                       onChanged: (ageController) {
-                        setState(() {
-                          _age = ageController.toString();
-                        });
+                        if (ageController.isEmpty) {
+                          setState(() {
+                            _age = '1022';
+                          });
+                        } else {
+                          setState(() {
+                            _age = ageController.toString();
+                          });
+                        }
                       },
                       decoration: InputDecoration(
                         hintText: 'Enter Your Age in Years',
@@ -2471,33 +2480,44 @@ class _PatientComplainState extends State<PatientComplain> {
                       fontWeight: FontWeight.bold)),
               onPressed: () {
                 print(_age);
-                if (_age=='1022'){
+                if (_age == '') {
                   setState(() {
-                    _error='Please , enter your age';
+                    _error = 'Please , enter your age';
                   });
                   _showSnackBar();
-                }else{
+                } else if (int.parse(_age) > 130) {
+                  setState(() {
+                    _error = 'Age should be from 0 to 130';
+                  });
+                  _showSnackBar();
+                } else {
                   getage();
-                  if(complainSelected01==""){
+                  if (select == '') {
                     setState(() {
-                      _error='Please , choose a complaint';
+                      _error = 'Please , select a gender';
                     });
                     _showSnackBar();
-                  }
-                  else{
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => PatientRiskFactors(
-                          chiefcomplaint: complainSelected01,
-                          sym2: complainSelected02,
-                          sym3: complainSelected03,
-                          sym4: complainSelected04,
-                          sym5: complainSelected05,
-                          sym6: complainSelected06,
-                          sym7: complainSelected07,
+                  } else {
+                    if (complainSelected01 == "") {
+                      setState(() {
+                        _error = 'Please , select a main complaint';
+                      });
+                      _showSnackBar();
+                    } else {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => PatientRiskFactors(
+                            chiefcomplaint: complainSelected01,
+                            sym2: complainSelected02,
+                            sym3: complainSelected03,
+                            sym4: complainSelected04,
+                            sym5: complainSelected05,
+                            sym6: complainSelected06,
+                            sym7: complainSelected07,
+                          ),
                         ),
-                      ),
-                    );
+                      );
+                    }
                   }
                 }
               },

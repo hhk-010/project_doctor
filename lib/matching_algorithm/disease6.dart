@@ -292,7 +292,7 @@ maindisease6(
       }
       while (oo > 0) {
         if (others[o] == urosym[urokey]) {
-          uroscore += 1;
+          uroscore += 2;
         }
         o += 1;
         oo -= 1;
@@ -335,7 +335,7 @@ maindisease6(
       }
       while (oo > 0) {
         if (others[o] == ortsym[ortkey]) {
-          ortscore += 1;
+          ortscore += 2;
         }
         o += 1;
         oo -= 1;
@@ -378,7 +378,7 @@ maindisease6(
       }
       while (oo > 0) {
         if (others[o] == neusym[neukey]) {
-          neuscore += 1;
+          neuscore += 2;
         }
         o += 1;
         oo -= 1;
@@ -421,7 +421,7 @@ maindisease6(
       }
       while (oo > 0) {
         if (others[o] == plasym[plaskey]) {
-          plascore += 1;
+          plascore += 2;
         }
         o += 1;
         oo -= 1;
