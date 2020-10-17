@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_doctor/pages/doctor_pages/doctor02_map.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
-import 'package:project_doctor/services/auth.dart';
 
 class DoctorForm extends StatefulWidget {
   final String email;
@@ -14,47 +13,11 @@ class DoctorForm extends StatefulWidget {
 }
 
 final _formKey = GlobalKey<FormState>();
-final List<String> specialities = [
-  'Cardiologist',
-  'Pulmonologist',
-  'Endocrinologist',
-  'Enterologist',
-  'General Surgeon',
-  'Pediatric Surgeon',
-  'ThoracoVascular Surgeon',
-  'Emergency Department',
-  'Internist',
-  'Pediatrician',
-  'Gynecologist',
-  'Rheumatologist',
-  'Nephrologist',
-  'Heamatologist',
-  'Neurologist',
-  'Urosurgeon',
-  'Orthopaedic Surgeon',
-  'Neurosurgeon',
-  'Plastic Surgeon',
-  'Dermatologist',
-  'Ophthalmologist',
-  'Psychiatrist',
-  'Laryngologist'
-];
+
 String currentName;
 String currentSpeciality;
 String currentPhoneNumber;
 String currentProvince;
-String currentaddress='';
-String currentvacation='';
-String currentworkinghours='';
-
-final AuthService _auth = AuthService();
-void choiceAction(String choice) async {
-  if (choice == PopUpMenuConstants.logOut) {
-    await _auth.signOut();
-  } else {
-    print('settings');
-  }
-}
 
 class _DoctorFormState extends State<DoctorForm> {
   String email;
@@ -62,13 +25,37 @@ class _DoctorFormState extends State<DoctorForm> {
   _DoctorFormState({this.email, this.password});
   @override
   Widget build(BuildContext context) {
+    final List<String> specialities = [
+      AppLocalizations.of(context).translate('Internist'),
+      AppLocalizations.of(context).translate('Pediatrician'),
+      AppLocalizations.of(context).translate('Cardiologist'),
+      AppLocalizations.of(context).translate('Pulmonologist'),
+      AppLocalizations.of(context).translate('Enterologist'),
+      AppLocalizations.of(context).translate('Neurologist'),
+      AppLocalizations.of(context).translate('Heamatologist'),
+      AppLocalizations.of(context).translate('Nephrologist'),
+      AppLocalizations.of(context).translate('Rheumatologist'),
+      AppLocalizations.of(context).translate('Emergency physician'),
+      AppLocalizations.of(context).translate('Dermatologist'),
+      AppLocalizations.of(context).translate('Psychiatrist'),
+      AppLocalizations.of(context).translate('Gynecologist'),
+      AppLocalizations.of(context).translate('General Surgeon'),
+      AppLocalizations.of(context).translate('Pediatric Surgeon'),
+      AppLocalizations.of(context).translate('ThoracoVascular Surgeon'),
+      AppLocalizations.of(context).translate('Orthopaedic Surgeon'),
+      AppLocalizations.of(context).translate('Urosurgeon'),
+      AppLocalizations.of(context).translate('Plastic Surgeon'),
+      AppLocalizations.of(context).translate('Ophthalmologist'),
+      AppLocalizations.of(context).translate('Laryngologist'),
+    ];
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: Text(
-          AppLocalizations.of(context).translate('doctor_form_appbar'),
+          AppLocalizations.of(context).translate('doctor_form'),
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
         ),
         centerTitle: true,
@@ -84,12 +71,12 @@ class _DoctorFormState extends State<DoctorForm> {
               children: [
                 TextFormField(
                   decoration: textInputdecoration.copyWith(
-                    hintText: AppLocalizations.of(context)
-                        .translate('doctor_form_name'),
-                    labelText: AppLocalizations.of(context)
-                        .translate('doctor_form_name'),
+                    hintText: AppLocalizations.of(context).translate('name'),
+                    labelText: AppLocalizations.of(context).translate('name'),
                   ),
-                  validator: (val) => val.isEmpty ? 'Enter Your Name' : null,
+                  validator: (val) => val.isEmpty
+                      ? AppLocalizations.of(context).translate('name_validator')
+                      : null,
                   onChanged: (val) => setState(() => currentName = val),
                 ),
                 Spacer(),
@@ -97,8 +84,7 @@ class _DoctorFormState extends State<DoctorForm> {
                   value: currentSpeciality,
                   decoration: textInputdecoration,
                   hint: Text(
-                    AppLocalizations.of(context)
-                        .translate('doctor_form_speciality'),
+                    AppLocalizations.of(context).translate('speciality'),
                   ),
                   dropdownColor: Colors.grey[200],
                   elevation: 5,
@@ -110,8 +96,10 @@ class _DoctorFormState extends State<DoctorForm> {
                       child: Text('$speciality'),
                     );
                   }).toList(),
-                  validator: (value) =>
-                      value == null ? "Choose Your Speciality" : null,
+                  validator: (value) => value == null
+                      ? AppLocalizations.of(context)
+                          .translate('speciality_validator')
+                      : null,
                   onChanged: (val) => setState(() => currentSpeciality = val),
                 ),
                 Spacer(),
@@ -119,13 +107,14 @@ class _DoctorFormState extends State<DoctorForm> {
                   onChanged: (val) => setState(() => currentPhoneNumber = val),
                   keyboardType: TextInputType.phone,
                   decoration: textInputdecoration.copyWith(
-                    hintText: AppLocalizations.of(context)
-                        .translate('doctor_form_phoneNumber'),
-                    labelText: AppLocalizations.of(context)
-                        .translate('doctor_form_phoneNumber'),
+                    hintText:
+                        AppLocalizations.of(context).translate('phoneNumber'),
+                    labelText:
+                        AppLocalizations.of(context).translate('phoneNumber'),
                   ),
                   validator: (val) => val.length < 11
-                      ? 'Phone Number should be 11 digits'
+                      ? AppLocalizations.of(context)
+                          .translate('phoneNumber_validator')
                       : null,
                 ),
                 Spacer(),
@@ -134,65 +123,14 @@ class _DoctorFormState extends State<DoctorForm> {
                       val.isEmpty ? 'Enter your province' : null,
                   onChanged: (val) => setState(() => currentProvince = val),
                   decoration: textInputdecoration.copyWith(
-                    hintText: AppLocalizations.of(context)
-                        .translate('doctor_form_province'),
-                    labelText: AppLocalizations.of(context)
-                        .translate('doctor_form_province'),
-                  ),
-                ),
-                Spacer(),
-                TextFormField(
-                  validator: (val) =>
-                  val.isEmpty ? 'Enter your address' : null,
-                  onChanged: (val) => setState(() => currentaddress = val),
-                  decoration: textInputdecoration.copyWith(
-                    hintText: 'detailed address'/*AppLocalizations.of(context)
-                        .translate('doctor_form_province'),
-                    labelText: AppLocalizations.of(context)
-                        .translate('doctor_form_province'),*/
-                  ),
-                ),
-                Spacer(),
-                TextFormField(
-                  validator: (val) =>
-                  val.isEmpty ? 'Enter your clinic vacation days' : null,
-                  onChanged: (val) => setState(() => currentvacation = val),
-                  decoration: textInputdecoration.copyWith(
-                    hintText: 'clinic vacation days'/*AppLocalizations.of(context)
-                        .translate('doctor_form_province'),
-                    labelText: AppLocalizations.of(context)
-                        .translate('doctor_form_province'),*/
-                  ),
-                ),
-                Spacer(),
-                TextFormField(
-                  validator: (val) =>
-                  val.isEmpty ? 'Enter your clinic working hours' : null,
-                  onChanged: (val) => setState(() => currentworkinghours = val),
-                  decoration: textInputdecoration.copyWith(
-                    hintText:'clinic working hours' /*AppLocalizations.of(context)
-                        .translate('doctor_form_province'),
-                    labelText: AppLocalizations.of(context)
-                        .translate('doctor_form_province'),*/
+                    hintText:
+                        AppLocalizations.of(context).translate('province'),
+                    labelText:
+                        AppLocalizations.of(context).translate('province'),
                   ),
                 ),
                 Spacer(
                   flex: 5,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      'Set up Your Clinic Location',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Icon(
-                      Icons.arrow_downward,
-                      size: 20,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
                 ),
                 ButtonTheme(
                   minWidth: double.infinity,
@@ -212,16 +150,13 @@ class _DoctorFormState extends State<DoctorForm> {
                             currentProvince != null) {
                           await Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => DocMap(
+                              builder: (context) => ClinicForm(
                                 email: email,
                                 password: password,
                                 name: currentName,
                                 speciality: currentSpeciality,
-                                phone: currentPhoneNumber,
+                                phoneNumber: currentPhoneNumber,
                                 province: currentProvince,
-                                address: currentaddress,
-                                vacation: currentvacation,
-                                workinghours: currentworkinghours,
                               ),
                             ),
                           );
@@ -229,7 +164,7 @@ class _DoctorFormState extends State<DoctorForm> {
                       }
                     },
                     label: Text(
-                      'Google Map',
+                      AppLocalizations.of(context).translate('next'),
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,

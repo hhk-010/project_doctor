@@ -62,6 +62,12 @@ class _HomeState extends State<Home> {
                   .toList(),
             ),
           ),
+          IconButton(
+            icon: Icon(Icons.email),
+            onPressed: () {
+              Navigator.pushNamed(context, '/register');
+            },
+          ),
         ],
       ),
       body: Padding(

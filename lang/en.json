@@ -3,6 +3,8 @@
     "english" : "ُEnglish",
     "arabic" : "Arabic",
     "search" :  "Search",
+    "submit" : "Submit",
+    "google_map" : "Google Map",
     "snack_error_sign" : "Error Signing in",
     "snack_connectivity" : "No Internet Connection",
     "home_title" : "Welcome to Cura",
@@ -19,32 +21,65 @@
     "enter_your_password" : "Enter Your Password",
     "password_validator" : "Password should be >8 characters",
     "forget_password" : "Forget Your Password?",
-    "does_have_account" : "Does not have account?",
-
-
-
-    "doctor_form_name" : "Name",
-    "doctor_form_speciality" : "Speciality",
-    "doctor_form_phoneNumber" : "Phone Number",
-    "doctor_form_province": "Province",
-    "doctor_form_location": "Location",
-    "doctor_form_search": "Submit",
-
-    "patient_appbar" : "Your Complain",
-    "patient_name" : "Name", 
-    "patient_male" : "Male",
-    "patient_female" : "Female", 
-    "patient_chronic_diseases" : "Long-term diseases",
-    "patient_dialogue_list_button" : "Choose",
-    "patient_dialogue_cancel" : "Cancel",
-    "patient_dialogue_ok" : "OK",
-    "patient_area_of_choice" : "The Region of your complain",
-    "patient_complain" : "list of complains",
-    "patient_disablehint" : "First choose the Region",
-    "patient_other_complain" : "Do you have other complains",
-    "patient_search_button" : "Search",
-    "doctor_form_appbar" : "Update Your Info",
+    "does_not_have_account" : "Does not have account?",
+    "does_have_account" : "Already have an account?",
+    "doctor_form" : "Doctor Form",
+    "name" : "Name",
+    "name_validator" : "Enter Your Name",
+    "speciality" : "Speciality",
+    "speciality_validator" : "Choose Your Speciality",
+    "phoneNumber" : "Phone Number",
+    "phoneNumber_validator" : "Phone Number should be 11 digits",
+    "province": "Province",
+    "province_validator" : "Enter Your Province",
+    "location": "Location",
+    "location_setup" : "Set up Your Clinic Location",
     
+
+
+
+    "Cardiologist" : "Cardiologist",
+    "Pulmonologist" : "Pulmonologist",
+    "Endocrinologist" : "Endocrinologist",
+    "Enterologist" : "Enterologist",
+    "General Surgeon" : "General Surgeon",
+    "Pediatric Surgeon" : "Pediatric Surgeon",
+    "ThoracoVascular Surgeon" : "ThoracoVascular Surgeon",
+    "Emergency physician" : "Emergency Department",
+    "Internist" : "Internist",
+    "Pediatrician" : "Pediatrician",
+    "Gynecologist" : "Gynecologist",
+    "Rheumatologist" : "Rheumatologist",
+    "Nephrologist" : "Nephrologist",
+    "Heamatologist" : "Heamatologist",
+    "Neurologist" : "Neurologist",
+    "Urosurgeon" : "Urosurgeon",
+    "Orthopaedic Surgeon" : "Orthopaedic Surgeon",
+    "Neurosurgeon" : "Neurosurgeon",
+    "Plastic Surgeon" : "Plastic Surgeon",
+    "Dermatologist" : "Dermatologist",
+    "Ophthalmologist" : "Ophthalmologist",
+    "Psychiatrist" : "Psychiatrist",
+    "Laryngologist" : "Laryngologist",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     "cd_HTN" : "Elevated Blood Pressure",
     "cd_DM" : "Diabetus Mellitus",
     "cd_heart" : "Chronic Heart Disease",

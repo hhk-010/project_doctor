@@ -231,7 +231,7 @@ class _SignInState extends State<SignIn> {
                           children: <TextSpan>[
                             TextSpan(
                                 text: AppLocalizations.of(context)
-                                    .translate('does_have_account')),
+                                    .translate('does_not_have_account')),
                             TextSpan(
                                 text: AppLocalizations.of(context)
                                     .translate('register'),

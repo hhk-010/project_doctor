@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/pages/about_us.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
 import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
 import 'package:project_doctor/pages/patient_pages/patient06_result_map.dart';
@@ -12,7 +14,7 @@ import 'package:project_doctor/pages/doctor_pages/doctor01_form.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:project_doctor/pages/doctor_pages/doctor03_profile.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor04_profile.dart';
 import 'package:project_doctor/pages/patient_pages/patient05_result.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 
@@ -103,6 +105,7 @@ class _MyAppState extends State<MyApp> {
           '/intermediate': (context) => Intermediate(),
           '/patient_complain': (context) => PatientComplain(),
           '/doctor_form': (context) => DoctorForm(),
+          '/doctor_clinic': (context) => ClinicForm(),
           '/doctor_profile': (context) => DoctorProfile(),
           '/patient_risk_factors': (context) => PatientRiskFactors(),
           '/patient_get_location': (context) => PatientGetLocation(),
@@ -110,6 +113,7 @@ class _MyAppState extends State<MyApp> {
           '/patmap': (context) => PatientMap(),
           '/doctorlocate': (context) => PatientResultMap(),
           '/email_verfication': (context) => EmailVerification(),
+          '/register': (context) => Register(),
         },
       );
     }
