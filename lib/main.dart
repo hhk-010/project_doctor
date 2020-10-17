@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
+import 'package:project_doctor/pages/about_us.dart';
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
 import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
 import 'package:project_doctor/pages/patient_pages/patient06_result_map.dart';
@@ -98,6 +99,7 @@ class _MyAppState extends State<MyApp> {
         initialRoute: '/home',
         routes: {
           '/home': (context) => Home(),
+          '/about_us': (context) => AboutUS(),
           '/intermediate': (context) => Intermediate(),
           '/patient_complain': (context) => PatientComplain(),
           '/doctor_form': (context) => DoctorForm(),
@@ -107,7 +109,7 @@ class _MyAppState extends State<MyApp> {
           '/patient_result': (context) => PatientResult(),
           '/patmap': (context) => PatientMap(),
           '/doctorlocate': (context) => PatientResultMap(),
-          '/email_verfication': (context) => EmailVerification()
+          '/email_verfication': (context) => EmailVerification(),
         },
       );
     }
