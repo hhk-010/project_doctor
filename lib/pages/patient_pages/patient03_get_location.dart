@@ -19,7 +19,8 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
     '1': 'Baghdad',
     '2': 'Northern Region',
     '3': 'Southern Region',
-    '4': 'Western Region'
+    '4': 'Western Region',
+    '5':'Middle Region'
   };
   String _error = '';
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
@@ -152,6 +153,10 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                       DropdownMenuItem<String>(
                         value: "Western Region",
                         child: Text("Western Region"),
+                      ),
+                      DropdownMenuItem<String>(
+                        value: "Middle Region",
+                        child: Text("Middle Region"),
                       ),
                     ],
                     onChanged: (_value) {

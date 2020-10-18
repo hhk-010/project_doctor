@@ -48,7 +48,13 @@ class _DoctorFormState extends State<DoctorForm> {
       AppLocalizations.of(context).translate('Ophthalmologist'),
       AppLocalizations.of(context).translate('Laryngologist'),
     ];
-
+    final List<String> province = [
+      'Baghdad',
+      'Northern Region',
+      'Southern Region',
+      'Western Region',
+      'Middle Region'
+    ];
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
@@ -118,7 +124,28 @@ class _DoctorFormState extends State<DoctorForm> {
                       : null,
                 ),
                 Spacer(),
-                TextFormField(
+                DropdownButtonFormField<String>(
+                  value: currentProvince,
+                  decoration: textInputdecoration,
+                  hint: Text(
+                    AppLocalizations.of(context).translate('province'),
+                  ),
+                  dropdownColor: Colors.grey[200],
+                  elevation: 5,
+                  icon: Icon(Icons.arrow_drop_down),
+                  isExpanded: true,
+                  items: province.map((province) {
+                    return DropdownMenuItem(
+                      value: province,
+                      child: Text('$province'),
+                    );
+                  }).toList(),
+                  validator: (value) => value == null
+                      ? 'Select your province'
+                      : null,
+                  onChanged: (val) => setState(() => currentProvince = val),
+                ),
+                /*TextFormField(
                   validator: (val) =>
                       val.isEmpty ? 'Enter your province' : null,
                   onChanged: (val) => setState(() => currentProvince = val),
@@ -128,7 +155,7 @@ class _DoctorFormState extends State<DoctorForm> {
                     labelText:
                         AppLocalizations.of(context).translate('province'),
                   ),
-                ),
+                ),*/
                 Spacer(
                   flex: 5,
                 ),
