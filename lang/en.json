@@ -105,7 +105,42 @@
     "add_complains" : "Additional Complains",
 
 
+
+"body_regions" : "=======================================",
+    "heart_lung" : "Heart & Lungs",
+    "git" : "Gastro Intestinal Tract",
+    "brain_neuron" : "Brain & Neurons",
+    "perianal_abdomen" : "Perianal & Abdominal Wall",
+    "skeleton_muscles" : "Skeleton and Muscles",
+    "head_neck_back" : "Head, Neck & Back",
+    "psychology" : "Psychology",
+    "upper_limb" : "Upper Limb",
+    "lower_limb" : "Lower Limb",
+    "Hand" : "Hands",
+    "other_symptoms" : "Other Symptoms",
+    "bpPrLab" : "Vital Signs and Lab Investigation",
+    "injuriesSuicideIntoxicationBurn" : "Injuries, Suicide, Intoxication and Burn",
+    "mouth" :"Mouth",
+    "appetite" : "Appetite",
+    "throat" : "Throat",
+    "nose" : "Nose",
+    "ear" : "Ear",
+    "skin" : "Skin Problems",
+    "gynecology" : "Female Menstrual and Reporductive Health",
+    "uro" : "Urinary Track",
+    "male_genital" : "Male Genital Health",
+    "eye" : "Eye Problems",
+    "Breast" : "Breast Problems",
+
+
+
+
+
+
+
 "chronic_diseases" : "=======================================",
+    "chronic_disease" : "Long-Term Diseases",
+    "choose_one_more" : "Choose One or More",
     "cd_HTN" : "Elevated Blood Pressure",
     "cd_DM" : "Diabetus Mellitus",
     "cd_heart" : "Chronic Heart Disease",
@@ -122,8 +157,13 @@
     "cd_ashma" : "Ashma",
     "cd_tumor" : "Malignancy",
 
-
-
+"life_style" : "Life Style",
+    "obesity" : "Obesity",
+    "physical_inactive" : "Physical Inactivity",
+    "pregnancy" : "Pregnancy",
+    "alcohol" : "Alcoholism",
+    "smoking" : "Smoking",
+    "family" : "Family History of the Same Disease",
 
     "cardioresp" : "=========================================",
     "hemoptysis":"hemoptysis",
@@ -278,25 +318,25 @@
     "sport injury":"sport injury",
 
 
-"mouth" : "=========================================",
+"mouth_region" : "=========================================",
     "mouth deviation":"mouth deviation",
     "cleft lip":"cleft lip",
     "cleft palate":"cleft palate",
     "disease of the mouth":"disease of the mouth",
 
 
-"appetite" : "=========================================",
+"appetite_regions" : "=========================================",
     "weight gain":"weight gain",
     "weight loss":"weight loss",
     "anorexia":"anorexia",
 
-"throat" : "=========================================",
+"ENT_throat" : "=========================================",
     "hoarseness":"hoarseness",
     "sore throat":"sore throat",
     "other ent problems":"other ent problems",
 
 
-"nose" : "=========================================",
+"ENT_nose" : "=========================================",
     "nasal discharge":"nasal discharge",
     "nasal bleeding":"nasal bleeding",
     "nasal obstruction":"nasal obstruction",
@@ -308,7 +348,7 @@
     "anosmia":"anosmia",
     "enlarged nose":"enlarged nose",
 
-"ear" : "=========================================",
+"ENT_ear" : "=========================================",
     "deafness":"deafness",
     "vertigo":"vertigo",
     "tinnitus":"tinnitus",
@@ -316,7 +356,7 @@
     "ear redness":"ear redness",
     "ear pain":"ear pain",
 
-"dermatology" : "=========================================",
+"dermatology_skin" : "=========================================",
     "dry skin":"dry skin",
     "dry hair":"dry hair",
     "skin rash":"skin rash",
