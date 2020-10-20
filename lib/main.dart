@@ -3,6 +3,7 @@ import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/pages/about_us.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
+import 'package:project_doctor/pages/patient_pages/patient02.5_speciality_result.dart';
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
 import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
 import 'package:project_doctor/pages/patient_pages/patient06_result_map.dart';
@@ -108,6 +109,7 @@ class _MyAppState extends State<MyApp> {
           '/doctor_clinic': (context) => ClinicForm(),
           '/doctor_profile': (context) => DoctorProfile(),
           '/patient_risk_factors': (context) => PatientRiskFactors(),
+          '/patient_speciality_result' : (context) => SpecialityResult(),
           '/patient_get_location': (context) => PatientGetLocation(),
           '/patient_result': (context) => PatientResult(),
           '/patmap': (context) => PatientMap(),

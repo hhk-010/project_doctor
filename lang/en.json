@@ -15,6 +15,7 @@
     "snack_connectivity" : "No Internet Connection",
     "snack_register" : "Registeration Error, Please enter valid credentials",
     "snack_map" : "add your clinic location first",
+    "snack_map_patient" : "Please add your current location",
 
 
 
@@ -103,6 +104,19 @@
     "choose_complain" : "Choose your Complain",
     "first_choose_complain" : "First choose your Complain ",
     "add_complains" : "Additional Complains",
+    "result_speciality" : "Your complains are associated with the Following Speciality:",
+    "get_location" : "To Continue, You Must Specify your current location through either:",
+    "auto_location" : "Auto Device Location",
+    "speciality_result" : "’Medical Speciality",
+    "your_location" : "Your Location",
+    "region" : "Region",
+    "select_region" : "Select Your Region",
+    "northen_region" : "Northen Region of Iraq",
+    "southern_region" : "Southern Region of Iraq",
+    "centeral_region" : "Central Region of Iraq",
+    "western_region" : "Western Region of Iraq",
+    "patient_map_title" : "Tab on you location",
+    
 
 
 

@@ -718,7 +718,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                         alcohol,
                         smoking,
                         gender);
-                    Navigator.pushNamed(context, '/patient_get_location');
+                    Navigator.pushNamed(context, '/patient_speciality_result');
                   },
                   label: Text(
                     AppLocalizations.of(context).translate('next'),
