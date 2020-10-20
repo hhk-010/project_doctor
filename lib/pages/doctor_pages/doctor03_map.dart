@@ -186,7 +186,7 @@ class _DocMapState extends State<DocMap> {
                           vacation,
                           workinghours);
                       setState(() {
-                        newclient.email = email;
+                        Newclient.email = email;
                       });
                       //========Navigation to EmailVerification without the following
                       // condition is a bug(emails Already in use can navigate)

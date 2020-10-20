@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/services/auth.dart';
 
 //---------class for launching the registered email
-class newclient{
+class Newclient{
   static String email='';
 }
 class EmailVerification extends StatefulWidget {
@@ -78,7 +78,7 @@ class _EmailVerificationState extends State<EmailVerification> {
               flex: 1,
             ),
             Text(
-              newclient.email,
+              Newclient.email,
               //'$email',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
