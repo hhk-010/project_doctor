@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
@@ -21,27 +22,34 @@ class SpecialityResult extends StatelessWidget {
         elevation: 0,
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
+        padding: EdgeInsets.symmetric(vertical: 75, horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
               decoration: boxDecorationPatient,
               width: double.infinity,
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              padding: EdgeInsets.symmetric(vertical: 25, horizontal: 8),
               child: Column(
                 children: [
-                  Text(
+                  AutoSizeText(
                     AppLocalizations.of(context).translate('result_speciality'),
+                    maxLines: 2,
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.justify,
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                   Divider(
                     color: Colors.grey,
                     thickness: 2,
                     indent: 30,
                     endIndent: 30,
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                   ListTile(
                     leading: CircleAvatar(
@@ -53,13 +61,14 @@ class SpecialityResult extends StatelessWidget {
                     title: Text(
                       FinalScore.speciality,
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
                 ],
               ),
             ),
             Container(
+              height: 45,
               width: double.maxFinite,
               child: RaisedButton.icon(
                 color: Colors.deepOrange,
@@ -76,7 +85,7 @@ class SpecialityResult extends StatelessWidget {
                   AppLocalizations.of(context).translate('next'),
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
               ),

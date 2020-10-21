@@ -6,7 +6,7 @@
     "search" :  "Search",
     "submit" : "Submit",
     "update" : "Update",
-    "OK" : "OK",
+    "ok" : "OK",
     "google_map" : "Google Map",
 
 
@@ -107,15 +107,16 @@
     "result_speciality" : "Your complains are associated with the Following Speciality:",
     "get_location" : "To Continue, You Must Specify your current location through either:",
     "auto_location" : "Auto Device Location",
-    "speciality_result" : "’Medical Speciality",
+    "speciality_result" : "Medical Speciality",
     "your_location" : "Your Location",
-    "region" : "Region",
+    "region" : "Iraqi Region",
     "select_region" : "Select Your Region",
     "northen_region" : "Northen Region of Iraq",
     "southern_region" : "Southern Region of Iraq",
     "centeral_region" : "Central Region of Iraq",
     "western_region" : "Western Region of Iraq",
     "patient_map_title" : "Tab on you location",
+    "doctor_location" : "Doctor Location on Map",
     
 
 

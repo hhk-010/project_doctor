@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -93,10 +94,14 @@ class _PatientMapState extends State<PatientMap> {
       key: _scaffoldkey,
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text(
-          AppLocalizations.of(context).translate('patient_map_title'),
-          style: TextStyle(fontSize: 25),
+        title: FittedBox(
+          fit: BoxFit.fitWidth,
+                  child: Text(
+            AppLocalizations.of(context).translate('patient_map_title'),
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          ),
         ),
+        elevation: 0,
         centerTitle: true,
       ),
       body: Stack(
@@ -112,7 +117,8 @@ class _PatientMapState extends State<PatientMap> {
             padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 25.0),
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
-              child: Text('OK'),
+              child: Text(AppLocalizations.of(context).translate('ok'),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
               onPressed: () async {
                 // there is a bug in this snackbar => to be seen-----
                 await checkInternet();

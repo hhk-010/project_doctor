@@ -58,7 +58,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
       this.s7,
       this.gender});
   TextStyle _textStyle = TextStyle(
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );
@@ -133,10 +133,17 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                 padding: EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    Text(
-                      AppLocalizations.of(context).translate('chronic_disease'),
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text(
+                          AppLocalizations.of(context)
+                              .translate('chronic_disease'),
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ),
                     Divider(
                       color: Colors.grey,
@@ -383,10 +390,16 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                 padding: EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    Text(
-                      AppLocalizations.of(context).translate('life_style'),
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                                              child: Text(
+                          AppLocalizations.of(context).translate('life_style'),
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ),
                     Divider(
                       color: Colors.grey,

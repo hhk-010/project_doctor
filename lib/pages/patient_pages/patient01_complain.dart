@@ -45,13 +45,13 @@ class _PatientComplainState extends State<PatientComplain> {
   String regionSelected05;
   String regionSelected06;
   String regionSelected07;
-  String complainSelected01 = "";
-  String complainSelected02 = "";
-  String complainSelected03 = "";
-  String complainSelected04 = "";
-  String complainSelected05 = "";
-  String complainSelected06 = "";
-  String complainSelected07 = "";
+  String complainSelected01;
+  String complainSelected02;
+  String complainSelected03;
+  String complainSelected04;
+  String complainSelected05;
+  String complainSelected06;
+  String complainSelected07;
   List<DropdownMenuItem<String>> menuitems = List();
   bool disabledropdown01 = true;
   bool disabledropdown02 = true;
@@ -94,7 +94,7 @@ class _PatientComplainState extends State<PatientComplain> {
         ),
         Text(
           title,
-          style: _textStylePatient,
+          style: _textStylePatient.copyWith(fontSize: 16),
         )
       ],
     );
@@ -1287,14 +1287,18 @@ class _PatientComplainState extends State<PatientComplain> {
                         ),
                         filled: true,
                       )),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      addRadioButton(
-                          0, AppLocalizations.of(context).translate('male')),
-                      addRadioButton(
-                          1, AppLocalizations.of(context).translate('female')),
-                    ],
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        addRadioButton(
+                            0, AppLocalizations.of(context).translate('male')),
+                        addRadioButton(1,
+                            AppLocalizations.of(context).translate('female')),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -1448,12 +1452,16 @@ class _PatientComplainState extends State<PatientComplain> {
                       ],
                       value: regionSelected01,
                       onChanged: (_value) => selected01(_value),
-                      hint: Text(AppLocalizations.of(context)
-                          .translate('complain_area')),
+                      hint: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text(AppLocalizations.of(context)
+                            .translate('complain_area')),
+                      ),
                     ),
                     DropdownButton<String>(
                       isExpanded: true,
                       items: menuitems,
+                      value: complainSelected01,
                       onChanged: disabledropdown01
                           ? null
                           : (value) => secondselected(value),
@@ -1465,11 +1473,14 @@ class _PatientComplainState extends State<PatientComplain> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          AppLocalizations.of(context)
-                              .translate('other_complain'),
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
+                        FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(
+                            AppLocalizations.of(context)
+                                .translate('other_complain'),
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.bold),
+                          ),
                         ),
                         Switch(
                             value: _switch01,
@@ -1637,8 +1648,11 @@ class _PatientComplainState extends State<PatientComplain> {
                         ],
                         value: regionSelected02,
                         onChanged: (_value) => selected02(_value),
-                        hint: Text(AppLocalizations.of(context)
-                            .translate('complain_area')),
+                        hint: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(AppLocalizations.of(context)
+                              .translate('complain_area')),
+                        ),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
@@ -1654,11 +1668,14 @@ class _PatientComplainState extends State<PatientComplain> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            AppLocalizations.of(context)
-                                .translate('other_complain'),
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
+                          FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('other_complain'),
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Switch(
                               value: _switch02,
@@ -1827,8 +1844,11 @@ class _PatientComplainState extends State<PatientComplain> {
                         ],
                         value: regionSelected03,
                         onChanged: (_value) => selected03(_value),
-                        hint: Text(AppLocalizations.of(context)
-                            .translate('complain_area')),
+                        hint: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(AppLocalizations.of(context)
+                              .translate('complain_area')),
+                        ),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
@@ -1844,11 +1864,14 @@ class _PatientComplainState extends State<PatientComplain> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            AppLocalizations.of(context)
-                                .translate('other_complain'),
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
+                          FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('other_complain'),
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Switch(
                               value: _switch03,
@@ -2017,8 +2040,11 @@ class _PatientComplainState extends State<PatientComplain> {
                         ],
                         value: regionSelected04,
                         onChanged: (_value) => selected04(_value),
-                        hint: Text(AppLocalizations.of(context)
-                            .translate('complain_area')),
+                        hint: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(AppLocalizations.of(context)
+                              .translate('complain_area')),
+                        ),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
@@ -2034,11 +2060,14 @@ class _PatientComplainState extends State<PatientComplain> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            AppLocalizations.of(context)
-                                .translate('other_complain'),
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
+                          FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('other_complain'),
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Switch(
                               value: _switch04,
@@ -2207,8 +2236,11 @@ class _PatientComplainState extends State<PatientComplain> {
                         ],
                         value: regionSelected05,
                         onChanged: (_value) => selected05(_value),
-                        hint: Text(AppLocalizations.of(context)
-                            .translate('complain_area')),
+                        hint: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(AppLocalizations.of(context)
+                              .translate('complain_area')),
+                        ),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
@@ -2224,11 +2256,14 @@ class _PatientComplainState extends State<PatientComplain> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            AppLocalizations.of(context)
-                                .translate('other_complain'),
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
+                          FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('other_complain'),
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Switch(
                               value: _switch05,
@@ -2397,8 +2432,11 @@ class _PatientComplainState extends State<PatientComplain> {
                         ],
                         value: regionSelected06,
                         onChanged: (_value) => selected06(_value),
-                        hint: Text(AppLocalizations.of(context)
-                            .translate('complain_area')),
+                        hint: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(AppLocalizations.of(context)
+                              .translate('complain_area')),
+                        ),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
@@ -2414,11 +2452,14 @@ class _PatientComplainState extends State<PatientComplain> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            AppLocalizations.of(context)
-                                .translate('other_complain'),
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
+                          FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('other_complain'),
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Switch(
                               value: _switch06,
@@ -2586,8 +2627,11 @@ class _PatientComplainState extends State<PatientComplain> {
                         ],
                         value: regionSelected07,
                         onChanged: (_value) => selected07(_value),
-                        hint: Text(AppLocalizations.of(context)
-                            .translate('complain_area')),
+                        hint: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(AppLocalizations.of(context)
+                              .translate('complain_area')),
+                        ),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
@@ -2608,38 +2652,42 @@ class _PatientComplainState extends State<PatientComplain> {
             SizedBox(
               height: 20,
             ),
-            RaisedButton.icon(
-              icon: Icon(
-                Icons.arrow_forward,
-                color: Colors.white,
-              ),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(80.0)),
-              color: Colors.deepOrange,
-              label: Text(AppLocalizations.of(context).translate('next'),
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold)),
-              onPressed: () {
-                if (age == '') {
-                  _showSnackBar;
-                }
-                getage();
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => PatientRiskFactors(
-                      chiefcomplaint: complainSelected01,
-                      sym2: complainSelected02,
-                      sym3: complainSelected03,
-                      sym4: complainSelected04,
-                      sym5: complainSelected05,
-                      sym6: complainSelected06,
-                      sym7: complainSelected07,
+            Container(
+              height: 40.0,
+              width: 200.0,
+              child: RaisedButton.icon(
+                icon: Icon(
+                  Icons.arrow_forward,
+                  color: Colors.white,
+                ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(80.0)),
+                color: Colors.deepOrange,
+                label: Text(AppLocalizations.of(context).translate('next'),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold)),
+                onPressed: () {
+                  if (age == '') {
+                    _showSnackBar;
+                  }
+                  getage();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => PatientRiskFactors(
+                        chiefcomplaint: complainSelected01,
+                        sym2: complainSelected02,
+                        sym3: complainSelected03,
+                        sym4: complainSelected04,
+                        sym5: complainSelected05,
+                        sym6: complainSelected06,
+                        sym7: complainSelected07,
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ],
         ),

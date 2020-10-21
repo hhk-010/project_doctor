@@ -7,7 +7,7 @@
     "search" :  "ابحث",
     "submit" : "تم",
     "update" : "Update",
-    "OK" : "تم",
+    "ok" : "تم",
     "google_map" : "كوكل ماب",
 
 
@@ -110,13 +110,15 @@
     "auto_location" : "تحديد موقع الجهاز الحالي",
     "speciality_result" : "الاختصاص الطبي",
     "your_location" : "حدد موقعك",
-    "region" : "الموقع الجغرافي",
+    "region" : "موقعك الجغرافي في العراق",
     "select_region" : "حدد موقعك",
     "northen_region" : "المنطقه الشماليه في العراق",
     "southern_region" : "المنطقه الجنوبيه في العراق",
     "centeral_region" : "المنطقه الوسطى في العراق",
     "western_region" : "المنطقه الغربيه في العراق",
     "patient_map_title" : "حدد موقعك في الخريطه",
+    "doctor_location" : "موقع الدكتور في الخريطه",
+
 
 
 

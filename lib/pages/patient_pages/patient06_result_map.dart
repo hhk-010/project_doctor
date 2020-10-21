@@ -1,12 +1,14 @@
 import 'dart:collection';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project_doctor/services/app_localizations.dart';
 
 //this file is to show the location of the doctor on the map to the patient
 
 class PatientResultMap extends StatefulWidget {
-  double lat;
-  double lng;
+  final double lat;
+  final double lng;
   PatientResultMap({this.lat, this.lng});
   @override
   _PatientResultMapState createState() =>
@@ -31,8 +33,12 @@ class _PatientResultMapState extends State<PatientResultMap> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text('Doctor location on G.P.S'),
+        title: FittedBox( 
+          fit: BoxFit.fitWidth,
+          child: Text(AppLocalizations.of(context).translate('doctor_location'),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),)),
         centerTitle: true,
+        elevation: 0,
       ),
       body: Stack(
         children: [
@@ -43,11 +49,12 @@ class _PatientResultMapState extends State<PatientResultMap> {
             markers: _marker,
           ),
           Container(
-            padding: EdgeInsets.all(25.0),
-            alignment: Alignment.bottomLeft,
+            padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 25.0),
+            alignment: Alignment.bottomCenter,
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
-              child: Text('N'),
+              child: Text(AppLocalizations.of(context).translate('ok'),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
               onPressed: () {
                 Navigator.pushNamed(context, '/home');
               },
