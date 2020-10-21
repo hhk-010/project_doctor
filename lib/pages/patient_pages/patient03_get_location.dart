@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
@@ -12,21 +13,15 @@ class PatientGetLocation extends StatefulWidget {
 }
 
 class _PatientGetLocationState extends State<PatientGetLocation> {
-  String region = '';
-  List<DropdownMenuItem<String>> regions = List();
-  final regionsa = {
-    '1': 'Baghdad',
-    '2': 'Northern Region',
-    '3': 'Southern Region',
-    '4': 'Western Region',
-    '5': 'Middle Region'
-  };
+  String region;
+
   String _error = '';
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
   Position _currentPosition;
   String _currentAddress;
-  //------------------function to show snackbar if the patient didn't
-  // tap on the location-------------------------------------------
+
+  //function to show snackbar if the patient didn't
+  // tap on the location
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
     final _snackBar = new SnackBar(
@@ -64,57 +59,55 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
 
   @override
   Widget build(BuildContext context) {
+    final iraqRegions = {
+      "1": [AppLocalizations.of(context).translate('Baghdad'), "Baghdad"],
+      "2": [
+        AppLocalizations.of(context).translate('northen_region'),
+        "Northern Region"
+      ],
+      "3": [
+        AppLocalizations.of(context).translate('southern_region'),
+        "Southern Region"
+      ],
+      "4": [
+        AppLocalizations.of(context).translate('western_region'),
+        "Eastern Region"
+      ],
+      "5": [
+        AppLocalizations.of(context).translate('Middle Region'),
+        "Middle Region"
+      ],
+    };
+
     return Scaffold(
       key: _scaffoldkey,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text(
-          'Your Location',
-          style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+        title: FittedBox(
+          fit: BoxFit.fitWidth,
+          child: Text(
+            AppLocalizations.of(context).translate('your_location'),
+            style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+          ),
         ),
         centerTitle: true,
         elevation: 0,
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
+        padding: EdgeInsets.symmetric(vertical: 75, horizontal: 40),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
               decoration: boxDecorationPatient,
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
               child: Column(
                 children: [
                   Text(
-                    'Your complains are associated with the Following Speciality:',
+                    AppLocalizations.of(context).translate('region'),
                     style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
-                  ),
-                  Divider(
-                    color: Colors.grey,
-                    thickness: 2,
-                    indent: 30,
-                    endIndent: 30,
-                  ),
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.deepOrange,
-                      radius: 30,
-                      backgroundImage:
-                          AssetImage('assets/images/speciality.png'),
-                    ),
-                    title: Text(
-                      AppLocalizations.of(context)
-                              .translate(FinalScore.speciality) +
-                          AppLocalizations.of(context)
-                              .translate(FinalScore.Or) +
-                          AppLocalizations.of(context)
-                              .translate(FinalScore.speciality2),
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -138,56 +131,70 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                     indent: 30,
                     endIndent: 30,
                   ),
-                  DropdownButton(
-                    hint: Text('Select your Province'),
-                    isExpanded: true,
-                    items: [
-                      DropdownMenuItem<String>(
-                        value: "Baghdad",
-                        child: Text("Baghdad"),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    child: DropdownButton(
+                      hint: Text(
+                        AppLocalizations.of(context).translate('select_region'),
                       ),
-                      DropdownMenuItem<String>(
-                        value: "Northern Region",
-                        child: Text("Northern Region"),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: "Southern Region",
-                        child: Text("Southern Region"),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: "Western Region",
-                        child: Text("Western Region"),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: "Middle Region",
-                        child: Text("Middle Region"),
-                      ),
-                    ],
-                    onChanged: (_value) {
-                      setState(() {
-                        region = _value;
-                      });
-                      print(region);
-                    },
+                      isExpanded: true,
+                      items: [
+                        DropdownMenuItem(
+                          value: iraqRegions["1"][1],
+                          child: Text(iraqRegions["1"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: iraqRegions["2"][1],
+                          child: Text(iraqRegions["2"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: iraqRegions["3"][1],
+                          child: Text(iraqRegions["3"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: iraqRegions["4"][1],
+                          child: Text(iraqRegions["4"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: iraqRegions["5"][1],
+                          child: Text(iraqRegions["5"][0]),
+                        ),
+                      ],
+                      /*items: iraqRegions
+                          .map((String item) => DropdownMenuItem<String>(
+                              child: Text(item), value: item))
+                          .toList(),*/
+                      onChanged: (value) {
+                        setState(() {
+                          region = value;
+                        });
+                        print(region);
+                      },
+                      value: region,
+                      dropdownColor: Colors.grey[300],
+                      elevation: 5,
+                    ),
                   ),
                 ],
               ),
             ),
-            Spacer(
-              flex: 2,
-            ),
             Container(
               decoration: boxDecorationPatient,
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
               child: Column(
                 children: [
                   Center(
-                    child: Text(
-                      'To Continue, You Must Specify your current location through either:',
+                    child: AutoSizeText(
+                      AppLocalizations.of(context).translate('get_location'),
                       style: TextStyle(
                           fontSize: 18.0, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.justify,
+                      maxLines: 3,
                     ),
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                   Divider(
                     color: Colors.grey,
@@ -199,6 +206,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                     height: 10,
                   ),
                   Container(
+                    height: 40,
                     width: double.maxFinite,
                     child: RaisedButton.icon(
                       color: Colors.deepOrange,
@@ -223,22 +231,26 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                           Navigator.pushNamed(context, '/patient_result');
                         } else {
                           setState(() {
-                            _error = 'No internet connection';
+                            _error = AppLocalizations.of(context)
+                                .translate('snack_connectivity');
+                            ;
                           });
                           _showSnackBar();
                         }
                       },
-                      label: Text(
-                        'Auto Device Location',
+                      label: AutoSizeText(
+                        AppLocalizations.of(context).translate('auto_location'),
+                        maxLines: 1,
+                        minFontSize: 18,
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: Text(
                       'or',
                       style: TextStyle(
@@ -246,6 +258,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                     ),
                   ),
                   Container(
+                    height: 40,
                     width: double.maxFinite,
                     child: RaisedButton.icon(
                       color: Colors.deepOrange,
@@ -263,10 +276,10 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                                 )));
                       },
                       label: Text(
-                        'Google Map',
+                        AppLocalizations.of(context).translate('google_map'),
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
                     ),

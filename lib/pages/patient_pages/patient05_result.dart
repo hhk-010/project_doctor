@@ -120,7 +120,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
       }
     }
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 75, horizontal: 40),
+      padding: EdgeInsets.fromLTRB(50, 50, 50, 25),
       child: Container(
         height: double.maxFinite,
         child: Column(
@@ -179,16 +179,16 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                         height: 5,
                       ),
                       Text(
-                        'clinic vacation is '+_vacation,
+                        'clinic vacation is ' + _vacation,
                         style: _textStyle,
                       ),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
-                          _workinghours,
-                          style: _textStyle,
-                        ),
+                        _workinghours,
+                        style: _textStyle,
+                      ),
                       SizedBox(
                         height: 5,
                       ),

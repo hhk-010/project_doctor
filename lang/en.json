@@ -6,7 +6,8 @@
     "search" :  "Search",
     "submit" : "Submit",
     "update" : "Update",
-    "OK" : "OK",
+    "ok" : "OK",
+    "Ok":"OK",
     "google_map" : "Google Map",
     "Or": " Or ",
     "":"",
@@ -14,10 +15,10 @@
 
 "regions":"---------------------------------",
     "Baghdad":"Baghdad",
-    "Northern Region":"Northern Region",
-    "Southern Region":"Southern Region",
-    "Western Region":"Western Region",
-    "Middle Region":"Middle Region",
+    "Northern Region":"Northern Region of Iraq",
+    "Southern Region":"Southern Region of Iraq",
+    "Western Region":"Western Region of Iraq",
+    "Middle Region":"Middle Region of Iraq",
 
 
 "Snacks" : "=======================================",
@@ -25,6 +26,11 @@
     "snack_connectivity" : "No Internet Connection",
     "snack_register" : "Registeration Error, Please enter valid credentials",
     "snack_map" : "add your clinic location first",
+    "snack_map_patient" : "Please add your current location",
+    "age_message":"Please , enter your age",
+    "age_message_error":"Age should be from 0 to 130",
+    "gender_message":"Please , select a gender",
+    "complain_message":"Please , select a main complaint",
 
 
 
@@ -114,6 +120,20 @@
     "choose_complain" : "Choose your Complain",
     "first_choose_complain" : "First choose your Complain ",
     "add_complains" : "Additional Complains",
+    "result_speciality" : "Your complains are associated with the Following Speciality:",
+    "get_location" : "To Continue, You Must Specify your current location through either:",
+    "auto_location" : "Auto Device Location",
+    "speciality_result" : "Medical Speciality",
+    "your_location" : "Your Location",
+    "region" : "Iraqi Region",
+    "select_region" : "Select Your Region",
+    "northen_region" : "Northen Region of Iraq",
+    "southern_region" : "Southern Region of Iraq",
+    "centeral_region" : "Central Region of Iraq",
+    "western_region" : "Western Region of Iraq",
+    "patient_map_title" : "Tab on you location",
+    "doctor_location" : "Doctor Location on Map",
+    
 
 
 

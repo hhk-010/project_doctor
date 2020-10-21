@@ -48,13 +48,13 @@ class _PatientComplainState extends State<PatientComplain> {
   String regionSelected05;
   String regionSelected06;
   String regionSelected07;
-  String complainSelected01 = "";
-  String complainSelected02 = "";
-  String complainSelected03 = "";
-  String complainSelected04 = "";
-  String complainSelected05 = "";
-  String complainSelected06 = "";
-  String complainSelected07 = "";
+  String complainSelected01;
+  String complainSelected02;
+  String complainSelected03;
+  String complainSelected04;
+  String complainSelected05;
+  String complainSelected06;
+  String complainSelected07;
   List<DropdownMenuItem<String>> menuitems = List();
   bool disabledropdown01 = true;
   bool disabledropdown02 = true;
@@ -424,7 +424,7 @@ class _PatientComplainState extends State<PatientComplain> {
         ),
         Text(
           title,
-          style: _textStylePatient,
+          style: _textStylePatient.copyWith(fontSize: 16),
         )
       ],
     );
@@ -503,135 +503,310 @@ class _PatientComplainState extends State<PatientComplain> {
       "15": [AppLocalizations.of(context).translate('tenesmus'), 'tenesmus'],
     };
     final peiranalAbdomen = {
-      "1": [AppLocalizations.of(context).translate('perianal pain'),'perianal pain'],
-      "2": [AppLocalizations.of(context).translate('perianal discharge'),'perianal discharge'],
-      "3":[ AppLocalizations.of(context).translate('anal incontinence'),'anal incontinence'],
-      "4": [AppLocalizations.of(context).translate('perianal itching'),'perianal itching'],
-      "5":[ AppLocalizations.of(context).translate('abdominal wall swelling'),'abdominal wall swelling'],
+      "1": [
+        AppLocalizations.of(context).translate('perianal pain'),
+        'perianal pain'
+      ],
+      "2": [
+        AppLocalizations.of(context).translate('perianal discharge'),
+        'perianal discharge'
+      ],
+      "3": [
+        AppLocalizations.of(context).translate('anal incontinence'),
+        'anal incontinence'
+      ],
+      "4": [
+        AppLocalizations.of(context).translate('perianal itching'),
+        'perianal itching'
+      ],
+      "5": [
+        AppLocalizations.of(context).translate('abdominal wall swelling'),
+        'abdominal wall swelling'
+      ],
     };
     AppLocalizations.of(context).translate('');
     final neurology = {
-      "1":[ AppLocalizations.of(context).translate('coma'),'coma'],
-      "2": [AppLocalizations.of(context).translate('fit'),'fit'],
-      "3": [AppLocalizations.of(context).translate('abnormal movement'),'abnormal movement'],
-      "4": [AppLocalizations.of(context).translate('spasm'),'spasm'],
-      "5": [AppLocalizations.of(context).translate('memory loss'),'memory loss'],
-      "6": [AppLocalizations.of(context).translate('tremer'),'tremer'],
-      "7": [AppLocalizations.of(context).translate('confusion'),'confusion'],
-      "8": [AppLocalizations.of(context).translate('numbness'),'numbness'],
-      "9": [AppLocalizations.of(context).translate('slurred speech'),'slurred speech'],
-      "10": [AppLocalizations.of(context).translate('ataxia'),'ataxia'],
-      "11": [AppLocalizations.of(context).translate('weakness'),'weakness'],
-      "12":
-    [AppLocalizations.of(context).translate('other neurological problems'),'other neurological problems'],
-      "13": [AppLocalizations.of(context).translate('syncope'),'syncope'],
+      "1": [AppLocalizations.of(context).translate('coma'), 'coma'],
+      "2": [AppLocalizations.of(context).translate('fit'), 'fit'],
+      "3": [
+        AppLocalizations.of(context).translate('abnormal movement'),
+        'abnormal movement'
+      ],
+      "4": [AppLocalizations.of(context).translate('spasm'), 'spasm'],
+      "5": [
+        AppLocalizations.of(context).translate('memory loss'),
+        'memory loss'
+      ],
+      "6": [AppLocalizations.of(context).translate('tremer'), 'tremer'],
+      "7": [AppLocalizations.of(context).translate('confusion'), 'confusion'],
+      "8": [AppLocalizations.of(context).translate('numbness'), 'numbness'],
+      "9": [
+        AppLocalizations.of(context).translate('slurred speech'),
+        'slurred speech'
+      ],
+      "10": [AppLocalizations.of(context).translate('ataxia'), 'ataxia'],
+      "11": [AppLocalizations.of(context).translate('weakness'), 'weakness'],
+      "12": [
+        AppLocalizations.of(context).translate('other neurological problems'),
+        'other neurological problems'
+      ],
+      "13": [AppLocalizations.of(context).translate('syncope'), 'syncope'],
     };
 
     final psychology = {
-      "1":[ AppLocalizations.of(context).translate('cognitive impairment'),'cognitive impairment'],
-      "2": [AppLocalizations.of(context).translate('behavioral impairement'),'behavioral impairement'],
-      "3": [AppLocalizations.of(context).translate('depression'),'depression'],
-      "4": [AppLocalizations.of(context).translate('hallucination/delusion'),'hallucination/delusion'],
-      "5":[ AppLocalizations.of(context).translate('phobia'),'phobia'],
-      "6":[ AppLocalizations.of(context).translate('suicide'),'suicide'],
-      "7": [AppLocalizations.of(context).translate('obsession'),'obsession'],
-      "8": [AppLocalizations.of(context).translate('attention deficit'),'attention deficit'],
-      "9":[ AppLocalizations.of(context).translate('hyperactivity'),'hyperactivity'],
-      "10":[ AppLocalizations.of(context).translate('stress'),'stress'],
-      "11":[ AppLocalizations.of(context).translate('psychological trauma'),'psychological trauma'],
-      "12":[ AppLocalizations.of(context).translate('addiction'),'addiction'],
-      "13": [AppLocalizations.of(context).translate('encorporesis'),'encorporesis'],
+      "1": [
+        AppLocalizations.of(context).translate('cognitive impairment'),
+        'cognitive impairment'
+      ],
+      "2": [
+        AppLocalizations.of(context).translate('behavioral impairement'),
+        'behavioral impairement'
+      ],
+      "3": [AppLocalizations.of(context).translate('depression'), 'depression'],
+      "4": [
+        AppLocalizations.of(context).translate('hallucination/delusion'),
+        'hallucination/delusion'
+      ],
+      "5": [AppLocalizations.of(context).translate('phobia'), 'phobia'],
+      "6": [AppLocalizations.of(context).translate('suicide'), 'suicide'],
+      "7": [AppLocalizations.of(context).translate('obsession'), 'obsession'],
+      "8": [
+        AppLocalizations.of(context).translate('attention deficit'),
+        'attention deficit'
+      ],
+      "9": [
+        AppLocalizations.of(context).translate('hyperactivity'),
+        'hyperactivity'
+      ],
+      "10": [AppLocalizations.of(context).translate('stress'), 'stress'],
+      "11": [
+        AppLocalizations.of(context).translate('psychological trauma'),
+        'psychological trauma'
+      ],
+      "12": [AppLocalizations.of(context).translate('addiction'), 'addiction'],
+      "13": [
+        AppLocalizations.of(context).translate('encorporesis'),
+        'encorporesis'
+      ],
       //"14": AppLocalizations.of(context).translate('polyphagia'),==>better to see intrenist not psychiatrist
-      "14": [AppLocalizations.of(context)
-          .translate('other psychological problems'),'other psychological problems'],
+      "14": [
+        AppLocalizations.of(context).translate('other psychological problems'),
+        'other psychological problems'
+      ],
     };
     final musckuloskeletal = {
-      "1": [ AppLocalizations.of(context).translate('generalized bone pain'),'generalized bone pain'],
-      "2": [ AppLocalizations.of(context).translate('joint pain'),'joint pain'],
-      "3": [ AppLocalizations.of(context).translate('deformity'),'deformity'],
-      "4": [ AppLocalizations.of(context).translate('joint swelling'),'joint swelling'],
-      "5": [AppLocalizations.of(context).translate('limitation of movement'),'limitation of movement'],
-      "6": [AppLocalizations.of(context).translate('fracture'),'fracture'],
-      "7": [AppLocalizations.of(context).translate('limb pain'),'limb pain'],
-      "8": [AppLocalizations.of(context).translate('dislocation'),'dislocation'],
-      "9": [AppLocalizations.of(context).translate("other msk problems"),"other msk problems"],
+      "1": [
+        AppLocalizations.of(context).translate('generalized bone pain'),
+        'generalized bone pain'
+      ],
+      "2": [AppLocalizations.of(context).translate('joint pain'), 'joint pain'],
+      "3": [AppLocalizations.of(context).translate('deformity'), 'deformity'],
+      "4": [
+        AppLocalizations.of(context).translate('joint swelling'),
+        'joint swelling'
+      ],
+      "5": [
+        AppLocalizations.of(context).translate('limitation of movement'),
+        'limitation of movement'
+      ],
+      "6": [AppLocalizations.of(context).translate('fracture'), 'fracture'],
+      "7": [AppLocalizations.of(context).translate('limb pain'), 'limb pain'],
+      "8": [
+        AppLocalizations.of(context).translate('dislocation'),
+        'dislocation'
+      ],
+      "9": [
+        AppLocalizations.of(context).translate("other msk problems"),
+        "other msk problems"
+      ],
     };
     final headNeckBack = {
-      "1": [AppLocalizations.of(context).translate('jaw pain'),'jaw pain'],
-      "2": [AppLocalizations.of(context).translate('neck pain'),'neck pain'],
-      "3": [AppLocalizations.of(context).translate('enlarged jaw'),'enlarged jaw'],
-      "4": [AppLocalizations.of(context).translate('neck swelling'),'neck swelling'],
-      "5": [AppLocalizations.of(context).translate('back opening'),'back opening'],
-      "6": [AppLocalizations.of(context).translate('back mass'),'back mass'],
-      "7": [AppLocalizations.of(context).translate('back pain'),'back pain'],
-      "8": [AppLocalizations.of(context).translate('headache'),'headache'],
-      "9": [AppLocalizations.of(context).translate('large head'),'large head'],
-      "10": [AppLocalizations.of(context).translate('abnormal head shape'),'abnormal head shape'],
-      "11": [AppLocalizations.of(context).translate('other skull problems'),'other skull problems'],
+      "1": [AppLocalizations.of(context).translate('jaw pain'), 'jaw pain'],
+      "2": [AppLocalizations.of(context).translate('neck pain'), 'neck pain'],
+      "3": [
+        AppLocalizations.of(context).translate('enlarged jaw'),
+        'enlarged jaw'
+      ],
+      "4": [
+        AppLocalizations.of(context).translate('neck swelling'),
+        'neck swelling'
+      ],
+      "5": [
+        AppLocalizations.of(context).translate('back opening'),
+        'back opening'
+      ],
+      "6": [AppLocalizations.of(context).translate('back mass'), 'back mass'],
+      "7": [AppLocalizations.of(context).translate('back pain'), 'back pain'],
+      "8": [AppLocalizations.of(context).translate('headache'), 'headache'],
+      "9": [AppLocalizations.of(context).translate('large head'), 'large head'],
+      "10": [
+        AppLocalizations.of(context).translate('abnormal head shape'),
+        'abnormal head shape'
+      ],
+      "11": [
+        AppLocalizations.of(context).translate('other skull problems'),
+        'other skull problems'
+      ],
     };
     final upperLimb = {
-      "1": [AppLocalizations.of(context).translate('left arm pain'),'left arm pain'],
-      "2": [AppLocalizations.of(context).translate('left shoulder pain'),'left shoulder pain'],
-      "3": [AppLocalizations.of(context).translate('generalized bone pain'),'generalized bone pain'],
-      "4": [AppLocalizations.of(context).translate('joint pain'),'joint pain'],
-      "5": [AppLocalizations.of(context).translate('deformity'),'deformity'],
-      "6": [AppLocalizations.of(context).translate('joint swelling'),'joint swelling'],
-      "7": [AppLocalizations.of(context).translate('limitation of movement'),'limitation of movement'],
-      "8": [AppLocalizations.of(context).translate('fracture'),'fracture'],
-      "9": [AppLocalizations.of(context).translate('limb pain'),'limb pain'],
-      "10":[ AppLocalizations.of(context).translate('dislocation'),'dislocation'],
+      "1": [
+        AppLocalizations.of(context).translate('left arm pain'),
+        'left arm pain'
+      ],
+      "2": [
+        AppLocalizations.of(context).translate('left shoulder pain'),
+        'left shoulder pain'
+      ],
+      "3": [
+        AppLocalizations.of(context).translate('generalized bone pain'),
+        'generalized bone pain'
+      ],
+      "4": [AppLocalizations.of(context).translate('joint pain'), 'joint pain'],
+      "5": [AppLocalizations.of(context).translate('deformity'), 'deformity'],
+      "6": [
+        AppLocalizations.of(context).translate('joint swelling'),
+        'joint swelling'
+      ],
+      "7": [
+        AppLocalizations.of(context).translate('limitation of movement'),
+        'limitation of movement'
+      ],
+      "8": [AppLocalizations.of(context).translate('fracture'), 'fracture'],
+      "9": [AppLocalizations.of(context).translate('limb pain'), 'limb pain'],
+      "10": [
+        AppLocalizations.of(context).translate('dislocation'),
+        'dislocation'
+      ],
     };
 
     final hand = {
-      "1": [AppLocalizations.of(context).translate('enlarged hand'),'enlarged hand'],
-      "2": [AppLocalizations.of(context).translate('extra digit'),'extra digit'],
-      "3": [AppLocalizations.of(context).translate('joined digit'),'joined digit'],
-      "4": [AppLocalizations.of(context).translate('loss digit'),'loss digit'],
-      "5": [AppLocalizations.of(context).translate('hand deformity'),'hand deformity'],
-      "6": [AppLocalizations.of(context).translate('other hand problems'),'other hand problems'],
-      "7": [AppLocalizations.of(context).translate('hand swelling'),'hand swelling'],
-      "8": [AppLocalizations.of(context).translate('hand lump'),'hand lump'],
-      "9": [AppLocalizations.of(context).translate('generalized bone pain'),'generalized bone pain'],
-      "10": [AppLocalizations.of(context).translate('joint pain'),'joint pain'],
-      "11": [AppLocalizations.of(context).translate('joint swelling'),'joint swelling'],
-      "12": [AppLocalizations.of(context).translate('fracture'),'fracture'],
-      "13": [AppLocalizations.of(context).translate('dislocation'),'dislocation'],
+      "1": [
+        AppLocalizations.of(context).translate('enlarged hand'),
+        'enlarged hand'
+      ],
+      "2": [
+        AppLocalizations.of(context).translate('extra digit'),
+        'extra digit'
+      ],
+      "3": [
+        AppLocalizations.of(context).translate('joined digit'),
+        'joined digit'
+      ],
+      "4": [AppLocalizations.of(context).translate('loss digit'), 'loss digit'],
+      "5": [
+        AppLocalizations.of(context).translate('hand deformity'),
+        'hand deformity'
+      ],
+      "6": [
+        AppLocalizations.of(context).translate('other hand problems'),
+        'other hand problems'
+      ],
+      "7": [
+        AppLocalizations.of(context).translate('hand swelling'),
+        'hand swelling'
+      ],
+      "8": [AppLocalizations.of(context).translate('hand lump'), 'hand lump'],
+      "9": [
+        AppLocalizations.of(context).translate('generalized bone pain'),
+        'generalized bone pain'
+      ],
+      "10": [
+        AppLocalizations.of(context).translate('joint pain'),
+        'joint pain'
+      ],
+      "11": [
+        AppLocalizations.of(context).translate('joint swelling'),
+        'joint swelling'
+      ],
+      "12": [AppLocalizations.of(context).translate('fracture'), 'fracture'],
+      "13": [
+        AppLocalizations.of(context).translate('dislocation'),
+        'dislocation'
+      ],
     };
     final lowerLimb = {
-      "1": [AppLocalizations.of(context).translate('bilateral leg edema'),'bilateral leg edema'],
-      "2": [AppLocalizations.of(context).translate('enlarged foot'),'enlarged foot'],
-      "3": [AppLocalizations.of(context).translate('generalized bone pain'),'generalized bone pain'],
-      "4": [AppLocalizations.of(context).translate('joint pain'),'joint pain'],
-      "5": [AppLocalizations.of(context).translate('unilateral leg swelling'),'unilateral leg swelling'],
-      "6": [AppLocalizations.of(context).translate('unilateral leg pain'),'unilateral leg pain'],
-      "7": [AppLocalizations.of(context).translate('deformity'),'deformity'],
-      "8": [AppLocalizations.of(context).translate('joint swelling'),'joint swelling'],
-      "9": [AppLocalizations.of(context).translate('limitation of movement'),'limitation of movement'],
-      "10": [AppLocalizations.of(context).translate('leg pain during walking'),'leg pain during walking'],
-      "11": [AppLocalizations.of(context).translate('foot ulcer'),'foot ulcer'],
-      "12": [AppLocalizations.of(context).translate('fracture'),'fracture'],
-      "13": [AppLocalizations.of(context).translate('limb pain'),'limb pain'],
-      "14": [AppLocalizations.of(context).translate('dislocation'),'dislocation'],
+      "1": [
+        AppLocalizations.of(context).translate('bilateral leg edema'),
+        'bilateral leg edema'
+      ],
+      "2": [
+        AppLocalizations.of(context).translate('enlarged foot'),
+        'enlarged foot'
+      ],
+      "3": [
+        AppLocalizations.of(context).translate('generalized bone pain'),
+        'generalized bone pain'
+      ],
+      "4": [AppLocalizations.of(context).translate('joint pain'), 'joint pain'],
+      "5": [
+        AppLocalizations.of(context).translate('unilateral leg swelling'),
+        'unilateral leg swelling'
+      ],
+      "6": [
+        AppLocalizations.of(context).translate('unilateral leg pain'),
+        'unilateral leg pain'
+      ],
+      "7": [AppLocalizations.of(context).translate('deformity'), 'deformity'],
+      "8": [
+        AppLocalizations.of(context).translate('joint swelling'),
+        'joint swelling'
+      ],
+      "9": [
+        AppLocalizations.of(context).translate('limitation of movement'),
+        'limitation of movement'
+      ],
+      "10": [
+        AppLocalizations.of(context).translate('leg pain during walking'),
+        'leg pain during walking'
+      ],
+      "11": [
+        AppLocalizations.of(context).translate('foot ulcer'),
+        'foot ulcer'
+      ],
+      "12": [AppLocalizations.of(context).translate('fracture'), 'fracture'],
+      "13": [AppLocalizations.of(context).translate('limb pain'), 'limb pain'],
+      "14": [
+        AppLocalizations.of(context).translate('dislocation'),
+        'dislocation'
+      ],
     };
 
     final others = {
-      "1": [AppLocalizations.of(context).translate('sweating'),'sweating'],
-      "2": [AppLocalizations.of(context).translate('fever'),'fever'],
-      "3": [AppLocalizations.of(context).translate('heat sensation'),'heat sensation'],
-      "4": [AppLocalizations.of(context).translate('ulcer'),'ulcer'],
-      "5": [AppLocalizations.of(context).translate('insomnia'),'insomnia'],
-      "6": [AppLocalizations.of(context).translate('cold sensation'),'cold sensation'],
-      "7": [AppLocalizations.of(context).translate('somnolence'),'somnolence'],
-      "8": [AppLocalizations.of(context).translate('polydipsia'),'polydipsia'],
-      "9": [AppLocalizations.of(context).translate('delayed puberty'),'delayed puberty'],
-      "10":[ AppLocalizations.of(context).translate('bleeding'),'bleeding'],
-      "11":[ AppLocalizations.of(context).translate('fatigue'),'fatigue'],
-      "12": [AppLocalizations.of(context).translate('pallor'),'pallor'],
-      "13": [AppLocalizations.of(context).translate('lump'),'lump'],
-      "14": [AppLocalizations.of(context).translate('other health problems'),'other health problems'],
-      "15": [AppLocalizations.of(context).translate('malaise'),'malaise'],
-      "16": [AppLocalizations.of(context).translate('short stature'),'short stature'],
-      "17": [AppLocalizations.of(context).translate('taste loss'),'taste loss'],
+      "1": [AppLocalizations.of(context).translate('sweating'), 'sweating'],
+      "2": [AppLocalizations.of(context).translate('fever'), 'fever'],
+      "3": [
+        AppLocalizations.of(context).translate('heat sensation'),
+        'heat sensation'
+      ],
+      "4": [AppLocalizations.of(context).translate('ulcer'), 'ulcer'],
+      "5": [AppLocalizations.of(context).translate('insomnia'), 'insomnia'],
+      "6": [
+        AppLocalizations.of(context).translate('cold sensation'),
+        'cold sensation'
+      ],
+      "7": [AppLocalizations.of(context).translate('somnolence'), 'somnolence'],
+      "8": [AppLocalizations.of(context).translate('polydipsia'), 'polydipsia'],
+      "9": [
+        AppLocalizations.of(context).translate('delayed puberty'),
+        'delayed puberty'
+      ],
+      "10": [AppLocalizations.of(context).translate('bleeding'), 'bleeding'],
+      "11": [AppLocalizations.of(context).translate('fatigue'), 'fatigue'],
+      "12": [AppLocalizations.of(context).translate('pallor'), 'pallor'],
+      "13": [AppLocalizations.of(context).translate('lump'), 'lump'],
+      "14": [
+        AppLocalizations.of(context).translate('other health problems'),
+        'other health problems'
+      ],
+      "15": [AppLocalizations.of(context).translate('malaise'), 'malaise'],
+      "16": [
+        AppLocalizations.of(context).translate('short stature'),
+        'short stature'
+      ],
+      "17": [
+        AppLocalizations.of(context).translate('taste loss'),
+        'taste loss'
+      ],
     };
     final bpPrLab = {
       "1": AppLocalizations.of(context).translate(''),
@@ -649,148 +824,352 @@ class _PatientComplainState extends State<PatientComplain> {
     };
 
     final injuriesSuicideIntoxicationBurn = {
-      "1": [AppLocalizations.of(context).translate('FFH'),'FFH'],
-      "2": [AppLocalizations.of(context).translate('RTA'),'RTA'],
-      "3": [AppLocalizations.of(context).translate('stab'),'stab'],
-      "4": [AppLocalizations.of(context).translate('shot'),'shot'],
-      "5": [AppLocalizations.of(context).translate('other injuries'),'other injuries'],
-      "6": [AppLocalizations.of(context).translate('suicide'),'suicide'],
-      "7": [AppLocalizations.of(context).translate('intoxication'),'intoxication'],
-      "8": [AppLocalizations.of(context).translate('burn'),'burn'],
-      "9": [AppLocalizations.of(context).translate('msk injury'),'msk injury'],
-      "10":[ AppLocalizations.of(context).translate('sport injury'),'sport injury'],
+      "1": [AppLocalizations.of(context).translate('FFH'), 'FFH'],
+      "2": [AppLocalizations.of(context).translate('RTA'), 'RTA'],
+      "3": [AppLocalizations.of(context).translate('stab'), 'stab'],
+      "4": [AppLocalizations.of(context).translate('shot'), 'shot'],
+      "5": [
+        AppLocalizations.of(context).translate('other injuries'),
+        'other injuries'
+      ],
+      "6": [AppLocalizations.of(context).translate('suicide'), 'suicide'],
+      "7": [
+        AppLocalizations.of(context).translate('intoxication'),
+        'intoxication'
+      ],
+      "8": [AppLocalizations.of(context).translate('burn'), 'burn'],
+      "9": [AppLocalizations.of(context).translate('msk injury'), 'msk injury'],
+      "10": [
+        AppLocalizations.of(context).translate('sport injury'),
+        'sport injury'
+      ],
     };
 
     final mouth = {
-      "1": [AppLocalizations.of(context).translate('mouth deviation'),'mouth deviation'],
-      "2": [AppLocalizations.of(context).translate('cleft lip'),'cleft lip'],
-      "3": [AppLocalizations.of(context).translate('cleft palate'),'cleft palate'],
-      "4": [AppLocalizations.of(context).translate('disease of the mouth'),'disease of the mouth'],
+      "1": [
+        AppLocalizations.of(context).translate('mouth deviation'),
+        'mouth deviation'
+      ],
+      "2": [AppLocalizations.of(context).translate('cleft lip'), 'cleft lip'],
+      "3": [
+        AppLocalizations.of(context).translate('cleft palate'),
+        'cleft palate'
+      ],
+      "4": [
+        AppLocalizations.of(context).translate('disease of the mouth'),
+        'disease of the mouth'
+      ],
     };
     final appetite = {
-      "1": [AppLocalizations.of(context).translate('polyphagia'),'polyphagia'],
-      "2": [AppLocalizations.of(context).translate('weight gain'),'weight gain'],
-      "3": [AppLocalizations.of(context).translate('weight loss'),'weight loss'],
-      "4": [AppLocalizations.of(context).translate('anorexia'),'anorexia'],
+      "1": [AppLocalizations.of(context).translate('polyphagia'), 'polyphagia'],
+      "2": [
+        AppLocalizations.of(context).translate('weight gain'),
+        'weight gain'
+      ],
+      "3": [
+        AppLocalizations.of(context).translate('weight loss'),
+        'weight loss'
+      ],
+      "4": [AppLocalizations.of(context).translate('anorexia'), 'anorexia'],
     };
 
     final entThroat = {
-      "1": [AppLocalizations.of(context).translate('hoarseness'),'hoarseness'],
-      "2": [AppLocalizations.of(context).translate('sore throat'),'sore throat'],
-      "3": [AppLocalizations.of(context).translate('other ent problems'),'other ent problems'],
+      "1": [AppLocalizations.of(context).translate('hoarseness'), 'hoarseness'],
+      "2": [
+        AppLocalizations.of(context).translate('sore throat'),
+        'sore throat'
+      ],
+      "3": [
+        AppLocalizations.of(context).translate('other ent problems'),
+        'other ent problems'
+      ],
     };
     final entNose = {
-      "1": [AppLocalizations.of(context).translate('nasal discharge'),'nasal discharge'],
-      "2": [AppLocalizations.of(context).translate('nasal bleeding'),'nasal bleeding'],
-      "3": [AppLocalizations.of(context).translate('nasal obstruction'),'nasal obstruction'],
-      "4": [AppLocalizations.of(context).translate('nasal pain'),'nasal pain'],
-      "5": [AppLocalizations.of(context).translate('nasal mass'),'nasal mass'],
-      "6": [AppLocalizations.of(context).translate('nasal deformity'),'nasal deformity'],
-      "7": [AppLocalizations.of(context).translate('sneezing'),'sneezing'],
-      "8": [AppLocalizations.of(context).translate('nasal itching'),'nasal itching'],
-      "9": [AppLocalizations.of(context).translate('anosmia'),'anosmia'],
-      "10":[ AppLocalizations.of(context).translate('enlarged nose'),'enlarged nose'],
-      "11": [AppLocalizations.of(context).translate('other ent problems'),'other ent problems'],
+      "1": [
+        AppLocalizations.of(context).translate('nasal discharge'),
+        'nasal discharge'
+      ],
+      "2": [
+        AppLocalizations.of(context).translate('nasal bleeding'),
+        'nasal bleeding'
+      ],
+      "3": [
+        AppLocalizations.of(context).translate('nasal obstruction'),
+        'nasal obstruction'
+      ],
+      "4": [AppLocalizations.of(context).translate('nasal pain'), 'nasal pain'],
+      "5": [AppLocalizations.of(context).translate('nasal mass'), 'nasal mass'],
+      "6": [
+        AppLocalizations.of(context).translate('nasal deformity'),
+        'nasal deformity'
+      ],
+      "7": [AppLocalizations.of(context).translate('sneezing'), 'sneezing'],
+      "8": [
+        AppLocalizations.of(context).translate('nasal itching'),
+        'nasal itching'
+      ],
+      "9": [AppLocalizations.of(context).translate('anosmia'), 'anosmia'],
+      "10": [
+        AppLocalizations.of(context).translate('enlarged nose'),
+        'enlarged nose'
+      ],
+      "11": [
+        AppLocalizations.of(context).translate('other ent problems'),
+        'other ent problems'
+      ],
     };
 
     final entEar = {
-      "1": [AppLocalizations.of(context).translate('deafness'),'deafness'],
-      "2": [AppLocalizations.of(context).translate('vertigo'),'vertigo'],
-      "3": [AppLocalizations.of(context).translate('tinnitus'),'tinnitus'],
-      "4": [AppLocalizations.of(context).translate('ear discharge'),'ear discharge'],
-      "5": [AppLocalizations.of(context).translate('ear redness'),'ear redness'],
-      "6": [AppLocalizations.of(context).translate('ear pain'),'ear pain'],
-      "7": [AppLocalizations.of(context).translate('other ent problems'),'other ent problems'],
+      "1": [AppLocalizations.of(context).translate('deafness'), 'deafness'],
+      "2": [AppLocalizations.of(context).translate('vertigo'), 'vertigo'],
+      "3": [AppLocalizations.of(context).translate('tinnitus'), 'tinnitus'],
+      "4": [
+        AppLocalizations.of(context).translate('ear discharge'),
+        'ear discharge'
+      ],
+      "5": [
+        AppLocalizations.of(context).translate('ear redness'),
+        'ear redness'
+      ],
+      "6": [AppLocalizations.of(context).translate('ear pain'), 'ear pain'],
+      "7": [
+        AppLocalizations.of(context).translate('other ent problems'),
+        'other ent problems'
+      ],
     };
 
     final dermatology = {
-      "1": [AppLocalizations.of(context).translate('dry skin'),'dry skin'],
-      "2": [AppLocalizations.of(context).translate('dry hair'),'dry hair'],
-      "3": [AppLocalizations.of(context).translate('skin rash'),'skin rash'],
-      "4": [AppLocalizations.of(context).translate('hair problems'),'hair problems'],
-      "5": [AppLocalizations.of(context).translate('skin redness'),'skin redness'],
-      "6": [AppLocalizations.of(context).translate('skin lesion'),'skin lesion'],
-      "7": [AppLocalizations.of(context).translate('skin appendage'),'skin appendage'],
-      "8": [AppLocalizations.of(context).translate('skin itching'),'skin itching'],
-      "9": [AppLocalizations.of(context).translate('acne'),'acne'],
-      "10": [AppLocalizations.of(context).translate('bruising'),'bruising'],
-      "11": [AppLocalizations.of(context).translate('female hirsutism'),'female hirsutism'],
+      "1": [AppLocalizations.of(context).translate('dry skin'), 'dry skin'],
+      "2": [AppLocalizations.of(context).translate('dry hair'), 'dry hair'],
+      "3": [AppLocalizations.of(context).translate('skin rash'), 'skin rash'],
+      "4": [
+        AppLocalizations.of(context).translate('hair problems'),
+        'hair problems'
+      ],
+      "5": [
+        AppLocalizations.of(context).translate('skin redness'),
+        'skin redness'
+      ],
+      "6": [
+        AppLocalizations.of(context).translate('skin lesion'),
+        'skin lesion'
+      ],
+      "7": [
+        AppLocalizations.of(context).translate('skin appendage'),
+        'skin appendage'
+      ],
+      "8": [
+        AppLocalizations.of(context).translate('skin itching'),
+        'skin itching'
+      ],
+      "9": [AppLocalizations.of(context).translate('acne'), 'acne'],
+      "10": [AppLocalizations.of(context).translate('bruising'), 'bruising'],
+      "11": [
+        AppLocalizations.of(context).translate('female hirsutism'),
+        'female hirsutism'
+      ],
     };
 
     final gynecology = {
-      "1": [AppLocalizations.of(context).translate('amenorrhea'),'amenorrhea'],
-      "2": [AppLocalizations.of(context).translate('oligomenorrhea'),'oligomenorrhea'],
-      "3": [AppLocalizations.of(context).translate('decrease libido'),'decrease libido'],
-      "4": [AppLocalizations.of(context).translate('menorrhagia'),'menorrhagia'],
-      "5": [AppLocalizations.of(context).translate('female infertility'),'female infertility'],
-      "6": [AppLocalizations.of(context).translate('female hirsutism'),'female hirsutism'],
-      "7": [AppLocalizations.of(context).translate('prolong pregnancy'),'prolong pregnancy'],
-      "8": [AppLocalizations.of(context).translate('postmenopausal bleeding'),'postmenopausal bleeding'],
-      "9": [AppLocalizations.of(context)
-          .translate('other gynecological and obstetrical problems'),'other gynecological and obstetrical problems'],
-      "10": [AppLocalizations.of(context).translate('miscarriage'),'miscarriage'],
+      "1": [AppLocalizations.of(context).translate('amenorrhea'), 'amenorrhea'],
+      "2": [
+        AppLocalizations.of(context).translate('oligomenorrhea'),
+        'oligomenorrhea'
+      ],
+      "3": [
+        AppLocalizations.of(context).translate('decrease libido'),
+        'decrease libido'
+      ],
+      "4": [
+        AppLocalizations.of(context).translate('menorrhagia'),
+        'menorrhagia'
+      ],
+      "5": [
+        AppLocalizations.of(context).translate('female infertility'),
+        'female infertility'
+      ],
+      "6": [
+        AppLocalizations.of(context).translate('female hirsutism'),
+        'female hirsutism'
+      ],
+      "7": [
+        AppLocalizations.of(context).translate('prolong pregnancy'),
+        'prolong pregnancy'
+      ],
+      "8": [
+        AppLocalizations.of(context).translate('postmenopausal bleeding'),
+        'postmenopausal bleeding'
+      ],
+      "9": [
+        AppLocalizations.of(context)
+            .translate('other gynecological and obstetrical problems'),
+        'other gynecological and obstetrical problems'
+      ],
+      "10": [
+        AppLocalizations.of(context).translate('miscarriage'),
+        'miscarriage'
+      ],
     };
 
     final uroKidney = {
-      "1": [AppLocalizations.of(context).translate('incontinence'),'incontinence'],
-      "2": [AppLocalizations.of(context).translate('polyuria'),'polyuria'],
-      "3": [AppLocalizations.of(context)
-          .translate('abnormal urethral opening site'),'abnormal urethral opening site'],
-      "4": [AppLocalizations.of(context).translate('suprapubic pain'),'suprapubic pain'],
-      "5": [AppLocalizations.of(context).translate('frequency'),'frequency'],
-      "6": [AppLocalizations.of(context).translate('flank pain'),'flank pain'],
-      "7": [AppLocalizations.of(context).translate('retention'),'retention'],
-      "8": [AppLocalizations.of(context).translate('urgency'),'urgency'],
-      "9": [AppLocalizations.of(context).translate('dysuria'),'dysuria'],
-      "10": [AppLocalizations.of(context).translate('hematuria'),'hematuria'],
-      "11": [AppLocalizations.of(context).translate('other urological problems'),'other urological problems'],
-      "12": [AppLocalizations.of(context).translate('nocturia'),'nocturia'],
+      "1": [
+        AppLocalizations.of(context).translate('incontinence'),
+        'incontinence'
+      ],
+      "2": [AppLocalizations.of(context).translate('polyuria'), 'polyuria'],
+      "3": [
+        AppLocalizations.of(context)
+            .translate('abnormal urethral opening site'),
+        'abnormal urethral opening site'
+      ],
+      "4": [
+        AppLocalizations.of(context).translate('suprapubic pain'),
+        'suprapubic pain'
+      ],
+      "5": [AppLocalizations.of(context).translate('frequency'), 'frequency'],
+      "6": [AppLocalizations.of(context).translate('flank pain'), 'flank pain'],
+      "7": [AppLocalizations.of(context).translate('retention'), 'retention'],
+      "8": [AppLocalizations.of(context).translate('urgency'), 'urgency'],
+      "9": [AppLocalizations.of(context).translate('dysuria'), 'dysuria'],
+      "10": [AppLocalizations.of(context).translate('hematuria'), 'hematuria'],
+      "11": [
+        AppLocalizations.of(context).translate('other urological problems'),
+        'other urological problems'
+      ],
+      "12": [AppLocalizations.of(context).translate('nocturia'), 'nocturia'],
     };
 
     final maleGenital = {
-      "1": [AppLocalizations.of(context).translate('decrease libido'),'decrease libido'],
-      "2": [AppLocalizations.of(context).translate('delayed puberty'),'delayed puberty'],
-      "3": [AppLocalizations.of(context).translate('male infertility'),'male infertility'],
-      "4": [AppLocalizations.of(context).translate('scrotal swelling'),'scrotal swelling'],
-      "5": [AppLocalizations.of(context).translate('empty scrotum'),'empty scrotum'],
-      "6": [AppLocalizations.of(context).translate('abnormal penile size'),'abnormal penile size'],
-      "7": [AppLocalizations.of(context).translate('penile mass'),'penile mass'],
-      "8": [AppLocalizations.of(context).translate('other penile problems'),'other penile problems'],
-      "9": [AppLocalizations.of(context).translate('scrotal pain'),'scrotal pain'],
-      "10": [AppLocalizations.of(context).translate('priapism'),'priapism'],
-      "11": [AppLocalizations.of(context).translate('priapism'),'priapism'],
-      "12": [AppLocalizations.of(context).translate('hematospermia'),'hematospermia'],
+      "1": [
+        AppLocalizations.of(context).translate('decrease libido'),
+        'decrease libido'
+      ],
+      "2": [
+        AppLocalizations.of(context).translate('delayed puberty'),
+        'delayed puberty'
+      ],
+      "3": [
+        AppLocalizations.of(context).translate('male infertility'),
+        'male infertility'
+      ],
+      "4": [
+        AppLocalizations.of(context).translate('scrotal swelling'),
+        'scrotal swelling'
+      ],
+      "5": [
+        AppLocalizations.of(context).translate('empty scrotum'),
+        'empty scrotum'
+      ],
+      "6": [
+        AppLocalizations.of(context).translate('abnormal penile size'),
+        'abnormal penile size'
+      ],
+      "7": [
+        AppLocalizations.of(context).translate('penile mass'),
+        'penile mass'
+      ],
+      "8": [
+        AppLocalizations.of(context).translate('other penile problems'),
+        'other penile problems'
+      ],
+      "9": [
+        AppLocalizations.of(context).translate('scrotal pain'),
+        'scrotal pain'
+      ],
+      "10": [AppLocalizations.of(context).translate('priapism'), 'priapism'],
+      "11": [AppLocalizations.of(context).translate('priapism'), 'priapism'],
+      "12": [
+        AppLocalizations.of(context).translate('hematospermia'),
+        'hematospermia'
+      ],
     };
 
     final ophthalmology = {
-      "1": [AppLocalizations.of(context).translate('open eye'),'open eye'],
-      "2": [AppLocalizations.of(context).translate('blindness'),'blindness'],
-      "3": [AppLocalizations.of(context).translate('photophobia'),'photophobia'],
-      "4": [AppLocalizations.of(context).translate('double vision'),'double vision'],
-      "5": [AppLocalizations.of(context).translate('lid drop'),'lid drop'],
-      "6": [AppLocalizations.of(context).translate('blurred vision'),'blurred vision'],
-      "7": [AppLocalizations.of(context).translate('squint'),'squint'],
-      "8": [AppLocalizations.of(context).translate('eye redness'),'eye redness'],
-      "9": [AppLocalizations.of(context).translate('eye pain'),'eye pain'],
-      "10": [AppLocalizations.of(context).translate('eye discharge'),'eye discharge'],
-      "11": [AppLocalizations.of(context).translate('eye itching'),'eye itching'],
-      "12": [AppLocalizations.of(context).translate('eye pigmentation'),'eye pigmentation'],
-      "13": [AppLocalizations.of(context).translate('periorbital edema'),'periorbital edema'],
-      "14": [AppLocalizations.of(context).translate('eyelid deformity'),'eyelid deformity'],
-      "15": [AppLocalizations.of(context).translate('dry eye'),'dry eye'],
-      "16": [AppLocalizations.of(context).translate('ophthalmoplegia'),'ophthalmoplegia'],
-      "17": [AppLocalizations.of(context)
-          .translate('other ophthalmological problems'),'other ophthalmological problems'],
+      "1": [AppLocalizations.of(context).translate('open eye'), 'open eye'],
+      "2": [AppLocalizations.of(context).translate('blindness'), 'blindness'],
+      "3": [
+        AppLocalizations.of(context).translate('photophobia'),
+        'photophobia'
+      ],
+      "4": [
+        AppLocalizations.of(context).translate('double vision'),
+        'double vision'
+      ],
+      "5": [AppLocalizations.of(context).translate('lid drop'), 'lid drop'],
+      "6": [
+        AppLocalizations.of(context).translate('blurred vision'),
+        'blurred vision'
+      ],
+      "7": [AppLocalizations.of(context).translate('squint'), 'squint'],
+      "8": [
+        AppLocalizations.of(context).translate('eye redness'),
+        'eye redness'
+      ],
+      "9": [AppLocalizations.of(context).translate('eye pain'), 'eye pain'],
+      "10": [
+        AppLocalizations.of(context).translate('eye discharge'),
+        'eye discharge'
+      ],
+      "11": [
+        AppLocalizations.of(context).translate('eye itching'),
+        'eye itching'
+      ],
+      "12": [
+        AppLocalizations.of(context).translate('eye pigmentation'),
+        'eye pigmentation'
+      ],
+      "13": [
+        AppLocalizations.of(context).translate('periorbital edema'),
+        'periorbital edema'
+      ],
+      "14": [
+        AppLocalizations.of(context).translate('eyelid deformity'),
+        'eyelid deformity'
+      ],
+      "15": [AppLocalizations.of(context).translate('dry eye'), 'dry eye'],
+      "16": [
+        AppLocalizations.of(context).translate('ophthalmoplegia'),
+        'ophthalmoplegia'
+      ],
+      "17": [
+        AppLocalizations.of(context)
+            .translate('other ophthalmological problems'),
+        'other ophthalmological problems'
+      ],
     };
     final breast = {
-      "1": [AppLocalizations.of(context).translate('gynecomastia'),'gynecomastia'],
-      "2": [AppLocalizations.of(context).translate('galactorrhea'),'galactorrhea'],
-      "3": [AppLocalizations.of(context).translate('breast mass'),'breast mass'],
-      "4": [AppLocalizations.of(context).translate('breast pain'),'breast pain'],
-      "5": [AppLocalizations.of(context).translate('breast discharge'),'breast discharge'],
-      "6": [AppLocalizations.of(context).translate('breast lump'),'breast lump'],
-      "7": [AppLocalizations.of(context).translate('breast skin lesion'),'breast skin lesion'],
-      "8": [AppLocalizations.of(context).translate('other breast  problems'),'other breast  problems'],
+      "1": [
+        AppLocalizations.of(context).translate('gynecomastia'),
+        'gynecomastia'
+      ],
+      "2": [
+        AppLocalizations.of(context).translate('galactorrhea'),
+        'galactorrhea'
+      ],
+      "3": [
+        AppLocalizations.of(context).translate('breast mass'),
+        'breast mass'
+      ],
+      "4": [
+        AppLocalizations.of(context).translate('breast pain'),
+        'breast pain'
+      ],
+      "5": [
+        AppLocalizations.of(context).translate('breast discharge'),
+        'breast discharge'
+      ],
+      "6": [
+        AppLocalizations.of(context).translate('breast lump'),
+        'breast lump'
+      ],
+      "7": [
+        AppLocalizations.of(context).translate('breast skin lesion'),
+        'breast skin lesion'
+      ],
+      "8": [
+        AppLocalizations.of(context).translate('other breast  problems'),
+        'other breast  problems'
+      ],
     };
 
     void populateCardioRespiratory() {
@@ -1662,14 +2041,18 @@ class _PatientComplainState extends State<PatientComplain> {
                         ),
                         filled: true,
                       )),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      addRadioButton(
-                          0, AppLocalizations.of(context).translate('male')),
-                      addRadioButton(
-                          1, AppLocalizations.of(context).translate('female')),
-                    ],
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        addRadioButton(
+                            0, AppLocalizations.of(context).translate('male')),
+                        addRadioButton(1,
+                            AppLocalizations.of(context).translate('female')),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -1821,14 +2204,21 @@ class _PatientComplainState extends State<PatientComplain> {
                               .translate('other_symptoms')),
                         ),
                       ],
-                      value: regionSelected01,
+                      //if one choose a region then reselect another one ---> there will be an error which
+                      // was fixed by removing the arguement value
+                      //value: regionSelected01,
                       onChanged: (_value) => selected01(_value),
-                      hint: Text(AppLocalizations.of(context)
-                          .translate('complain_area')),
+                      hint: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text(AppLocalizations.of(context)
+                            .translate('complain_area')),
+                      ),
                     ),
                     DropdownButton<String>(
                       isExpanded: true,
                       items: menuitems,
+                      // the same reason above
+                      //value: complainSelected01,
                       onChanged: disabledropdown01
                           ? null
                           : (value) => secondselected(value),
@@ -1840,11 +2230,14 @@ class _PatientComplainState extends State<PatientComplain> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          AppLocalizations.of(context)
-                              .translate('other_complain'),
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
+                        FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(
+                            AppLocalizations.of(context)
+                                .translate('other_complain'),
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.bold),
+                          ),
                         ),
                         Switch(
                             value: _switch01,
@@ -2010,10 +2403,13 @@ class _PatientComplainState extends State<PatientComplain> {
                                 .translate('other_symptoms')),
                           ),
                         ],
-                        value: regionSelected02,
+                        //value: regionSelected02,
                         onChanged: (_value) => selected02(_value),
-                        hint: Text(AppLocalizations.of(context)
-                            .translate('complain_area')),
+                        hint: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(AppLocalizations.of(context)
+                              .translate('complain_area')),
+                        ),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
@@ -2029,11 +2425,14 @@ class _PatientComplainState extends State<PatientComplain> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            AppLocalizations.of(context)
-                                .translate('other_complain'),
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
+                          FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('other_complain'),
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Switch(
                               value: _switch02,
@@ -2200,10 +2599,13 @@ class _PatientComplainState extends State<PatientComplain> {
                                 .translate('other_symptoms')),
                           ),
                         ],
-                        value: regionSelected03,
+                        //value: regionSelected03,
                         onChanged: (_value) => selected03(_value),
-                        hint: Text(AppLocalizations.of(context)
-                            .translate('complain_area')),
+                        hint: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(AppLocalizations.of(context)
+                              .translate('complain_area')),
+                        ),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
@@ -2219,11 +2621,14 @@ class _PatientComplainState extends State<PatientComplain> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            AppLocalizations.of(context)
-                                .translate('other_complain'),
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
+                          FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('other_complain'),
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Switch(
                               value: _switch03,
@@ -2390,10 +2795,13 @@ class _PatientComplainState extends State<PatientComplain> {
                                 .translate('other_symptoms')),
                           ),
                         ],
-                        value: regionSelected04,
+                        //value: regionSelected04,
                         onChanged: (_value) => selected04(_value),
-                        hint: Text(AppLocalizations.of(context)
-                            .translate('complain_area')),
+                        hint: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(AppLocalizations.of(context)
+                              .translate('complain_area')),
+                        ),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
@@ -2409,11 +2817,14 @@ class _PatientComplainState extends State<PatientComplain> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            AppLocalizations.of(context)
-                                .translate('other_complain'),
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
+                          FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('other_complain'),
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Switch(
                               value: _switch04,
@@ -2580,10 +2991,13 @@ class _PatientComplainState extends State<PatientComplain> {
                                 .translate('other_symptoms')),
                           ),
                         ],
-                        value: regionSelected05,
+                        //value: regionSelected05,
                         onChanged: (_value) => selected05(_value),
-                        hint: Text(AppLocalizations.of(context)
-                            .translate('complain_area')),
+                        hint: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(AppLocalizations.of(context)
+                              .translate('complain_area')),
+                        ),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
@@ -2599,11 +3013,14 @@ class _PatientComplainState extends State<PatientComplain> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            AppLocalizations.of(context)
-                                .translate('other_complain'),
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
+                          FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('other_complain'),
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Switch(
                               value: _switch05,
@@ -2770,10 +3187,13 @@ class _PatientComplainState extends State<PatientComplain> {
                                 .translate('other_symptoms')),
                           ),
                         ],
-                        value: regionSelected06,
+                        //value: regionSelected06,
                         onChanged: (_value) => selected06(_value),
-                        hint: Text(AppLocalizations.of(context)
-                            .translate('complain_area')),
+                        hint: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(AppLocalizations.of(context)
+                              .translate('complain_area')),
+                        ),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
@@ -2789,11 +3209,14 @@ class _PatientComplainState extends State<PatientComplain> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            AppLocalizations.of(context)
-                                .translate('other_complain'),
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
+                          FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('other_complain'),
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Switch(
                               value: _switch06,
@@ -2959,10 +3382,13 @@ class _PatientComplainState extends State<PatientComplain> {
                                 .translate('other_symptoms')),
                           ),
                         ],
-                        value: regionSelected07,
+                        //value: regionSelected07,
                         onChanged: (_value) => selected07(_value),
-                        hint: Text(AppLocalizations.of(context)
-                            .translate('complain_area')),
+                        hint: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(AppLocalizations.of(context)
+                              .translate('complain_area')),
+                        ),
                       ),
                       DropdownButton<String>(
                         isExpanded: true,
@@ -2983,63 +3409,72 @@ class _PatientComplainState extends State<PatientComplain> {
             SizedBox(
               height: 20,
             ),
-            RaisedButton.icon(
-              icon: Icon(
-                Icons.arrow_forward,
-                color: Colors.white,
-              ),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(80.0)),
-              color: Colors.deepOrange,
-              label: Text(AppLocalizations.of(context).translate('next'),
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold)),
-              onPressed: () {
-                print(_age);
-                if (_age == '') {
-                  setState(() {
-                    _error = 'Please , enter your age';
-                  });
-                  _showSnackBar();
-                } else if (int.parse(_age) > 130) {
-                  setState(() {
-                    _error = 'Age should be from 0 to 130';
-                  });
-                  _showSnackBar();
-                } else {
-                  getage();
-                  if (select == '') {
+            //a conflict happened here and solved
+            Container(
+              height: 40.0,
+              width: 200.0,
+              child: RaisedButton.icon(
+                icon: Icon(
+                  Icons.arrow_forward,
+                  color: Colors.white,
+                ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(80.0)),
+                color: Colors.deepOrange,
+                label: Text(AppLocalizations.of(context).translate('next'),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold)),
+                onPressed: () {
+                  print(_age);
+                  if (_age == '') {
                     setState(() {
-                      _error = 'Please , select a gender';
+                      _error = AppLocalizations.of(context).translate(
+                          "age_message"); //'Please , enter your age';
+                    });
+                    _showSnackBar();
+                  } else if (int.parse(_age) > 130) {
+                    setState(() {
+                      _error = AppLocalizations.of(context).translate(
+                          "age_message_error"); //'Age should be from 0 to 130';
                     });
                     _showSnackBar();
                   } else {
-                    if (complainSelected01 == "") {
+                    getage();
+                    if (select == '') {
                       setState(() {
-                        _error = 'Please , select a main complaint';
+                        _error = AppLocalizations.of(context).translate(
+                            "gender_message"); //'Please , select a gender';
                       });
                       _showSnackBar();
                     } else {
-                      print(complainSelected01);
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => PatientRiskFactors(
-                            chiefcomplaint: complainSelected01,
-                            sym2: complainSelected02,
-                            sym3: complainSelected03,
-                            sym4: complainSelected04,
-                            sym5: complainSelected05,
-                            sym6: complainSelected06,
-                            sym7: complainSelected07,
+                      if (complainSelected01 == null) {
+                        setState(() {
+                          _error = AppLocalizations.of(context).translate(
+                              "complain_message"); //'Please , select a main complaint';
+                        });
+                        _showSnackBar();
+                      } else {
+                        print(complainSelected01);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => PatientRiskFactors(
+                              chiefcomplaint: complainSelected01,
+                              sym2: complainSelected02,
+                              sym3: complainSelected03,
+                              sym4: complainSelected04,
+                              sym5: complainSelected05,
+                              sym6: complainSelected06,
+                              sym7: complainSelected07,
+                            ),
                           ),
-                        ),
-                      );
+                        );
+                      }
                     }
                   }
-                }
-              },
+                },
+              ),
             ),
           ],
         ),

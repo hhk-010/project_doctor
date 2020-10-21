@@ -110,10 +110,10 @@ countfinal() {
       FinalScore.speciality = _scoremap[x][0];
       if (_scoremap[x][0] != _scoremap[x][1]) {
         FinalScore.speciality2 = _scoremap[x][1];
-        FinalScore.Or = 'Or';
+        FinalScore.Or = "Or";
       } else {
         FinalScore.speciality2 = '';
-        FinalScore.Or = '';
+        FinalScore.Or = "";
       }
     }
   }

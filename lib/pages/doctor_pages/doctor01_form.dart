@@ -344,17 +344,6 @@ class _DoctorFormState extends State<DoctorForm> {
                       value == null ? 'Select your province' : null,
                   onChanged: (val) => setState(() => currentProvince = val),
                 ),
-                /*TextFormField(
-                  validator: (val) =>
-                      val.isEmpty ? 'Enter your province' : null,
-                  onChanged: (val) => setState(() => currentProvince = val),
-                  decoration: textInputdecoration.copyWith(
-                    hintText:
-                        AppLocalizations.of(context).translate('province'),
-                    labelText:
-                        AppLocalizations.of(context).translate('province'),
-                  ),
-                ),*/
                 Spacer(
                   flex: 5,
                 ),

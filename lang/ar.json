@@ -8,16 +8,17 @@
     "submit" : "تم",
     "update" : "Update",
     "OK" : "تم",
+    "ok":"تم",
     "google_map" : "خرائط كوكل",
     "Or": " او ",
     "":"",
 
 "regions":"---------------------------------",
     "Baghdad":"بغداد",
-    "Northern Region":"المنطقة الشمالية",
-    "Southern Region":"المنطقة الجنوبية",
-    "Western Region":"المنطقة الغربية",
-    "Middle Region":"المنطقة الوسطى",
+    "Northern Region":"المنطقة الشمالية في العراق",
+    "Southern Region":"المنطقة الجنوبية في العراق",
+    "Western Region":"المنطقة الغربية في العراق",
+    "Middle Region":"المنطقة الوسطى في العراق",
 
 
 
@@ -26,6 +27,12 @@
     "snack_connectivity" : "لا يوجد اتصال بالشبكه",
     "snack_register" : "خطا في التسجيل اضف معلومات صحيحه اولا",
     "snack_map" : "حدد مكان عيادتك اولا",
+    "snack_map_patient" : "رجاء حدد موقعك اولا",
+    "age_message":"حدد عمرك لطفا",
+    "age_message_error":"يجب ان يكون العمر بين 0 و 130 عام",
+    "gender_message":"حدد الجنس لطفا",
+    "complain_message":"اختر الشكوى الرئيسية لطفا",
+
 
 
 "doctor_page" : "=======================================",
@@ -113,6 +120,26 @@
     "choose_complain" : "اختر الاعراض",
     "first_choose_complain" : "اولا اختر المنطقه",
     "add_complains" : "الاعراض الاخرى",
+    "result_speciality" : "الاعراض التي تعاني منها تتفق مع الاختصاص الطبي",
+    "get_location" : "لاستمرار يجب تحديد موقعك من خلال احدى الخيارين",
+    "auto_location" : "تحديد موقع الجهاز الحالي",
+    "speciality_result" : "الاختصاص الطبي",
+    "your_location" : "حدد موقعك",
+    "region" : "موقعك الجغرافي في العراق",
+    "select_region" : "حدد موقعك",
+    "northen_region" : "المنطقه الشماليه في العراق",
+    "southern_region" : "المنطقه الجنوبيه في العراق",
+    "centeral_region" : "المنطقه الوسطى في العراق",
+    "western_region" : "المنطقه الغربيه في العراق",
+    "patient_map_title" : "حدد موقعك في الخريطه",
+    "doctor_location" : "موقع الدكتور في الخريطه",
+
+
+
+
+
+
+
 
 
 "body_regions" : "=======================================",

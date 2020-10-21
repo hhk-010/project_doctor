@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
+import 'package:project_doctor/services/app_localizations.dart';
 
 class PatientMap extends StatefulWidget {
   final String speciality;
@@ -17,7 +19,7 @@ class _PatientMapState extends State<PatientMap> {
   String speciality;
   String province;
   _PatientMapState({this.speciality, this.province});
-  String _error='';
+  String _error = '';
 
   var patientlatlng;
   List<Marker> _mymarker = [];
@@ -62,6 +64,7 @@ class _PatientMapState extends State<PatientMap> {
     );
     _scaffoldkey.currentState.showSnackBar(_snackBar);
   }
+
   //---------------------the end ----------------------
   //-------------------checking internet connection
   bool _isInternet = true;
@@ -77,6 +80,7 @@ class _PatientMapState extends State<PatientMap> {
       setState(() {});
     }
   }
+
   //------------the end --------------------
   @override
   void initState() {
@@ -90,10 +94,14 @@ class _PatientMapState extends State<PatientMap> {
       key: _scaffoldkey,
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text(
-          'Tap on your location',
-          style: TextStyle(fontSize: 25),
+        title: FittedBox(
+          fit: BoxFit.fitWidth,
+                  child: Text(
+            AppLocalizations.of(context).translate('patient_map_title'),
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          ),
         ),
+        elevation: 0,
         centerTitle: true,
       ),
       body: Stack(
@@ -109,14 +117,16 @@ class _PatientMapState extends State<PatientMap> {
             padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 25.0),
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
-              child: Text('OK'),
-              onPressed: () async{
+              child: Text(AppLocalizations.of(context).translate('ok'),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+              onPressed: () async {
                 // there is a bug in this snackbar => to be seen-----
                 await checkInternet();
-                if(_isInternet){
+                if (_isInternet) {
                   if (patientlatlng == null) {
                     setState(() {
-                      _error='Please , tap on your location';
+                      _error = AppLocalizations.of(context)
+                          .translate('snack_map_patient');
                     });
                     _showSnackBar();
                   } else {
@@ -129,13 +139,13 @@ class _PatientMapState extends State<PatientMap> {
                       Navigator.pushNamed(context, '/patient_result');
                     });
                   }
-                }else{
+                } else {
                   setState(() {
-                    _error='No internet connection';
+                    _error = AppLocalizations.of(context)
+                        .translate('snack_connectivity');
                   });
                   _showSnackBar();
                 }
-
               },
             ),
           ),
