@@ -38,8 +38,6 @@ class _PatientComplainState extends State<PatientComplain> {
     _scaffoldkey.currentState.showSnackBar(_snackBar);
   }
 
-  // =============================================Radio Buttons
-
   bool state = false;
 
   // ----------------Conditional DropDownMenu ------------------
@@ -66,19 +64,18 @@ class _PatientComplainState extends State<PatientComplain> {
   bool disabledropdown06 = true;
   bool disabledropdown07 = true;
 
-
   final cardioRespiratory = {
-    "1": "hemoptysis",
-    "2": "orthopnea",
-    "3": "PN dyspnea",
-    "4": "palpitation",
-    "5": "chest pain",
-    "6": "cough",
-    "7": "dyspnea",
-    "8": "cyanosis",
-    "9": "other cardiac problems",
-    "10": "wheeze",
-    "11": "other respiratory problems",
+    "1": ["hemoptysis", "hemoptysis"],
+    "2": ["orthopnea", "orthopnea"],
+    "3": ["PN dyspnea", "PN dyspnea"],
+    "4": ["palpitation", "palpitation"],
+    "5": ["chest pain", "chest pain"],
+    "6": ["cough", "cough"],
+    "7": ["dyspnea", "dyspnea"],
+    "8": ["cyanosis", "cyanosis"],
+    "9": ["other cardiac problems", "other cardiac problems"],
+    "10": ["wheeze", "wheeze"],
+    "11": ["other respiratory problems", "other respiratory problems"],
   };
   final gastroIntestinal = {
     "1": "abdominal pain",
@@ -388,8 +385,8 @@ class _PatientComplainState extends State<PatientComplain> {
   void populateCardioRespiratory() {
     for (String key in cardioRespiratory.keys) {
       menuitems.add(DropdownMenuItem<String>(
-        child: Text(cardioRespiratory[key]),
-        value: cardioRespiratory[key],
+        child: Text(cardioRespiratory[key][0]),
+        value: cardioRespiratory[key][1],
       ));
     }
   }
@@ -407,173 +404,234 @@ class _PatientComplainState extends State<PatientComplain> {
   bool _visibile06 = false;
   bool _switch06 = false;
 
-
   var regionSelected = TextEditingController();
+
+  List gender = ["Male", "Female"];
+  String select = '';
+  Row addRadioButton(int btnValue, String title) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Radio(
+          activeColor: Colors.deepOrange,
+          value: gender[btnValue],
+          groupValue: select,
+          onChanged: (value) {
+            setState(() {
+              select = value;
+            });
+          },
+        ),
+        Text(
+          title,
+          style: _textStylePatient,
+        )
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final cardioRespiratory = {
-      "1": AppLocalizations.of(context).translate('hemoptysis'),
-      "2": AppLocalizations.of(context).translate('orthopnea'),
-      "3": AppLocalizations.of(context).translate('PN dyspnea'),
-      "4": AppLocalizations.of(context).translate('palpitation'),
-      "5": AppLocalizations.of(context).translate('chest pain'),
-      "6": AppLocalizations.of(context).translate('cough'),
-      "7": AppLocalizations.of(context).translate('sputum'),
-      "8": AppLocalizations.of(context).translate('dyspnea'),
-      "9": AppLocalizations.of(context).translate('cyanosis'),
-      "10": AppLocalizations.of(context).translate('other cardiac problems'),
-      "11": AppLocalizations.of(context).translate('wheeze'),
-      "12":
-          AppLocalizations.of(context).translate('other respiratory problems'),
+      "1": [AppLocalizations.of(context).translate('hemoptysis'), 'hemoptysis'],
+      "2": [AppLocalizations.of(context).translate('orthopnea'), 'orthopnea'],
+      "3": [AppLocalizations.of(context).translate('PN dyspnea'), 'PN dyspnea'],
+      "4": [
+        AppLocalizations.of(context).translate('palpitation'),
+        'palpitation'
+      ],
+      "5": [AppLocalizations.of(context).translate('chest pain'), 'chest pain'],
+      "6": [AppLocalizations.of(context).translate('cough'), 'cough'],
+      "7": [AppLocalizations.of(context).translate('sputum'), 'sputum'],
+      "8": [AppLocalizations.of(context).translate('dyspnea'), 'dyspnea'],
+      "9": [AppLocalizations.of(context).translate('cyanosis'), 'cyanosis'],
+      "10": [
+        AppLocalizations.of(context).translate('other cardiac problems'),
+        'other cardiac problems'
+      ],
+      "11": [AppLocalizations.of(context).translate('wheeze'), 'wheeze'],
+      "12": [
+        AppLocalizations.of(context).translate('other respiratory problems'),
+        'other respiratory problems'
+      ]
     };
     final gastroIntestinal = {
-      "1": AppLocalizations.of(context).translate('abdominal pain'),
-      "2": AppLocalizations.of(context).translate('vomiting'),
-      "3": AppLocalizations.of(context).translate('constipation'),
-      "4": AppLocalizations.of(context).translate('bloody diarrhea'),
-      "5": AppLocalizations.of(context).translate('watery diarrhea'),
-      "6": AppLocalizations.of(context).translate('dysphagia'),
-      "7": AppLocalizations.of(context).translate('odynophagia'),
-      "8": AppLocalizations.of(context).translate('mucousy diarrhea'),
-      "9": AppLocalizations.of(context).translate('other git problems'),
-      "10": AppLocalizations.of(context).translate('abdominal distension'),
-      "11": AppLocalizations.of(context).translate('bleeding per rectum'),
-      "12": AppLocalizations.of(context).translate('nausea'),
-      "13": AppLocalizations.of(context).translate('hematemesis'),
-      "14": AppLocalizations.of(context).translate('malena'),
-      "15": AppLocalizations.of(context).translate('tenesmus'),
+      "1": [
+        AppLocalizations.of(context).translate('abdominal pain'),
+        'abdominal pain'
+      ],
+      "2": [AppLocalizations.of(context).translate('vomiting'), 'vomiting'],
+      "3": [
+        AppLocalizations.of(context).translate('constipation'),
+        'constipation'
+      ],
+      "4": [
+        AppLocalizations.of(context).translate('bloody diarrhea'),
+        'bloody diarrhea'
+      ],
+      "5": [
+        AppLocalizations.of(context).translate('watery diarrhea'),
+        'watery diarrhea'
+      ],
+      "6": [AppLocalizations.of(context).translate('dysphagia'), 'dysphagia'],
+      "7": [
+        AppLocalizations.of(context).translate('odynophagia'),
+        'odynophagia'
+      ],
+      "8": [
+        AppLocalizations.of(context).translate('mucousy diarrhea'),
+        'mucousy diarrhea'
+      ],
+      "9": [
+        AppLocalizations.of(context).translate('other git problems'),
+        'other git problems'
+      ],
+      "10": [
+        AppLocalizations.of(context).translate('abdominal distension'),
+        'abdominal distension'
+      ],
+      "11": [
+        AppLocalizations.of(context).translate('bleeding per rectum'),
+        'bleeding per rectum'
+      ],
+      "12": [AppLocalizations.of(context).translate('nausea'), 'nausea'],
+      "13": [
+        AppLocalizations.of(context).translate('hematemesis'),
+        'hematemesis'
+      ],
+      "14": [AppLocalizations.of(context).translate('malena'), 'malena'],
+      "15": [AppLocalizations.of(context).translate('tenesmus'), 'tenesmus'],
     };
     final peiranalAbdomen = {
-      "1": AppLocalizations.of(context).translate('perianal pain'),
-      "2": AppLocalizations.of(context).translate('perianal discharge'),
-      "3": AppLocalizations.of(context).translate('anal incontinence'),
-      "4": AppLocalizations.of(context).translate('perianal itching'),
-      "5": AppLocalizations.of(context).translate('abdominal wall swelling'),
+      "1": [AppLocalizations.of(context).translate('perianal pain'),'perianal pain'],
+      "2": [AppLocalizations.of(context).translate('perianal discharge'),'perianal discharge'],
+      "3":[ AppLocalizations.of(context).translate('anal incontinence'),'anal incontinence'],
+      "4": [AppLocalizations.of(context).translate('perianal itching'),'perianal itching'],
+      "5":[ AppLocalizations.of(context).translate('abdominal wall swelling'),'abdominal wall swelling'],
     };
     AppLocalizations.of(context).translate('');
     final neurology = {
-      "1": AppLocalizations.of(context).translate('coma'),
-      "2": AppLocalizations.of(context).translate('fit'),
-      "3": AppLocalizations.of(context).translate('abnormal movement'),
-      "4": AppLocalizations.of(context).translate('spasm'),
-      "5": AppLocalizations.of(context).translate('memory loss'),
-      "6": AppLocalizations.of(context).translate('tremer'),
-      "7": AppLocalizations.of(context).translate('confusion'),
-      "8": AppLocalizations.of(context).translate('numbness'),
-      "9": AppLocalizations.of(context).translate('slurred speech'),
-      "10": AppLocalizations.of(context).translate('ataxia'),
-      "11": AppLocalizations.of(context).translate('weakness'),
+      "1":[ AppLocalizations.of(context).translate('coma'),'coma'],
+      "2": [AppLocalizations.of(context).translate('fit'),'fit'],
+      "3": [AppLocalizations.of(context).translate('abnormal movement'),'abnormal movement'],
+      "4": [AppLocalizations.of(context).translate('spasm'),'spasm'],
+      "5": [AppLocalizations.of(context).translate('memory loss'),'memory loss'],
+      "6": [AppLocalizations.of(context).translate('tremer'),'tremer'],
+      "7": [AppLocalizations.of(context).translate('confusion'),'confusion'],
+      "8": [AppLocalizations.of(context).translate('numbness'),'numbness'],
+      "9": [AppLocalizations.of(context).translate('slurred speech'),'slurred speech'],
+      "10": [AppLocalizations.of(context).translate('ataxia'),'ataxia'],
+      "11": [AppLocalizations.of(context).translate('weakness'),'weakness'],
       "12":
-          AppLocalizations.of(context).translate('other neurological problems'),
-      "13": AppLocalizations.of(context).translate('syncope')
+    [AppLocalizations.of(context).translate('other neurological problems'),'other neurological problems'],
+      "13": [AppLocalizations.of(context).translate('syncope'),'syncope'],
     };
 
     final psychology = {
-      "1": AppLocalizations.of(context).translate('cognitive impairment'),
-      "2": AppLocalizations.of(context).translate('behavioral impairement'),
-      "3": AppLocalizations.of(context).translate('depression'),
-      "4": AppLocalizations.of(context).translate('hallucination/delusion'),
-      "5": AppLocalizations.of(context).translate('phobia'),
-      "6": AppLocalizations.of(context).translate('suicide'),
-      "7": AppLocalizations.of(context).translate('obsession'),
-      "8": AppLocalizations.of(context).translate('attention deficit'),
-      "9": AppLocalizations.of(context).translate('hyperactivity'),
-      "10": AppLocalizations.of(context).translate('stress'),
-      "11": AppLocalizations.of(context).translate('psychological trauma'),
-      "12": AppLocalizations.of(context).translate('addiction'),
-      "13": AppLocalizations.of(context).translate('encorporesis'),
-      "14": AppLocalizations.of(context).translate('polyphagia'),
-      "15": AppLocalizations.of(context)
-          .translate('other psychological problems'),
+      "1":[ AppLocalizations.of(context).translate('cognitive impairment'),'cognitive impairment'],
+      "2": [AppLocalizations.of(context).translate('behavioral impairement'),'behavioral impairement'],
+      "3": [AppLocalizations.of(context).translate('depression'),'depression'],
+      "4": [AppLocalizations.of(context).translate('hallucination/delusion'),'hallucination/delusion'],
+      "5":[ AppLocalizations.of(context).translate('phobia'),'phobia'],
+      "6":[ AppLocalizations.of(context).translate('suicide'),'suicide'],
+      "7": [AppLocalizations.of(context).translate('obsession'),'obsession'],
+      "8": [AppLocalizations.of(context).translate('attention deficit'),'attention deficit'],
+      "9":[ AppLocalizations.of(context).translate('hyperactivity'),'hyperactivity'],
+      "10":[ AppLocalizations.of(context).translate('stress'),'stress'],
+      "11":[ AppLocalizations.of(context).translate('psychological trauma'),'psychological trauma'],
+      "12":[ AppLocalizations.of(context).translate('addiction'),'addiction'],
+      "13": [AppLocalizations.of(context).translate('encorporesis'),'encorporesis'],
+      //"14": AppLocalizations.of(context).translate('polyphagia'),==>better to see intrenist not psychiatrist
+      "14": [AppLocalizations.of(context)
+          .translate('other psychological problems'),'other psychological problems'],
     };
     final musckuloskeletal = {
-      "1": AppLocalizations.of(context).translate('generalized bone pain'),
-      "2": AppLocalizations.of(context).translate('joint pain'),
-      "3": AppLocalizations.of(context).translate('deformity'),
-      "4": AppLocalizations.of(context).translate('joint swelling'),
-      "5": AppLocalizations.of(context).translate('limitation of movement'),
-      "6": AppLocalizations.of(context).translate('fracture'),
-      "7": AppLocalizations.of(context).translate('limb pain'),
-      "8": AppLocalizations.of(context).translate('dislocation'),
-      "9": AppLocalizations.of(context).translate('other msk problems'),
+      "1": [ AppLocalizations.of(context).translate('generalized bone pain'),'generalized bone pain'],
+      "2": [ AppLocalizations.of(context).translate('joint pain'),'joint pain'],
+      "3": [ AppLocalizations.of(context).translate('deformity'),'deformity'],
+      "4": [ AppLocalizations.of(context).translate('joint swelling'),'joint swelling'],
+      "5": [AppLocalizations.of(context).translate('limitation of movement'),'limitation of movement'],
+      "6": [AppLocalizations.of(context).translate('fracture'),'fracture'],
+      "7": [AppLocalizations.of(context).translate('limb pain'),'limb pain'],
+      "8": [AppLocalizations.of(context).translate('dislocation'),'dislocation'],
+      "9": [AppLocalizations.of(context).translate("other msk problems"),"other msk problems"],
     };
     final headNeckBack = {
-      "1": AppLocalizations.of(context).translate('jaw pain'),
-      "2": AppLocalizations.of(context).translate('neck pain'),
-      "3": AppLocalizations.of(context).translate('enlarged jaw'),
-      "4": AppLocalizations.of(context).translate('neck swelling'),
-      "5": AppLocalizations.of(context).translate('back opening'),
-      "6": AppLocalizations.of(context).translate('back mass'),
-      "7": AppLocalizations.of(context).translate('back pain'),
-      "8": AppLocalizations.of(context).translate('headache'),
-      "9": AppLocalizations.of(context).translate('large head'),
-      "10": AppLocalizations.of(context).translate('abnormal head shape'),
-      "11": AppLocalizations.of(context).translate('other skull problems'),
+      "1": [AppLocalizations.of(context).translate('jaw pain'),'jaw pain'],
+      "2": [AppLocalizations.of(context).translate('neck pain'),'neck pain'],
+      "3": [AppLocalizations.of(context).translate('enlarged jaw'),'enlarged jaw'],
+      "4": [AppLocalizations.of(context).translate('neck swelling'),'neck swelling'],
+      "5": [AppLocalizations.of(context).translate('back opening'),'back opening'],
+      "6": [AppLocalizations.of(context).translate('back mass'),'back mass'],
+      "7": [AppLocalizations.of(context).translate('back pain'),'back pain'],
+      "8": [AppLocalizations.of(context).translate('headache'),'headache'],
+      "9": [AppLocalizations.of(context).translate('large head'),'large head'],
+      "10": [AppLocalizations.of(context).translate('abnormal head shape'),'abnormal head shape'],
+      "11": [AppLocalizations.of(context).translate('other skull problems'),'other skull problems'],
     };
     final upperLimb = {
-      "1": AppLocalizations.of(context).translate('left arm pain'),
-      "2": AppLocalizations.of(context).translate('left shoulder pain'),
-      "3": AppLocalizations.of(context).translate('generalized bone pain'),
-      "4": AppLocalizations.of(context).translate('joint pain'),
-      "5": AppLocalizations.of(context).translate('deformity'),
-      "6": AppLocalizations.of(context).translate('joint swelling'),
-      "7": AppLocalizations.of(context).translate('limitation of movement'),
-      "8": AppLocalizations.of(context).translate('fracture'),
-      "9": AppLocalizations.of(context).translate('limb pain'),
-      "10": AppLocalizations.of(context).translate('dislocation'),
+      "1": [AppLocalizations.of(context).translate('left arm pain'),'left arm pain'],
+      "2": [AppLocalizations.of(context).translate('left shoulder pain'),'left shoulder pain'],
+      "3": [AppLocalizations.of(context).translate('generalized bone pain'),'generalized bone pain'],
+      "4": [AppLocalizations.of(context).translate('joint pain'),'joint pain'],
+      "5": [AppLocalizations.of(context).translate('deformity'),'deformity'],
+      "6": [AppLocalizations.of(context).translate('joint swelling'),'joint swelling'],
+      "7": [AppLocalizations.of(context).translate('limitation of movement'),'limitation of movement'],
+      "8": [AppLocalizations.of(context).translate('fracture'),'fracture'],
+      "9": [AppLocalizations.of(context).translate('limb pain'),'limb pain'],
+      "10":[ AppLocalizations.of(context).translate('dislocation'),'dislocation'],
     };
 
     final hand = {
-      "1": AppLocalizations.of(context).translate('enlarged hand'),
-      "2": AppLocalizations.of(context).translate('extra digit'),
-      "3": AppLocalizations.of(context).translate('joined digit'),
-      "4": AppLocalizations.of(context).translate('loss digit'),
-      "5": AppLocalizations.of(context).translate('hand deformity'),
-      "6": AppLocalizations.of(context).translate('other hand problems'),
-      "7": AppLocalizations.of(context).translate('hand swelling'),
-      "8": AppLocalizations.of(context).translate('hand lump'),
-      "9": AppLocalizations.of(context).translate('generalized bone pain'),
-      "10": AppLocalizations.of(context).translate('joint pain,'),
-      "11": AppLocalizations.of(context).translate('joint swelling'),
-      "12": AppLocalizations.of(context).translate('fracture'),
-      "13": AppLocalizations.of(context).translate('dislocation'),
+      "1": [AppLocalizations.of(context).translate('enlarged hand'),'enlarged hand'],
+      "2": [AppLocalizations.of(context).translate('extra digit'),'extra digit'],
+      "3": [AppLocalizations.of(context).translate('joined digit'),'joined digit'],
+      "4": [AppLocalizations.of(context).translate('loss digit'),'loss digit'],
+      "5": [AppLocalizations.of(context).translate('hand deformity'),'hand deformity'],
+      "6": [AppLocalizations.of(context).translate('other hand problems'),'other hand problems'],
+      "7": [AppLocalizations.of(context).translate('hand swelling'),'hand swelling'],
+      "8": [AppLocalizations.of(context).translate('hand lump'),'hand lump'],
+      "9": [AppLocalizations.of(context).translate('generalized bone pain'),'generalized bone pain'],
+      "10": [AppLocalizations.of(context).translate('joint pain'),'joint pain'],
+      "11": [AppLocalizations.of(context).translate('joint swelling'),'joint swelling'],
+      "12": [AppLocalizations.of(context).translate('fracture'),'fracture'],
+      "13": [AppLocalizations.of(context).translate('dislocation'),'dislocation'],
     };
     final lowerLimb = {
-      "1": AppLocalizations.of(context).translate('bilateral leg edema'),
-      "2": AppLocalizations.of(context).translate('enlarged foot'),
-      "3": AppLocalizations.of(context).translate('generalized bone pain'),
-      "4": AppLocalizations.of(context).translate('joint pain'),
-      "5": AppLocalizations.of(context).translate('unilateral leg swelling'),
-      "6": AppLocalizations.of(context).translate('unilateral leg pain'),
-      "7": AppLocalizations.of(context).translate('deformity'),
-      "8": AppLocalizations.of(context).translate('joint swelling'),
-      "9": AppLocalizations.of(context).translate('limitation of movement'),
-      "10": AppLocalizations.of(context).translate('leg pain during walking'),
-      "11": AppLocalizations.of(context).translate('foot ulcer'),
-      "12": AppLocalizations.of(context).translate('fracture'),
-      "13": AppLocalizations.of(context).translate('limb pain'),
-      "14": AppLocalizations.of(context).translate('dislocation'),
+      "1": [AppLocalizations.of(context).translate('bilateral leg edema'),'bilateral leg edema'],
+      "2": [AppLocalizations.of(context).translate('enlarged foot'),'enlarged foot'],
+      "3": [AppLocalizations.of(context).translate('generalized bone pain'),'generalized bone pain'],
+      "4": [AppLocalizations.of(context).translate('joint pain'),'joint pain'],
+      "5": [AppLocalizations.of(context).translate('unilateral leg swelling'),'unilateral leg swelling'],
+      "6": [AppLocalizations.of(context).translate('unilateral leg pain'),'unilateral leg pain'],
+      "7": [AppLocalizations.of(context).translate('deformity'),'deformity'],
+      "8": [AppLocalizations.of(context).translate('joint swelling'),'joint swelling'],
+      "9": [AppLocalizations.of(context).translate('limitation of movement'),'limitation of movement'],
+      "10": [AppLocalizations.of(context).translate('leg pain during walking'),'leg pain during walking'],
+      "11": [AppLocalizations.of(context).translate('foot ulcer'),'foot ulcer'],
+      "12": [AppLocalizations.of(context).translate('fracture'),'fracture'],
+      "13": [AppLocalizations.of(context).translate('limb pain'),'limb pain'],
+      "14": [AppLocalizations.of(context).translate('dislocation'),'dislocation'],
     };
 
     final others = {
-      "1": AppLocalizations.of(context).translate('sweating'),
-      "2": AppLocalizations.of(context).translate('fever'),
-      "3": AppLocalizations.of(context).translate('heat sensation'),
-      "4": AppLocalizations.of(context).translate('ulcer'),
-      "5": AppLocalizations.of(context).translate('insomnia'),
-      "6": AppLocalizations.of(context).translate('cold sensation'),
-      "7": AppLocalizations.of(context).translate('somnolence'),
-      "8": AppLocalizations.of(context).translate('polydipsia'),
-      "9": AppLocalizations.of(context).translate('delayed puberty'),
-      "10": AppLocalizations.of(context).translate('bleeding'),
-      "11": AppLocalizations.of(context).translate('fatigue'),
-      "12": AppLocalizations.of(context).translate('pallor'),
-      "13": AppLocalizations.of(context).translate('lump'),
-      "14": AppLocalizations.of(context).translate('other health problems'),
-      "15": AppLocalizations.of(context).translate('malaise'),
-      "16": AppLocalizations.of(context).translate('short stature'),
-      "17": AppLocalizations.of(context).translate('taste loss'),
+      "1": [AppLocalizations.of(context).translate('sweating'),'sweating'],
+      "2": [AppLocalizations.of(context).translate('fever'),'fever'],
+      "3": [AppLocalizations.of(context).translate('heat sensation'),'heat sensation'],
+      "4": [AppLocalizations.of(context).translate('ulcer'),'ulcer'],
+      "5": [AppLocalizations.of(context).translate('insomnia'),'insomnia'],
+      "6": [AppLocalizations.of(context).translate('cold sensation'),'cold sensation'],
+      "7": [AppLocalizations.of(context).translate('somnolence'),'somnolence'],
+      "8": [AppLocalizations.of(context).translate('polydipsia'),'polydipsia'],
+      "9": [AppLocalizations.of(context).translate('delayed puberty'),'delayed puberty'],
+      "10":[ AppLocalizations.of(context).translate('bleeding'),'bleeding'],
+      "11":[ AppLocalizations.of(context).translate('fatigue'),'fatigue'],
+      "12": [AppLocalizations.of(context).translate('pallor'),'pallor'],
+      "13": [AppLocalizations.of(context).translate('lump'),'lump'],
+      "14": [AppLocalizations.of(context).translate('other health problems'),'other health problems'],
+      "15": [AppLocalizations.of(context).translate('malaise'),'malaise'],
+      "16": [AppLocalizations.of(context).translate('short stature'),'short stature'],
+      "17": [AppLocalizations.of(context).translate('taste loss'),'taste loss'],
     };
     final bpPrLab = {
       "1": AppLocalizations.of(context).translate(''),
@@ -591,155 +649,155 @@ class _PatientComplainState extends State<PatientComplain> {
     };
 
     final injuriesSuicideIntoxicationBurn = {
-      "1": AppLocalizations.of(context).translate('FFH'),
-      "2": AppLocalizations.of(context).translate('RTA'),
-      "3": AppLocalizations.of(context).translate('stab'),
-      "4": AppLocalizations.of(context).translate('shot'),
-      "5": AppLocalizations.of(context).translate('other injuries'),
-      "6": AppLocalizations.of(context).translate('suicide'),
-      "7": AppLocalizations.of(context).translate('intoxication'),
-      "8": AppLocalizations.of(context).translate('burn'),
-      "9": AppLocalizations.of(context).translate('msk injury'),
-      "10": AppLocalizations.of(context).translate('sport injury'),
+      "1": [AppLocalizations.of(context).translate('FFH'),'FFH'],
+      "2": [AppLocalizations.of(context).translate('RTA'),'RTA'],
+      "3": [AppLocalizations.of(context).translate('stab'),'stab'],
+      "4": [AppLocalizations.of(context).translate('shot'),'shot'],
+      "5": [AppLocalizations.of(context).translate('other injuries'),'other injuries'],
+      "6": [AppLocalizations.of(context).translate('suicide'),'suicide'],
+      "7": [AppLocalizations.of(context).translate('intoxication'),'intoxication'],
+      "8": [AppLocalizations.of(context).translate('burn'),'burn'],
+      "9": [AppLocalizations.of(context).translate('msk injury'),'msk injury'],
+      "10":[ AppLocalizations.of(context).translate('sport injury'),'sport injury'],
     };
 
     final mouth = {
-      "1": AppLocalizations.of(context).translate('mouth deviation'),
-      "2": AppLocalizations.of(context).translate('cleft lip'),
-      "3": AppLocalizations.of(context).translate('cleft palate'),
-      "4": AppLocalizations.of(context).translate('disease of the mouth'),
+      "1": [AppLocalizations.of(context).translate('mouth deviation'),'mouth deviation'],
+      "2": [AppLocalizations.of(context).translate('cleft lip'),'cleft lip'],
+      "3": [AppLocalizations.of(context).translate('cleft palate'),'cleft palate'],
+      "4": [AppLocalizations.of(context).translate('disease of the mouth'),'disease of the mouth'],
     };
     final appetite = {
-      "1": AppLocalizations.of(context).translate('polyphagia'),
-      "2": AppLocalizations.of(context).translate('weight gain'),
-      "3": AppLocalizations.of(context).translate('weight loss'),
-      "4": AppLocalizations.of(context).translate('anorexia'),
+      "1": [AppLocalizations.of(context).translate('polyphagia'),'polyphagia'],
+      "2": [AppLocalizations.of(context).translate('weight gain'),'weight gain'],
+      "3": [AppLocalizations.of(context).translate('weight loss'),'weight loss'],
+      "4": [AppLocalizations.of(context).translate('anorexia'),'anorexia'],
     };
 
     final entThroat = {
-      "1": AppLocalizations.of(context).translate('hoarseness'),
-      "2": AppLocalizations.of(context).translate('sore throat'),
-      "3": AppLocalizations.of(context).translate('other ent problems'),
+      "1": [AppLocalizations.of(context).translate('hoarseness'),'hoarseness'],
+      "2": [AppLocalizations.of(context).translate('sore throat'),'sore throat'],
+      "3": [AppLocalizations.of(context).translate('other ent problems'),'other ent problems'],
     };
     final entNose = {
-      "1": AppLocalizations.of(context).translate('nasal discharge'),
-      "2": AppLocalizations.of(context).translate('nasal bleeding'),
-      "3": AppLocalizations.of(context).translate('nasal obstruction'),
-      "4": AppLocalizations.of(context).translate('nasal pain'),
-      "5": AppLocalizations.of(context).translate('nasal mass'),
-      "6": AppLocalizations.of(context).translate('nasal deformity'),
-      "7": AppLocalizations.of(context).translate('sneezing'),
-      "8": AppLocalizations.of(context).translate('nasal itching'),
-      "9": AppLocalizations.of(context).translate('anosmia'),
-      "10": AppLocalizations.of(context).translate('enlarged nose'),
-      "11": AppLocalizations.of(context).translate('other ent problems'),
+      "1": [AppLocalizations.of(context).translate('nasal discharge'),'nasal discharge'],
+      "2": [AppLocalizations.of(context).translate('nasal bleeding'),'nasal bleeding'],
+      "3": [AppLocalizations.of(context).translate('nasal obstruction'),'nasal obstruction'],
+      "4": [AppLocalizations.of(context).translate('nasal pain'),'nasal pain'],
+      "5": [AppLocalizations.of(context).translate('nasal mass'),'nasal mass'],
+      "6": [AppLocalizations.of(context).translate('nasal deformity'),'nasal deformity'],
+      "7": [AppLocalizations.of(context).translate('sneezing'),'sneezing'],
+      "8": [AppLocalizations.of(context).translate('nasal itching'),'nasal itching'],
+      "9": [AppLocalizations.of(context).translate('anosmia'),'anosmia'],
+      "10":[ AppLocalizations.of(context).translate('enlarged nose'),'enlarged nose'],
+      "11": [AppLocalizations.of(context).translate('other ent problems'),'other ent problems'],
     };
 
     final entEar = {
-      "1": AppLocalizations.of(context).translate('deafness'),
-      "2": AppLocalizations.of(context).translate('vertigo'),
-      "3": AppLocalizations.of(context).translate('tinnitus'),
-      "4": AppLocalizations.of(context).translate('ear discharge'),
-      "5": AppLocalizations.of(context).translate('ear redness'),
-      "6": AppLocalizations.of(context).translate('ear pain'),
-      "7": AppLocalizations.of(context).translate('other ent problems'),
+      "1": [AppLocalizations.of(context).translate('deafness'),'deafness'],
+      "2": [AppLocalizations.of(context).translate('vertigo'),'vertigo'],
+      "3": [AppLocalizations.of(context).translate('tinnitus'),'tinnitus'],
+      "4": [AppLocalizations.of(context).translate('ear discharge'),'ear discharge'],
+      "5": [AppLocalizations.of(context).translate('ear redness'),'ear redness'],
+      "6": [AppLocalizations.of(context).translate('ear pain'),'ear pain'],
+      "7": [AppLocalizations.of(context).translate('other ent problems'),'other ent problems'],
     };
 
     final dermatology = {
-      "1": AppLocalizations.of(context).translate('dry skin'),
-      "2": AppLocalizations.of(context).translate('dry hair'),
-      "3": AppLocalizations.of(context).translate('skin rash'),
-      "4": AppLocalizations.of(context).translate('hair problems'),
-      "5": AppLocalizations.of(context).translate('skin redness'),
-      "6": AppLocalizations.of(context).translate('skin lesion'),
-      "7": AppLocalizations.of(context).translate('skin appendage'),
-      "8": AppLocalizations.of(context).translate('skin itching'),
-      "9": AppLocalizations.of(context).translate('acne'),
-      "10": AppLocalizations.of(context).translate('bruising'),
-      "11": AppLocalizations.of(context).translate('female hirsutism'),
+      "1": [AppLocalizations.of(context).translate('dry skin'),'dry skin'],
+      "2": [AppLocalizations.of(context).translate('dry hair'),'dry hair'],
+      "3": [AppLocalizations.of(context).translate('skin rash'),'skin rash'],
+      "4": [AppLocalizations.of(context).translate('hair problems'),'hair problems'],
+      "5": [AppLocalizations.of(context).translate('skin redness'),'skin redness'],
+      "6": [AppLocalizations.of(context).translate('skin lesion'),'skin lesion'],
+      "7": [AppLocalizations.of(context).translate('skin appendage'),'skin appendage'],
+      "8": [AppLocalizations.of(context).translate('skin itching'),'skin itching'],
+      "9": [AppLocalizations.of(context).translate('acne'),'acne'],
+      "10": [AppLocalizations.of(context).translate('bruising'),'bruising'],
+      "11": [AppLocalizations.of(context).translate('female hirsutism'),'female hirsutism'],
     };
 
     final gynecology = {
-      "1": AppLocalizations.of(context).translate('amenorrhea'),
-      "2": AppLocalizations.of(context).translate('oligomenorrhea'),
-      "3": AppLocalizations.of(context).translate('decrease libido'),
-      "4": AppLocalizations.of(context).translate('menorrhagia'),
-      "5": AppLocalizations.of(context).translate('female infertility'),
-      "6": AppLocalizations.of(context).translate('female hirsutism'),
-      "7": AppLocalizations.of(context).translate('prolong pregnancy'),
-      "8": AppLocalizations.of(context).translate('postmenopausal bleeding'),
-      "9": AppLocalizations.of(context)
-          .translate('other gynecological and obstetrical problems'),
-      "10": AppLocalizations.of(context).translate('miscarriage'),
+      "1": [AppLocalizations.of(context).translate('amenorrhea'),'amenorrhea'],
+      "2": [AppLocalizations.of(context).translate('oligomenorrhea'),'oligomenorrhea'],
+      "3": [AppLocalizations.of(context).translate('decrease libido'),'decrease libido'],
+      "4": [AppLocalizations.of(context).translate('menorrhagia'),'menorrhagia'],
+      "5": [AppLocalizations.of(context).translate('female infertility'),'female infertility'],
+      "6": [AppLocalizations.of(context).translate('female hirsutism'),'female hirsutism'],
+      "7": [AppLocalizations.of(context).translate('prolong pregnancy'),'prolong pregnancy'],
+      "8": [AppLocalizations.of(context).translate('postmenopausal bleeding'),'postmenopausal bleeding'],
+      "9": [AppLocalizations.of(context)
+          .translate('other gynecological and obstetrical problems'),'other gynecological and obstetrical problems'],
+      "10": [AppLocalizations.of(context).translate('miscarriage'),'miscarriage'],
     };
 
     final uroKidney = {
-      "1": AppLocalizations.of(context).translate('incontinence'),
-      "2": AppLocalizations.of(context).translate('polyuria'),
-      "3": AppLocalizations.of(context)
-          .translate('abnormal urethral opening site'),
-      "4": AppLocalizations.of(context).translate('suprapubic pain'),
-      "5": AppLocalizations.of(context).translate('frequency'),
-      "6": AppLocalizations.of(context).translate('flank pain'),
-      "7": AppLocalizations.of(context).translate('retention'),
-      "8": AppLocalizations.of(context).translate('urgency'),
-      "9": AppLocalizations.of(context).translate('dysuria'),
-      "10": AppLocalizations.of(context).translate('hematuria'),
-      "11": AppLocalizations.of(context).translate('other urological problems'),
-      "12": AppLocalizations.of(context).translate('nocturia'),
+      "1": [AppLocalizations.of(context).translate('incontinence'),'incontinence'],
+      "2": [AppLocalizations.of(context).translate('polyuria'),'polyuria'],
+      "3": [AppLocalizations.of(context)
+          .translate('abnormal urethral opening site'),'abnormal urethral opening site'],
+      "4": [AppLocalizations.of(context).translate('suprapubic pain'),'suprapubic pain'],
+      "5": [AppLocalizations.of(context).translate('frequency'),'frequency'],
+      "6": [AppLocalizations.of(context).translate('flank pain'),'flank pain'],
+      "7": [AppLocalizations.of(context).translate('retention'),'retention'],
+      "8": [AppLocalizations.of(context).translate('urgency'),'urgency'],
+      "9": [AppLocalizations.of(context).translate('dysuria'),'dysuria'],
+      "10": [AppLocalizations.of(context).translate('hematuria'),'hematuria'],
+      "11": [AppLocalizations.of(context).translate('other urological problems'),'other urological problems'],
+      "12": [AppLocalizations.of(context).translate('nocturia'),'nocturia'],
     };
 
     final maleGenital = {
-      "1": AppLocalizations.of(context).translate('decrease libido'),
-      "2": AppLocalizations.of(context).translate('delayed puberty'),
-      "3": AppLocalizations.of(context).translate('male infertility'),
-      "4": AppLocalizations.of(context).translate('scrotal swelling'),
-      "5": AppLocalizations.of(context).translate('empty scrotum'),
-      "6": AppLocalizations.of(context).translate('abnormal penile size'),
-      "7": AppLocalizations.of(context).translate('penile mass'),
-      "8": AppLocalizations.of(context).translate('other penile problems'),
-      "9": AppLocalizations.of(context).translate('scrotal pain'),
-      "10": AppLocalizations.of(context).translate('priapism'),
-      "11": AppLocalizations.of(context).translate('priapism'),
-      "12": AppLocalizations.of(context).translate('hematospermia'),
+      "1": [AppLocalizations.of(context).translate('decrease libido'),'decrease libido'],
+      "2": [AppLocalizations.of(context).translate('delayed puberty'),'delayed puberty'],
+      "3": [AppLocalizations.of(context).translate('male infertility'),'male infertility'],
+      "4": [AppLocalizations.of(context).translate('scrotal swelling'),'scrotal swelling'],
+      "5": [AppLocalizations.of(context).translate('empty scrotum'),'empty scrotum'],
+      "6": [AppLocalizations.of(context).translate('abnormal penile size'),'abnormal penile size'],
+      "7": [AppLocalizations.of(context).translate('penile mass'),'penile mass'],
+      "8": [AppLocalizations.of(context).translate('other penile problems'),'other penile problems'],
+      "9": [AppLocalizations.of(context).translate('scrotal pain'),'scrotal pain'],
+      "10": [AppLocalizations.of(context).translate('priapism'),'priapism'],
+      "11": [AppLocalizations.of(context).translate('priapism'),'priapism'],
+      "12": [AppLocalizations.of(context).translate('hematospermia'),'hematospermia'],
     };
 
     final ophthalmology = {
-      "1": AppLocalizations.of(context).translate('open eye'),
-      "2": AppLocalizations.of(context).translate('blindness'),
-      "3": AppLocalizations.of(context).translate('photophobia'),
-      "4": AppLocalizations.of(context).translate('double vision'),
-      "5": AppLocalizations.of(context).translate('lid drop'),
-      "6": AppLocalizations.of(context).translate('blurred vision'),
-      "7": AppLocalizations.of(context).translate('squint'),
-      "8": AppLocalizations.of(context).translate('eye redness'),
-      "9": AppLocalizations.of(context).translate('eye pain'),
-      "10": AppLocalizations.of(context).translate('eye discharge'),
-      "11": AppLocalizations.of(context).translate('eye itching'),
-      "12": AppLocalizations.of(context).translate('eye pigmentation'),
-      "13": AppLocalizations.of(context).translate('periorbital edema'),
-      "14": AppLocalizations.of(context).translate('eyelid deformity'),
-      "15": AppLocalizations.of(context).translate('dry eye'),
-      "16": AppLocalizations.of(context).translate('ophthalmoplegia'),
-      "17": AppLocalizations.of(context)
-          .translate('other ophthalmological problems'),
+      "1": [AppLocalizations.of(context).translate('open eye'),'open eye'],
+      "2": [AppLocalizations.of(context).translate('blindness'),'blindness'],
+      "3": [AppLocalizations.of(context).translate('photophobia'),'photophobia'],
+      "4": [AppLocalizations.of(context).translate('double vision'),'double vision'],
+      "5": [AppLocalizations.of(context).translate('lid drop'),'lid drop'],
+      "6": [AppLocalizations.of(context).translate('blurred vision'),'blurred vision'],
+      "7": [AppLocalizations.of(context).translate('squint'),'squint'],
+      "8": [AppLocalizations.of(context).translate('eye redness'),'eye redness'],
+      "9": [AppLocalizations.of(context).translate('eye pain'),'eye pain'],
+      "10": [AppLocalizations.of(context).translate('eye discharge'),'eye discharge'],
+      "11": [AppLocalizations.of(context).translate('eye itching'),'eye itching'],
+      "12": [AppLocalizations.of(context).translate('eye pigmentation'),'eye pigmentation'],
+      "13": [AppLocalizations.of(context).translate('periorbital edema'),'periorbital edema'],
+      "14": [AppLocalizations.of(context).translate('eyelid deformity'),'eyelid deformity'],
+      "15": [AppLocalizations.of(context).translate('dry eye'),'dry eye'],
+      "16": [AppLocalizations.of(context).translate('ophthalmoplegia'),'ophthalmoplegia'],
+      "17": [AppLocalizations.of(context)
+          .translate('other ophthalmological problems'),'other ophthalmological problems'],
     };
     final breast = {
-      "1": AppLocalizations.of(context).translate('gynecomastia'),
-      "2": AppLocalizations.of(context).translate('galactorrhea'),
-      "3": AppLocalizations.of(context).translate('breast mass'),
-      "4": AppLocalizations.of(context).translate('breast pain'),
-      "5": AppLocalizations.of(context).translate('breast discharge'),
-      "6": AppLocalizations.of(context).translate('breast lump'),
-      "7": AppLocalizations.of(context).translate('breast skin lesion'),
-      "8": AppLocalizations.of(context).translate('other breast  problems'),
+      "1": [AppLocalizations.of(context).translate('gynecomastia'),'gynecomastia'],
+      "2": [AppLocalizations.of(context).translate('galactorrhea'),'galactorrhea'],
+      "3": [AppLocalizations.of(context).translate('breast mass'),'breast mass'],
+      "4": [AppLocalizations.of(context).translate('breast pain'),'breast pain'],
+      "5": [AppLocalizations.of(context).translate('breast discharge'),'breast discharge'],
+      "6": [AppLocalizations.of(context).translate('breast lump'),'breast lump'],
+      "7": [AppLocalizations.of(context).translate('breast skin lesion'),'breast skin lesion'],
+      "8": [AppLocalizations.of(context).translate('other breast  problems'),'other breast  problems'],
     };
 
     void populateCardioRespiratory() {
       for (String key in cardioRespiratory.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(cardioRespiratory[key]),
-          value: cardioRespiratory[key],
+          child: Text(cardioRespiratory[key][0]),
+          value: cardioRespiratory[key][1],
         ));
       }
     }
@@ -747,8 +805,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populateGastroIntestinal() {
       for (String key in gastroIntestinal.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(gastroIntestinal[key]),
-          value: gastroIntestinal[key],
+          child: Text(gastroIntestinal[key][0]),
+          value: gastroIntestinal[key][1],
         ));
       }
     }
@@ -756,8 +814,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populatePeiranalAbdomen() {
       for (String key in peiranalAbdomen.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(peiranalAbdomen[key]),
-          value: peiranalAbdomen[key],
+          child: Text(peiranalAbdomen[key][0]),
+          value: peiranalAbdomen[key][1],
         ));
       }
     }
@@ -765,8 +823,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populateNeurology() {
       for (String key in neurology.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(neurology[key]),
-          value: neurology[key],
+          child: Text(neurology[key][0]),
+          value: neurology[key][1],
         ));
       }
     }
@@ -774,8 +832,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populatePsychology() {
       for (String key in psychology.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(psychology[key]),
-          value: psychology[key],
+          child: Text(psychology[key][0]),
+          value: psychology[key][1],
         ));
       }
     }
@@ -783,8 +841,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populateMusckuloskeletal() {
       for (String key in musckuloskeletal.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(musckuloskeletal[key]),
-          value: musckuloskeletal[key],
+          child: Text(musckuloskeletal[key][0]),
+          value: musckuloskeletal[key][1],
         ));
       }
     }
@@ -792,8 +850,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populateHeadNeckBack() {
       for (String key in headNeckBack.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(headNeckBack[key]),
-          value: headNeckBack[key],
+          child: Text(headNeckBack[key][0]),
+          value: headNeckBack[key][1],
         ));
       }
     }
@@ -801,8 +859,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populateUpperLimb() {
       for (String key in upperLimb.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(upperLimb[key]),
-          value: upperLimb[key],
+          child: Text(upperLimb[key][0]),
+          value: upperLimb[key][1],
         ));
       }
     }
@@ -810,8 +868,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populateHand() {
       for (String key in hand.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(hand[key]),
-          value: hand[key],
+          child: Text(hand[key][0]),
+          value: hand[key][1],
         ));
       }
     }
@@ -819,8 +877,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populateLowerLimb() {
       for (String key in lowerLimb.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(lowerLimb[key]),
-          value: lowerLimb[key],
+          child: Text(lowerLimb[key][0]),
+          value: lowerLimb[key][1],
         ));
       }
     }
@@ -828,8 +886,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populateOthers() {
       for (String key in others.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(others[key]),
-          value: others[key],
+          child: Text(others[key][0]),
+          value: others[key][1],
         ));
       }
     }
@@ -846,8 +904,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populateInjuriesSuicideIntoxicationBurn() {
       for (String key in injuriesSuicideIntoxicationBurn.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(injuriesSuicideIntoxicationBurn[key]),
-          value: injuriesSuicideIntoxicationBurn[key],
+          child: Text(injuriesSuicideIntoxicationBurn[key][0]),
+          value: injuriesSuicideIntoxicationBurn[key][1],
         ));
       }
     }
@@ -855,8 +913,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populateMouth() {
       for (String key in mouth.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(mouth[key]),
-          value: mouth[key],
+          child: Text(mouth[key][0]),
+          value: mouth[key][1],
         ));
       }
     }
@@ -864,8 +922,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populateAppetite() {
       for (String key in appetite.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(appetite[key]),
-          value: appetite[key],
+          child: Text(appetite[key][0]),
+          value: appetite[key][1],
         ));
       }
     }
@@ -873,8 +931,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populateEntThroat() {
       for (String key in entThroat.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(entThroat[key]),
-          value: entThroat[key],
+          child: Text(entThroat[key][0]),
+          value: entThroat[key][1],
         ));
       }
     }
@@ -882,8 +940,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populateEntNose() {
       for (String key in entNose.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(entNose[key]),
-          value: entNose[key],
+          child: Text(entNose[key][0]),
+          value: entNose[key][1],
         ));
       }
     }
@@ -891,8 +949,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populateEntEar() {
       for (String key in entEar.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(entEar[key]),
-          value: entEar[key],
+          child: Text(entEar[key][0]),
+          value: entEar[key][1],
         ));
       }
     }
@@ -900,8 +958,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populateDermatology() {
       for (String key in dermatology.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(dermatology[key]),
-          value: dermatology[key],
+          child: Text(dermatology[key][0]),
+          value: dermatology[key][1],
         ));
       }
     }
@@ -909,8 +967,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populateGynecology() {
       for (String key in gynecology.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(gynecology[key]),
-          value: gynecology[key],
+          child: Text(gynecology[key][0]),
+          value: gynecology[key][1],
         ));
       }
     }
@@ -918,8 +976,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populatEuroKidney() {
       for (String key in uroKidney.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(uroKidney[key]),
-          value: uroKidney[key],
+          child: Text(uroKidney[key][0]),
+          value: uroKidney[key][1],
         ));
       }
     }
@@ -927,8 +985,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populatMaleGenital() {
       for (String key in maleGenital.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(maleGenital[key]),
-          value: maleGenital[key],
+          child: Text(maleGenital[key][0]),
+          value: maleGenital[key][1],
         ));
       }
     }
@@ -936,8 +994,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populatOphthalmology() {
       for (String key in ophthalmology.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(ophthalmology[key]),
-          value: ophthalmology[key],
+          child: Text(ophthalmology[key][0]),
+          value: ophthalmology[key][1],
         ));
       }
     }
@@ -945,8 +1003,8 @@ class _PatientComplainState extends State<PatientComplain> {
     void populatBreast() {
       for (String key in breast.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(breast[key]),
-          value: breast[key],
+          child: Text(breast[key][0]),
+          value: breast[key][1],
         ));
       }
     }
@@ -1520,6 +1578,7 @@ class _PatientComplainState extends State<PatientComplain> {
     void secondselected(_value) {
       setState(() {
         complainSelected01 = _value;
+        print(_value);
       });
     }
 
@@ -1559,34 +1618,6 @@ class _PatientComplainState extends State<PatientComplain> {
       });
     }
 
-    //================Male and Female Radio Buttons
-    List gender = [
-      AppLocalizations.of(context).translate('male'),
-      AppLocalizations.of(context).translate('female')
-    ];
-    String select = '';
-    Row addRadioButton(int btnValue, String title) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Radio(
-            activeColor: Colors.deepOrange,
-            value: gender[btnValue],
-            groupValue: select,
-            onChanged: (value) {
-              setState(() {
-                select = value;
-              });
-            },
-          ),
-          Text(
-            title,
-            style: _textStylePatient,
-          )
-        ],
-      );
-    }
-
     return Scaffold(
       key: _scaffoldkey,
       backgroundColor: Colors.grey[200],
@@ -1613,7 +1644,7 @@ class _PatientComplainState extends State<PatientComplain> {
                       onChanged: (ageController) {
                         if (ageController.isEmpty) {
                           setState(() {
-                            _age = '1022';
+                            _age = '';
                           });
                         } else {
                           setState(() {
@@ -1671,101 +1702,123 @@ class _PatientComplainState extends State<PatientComplain> {
                       items: [
                         DropdownMenuItem<String>(
                           value: "cardioRespiratory",
-                          child: Text("Heart and Lungs"),
+                          child: Text(AppLocalizations.of(context)
+                              .translate('heart_lung')),
                         ),
                         DropdownMenuItem<String>(
                           value: "gastroIntestinal",
-                          child: Text("Gastro Intestinal Tract"),
+                          child: Text(
+                              AppLocalizations.of(context).translate('git')),
                         ),
                         DropdownMenuItem<String>(
                           value: "peiranalAbdomen",
-                          child: Text("Perianal & Abdominal Wall"),
+                          child: Text(AppLocalizations.of(context)
+                              .translate('perianal_abdomen')),
                         ),
                         DropdownMenuItem<String>(
                           value: "neurology",
-                          child: Text("Brain"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "psychology",
-                          child: Text("Psychology"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "musckuloskeletal",
-                          child: Text("Skeleton and Muscles"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "headNeckBack",
-                          child: Text("Head, Neck and Back"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "upperLimb",
-                          child: Text("upper Limb"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "hand",
-                          child: Text("Hand"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "lowerLimb",
-                          child: Text("Lower Limb"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "others",
-                          child: Text("Other Symptoms"),
+                          child: Text(AppLocalizations.of(context)
+                              .translate('brain_neuron')),
                         ),
                         DropdownMenuItem<String>(
                           value: "bpPrLab",
-                          child: Text(
-                              "Blood Pressure, Pulse and Lab Investigation"),
+                          child: Text(AppLocalizations.of(context)
+                              .translate('bpPrLab')),
                         ),
                         DropdownMenuItem<String>(
-                          value: "injuriesSuicideIntoxicationBurn",
-                          child:
-                              Text("Injuries, Suicide, Intoxication and Burn"),
+                          value: "musckuloskeletal",
+                          child: Text(AppLocalizations.of(context)
+                              .translate('skeleton_muscles')),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: "headNeckBack",
+                          child: Text(AppLocalizations.of(context)
+                              .translate('head_neck_back')),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: "upperLimb",
+                          child: Text(AppLocalizations.of(context)
+                              .translate('upper_limb')),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: "lowerLimb",
+                          child: Text(AppLocalizations.of(context)
+                              .translate('lower_limb')),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: "hand",
+                          child: Text(
+                              AppLocalizations.of(context).translate('Hand')),
                         ),
                         DropdownMenuItem<String>(
                           value: "mouth",
-                          child: Text("Mouth"),
+                          child: Text(
+                              AppLocalizations.of(context).translate('mouth')),
                         ),
                         DropdownMenuItem<String>(
                           value: "appetite",
-                          child: Text("Appetite"),
+                          child: Text(AppLocalizations.of(context)
+                              .translate('appetite')),
                         ),
                         DropdownMenuItem<String>(
                           value: "entThroat",
-                          child: Text("Throat"),
+                          child: Text(
+                              AppLocalizations.of(context).translate('throat')),
                         ),
                         DropdownMenuItem<String>(
                           value: "entNose",
-                          child: Text("Nose"),
+                          child: Text(
+                              AppLocalizations.of(context).translate('nose')),
                         ),
                         DropdownMenuItem<String>(
                           value: "entEar",
-                          child: Text("Ear"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "dermatology",
-                          child: Text("Skin Problems"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "gynecology",
-                          child: Text("Female Menstrual Health"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "uroKidney",
-                          child: Text("Urinary Tract"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "maleGenital",
-                          child: Text("Male Genital Health"),
+                          child: Text(
+                              AppLocalizations.of(context).translate('ear')),
                         ),
                         DropdownMenuItem<String>(
                           value: "ophthalmology",
-                          child: Text("Eye Problems"),
+                          child: Text(
+                              AppLocalizations.of(context).translate('eye')),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: "dermatology",
+                          child: Text(
+                              AppLocalizations.of(context).translate('skin')),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: "uroKidney",
+                          child: Text(
+                              AppLocalizations.of(context).translate('uro')),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: "maleGenital",
+                          child: Text(AppLocalizations.of(context)
+                              .translate('male_genital')),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: "gynecology",
+                          child: Text(AppLocalizations.of(context)
+                              .translate('gynecology')),
                         ),
                         DropdownMenuItem<String>(
                           value: "breast",
-                          child: Text("Breast"),
+                          child: Text(
+                              AppLocalizations.of(context).translate('Breast')),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: "psychology",
+                          child: Text(AppLocalizations.of(context)
+                              .translate('psychology')),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: "injuriesSuicideIntoxicationBurn",
+                          child: Text(AppLocalizations.of(context)
+                              .translate('injuriesSuicideIntoxicationBurn')),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: "others",
+                          child: Text(AppLocalizations.of(context)
+                              .translate('other_symptoms')),
                         ),
                       ],
                       value: regionSelected01,
@@ -1838,101 +1891,123 @@ class _PatientComplainState extends State<PatientComplain> {
                         items: [
                           DropdownMenuItem<String>(
                             value: "cardioRespiratory",
-                            child: Text("Heart and Lungs"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('heart_lung')),
                           ),
                           DropdownMenuItem<String>(
                             value: "gastroIntestinal",
-                            child: Text("Gastro Intestinal Tract"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('git')),
                           ),
                           DropdownMenuItem<String>(
                             value: "peiranalAbdomen",
-                            child: Text("Perianal & Abdominal Wall"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('perianal_abdomen')),
                           ),
                           DropdownMenuItem<String>(
                             value: "neurology",
-                            child: Text("Brain"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "psychology",
-                            child: Text("Psychology"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "musckuloskeletal",
-                            child: Text("Skeleton and Muscles"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "headNeckBack",
-                            child: Text("Head, Neck and Back"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "upperLimb",
-                            child: Text("upper Limb"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "hand",
-                            child: Text("Hand"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "lowerLimb",
-                            child: Text("Lower Limb"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "others",
-                            child: Text("Other Symptoms"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('brain_neuron')),
                           ),
                           DropdownMenuItem<String>(
                             value: "bpPrLab",
-                            child: Text(
-                                "Blood Pressure, Pulse and Lab Investigation"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('bpPrLab')),
                           ),
                           DropdownMenuItem<String>(
-                            value: "injuriesSuicideIntoxicationBurn",
+                            value: "musckuloskeletal",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('skeleton_muscles')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "headNeckBack",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('head_neck_back')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "upperLimb",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('upper_limb')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "lowerLimb",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('lower_limb')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "hand",
                             child: Text(
-                                "Injuries, Suicide, Intoxication and Burn"),
+                                AppLocalizations.of(context).translate('Hand')),
                           ),
                           DropdownMenuItem<String>(
                             value: "mouth",
-                            child: Text("Mouth"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('mouth')),
                           ),
                           DropdownMenuItem<String>(
                             value: "appetite",
-                            child: Text("Appetite"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('appetite')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entThroat",
-                            child: Text("Throat"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('throat')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entNose",
-                            child: Text("Nose"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('nose')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entEar",
-                            child: Text("Ear"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dermatology",
-                            child: Text("Skin Problems"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "gynecology",
-                            child: Text("Female Menstrual Health"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "uroKidney",
-                            child: Text("Urinary Tract"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "maleGenital",
-                            child: Text("Male Genital Health"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('ear')),
                           ),
                           DropdownMenuItem<String>(
                             value: "ophthalmology",
-                            child: Text("Eye Problems"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('eye')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dermatology",
+                            child: Text(
+                                AppLocalizations.of(context).translate('skin')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "uroKidney",
+                            child: Text(
+                                AppLocalizations.of(context).translate('uro')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "maleGenital",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('male_genital')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "gynecology",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('gynecology')),
                           ),
                           DropdownMenuItem<String>(
                             value: "breast",
-                            child: Text("Breast"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('Breast')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "psychology",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('psychology')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "injuriesSuicideIntoxicationBurn",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('injuriesSuicideIntoxicationBurn')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "others",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('other_symptoms')),
                           ),
                         ],
                         value: regionSelected02,
@@ -2006,101 +2081,123 @@ class _PatientComplainState extends State<PatientComplain> {
                         items: [
                           DropdownMenuItem<String>(
                             value: "cardioRespiratory",
-                            child: Text("Heart and Lungs"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('heart_lung')),
                           ),
                           DropdownMenuItem<String>(
                             value: "gastroIntestinal",
-                            child: Text("Gastro Intestinal Tract"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('git')),
                           ),
                           DropdownMenuItem<String>(
                             value: "peiranalAbdomen",
-                            child: Text("Perianal & Abdominal Wall"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('perianal_abdomen')),
                           ),
                           DropdownMenuItem<String>(
                             value: "neurology",
-                            child: Text("Brain"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "psychology",
-                            child: Text("Psychology"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "musckuloskeletal",
-                            child: Text("Skeleton and Muscles"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "headNeckBack",
-                            child: Text("Head, Neck and Back"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "upperLimb",
-                            child: Text("upper Limb"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "hand",
-                            child: Text("Hand"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "lowerLimb",
-                            child: Text("Lower Limb"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "others",
-                            child: Text("Other Symptoms"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('brain_neuron')),
                           ),
                           DropdownMenuItem<String>(
                             value: "bpPrLab",
-                            child: Text(
-                                "Blood Pressure, Pulse and Lab Investigation"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('bpPrLab')),
                           ),
                           DropdownMenuItem<String>(
-                            value: "injuriesSuicideIntoxicationBurn",
+                            value: "musckuloskeletal",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('skeleton_muscles')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "headNeckBack",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('head_neck_back')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "upperLimb",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('upper_limb')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "lowerLimb",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('lower_limb')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "hand",
                             child: Text(
-                                "Injuries, Suicide, Intoxication and Burn"),
+                                AppLocalizations.of(context).translate('Hand')),
                           ),
                           DropdownMenuItem<String>(
                             value: "mouth",
-                            child: Text("Mouth"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('mouth')),
                           ),
                           DropdownMenuItem<String>(
                             value: "appetite",
-                            child: Text("Appetite"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('appetite')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entThroat",
-                            child: Text("Throat"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('throat')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entNose",
-                            child: Text("Nose"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('nose')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entEar",
-                            child: Text("Ear"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dermatology",
-                            child: Text("Skin Problems"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "gynecology",
-                            child: Text("Female Menstrual Health"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "uroKidney",
-                            child: Text("Urinary Tract"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "maleGenital",
-                            child: Text("Male Genital Health"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('ear')),
                           ),
                           DropdownMenuItem<String>(
                             value: "ophthalmology",
-                            child: Text("Eye Problems"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('eye')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dermatology",
+                            child: Text(
+                                AppLocalizations.of(context).translate('skin')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "uroKidney",
+                            child: Text(
+                                AppLocalizations.of(context).translate('uro')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "maleGenital",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('male_genital')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "gynecology",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('gynecology')),
                           ),
                           DropdownMenuItem<String>(
                             value: "breast",
-                            child: Text("Breast"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('Breast')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "psychology",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('psychology')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "injuriesSuicideIntoxicationBurn",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('injuriesSuicideIntoxicationBurn')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "others",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('other_symptoms')),
                           ),
                         ],
                         value: regionSelected03,
@@ -2174,101 +2271,123 @@ class _PatientComplainState extends State<PatientComplain> {
                         items: [
                           DropdownMenuItem<String>(
                             value: "cardioRespiratory",
-                            child: Text("Heart and Lungs"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('heart_lung')),
                           ),
                           DropdownMenuItem<String>(
                             value: "gastroIntestinal",
-                            child: Text("Gastro Intestinal Tract"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('git')),
                           ),
                           DropdownMenuItem<String>(
                             value: "peiranalAbdomen",
-                            child: Text("Peri-Anal Area"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('perianal_abdomen')),
                           ),
                           DropdownMenuItem<String>(
                             value: "neurology",
-                            child: Text("Brain"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "psychology",
-                            child: Text("Psychology"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "musckuloskeletal",
-                            child: Text("Skeleton and Muscles"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "headNeckBack",
-                            child: Text("Head, Neck and Back"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "upperLimb",
-                            child: Text("upper Limb"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "hand",
-                            child: Text("Hand"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "lowerLimb",
-                            child: Text("Lower Limb"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "others",
-                            child: Text("Other Symptoms"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('brain_neuron')),
                           ),
                           DropdownMenuItem<String>(
                             value: "bpPrLab",
-                            child: Text(
-                                "Blood Pressure, Pulse and Lab Investigation"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('bpPrLab')),
                           ),
                           DropdownMenuItem<String>(
-                            value: "injuriesSuicideIntoxicationBurn",
+                            value: "musckuloskeletal",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('skeleton_muscles')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "headNeckBack",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('head_neck_back')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "upperLimb",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('upper_limb')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "lowerLimb",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('lower_limb')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "hand",
                             child: Text(
-                                "Injuries, Suicide, Intoxication and Burn"),
+                                AppLocalizations.of(context).translate('Hand')),
                           ),
                           DropdownMenuItem<String>(
                             value: "mouth",
-                            child: Text("Mouth"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('mouth')),
                           ),
                           DropdownMenuItem<String>(
                             value: "appetite",
-                            child: Text("Appetite"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('appetite')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entThroat",
-                            child: Text("Throat"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('throat')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entNose",
-                            child: Text("Nose"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('nose')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entEar",
-                            child: Text("Ear"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dermatology",
-                            child: Text("Skin Problems"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "gynecology",
-                            child: Text("Female Menstrual Health"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "uroKidney",
-                            child: Text("Urinary Tract"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "maleGenital",
-                            child: Text("Male Genital Health"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('ear')),
                           ),
                           DropdownMenuItem<String>(
                             value: "ophthalmology",
-                            child: Text("Eye Problems"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('eye')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dermatology",
+                            child: Text(
+                                AppLocalizations.of(context).translate('skin')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "uroKidney",
+                            child: Text(
+                                AppLocalizations.of(context).translate('uro')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "maleGenital",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('male_genital')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "gynecology",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('gynecology')),
                           ),
                           DropdownMenuItem<String>(
                             value: "breast",
-                            child: Text("Breast"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('Breast')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "psychology",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('psychology')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "injuriesSuicideIntoxicationBurn",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('injuriesSuicideIntoxicationBurn')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "others",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('other_symptoms')),
                           ),
                         ],
                         value: regionSelected04,
@@ -2342,101 +2461,123 @@ class _PatientComplainState extends State<PatientComplain> {
                         items: [
                           DropdownMenuItem<String>(
                             value: "cardioRespiratory",
-                            child: Text("Heart and Lungs"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('heart_lung')),
                           ),
                           DropdownMenuItem<String>(
                             value: "gastroIntestinal",
-                            child: Text("Gastro Intestinal Tract"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('git')),
                           ),
                           DropdownMenuItem<String>(
                             value: "peiranalAbdomen",
-                            child: Text("Peri-Anal Area"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('perianal_abdomen')),
                           ),
                           DropdownMenuItem<String>(
                             value: "neurology",
-                            child: Text("Brain"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "psychology",
-                            child: Text("Psychology"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "musckuloskeletal",
-                            child: Text("Skeleton and Muscles"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "headNeckBack",
-                            child: Text("Head, Neck and Back"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "upperLimb",
-                            child: Text("upper Limb"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "hand",
-                            child: Text("Hand"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "lowerLimb",
-                            child: Text("Lower Limb"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "others",
-                            child: Text("Other Symptoms"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('brain_neuron')),
                           ),
                           DropdownMenuItem<String>(
                             value: "bpPrLab",
-                            child: Text(
-                                "Blood Pressure, Pulse and Lab Investigation"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('bpPrLab')),
                           ),
                           DropdownMenuItem<String>(
-                            value: "injuriesSuicideIntoxicationBurn",
+                            value: "musckuloskeletal",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('skeleton_muscles')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "headNeckBack",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('head_neck_back')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "upperLimb",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('upper_limb')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "lowerLimb",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('lower_limb')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "hand",
                             child: Text(
-                                "Injuries, Suicide, Intoxication and Burn"),
+                                AppLocalizations.of(context).translate('Hand')),
                           ),
                           DropdownMenuItem<String>(
                             value: "mouth",
-                            child: Text("Mouth"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('mouth')),
                           ),
                           DropdownMenuItem<String>(
                             value: "appetite",
-                            child: Text("Appetite"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('appetite')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entThroat",
-                            child: Text("Throat"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('throat')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entNose",
-                            child: Text("Nose"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('nose')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entEar",
-                            child: Text("Ear"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dermatology",
-                            child: Text("Skin Problems"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "gynecology",
-                            child: Text("Female Menstrual Health"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "uroKidney",
-                            child: Text("Urinary Tract"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "maleGenital",
-                            child: Text("Male Genital Health"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('ear')),
                           ),
                           DropdownMenuItem<String>(
                             value: "ophthalmology",
-                            child: Text("Eye Problems"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('eye')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dermatology",
+                            child: Text(
+                                AppLocalizations.of(context).translate('skin')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "uroKidney",
+                            child: Text(
+                                AppLocalizations.of(context).translate('uro')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "maleGenital",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('male_genital')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "gynecology",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('gynecology')),
                           ),
                           DropdownMenuItem<String>(
                             value: "breast",
-                            child: Text("Breast"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('Breast')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "psychology",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('psychology')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "injuriesSuicideIntoxicationBurn",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('injuriesSuicideIntoxicationBurn')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "others",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('other_symptoms')),
                           ),
                         ],
                         value: regionSelected05,
@@ -2510,101 +2651,123 @@ class _PatientComplainState extends State<PatientComplain> {
                         items: [
                           DropdownMenuItem<String>(
                             value: "cardioRespiratory",
-                            child: Text("Heart and Lungs"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('heart_lung')),
                           ),
                           DropdownMenuItem<String>(
                             value: "gastroIntestinal",
-                            child: Text("Gastro Intestinal Tract"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('git')),
                           ),
                           DropdownMenuItem<String>(
                             value: "peiranalAbdomen",
-                            child: Text("Peri-Anal Area"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('perianal_abdomen')),
                           ),
                           DropdownMenuItem<String>(
                             value: "neurology",
-                            child: Text("Brain"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "psychology",
-                            child: Text("Psychology"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "musckuloskeletal",
-                            child: Text("Skeleton and Muscles"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "headNeckBack",
-                            child: Text("Head, Neck and Back"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "upperLimb",
-                            child: Text("upper Limb"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "hand",
-                            child: Text("Hand"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "lowerLimb",
-                            child: Text("Lower Limb"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "others",
-                            child: Text("Other Symptoms"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('brain_neuron')),
                           ),
                           DropdownMenuItem<String>(
                             value: "bpPrLab",
-                            child: Text(
-                                "Blood Pressure, Pulse and Lab Investigation"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('bpPrLab')),
                           ),
                           DropdownMenuItem<String>(
-                            value: "injuriesSuicideIntoxicationBurn",
+                            value: "musckuloskeletal",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('skeleton_muscles')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "headNeckBack",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('head_neck_back')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "upperLimb",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('upper_limb')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "lowerLimb",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('lower_limb')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "hand",
                             child: Text(
-                                "Injuries, Suicide, Intoxication and Burn"),
+                                AppLocalizations.of(context).translate('Hand')),
                           ),
                           DropdownMenuItem<String>(
                             value: "mouth",
-                            child: Text("Mouth"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('mouth')),
                           ),
                           DropdownMenuItem<String>(
                             value: "appetite",
-                            child: Text("Appetite"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('appetite')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entThroat",
-                            child: Text("Throat"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('throat')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entNose",
-                            child: Text("Nose"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('nose')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entEar",
-                            child: Text("Ear"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dermatology",
-                            child: Text("Skin Problems"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "gynecology",
-                            child: Text("Female Menstrual Health"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "uroKidney",
-                            child: Text("Urinary Tract"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "maleGenital",
-                            child: Text("Male Genital Health"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('ear')),
                           ),
                           DropdownMenuItem<String>(
                             value: "ophthalmology",
-                            child: Text("Eye Problems"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('eye')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dermatology",
+                            child: Text(
+                                AppLocalizations.of(context).translate('skin')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "uroKidney",
+                            child: Text(
+                                AppLocalizations.of(context).translate('uro')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "maleGenital",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('male_genital')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "gynecology",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('gynecology')),
                           ),
                           DropdownMenuItem<String>(
                             value: "breast",
-                            child: Text("Breast"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('Breast')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "psychology",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('psychology')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "injuriesSuicideIntoxicationBurn",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('injuriesSuicideIntoxicationBurn')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "others",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('other_symptoms')),
                           ),
                         ],
                         value: regionSelected06,
@@ -2677,101 +2840,123 @@ class _PatientComplainState extends State<PatientComplain> {
                         items: [
                           DropdownMenuItem<String>(
                             value: "cardioRespiratory",
-                            child: Text("Heart and Lungs"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('heart_lung')),
                           ),
                           DropdownMenuItem<String>(
                             value: "gastroIntestinal",
-                            child: Text("Gastro Intestinal Tract"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('git')),
                           ),
                           DropdownMenuItem<String>(
                             value: "peiranalAbdomen",
-                            child: Text("Peri-Anal Area"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('perianal_abdomen')),
                           ),
                           DropdownMenuItem<String>(
                             value: "neurology",
-                            child: Text("Brain"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "psychology",
-                            child: Text("Psychology"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "musckuloskeletal",
-                            child: Text("Skeleton and Muscles"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "headNeckBack",
-                            child: Text("Head, Neck and Back"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "upperLimb",
-                            child: Text("upper Limb"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "hand",
-                            child: Text("Hand"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "lowerLimb",
-                            child: Text("Lower Limb"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "others",
-                            child: Text("Other Symptoms"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('brain_neuron')),
                           ),
                           DropdownMenuItem<String>(
                             value: "bpPrLab",
-                            child: Text(
-                                "Blood Pressure, Pulse and Lab Investigation"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('bpPrLab')),
                           ),
                           DropdownMenuItem<String>(
-                            value: "injuriesSuicideIntoxicationBurn",
+                            value: "musckuloskeletal",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('skeleton_muscles')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "headNeckBack",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('head_neck_back')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "upperLimb",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('upper_limb')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "lowerLimb",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('lower_limb')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "hand",
                             child: Text(
-                                "Injuries, Suicide, Intoxication and Burn"),
+                                AppLocalizations.of(context).translate('Hand')),
                           ),
                           DropdownMenuItem<String>(
                             value: "mouth",
-                            child: Text("Mouth"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('mouth')),
                           ),
                           DropdownMenuItem<String>(
                             value: "appetite",
-                            child: Text("Appetite"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('appetite')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entThroat",
-                            child: Text("Throat"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('throat')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entNose",
-                            child: Text("Nose"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('nose')),
                           ),
                           DropdownMenuItem<String>(
                             value: "entEar",
-                            child: Text("Ear"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dermatology",
-                            child: Text("Skin Problems"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "gynecology",
-                            child: Text("Female Menstrual Health"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "uroKidney",
-                            child: Text("Urinary Tract"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "maleGenital",
-                            child: Text("Male Genital Health"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('ear')),
                           ),
                           DropdownMenuItem<String>(
                             value: "ophthalmology",
-                            child: Text("Eye Problems"),
+                            child: Text(
+                                AppLocalizations.of(context).translate('eye')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dermatology",
+                            child: Text(
+                                AppLocalizations.of(context).translate('skin')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "uroKidney",
+                            child: Text(
+                                AppLocalizations.of(context).translate('uro')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "maleGenital",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('male_genital')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "gynecology",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('gynecology')),
                           ),
                           DropdownMenuItem<String>(
                             value: "breast",
-                            child: Text("Breast"),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('Breast')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "psychology",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('psychology')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "injuriesSuicideIntoxicationBurn",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('injuriesSuicideIntoxicationBurn')),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "others",
+                            child: Text(AppLocalizations.of(context)
+                                .translate('other_symptoms')),
                           ),
                         ],
                         value: regionSelected07,
@@ -2825,18 +3010,19 @@ class _PatientComplainState extends State<PatientComplain> {
                   _showSnackBar();
                 } else {
                   getage();
-                  /*if (select == '') {
+                  if (select == '') {
                     setState(() {
                       _error = 'Please , select a gender';
                     });
-                    _showSnackBar();*/
-                  //} else {
+                    _showSnackBar();
+                  } else {
                     if (complainSelected01 == "") {
                       setState(() {
                         _error = 'Please , select a main complaint';
                       });
                       _showSnackBar();
                     } else {
+                      print(complainSelected01);
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => PatientRiskFactors(
@@ -2851,7 +3037,7 @@ class _PatientComplainState extends State<PatientComplain> {
                         ),
                       );
                     }
-                  //}
+                  }
                 }
               },
             ),

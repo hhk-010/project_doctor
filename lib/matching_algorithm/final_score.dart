@@ -1,8 +1,10 @@
+import 'package:project_doctor/services/app_localizations.dart';
+
 class FinalScore {
   static int finale;
   static String speciality = '';
   static String speciality2 = '';
-  static String soeciality22='';
+  static String soeciality22 = '';
   static int cvsscore;
   static int respscore;
   static int endoscore;
@@ -25,6 +27,7 @@ class FinalScore {
   static int psychoscore;
   static int entscore;
   static int age;
+  static String Or;
 }
 
 countfinal() {
@@ -38,7 +41,7 @@ countfinal() {
       'ThoracoVascular Surgeon',
       'ThoracoVascular Surgeon'
     ],
-    FinalScore.erscore: ['Emergency Department', 'Emergency Department'],
+    FinalScore.erscore: ['Emergency physician', 'Emergency physician'],
     FinalScore.internscore: ['Internist', 'Internist'],
     FinalScore.gynescore: ['Gynecologist', 'Gynecologist'],
     FinalScore.rheumatoscore: ['Rheumatologist', 'Rheumatologist'],
@@ -107,12 +110,11 @@ countfinal() {
       FinalScore.speciality = _scoremap[x][0];
       if (_scoremap[x][0] != _scoremap[x][1]) {
         FinalScore.speciality2 = _scoremap[x][1];
-        FinalScore.soeciality22=' or '+FinalScore.speciality2;
+        FinalScore.Or = 'Or';
       } else {
         FinalScore.speciality2 = '';
-        FinalScore.soeciality22='';
+        FinalScore.Or = '';
       }
-
     }
   }
 }

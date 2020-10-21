@@ -4,6 +4,7 @@ import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:project_doctor/services/app_localizations.dart';
 
 class PatientGetLocation extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
     '2': 'Northern Region',
     '3': 'Southern Region',
     '4': 'Western Region',
-    '5':'Middle Region'
+    '5': 'Middle Region'
   };
   String _error = '';
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
@@ -105,7 +106,12 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                           AssetImage('assets/images/speciality.png'),
                     ),
                     title: Text(
-                      FinalScore.speciality + FinalScore.soeciality22,
+                      AppLocalizations.of(context)
+                              .translate(FinalScore.speciality) +
+                          AppLocalizations.of(context)
+                              .translate(FinalScore.Or) +
+                          AppLocalizations.of(context)
+                              .translate(FinalScore.speciality2),
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
