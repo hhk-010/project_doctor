@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_info2.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
@@ -334,18 +335,7 @@ class _UpdateinfoState extends State<Updateinfo> {
                     value == null ? 'Select your province' : null,
                 onChanged: (val) => setState(() => _Province = val),
               ),
-              /*TextFormField(
-                onChanged: (val) => setState(() => province = val),
-                decoration: textInputdecoration.copyWith(
-                  hintText: AppLocalizations.of(context).translate('province'),
-                  labelText: AppLocalizations.of(context).translate('province'),
-                ),
-                validator: (val) => val.isEmpty
-                    ? AppLocalizations.of(context)
-                        .translate('province_validator')
-                    : null,
-              ),*/
-              Spacer(),
+              /*Spacer(),
               TextFormField(
                 onChanged: (val) => setState(() => address = val),
                 decoration:
@@ -368,7 +358,7 @@ class _UpdateinfoState extends State<Updateinfo> {
                     textInputdecoration.copyWith(hintText: 'working hours'),
                 validator: (val) =>
                     val.isEmpty ? 'enter valid working hours' : null,
-              ),
+              ),*/
               Spacer(
                 flex: 3,
               ),
@@ -401,21 +391,18 @@ class _UpdateinfoState extends State<Updateinfo> {
                     if (_formkey.currentState.validate()) {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => UpdateMap(
+                          builder: (context) => Update2(
                             name: name,
                             speciality: speciality,
-                            number: phonenumber,
+                            phoneNumber: phonenumber,
                             province: _Province,
-                            address: address,
-                            vacation: vacation,
-                            workinghours: workinghours,
                           ),
                         ),
                       );
                     }
                   },
                   label: Text(
-                    AppLocalizations.of(context).translate('google_map'),
+                    AppLocalizations.of(context).translate('next'),
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
