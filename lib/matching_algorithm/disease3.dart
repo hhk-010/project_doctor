@@ -128,10 +128,10 @@ maindisease3(
       'other health problems',
       'disease of the mouth',
       'disease of the mouth',
-      'null',
-      'null',
-      'null',
-      'null');
+      'generalized bone pain',
+      'generalized bone pain',
+      'generalized bone pain',
+      'generalized bone pain');
   var internist4 = Disease3('internist', 'fever', 'fatigue', 'weight loss',
       'anorexia', 'insomnia', 'weight gain', 'somnolence', 'malaise');
 
@@ -230,7 +230,7 @@ maindisease3(
       }
       while (oo > 0) {
         if (others[o] == emsym[emkey]) {
-          emscore += 1;
+          emscore += 2;
         }
         o += 1;
         oo -= 1;
@@ -273,7 +273,7 @@ maindisease3(
       }
       while (oo > 0) {
         if (others[o] == intsym[intkey]) {
-          intscore += 1;
+          intscore += 2;
         }
         o += 1;
         oo -= 1;

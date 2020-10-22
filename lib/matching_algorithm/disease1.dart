@@ -391,7 +391,7 @@ maindisease1(
       //}
       while (oo > 0) {
         if (others[o] == cvssym[cvskey]) {
-          cvsscore += 1;
+          cvsscore += 2;
         }
         o += 1;
         oo -= 1;
@@ -437,7 +437,7 @@ maindisease1(
       }
       while (oo > 0) {
         if (others[o] == respsym[respkey]) {
-          respscore += 1;
+          respscore += 2;
         }
         o += 1;
         oo -= 1;
@@ -480,7 +480,7 @@ maindisease1(
       }
       while (oo > 0) {
         if (others[o] == endosym[endokey]) {
-          endoscore += 1;
+          endoscore += 2;
         }
         o += 1;
         oo -= 1;

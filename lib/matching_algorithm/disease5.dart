@@ -377,7 +377,7 @@ maindisease5(
       }
       while (oo > 0) {
         if (others[o] == heamsym[heamkey]) {
-          heamscore += 1;
+          heamscore += 2;
         }
         o += 1;
         oo -= 1;
@@ -420,7 +420,7 @@ maindisease5(
       }
       while (oo > 0) {
         if (others[o] == neurosym[neurokey]) {
-          neuroscore += 1;
+          neuroscore += 2;
         }
         o += 1;
         oo -= 1;
@@ -463,7 +463,7 @@ maindisease5(
       }
       while (oo > 0) {
         if (others[o] == rheusym[rheukey]) {
-          rheuscore += 1;
+          rheuscore += 2;
         }
         o += 1;
         oo -= 1;
@@ -506,7 +506,7 @@ maindisease5(
       }
       while (oo > 0) {
         if (others[o] == urosym[urokey]) {
-          nephroscore += 1;
+          nephroscore += 2;
         }
         o += 1;
         oo -= 1;

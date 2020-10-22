@@ -362,7 +362,7 @@ maindisease7(
       }
       while (oo > 0) {
         if (others[o] == opsym[opkey]) {
-          opscore += 1;
+          opscore += 2;
         }
         o += 1;
         oo -= 1;
@@ -405,7 +405,7 @@ maindisease7(
       }
       while (oo > 0) {
         if (others[o] == dersym[derkey]) {
-          derscore += 1;
+          derscore += 2;
         }
         o += 1;
         oo -= 1;
@@ -448,7 +448,7 @@ maindisease7(
       }
       while (oo > 0) {
         if (others[o] == psysym[psykey]) {
-          psyscore += 1;
+          psyscore += 2;
         }
         o += 1;
         oo -= 1;
@@ -491,7 +491,7 @@ maindisease7(
       }
       while (oo > 0) {
         if (others[o] == entsym[entkey]) {
-          entscore += 1;
+          entscore += 2;
         }
         o += 1;
         oo -= 1;

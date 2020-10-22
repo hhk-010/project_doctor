@@ -349,7 +349,7 @@ maindisease2(
       }
       while (oo > 0) {
         if (others[o] == gitsym[gitkey]) {
-          gitscore += 1;
+          gitscore += 2;
         }
         o += 1;
         oo -= 1;
@@ -392,7 +392,7 @@ maindisease2(
       }
       while (oo > 0) {
         if (others[o] == gssym[gskey]) {
-          gsscore += 1;
+          gsscore += 2;
         }
         o += 1;
         oo -= 1;
@@ -435,7 +435,7 @@ maindisease2(
       }
       while (oo > 0) {
         if (others[o] == thorsym[thorkey]) {
-          thorscore += 1;
+          thorscore += 2;
         }
         o += 1;
         oo -= 1;

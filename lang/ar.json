@@ -7,8 +7,19 @@
     "search" :  "ابحث",
     "submit" : "تم",
     "update" : "Update",
-    "ok" : "تم",
-    "google_map" : "كوكل ماب",
+    "OK" : "تم",
+    "ok":"تم",
+    "google_map" : "خرائط كوكل",
+    "Or": " او ",
+    "":"",
+
+"regions":"---------------------------------",
+    "Baghdad":"بغداد",
+    "Northern Region":"المنطقة الشمالية في العراق",
+    "Southern Region":"المنطقة الجنوبية في العراق",
+    "Western Region":"المنطقة الغربية في العراق",
+    "Middle Region":"المنطقة الوسطى في العراق",
+
 
 
 "Snacks" : "=======================================",
@@ -17,6 +28,10 @@
     "snack_register" : "خطا في التسجيل اضف معلومات صحيحه اولا",
     "snack_map" : "حدد مكان عيادتك اولا",
     "snack_map_patient" : "رجاء حدد موقعك اولا",
+    "age_message":"حدد عمرك لطفا",
+    "age_message_error":"يجب ان يكون العمر بين 0 و 130 عام",
+    "gender_message":"حدد الجنس لطفا",
+    "complain_message":"اختر الشكوى الرئيسية لطفا",
 
 
 
@@ -62,7 +77,7 @@
     "finish_update" : "اكمل تحديث معلوماتك بال",
     "change_password" : "هل تريد تغيير الرقم السري؟",
     "change" : "تغيير",
-
+    
 
 
 
@@ -70,7 +85,7 @@
     "Cardiologist" : "قلبيه",
     "Pulmonologist" : "تنفسيه",
     "Endocrinologist" : "غدد صماء",
-    "Enterologist" : " طب الأَمْعاء",
+    "Enterologist" : " طب الجهاز الهضمي",
     "General Surgeon" : "جراحه عامه",
     "Pediatric Surgeon" : "جراحه اطفال",
     "ThoracoVascular Surgeon" : "جراحه صدر واوعيه دمويه",
@@ -170,14 +185,14 @@
     "cd_epilepsy" : "مرض الصرع",
     "cd_cva" : "الجلطه القلبيه",
     "cd_thyroid" : "تضخم الغدة الدرقية السابق",
-    "cd_lung" : "Chronic Lung Disease",
+    "cd_lung" : "امراض الرئة المزمنة",
     "cd_copd" : " مرض الرئة الانسدادي المزمن",
     "cd_ashma" : "مرض الربو",
     "cd_tumor" : "الاورام",
 
 "life_style" : "نمط الحياه",
     "obesity" : "السمنه",
-    "physical_inactive" : "الخمول البدني",
+    "physical_inactive" : "قلة النشاط البدني",
     "pregnancy" : "الحمل",
     "alcohol" : "إدمان الكحول",
     "smoking" : "التدخين",
@@ -251,12 +266,12 @@
     "psychological trauma":"ازمات نفسية",
     "addiction":"الادمان",
     "encorporesis":"التغوط اللاارادي عند الاطفال",
-    "polyphagia":"الشراهة",
+    
     "other psychological problems":"مشاكل نفسية الخرلى",
 
 
 "musckuloskeletal" : "=========================================",
-    "generalized bone pain":"الم العظام",
+    "generalized bone pain":"الم العظام في مناطق مختلفة من الجسم",
     "joint pain":"الم المفاصل غير المسبوق باصابة",
     "deformity":"تشوهات العظام والمفاصل",
     "joint swelling":"تورم المفصل",
@@ -348,6 +363,7 @@
     "weight gain":"ازدياد الوزن",
     "weight loss":"فقدان الوزن",
     "anorexia":"قلة الشهية",
+    "polyphagia":"الشراهة",
 
 "throat_" : "=========================================",
     "hoarseness":"بحة الصوت",

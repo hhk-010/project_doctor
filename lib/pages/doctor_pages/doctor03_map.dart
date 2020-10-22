@@ -45,12 +45,12 @@ class DocMap extends StatefulWidget {
 class _DocMapState extends State<DocMap> {
   final AuthService _auth = AuthService();
 
-  var email;
-  String password;
-  var name;
-  var speciality;
-  var phoneNumber;
-  var province;
+  var email = '';
+  String password = '';
+  var name = '';
+  var speciality = '';
+  var phoneNumber = '';
+  var province = '';
   String address = '';
   String vacation = '';
   String workinghours = '';
@@ -84,8 +84,8 @@ class _DocMapState extends State<DocMap> {
     });
   }
 
-  double lattt;
-  double lnggg;
+  double lattt = 0.0;
+  double lnggg = 0.0;
 
   geolocate({String latlng}) {
     var firstindex = latlng.indexOf('(');
@@ -161,7 +161,7 @@ class _DocMapState extends State<DocMap> {
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
               child: Text(
-                AppLocalizations.of(context).translate('ok'),
+                AppLocalizations.of(context).translate('OK'),
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               onPressed: () async {

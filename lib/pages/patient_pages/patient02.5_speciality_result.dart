@@ -59,7 +59,13 @@ class SpecialityResult extends StatelessWidget {
                           AssetImage('assets/images/speciality.png'),
                     ),
                     title: Text(
-                      FinalScore.speciality,
+                      //FinalScore.speciality,
+                      AppLocalizations.of(context)
+                              .translate(FinalScore.speciality) +
+                          AppLocalizations.of(context)
+                              .translate(FinalScore.Or) +
+                          AppLocalizations.of(context)
+                              .translate(FinalScore.speciality2),
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),

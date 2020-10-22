@@ -7,7 +7,18 @@
     "submit" : "Submit",
     "update" : "Update",
     "ok" : "OK",
+    "Ok":"OK",
     "google_map" : "Google Map",
+    "Or": " Or ",
+    "":"",
+
+
+"regions":"---------------------------------",
+    "Baghdad":"Baghdad",
+    "Northern Region":"Northern Region of Iraq",
+    "Southern Region":"Southern Region of Iraq",
+    "Western Region":"Western Region of Iraq",
+    "Middle Region":"Middle Region of Iraq",
 
 
 "Snacks" : "=======================================",
@@ -16,6 +27,10 @@
     "snack_register" : "Registeration Error, Please enter valid credentials",
     "snack_map" : "add your clinic location first",
     "snack_map_patient" : "Please add your current location",
+    "age_message":"Please , enter your age",
+    "age_message_error":"Age should be from 0 to 130",
+    "gender_message":"Please , select a gender",
+    "complain_message":"Please , select a main complaint",
 
 
 
@@ -46,7 +61,7 @@
     "province": "Province",
     "province_validator" : "Enter Your Province",
     "location": "Location",
-    "add_location" : "add clinic Location",
+    "add_location" : "Add Clinic Location",
     "location_setup" : "Set up Your Clinic Location",
     "clinic_form" : "Clinic Form",
     "profile" : "Profile",
@@ -61,6 +76,7 @@
     "finish_update" : "Finish Updating your Information by ",
     "change_password" : "Change Your Password?",
     "change" : "Change",
+    
 
 
     
@@ -166,7 +182,7 @@
     "cd_intestine" : "Chronic Intestinal Disease",
     "cd_epilepsy" : "Epilespy",
     "cd_cva" : "Stroke",
-    "cd_thyroid" : "Previous Goitre",
+    "cd_thyroid" : "Previous Goiter",
     "cd_lung" : "Chronic Lung Disease",
     "cd_copd" : "COPD",
     "cd_ashma" : "Ashma",
@@ -247,7 +263,7 @@
     "psychological trauma":"psychological trauma",
     "addiction":"addiction",
     "encorporesis":"encorporesis",
-    "polyphagia":"polyphagia",
+    
     "other psychological problems":"other psychological problems",
 
 
@@ -344,6 +360,7 @@
     "weight gain":"weight gain",
     "weight loss":"weight loss",
     "anorexia":"anorexia",
+    "polyphagia":"polyphagia",
 
 "ENT_throat" : "=========================================",
     "hoarseness":"hoarseness",

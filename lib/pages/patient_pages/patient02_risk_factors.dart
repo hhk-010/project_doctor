@@ -163,7 +163,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                             if (htnSelected) {
                               htn = 'HTN';
                             } else {
-                              htn = null;
+                              htn = '';
                             }
                           });
                         }),
@@ -218,6 +218,22 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                         }),
                     CheckboxListTile(
                         title: Text(
+                            AppLocalizations.of(context).translate('cd_ctd'),
+                            style: _textStyle),
+                        value: ctdSelected,
+                        onChanged: (val) {
+                          setState(() {
+                            ctdSelected = val;
+                            if (ctdSelected) {
+                              ctd = 'connective tissue disease';
+                            } else {
+                              ctd = '';
+                            }
+                            print(ctd);
+                          });
+                        }),
+                    CheckboxListTile(
+                        title: Text(
                             AppLocalizations.of(context).translate('cd_ckd'),
                             style: _textStyle),
                         value: ckdSelected,
@@ -232,7 +248,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                             print(ckd);
                           });
                         }),
-                    CheckboxListTile(
+                    /*CheckboxListTile(
                         title: Text(
                             AppLocalizations.of(context).translate('cd_ctd'),
                             style: _textStyle),
@@ -247,7 +263,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                             }
                             print(ctd);
                           });
-                        }),
+                        }),*/
                     CheckboxListTile(
                         title: Text(
                             AppLocalizations.of(context).translate('cd_liver'),
@@ -273,7 +289,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                           setState(() {
                             copdSelected = val;
                             if (copdSelected) {
-                              copd = 'chronic lung disease';
+                              copd = 'copd';
                             } else {
                               copd = '';
                             }
@@ -297,10 +313,8 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                           });
                         }),
                     CheckboxListTile(
-                        title: Text(
-                            AppLocalizations.of(context)
-                                .translate('cd_thyroid'),
-                            style: _textStyle),
+                        title: Text(AppLocalizations.of(context).translate('cd_thyroid')
+                        , style: _textStyle),
                         value: goitreSelected,
                         onChanged: (val) {
                           setState(() {

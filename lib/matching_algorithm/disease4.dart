@@ -191,7 +191,7 @@ maindisease4(
       }
       while (oo > 0) {
         if (others[o] == obsym[obskey]) {
-          obscore += 1;
+          obscore += 2;
         }
         o += 1;
         oo -= 1;

@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_info2.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
@@ -11,10 +12,10 @@ class Updateinfo extends StatefulWidget {
 }
 
 class _UpdateinfoState extends State<Updateinfo> {
-  String name;
-  String speciality;
-  String phonenumber;
-  String province;
+  String name = '';
+  String speciality = '';
+  String phonenumber = '';
+  String _Province;
   String address = '';
   String vacation = '';
   String workinghours = '';
@@ -23,29 +24,119 @@ class _UpdateinfoState extends State<Updateinfo> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> specialities = [
-      AppLocalizations.of(context).translate('Internist'),
-      AppLocalizations.of(context).translate('Pediatrician'),
-      AppLocalizations.of(context).translate('Cardiologist'),
-      AppLocalizations.of(context).translate('Pulmonologist'),
-      AppLocalizations.of(context).translate('Enterologist'),
-      AppLocalizations.of(context).translate('Neurologist'),
-      AppLocalizations.of(context).translate('Heamatologist'),
-      AppLocalizations.of(context).translate('Nephrologist'),
-      AppLocalizations.of(context).translate('Rheumatologist'),
-      AppLocalizations.of(context).translate('Emergency physician'),
-      AppLocalizations.of(context).translate('Dermatologist'),
-      AppLocalizations.of(context).translate('Psychiatrist'),
-      AppLocalizations.of(context).translate('Gynecologist'),
-      AppLocalizations.of(context).translate('General Surgeon'),
-      AppLocalizations.of(context).translate('Pediatric Surgeon'),
-      AppLocalizations.of(context).translate('ThoracoVascular Surgeon'),
-      AppLocalizations.of(context).translate('Orthopaedic Surgeon'),
-      AppLocalizations.of(context).translate('Urosurgeon'),
-      AppLocalizations.of(context).translate('Plastic Surgeon'),
-      AppLocalizations.of(context).translate('Ophthalmologist'),
-      AppLocalizations.of(context).translate('Laryngologist'),
-    ];
+    final specialities = {
+      "1": [AppLocalizations.of(context).translate('Internist'), 'Internist'],
+      "2": [
+        AppLocalizations.of(context).translate('Pediatrician'),
+        'Pediatrician'
+      ],
+      "3": [
+        AppLocalizations.of(context).translate('Cardiologist'),
+        'Cardiologist'
+      ],
+      "4": [
+        AppLocalizations.of(context).translate('Pulmonologist'),
+        'Pulmonologist'
+      ],
+      "5": [
+        AppLocalizations.of(context).translate('Endocrinologist'),
+        'Endocrinologist'
+      ],
+      "6": [
+        AppLocalizations.of(context).translate('Enterologist'),
+        'Enterologist'
+      ],
+      "7": [
+        AppLocalizations.of(context).translate('Neurologist'),
+        'Neurologist'
+      ],
+      "8": [
+        AppLocalizations.of(context).translate('Neurosurgeon'),
+        'Neurosurgeon'
+      ],
+      "9": [
+        AppLocalizations.of(context).translate('Heamatologist'),
+        'Heamatologist'
+      ],
+      "10": [
+        AppLocalizations.of(context).translate('Nephrologist'),
+        'Nephrologist'
+      ],
+      "11": [
+        AppLocalizations.of(context).translate('Rheumatologist'),
+        'Rheumatologist'
+      ],
+      "12": [
+        AppLocalizations.of(context).translate('Emergency physician'),
+        'Emergency physician'
+      ],
+      "13": [
+        AppLocalizations.of(context).translate('Dermatologist'),
+        'Dermatologist'
+      ],
+      "14": [
+        AppLocalizations.of(context).translate('Psychiatrist'),
+        'Psychiatrist'
+      ],
+      "15": [
+        AppLocalizations.of(context).translate('Gynecologist'),
+        'Gynecologist'
+      ],
+      "16": [
+        AppLocalizations.of(context).translate('General Surgeon'),
+        'General Surgeon'
+      ],
+      "17": [
+        AppLocalizations.of(context).translate('Pediatric Surgeon'),
+        'Pediatric Surgeon'
+      ],
+      "18": [
+        AppLocalizations.of(context).translate('ThoracoVascular Surgeon'),
+        'ThoracoVascular Surgeon'
+      ],
+      "19": [
+        AppLocalizations.of(context).translate('Orthopaedic Surgeon'),
+        'Orthopaedic Surgeon'
+      ],
+      "20": [
+        AppLocalizations.of(context).translate('Urosurgeon'),
+        'Urosurgeon'
+      ],
+      "21": [
+        AppLocalizations.of(context).translate('Plastic Surgeon'),
+        'Plastic Surgeon'
+      ],
+      "22": [
+        AppLocalizations.of(context).translate('Ophthalmologist'),
+        'Ophthalmologist'
+      ],
+      "23": [
+        AppLocalizations.of(context).translate('Laryngologist'),
+        'Laryngologist'
+      ],
+    };
+    final province = {
+      "1": [
+        'Baghdad',
+        AppLocalizations.of(context).translate('Baghdad'),
+      ],
+      "2": [
+        'Northern Region',
+        AppLocalizations.of(context).translate("Northern Region"),
+      ],
+      "3": [
+        'Southern Region',
+        AppLocalizations.of(context).translate("Southern Region"),
+      ],
+      "4": [
+        'Western Region',
+        AppLocalizations.of(context).translate("Western Region"),
+      ],
+      "5": [
+        'Middle Region',
+        AppLocalizations.of(context).translate("Middle Region"),
+      ],
+    };
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
@@ -88,12 +179,106 @@ class _UpdateinfoState extends State<Updateinfo> {
                 elevation: 5,
                 icon: Icon(Icons.arrow_drop_down),
                 isExpanded: true,
-                items: specialities.map((speciality) {
+                items: [
+                  DropdownMenuItem(
+                    value: specialities['1'][1],
+                    child: Text(specialities['1'][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["2"][1],
+                    child: Text(specialities["2"][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["3"][1],
+                    child: Text(specialities["3"][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["4"][1],
+                    child: Text(specialities["4"][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["5"][1],
+                    child: Text(specialities["5"][0]),
+                  ), //5
+                  DropdownMenuItem(
+                    value: specialities["6"][1],
+                    child: Text(specialities["6"][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["7"][1],
+                    child: Text(specialities["7"][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["8"][1],
+                    child: Text(specialities["8"][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["9"][1],
+                    child: Text(specialities["9"][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["10"][1],
+                    child: Text(specialities["10"][0]),
+                  ), //10
+                  DropdownMenuItem(
+                    value: specialities["11"][1],
+                    child: Text(specialities["11"][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["12"][1],
+                    child: Text(specialities["12"][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["13"][1],
+                    child: Text(specialities['13'][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["14"][1],
+                    child: Text(specialities["14"][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["15"][1],
+                    child: Text(specialities["15"][0]),
+                  ), //15
+                  DropdownMenuItem(
+                    value: specialities["16"][1],
+                    child: Text(specialities["16"][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["17"][1],
+                    child: Text(specialities["17"][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["18"][1],
+                    child: Text(specialities["18"][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["19"][1],
+                    child: Text(specialities["19"][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["20"][1],
+                    child: Text(specialities["20"][0]),
+                  ), //20
+                  DropdownMenuItem(
+                    value: specialities["21"][1],
+                    child: Text(specialities["21"][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["22"][1],
+                    child: Text(specialities["22"][0]),
+                  ),
+                  DropdownMenuItem(
+                    value: specialities["23"][1],
+                    child: Text(specialities["23"][0]),
+                  )
+                ],
+                /*items: specialities.map((speciality) {
                   return DropdownMenuItem(
                     value: speciality,
                     child: Text('$speciality'),
                   );
-                }).toList(),
+                }).toList(),*/
                 validator: (value) => value == null
                     ? AppLocalizations.of(context)
                         .translate('speciality_validator')
@@ -115,18 +300,42 @@ class _UpdateinfoState extends State<Updateinfo> {
                           .translate('phoneNumber_validator')
                       : null),
               Spacer(),
-              TextFormField(
-                onChanged: (val) => setState(() => province = val),
-                decoration: textInputdecoration.copyWith(
-                  hintText: AppLocalizations.of(context).translate('province'),
-                  labelText: AppLocalizations.of(context).translate('province'),
+              DropdownButtonFormField<String>(
+                decoration: textInputdecoration,
+                hint: Text(
+                  AppLocalizations.of(context).translate('province'),
                 ),
-                validator: (val) => val.isEmpty
-                    ? AppLocalizations.of(context)
-                        .translate('province_validator')
-                    : null,
+                dropdownColor: Colors.grey[200],
+                elevation: 5,
+                icon: Icon(Icons.arrow_drop_down),
+                isExpanded: true,
+                items: [
+                  DropdownMenuItem(
+                    value: province["1"][0],
+                    child: Text(province["1"][1]),
+                  ),
+                  DropdownMenuItem(
+                    value: province["2"][0],
+                    child: Text(province["2"][1]),
+                  ),
+                  DropdownMenuItem(
+                    value: province["3"][0],
+                    child: Text(province["3"][1]),
+                  ),
+                  DropdownMenuItem(
+                    value: province["4"][0],
+                    child: Text(province["4"][1]),
+                  ),
+                  DropdownMenuItem(
+                    value: province["5"][0],
+                    child: Text(province["5"][1]),
+                  ),
+                ],
+                validator: (value) =>
+                    value == null ? 'Select your province' : null,
+                onChanged: (val) => setState(() => _Province = val),
               ),
-              Spacer(),
+              /*Spacer(),
               TextFormField(
                 onChanged: (val) => setState(() => address = val),
                 decoration:
@@ -149,7 +358,7 @@ class _UpdateinfoState extends State<Updateinfo> {
                     textInputdecoration.copyWith(hintText: 'working hours'),
                 validator: (val) =>
                     val.isEmpty ? 'enter valid working hours' : null,
-              ),
+              ),*/
               Spacer(
                 flex: 3,
               ),
@@ -182,21 +391,18 @@ class _UpdateinfoState extends State<Updateinfo> {
                     if (_formkey.currentState.validate()) {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => UpdateMap(
+                          builder: (context) => Update2(
                             name: name,
                             speciality: speciality,
-                            number: phonenumber,
-                            province: province,
-                            address: address,
-                            vacation: vacation,
-                            workinghours: workinghours,
+                            phoneNumber: phonenumber,
+                            province: _Province,
                           ),
                         ),
                       );
                     }
                   },
                   label: Text(
-                    AppLocalizations.of(context).translate('google_map'),
+                    AppLocalizations.of(context).translate('next'),
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -210,11 +416,14 @@ class _UpdateinfoState extends State<Updateinfo> {
               Divider(color: Colors.black),
               InkWell(
                 onTap: () {
+                  print(speciality);
+                  print(_Province);
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => UpdatePassword()));
                 },
                 child: RichText(
                   text: TextSpan(
+                    text: '',
                     style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.black,

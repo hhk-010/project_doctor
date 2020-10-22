@@ -59,12 +59,25 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
 
   @override
   Widget build(BuildContext context) {
-    final iraqRegions = [
-      AppLocalizations.of(context).translate('centeral_region'),
-      AppLocalizations.of(context).translate('northen_region'),
-      AppLocalizations.of(context).translate('southern_region'),
-      AppLocalizations.of(context).translate('western_region'),
-    ];
+    final iraqRegions = {
+      "1": [AppLocalizations.of(context).translate('Baghdad'), "Baghdad"],
+      "2": [
+        AppLocalizations.of(context).translate('northen_region'),
+        "Northern Region"
+      ],
+      "3": [
+        AppLocalizations.of(context).translate('southern_region'),
+        "Southern Region"
+      ],
+      "4": [
+        AppLocalizations.of(context).translate('western_region'),
+        "Eastern Region"
+      ],
+      "5": [
+        AppLocalizations.of(context).translate('Middle Region'),
+        "Middle Region"
+      ],
+    };
 
     return Scaffold(
       key: _scaffoldkey,
@@ -99,8 +112,21 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                           TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
+                ],
+              ),
+            ),
+            Spacer(
+              flex: 1,
+            ),
+            Container(
+              decoration: boxDecorationPatient,
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              child: Column(
+                children: [
+                  Text(
+                    'Province',
+                    style:
+                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                   ),
                   Divider(
                     color: Colors.grey,
@@ -116,10 +142,32 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                         AppLocalizations.of(context).translate('select_region'),
                       ),
                       isExpanded: true,
-                      items: iraqRegions
+                      items: [
+                        DropdownMenuItem(
+                          value: iraqRegions["1"][1],
+                          child: Text(iraqRegions["1"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: iraqRegions["2"][1],
+                          child: Text(iraqRegions["2"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: iraqRegions["3"][1],
+                          child: Text(iraqRegions["3"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: iraqRegions["4"][1],
+                          child: Text(iraqRegions["4"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: iraqRegions["5"][1],
+                          child: Text(iraqRegions["5"][0]),
+                        ),
+                      ],
+                      /*items: iraqRegions
                           .map((String item) => DropdownMenuItem<String>(
                               child: Text(item), value: item))
-                          .toList(),
+                          .toList(),*/
                       onChanged: (value) {
                         setState(() {
                           region = value;

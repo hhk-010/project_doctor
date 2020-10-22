@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 class MCQss {
   static var uid;
   static int counter = 0;
-  static int length = QuestionsShuffle.questions.length - 1;
+  static int length = QuestionsShuffle.questions.length;
   static String error = '';
 }
 
@@ -95,7 +95,7 @@ class _PreMCQsState extends State<PreMCQs> {
                     });
                   } else {
                     setState(() {
-                      MCQss.length = QuestionsShuffle.questions.length - 1;
+                      MCQss.length = QuestionsShuffle.questions.length;
                       MCQss.counter = 0;
                     });
                   }
@@ -181,7 +181,7 @@ class _PostpremcqState extends State<Postpremcq> {
                     height: 20,
                   ),
                   Text(
-                    'if you allready have an account return to the sign in page',
+                    'if you already have an account return to the sign in page',
                     style: TextStyle(
                       fontSize: 18.0,
                     ),
