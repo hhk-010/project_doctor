@@ -41,7 +41,7 @@
     "snack_sign_in" : "Error Signing in",
     "snack_connectivity" : "No Internet Connection",
     "snack_register" : "Registeration Error, Please enter valid credentials",
-    "snack_map" : "add your clinic location first",
+    "snack_map" : "Tap on your clinic location first",
     "snack_map_patient" : "Please add your current location",
     "age_message":"Please , enter your age",
     "age_message_error":"Age should be from 0 to 130",
@@ -99,6 +99,7 @@
     "vacation_validator":"Select valid vacation days",
     "work_hour":"Clinic working hours",
     "work_validator":"Please enter valid working hours",
+    "update_location": "Update Your Location",
     
 
 

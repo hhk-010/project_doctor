@@ -41,7 +41,7 @@
     "snack_sign_in" : "خطا في الدخول",
     "snack_connectivity" : "لا يوجد اتصال بالشبكه",
     "snack_register" : "خطا في التسجيل اضف معلومات صحيحه اولا",
-    "snack_map" : "حدد مكان عيادتك اولا",
+    "snack_map" : "حدد موقع عيادتك اولا",
     "snack_map_patient" : "رجاء حدد موقعك اولا",
     "age_message":"حدد عمرك لطفا",
     "age_message_error":"يجب ان يكون العمر بين 0 و 130 عام",
@@ -99,6 +99,7 @@
     "vacation_validator":"لطفا حدد ايام عطلة العيادة",
     "work_hour":"اوقات عمل العيادة",
     "work_validator":"حدد اوقات عمل العيادة لطفا",
+    "update_location": "تحديث موقع عيادتك",
     
 
 

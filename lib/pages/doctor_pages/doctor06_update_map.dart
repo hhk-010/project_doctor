@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_info2.dart';
+import 'package:project_doctor/services/app_localizations.dart';
 import '../../services/database.dart';
 
 // ----------------class for snackbar error
@@ -130,7 +131,7 @@ class _UpdateMapState extends State<UpdateMap> {
       key: _scaffoldkey,
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text('Update your location'),
+        title: Text(AppLocalizations.of(context).translate("update_location")),
         centerTitle: true,
       ),
       body: Stack(
@@ -148,13 +149,14 @@ class _UpdateMapState extends State<UpdateMap> {
             padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
             child: FloatingActionButton(
                 backgroundColor: Colors.deepOrange,
-                child: Text('U'),
+                child: Text(AppLocalizations.of(context).translate('ok')),
                 onPressed: () async {
                   checkInternet();
                   if (_isInternet) {
                     if (latlng == null) {
                       setState(() {
-                        snackbarerror.error = 'Please , tap on your location';
+                        snackbarerror.error =
+                            AppLocalizations.of(context).translate('snack_map');
                       });
                       _showSnackBar();
                     } else {
@@ -169,7 +171,8 @@ class _UpdateMapState extends State<UpdateMap> {
                     }
                   } else {
                     setState(() {
-                      snackbarerror.error = 'No internet connection';
+                      snackbarerror.error = AppLocalizations.of(context)
+                          .translate('snack_connectivity');
                     });
                     _showSnackBar();
                   }
