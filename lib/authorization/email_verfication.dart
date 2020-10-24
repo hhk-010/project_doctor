@@ -2,12 +2,14 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 
 //---------class for launching the registered email
-class Newclient{
-  static String email='';
+class Newclient {
+  static String email = '';
 }
+
 class EmailVerification extends StatefulWidget {
   final String email;
   EmailVerification({this.email});
@@ -26,18 +28,20 @@ class _EmailVerificationState extends State<EmailVerification> {
   void initState() {
     super.initState();
     Future(() async {
-      _timer= Timer.periodic(Duration(seconds: 10), (timer) async {
+      _timer = Timer.periodic(Duration(seconds: 10), (timer) async {
         FirebaseAuth.instance.currentUser..reload();
       });
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: Text(
-          'Email Confirmation',
+          AppLocalizations.of(context).translate("email_v_title"),
+          //'Email Confirmation',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 25,
@@ -71,7 +75,8 @@ class _EmailVerificationState extends State<EmailVerification> {
               flex: 3,
             ),
             Text(
-              'We Sent an Email to: ',
+              AppLocalizations.of(context).translate('email_sent'),
+              //'We Sent an Email to: ',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Spacer(
@@ -86,7 +91,8 @@ class _EmailVerificationState extends State<EmailVerification> {
               flex: 2,
             ),
             Text(
-              'Check your email and click on the confirmation link then',
+              AppLocalizations.of(context).translate("confirm"),
+              //'Check your email and click on the confirmation link then',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
               textAlign: TextAlign.center,
             ),
@@ -101,7 +107,9 @@ class _EmailVerificationState extends State<EmailVerification> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(80.0)),
               color: Colors.deepOrange,
-              label: Text('Continue',
+              label: Text(
+                  AppLocalizations.of(context)
+                      .translate("continue"), //'Continue',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -129,9 +137,13 @@ class _EmailVerificationState extends State<EmailVerification> {
                     //----text has been changed because if the client clicked resend
                     // for two time with less than one to twe minutes in between
                     // firebase will consider it as unusual activity -----
-                    new TextSpan(text: " Didn't receive email ? Please wait for few minutes then "),
                     new TextSpan(
-                        text: 'Resent Email',
+                        text: AppLocalizations.of(context)
+                            .translate("didnot receive")),
+                    //" Didn't receive email ? Please wait for few minutes then "),
+                    new TextSpan(
+                        text: AppLocalizations.of(context).translate("resend"),
+                        //text: 'Resent Email',
                         style: new TextStyle(color: Colors.deepOrange)),
                   ],
                 ),
@@ -145,7 +157,7 @@ class _EmailVerificationState extends State<EmailVerification> {
 
   @override
   void dispose() {
-    if (_timer!=null){
+    if (_timer != null) {
       _timer.cancel();
     }
   }

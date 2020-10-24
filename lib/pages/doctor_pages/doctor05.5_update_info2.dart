@@ -18,16 +18,15 @@ class Update2 extends StatefulWidget {
 }
 
 class _Update2State extends State<Update2> {
-
   final String name;
   final String speciality;
   final String phoneNumber;
   final String province;
-  _Update2State({this.name,this.speciality,this.phoneNumber,this.province});
+  _Update2State({this.name, this.speciality, this.phoneNumber, this.province});
 
-  String address='';
-  String vacation='';
-  String workinghours='';
+  String address = '';
+  String vacation = '';
+  String workinghours = '';
   final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -55,26 +54,34 @@ class _Update2State extends State<Update2> {
               Spacer(),
               TextFormField(
                 onChanged: (val) => setState(() => address = val),
-                decoration:
-                    textInputdecoration.copyWith(hintText: 'detailed address'),
-                validator: (val) =>
-                    val.isEmpty ? 'enter a valid address' : null,
+                decoration: textInputdecoration.copyWith(
+                    hintText: AppLocalizations.of(context)
+                        .translate("detailed_address")),
+                validator: (val) => val.isEmpty
+                    ? AppLocalizations.of(context)
+                        .translate("address_validator")
+                    : null,
               ),
               Spacer(),
               TextFormField(
                 onChanged: (val) => setState(() => vacation = val),
-                decoration:
-                    textInputdecoration.copyWith(hintText: 'clinic vacation'),
-                validator: (val) =>
-                    val.isEmpty ? 'enter a valid clinic vacation days' : null,
+                decoration: textInputdecoration.copyWith(
+                    hintText: AppLocalizations.of(context)
+                        .translate("vacation_days")),
+                validator: (val) => val.isEmpty
+                    ? AppLocalizations.of(context)
+                        .translate("vacation_validator")
+                    : null,
               ),
               Spacer(),
               TextFormField(
                 onChanged: (val) => setState(() => workinghours = val),
-                decoration:
-                    textInputdecoration.copyWith(hintText: 'working hours'),
-                validator: (val) =>
-                    val.isEmpty ? 'enter valid working hours' : null,
+                decoration: textInputdecoration.copyWith(
+                    hintText:
+                        AppLocalizations.of(context).translate("work_hour")),
+                validator: (val) => val.isEmpty
+                    ? AppLocalizations.of(context).translate("work_validator")
+                    : null,
               ),
               Spacer(
                 flex: 3,

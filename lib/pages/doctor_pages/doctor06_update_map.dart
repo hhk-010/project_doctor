@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_info2.dart';
 import '../../services/database.dart';
 
 // ----------------class for snackbar error
@@ -146,34 +147,33 @@ class _UpdateMapState extends State<UpdateMap> {
             alignment: Alignment.bottomLeft,
             padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
             child: FloatingActionButton(
-              backgroundColor: Colors.deepOrange,
-              child: Text('U'),
-              onPressed: () async {
-                checkInternet();
-                if (_isInternet) {
-                  if (latlng == null) {
+                backgroundColor: Colors.deepOrange,
+                child: Text('U'),
+                onPressed: () async {
+                  checkInternet();
+                  if (_isInternet) {
+                    if (latlng == null) {
+                      setState(() {
+                        snackbarerror.error = 'Please , tap on your location';
+                      });
+                      _showSnackBar();
+                    } else {
+                      await geolocate(latlng: latlng);
+                      if (lattt != null && lnggg != null) {
+                        await DatabaseService(
+                                uid: FirebaseAuth.instance.currentUser.uid)
+                            .updateUserData(name, speciality, number, province,
+                                lattt, lnggg, address, vacation, workinghours);
+                        Navigator.pop(context);
+                      }
+                    }
+                  } else {
                     setState(() {
-                      snackbarerror.error = 'Please , tap on your location';
+                      snackbarerror.error = 'No internet connection';
                     });
                     _showSnackBar();
-                  } else {
-                    await geolocate(latlng: latlng);
-                    if (lattt != null && lnggg != null) {
-                      await DatabaseService(
-                              uid: FirebaseAuth.instance.currentUser.uid)
-                          .updateUserData(name, speciality, number, province,
-                              lattt, lnggg, address, vacation, workinghours);
-                      Navigator.pop(context);
-                    }
                   }
-                } else {
-                  setState(() {
-                    snackbarerror.error = 'No internet connection';
-                  });
-                  _showSnackBar();
-                }
-              },
-            ),
+                }),
           ),
         ],
       ),
