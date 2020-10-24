@@ -104,10 +104,13 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
               padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
               child: Column(
                 children: [
-                  Text(
-                    AppLocalizations.of(context).translate('region'),
-                    style:
-                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  FittedBox(
+                    fit: BoxFit.fitWidth,
+                                      child: Text(
+                      AppLocalizations.of(context).translate('region'),
+                      style:
+                          TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               ),

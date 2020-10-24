@@ -2066,11 +2066,14 @@ class _PatientComplainState extends State<PatientComplain> {
                   children: [
                     Center(
                       child: Container(
-                        child: Text(
-                          AppLocalizations.of(context)
-                              .translate('main_complain'),
-                          style: TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.bold),
+                        child: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(
+                            AppLocalizations.of(context)
+                                .translate('main_complain'),
+                            style: TextStyle(
+                                fontSize: 18.0, fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                     ),
