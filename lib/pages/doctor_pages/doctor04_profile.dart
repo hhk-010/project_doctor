@@ -166,14 +166,16 @@ class _DoctorListState extends State<DoctorList> {
                         height: 5,
                       ),
                       Text(
-                        'clinic vacation is ' + _vacation,
+                        _workinghours,
                         style: _textStyle,
                       ),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
-                        _workinghours,
+                        AppLocalizations.of(context).translate('vacation') +
+                            _vacation,
+                        //'clinic vacation is ' + _vacation,
                         style: _textStyle,
                       ),
                       SizedBox(

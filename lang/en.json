@@ -21,11 +21,27 @@
     "Middle Region":"Middle Region of Iraq",
 
 
+"email verification page":"=========================",
+    "email_v_title":"Email Confirmation", 
+    "email_sent":"We Sent an Email to: ",
+    "confirm":"Check your email and click on the confirmation link then",
+    "continue":"Continue",
+    "didnot receive":"Didn't receive email ? Please wait for few minutes then press ",
+    "resend":"Resend Email",
+    
+    
+"patient result":"================================",
+    "resulted":"Search Result",
+    "distances":"Distance to the doctor is about ",
+    "km":"Km away",
+    "doctor_locat":"Show Doctor Location",
+
+
 "Snacks" : "=======================================",
     "snack_sign_in" : "Error Signing in",
     "snack_connectivity" : "No Internet Connection",
     "snack_register" : "Registeration Error, Please enter valid credentials",
-    "snack_map" : "add your clinic location first",
+    "snack_map" : "Tap on your clinic location first",
     "snack_map_patient" : "Please add your current location",
     "age_message":"Please , enter your age",
     "age_message_error":"Age should be from 0 to 130",
@@ -76,6 +92,17 @@
     "finish_update" : "Finish Updating your Information by ",
     "change_password" : "Change Your Password?",
     "change" : "Change",
+    "vacation":"Clinic vacation is in ",
+    "detailed_address":"Detailed clinic address",
+    "address_validator":"Please enter a valid address",
+    "vacation_days":"Clinic vacation days",
+    "vacation_validator":"Select valid vacation days",
+    "work_hour":"Clinic working hours",
+    "work_validator":"Please enter valid working hours",
+    "update_location": "Update Your Location",
+    "passWord_reset":"Password Reset",
+    "password_reset_email":"Send Email To Reset Password",
+    "check_reset_email":"Check your Email and click on the link to Reset your Password",
     
 
 

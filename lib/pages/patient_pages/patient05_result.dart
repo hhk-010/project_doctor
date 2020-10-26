@@ -5,6 +5,7 @@ import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
 import 'package:project_doctor/pages/patient_pages/patient06_result_map.dart';
+import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:geolocator/geolocator.dart';
@@ -24,7 +25,8 @@ class _PatientResultState extends State<PatientResult> {
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
           title: Text(
-            'Search Result',
+            AppLocalizations.of(context).translate("resulted"),
+            //'Search Result',
             style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
@@ -151,7 +153,8 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                         height: 5,
                       ),
                       Text(
-                        _speciality,
+                        AppLocalizations.of(context).translate(_speciality),
+                        //_speciality,
                         style: _textStyle,
                       ),
                       SizedBox(
@@ -178,10 +181,6 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                       SizedBox(
                         height: 5,
                       ),
-                      Text(
-                        'clinic vacation is ' + _vacation,
-                        style: _textStyle,
-                      ),
                       SizedBox(
                         height: 5,
                       ),
@@ -189,15 +188,24 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                         _workinghours,
                         style: _textStyle,
                       ),
+                      Text(
+                        AppLocalizations.of(context).translate("vacation") +
+                            _vacation,
+                        //'clinic vacation is ' + _vacation,
+                        style: _textStyle,
+                      ),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
-                        'Distance to the Doctor is about ',
+                        AppLocalizations.of(context).translate("distances"),
+                        //'Distance to the Doctor is about ',
                         style: TextStyle(fontSize: 16),
                       ),
                       Text(
-                        realnearby + ' Km away',
+                        realnearby +
+                            AppLocalizations.of(context)
+                                .translate("km"), //' Km away',
                         style:
                             TextStyle(color: Colors.deepOrange, fontSize: 20),
                       ),
@@ -225,7 +233,8 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                         )));
               },
               label: Text(
-                'View Doctor Location',
+                AppLocalizations.of(context).translate("doctor_locat"),
+                //'View Doctor Location',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,

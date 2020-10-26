@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
+import 'package:project_doctor/services/app_localizations.dart';
 
 class ForgetPassword extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class ForgetPassword extends StatefulWidget {
 
 class _ForgetPasswordState extends State<ForgetPassword> {
   String email;
-  String error='';
+  String error = '';
 
   final _formkey = GlobalKey<FormState>();
   TextStyle _textStyle = TextStyle(
@@ -62,7 +63,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: Text(
-          'Password Reset',
+          AppLocalizations.of(context)
+              .translate("passWord_reset"), //'Password Reset',
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -76,16 +78,20 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               children: [
                 TextFormField(
                   decoration: textInputdecoration.copyWith(
-                    hintText: 'Enter Your Current Email',
-                    labelText: 'Email',
+                    hintText: AppLocalizations.of(context).translate(
+                        'enter_your_email'), //'Enter Your Current Email',
+                    labelText: AppLocalizations.of(context)
+                        .translate('email'), //'Email',
                   ),
                   cursorColor: Colors.black,
                   keyboardType: TextInputType.emailAddress,
                   onChanged: (val) {
                     email = val;
                   },
-                  validator: (val) =>
-                      val.isEmpty ? 'Enter a valid email address' : null,
+                  validator: (val) => val.isEmpty
+                      ? AppLocalizations.of(context)
+                          .translate('enter_your_email')
+                      : null,
                 ),
                 Spacer(),
                 RaisedButton.icon(
@@ -97,13 +103,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       borderRadius: BorderRadius.circular(80.0)),
                   color: Colors.deepOrange,
                   label: Text(
-                    'Send Email To Reset Password',
+                    AppLocalizations.of(context).translate(
+                        'password_reset_email'), //'Send Email To Reset Password',
                     style:
                         _textStyle.copyWith(color: Colors.white, fontSize: 16),
                   ),
                   onPressed: () async {
                     checkInternet();
-                    if (_isInternet){
+                    if (_isInternet) {
                       if (_formkey.currentState.validate()) {
                         await FirebaseAuth.instance
                             .sendPasswordResetEmail(email: email);
@@ -111,13 +118,13 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                             builder: (context) =>
                                 PasswordResetContinue(email: email)));
                       }
-                    }else{
+                    } else {
                       setState(() {
-                        error='No internet connection';
+                        error = AppLocalizations.of(context)
+                            .translate('snack_connectivity');
                       });
                       _showSnackBar();
                     }
-
                   },
                 ),
               ],
@@ -137,7 +144,7 @@ class PasswordResetContinue extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: Text(
-          'Password Reset',
+          AppLocalizations.of(context).translate('passWord_reset'),
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -158,7 +165,7 @@ class PasswordResetContinue extends StatelessWidget {
             flex: 3,
           ),
           Text(
-            'We Sent an Email to',
+            AppLocalizations.of(context).translate('email_sent'),
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           Spacer(
@@ -172,7 +179,7 @@ class PasswordResetContinue extends StatelessWidget {
             flex: 2,
           ),
           Text(
-            'Check your Email and click on the link to Reset your Password',
+            AppLocalizations.of(context).translate("check_reset_email"),
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
             textAlign: TextAlign.center,
           ),
@@ -187,7 +194,7 @@ class PasswordResetContinue extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(80.0)),
               color: Colors.deepOrange,
-              label: Text('Continue',
+              label: Text(AppLocalizations.of(context).translate('continue'),
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
