@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:project_doctor/main.dart';
@@ -41,10 +42,9 @@ class _HomeState extends State<Home> {
         elevation: 0,
         actions: [
           SafeArea(
-                      child: Padding(
+            child: Padding(
               padding: EdgeInsets.all(8.0),
               child: DropdownButton(
-                
                 onChanged: (Language language) {
                   _changeLanguage(language);
                 },
@@ -53,7 +53,6 @@ class _HomeState extends State<Home> {
                   Icons.language,
                   color: Colors.white,
                 ),
-                
                 items: Language.languageList()
                     .map<DropdownMenuItem<Language>>(
                       (lang) => DropdownMenuItem(
@@ -67,7 +66,6 @@ class _HomeState extends State<Home> {
             ),
           ),
           IconButton(
-            
             icon: Icon(Icons.email),
             onPressed: () {
               Navigator.pushNamed(context, '/patient_get_location');
@@ -76,7 +74,7 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: SafeArea(
-              child: Padding(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 75),
           child: Container(
             height: double.maxFinite,
@@ -99,32 +97,30 @@ class _HomeState extends State<Home> {
                       ),
                       label: Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: FittedBox(
-                          fit: BoxFit.fitWidth,
-                          child: RichText(
-                            text: TextSpan(children: [
-                              TextSpan(
-                                  text: AppLocalizations.of(context)
-                                      .translate('home_patient_title'),
-                                  style: TextStyle(
-                                      fontFamily: lang == 'ar'
-                                          ? 'noto_arabic'
-                                          : 'Helvetica',
-                                      fontSize: 28,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white)),
-                              TextSpan(
-                                  text: AppLocalizations.of(context)
-                                      .translate('home_patient_subtitle'),
-                                  style: TextStyle(
-                                      fontFamily: lang == 'ar'
-                                          ? 'noto_arabic'
-                                          : 'Helvetica',
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white)),
-                            ]),
-                          ),
+                        child: AutoSizeText.rich(
+                          TextSpan(
+                              text: AppLocalizations.of(context)
+                                  .translate('home_patient_title'),
+                              style: TextStyle(
+                                  fontFamily: lang == 'ar'
+                                      ? 'noto_arabic'
+                                      : 'Helvetica',
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                              children: [
+                                TextSpan(
+                                    text: AppLocalizations.of(context)
+                                        .translate('home_patient_subtitle'),
+                                    style: TextStyle(
+                                        fontFamily: lang == 'ar'
+                                            ? 'noto_arabic'
+                                            : 'Helvetica',
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white)),
+                              ]),
+                          maxLines: 2,
                         ),
                       ),
                       shape: RoundedRectangleBorder(
@@ -144,29 +140,29 @@ class _HomeState extends State<Home> {
                       ),
                       label: Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: RichText(
-                          text: TextSpan(children: [
-                            TextSpan(
-                                text: AppLocalizations.of(context)
-                                    .translate('home_doctor_title'),
-                                style: TextStyle(
-                                    fontSize: 28,
-                                    fontFamily: lang == 'ar'
-                                        ? 'noto_arabic'
-                                        : 'Helvetica',
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white)),
-                            TextSpan(
-                                text: AppLocalizations.of(context)
-                                    .translate('home_doctor_subtitle'),
-                                style: TextStyle(
-                                    fontFamily: lang == 'ar'
-                                        ? 'noto_arabic'
-                                        : 'Helvetica',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white)),
-                          ]),
+                        child: AutoSizeText.rich(
+                          TextSpan(
+                              text: AppLocalizations.of(context)
+                                  .translate('home_doctor_title'),
+                              style: TextStyle(
+                                  fontSize: 28,
+                                  fontFamily: lang == 'ar'
+                                      ? 'noto_arabic'
+                                      : 'Helvetica',
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                              children: [
+                                TextSpan(
+                                    text: AppLocalizations.of(context)
+                                        .translate('home_doctor_subtitle'),
+                                    style: TextStyle(
+                                        fontFamily: lang == 'ar'
+                                            ? 'noto_arabic'
+                                            : 'Helvetica',
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white)),
+                              ]),
                         ),
                       ),
                       shape: RoundedRectangleBorder(

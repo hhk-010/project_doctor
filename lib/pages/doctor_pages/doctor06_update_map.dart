@@ -6,7 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../services/database.dart';
 
 // ----------------class for snackbar error
-class snackbarerror {
+class SnackBarError {
   static String error = '';
 }
 
@@ -83,7 +83,7 @@ class _UpdateMapState extends State<UpdateMap> {
   _showSnackBar() {
     final snackBar = new SnackBar(
       content: new Text(
-        snackbarerror.error,
+        SnackBarError.error,
         style: TextStyle(fontSize: 15),
       ),
       //duration: new Duration(seconds: 3),
@@ -153,7 +153,7 @@ class _UpdateMapState extends State<UpdateMap> {
                 if (_isInternet) {
                   if (latlng == null) {
                     setState(() {
-                      snackbarerror.error = 'Please , tap on your location';
+                      SnackBarError.error = 'Please , tap on your location';
                     });
                     _showSnackBar();
                   } else {
@@ -168,7 +168,7 @@ class _UpdateMapState extends State<UpdateMap> {
                   }
                 } else {
                   setState(() {
-                    snackbarerror.error = 'No internet connection';
+                    SnackBarError.error = 'No internet connection';
                   });
                   _showSnackBar();
                 }

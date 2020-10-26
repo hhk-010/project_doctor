@@ -3,7 +3,6 @@ import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_info2.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
-import 'package:project_doctor/pages/doctor_pages/doctor06_update_map.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor07_update_password.dart';
 
 class Updateinfo extends StatefulWidget {

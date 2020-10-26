@@ -1,4 +1,3 @@
-import 'package:project_doctor/services/app_localizations.dart';
 
 class FinalScore {
   static int finale;
