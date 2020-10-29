@@ -54,12 +54,16 @@ class _ClinicFormState extends State<ClinicForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text(
-          AppLocalizations.of(context).translate('doctor_form'),
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+        title: FittedBox(
+          fit: BoxFit.fitWidth,
+          child: Text(
+            AppLocalizations.of(context).translate('doctor_form'),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          ),
         ),
         centerTitle: true,
         elevation: 0,
@@ -69,48 +73,49 @@ class _ClinicFormState extends State<ClinicForm> {
         child: Form(
           key: _formKey,
           child: Container(
-            height: double.maxFinite,
             child: Column(
               children: [
                 TextFormField(
-                  validator: (val) => val.isEmpty ? 'Enter your address' : null,
+                  validator: (val) => val.isEmpty
+                      ? AppLocalizations.of(context)
+                          .translate('address_validator')
+                      : null,
                   onChanged: (val) => setState(() => currentaddress = val),
                   decoration: textInputdecoration.copyWith(
-                      hintText:
-                          'detailed address' /*AppLocalizations.of(context)
-                        .translate('doctor_form_province'),
-                    labelText: AppLocalizations.of(context)
-                        .translate('doctor_form_province'),*/
-                      ),
+                      hintText: AppLocalizations.of(context)
+                          .translate('detailed_address'),
+                      labelText: AppLocalizations.of(context)
+                          .translate('detailed_address')),
                 ),
                 Spacer(),
                 TextFormField(
-                  validator: (val) =>
-                      val.isEmpty ? 'Enter your clinic vacation days' : null,
+                  validator: (val) => val.isEmpty
+                      ? AppLocalizations.of(context)
+                          .translate('vacation_validator')
+                      : null,
                   onChanged: (val) => setState(() => currentvacation = val),
                   decoration: textInputdecoration.copyWith(
-                      hintText:
-                          'clinic vacation days' /*AppLocalizations.of(context)
-                        .translate('doctor_province'),
+                    hintText:
+                        AppLocalizations.of(context).translate('vacation_days'),
                     labelText: AppLocalizations.of(context)
-                        .translate('doctor_province'),*/
-                      ),
+                        .translate('vacation_days'),
+                  ),
                 ),
                 Spacer(),
                 TextFormField(
-                  validator: (val) =>
-                      val.isEmpty ? 'Enter your clinic working hours' : null,
+                  validator: (val) => val.isEmpty
+                      ? AppLocalizations.of(context).translate('work_validator')
+                      : null,
                   onChanged: (val) => setState(() => currentworkinghours = val),
                   decoration: textInputdecoration.copyWith(
-                      hintText:
-                          'clinic working hours' /*AppLocalizations.of(context)
-                        .translate('doctor_province'),
+                    hintText:
+                        AppLocalizations.of(context).translate('work_hour'),
                     labelText: AppLocalizations.of(context)
-                        .translate('doctor_province'),*/
-                      ),
+                        .translate('work_hour'),
+                  ),
                 ),
                 Spacer(
-                  flex: 3,
+                  flex: 6,
                 ),
                 Row(
                   children: [
@@ -138,21 +143,27 @@ class _ClinicFormState extends State<ClinicForm> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(80.0)),
                     onPressed: () async {
-                      await Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => DocMap(
-                            email: email,
-                            password: password,
-                            name: name,
-                            speciality: speciality,
-                            phone: phoneNumber,
-                            province: province,
-                            address: currentaddress,
-                            vacation: currentvacation,
-                            workinghours: currentworkinghours,
-                          ),
-                        ),
-                      );
+                      if (_formKey.currentState.validate()) {
+                        if (currentaddress != null &&
+                            currentvacation != null &&
+                            currentworkinghours != null) {
+                          await Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => DocMap(
+                                email: email,
+                                password: password,
+                                name: name,
+                                speciality: speciality,
+                                phone: phoneNumber,
+                                province: province,
+                                address: currentaddress,
+                                vacation: currentvacation,
+                                workinghours: currentworkinghours,
+                              ),
+                            ),
+                          );
+                        }
+                      }
                     },
                     label: Text(
                       AppLocalizations.of(context).translate('google_map'),

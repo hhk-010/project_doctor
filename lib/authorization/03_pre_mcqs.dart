@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/04_mcqs.dart';
@@ -39,7 +38,6 @@ class _PreMCQsState extends State<PreMCQs> {
     }
   }
 
-  //------------the end --------------------
   //-----------------this function will return a snackbar instead of the old one
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
@@ -64,71 +62,74 @@ class _PreMCQsState extends State<PreMCQs> {
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
       value: DatabaseService().doctorDataProfileStream,
-      child: Scaffold(
-        key: _scaffoldkey,
-        backgroundColor: Colors.grey[200],
-        appBar: AppBar(
-          backgroundColor: Colors.deepOrange,
-          title: Text(''),
-          actions: [
-            FlatButton.icon(
-              onPressed: () {
-                widget.signInToogleView();
-              },
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.white,
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Scaffold(
+          key: _scaffoldkey,
+          backgroundColor: Colors.grey[200],
+          appBar: AppBar(
+            backgroundColor: Colors.deepOrange,
+            title: Text(''),
+            actions: [
+              FlatButton.icon(
+                onPressed: () {
+                  widget.signInToogleView();
+                },
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
+                label: Text(
+                  'Sign in',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
-              label: Text(
-                'Sign in',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-            FlatButton.icon(
-              onPressed: () {
-                checkInternet();
-                if (_isInternet) {
-                  if (MCQss.length > 3) {
-                    setState(() {
-                      MCQss.length -= 3;
-                      MCQss.counter += 3;
-                    });
+              FlatButton.icon(
+                onPressed: () {
+                  checkInternet();
+                  if (_isInternet) {
+                    if (MCQss.length > 3) {
+                      setState(() {
+                        MCQss.length -= 3;
+                        MCQss.counter += 3;
+                      });
+                    } else {
+                      setState(() {
+                        MCQss.length = QuestionsShuffle.questions.length;
+                        MCQss.counter = 0;
+                      });
+                    }
+                    DatabaseService(uid: MCQss.uid).updateUserData(
+                        MCQss.counter.toString(),
+                        'tester',
+                        '0101001101010022',
+                        MCQss.length.toString(),
+                        0.000000230033,
+                        0.000000032044,
+                        '',
+                        '',
+                        '');
+                    widget.preMCQToogleView();
                   } else {
                     setState(() {
-                      MCQss.length = QuestionsShuffle.questions.length;
-                      MCQss.counter = 0;
+                      MCQss.error = 'No internet connection';
                     });
+                    _showSnackBar();
                   }
-                  DatabaseService(uid: MCQss.uid).updateUserData(
-                      MCQss.counter.toString(),
-                      'tester',
-                      '0101001101010022',
-                      MCQss.length.toString(),
-                      0.000000230033,
-                      0.000000032044,
-                      '',
-                      '',
-                      '');
-                  widget.preMCQToogleView();
-                } else {
-                  setState(() {
-                    MCQss.error = 'No internet connection';
-                  });
-                  _showSnackBar();
-                }
-              },
-              icon: Icon(
-                Icons.arrow_forward,
-                color: Colors.white,
+                },
+                icon: Icon(
+                  Icons.arrow_forward,
+                  color: Colors.white,
+                ),
+                label: Text(
+                  'Next',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
-              label: Text(
-                'Register',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
+            ],
+          ),
+          body: Postpremcq(),
         ),
-        body: Postpremcq(),
       ),
     );
   }
@@ -155,38 +156,54 @@ class _PostpremcqState extends State<Postpremcq> {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 50.0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            width: double.infinity,
-            decoration: boxDecorationPatient,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Text(
-                    ' Welcome to Cura',
-                    style:
-                        TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    'To Create a new account you must answer a few Medical Questions to Verify your Identity',
-                    style: TextStyle(
-                      fontSize: 18.0,
+          Directionality(
+            textDirection: TextDirection.ltr,
+            child: Container(
+              width: double.infinity,
+              decoration: boxDecorationPatient,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 25),
+                child: Column(
+                  children: [
+                    FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        ' Welcome to Cura',
+                        style: TextStyle(
+                            fontSize: 30.0, fontWeight: FontWeight.bold),
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    'if you already have an account return to the sign in page',
-                    style: TextStyle(
-                      fontSize: 18.0,
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 3,
+                      indent: 30,
+                      endIndent: 30,
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'To Create a new account you must answer a few Medical Questions to Verify your Identity',
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 50,
+                    ),
+                    Text(
+                      'if you already have an account return to the sign in page',
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

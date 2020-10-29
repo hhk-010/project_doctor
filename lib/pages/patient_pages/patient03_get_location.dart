@@ -34,7 +34,6 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
     _scaffoldkey.currentState.showSnackBar(_snackBar);
   }
 
-  //---------------------the end ----------------------
   //-------------------checking internet connection
   bool _isInternet = true;
   checkInternet() async {
@@ -50,7 +49,6 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
     }
   }
 
-  //------------the end --------------------
   @override
   void initState() {
     checkInternet();
@@ -106,25 +104,23 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                 children: [
                   FittedBox(
                     fit: BoxFit.fitWidth,
-                                      child: Text(
+                    child: Text(
                       AppLocalizations.of(context).translate('region'),
-                      style:
-                          TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
               ),
             ),
-            Spacer(
-              flex: 1,
-            ),
+            Spacer(),
             Container(
               decoration: boxDecorationPatient,
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               child: Column(
                 children: [
                   Text(
-                    'Province',
+                    AppLocalizations.of(context).translate('province'),
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                   ),
@@ -182,6 +178,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                 ],
               ),
             ),
+            Spacer(),
             Container(
               decoration: boxDecorationPatient,
               padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
@@ -193,7 +190,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                       style: TextStyle(
                           fontSize: 18.0, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.justify,
-                      maxLines: 3,
+                      maxLines: 2,
                     ),
                   ),
                   SizedBox(
@@ -244,7 +241,6 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                       label: AutoSizeText(
                         AppLocalizations.of(context).translate('auto_location'),
                         maxLines: 1,
-                        minFontSize: 18,
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -255,7 +251,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Text(
-                      'or',
+                      AppLocalizations.of(context).translate('Or'),
                       style: TextStyle(
                           fontSize: 18.0, fontWeight: FontWeight.bold),
                     ),

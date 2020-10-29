@@ -2209,7 +2209,7 @@ class _PatientComplainState extends State<PatientComplain> {
                       ],
                       //if one choose a region then reselect another one ---> there will be an error which
                       // was fixed by removing the arguement value
-                      //value: regionSelected01,
+                      value: regionSelected01,
                       onChanged: (_value) => selected01(_value),
                       hint: FittedBox(
                         fit: BoxFit.fitWidth,
@@ -2406,7 +2406,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                 .translate('other_symptoms')),
                           ),
                         ],
-                        //value: regionSelected02,
+                        value: regionSelected02,
                         onChanged: (_value) => selected02(_value),
                         hint: FittedBox(
                           fit: BoxFit.fitWidth,
@@ -2602,7 +2602,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                 .translate('other_symptoms')),
                           ),
                         ],
-                        //value: regionSelected03,
+                        value: regionSelected03,
                         onChanged: (_value) => selected03(_value),
                         hint: FittedBox(
                           fit: BoxFit.fitWidth,
@@ -2798,7 +2798,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                 .translate('other_symptoms')),
                           ),
                         ],
-                        //value: regionSelected04,
+                        value: regionSelected04,
                         onChanged: (_value) => selected04(_value),
                         hint: FittedBox(
                           fit: BoxFit.fitWidth,
@@ -2994,7 +2994,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                 .translate('other_symptoms')),
                           ),
                         ],
-                        //value: regionSelected05,
+                        value: regionSelected05,
                         onChanged: (_value) => selected05(_value),
                         hint: FittedBox(
                           fit: BoxFit.fitWidth,
@@ -3190,7 +3190,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                 .translate('other_symptoms')),
                           ),
                         ],
-                        //value: regionSelected06,
+                        value: regionSelected06,
                         onChanged: (_value) => selected06(_value),
                         hint: FittedBox(
                           fit: BoxFit.fitWidth,
@@ -3385,7 +3385,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                 .translate('other_symptoms')),
                           ),
                         ],
-                        //value: regionSelected07,
+                        value: regionSelected07,
                         onChanged: (_value) => selected07(_value),
                         hint: FittedBox(
                           fit: BoxFit.fitWidth,

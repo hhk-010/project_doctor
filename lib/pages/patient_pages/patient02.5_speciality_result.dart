@@ -29,7 +29,7 @@ class SpecialityResult extends StatelessWidget {
             Container(
               decoration: boxDecorationPatient,
               width: double.infinity,
-              padding: EdgeInsets.symmetric(vertical: 25, horizontal: 8),
+              padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
               child: Column(
                 children: [
                   AutoSizeText(
@@ -51,23 +51,28 @@ class SpecialityResult extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.deepOrange,
-                      radius: 30,
-                      backgroundImage:
-                          AssetImage('assets/images/speciality.png'),
-                    ),
-                    title: Text(
-                      //FinalScore.speciality,
-                      AppLocalizations.of(context)
-                              .translate(FinalScore.speciality) +
+                  Center(
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.deepOrange,
+                        radius: 30,
+                        backgroundImage:
+                            AssetImage('assets/images/speciality.png'),
+                      ),
+                      title: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          //FinalScore.speciality,
                           AppLocalizations.of(context)
-                              .translate(FinalScore.Or) +
-                          AppLocalizations.of(context)
-                              .translate(FinalScore.speciality2),
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                                  .translate(FinalScore.speciality) +
+                              AppLocalizations.of(context)
+                                  .translate(FinalScore.Or) +
+                              AppLocalizations.of(context)
+                                  .translate(FinalScore.speciality2),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                      ),
                     ),
                   ),
                 ],

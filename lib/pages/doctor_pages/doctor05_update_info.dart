@@ -23,6 +23,8 @@ class _UpdateinfoState extends State<Updateinfo> {
 
   @override
   Widget build(BuildContext context) {
+    var lang = Localizations.localeOf(context).languageCode;
+
     final specialities = {
       "1": [AppLocalizations.of(context).translate('Internist'), 'Internist'],
       "2": [
@@ -152,7 +154,7 @@ class _UpdateinfoState extends State<Updateinfo> {
       ),
       body: Container(
         height: double.maxFinite,
-        padding: EdgeInsets.symmetric(vertical: 75.0, horizontal: 50.0),
+        padding: EdgeInsets.fromLTRB(50, 75, 50, 25),
         child: Form(
           key: _formkey,
           child: Column(
@@ -171,6 +173,7 @@ class _UpdateinfoState extends State<Updateinfo> {
               Spacer(),
               DropdownButtonFormField<String>(
                 decoration: textInputdecoration,
+                isDense: false,
                 hint: Text(
                   AppLocalizations.of(context).translate('speciality'),
                 ),
@@ -300,6 +303,8 @@ class _UpdateinfoState extends State<Updateinfo> {
                       : null),
               Spacer(),
               DropdownButtonFormField<String>(
+                                isDense: false,
+
                 decoration: textInputdecoration,
                 hint: Text(
                   AppLocalizations.of(context).translate('province'),
@@ -426,13 +431,14 @@ class _UpdateinfoState extends State<Updateinfo> {
                     style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.black,
+                      fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
                     ),
                     children: <TextSpan>[
                       TextSpan(
                           text: AppLocalizations.of(context)
                               .translate('change_password')),
                       TextSpan(
-                          text:
+                          text: " " +
                               AppLocalizations.of(context).translate('change'),
                           style: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.red)),

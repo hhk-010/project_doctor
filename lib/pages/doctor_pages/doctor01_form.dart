@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/services/app_localizations.dart';
@@ -159,22 +161,30 @@ class _DoctorFormState extends State<DoctorForm> {
             height: double.maxFinite,
             child: Column(
               children: [
-                TextFormField(
-                  decoration: textInputdecoration.copyWith(
-                    hintText: AppLocalizations.of(context).translate('name'),
-                    labelText: AppLocalizations.of(context).translate('name'),
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: TextFormField(
+                    decoration: textInputdecoration.copyWith(
+                      hintText: AppLocalizations.of(context).translate('name'),
+                      labelText: AppLocalizations.of(context).translate('name'),
+                    ),
+                    validator: (val) => val.isEmpty
+                        ? AppLocalizations.of(context)
+                            .translate('name_validator')
+                        : null,
+                    onChanged: (val) => setState(() => currentName = val),
                   ),
-                  validator: (val) => val.isEmpty
-                      ? AppLocalizations.of(context).translate('name_validator')
-                      : null,
-                  onChanged: (val) => setState(() => currentName = val),
                 ),
                 Spacer(),
                 DropdownButtonFormField<String>(
                   value: currentSpeciality,
+                  isDense: false,
                   decoration: textInputdecoration,
                   hint: Text(
                     AppLocalizations.of(context).translate('speciality'),
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
                   ),
                   dropdownColor: Colors.grey[200],
                   elevation: 5,
@@ -303,6 +313,7 @@ class _DoctorFormState extends State<DoctorForm> {
                 ),
                 Spacer(),
                 DropdownButtonFormField<String>(
+                  isDense: false,
                   value: currentProvince,
                   decoration: textInputdecoration,
                   hint: Text(

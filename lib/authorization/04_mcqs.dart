@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:project_doctor/constants/language.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,6 @@ class _MCQSState extends State<MCQS> {
     }
   }
 
-  //------------the end --------------------
   //-----------------this function will return a snackbar instead of the old one
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
@@ -43,7 +43,6 @@ class _MCQSState extends State<MCQS> {
     _scaffoldkey.currentState.showSnackBar(_snackbar);
   }
 
-  //-------------------the end ----------------------
   @override
   void initState() {
     checkInternet();
@@ -54,87 +53,89 @@ class _MCQSState extends State<MCQS> {
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
       value: DatabaseService().doctorDataProfileStream,
-      child: Scaffold(
-        key: _scaffoldkey,
-        backgroundColor: Colors.grey[200],
-        appBar: AppBar(
-          backgroundColor: Colors.deepOrange,
-          title: Text(''),
-          actions: [
-            FlatButton.icon(
-              onPressed: () {
-                widget.premcq();
-              },
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-              ),
-              label: Text(
-                'Sign in',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-            FlatButton.icon(
-              onPressed: () {
-                checkInternet();
-                if (_isInternet) {
-                  getscore1b();
-                  getscore2b();
-                  getscore3b();
-                  //getscore4b();
-                  if (QuestionsShuffle.score >= 3) {
-                    if (QuestionsShuffle.lenght > 3) {
-                      setState(() {
-                        QuestionsShuffle.counter += 3;
-                        QuestionsShuffle.lenght -= 3;
-                      });
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Scaffold(
+          key: _scaffoldkey,
+          backgroundColor: Colors.grey[200],
+          appBar: AppBar(
+            backgroundColor: Colors.deepOrange,
+            actions: [
+              // FlatButton.icon(
+              //   onPressed: () {
+              //     widget.premcq();
+              //   },
+              //   icon: Icon(
+              //     Icons.arrow_back,
+              //     color: Colors.white,
+              //   ),
+              //   label: Text(
+              //     'Sign in',
+              //     style: TextStyle(color: Colors.white),
+              //   ),
+              // ),
+              FlatButton.icon(
+                onPressed: () {
+                  checkInternet();
+                  if (_isInternet) {
+                    getscore1b();
+                    getscore2b();
+                    getscore3b();
+                    //getscore4b();
+                    if (QuestionsShuffle.score >= 3) {
+                      if (QuestionsShuffle.lenght > 3) {
+                        setState(() {
+                          QuestionsShuffle.counter += 3;
+                          QuestionsShuffle.lenght -= 3;
+                        });
+                      } else {
+                        setState(() {
+                          QuestionsShuffle.counter = 0;
+                          QuestionsShuffle.lenght =
+                              QuestionsShuffle.questions.length;
+                        });
+                      }
+                      DatabaseService(uid: QuestionsShuffle.uid).updateUserData(
+                          QuestionsShuffle.counter.toString(),
+                          'counter',
+                          '0101001101010022',
+                          QuestionsShuffle.lenght.toString(),
+                          0.0000023003,
+                          0.0000054003,
+                          '',
+                          '',
+                          '');
+                      widget.mcq();
                     } else {
                       setState(() {
-                        QuestionsShuffle.counter = 0;
-                        QuestionsShuffle.lenght =
-                            QuestionsShuffle.questions.length;
+                        QuestionsShuffle.snackerror =
+                            'Please , answer the questions correctly';
                       });
+                      _showSnackBar();
                     }
-                    DatabaseService(uid: QuestionsShuffle.uid).updateUserData(
-                        QuestionsShuffle.counter.toString(),
-                        'counter',
-                        '0101001101010022',
-                        QuestionsShuffle.lenght.toString(),
-                        0.0000023003,
-                        0.0000054003,
-                        '',
-                        '',
-                        '');
-                    widget.mcq();
                   } else {
                     setState(() {
-                      QuestionsShuffle.snackerror =
-                          'Please , answer the questions correctly';
+                      QuestionsShuffle.snackerror = 'No internet connection';
                     });
                     _showSnackBar();
                   }
-                } else {
                   setState(() {
-                    QuestionsShuffle.snackerror = 'No internet connection';
+                    QuestionsShuffle.score = 0;
                   });
-                  _showSnackBar();
-                }
-                setState(() {
-                  QuestionsShuffle.score = 0;
-                });
-              },
-              icon: Icon(
-                Icons.arrow_forward,
-                color: Colors.white,
+                },
+                icon: Icon(
+                  Icons.arrow_forward,
+                  color: Colors.white,
+                ),
+                label: Text(
+                  'Next',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
-              label: Text(
-                'Register',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
+            ],
+          ),
+          body: Questions(),
         ),
-        body: Questions(),
       ),
     );
   }
@@ -163,12 +164,12 @@ class _QuestionsState extends State<Questions> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: 15.0,
-            ),
             Text(
               'To register , answer the following :',
-              style: TextStyle(color: Colors.black, fontSize: 18.0),
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: 15.0,
@@ -191,8 +192,9 @@ class _QuestionsState extends State<Questions> {
                     height: 15.0,
                   ),
                   DropdownButton(
+                    // value: QuestionsShuffle.value1,
                     isExpanded: true,
-                    hint: Text('Choose the right answer'),
+                    hint: Text('Choose the Right answer'),
                     items: [
                       DropdownMenuItem<String>(
                         value: '0',
@@ -226,6 +228,7 @@ class _QuestionsState extends State<Questions> {
                       ),
                     ],
                     onChanged: (value) => selected1b(value),
+                    // value: QuestionsShuffle.value1,
                   ),
                 ],
               ),
@@ -241,6 +244,7 @@ class _QuestionsState extends State<Questions> {
                   Center(
                     child: Text(
                       QuestionsShuffle.questions[QuestionsShuffle.counter + 1],
+                      textAlign: TextAlign.justify,
                       style: TextStyle(fontSize: 16.0),
                     ),
                   ),
@@ -249,7 +253,7 @@ class _QuestionsState extends State<Questions> {
                   ),
                   DropdownButton(
                     isExpanded: true,
-                    hint: Text('Choose the right answer'),
+                    hint: Text('Choose the Right answer'),
                     items: [
                       DropdownMenuItem<String>(
                         value: '0',
@@ -283,6 +287,7 @@ class _QuestionsState extends State<Questions> {
                       ),
                     ],
                     onChanged: (value) => selected2b(value),
+                    // value: QuestionsShuffle.value2,
                   ),
                 ],
               ),
@@ -298,48 +303,53 @@ class _QuestionsState extends State<Questions> {
                   Center(
                     child: Text(
                       QuestionsShuffle.questions[QuestionsShuffle.counter + 2],
+                      textAlign: TextAlign.justify,
                       style: TextStyle(fontSize: 16.0),
                     ),
                   ),
                   SizedBox(
                     height: 15.0,
                   ),
-                  DropdownButton(
-                    isExpanded: true,
-                    hint: Text('Choose the right answer'),
-                    items: [
-                      DropdownMenuItem<String>(
-                        value: '0',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter + 2]][0]),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: '1',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter + 2]][1]),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: '2',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter + 2]][2]),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: '3',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter + 2]][3]),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: '4',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter + 2]][4]),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: '5',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter + 2]][5]),
-                      ),
-                    ],
-                    onChanged: (value) => selected3b(value),
+                  Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: DropdownButton(
+                      isExpanded: true,
+                      hint: Text('Choose the Right answer'),
+                      items: [
+                        DropdownMenuItem<String>(
+                          value: '0',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter + 2]][0]),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: '1',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter + 2]][1]),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: '2',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter + 2]][2]),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: '3',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter + 2]][3]),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: '4',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter + 2]][4]),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: '5',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter + 2]][5]),
+                        ),
+                      ],
+                      onChanged: (value) => selected3b(value),
+                      // value: QuestionsShuffle.value3,
+                    ),
                   ),
                 ],
               ),

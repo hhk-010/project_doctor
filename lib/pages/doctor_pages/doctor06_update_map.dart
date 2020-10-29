@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -48,14 +47,11 @@ class _UpdateMapState extends State<UpdateMap> {
   String workinghours = '';
 
   var latlng;
-
   List<Marker> mymarker = [];
 
   handletap(LatLng tappedpoint) {
     print(tappedpoint);
-
     latlng = tappedpoint.toString();
-
     setState(() {
       mymarker = [];
       mymarker.add(Marker(
@@ -67,7 +63,6 @@ class _UpdateMapState extends State<UpdateMap> {
 
   double lattt;
   double lnggg;
-
   geolocate({String latlng}) {
     var firstindex = latlng.indexOf('(');
     var secondindex = latlng.indexOf(',');
