@@ -36,6 +36,8 @@ class _EmailVerificationState extends State<EmailVerification> {
 
   @override
   Widget build(BuildContext context) {
+    var lang = Localizations.localeOf(context).languageCode;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
@@ -62,7 +64,7 @@ class _EmailVerificationState extends State<EmailVerification> {
       ),
       body: Container(
         height: double.maxFinite,
-        padding: EdgeInsets.symmetric(vertical: 75.0, horizontal: 50.0),
+        padding: EdgeInsets.fromLTRB(50, 75, 50, 25),
         child: Column(
           children: [
             SizedBox(
@@ -112,7 +114,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                       .translate("continue"), //'Continue',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold)),
               onPressed: () {
                 if (FirebaseAuth.instance.currentUser.emailVerified) {
@@ -128,10 +130,12 @@ class _EmailVerificationState extends State<EmailVerification> {
                 await AuthService().resendemail();
               },
               child: RichText(
+                textAlign: TextAlign.center,
                 text: new TextSpan(
                   style: new TextStyle(
                       fontSize: 14.0,
                       color: Colors.black,
+                      fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
                       fontWeight: FontWeight.bold),
                   children: <TextSpan>[
                     //----text has been changed because if the client clicked resend

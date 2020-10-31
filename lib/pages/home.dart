@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
           icon: Icon(Icons.info),
           tooltip: AppLocalizations.of(context).translate('about_us'),
           onPressed: () {
-            Navigator.pushNamed(context, '/about_us');
+            Navigator.pushNamed(context, '/register');
           },
         ),
         title: FittedBox(
@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
         actions: [
           SafeArea(
             child: Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(16.0),
               child: DropdownButton(
                 onChanged: (Language language) {
                   _changeLanguage(language);
@@ -64,12 +64,6 @@ class _HomeState extends State<Home> {
                     .toList(),
               ),
             ),
-          ),
-          IconButton(
-            icon: Icon(Icons.email),
-            onPressed: () {
-              Navigator.pushNamed(context, '/patient_get_location');
-            },
           ),
         ],
       ),

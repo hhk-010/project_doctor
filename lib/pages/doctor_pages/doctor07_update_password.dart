@@ -130,6 +130,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
               ),
               ButtonTheme(
                 minWidth: double.infinity,
+                height: 45,
                 child: RaisedButton.icon(
                   color: Colors.deepOrange,
                   icon: Icon(
@@ -170,7 +171,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                     }
                   },
                   label: Text(
-                    'Update',
+                    AppLocalizations.of(context).translate('update'),
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,

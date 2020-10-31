@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -48,14 +47,11 @@ class _UpdateMapState extends State<UpdateMap> {
   String workinghours = '';
 
   var latlng;
-
   List<Marker> mymarker = [];
 
   handletap(LatLng tappedpoint) {
     print(tappedpoint);
-
     latlng = tappedpoint.toString();
-
     setState(() {
       mymarker = [];
       mymarker.add(Marker(
@@ -67,7 +63,6 @@ class _UpdateMapState extends State<UpdateMap> {
 
   double lattt;
   double lnggg;
-
   geolocate({String latlng}) {
     var firstindex = latlng.indexOf('(');
     var secondindex = latlng.indexOf(',');
@@ -130,10 +125,14 @@ class _UpdateMapState extends State<UpdateMap> {
       key: _scaffoldkey,
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
+<<<<<<< HEAD
         title: Text(
           AppLocalizations.of(context).translate("update_location"),
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
+=======
+        title: Text(AppLocalizations.of(context).translate("update_location"),style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+>>>>>>> d354914b5f8cd457cbf230719f43ec84d319ff7d
         centerTitle: true,
       ),
       body: Stack(
@@ -180,9 +179,13 @@ class _UpdateMapState extends State<UpdateMap> {
             padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
             child: FloatingActionButton(
                 backgroundColor: Colors.deepOrange,
+<<<<<<< HEAD
                 child: Text(AppLocalizations.of(context).translate('ok'),
                     style:
                         TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+=======
+                child: Text(AppLocalizations.of(context).translate('ok'),style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+>>>>>>> d354914b5f8cd457cbf230719f43ec84d319ff7d
                 onPressed: () async {
                   checkInternet();
                   if (_isInternet) {

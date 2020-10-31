@@ -19,7 +19,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     fontSize: 16,
     fontWeight: FontWeight.bold,
   );
-  //-----------function for internet connection
+  //function for internet connection
   bool _isInternet = true;
   checkInternet() async {
     try {
@@ -94,19 +94,18 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       : null,
                 ),
                 Spacer(),
-                RaisedButton.icon(
-                  icon: Icon(
-                    Icons.arrow_forward,
-                    color: Colors.white,
-                  ),
+                RaisedButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(80.0)),
                   color: Colors.deepOrange,
-                  label: Text(
-                    AppLocalizations.of(context).translate(
-                        'password_reset_email'), //'Send Email To Reset Password',
-                    style:
-                        _textStyle.copyWith(color: Colors.white, fontSize: 16),
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(
+                      AppLocalizations.of(context)
+                          .translate('password_reset_email'),
+                      style: _textStyle.copyWith(
+                          color: Colors.white, fontSize: 20),
+                    ),
                   ),
                   onPressed: () async {
                     checkInternet();
@@ -187,6 +186,7 @@ class PasswordResetContinue extends StatelessWidget {
             flex: 3,
           ),
           RaisedButton.icon(
+            
               icon: Icon(
                 Icons.arrow_forward,
                 color: Colors.white,
@@ -197,7 +197,7 @@ class PasswordResetContinue extends StatelessWidget {
               label: Text(AppLocalizations.of(context).translate('continue'),
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold)),
               onPressed: () {
                 Navigator.pushNamed(context, '/intermediate');

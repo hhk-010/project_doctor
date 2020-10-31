@@ -37,15 +37,17 @@
     "doctor_locat":"Show Doctor Location",
 
 
+
+
 "Snacks" : "=======================================",
     "snack_sign_in" : "Error Signing in",
     "snack_connectivity" : "No Internet Connection",
     "snack_register" : "Registeration Error, Please enter valid credentials",
     "snack_map" : "Tap on your clinic location first",
     "snack_map_patient" : "Please add your current location",
-    "age_message":"Please , enter your age",
+    "age_message":"Please , Enter your age",
     "age_message_error":"Age should be from 0 to 130",
-    "gender_message":"Please , select a gender",
+    "gender_message":"Please , Select a gender",
     "complain_message":"Please , select a main complaint",
 
 
@@ -68,8 +70,8 @@
     "does_not_have_account" : "Does not have account?",
     "does_have_account" : "Already have an account?",
     "doctor_form" : "Doctor Form",
-    "name" : "Name",
-    "name_validator" : "Enter Your Name",
+    "name" : "Name in Arabic",
+    "name_validator" : "Enter Your Name in Arabic",
     "speciality" : "Speciality",
     "speciality_validator" : "Choose Your Speciality",
     "phoneNumber" : "Phone Number",
