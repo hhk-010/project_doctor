@@ -27,16 +27,6 @@ class _PatientComplainState extends State<PatientComplain> {
 
   //-------------snackbar for age==null---------
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
-  _showSnackBar() {
-    final _snackBar = new SnackBar(
-      content: Text(
-        _error,
-        style: TextStyle(fontSize: 15),
-      ),
-      backgroundColor: Colors.deepOrange,
-    );
-    _scaffoldkey.currentState.showSnackBar(_snackBar);
-  }
 
   bool state = false;
 
@@ -432,6 +422,22 @@ class _PatientComplainState extends State<PatientComplain> {
 
   @override
   Widget build(BuildContext context) {
+
+    //snackbar for 
+    var lang = Localizations.localeOf(context).languageCode;
+    _showSnackBar() {
+      final _snackBar = new SnackBar(
+        content: Text(
+          _error,
+          style: TextStyle(
+              fontSize: 15,
+              fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        ),
+        backgroundColor: Colors.deepOrange,
+      );
+      _scaffoldkey.currentState.showSnackBar(_snackBar);
+    }
+
     final cardioRespiratory = {
       "1": [AppLocalizations.of(context).translate('hemoptysis'), 'hemoptysis'],
       "2": [AppLocalizations.of(context).translate('orthopnea'), 'orthopnea'],

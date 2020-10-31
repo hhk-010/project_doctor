@@ -14,7 +14,7 @@ class _UpdateinfoState extends State<Updateinfo> {
   String name = '';
   String speciality = '';
   String phonenumber = '';
-  String _Province;
+  String _province;
   String address = '';
   String vacation = '';
   String workinghours = '';
@@ -337,7 +337,7 @@ class _UpdateinfoState extends State<Updateinfo> {
                 ],
                 validator: (value) =>
                     value == null ? 'Select your province' : null,
-                onChanged: (val) => setState(() => _Province = val),
+                onChanged: (val) => setState(() => _province = val),
               ),
               /*Spacer(),
               TextFormField(
@@ -399,7 +399,7 @@ class _UpdateinfoState extends State<Updateinfo> {
                             name: name,
                             speciality: speciality,
                             phoneNumber: phonenumber,
-                            province: _Province,
+                            province: _province,
                           ),
                         ),
                       );
@@ -421,7 +421,7 @@ class _UpdateinfoState extends State<Updateinfo> {
               InkWell(
                 onTap: () {
                   print(speciality);
-                  print(_Province);
+                  print(_province);
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => UpdatePassword()));
                 },

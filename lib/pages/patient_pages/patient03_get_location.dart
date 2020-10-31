@@ -85,7 +85,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
         title: FittedBox(
           fit: BoxFit.fitWidth,
           child: Text(
-            AppLocalizations.of(context).translate('your_location'),
+            AppLocalizations.of(context).translate('region'),
             style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
           ),
         ),
@@ -97,23 +97,6 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
-              decoration: boxDecorationPatient,
-              padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
-              child: Column(
-                children: [
-                  FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: Text(
-                      AppLocalizations.of(context).translate('region'),
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Spacer(),
             Container(
               decoration: boxDecorationPatient,
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -286,6 +269,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                 ],
               ),
             ),
+            Spacer(),
           ],
         ),
       ),
