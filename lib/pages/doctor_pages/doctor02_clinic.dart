@@ -97,8 +97,8 @@ class _ClinicFormState extends State<ClinicForm> {
                   decoration: textInputdecoration.copyWith(
                     hintText:
                         AppLocalizations.of(context).translate('vacation_days'),
-                    labelText: AppLocalizations.of(context)
-                        .translate('vacation_days'),
+                    labelText:
+                        AppLocalizations.of(context).translate('vacation_days'),
                   ),
                 ),
                 Spacer(),
@@ -110,8 +110,8 @@ class _ClinicFormState extends State<ClinicForm> {
                   decoration: textInputdecoration.copyWith(
                     hintText:
                         AppLocalizations.of(context).translate('work_hour'),
-                    labelText: AppLocalizations.of(context)
-                        .translate('work_hour'),
+                    labelText:
+                        AppLocalizations.of(context).translate('work_hour'),
                   ),
                 ),
                 Spacer(
@@ -144,15 +144,9 @@ class _ClinicFormState extends State<ClinicForm> {
                         borderRadius: BorderRadius.circular(80.0)),
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
-<<<<<<< HEAD
                         if (currentaddress != '' &&
                             currentvacation != '' &&
                             currentworkinghours != '') {
-=======
-                        if (currentaddress != null &&
-                            currentvacation != null &&
-                            currentworkinghours != null) {
->>>>>>> d354914b5f8cd457cbf230719f43ec84d319ff7d
                           await Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) => DocMap(
