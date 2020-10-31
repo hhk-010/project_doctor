@@ -64,333 +64,6 @@ class _PatientComplainState extends State<PatientComplain> {
   bool disabledropdown06 = true;
   bool disabledropdown07 = true;
 
-  final cardioRespiratory = {
-    "1": ["hemoptysis", "hemoptysis"],
-    "2": ["orthopnea", "orthopnea"],
-    "3": ["PN dyspnea", "PN dyspnea"],
-    "4": ["palpitation", "palpitation"],
-    "5": ["chest pain", "chest pain"],
-    "6": ["cough", "cough"],
-    "7": ["dyspnea", "dyspnea"],
-    "8": ["cyanosis", "cyanosis"],
-    "9": ["other cardiac problems", "other cardiac problems"],
-    "10": ["wheeze", "wheeze"],
-    "11": ["other respiratory problems", "other respiratory problems"],
-  };
-  final gastroIntestinal = {
-    "1": "abdominal pain",
-    "2": "vomiting",
-    "3": "constipation",
-    "4": "bloody diarrhea",
-    "5": "watery diarrhea",
-    "6": "dysphagia",
-    "7": "odynophagia",
-    "8": "mucousy diarrhea",
-    "9": "other git problems",
-    "10": "abdominal distension",
-    "11": "bleeding per rectum",
-    "12": "nausea",
-    "13": "hematemesis",
-    "14": "malena",
-  };
-  final peiranalAbdomen = {
-    "1": "perianal pain",
-    "2": "perianal discharge",
-    "3": "anal incontinence",
-    "4": "perianal itching",
-    "5": "abdominal wall swelling",
-  };
-
-  final neurology = {
-    "1": "coma",
-    "2": "fit",
-    "3": "abnormal movement",
-    "4": "spasm",
-    "5": "memory loss",
-    "6": "tremer",
-    "7": "confusion",
-    "8": "numbness",
-    "9": "slurred speech",
-    "10": "ataxia",
-    "11": "weakness",
-    "12": "other neurological problems",
-    "13": "syncope",
-  };
-
-  final psychology = {
-    "1": "cognitive impairment",
-    "2": "behavioral impairement",
-    "3": "depression",
-    "4": "hallucination/delusion",
-    "5": "phobia",
-    "6": "suicide",
-    "7": "obsession",
-    "8": "attention deficit",
-    "9": "hyperactivity",
-    "10": "stress",
-    "11": "psychological trauma",
-    "12": "addiction",
-    "13": "encorporesis",
-    "14": "polyphagia",
-    "15": "other psychological problems",
-  };
-  final musckuloskeletal = {
-    "1": "generalized bone pain",
-    "2": "joint pain",
-    "3": "deformity",
-    "4": "joint swelling",
-    "5": "limitation of movement",
-    "6": "fracture",
-    "7": "limb pain",
-    "8": "dislocation",
-    "9": "other msk problems",
-  };
-  final headNeckBack = {
-    "1": "jaw pain",
-    "2": "neck pain",
-    "3": "enlarged jaw",
-    "4": "neck swelling",
-    "5": "back opening",
-    "6": "back mass",
-    "7": "back pain",
-    "8": "headache",
-    "9": "large head",
-    "10": "abnormal head shape",
-    "11": "other skull problems",
-  };
-  final upperLimb = {
-    "1": "left arm pain",
-    "2": "left shoulder pain",
-    "3": "generalized bone pain",
-    "4": "joint pain",
-    "5": "deformity",
-    "6": "joint swelling",
-    "7": "limitation of movement",
-    "8": "fracture",
-    "9": "limb pain",
-    "10": "dislocation",
-  };
-
-  final hand = {
-    "1": "enlarged hand",
-    "2": "extra digit",
-    "3": "joined digit",
-    "4": "loss digit",
-    "5": "hand deformity",
-    "6": "other hand problems",
-    "7": "hand swelling",
-    "8": "hand lump",
-    "9": "generalized bone pain",
-    "10": "joint pain",
-    "11": "joint swelling",
-    "12": "fracture",
-    "13": "dislocation",
-  };
-  final lowerLimb = {
-    "1": "bilateral leg edema",
-    "2": "enlarged foot",
-    "3": "generalized bone pain",
-    "4": "joint pain'",
-    "5": "unilateral leg swelling",
-    "6": "unilateral leg pain",
-    "7": "deformity",
-    "8": "joint swelling",
-    "9": "limitation of movement",
-    "10": "leg pain during walking",
-    "11": "foot ulcer",
-    "12": "fracture",
-    "13": "limb pain",
-    "14": "dislocation",
-  };
-
-  final others = {
-    "1": "sweating",
-    "2": "fever",
-    "3": "heat sensation",
-    "4": "ulcer",
-    "5": "insomnia",
-    "6": "cold sensation",
-    "7": "somnolence",
-    "8": "polydipsia",
-    "9": "delayed puberty",
-    "10": "bleeding",
-    //"11": "bleeding",
-    "12": "fatigue",
-    "13": "pallor",
-    "14": "lump",
-    "15": "other health problems",
-    "16": "malaise",
-    "17": "short stature",
-    "18": "taste loss",
-  };
-  final bpPrLab = {
-    "1": "systolic BP > 180",
-    "2": "diastolic BP > 100",
-    "3": "systolic BP < 90",
-    "4": "diastolic BP < 60",
-    "5": "PR > 100",
-    "6": "PR < 60",
-    "7": "RBS > 200",
-    "8": "RBS < 55",
-    "9": "high blood urea > 90",
-    "10": "high serum creatinine > 2",
-    "11": "systolic BP > 140",
-    "12": "diastolic BP > 90",
-  };
-
-  final injuriesSuicideIntoxicationBurn = {
-    "1": "FFH",
-    "2": "RTA",
-    "3": "stab",
-    "4": "shot",
-    "5": "other injuries",
-    "6": "suicide",
-    "7": "intoxication",
-    "8": "burn",
-    "9": "msk injury",
-    "10": "sport injury",
-  };
-
-  final mouth = {
-    "1": "mouth deviation",
-    "2": "cleft lip",
-    "3": "cleft palate",
-    "4": "disease of the mouth",
-  };
-  final appetite = {
-    "1": "polyphagia",
-    "2": "weight gain",
-    "3": "weight loss",
-    "4": "anorexia",
-  };
-
-  final entThroat = {
-    "1": "hoarseness",
-    "2": "sore throat",
-    "3": "other ent problems",
-  };
-  final entNose = {
-    "1": "nasal discharge",
-    "2": "nasal bleeding",
-    "3": "nasal obstruction",
-    "4": "nasal pain",
-    "5": "nasal mass",
-    "6": "nasal deformity",
-    "7": "sneezing",
-    "8": "nasal itching",
-    "9": "anosmia",
-    "10": "enlarged nose",
-    "11": "other ent problems",
-  };
-
-  final entEar = {
-    "1": "deafness",
-    "2": "vertigo",
-    "3": "tinnitus",
-    "4": "ear discharge",
-    "5": "ear redness",
-    "6": "ear pain",
-    "7": "other ent problems",
-  };
-
-  final dermatology = {
-    "1": "dry skin",
-    "2": "dry hair",
-    "3": "skin rash",
-    "4": "hair problems",
-    "5": "skin redness",
-    "6": "skin lesion",
-    "7": "skin appendage",
-    "8": "skin itching",
-    "9": "acne",
-    "10": "bruising",
-    "11": "female hirsutism",
-    "12": "other skin problems"
-  };
-
-  final gynecology = {
-    "1": "amenorrhea",
-    "2": "oligomenorrhea",
-    "3": "decrease libido",
-    "4": "menorrhagia",
-    "5": "female infertility",
-    "6": "female hirsutism",
-    "7": "prolong pregnancy",
-    "8": "postmenopausal bleeding",
-    "9": "other gynecological and obstetrical problems",
-    "10": "miscarriage",
-  };
-
-  final uroKidney = {
-    "1": "incontinence",
-    "2": "polyuria",
-    "3": "abnormal urethral opening site",
-    "4": "suprapubic pain",
-    "5": "frequency",
-    "6": "flank pain",
-    "7": "retention",
-    "8": "urgency",
-    "9": "dysuria",
-    "10": "hematuria",
-    "11": "other urological problems",
-    "12": "nocturia",
-  };
-
-  final maleGenital = {
-    "1": "decrease libido",
-    "2": "delayed puberty",
-    "3": "male infertility",
-    "4": "scrotal swelling",
-    "5": "empty scrotum",
-    "6": "abnormal penile size",
-    "7": "penile mass",
-    "8": "other penile problems",
-    "9": "scrotal pain",
-    "10": "priapism",
-    "11": "impotence",
-    "12": "hematospermia",
-  };
-
-  final ophthalmology = {
-    "1": "open eye",
-    "2": "blindness",
-    "3": "photophobia",
-    "4": "double vision",
-    "5": "lid drop",
-    "6": "blurred vision",
-    "7": "squint",
-    "8": "eye redness",
-    "9": "eye pain",
-    "10": "eye discharge",
-    "11": "eye itching",
-    "12": "eye pigmentation",
-    "13": "periorbital edema",
-    "14": "eyelid deformity",
-    "15": "dry eye",
-    "16": "ophthalmoplegia",
-    "17": "jaundice",
-    "18": "other ophthalmological problems",
-  };
-  final breast = {
-    "1": "gynecomastia",
-    "2": "galactorrhea",
-    "3": "breast mass",
-    "4": "breast pain",
-    "5": "breast discharge",
-    "6": "breast lump",
-    "7": "breast skin lesion",
-    "8": "other breast  problems",
-  };
-
-  void populateCardioRespiratory() {
-    for (String key in cardioRespiratory.keys) {
-      menuitems.add(DropdownMenuItem<String>(
-        child: Text(cardioRespiratory[key][0]),
-        value: cardioRespiratory[key][1],
-      ));
-    }
-  }
-
   bool _visibile01 = false;
   bool _switch01 = false;
   bool _visibile02 = false;
@@ -808,7 +481,7 @@ class _PatientComplainState extends State<PatientComplain> {
         'taste loss'
       ],
     };
-    final bpPrLab = {
+    /*final bpPrLab = {
       "1": AppLocalizations.of(context).translate(''),
       "2": AppLocalizations.of(context).translate(''),
       "3": AppLocalizations.of(context).translate(''),
@@ -821,7 +494,7 @@ class _PatientComplainState extends State<PatientComplain> {
       "10": AppLocalizations.of(context).translate(''),
       "11": AppLocalizations.of(context).translate(''),
       "12": AppLocalizations.of(context).translate(''),
-    };
+    };*/
 
     final injuriesSuicideIntoxicationBurn = {
       "1": [AppLocalizations.of(context).translate('FFH'), 'FFH'],
@@ -968,6 +641,10 @@ class _PatientComplainState extends State<PatientComplain> {
         AppLocalizations.of(context).translate('female hirsutism'),
         'female hirsutism'
       ],
+      "12": [
+        AppLocalizations.of(context).translate("other dermatological problems"),
+        'other dermatological problems'
+      ],
     };
 
     final gynecology = {
@@ -1077,8 +754,7 @@ class _PatientComplainState extends State<PatientComplain> {
         'scrotal pain'
       ],
       "10": [AppLocalizations.of(context).translate('priapism'), 'priapism'],
-      "11": [AppLocalizations.of(context).translate('priapism'), 'priapism'],
-      "12": [
+      "11": [
         AppLocalizations.of(context).translate('hematospermia'),
         'hematospermia'
       ],
@@ -1138,36 +814,36 @@ class _PatientComplainState extends State<PatientComplain> {
       ],
     };
     final breast = {
-      "1": [
+      "19": [
         AppLocalizations.of(context).translate('gynecomastia'),
         'gynecomastia'
       ],
-      "2": [
+      "28": [
         AppLocalizations.of(context).translate('galactorrhea'),
         'galactorrhea'
       ],
-      "3": [
+      "37": [
         AppLocalizations.of(context).translate('breast mass'),
         'breast mass'
       ],
-      "4": [
+      "46": [
         AppLocalizations.of(context).translate('breast pain'),
         'breast pain'
       ],
-      "5": [
+      "55": [
         AppLocalizations.of(context).translate('breast discharge'),
         'breast discharge'
       ],
-      "6": [
+      "64": [
         AppLocalizations.of(context).translate('breast lump'),
         'breast lump'
       ],
-      "7": [
+      "73": [
         AppLocalizations.of(context).translate('breast skin lesion'),
         'breast skin lesion'
       ],
-      "8": [
-        AppLocalizations.of(context).translate('other breast  problems'),
+      "82": [
+        AppLocalizations.of(context).translate('other breast problems'),
         'other breast  problems'
       ],
     };
@@ -1271,14 +947,14 @@ class _PatientComplainState extends State<PatientComplain> {
       }
     }
 
-    void populateBpPrLab() {
+    /*void populateBpPrLab() {
       for (String key in bpPrLab.keys) {
         menuitems.add(DropdownMenuItem<String>(
           child: Text(bpPrLab[key]),
           value: bpPrLab[key],
         ));
       }
-    }
+    }*/
 
     void populateInjuriesSuicideIntoxicationBurn() {
       for (String key in injuriesSuicideIntoxicationBurn.keys) {
@@ -1424,7 +1100,7 @@ class _PatientComplainState extends State<PatientComplain> {
         populateOthers();
       } else if (_value == 'bpPrLab') {
         menuitems = [];
-        populateBpPrLab();
+        //populateBpPrLab();
       } else if (_value == 'injuriesSuicideIntoxicationBurn') {
         menuitems = [];
         populateInjuriesSuicideIntoxicationBurn();
@@ -1504,7 +1180,7 @@ class _PatientComplainState extends State<PatientComplain> {
         populateOthers();
       } else if (_value == 'bpPrLab') {
         menuitems = [];
-        populateBpPrLab();
+        // populateBpPrLab();
       } else if (_value == 'injuriesSuicideIntoxicationBurn') {
         menuitems = [];
         populateInjuriesSuicideIntoxicationBurn();
@@ -1585,7 +1261,7 @@ class _PatientComplainState extends State<PatientComplain> {
         populateOthers();
       } else if (_value == 'bpPrLab') {
         menuitems = [];
-        populateBpPrLab();
+        //populateBpPrLab();
       } else if (_value == 'injuriesSuicideIntoxicationBurn') {
         menuitems = [];
         populateInjuriesSuicideIntoxicationBurn();
@@ -1666,7 +1342,7 @@ class _PatientComplainState extends State<PatientComplain> {
         populateOthers();
       } else if (_value == 'bpPrLab') {
         menuitems = [];
-        populateBpPrLab();
+        //populateBpPrLab();
       } else if (_value == 'injuriesSuicideIntoxicationBurn') {
         menuitems = [];
         populateInjuriesSuicideIntoxicationBurn();
@@ -1747,7 +1423,7 @@ class _PatientComplainState extends State<PatientComplain> {
         populateOthers();
       } else if (_value == 'bpPrLab') {
         menuitems = [];
-        populateBpPrLab();
+        //populateBpPrLab();
       } else if (_value == 'injuriesSuicideIntoxicationBurn') {
         menuitems = [];
         populateInjuriesSuicideIntoxicationBurn();
@@ -1828,7 +1504,7 @@ class _PatientComplainState extends State<PatientComplain> {
         populateOthers();
       } else if (_value == 'bpPrLab') {
         menuitems = [];
-        populateBpPrLab();
+        //populateBpPrLab();
       } else if (_value == 'injuriesSuicideIntoxicationBurn') {
         menuitems = [];
         populateInjuriesSuicideIntoxicationBurn();
@@ -1909,7 +1585,7 @@ class _PatientComplainState extends State<PatientComplain> {
         populateOthers();
       } else if (_value == 'bpPrLab') {
         menuitems = [];
-        populateBpPrLab();
+        //populateBpPrLab();
       } else if (_value == 'injuriesSuicideIntoxicationBurn') {
         menuitems = [];
         populateInjuriesSuicideIntoxicationBurn();
@@ -2106,11 +1782,11 @@ class _PatientComplainState extends State<PatientComplain> {
                           child: Text(AppLocalizations.of(context)
                               .translate('brain_neuron')),
                         ),
-                        DropdownMenuItem<String>(
+                        /*DropdownMenuItem<String>(
                           value: "bpPrLab",
                           child: Text(AppLocalizations.of(context)
                               .translate('bpPrLab')),
-                        ),
+                        ),*/
                         DropdownMenuItem<String>(
                           value: "musckuloskeletal",
                           child: Text(AppLocalizations.of(context)
@@ -2305,11 +1981,11 @@ class _PatientComplainState extends State<PatientComplain> {
                             child: Text(AppLocalizations.of(context)
                                 .translate('brain_neuron')),
                           ),
-                          DropdownMenuItem<String>(
+                          /*DropdownMenuItem<String>(
                             value: "bpPrLab",
                             child: Text(AppLocalizations.of(context)
                                 .translate('bpPrLab')),
-                          ),
+                          ),*/
                           DropdownMenuItem<String>(
                             value: "musckuloskeletal",
                             child: Text(AppLocalizations.of(context)
@@ -2501,11 +2177,11 @@ class _PatientComplainState extends State<PatientComplain> {
                             child: Text(AppLocalizations.of(context)
                                 .translate('brain_neuron')),
                           ),
-                          DropdownMenuItem<String>(
+                          /*DropdownMenuItem<String>(
                             value: "bpPrLab",
                             child: Text(AppLocalizations.of(context)
                                 .translate('bpPrLab')),
-                          ),
+                          ),*/
                           DropdownMenuItem<String>(
                             value: "musckuloskeletal",
                             child: Text(AppLocalizations.of(context)
@@ -2697,11 +2373,11 @@ class _PatientComplainState extends State<PatientComplain> {
                             child: Text(AppLocalizations.of(context)
                                 .translate('brain_neuron')),
                           ),
-                          DropdownMenuItem<String>(
+                          /*DropdownMenuItem<String>(
                             value: "bpPrLab",
                             child: Text(AppLocalizations.of(context)
                                 .translate('bpPrLab')),
-                          ),
+                          ),*/
                           DropdownMenuItem<String>(
                             value: "musckuloskeletal",
                             child: Text(AppLocalizations.of(context)
@@ -2893,11 +2569,11 @@ class _PatientComplainState extends State<PatientComplain> {
                             child: Text(AppLocalizations.of(context)
                                 .translate('brain_neuron')),
                           ),
-                          DropdownMenuItem<String>(
+                          /*DropdownMenuItem<String>(
                             value: "bpPrLab",
                             child: Text(AppLocalizations.of(context)
                                 .translate('bpPrLab')),
-                          ),
+                          ),*/
                           DropdownMenuItem<String>(
                             value: "musckuloskeletal",
                             child: Text(AppLocalizations.of(context)
@@ -3089,11 +2765,11 @@ class _PatientComplainState extends State<PatientComplain> {
                             child: Text(AppLocalizations.of(context)
                                 .translate('brain_neuron')),
                           ),
-                          DropdownMenuItem<String>(
+                          /*DropdownMenuItem<String>(
                             value: "bpPrLab",
                             child: Text(AppLocalizations.of(context)
                                 .translate('bpPrLab')),
-                          ),
+                          ),*/
                           DropdownMenuItem<String>(
                             value: "musckuloskeletal",
                             child: Text(AppLocalizations.of(context)
@@ -3284,11 +2960,11 @@ class _PatientComplainState extends State<PatientComplain> {
                             child: Text(AppLocalizations.of(context)
                                 .translate('brain_neuron')),
                           ),
-                          DropdownMenuItem<String>(
+                          /*DropdownMenuItem<String>(
                             value: "bpPrLab",
                             child: Text(AppLocalizations.of(context)
                                 .translate('bpPrLab')),
-                          ),
+                          ),*/
                           DropdownMenuItem<String>(
                             value: "musckuloskeletal",
                             child: Text(AppLocalizations.of(context)

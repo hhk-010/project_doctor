@@ -138,21 +138,27 @@ class _ClinicFormState extends State<ClinicForm> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(80.0)),
                     onPressed: () async {
-                      await Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => DocMap(
-                            email: email,
-                            password: password,
-                            name: name,
-                            speciality: speciality,
-                            phone: phoneNumber,
-                            province: province,
-                            address: currentaddress,
-                            vacation: currentvacation,
-                            workinghours: currentworkinghours,
-                          ),
-                        ),
-                      );
+                      if (_formKey.currentState.validate()) {
+                        if (currentaddress != '' &&
+                            currentvacation != '' &&
+                            currentworkinghours != '') {
+                          await Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => DocMap(
+                                email: email,
+                                password: password,
+                                name: name,
+                                speciality: speciality,
+                                phone: phoneNumber,
+                                province: province,
+                                address: currentaddress,
+                                vacation: currentvacation,
+                                workinghours: currentworkinghours,
+                              ),
+                            ),
+                          );
+                        }
+                      }
                     },
                     label: Text(
                       AppLocalizations.of(context).translate('google_map'),

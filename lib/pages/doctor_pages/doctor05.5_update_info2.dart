@@ -113,19 +113,23 @@ class _Update2State extends State<Update2> {
                       borderRadius: BorderRadius.circular(80.0)),
                   onPressed: () {
                     if (_formkey.currentState.validate()) {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => UpdateMap(
-                            name: name,
-                            speciality: speciality,
-                            number: phoneNumber,
-                            province: province,
-                            address: address,
-                            vacation: vacation,
-                            workinghours: workinghours,
+                      if (address != '' &&
+                          vacation != '' &&
+                          workinghours != '') {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => UpdateMap(
+                              name: name,
+                              speciality: speciality,
+                              number: phoneNumber,
+                              province: province,
+                              address: address,
+                              vacation: vacation,
+                              workinghours: workinghours,
+                            ),
                           ),
-                        ),
-                      );
+                        );
+                      }
                     }
                   },
                   label: Text(
