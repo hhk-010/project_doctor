@@ -125,7 +125,7 @@ class _UpdateMapState extends State<UpdateMap> {
       key: _scaffoldkey,
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text(AppLocalizations.of(context).translate("update_location")),
+        title: Text(AppLocalizations.of(context).translate("update_location"),style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
         centerTitle: true,
       ),
       body: Stack(
@@ -143,7 +143,7 @@ class _UpdateMapState extends State<UpdateMap> {
             padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
             child: FloatingActionButton(
                 backgroundColor: Colors.deepOrange,
-                child: Text(AppLocalizations.of(context).translate('ok')),
+                child: Text(AppLocalizations.of(context).translate('ok'),style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
                 onPressed: () async {
                   checkInternet();
                   if (_isInternet) {

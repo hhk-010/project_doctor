@@ -161,7 +161,7 @@ class _DocMapState extends State<DocMap> {
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
               child: Text(
-                AppLocalizations.of(context).translate('OK'),
+                AppLocalizations.of(context).translate("ok"),
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               onPressed: () async {
