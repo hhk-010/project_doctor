@@ -220,15 +220,23 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                         checkInternet();
                         if (_isInternet) {
                           _getCurrentLocation();
-                          setState(() {
-                            MyVariables.speciality = FinalScore.speciality;
-                            MyVariables.province = region;
-                            //MyVariables.lat = double.parse(_currentPosition.latitude.toString() );
-                            //MyVariables.long = double.parse(_currentPosition.longitude.toString() );
-                            MyVariables.lat = _currentPosition.latitude;
-                            MyVariables.long = _currentPosition.longitude;
-                          });
-                          Navigator.pushNamed(context, '/patient_result');
+                          if (_currentPosition == null) {
+                            setState(() {
+                              _error = AppLocalizations.of(context)
+                                  .translate("geolocator_message");
+                            });
+                            _showSnackBar();
+                          } else {
+                            setState(() {
+                              MyVariables.speciality = FinalScore.speciality;
+                              MyVariables.province = region;
+                              //MyVariables.lat = double.parse(_currentPosition.latitude.toString() );
+                              //MyVariables.long = double.parse(_currentPosition.longitude.toString() );
+                              MyVariables.lat = _currentPosition.latitude;
+                              MyVariables.long = _currentPosition.longitude;
+                            });
+                            Navigator.pushNamed(context, '/patient_result');
+                          }
                         } else {
                           setState(() {
                             _error = AppLocalizations.of(context)

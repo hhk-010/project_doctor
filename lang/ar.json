@@ -47,6 +47,7 @@
     "age_message_error":"يجب ان يكون العمر بين 0 و 130 عام",
     "gender_message":"حدد الجنس لطفا",
     "complain_message":"اختر الشكوى الرئيسية لطفا",
+    "geolocator_message":"قم بتشغيل خدمة الموقع ثم اضغط",
 
 
 

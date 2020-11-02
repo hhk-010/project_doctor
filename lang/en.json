@@ -49,6 +49,7 @@
     "age_message_error":"Age should be from 0 to 130",
     "gender_message":"Please , Select a gender",
     "complain_message":"Please , select a main complaint",
+    "geolocator_message":"Open your location service then press",
 
 
 
