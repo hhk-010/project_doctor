@@ -96,7 +96,7 @@ class _PatientMapState extends State<PatientMap> {
         backgroundColor: Colors.deepOrange,
         title: FittedBox(
           fit: BoxFit.fitWidth,
-                  child: Text(
+          child: Text(
             AppLocalizations.of(context).translate('patient_map_title'),
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
@@ -113,12 +113,43 @@ class _PatientMapState extends State<PatientMap> {
             onTap: handletap,
           ),
           Container(
+            padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+                Text(
+                  AppLocalizations.of(context).translate("zoom_in_out"),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  AppLocalizations.of(context).translate("zoom_in"),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  AppLocalizations.of(context).translate("zoom_out"),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
             alignment: Alignment.bottomCenter,
             padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 25.0),
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
-              child: Text(AppLocalizations.of(context).translate('ok'),
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+              child: Text(
+                AppLocalizations.of(context).translate('ok'),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              ),
               onPressed: () async {
                 // there is a bug in this snackbar => to be seen-----
                 await checkInternet();

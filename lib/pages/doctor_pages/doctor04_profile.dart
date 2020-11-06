@@ -38,7 +38,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
             IconButton(
               icon: Icon(
                 //i changed it because it is not defined on my device
-                Icons.access_alarm,
+                Icons.account_box_rounded,
               ),
               onPressed: () async {
                 await _auth.signOut();
@@ -166,7 +166,8 @@ class _DoctorListState extends State<DoctorList> {
                         height: 5,
                       ),
                       Text(
-                        _workinghours,
+                        AppLocalizations.of(context).translate('open_time') +
+                            _workinghours,
                         style: _textStyle,
                       ),
                       SizedBox(
@@ -175,7 +176,6 @@ class _DoctorListState extends State<DoctorList> {
                       Text(
                         AppLocalizations.of(context).translate('vacation') +
                             _vacation,
-                        //'clinic vacation is ' + _vacation,
                         style: _textStyle,
                       ),
                       SizedBox(

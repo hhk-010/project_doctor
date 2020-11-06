@@ -49,6 +49,7 @@
     "age_message_error":"Age should be from 0 to 130",
     "gender_message":"Please , Select a gender",
     "complain_message":"Please , select a main complaint",
+    "geolocator_message":"Open your location service then press",
 
 
 
@@ -105,6 +106,7 @@
     "passWord_reset":"Password Reset",
     "password_reset_email":"Send Email To Reset Password",
     "check_reset_email":"Check your Email and click on the link to Reset your Password",
+    "open_time":"Doctor is available from ",
     
 
 
@@ -162,6 +164,9 @@
     "western_region" : "Western Region of Iraq",
     "patient_map_title" : "Tab on you location",
     "doctor_location" : "Doctor Location on Map",
+    "zoom_in_out":"Zoom in/out with your 2 fingers",
+    "zoom_in":"Zoom in by ++ the distance between them",
+    "zoom_out":"Zoom out by - - the distance between them",
     
 
 
@@ -181,7 +186,7 @@
     "bpPrLab" : "Vital Signs and Lab Investigation",
     "injuriesSuicideIntoxicationBurn" : "Injuries, Suicide, Intoxication and Burn",
     "mouth" :"Mouth",
-    "appetite" : "Appetite",
+    "appetite" : "Appetite and Weight",
     "throat" : "Throat",
     "nose" : "Nose",
     "ear" : "Ear",
@@ -249,7 +254,7 @@
     "odynophagia":"odynophagia",
     "mucousy diarrhea":"mucousy diarrhea",
     "tenesmus":"tenesmus",
-    "other git problems":"other git problems",
+    "other git problems":"other GIT problems",
     "abdominal distension":"abdominal distension",
     "bleeding per rectum":"bleeding per rectum",
     "nausea":"nausea",
@@ -394,7 +399,7 @@
 "ENT_throat" : "=========================================",
     "hoarseness":"hoarseness",
     "sore throat":"sore throat",
-    "other ent problems":"other ent problems",
+    "other ent problems":"other ENT problems",
 
 
 "ENT_nose" : "=========================================",
@@ -428,7 +433,7 @@
     "skin itching":"skin itching",
     "acne":"acne",
     "skin pigmentation":"skin pigmentation",
-    "other dermatological problems":"other dermatological problems",
+    "other dermatological problems":"other skin problems",
     "striae":"striae",
     "nail problems":"nail problems",
     "bruising":"bruising",
@@ -495,7 +500,7 @@
     "eyelid deformity":"eyelid deformity",
     "dry eye":"dry eye",
     "ophthalmoplegia":"ophthalmoplegia",
-    "other ophthalmological problems":"other ophthalmological problems",
+    "other ophthalmological problems":"other eye problems",
     "jaundice":"jaundice",
 
 "breast" : "=========================================",

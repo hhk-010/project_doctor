@@ -47,6 +47,7 @@
     "age_message_error":"يجب ان يكون العمر بين 0 و 130 عام",
     "gender_message":"حدد الجنس لطفا",
     "complain_message":"اختر الشكوى الرئيسية لطفا",
+    "geolocator_message":"قم بتشغيل خدمة الموقع ثم اضغط",
 
 
 
@@ -82,7 +83,7 @@
     "clinic_form" : "معلومات العياده",
     "profile" : "الملف الشخصي",
     "update_info" : "تحديث المعلومات",
-    "update_password" : "تحديث الرقم السري",
+    "update_password" : "تحديث كلمة المرور",
     "current_password" : "ادخل كلمة المرور الحالية",
     "old_password" : "كلمة المرور القديمة",
     "new_password" : "كلمة المرور الجديدة",
@@ -103,6 +104,7 @@
     "passWord_reset":"اعادة تعيين كلمة المرور",
     "password_reset_email":"ارسال بريد الكتروني لاعادة التعيين",
     "check_reset_email":"تحقق من بريدك الالكتروني ثم اضغط على الرابط المرسل لاعادة تعيين كلمة المرور",
+    "open_time":"وقت تواجد الطبيب ",
     
 
 
@@ -147,7 +149,7 @@
     "first_choose_complain" : "اولا اختر المنطقه",
     "add_complains" : "الاعراض الاخرى",
     "result_speciality" : "الاعراض التي تعاني منها تتفق مع الاختصاص الطبي",
-    "get_location" : "لاستمرار يجب تحديد موقعك من خلال احدى الخيارين",
+    "get_location" : "للاستمرار يجب تحديد موقعك من خلال احدى الخيارين",
     "auto_location" : "تحديد موقع الجهاز الحالي",
     "speciality_result" : "الاختصاص الطبي",
     "your_location" : "حدد موقعك",
@@ -158,7 +160,11 @@
     "centeral_region" : "المنطقه الوسطى في العراق",
     "western_region" : "المنطقه الغربيه في العراق",
     "patient_map_title" : "حدد موقعك في الخريطه",
-    "doctor_location" : "موقع الدكتور في الخريطه",
+    "doctor_location" : "موقع الطبيب في الخريطه",
+    "zoom_in_out":"التكبير او التصغير ممكن باستخدام الاصابع",
+    "zoom_in":"التكبير بزيادة المسافة بين الاصبعين",
+    "zoom_out":"التصغير بتقليل المسافة بين الاصبعين",
+    
 
 
 
@@ -172,7 +178,7 @@
     "heart_lung" : "القلب والرئتين",
     "git" : "الجهاز الهضمي",
     "brain_neuron" : "الدماغ والاعصاب",
-    "perianal_abdomen" : "Perianal & Abdominal Wall",
+    "perianal_abdomen" : "المقعد و جدار البطن",
     "skeleton_muscles" : "الهيكل العظمي والعضلات",
     "head_neck_back" : "الرأس, الرقبه, الظهر",
     "psychology" : "الحاله النفسيه",
@@ -183,7 +189,7 @@
     "bpPrLab" : "الفعاليات الحيويه والتحاليل المختبريه",
     "injuriesSuicideIntoxicationBurn" : "الاصابات, التسمم, الحروق, الانتحار",
     "mouth" :"الفم",
-    "appetite" : "مشاكل الشهيه",
+    "appetite" : "مشاكل الوزن و الشهيه",
     "throat" : "الحنجره",
     "nose" : "الانف",
     "ear" : "الاذن",
@@ -200,7 +206,7 @@
 "chronic_diseases" : "=======================================",
     "chronic_disease" : "الامراض المزمنه",
     "choose_one_more" : "اختر واحد او اكثر",
-    "cd_HTN" : "ارتفاع الضغط المزمن",
+    "cd_HTN" : "ارتفاع ضغط الدم المزمن",
     "cd_DM" : "مرض السكري",
     "cd_heart" : "امراض القلب المزمنه",
     "cd_heartFailure" : "فشل القلب",
@@ -273,7 +279,7 @@
     "confusion":"تشوش الوعي",
     "numbness":"خدر",
     "slurred speech":"صعوبة الكلام",
-    "ataxia":"ترنح|عد القدرة على الحكة بصورة منتظمة",
+    "ataxia":"ترنح|عدم القدرة على الحركة بصورة منتظمة",
     "weakness":"ضعف اثناء الحركة",
     "other neurological problems":"مشاكل عصبية اخرى",
     "syncope":"حالة اغماء",
@@ -284,7 +290,7 @@
     "depression":"اكتئاب",
     "hallucination/delusion":"اوهام",
     "phobia":"الخوف(من الاشياء غير المخيفة)",
-    "suicide":"محاولة النتحار",
+    "suicide":"محاولة الانتحار",
     "obsession":"الهوس|الوسواس",
     "attention deficit":"نقص النتباه",
     "hyperactivity":"زيادة الحركة",
@@ -293,7 +299,7 @@
     "addiction":"الادمان",
     "encorporesis":"التغوط اللاارادي عند الاطفال",
     
-    "other psychological problems":"مشاكل نفسية الخرلى",
+    "other psychological problems":"مشاكل نفسية اخرى",
 
 
 "musckuloskeletal" : "=========================================",
@@ -312,7 +318,7 @@
     "neck pain":"الم الرقبة",
     "enlarged jaw":"تضخم حجم الفكين",
     "neck swelling":"تورم في الرقبة",
-    "back opening":"فتخة في الظهر",
+    "back opening":"فتحة في الظهر",
     "back mass":"تورم في الظهر",
     "back pain":"الم الظهر",
     "headache":"الصداع",
@@ -326,7 +332,7 @@
 
 
 "hand" : "=========================================",
-    "enlarged hand":"تضخم في خجم اليد",
+    "enlarged hand":"تضخم في حجم اليد",
     "extra digit":"زيادة ولادية في عدد الاصابع ",
     "joined digit":"التساق ولادي في الاصابع",
     "loss digit":"فقدان الاصابع الولادي",
@@ -337,7 +343,7 @@
 
 "lowerlimb" : "=========================================",
     "bilateral leg edema":" تورم كلا القدمين والساقين",
-    "enlarged foot":"تضخم حجم القد",
+    "enlarged foot":"تضخم حجم القدم",
     "unilateral leg swelling":"تورم احد القدمين والساقين",
     "unilateral leg pain" : "الم في احدى الساقين",
     "leg pain during walking":"الم الساق اثناء الحركة والمشي",
@@ -356,7 +362,7 @@
     "bleeding":"النزف التلقائي او عدم توقف النزف بعد الاصابة",
     "fatigue":"التعب",
     "pallor":"الشحوب|اصفرار الوجه",
-    "lump":"تورك|كتلة لحمية"
+    "lump":"تورم|كتلة(زائدة) لحمية"
     ,"other health problems":"مشاكل صحية اخرى",
     "malaise":"النحول",
     "short stature":"قصر القامة",
@@ -389,7 +395,7 @@
     "weight gain":"ازدياد الوزن",
     "weight loss":"فقدان الوزن",
     "anorexia":"قلة الشهية",
-    "polyphagia":"الشراهة",
+    "polyphagia":"الشراهة|زيادة الشهية",
 
 "throat_" : "=========================================",
     "hoarseness":"بحة الصوت",
@@ -470,7 +476,7 @@
     "scrotal swelling":"انتفاخ الخصية",
     "empty scrotum":"الخصية الفارغة",
     "abnormal penile size":"حجم العضو غير المنتظم",
-    "penile mass":"زاىدة لحمية",
+    "penile mass":"زائدة لحمية",
     "other penile problems":"مشاكل اخرى",
     "scrotal pain":"الم الخصية",
     "priapism":"الانتصاب اكثر من 6 ساعات",
@@ -478,9 +484,9 @@
     "hematospermia":"وجود الدم في السائل المنوي",
 
 "ophtha" : "=========================================",
-    "open eye":"عدم القدرة على غاق العين",
+    "open eye":"عدم القدرة على غلق العين",
     "blindness":"العمى",
-    "photophobia":"الخوف من الضوء",
+    "photophobia":"الخوف او الانزعاج من الضوء",
     "double vision":"الرؤيا المزدوجة",
     "lid drop":"عدم القدرة على فتح العين",
     "blurred vision":"تشوش الرؤيا",

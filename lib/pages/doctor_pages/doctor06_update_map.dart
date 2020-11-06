@@ -125,7 +125,10 @@ class _UpdateMapState extends State<UpdateMap> {
       key: _scaffoldkey,
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text(AppLocalizations.of(context).translate("update_location"),style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+        title: Text(
+          AppLocalizations.of(context).translate("update_location"),
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
       ),
       body: Stack(
@@ -139,11 +142,42 @@ class _UpdateMapState extends State<UpdateMap> {
             onTap: handletap,
           ),
           Container(
-            alignment: Alignment.bottomLeft,
+            padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+                Text(
+                  AppLocalizations.of(context).translate("zoom_in_out"),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  AppLocalizations.of(context).translate("zoom_in"),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  AppLocalizations.of(context).translate("zoom_out"),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            alignment: Alignment.bottomCenter,
             padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
             child: FloatingActionButton(
                 backgroundColor: Colors.deepOrange,
-                child: Text(AppLocalizations.of(context).translate('ok'),style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+                child: Text(AppLocalizations.of(context).translate('ok'),
+                    style:
+                        TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
                 onPressed: () async {
                   checkInternet();
                   if (_isInternet) {

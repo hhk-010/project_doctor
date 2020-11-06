@@ -33,10 +33,12 @@ class _PatientResultMapState extends State<PatientResultMap> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: FittedBox( 
-          fit: BoxFit.fitWidth,
-          child: Text(AppLocalizations.of(context).translate('doctor_location'),
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),)),
+        title: FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Text(
+              AppLocalizations.of(context).translate('doctor_location'),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            )),
         centerTitle: true,
         elevation: 0,
       ),
@@ -49,12 +51,43 @@ class _PatientResultMapState extends State<PatientResultMap> {
             markers: _marker,
           ),
           Container(
+            padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+                Text(
+                  AppLocalizations.of(context).translate("zoom_in_out"),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  AppLocalizations.of(context).translate("zoom_in"),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  AppLocalizations.of(context).translate("zoom_out"),
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
             padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 25.0),
             alignment: Alignment.bottomCenter,
             child: FloatingActionButton(
               backgroundColor: Colors.deepOrange,
-              child: Text(AppLocalizations.of(context).translate('ok'),
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+              child: Text(
+                AppLocalizations.of(context).translate('ok'),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              ),
               onPressed: () {
                 Navigator.pushNamed(context, '/home');
               },
