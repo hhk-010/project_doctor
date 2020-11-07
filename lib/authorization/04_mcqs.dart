@@ -197,8 +197,15 @@ class _QuestionsState extends State<Questions> {
                     items: [
                       DropdownMenuItem<String>(
                         value: '0',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter]][0]),
+                        child: Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Text(
+                            QuestionsShuffle.choices[QuestionsShuffle
+                                .questions[QuestionsShuffle.counter]][0],
+                            textAlign: TextAlign.left,
+                            textDirection: TextDirection.ltr,
+                          ),
+                        ),
                       ),
                       DropdownMenuItem<String>(
                         value: '1',

@@ -93,9 +93,9 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
         elevation: 0,
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 75, horizontal: 40),
+        padding: EdgeInsets.symmetric(vertical: 40, horizontal: 40),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Container(
               decoration: boxDecorationPatient,
@@ -161,7 +161,6 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                 ],
               ),
             ),
-            Spacer(),
             Container(
               decoration: boxDecorationPatient,
               padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
@@ -191,12 +190,8 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                   Container(
                     height: 40,
                     width: double.maxFinite,
-                    child: RaisedButton.icon(
+                    child: RaisedButton(
                       color: Colors.deepOrange,
-                      icon: Icon(
-                        Icons.map,
-                        color: Colors.white,
-                      ),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(80.0)),
                       onPressed: () {
@@ -229,13 +224,16 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                           _showSnackBar();
                         }
                       },
-                      label: AutoSizeText(
-                        AppLocalizations.of(context).translate('auto_location'),
-                        maxLines: 1,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text(
+                          AppLocalizations.of(context)
+                              .translate('auto_location'),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ),
@@ -277,7 +275,6 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                 ],
               ),
             ),
-            Spacer(),
           ],
         ),
       ),
