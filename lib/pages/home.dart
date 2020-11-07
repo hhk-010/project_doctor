@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 75),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 75),
           child: Container(
             height: double.maxFinite,
             width: double.maxFinite,
@@ -79,8 +79,9 @@ class _HomeState extends State<Home> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Container(
-                    width: double.maxFinite,
+                  SizedBox(
+                    height: 90,
+                    width: 300,
                     child: RaisedButton.icon(
                       onPressed: () =>
                           Navigator.pushNamed(context, '/patient_complain'),
@@ -122,8 +123,9 @@ class _HomeState extends State<Home> {
                       color: Colors.deepOrange,
                     ),
                   ),
-                  Container(
-                    width: double.maxFinite,
+                  SizedBox(
+                    height: 90,
+                    width: 300,
                     child: RaisedButton.icon(
                       onPressed: () =>
                           Navigator.pushNamed(context, '/intermediate'),

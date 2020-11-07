@@ -27,7 +27,6 @@ class _PatientComplainState extends State<PatientComplain> {
 
   //-------------snackbar for age==null---------
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
-
   bool state = false;
 
   // ----------------Conditional DropDownMenu ------------------
@@ -95,8 +94,7 @@ class _PatientComplainState extends State<PatientComplain> {
 
   @override
   Widget build(BuildContext context) {
-
-    //snackbar for 
+    //snackbar for
     var lang = Localizations.localeOf(context).languageCode;
     _showSnackBar() {
       final _snackBar = new SnackBar(
@@ -1924,15 +1922,21 @@ class _PatientComplainState extends State<PatientComplain> {
                                 fontSize: 14, fontWeight: FontWeight.bold),
                           ),
                         ),
-                        Switch(
-                            value: _switch01,
-                            activeColor: Colors.deepOrange,
-                            onChanged: (bool s) {
-                              setState(() {
-                                _switch01 = s;
-                                _visibile01 = !_visibile01;
-                              });
-                            })
+                        Transform.scale(
+                          scale: 0.85,
+                          child: FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Switch(
+                                value: _switch01,
+                                activeColor: Colors.deepOrange,
+                                onChanged: (bool s) {
+                                  setState(() {
+                                    _switch01 = s;
+                                    _visibile01 = !_visibile01;
+                                  });
+                                }),
+                          ),
+                        )
                       ],
                     )
                   ],
@@ -2119,15 +2123,21 @@ class _PatientComplainState extends State<PatientComplain> {
                                   fontSize: 14, fontWeight: FontWeight.bold),
                             ),
                           ),
-                          Switch(
-                              value: _switch02,
-                              activeColor: Colors.deepOrange,
-                              onChanged: (bool s) {
-                                setState(() {
-                                  _switch02 = s;
-                                  _visibile02 = !_visibile02;
-                                });
-                              })
+                          Transform.scale(
+                            scale: 0.85,
+                            child: FittedBox(
+                              fit: BoxFit.fitWidth,
+                              child: Switch(
+                                  value: _switch02,
+                                  activeColor: Colors.deepOrange,
+                                  onChanged: (bool s) {
+                                    setState(() {
+                                      _switch02 = s;
+                                      _visibile02 = !_visibile02;
+                                    });
+                                  }),
+                            ),
+                          )
                         ],
                       )
                     ],
@@ -2315,15 +2325,21 @@ class _PatientComplainState extends State<PatientComplain> {
                                   fontSize: 14, fontWeight: FontWeight.bold),
                             ),
                           ),
-                          Switch(
-                              value: _switch03,
-                              activeColor: Colors.deepOrange,
-                              onChanged: (bool s) {
-                                setState(() {
-                                  _switch03 = s;
-                                  _visibile03 = !_visibile03;
-                                });
-                              })
+                          Transform.scale(
+                            scale: 0.85,
+                            child: FittedBox(
+                              fit: BoxFit.fitWidth,
+                              child: Switch(
+                                  value: _switch03,
+                                  activeColor: Colors.deepOrange,
+                                  onChanged: (bool s) {
+                                    setState(() {
+                                      _switch03 = s;
+                                      _visibile03 = !_visibile03;
+                                    });
+                                  }),
+                            ),
+                          )
                         ],
                       )
                     ],
@@ -2511,15 +2527,21 @@ class _PatientComplainState extends State<PatientComplain> {
                                   fontSize: 14, fontWeight: FontWeight.bold),
                             ),
                           ),
-                          Switch(
-                              value: _switch04,
-                              activeColor: Colors.deepOrange,
-                              onChanged: (bool s) {
-                                setState(() {
-                                  _switch04 = s;
-                                  _visibile04 = !_visibile04;
-                                });
-                              })
+                          Transform.scale(
+                            scale: 0.85,
+                            child: FittedBox(
+                              fit: BoxFit.fitWidth,
+                              child: Switch(
+                                  value: _switch04,
+                                  activeColor: Colors.deepOrange,
+                                  onChanged: (bool s) {
+                                    setState(() {
+                                      _switch04 = s;
+                                      _visibile04 = !_visibile04;
+                                    });
+                                  }),
+                            ),
+                          ),
                         ],
                       )
                     ],
@@ -2707,15 +2729,21 @@ class _PatientComplainState extends State<PatientComplain> {
                                   fontSize: 14, fontWeight: FontWeight.bold),
                             ),
                           ),
-                          Switch(
-                              value: _switch05,
-                              activeColor: Colors.deepOrange,
-                              onChanged: (bool s) {
-                                setState(() {
-                                  _switch05 = s;
-                                  _visibile05 = !_visibile05;
-                                });
-                              })
+                          Transform.scale(
+                            scale: 0.85,
+                            child: FittedBox(
+                              fit: BoxFit.fitWidth,
+                              child: Switch(
+                                  value: _switch05,
+                                  activeColor: Colors.deepOrange,
+                                  onChanged: (bool s) {
+                                    setState(() {
+                                      _switch05 = s;
+                                      _visibile05 = !_visibile05;
+                                    });
+                                  }),
+                            ),
+                          )
                         ],
                       )
                     ],
@@ -2903,15 +2931,21 @@ class _PatientComplainState extends State<PatientComplain> {
                                   fontSize: 14, fontWeight: FontWeight.bold),
                             ),
                           ),
-                          Switch(
-                              value: _switch06,
-                              activeColor: Colors.deepOrange,
-                              onChanged: (bool s) {
-                                setState(() {
-                                  _switch06 = s;
-                                  _visibile06 = !_visibile06;
-                                });
-                              })
+                          Transform.scale(
+                            scale: 0.85,
+                            child: FittedBox(
+                              fit: BoxFit.fitWidth,
+                              child: Switch(
+                                  value: _switch06,
+                                  activeColor: Colors.deepOrange,
+                                  onChanged: (bool s) {
+                                    setState(() {
+                                      _switch06 = s;
+                                      _visibile06 = !_visibile06;
+                                    });
+                                  }),
+                            ),
+                          )
                         ],
                       )
                     ],
@@ -3091,10 +3125,6 @@ class _PatientComplainState extends State<PatientComplain> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
-            //a conflict happened here and solved
             Container(
               height: 40.0,
               width: 200.0,

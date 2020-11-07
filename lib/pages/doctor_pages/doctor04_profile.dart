@@ -119,69 +119,72 @@ class _DoctorListState extends State<DoctorList> {
                 alignment: Alignment.center,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.deepOrange,
-                        radius: 75,
-                        backgroundImage: AssetImage('assets/images/doctor.png'),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        name,
-                        style: _textStyle,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        speciality,
-                        style: _textStyle,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        number,
-                        style: _textStyle,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        _doctorAddress,
-                        style: _textStyle,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        _address,
-                        style: _textStyle,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        AppLocalizations.of(context).translate('open_time') +
-                            _workinghours,
-                        style: _textStyle,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        AppLocalizations.of(context).translate('vacation') +
-                            _vacation,
-                        style: _textStyle,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                    ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.deepOrange,
+                          radius: 75,
+                          backgroundImage:
+                              AssetImage('assets/images/doctor.png'),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          name,
+                          style: _textStyle,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          speciality,
+                          style: _textStyle,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          number,
+                          style: _textStyle,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          _doctorAddress,
+                          style: _textStyle,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          _address,
+                          style: _textStyle,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          AppLocalizations.of(context).translate('open_time') +
+                              _workinghours,
+                          style: _textStyle,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          AppLocalizations.of(context).translate('vacation') +
+                              _vacation,
+                          style: _textStyle,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
