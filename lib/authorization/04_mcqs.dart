@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
+import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
 
@@ -158,167 +159,169 @@ class _QuestionsState extends State<Questions> {
         }
       }
     }
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text(
-              'To register , answer the following :',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 15.0,
-            ),
-            Container(
-              decoration: boxDecorationPatient,
-              padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
-              child: Column(
-                children: [
-                  Center(
-                    child: Text(
-                      QuestionsShuffle.questions[QuestionsShuffle.counter],
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        fontSize: 16.0,
+  
+    
+   
+
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(
+                'To register , answer the following :',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 15.0,
+              ),
+              Container(
+                decoration: boxDecorationPatient,
+                padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
+                child: Column(
+                  children: [
+                    Center(
+                      child: Text(
+                        QuestionsShuffle.questions[QuestionsShuffle.counter],
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
+                          fontSize: 16.0,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  DropdownButton(
-                    // value: QuestionsShuffle.value1,
-                    isExpanded: true,
-                    hint: Text('Choose the Right answer'),
-                    items: [
-                      DropdownMenuItem<String>(
-                        value: '0',
-                        child: Directionality(
-                          textDirection: TextDirection.ltr,
+                    SizedBox(
+                      height: 15.0,
+                    ),
+                    DropdownButton(
+                      // value: QuestionsShuffle.value1,
+                      isExpanded: true,
+                      hint: Text('Choose the Right answer'),
+                      items: [
+                        DropdownMenuItem<String>(
+                          value: '0',
                           child: Text(
                             QuestionsShuffle.choices[QuestionsShuffle
                                 .questions[QuestionsShuffle.counter]][0],
                             textAlign: TextAlign.left,
-                            textDirection: TextDirection.ltr,
                           ),
                         ),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: '1',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter]][1]),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: '2',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter]][2]),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: '3',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter]][3]),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: '4',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter]][4]),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: '5',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter]][5]),
-                      ),
-                    ],
-                    onChanged: (value) => selected1b(value),
-                    // value: QuestionsShuffle.value1,
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 15.0,
-            ),
-            Container(
-              decoration: boxDecorationPatient,
-              padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
-              child: Column(
-                children: [
-                  Center(
-                    child: Text(
-                      QuestionsShuffle.questions[QuestionsShuffle.counter + 1],
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(fontSize: 16.0),
+                        DropdownMenuItem<String>(
+                          value: '1',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter]][1]),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: '2',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter]][2]),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: '3',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter]][3]),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: '4',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter]][4]),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: '5',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter]][5]),
+                        ),
+                      ],
+                      onChanged: (value) => selected1b(value),
+                      // value: QuestionsShuffle.value1,
                     ),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  DropdownButton(
-                    isExpanded: true,
-                    hint: Text('Choose the Right answer'),
-                    items: [
-                      DropdownMenuItem<String>(
-                        value: '0',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter + 1]][0]),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: '1',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter + 1]][1]),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: '2',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter + 1]][2]),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: '3',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter + 1]][3]),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: '4',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter + 1]][4]),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: '5',
-                        child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                            .questions[QuestionsShuffle.counter + 1]][5]),
-                      ),
-                    ],
-                    onChanged: (value) => selected2b(value),
-                    // value: QuestionsShuffle.value2,
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 15.0,
-            ),
-            Container(
-              decoration: boxDecorationPatient,
-              padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
-              child: Column(
-                children: [
-                  Center(
-                    child: Text(
-                      QuestionsShuffle.questions[QuestionsShuffle.counter + 2],
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(fontSize: 16.0),
+              SizedBox(
+                height: 15.0,
+              ),
+              Container(
+                decoration: boxDecorationPatient,
+                padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
+                child: Column(
+                  children: [
+                    Center(
+                      child: Text(
+                        QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 1],
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(fontSize: 16.0),
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  Directionality(
-                    textDirection: TextDirection.ltr,
-                    child: DropdownButton(
+                    SizedBox(
+                      height: 15.0,
+                    ),
+                    DropdownButton(
+                      isExpanded: true,
+                      hint: Text('Choose the Right answer'),
+                      items: [
+                        DropdownMenuItem<String>(
+                          value: '0',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter + 1]][0]),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: '1',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter + 1]][1]),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: '2',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter + 1]][2]),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: '3',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter + 1]][3]),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: '4',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter + 1]][4]),
+                        ),
+                        DropdownMenuItem<String>(
+                          value: '5',
+                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
+                              .questions[QuestionsShuffle.counter + 1]][5]),
+                        ),
+                      ],
+                      onChanged: (value) => selected2b(value),
+                      // value: QuestionsShuffle.value2,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 15.0,
+              ),
+              Container(
+                decoration: boxDecorationPatient,
+                padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
+                child: Column(
+                  children: [
+                    Center(
+                      child: Text(
+                        QuestionsShuffle
+                            .questions[QuestionsShuffle.counter + 2],
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(fontSize: 16.0),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15.0,
+                    ),
+                    DropdownButton(
                       isExpanded: true,
                       hint: Text('Choose the Right answer'),
                       items: [
@@ -356,11 +359,11 @@ class _QuestionsState extends State<Questions> {
                       onChanged: (value) => selected3b(value),
                       // value: QuestionsShuffle.value3,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

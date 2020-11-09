@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
                   Icons.language,
                   color: Colors.white,
                 ),
-                items: Language.languageList()
+                items: Language.languageList(context)
                     .map<DropdownMenuItem<Language>>(
                       (lang) => DropdownMenuItem(
                           value: lang,

@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:project_doctor/services/app_localizations.dart';
+
 class Language {
   final int id;
   final String name;
@@ -5,10 +8,10 @@ class Language {
 
   Language(this.id, this.name, this.languageCode);
 
-  static List<Language> languageList() {
+  static List<Language> languageList(BuildContext context) {
     return <Language>[
-      Language(1, 'English', 'en'),
-      Language(2, 'Arabic', 'ar'),
+      Language(1, AppLocalizations.of(context).translate('english'), 'en'),
+      Language(2, AppLocalizations.of(context).translate('arabic'), 'ar'),
     ];
   }
 }
