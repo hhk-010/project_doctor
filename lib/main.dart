@@ -19,6 +19,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor04_profile.dart';
 import 'package:project_doctor/pages/patient_pages/patient05_result.dart';
 import 'package:project_doctor/services/app_localizations.dart';
+import 'package:project_doctor/services/location_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -110,14 +111,14 @@ class _MyAppState extends State<MyApp> {
           '/doctor_clinic': (context) => ClinicForm(),
           '/doctor_profile': (context) => DoctorProfile(),
           '/patient_risk_factors': (context) => PatientRiskFactors(),
-          '/patient_speciality_result' : (context) => SpecialityResult(),
+          '/patient_speciality_result': (context) => SpecialityResult(),
           '/patient_get_location': (context) => PatientGetLocation(),
           '/patient_result': (context) => PatientResult(),
           '/patmap': (context) => PatientMap(),
           '/doctorlocate': (context) => PatientResultMap(),
           '/email_verfication': (context) => EmailVerification(),
           '/register': (context) => Register(),
-          '/update2':(context)=>Update2(),
+          '/update2': (context) => UpdateInfo2(),
         },
       );
     }

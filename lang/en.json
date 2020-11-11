@@ -20,6 +20,23 @@
     "Western Region":"Western Region of Iraq",
     "Middle Region":"Middle Region of Iraq",
 
+"weekdays" : "----------------------------",
+    "sun" : "S",
+    "mon" : "M",
+    "tue" : "T",
+    "wed" : "W",
+    "thu" : "T",
+    "fri" : "F",
+    "sat" : "S",
+    "sunday" : "Sunday",
+    "monday" : "Monday",
+    "tuesday" : "Tuesday",
+    "wednesday" : "Wednesday",
+    "thursday" : "Thursday",
+    "friday" : "Friday",
+    "saturday" : "Saturday",
+
+
 
 "email verification page":"=========================",
     "email_v_title":"Email Confirmation", 
@@ -98,7 +115,7 @@
     "vacation":"Clinic vacation is in ",
     "detailed_address":"Detailed clinic address",
     "address_validator":"Please enter a valid address",
-    "vacation_days":"Clinic vacation days",
+    "work_days":"Clinic Work days",
     "vacation_validator":"Select valid vacation days",
     "work_hour":"Clinic working hours",
     "work_validator":"Please enter valid working hours",

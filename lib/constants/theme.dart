@@ -36,6 +36,13 @@ var boxDecorationPatient = BoxDecoration(
       width: 2,
     ));
 
+var boxDecorationDoctor = BoxDecoration(
+    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+    border: Border.all(
+      color: Colors.deepOrange,
+      width: 2,
+    ));
+
 class PopUpMenuConstants {
   static const String logOut = 'Log Out';
   static const String settings = 'Settings';

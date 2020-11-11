@@ -2,34 +2,59 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor06_update_map.dart';
 import 'package:project_doctor/services/app_localizations.dart';
+import 'package:weekday_selector/weekday_selector.dart';
 
-class Update2 extends StatefulWidget {
+class UpdateInfo2 extends StatefulWidget {
   final String name;
   final String speciality;
   final String phoneNumber;
   final String province;
-  Update2({this.name, this.speciality, this.phoneNumber, this.province});
+  UpdateInfo2({this.name, this.speciality, this.phoneNumber, this.province});
   @override
-  _Update2State createState() => _Update2State(
+  _UpdateInfo2State createState() => _UpdateInfo2State(
       name: name,
       speciality: speciality,
       phoneNumber: phoneNumber,
       province: province);
 }
 
-class _Update2State extends State<Update2> {
+List<bool> workDays = List.filled(7, false);
+List boolToStringDays(BuildContext context, List workDays) {
+  return [
+    workDays[0] ? AppLocalizations.of(context).translate('sunday') : null,
+    workDays[1] ? AppLocalizations.of(context).translate('monday') : null,
+    workDays[2] ? AppLocalizations.of(context).translate('tuesday') : null,
+    workDays[3] ? AppLocalizations.of(context).translate('wednesday') : null,
+    workDays[4] ? AppLocalizations.of(context).translate('thursday') : null,
+    workDays[5] ? AppLocalizations.of(context).translate('friday') : null,
+    workDays[6] ? AppLocalizations.of(context).translate('saturday') : null,
+  ];
+}
+
+TextDirection getTextDirection(Locale locale) {
+  const rtlLanguages = ['ar'];
+  return rtlLanguages.contains(locale.languageCode)
+      ? TextDirection.rtl
+      : TextDirection.ltr;
+}
+
+class _UpdateInfo2State extends State<UpdateInfo2> {
   final String name;
   final String speciality;
   final String phoneNumber;
   final String province;
-  _Update2State({this.name, this.speciality, this.phoneNumber, this.province});
+  _UpdateInfo2State(
+      {this.name, this.speciality, this.phoneNumber, this.province});
 
   String address = '';
-  String vacation = '';
+  String currentVacationDays = '';
+  List currentListVacationDays = [];
   String workinghours = '';
   final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context);
+    final textDirection = getTextDirection(locale);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
@@ -51,7 +76,6 @@ class _Update2State extends State<Update2> {
           key: _formkey,
           child: Column(
             children: [
-              Spacer(),
               TextFormField(
                 onChanged: (val) => setState(() => address = val),
                 decoration: textInputdecoration.copyWith(
@@ -63,15 +87,71 @@ class _Update2State extends State<Update2> {
                     : null,
               ),
               Spacer(),
-              TextFormField(
-                onChanged: (val) => setState(() => vacation = val),
-                decoration: textInputdecoration.copyWith(
-                    hintText: AppLocalizations.of(context)
-                        .translate("vacation_days")),
-                validator: (val) => val.isEmpty
-                    ? AppLocalizations.of(context)
-                        .translate("vacation_validator")
-                    : null,
+              Container(
+                decoration: boxDecorationDoctor,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context).translate(
+                          'work_days',
+                        ),
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      WeekdaySelector(
+                        onChanged: (int day) {
+                          setState(() {
+                            final index = day % 7;
+                            workDays[index] = !workDays[index];
+                            currentListVacationDays =
+                                boolToStringDays(context, workDays);
+                            currentListVacationDays
+                                .removeWhere((value) => value == null);
+                            currentVacationDays =
+                                currentListVacationDays.join(', ');
+                            print(workDays);
+                            print(currentVacationDays);
+                          });
+                        },
+                        values: workDays,
+                        firstDayOfWeek: DateTime.sunday,
+                        shortWeekdays: [
+                          AppLocalizations.of(context).translate('sun'),
+                          AppLocalizations.of(context).translate('mon'),
+                          AppLocalizations.of(context).translate('tue'),
+                          AppLocalizations.of(context).translate('wed'),
+                          AppLocalizations.of(context).translate('thu'),
+                          AppLocalizations.of(context).translate('fri'),
+                          AppLocalizations.of(context).translate('sat'),
+                        ],
+                        weekdays: [
+                          AppLocalizations.of(context).translate('sunday'),
+                          AppLocalizations.of(context).translate('monday'),
+                          AppLocalizations.of(context).translate('tuesday'),
+                          AppLocalizations.of(context).translate('wednesday'),
+                          AppLocalizations.of(context).translate('thursday'),
+                          AppLocalizations.of(context).translate('friday'),
+                          AppLocalizations.of(context).translate('saturday'),
+                        ],
+                        textDirection: textDirection,
+                        fillColor: Colors.white,
+                        selectedFillColor: Colors.deepOrange,
+                        selectedElevation: 0,
+                        elevation: 5,
+                        selectedShape: CircleBorder(
+                          side: BorderSide(color: Colors.black, width: 1),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
               Spacer(),
               TextFormField(
@@ -114,7 +194,7 @@ class _Update2State extends State<Update2> {
                   onPressed: () {
                     if (_formkey.currentState.validate()) {
                       if (address != '' &&
-                          vacation != '' &&
+                          currentVacationDays != '' &&
                           workinghours != '') {
                         Navigator.of(context).push(
                           MaterialPageRoute(
@@ -124,7 +204,7 @@ class _Update2State extends State<Update2> {
                               number: phoneNumber,
                               province: province,
                               address: address,
-                              vacation: vacation,
+                              vacation: currentVacationDays,
                               workinghours: workinghours,
                             ),
                           ),
