@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
-import 'package:provider/provider.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import 'dart:ui';
 import 'doctor03_map.dart';
-import 'package:intl/date_symbols.dart';
+import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 
 class ClinicForm extends StatefulWidget {
   final String email;
@@ -69,6 +68,7 @@ class _ClinicFormState extends State<ClinicForm> {
   String phoneNumber;
   String province;
   // final _places = GoogleMapsPlaces(apiKey: apiKey);
+  DateTime _dateTime = DateTime.now();
 
   _ClinicFormState({
     this.email,
@@ -171,13 +171,10 @@ class _ClinicFormState extends State<ClinicForm> {
                             AppLocalizations.of(context).translate('sunday'),
                             AppLocalizations.of(context).translate('monday'),
                             AppLocalizations.of(context).translate('tuesday'),
-                            AppLocalizations.of(context)
-                                .translate('wednesday'),
-                            AppLocalizations.of(context)
-                                .translate('thursday'),
+                            AppLocalizations.of(context).translate('wednesday'),
+                            AppLocalizations.of(context).translate('thursday'),
                             AppLocalizations.of(context).translate('friday'),
-                            AppLocalizations.of(context)
-                                .translate('saturday'),
+                            AppLocalizations.of(context).translate('saturday'),
                           ],
                           textDirection: textDirection,
                           fillColor: Colors.white,
@@ -194,13 +191,40 @@ class _ClinicFormState extends State<ClinicForm> {
                 ),
 
                 Spacer(),
+                Container(
+                  decoration: boxDecorationDoctor,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          AppLocalizations.of(context).translate(
+                            'work_hour',
+                          ),
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TimePickerSpinner(
+                          is24HourMode: false,
+                          isShowSeconds: false,
+                          spacing: 40,
+                          minutesInterval: 15,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+
                 TextFormField(
                   validator: (val) => val.isEmpty
-                      ? AppLocalizations.of(context)
-                          .translate('work_validator')
+                      ? AppLocalizations.of(context).translate('work_validator')
                       : null,
-                  onChanged: (val) =>
-                      setState(() => currentworkinghours = val),
+                  onChanged: (val) => setState(() => currentworkinghours = val),
                   decoration: textInputdecoration.copyWith(
                     hintText:
                         AppLocalizations.of(context).translate('work_hour'),
@@ -214,8 +238,7 @@ class _ClinicFormState extends State<ClinicForm> {
                 Row(
                   children: [
                     Text(
-                      AppLocalizations.of(context)
-                          .translate('location_setup'),
+                      AppLocalizations.of(context).translate('location_setup'),
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Icon(

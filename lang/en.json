@@ -92,7 +92,7 @@
     "name_validator" : "Enter Your Name in Arabic",
     "speciality" : "Speciality",
     "speciality_validator" : "Choose Your Speciality",
-    "phoneNumber" : "Phone Number",
+    "phoneNumber" : "Booking Phone Number",
     "phoneNumber_validator" : "Phone Number should be 11 digits",
     "province": "Province",
     "province_validator" : "Enter Your Province",

@@ -158,9 +158,6 @@ class _QuestionsState extends State<Questions> {
         }
       }
     }
-  
-    
-   
 
     return Directionality(
       textDirection: TextDirection.ltr,
@@ -200,39 +197,73 @@ class _QuestionsState extends State<Questions> {
                       // value: QuestionsShuffle.value1,
                       isExpanded: true,
                       hint: Text('Choose the Right answer'),
+
                       items: [
                         DropdownMenuItem<String>(
                           value: '0',
-                          child: Text(
-                            QuestionsShuffle.choices[QuestionsShuffle
-                                .questions[QuestionsShuffle.counter]][0],
-                            textAlign: TextAlign.left,
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter]][0],
+                              textDirection: TextDirection.ltr,
+                            ),
                           ),
                         ),
                         DropdownMenuItem<String>(
                           value: '1',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter]][1]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter]][1],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                         DropdownMenuItem<String>(
                           value: '2',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter]][2]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter]][2],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                         DropdownMenuItem<String>(
                           value: '3',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter]][3]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter]][3],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                         DropdownMenuItem<String>(
                           value: '4',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter]][4]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter]][4],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                         DropdownMenuItem<String>(
                           value: '5',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter]][5]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter]][5],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                       ],
                       onChanged: (value) => selected1b(value),
@@ -266,33 +297,69 @@ class _QuestionsState extends State<Questions> {
                       items: [
                         DropdownMenuItem<String>(
                           value: '0',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter + 1]][0]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter + 1]][0],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                         DropdownMenuItem<String>(
                           value: '1',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter + 1]][1]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter + 1]][1],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                         DropdownMenuItem<String>(
                           value: '2',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter + 1]][2]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter + 1]][2],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                         DropdownMenuItem<String>(
                           value: '3',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter + 1]][3]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter + 1]][3],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                         DropdownMenuItem<String>(
                           value: '4',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter + 1]][4]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter + 1]][4],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                         DropdownMenuItem<String>(
                           value: '5',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter + 1]][5]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter + 1]][5],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                       ],
                       onChanged: (value) => selected2b(value),
@@ -326,33 +393,69 @@ class _QuestionsState extends State<Questions> {
                       items: [
                         DropdownMenuItem<String>(
                           value: '0',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter + 2]][0]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter + 2]][0],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                         DropdownMenuItem<String>(
                           value: '1',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter + 2]][1]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter + 2]][1],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                         DropdownMenuItem<String>(
                           value: '2',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter + 2]][2]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter + 2]][2],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                         DropdownMenuItem<String>(
                           value: '3',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter + 2]][3]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter + 2]][3],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                         DropdownMenuItem<String>(
                           value: '4',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter + 2]][4]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter + 2]][4],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                         DropdownMenuItem<String>(
                           value: '5',
-                          child: Text(QuestionsShuffle.choices[QuestionsShuffle
-                              .questions[QuestionsShuffle.counter + 2]][5]),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              QuestionsShuffle.choices[QuestionsShuffle
+                                  .questions[QuestionsShuffle.counter + 2]][5],
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ),
                         ),
                       ],
                       onChanged: (value) => selected3b(value),

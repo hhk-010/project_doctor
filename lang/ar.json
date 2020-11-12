@@ -89,7 +89,7 @@
     "name_validator" : "ادخل اسمك الثلاثي",
     "speciality" : "الاختصاص",
     "speciality_validator" : "اختر اختصاصك الطبي",
-    "phoneNumber" : "رقم الهاتف",
+    "phoneNumber" : "رقم الهاتف للحجز",
     "phoneNumber_validator" : "رقم الهاتف يجب ان يكون اكثر من 11 رقم",
     "province": "المحافظه",
     "province_validator" : "قم بادخال محافظتك",
