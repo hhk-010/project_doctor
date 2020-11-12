@@ -29,7 +29,7 @@ dependencies:
     sdk: flutter
   google_maps_flutter: ^1.0.2
   flutter_google_places: ^0.2.6
-  location: ^3.0.2
+  # location: ^3.0.2
   rxdart: ^0.24.1
   firebase_auth: ^0.18.0+1
   cloud_firestore: ^0.14.0+2
@@ -42,7 +42,7 @@ dependencies:
   change_app_package_name: ^0.1.2
   auto_size_text: ^2.1.0
   weekday_selector: ^0.4.0
-  flutter_time_picker_spinner: ^1.0.6+1
+
 
 
 

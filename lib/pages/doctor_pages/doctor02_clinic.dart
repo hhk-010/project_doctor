@@ -4,7 +4,6 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import 'dart:ui';
 import 'doctor03_map.dart';
-import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 
 class ClinicForm extends StatefulWidget {
   final String email;
@@ -68,7 +67,6 @@ class _ClinicFormState extends State<ClinicForm> {
   String phoneNumber;
   String province;
   // final _places = GoogleMapsPlaces(apiKey: apiKey);
-  DateTime _dateTime = DateTime.now();
 
   _ClinicFormState({
     this.email,
@@ -189,7 +187,6 @@ class _ClinicFormState extends State<ClinicForm> {
                     ),
                   ),
                 ),
-
                 Spacer(),
                 Container(
                   decoration: boxDecorationDoctor,
@@ -209,16 +206,12 @@ class _ClinicFormState extends State<ClinicForm> {
                         SizedBox(
                           height: 10,
                         ),
-                        TimePickerSpinner(
-                          is24HourMode: false,
-                          isShowSeconds: false,
-                          spacing: 40,
-                          minutesInterval: 15,
-                        )
                       ],
                     ),
                   ),
                 ),
+
+                Spacer(),
 
                 TextFormField(
                   validator: (val) => val.isEmpty

@@ -100,7 +100,7 @@ class _HomeState extends State<Home> {
                                   fontFamily: lang == 'ar'
                                       ? 'noto_arabic'
                                       : 'Helvetica',
-                                  fontSize: 28,
+                                  fontSize: 26,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                               children: [
@@ -141,7 +141,7 @@ class _HomeState extends State<Home> {
                               text: AppLocalizations.of(context)
                                   .translate('home_doctor_title'),
                               style: TextStyle(
-                                  fontSize: 28,
+                                  fontSize: 26,
                                   fontFamily: lang == 'ar'
                                       ? 'noto_arabic'
                                       : 'Helvetica',
