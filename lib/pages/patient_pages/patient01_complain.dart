@@ -17,7 +17,6 @@ class _PatientComplainState extends State<PatientComplain> {
     color: Colors.black,
   );
 
-  //--------------------------------------------------
   final ageController = TextEditingController();
   String _age = '';
   String _error = '';

@@ -48,10 +48,14 @@ class _SignInState extends State<SignIn> {
 // snackbar functions
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
+    var lang = Localizations.localeOf(context).languageCode;
+
     final _snackbar = new SnackBar(
       content: Text(
         SnackText.error,
-        style: TextStyle(fontSize: 15),
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );

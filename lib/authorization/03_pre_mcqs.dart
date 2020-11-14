@@ -38,13 +38,13 @@ class _PreMCQsState extends State<PreMCQs> {
     }
   }
 
-  //-----------------this function will return a snackbar instead of the old one
+  //this function will return a snackbar instead of the old one
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
     final _snackbar = new SnackBar(
       content: Text(
         MCQss.error,
-        style: TextStyle(fontSize: 15),
+        style: TextStyle(fontSize: 15, fontFamily: 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -71,19 +71,19 @@ class _PreMCQsState extends State<PreMCQs> {
             backgroundColor: Colors.deepOrange,
             title: Text(''),
             actions: [
-              FlatButton.icon(
-                onPressed: () {
-                  widget.signInToogleView();
-                },
-                icon: Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
-                ),
-                label: Text(
-                  'Sign in',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
+              // FlatButton.icon(
+              //   onPressed: () {
+              //     widget.signInToogleView();
+              //   },
+              //   icon: Icon(
+              //     Icons.arrow_back,
+              //     color: Colors.white,
+              //   ),
+              //   label: Text(
+              //     'Sign in',
+              //     style: TextStyle(color: Colors.white),
+              //   ),
+              // ),
               FlatButton.icon(
                 onPressed: () {
                   checkInternet();
@@ -195,7 +195,7 @@ class _PostpremcqState extends State<Postpremcq> {
                       height: 50,
                     ),
                     Text(
-                      'if you already have an account return to the sign in page',
+                      'If you already have an account return to the sign in page',
                       textAlign: TextAlign.justify,
                       style: TextStyle(
                         fontSize: 14.0,

@@ -44,12 +44,14 @@ class _RegisterState extends State<Register> {
   }
 
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
-  TextStyle _textStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
+  TextStyle _textStyle = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+  );
 
   @override
   Widget build(BuildContext context) {
     var lang = Localizations.localeOf(context).languageCode;
-
     return loading
         ? Loading()
         : Scaffold(
@@ -163,7 +165,11 @@ class _RegisterState extends State<Register> {
                                       content: Text(
                                         AppLocalizations.of(context)
                                             .translate('snack_connectivity'),
-                                        style: _textStyle,
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontFamily: lang == 'ar'
+                                                ? 'noto_arabic'
+                                                : 'Helvetica'),
                                       ),
                                       backgroundColor: Colors.deepOrange,
                                     );
