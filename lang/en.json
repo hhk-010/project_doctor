@@ -35,7 +35,10 @@
     "thursday" : "Thursday",
     "friday" : "Friday",
     "saturday" : "Saturday",
+    "from" : "From ",
+    "to" : "To ",
 
+ 
 
 
 "email verification page":"=========================",

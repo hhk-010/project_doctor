@@ -36,7 +36,9 @@ final _formKey = GlobalKey<FormState>();
 String currentaddress = '';
 String currentVacationDays = '';
 List currentListVacationDays = [];
-String currentworkinghours = '';
+String currentWorkinghours = '';
+String firstTime = '';
+String secondTime = '';
 
 // print int as days for weekday selector widget
 List<bool> workDays = List.filled(7, false);
@@ -67,6 +69,8 @@ class _ClinicFormState extends State<ClinicForm> {
   String phoneNumber;
   String province;
   // final _places = GoogleMapsPlaces(apiKey: apiKey);
+  TimeOfDay _fromTime;
+  TimeOfDay _toTime;
 
   _ClinicFormState({
     this.email,
@@ -77,28 +81,11 @@ class _ClinicFormState extends State<ClinicForm> {
     this.province,
   });
 
-  String _setTime;
-  String _hour, _minute, _time;
-  String dateTime;
-  TimeOfDay selectedTime = TimeOfDay(hour: 00, minute: 00);
-  TextEditingController _timeController = TextEditingController();
-
-  Future<Null> _selectTime(BuildContext context) async {
-    final TimeOfDay picked = await showTimePicker(
-      context: context,
-      initialTime: selectedTime,
-    );
-    if (picked != null)
-      setState(() {
-        selectedTime = picked;
-        _hour = selectedTime.hour.toString();
-        _minute = selectedTime.minute.toString();
-        _time = _hour + ' : ' + _minute;
-        _timeController.text = _time;
-        // _timeController.text = formatDate(
-        //     DateTime(2019, 08, 1, selectedTime.hour, selectedTime.minute),
-        //     [hh, ':', nn, " ", am]).toString();
-      });
+  @override
+  void initState() {
+    super.initState();
+    _fromTime = TimeOfDay.now();
+    _toTime = TimeOfDay(hour: 00, minute: 0);
   }
 
   @override
@@ -131,6 +118,9 @@ class _ClinicFormState extends State<ClinicForm> {
               children: [
                 // _searchField(context, bloc),
                 // _buildLocation(bloc),
+                Spacer(
+                  flex: 3,
+                ),
                 TextFormField(
                   validator: (val) => val.isEmpty
                       ? AppLocalizations.of(context)
@@ -157,7 +147,9 @@ class _ClinicFormState extends State<ClinicForm> {
                           ),
                           textAlign: TextAlign.right,
                           style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(
                           height: 10,
@@ -227,50 +219,54 @@ class _ClinicFormState extends State<ClinicForm> {
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 15,
                         ),
-                        InkWell(
-                          onTap: () {
-                            _selectTime(context);
-                          },
-                          child: Container(
-                            // width: _width / 1.7,
-                            // height: _height / 9,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(color: Colors.grey[200]),
-                            child: TextFormField(
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
-                              onSaved: (String val) {
-                                _setTime = val;
-                              },
-                              enabled: false,
-                              keyboardType: TextInputType.text,
-                              controller: _timeController,
-                              decoration: InputDecoration(
-                                  disabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide.none),
-                                  // labelText: 'Time',
-                                  contentPadding: EdgeInsets.all(5)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            InkWell(
+                              child: Text(
+                                AppLocalizations.of(context).translate('from') +
+                                    '${_fromTime.format(context)}',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: Colors.red,
+                                  decorationThickness: 3,
+                                ),
+                              ),
+                              onTap: _pickFromTime,
                             ),
-                          ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(Icons.arrow_forward),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            InkWell(
+                              child: Text(
+                                AppLocalizations.of(context).translate('to') +
+                                    '${_toTime.format(context)}',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: Colors.red,
+                                  decorationThickness: 3,
+                                ),
+                              ),
+                              onTap: _pickToTime,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                       ],
                     ),
-                  ),
-                ),
-                Spacer(),
-                TextFormField(
-                  validator: (val) => val.isEmpty
-                      ? AppLocalizations.of(context).translate('work_validator')
-                      : null,
-                  onChanged: (val) => setState(() => currentworkinghours = val),
-                  decoration: textInputdecoration.copyWith(
-                    hintText:
-                        AppLocalizations.of(context).translate('work_hour'),
-                    labelText:
-                        AppLocalizations.of(context).translate('work_hour'),
                   ),
                 ),
                 Spacer(
@@ -305,7 +301,7 @@ class _ClinicFormState extends State<ClinicForm> {
                       if (_formKey.currentState.validate()) {
                         if (currentaddress != '' &&
                             currentVacationDays != '' &&
-                            currentworkinghours != '') {
+                            currentWorkinghours != '') {
                           await Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) => DocMap(
@@ -317,7 +313,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                 province: province,
                                 address: currentaddress,
                                 vacation: currentVacationDays,
-                                workinghours: currentworkinghours,
+                                workinghours: currentWorkinghours,
                               ),
                             ),
                           );
@@ -339,6 +335,64 @@ class _ClinicFormState extends State<ClinicForm> {
         ),
       ),
     );
+  }
+
+  _pickFromTime() async {
+    TimeOfDay fromTime = await showTimePicker(
+        context: context,
+        initialTime: _fromTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (fromTime != null)
+      setState(() {
+        _fromTime = fromTime;
+        firstTime = _fromTime.format(context);
+        print(firstTime);
+      });
+  }
+
+  _pickToTime() async {
+    TimeOfDay toTime = await showTimePicker(
+        context: context,
+        initialTime: _toTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (toTime != null)
+      setState(() {
+        _toTime = toTime;
+        secondTime = _toTime.format(context);
+        currentWorkinghours = AppLocalizations.of(context).translate('from') +
+            firstTime +
+            ' ' +
+            AppLocalizations.of(context).translate('to') +
+            secondTime;
+        print(secondTime);
+        print(currentWorkinghours);
+      });
   }
 
   // Widget _searchField(BuildContext context, LocationBloc bloc) {
@@ -401,4 +455,5 @@ class _ClinicFormState extends State<ClinicForm> {
   //     },
   //   );
   // }
+
 }

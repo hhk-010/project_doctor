@@ -23,7 +23,7 @@ const textInputdecoration = InputDecoration(
 var boxDecoration = BoxDecoration(
     gradient: LinearGradient(
       //cahnged because it is not defined in my device
-      //colors: [Colors.deepOrange[600], Colors.deepOrange[200]],
+      // colors: [Colors.deepOrange[600], Colors.deepOrange[200]],
       begin: Alignment.centerRight,
       end: Alignment.centerLeft,
     ),
@@ -34,6 +34,7 @@ var boxDecorationPatient = BoxDecoration(
     border: Border.all(
       color: Colors.orange[500],
       width: 2,
+      
     ));
 
 var boxDecorationDoctor = BoxDecoration(
