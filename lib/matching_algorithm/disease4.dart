@@ -227,6 +227,6 @@ maindisease4(
       obslen = obsym.length;
     }
   }
-  print(obscore);
+
   FinalScore.gynescore = obscore;
 }

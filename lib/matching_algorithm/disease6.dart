@@ -457,10 +457,6 @@ maindisease6(
       plaslen = plasym.length;
     }
   }
-  print(uroscore);
-  print(ortscore);
-  print(neuscore);
-  print(plascore);
   FinalScore.uroscore = uroscore;
   FinalScore.orthoscore = ortscore;
   FinalScore.neurosurgscore = neuscore;

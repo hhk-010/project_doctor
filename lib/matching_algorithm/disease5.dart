@@ -542,10 +542,6 @@ maindisease5(
       urolen = urosym.length;
     }
   }
-  print(heamscore);
-  print(neuroscore);
-  print(rheuscore);
-  print(nephroscore);
   FinalScore.nephroscore = nephroscore;
   FinalScore.heamatoscore = heamscore;
   FinalScore.neuroscore = neuroscore;

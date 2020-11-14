@@ -471,9 +471,6 @@ maindisease2(
       thorlen = thorsym.length;
     }
   }
-  print(gitscore);
-  print(gsscore);
-  print(thorscore);
   FinalScore.gitscore = gitscore;
   FinalScore.generalscore = gsscore;
   FinalScore.thoracicscore = thorscore;

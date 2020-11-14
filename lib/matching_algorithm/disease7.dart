@@ -527,10 +527,6 @@ maindisease7(
       entkey = 0;
     }
   }
-  print(opscore);
-  print(derscore);
-  print(psyscore);
-  print(entscore);
   FinalScore.psychoscore = psyscore;
   FinalScore.dermascore = derscore;
   FinalScore.opthascore = opscore;

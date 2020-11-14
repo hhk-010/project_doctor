@@ -516,9 +516,6 @@ maindisease1(
       endolen = endosym.length;
     }
   }
-  print(cvsscore);
-  print(endoscore);
-  print(respscore);
   FinalScore.cvsscore = cvsscore;
   FinalScore.respscore = respscore;
   FinalScore.endoscore = endoscore;

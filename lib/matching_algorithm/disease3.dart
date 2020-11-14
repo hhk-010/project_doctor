@@ -309,8 +309,6 @@ maindisease3(
       intlen = intsym.length;
     }
   }
-  print(emscore);
-  print(intscore);
   FinalScore.erscore = emscore;
   FinalScore.internscore = intscore;
 }
