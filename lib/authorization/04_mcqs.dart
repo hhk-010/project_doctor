@@ -32,10 +32,13 @@ class _MCQSState extends State<MCQS> {
   //-----------------this function will return a snackbar instead of the old one
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
+
     final _snackbar = new SnackBar(
       content: Text(
         QuestionsShuffle.snackerror,
-        style: TextStyle(fontSize: 15),
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );

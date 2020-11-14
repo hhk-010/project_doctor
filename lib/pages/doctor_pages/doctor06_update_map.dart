@@ -77,11 +77,16 @@ class _UpdateMapState extends State<UpdateMap> {
   //==============snackbar for empty latlng============
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
+    var lang = Localizations.localeOf(context).languageCode;
+
     final snackBar = new SnackBar(
       content: new Text(
         SnackBarError.error,
-        style: TextStyle(fontSize: 15),
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
+
       //duration: new Duration(seconds: 3),
       backgroundColor: Colors.deepOrange,
     );

@@ -38,10 +38,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   //-----------------this function will return a snackbar instead of the old one
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
+    var lang = Localizations.localeOf(context).languageCode;
+
     final _snackbar = new SnackBar(
       content: Text(
         error,
-        style: TextStyle(fontSize: 15),
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -186,7 +190,6 @@ class PasswordResetContinue extends StatelessWidget {
             flex: 3,
           ),
           RaisedButton.icon(
-            
               icon: Icon(
                 Icons.arrow_forward,
                 color: Colors.white,

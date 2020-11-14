@@ -77,12 +77,35 @@ class _ClinicFormState extends State<ClinicForm> {
     this.province,
   });
 
+  String _setTime;
+  String _hour, _minute, _time;
+  String dateTime;
+  TimeOfDay selectedTime = TimeOfDay(hour: 00, minute: 00);
+  TextEditingController _timeController = TextEditingController();
+
+  Future<Null> _selectTime(BuildContext context) async {
+    final TimeOfDay picked = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
+    if (picked != null)
+      setState(() {
+        selectedTime = picked;
+        _hour = selectedTime.hour.toString();
+        _minute = selectedTime.minute.toString();
+        _time = _hour + ' : ' + _minute;
+        _timeController.text = _time;
+        // _timeController.text = formatDate(
+        //     DateTime(2019, 08, 1, selectedTime.hour, selectedTime.minute),
+        //     [hh, ':', nn, " ", am]).toString();
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
     // final bloc = LocationProvider.of(context);
     final locale = Localizations.localeOf(context);
     final textDirection = getTextDirection(locale);
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
@@ -150,8 +173,8 @@ class _ClinicFormState extends State<ClinicForm> {
                                   .removeWhere((value) => value == null);
                               currentVacationDays =
                                   currentListVacationDays.join(', ');
-                              print(workDays);
-                              print(currentVacationDays);
+                              // print(workDays);
+                              // print(currentVacationDays);
                             });
                           },
                           values: workDays,
@@ -206,13 +229,38 @@ class _ClinicFormState extends State<ClinicForm> {
                         SizedBox(
                           height: 10,
                         ),
+                        InkWell(
+                          onTap: () {
+                            _selectTime(context);
+                          },
+                          child: Container(
+                            // width: _width / 1.7,
+                            // height: _height / 9,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(color: Colors.grey[200]),
+                            child: TextFormField(
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                              onSaved: (String val) {
+                                _setTime = val;
+                              },
+                              enabled: false,
+                              keyboardType: TextInputType.text,
+                              controller: _timeController,
+                              decoration: InputDecoration(
+                                  disabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide.none),
+                                  // labelText: 'Time',
+                                  contentPadding: EdgeInsets.all(5)),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
-
                 Spacer(),
-
                 TextFormField(
                   validator: (val) => val.isEmpty
                       ? AppLocalizations.of(context).translate('work_validator')
