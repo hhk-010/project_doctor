@@ -162,10 +162,10 @@ class _PostpremcqState extends State<Postpremcq> {
             textDirection: TextDirection.ltr,
             child: Container(
               width: double.infinity,
-              decoration: boxDecorationPatient,
+              decoration: boxDecorationDoctor,
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 25),
+                    const EdgeInsets.symmetric(vertical: 32, horizontal: 25),
                 child: Column(
                   children: [
                     FittedBox(
@@ -173,7 +173,7 @@ class _PostpremcqState extends State<Postpremcq> {
                       child: Text(
                         ' Welcome to Cura',
                         style: TextStyle(
-                            fontSize: 30.0, fontWeight: FontWeight.bold),
+                            fontSize: 25.0, fontWeight: FontWeight.bold),
                       ),
                     ),
                     Divider(

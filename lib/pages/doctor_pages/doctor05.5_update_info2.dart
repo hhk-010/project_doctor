@@ -43,13 +43,25 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
   final String speciality;
   final String phoneNumber;
   final String province;
+  TimeOfDay _fromTime;
+  TimeOfDay _toTime;
   _UpdateInfo2State(
       {this.name, this.speciality, this.phoneNumber, this.province});
 
   String address = '';
   String currentVacationDays = '';
   List currentListVacationDays = [];
-  String workinghours = '';
+  String currentWorkinghours = '';
+  String firstTime = '';
+  String secondTime = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _fromTime = TimeOfDay.now();
+    _toTime = TimeOfDay(hour: 00, minute: 0);
+  }
+
   final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -76,21 +88,81 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
           key: _formkey,
           child: Column(
             children: [
-              TextFormField(
-                onChanged: (val) => setState(() => address = val),
-                decoration: textInputdecoration.copyWith(
-                    hintText: AppLocalizations.of(context)
-                        .translate("detailed_address")),
-                validator: (val) => val.isEmpty
-                    ? AppLocalizations.of(context)
-                        .translate("address_validator")
-                    : null,
+              Spacer(
+                flex: 2,
+              ),
+              Container(
+                decoration: boxDecorationDoctor,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context).translate(
+                          'detailed_address',
+                        ),
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: TextFormField(
+                          validator: (val) => val.isEmpty
+                              ? AppLocalizations.of(context)
+                                  .translate('address_validator')
+                              : null,
+                          onChanged: (val) => setState(() => address = val),
+                          decoration: textInputdecoration.copyWith(
+                            hintText: 'مثال: شارع المغرب مجاور صيدليه الشفاء',
+                            hintStyle: TextStyle(
+                                fontSize: 12.0,
+                                color: Colors.deepOrange,
+                                fontFamily: 'noto_arabic'),
+                            labelText: 'عنوان العياده',
+                            labelStyle: TextStyle(
+                                color: Colors.indigo,
+                                fontFamily: 'noto_arabic'),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12.0)),
+                                borderSide: BorderSide(
+                                    color: Colors.orangeAccent, width: 2)),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12.0)),
+                                borderSide: BorderSide(
+                                    color: Colors.orangeAccent, width: 2)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12.0)),
+                                borderSide:
+                                    BorderSide(color: Colors.orangeAccent)),
+                            focusedErrorBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12.0)),
+                                borderSide: BorderSide(
+                                    color: Colors.orangeAccent, width: 2)),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
               Spacer(),
               Container(
                 decoration: boxDecorationDoctor,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -100,7 +172,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                         ),
                         textAlign: TextAlign.right,
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       SizedBox(
                         height: 10,
@@ -116,8 +190,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                 .removeWhere((value) => value == null);
                             currentVacationDays =
                                 currentListVacationDays.join(', ');
-                            print(workDays);
-                            print(currentVacationDays);
+                            // print(workDays);
+                            // print(currentVacationDays);
                           });
                         },
                         values: workDays,
@@ -154,14 +228,90 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                 ),
               ),
               Spacer(),
-              TextFormField(
-                onChanged: (val) => setState(() => workinghours = val),
-                decoration: textInputdecoration.copyWith(
-                    hintText:
-                        AppLocalizations.of(context).translate("work_hour")),
-                validator: (val) => val.isEmpty
-                    ? AppLocalizations.of(context).translate("work_validator")
-                    : null,
+              Container(
+                decoration: boxDecorationDoctor,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context).translate(
+                          'work_hour',
+                        ),
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            child: RichText(
+                              text: TextSpan(
+                                  text: AppLocalizations.of(context)
+                                      .translate('from'),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: '${_fromTime.format(context)}',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: Colors.deepOrange,
+                                      ),
+                                    ),
+                                  ]),
+                            ),
+                            onTap: _pickFromTime,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(Icons.arrow_forward),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          InkWell(
+                            child: RichText(
+                              text: TextSpan(
+                                  text: AppLocalizations.of(context)
+                                      .translate('to'),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: '${_toTime.format(context)}',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: Colors.deepOrange,
+                                      ),
+                                    ),
+                                  ]),
+                            ),
+                            onTap: _pickToTime,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
+                ),
               ),
               Spacer(
                 flex: 3,
@@ -169,7 +319,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
               Row(
                 children: [
                   Text(
-                    AppLocalizations.of(context).translate('finish_update'),
+                    AppLocalizations.of(context).translate('location_setup'),
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Icon(
@@ -195,7 +345,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                     if (_formkey.currentState.validate()) {
                       if (address != '' &&
                           currentVacationDays != '' &&
-                          workinghours != '') {
+                          currentWorkinghours != '') {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => UpdateMap(
@@ -205,7 +355,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                               province: province,
                               address: address,
                               vacation: currentVacationDays,
-                              workinghours: workinghours,
+                              workinghours: currentWorkinghours,
                             ),
                           ),
                         );
@@ -226,5 +376,63 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
         ),
       ),
     );
+  }
+
+  _pickFromTime() async {
+    TimeOfDay fromTime = await showTimePicker(
+        context: context,
+        initialTime: _fromTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (fromTime != null)
+      setState(() {
+        _fromTime = fromTime;
+        firstTime = _fromTime.format(context);
+        print(firstTime);
+      });
+  }
+
+  _pickToTime() async {
+    TimeOfDay toTime = await showTimePicker(
+        context: context,
+        initialTime: _toTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (toTime != null)
+      setState(() {
+        _toTime = toTime;
+        secondTime = _toTime.format(context);
+        currentWorkinghours = AppLocalizations.of(context).translate('from') +
+            firstTime +
+            ' ' +
+            AppLocalizations.of(context).translate('to') +
+            secondTime;
+        print(secondTime);
+        print(currentWorkinghours);
+      });
   }
 }

@@ -23,7 +23,7 @@ const textInputdecoration = InputDecoration(
 var boxDecoration = BoxDecoration(
     gradient: LinearGradient(
       //cahnged because it is not defined in my device
-      //colors: [Colors.deepOrange[600], Colors.deepOrange[200]],
+      // colors: [Colors.deepOrange[600], Colors.deepOrange[200]],
       begin: Alignment.centerRight,
       end: Alignment.centerLeft,
     ),
@@ -32,7 +32,7 @@ var boxDecoration = BoxDecoration(
 var boxDecorationPatient = BoxDecoration(
     borderRadius: BorderRadius.all(Radius.circular(10.0)),
     border: Border.all(
-      color: Colors.orange[500],
+      color: Colors.deepOrange,
       width: 2,
     ));
 
@@ -42,13 +42,3 @@ var boxDecorationDoctor = BoxDecoration(
       color: Colors.deepOrange,
       width: 2,
     ));
-
-class PopUpMenuConstants {
-  static const String logOut = 'Log Out';
-  static const String settings = 'Settings';
-
-  static const List<String> choices = <String>[
-    logOut,
-    settings,
-  ];
-}

@@ -35,6 +35,8 @@
     "thursday" : "الخميس",
     "friday" : "الجمعه",
     "saturday" : "السبت",
+    "from" : "من ",
+    "to" : "الى ",
 
 
 "email verification page":"=========================",
@@ -72,7 +74,7 @@
     "home_patient_title" :"انا مريض\n",
     "home_patient_subtitle" :"اريد البحث عن طبيب",
     "home_doctor_title" : "انا طبيب\n",
-    "home_doctor_subtitle" : "اريد التسجيل في التطبيق",
+    "home_doctor_subtitle" : "اريد التسجيل بالتطبيق",
     "about_us" : "من نحن",
     "sign_in": "الدخول",
     "register" : "التسجيل",
@@ -110,6 +112,7 @@
     "change_password" : "هل تريد تغيير كلمة المرور؟",
     "change" : "تغيير",
     "vacation":" عطلة العيادة في يوم",
+    "address" : "العنوان باللغه العربيه",
     "detailed_address":"عنوان العيادة كاملا",
     "address_validator":"الرجاء ادخال عنوان مناسب",
     "work_days":"ايام دوام العيادة",
@@ -121,6 +124,10 @@
     "password_reset_email":"ارسال بريد الكتروني لاعادة التعيين",
     "check_reset_email":"تحقق من بريدك الالكتروني ثم اضغط على الرابط المرسل لاعادة تعيين كلمة المرور",
     "open_time":"وقت تواجد الطبيب ",
+    "expcetion_days" : "حدد ايام بأوقات اخرى",
+    "select_days" : "اختر اليوم",
+
+
     
 
 

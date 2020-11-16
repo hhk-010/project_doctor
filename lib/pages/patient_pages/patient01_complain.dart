@@ -1681,52 +1681,74 @@ class _PatientComplainState extends State<PatientComplain> {
         child: ListView(
           children: [
             Container(
-              decoration: boxDecorationPatient,
-              child: Column(
-                children: [
-                  TextField(
-                      keyboardType: TextInputType.number,
-                      controller: ageController,
-                      onChanged: (ageController) {
-                        if (ageController.isEmpty) {
-                          setState(() {
-                            _age = '';
-                          });
-                        } else {
-                          setState(() {
-                            _age = ageController.toString();
-                          });
-                        }
-                      },
-                      decoration: InputDecoration(
-                        hintText: AppLocalizations.of(context).translate('age'),
-                        prefixIcon: Icon(
-                          Icons.account_box,
-                          //changed beacause its not defined here , you can return it back
-                          //Icons.person_search,
-                          color: Colors.deepOrange,
-                        ),
-                        filled: true,
-                      )),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        addRadioButton(
-                            0, AppLocalizations.of(context).translate('male')),
-                        addRadioButton(1,
-                            AppLocalizations.of(context).translate('female')),
-                      ],
+              decoration: boxDecorationDoctor,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context).translate(
+                        'age',
+                      ),
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                          keyboardType: TextInputType.number,
+                          controller: ageController,
+                          onChanged: (ageController) {
+                            if (ageController.isEmpty) {
+                              setState(() {
+                                _age = '';
+                              });
+                            } else {
+                              setState(() {
+                                _age = ageController.toString();
+                              });
+                            }
+                          },
+                          decoration: textInputdecoration.copyWith(
+                            hintText:
+                                AppLocalizations.of(context).translate('age'),
+                            prefixIcon: Icon(
+                              Icons.account_box,
+                              //changed beacause its not defined here , you can return it back
+                              // Icons.person_search,
+                              color: Colors.deepOrange,
+                            ),
+                            filled: true,
+                          )),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          addRadioButton(0,
+                              AppLocalizations.of(context).translate('male')),
+                          addRadioButton(1,
+                              AppLocalizations.of(context).translate('female')),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 20),
             Container(
-              decoration: boxDecorationPatient,
+              decoration: boxDecorationDoctor,
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
@@ -2914,7 +2936,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                     _visibile06 = !_visibile06;
                                   });
                                 }),
-                          )
+                          ),
                         ],
                       )
                     ],
