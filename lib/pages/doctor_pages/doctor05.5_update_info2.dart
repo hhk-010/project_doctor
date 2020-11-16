@@ -89,25 +89,80 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
           child: Column(
             children: [
               Spacer(
-                flex: 3,
+                flex: 2,
               ),
-              TextFormField(
-                onChanged: (val) => setState(() => address = val),
-                decoration: textInputdecoration.copyWith(
-                    hintText: AppLocalizations.of(context)
-                        .translate('detailed_address'),
-                    labelText: AppLocalizations.of(context)
-                        .translate('detailed_address')),
-                validator: (val) => val.isEmpty
-                    ? AppLocalizations.of(context)
-                        .translate("address_validator")
-                    : null,
+              Container(
+                decoration: boxDecorationDoctor,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context).translate(
+                          'detailed_address',
+                        ),
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: TextFormField(
+                          validator: (val) => val.isEmpty
+                              ? AppLocalizations.of(context)
+                                  .translate('address_validator')
+                              : null,
+                          onChanged: (val) => setState(() => address = val),
+                          decoration: textInputdecoration.copyWith(
+                            hintText: 'مثال: شارع المغرب مجاور صيدليه الشفاء',
+                            hintStyle: TextStyle(
+                                fontSize: 12.0,
+                                color: Colors.deepOrange,
+                                fontFamily: 'noto_arabic'),
+                            labelText: 'عنوان العياده',
+                            labelStyle: TextStyle(
+                                color: Colors.indigo,
+                                fontFamily: 'noto_arabic'),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12.0)),
+                                borderSide: BorderSide(
+                                    color: Colors.orangeAccent, width: 2)),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12.0)),
+                                borderSide: BorderSide(
+                                    color: Colors.orangeAccent, width: 2)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12.0)),
+                                borderSide:
+                                    BorderSide(color: Colors.orangeAccent)),
+                            focusedErrorBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12.0)),
+                                borderSide: BorderSide(
+                                    color: Colors.orangeAccent, width: 2)),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
               Spacer(),
               Container(
                 decoration: boxDecorationDoctor,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -117,7 +172,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                         ),
                         textAlign: TextAlign.right,
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       SizedBox(
                         height: 10,
@@ -174,7 +231,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
               Container(
                 decoration: boxDecorationDoctor,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -194,16 +252,25 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           InkWell(
-                            child: Text(
-                              AppLocalizations.of(context).translate('from') +
-                                  '${_fromTime.format(context)}',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                decoration: TextDecoration.underline,
-                                decorationColor: Colors.red,
-                                decorationThickness: 3,
-                              ),
+                            child: RichText(
+                              text: TextSpan(
+                                  text: AppLocalizations.of(context)
+                                      .translate('from'),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: '${_fromTime.format(context)}',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: Colors.deepOrange,
+                                      ),
+                                    ),
+                                  ]),
                             ),
                             onTap: _pickFromTime,
                           ),
@@ -215,16 +282,25 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                             width: 10,
                           ),
                           InkWell(
-                            child: Text(
-                              AppLocalizations.of(context).translate('to') +
-                                  '${_toTime.format(context)}',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                decoration: TextDecoration.underline,
-                                decorationColor: Colors.red,
-                                decorationThickness: 3,
-                              ),
+                            child: RichText(
+                              text: TextSpan(
+                                  text: AppLocalizations.of(context)
+                                      .translate('to'),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: '${_toTime.format(context)}',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: Colors.deepOrange,
+                                      ),
+                                    ),
+                                  ]),
                             ),
                             onTap: _pickToTime,
                           ),
@@ -238,12 +314,12 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                 ),
               ),
               Spacer(
-                flex: 6,
+                flex: 3,
               ),
               Row(
                 children: [
                   Text(
-                    AppLocalizations.of(context).translate('finish_update'),
+                    AppLocalizations.of(context).translate('location_setup'),
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Icon(

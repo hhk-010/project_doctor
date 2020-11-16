@@ -117,8 +117,9 @@
     "change" : "Change",
     "vacation":"Clinic vacation is in ",
     "detailed_address":"Detailed clinic address",
+    "address" : "Address in arabic",
     "address_validator":"Please enter a valid address",
-    "work_days":"Clinic Work days",
+    "work_days":"Clinic work days",
     "vacation_validator":"Select valid vacation days",
     "work_hour":"Clinic working hours",
     "work_validator":"Please enter valid working hours",
@@ -127,6 +128,8 @@
     "password_reset_email":"Send Email To Reset Password",
     "check_reset_email":"Check your Email and click on the link to Reset your Password",
     "open_time":"Doctor is available from ",
+    "expcetion_days" : "Days with other timing",
+    "select_days" : "Select the day",
     
 
 

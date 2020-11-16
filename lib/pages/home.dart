@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
           icon: Icon(Icons.info),
           tooltip: AppLocalizations.of(context).translate('about_us'),
           onPressed: () {
-            Navigator.pushNamed(context, '/doctor_clinic');
+            Navigator.pushNamed(context, '/register');
           },
         ),
         title: FittedBox(

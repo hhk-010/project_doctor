@@ -36,9 +36,14 @@ final _formKey = GlobalKey<FormState>();
 String currentaddress = '';
 String currentVacationDays = '';
 List currentListVacationDays = [];
-String currentWorkinghours = '';
-String firstTime = '';
-String secondTime = '';
+String mainWorkingHours = '';
+String mainFromTimeString = '';
+String mainToTimeString = '';
+String secondaryWorkingHours = '';
+String secondaryFromTimeString = '';
+String secondaryToTimeString = '';
+bool _visibile = false;
+bool _daySwitch = false;
 
 // print int as days for weekday selector widget
 List<bool> workDays = List.filled(7, false);
@@ -62,15 +67,18 @@ TextDirection getTextDirection(Locale locale) {
 }
 
 class _ClinicFormState extends State<ClinicForm> {
+  // final _places = GoogleMapsPlaces(apiKey: apiKey);
   String email;
   String password;
   String name;
   String speciality;
   String phoneNumber;
   String province;
-  // final _places = GoogleMapsPlaces(apiKey: apiKey);
-  TimeOfDay _fromTime;
-  TimeOfDay _toTime;
+  TimeOfDay _mainFromTime;
+  TimeOfDay _mainToTime;
+  TimeOfDay _secondaryFromTime;
+  TimeOfDay _secondaryToTime;
+  String weekday;
 
   _ClinicFormState({
     this.email,
@@ -84,12 +92,23 @@ class _ClinicFormState extends State<ClinicForm> {
   @override
   void initState() {
     super.initState();
-    _fromTime = TimeOfDay.now();
-    _toTime = TimeOfDay(hour: 00, minute: 0);
+    _mainFromTime = TimeOfDay.now();
+    _secondaryFromTime = TimeOfDay.now();
+    _mainToTime = TimeOfDay(hour: 00, minute: 0);
+    _secondaryToTime = TimeOfDay(hour: 00, minute: 0);
   }
 
   @override
   Widget build(BuildContext context) {
+    final weekDaysList = {
+      "1": [AppLocalizations.of(context).translate('sunday'), "Sunday"],
+      "2": [AppLocalizations.of(context).translate('monday'), "Monday"],
+      "3": [AppLocalizations.of(context).translate('tuesday'), "Tuesday"],
+      "4": [AppLocalizations.of(context).translate('wednesday'), "Wednesday"],
+      "5": [AppLocalizations.of(context).translate('thursday'), "Thursday"],
+      "6": [AppLocalizations.of(context).translate('friday'), "Friday"],
+      "7": [AppLocalizations.of(context).translate('saturday'), "Saturday"],
+    };
     // final bloc = LocationProvider.of(context);
     final locale = Localizations.localeOf(context);
     final textDirection = getTextDirection(locale);
@@ -109,223 +128,479 @@ class _ClinicFormState extends State<ClinicForm> {
         elevation: 0,
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 75, horizontal: 50),
+        padding: EdgeInsets.symmetric(vertical: 25, horizontal: 35),
         child: Form(
           key: _formKey,
           child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+            child: ListView(
               children: [
                 // _searchField(context, bloc),
                 // _buildLocation(bloc),
-                Spacer(
-                  flex: 3,
-                ),
-                TextFormField(
-                  validator: (val) => val.isEmpty
-                      ? AppLocalizations.of(context)
-                          .translate('address_validator')
-                      : null,
-                  onChanged: (val) => setState(() => currentaddress = val),
-                  decoration: textInputdecoration.copyWith(
-                      hintText: AppLocalizations.of(context)
-                          .translate('detailed_address'),
-                      labelText: AppLocalizations.of(context)
-                          .translate('detailed_address')),
-                ),
-                Spacer(),
+
                 Container(
                   decoration: boxDecorationDoctor,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          AppLocalizations.of(context).translate(
-                            'work_days',
-                          ),
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        WeekdaySelector(
-                          onChanged: (int day) {
-                            setState(() {
-                              final index = day % 7;
-                              workDays[index] = !workDays[index];
-                              currentListVacationDays =
-                                  boolToStringDays(context, workDays);
-                              currentListVacationDays
-                                  .removeWhere((value) => value == null);
-                              currentVacationDays =
-                                  currentListVacationDays.join(', ');
-                              // print(workDays);
-                              // print(currentVacationDays);
-                            });
-                          },
-                          values: workDays,
-                          firstDayOfWeek: DateTime.sunday,
-                          shortWeekdays: [
-                            AppLocalizations.of(context).translate('sun'),
-                            AppLocalizations.of(context).translate('mon'),
-                            AppLocalizations.of(context).translate('tue'),
-                            AppLocalizations.of(context).translate('wed'),
-                            AppLocalizations.of(context).translate('thu'),
-                            AppLocalizations.of(context).translate('fri'),
-                            AppLocalizations.of(context).translate('sat'),
-                          ],
-                          weekdays: [
-                            AppLocalizations.of(context).translate('sunday'),
-                            AppLocalizations.of(context).translate('monday'),
-                            AppLocalizations.of(context).translate('tuesday'),
-                            AppLocalizations.of(context).translate('wednesday'),
-                            AppLocalizations.of(context).translate('thursday'),
-                            AppLocalizations.of(context).translate('friday'),
-                            AppLocalizations.of(context).translate('saturday'),
-                          ],
-                          textDirection: textDirection,
-                          fillColor: Colors.white,
-                          selectedFillColor: Colors.deepOrange,
-                          selectedElevation: 0,
-                          elevation: 5,
-                          selectedShape: CircleBorder(
-                            side: BorderSide(color: Colors.black, width: 1),
+                        Center(
+                          child: Text(
+                            AppLocalizations.of(context).translate(
+                              'detailed_address',
+                            ),
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-                Spacer(),
-                Container(
-                  decoration: boxDecorationDoctor,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context).translate(
-                            'work_hour',
-                          ),
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
+                        Divider(
+                          color: Colors.grey,
+                          thickness: 2,
+                          indent: 50,
+                          endIndent: 50,
                         ),
                         SizedBox(
                           height: 15,
                         ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 15,
+                          ),
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: TextFormField(
+                              validator: (val) => val.isEmpty
+                                  ? AppLocalizations.of(context)
+                                      .translate('address_validator')
+                                  : null,
+                              onChanged: (val) =>
+                                  setState(() => currentaddress = val),
+                              decoration: textInputdecoration.copyWith(
+                                hintText:
+                                    'مثال: شارع المغرب مجاور صيدليه الشفاء',
+                                hintStyle: TextStyle(
+                                    fontSize: 14.0,
+                                    color: Colors.deepOrange,
+                                    fontFamily: 'noto_arabic'),
+                                labelText: 'عنوان العياده',
+                                labelStyle: TextStyle(
+                                    color: Colors.grey[750],
+                                    fontFamily: 'noto_arabic'),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Center(
+                          child: Text(
+                            AppLocalizations.of(context).translate(
+                              'work_days',
+                            ),
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Divider(
+                          color: Colors.grey,
+                          thickness: 2,
+                          indent: 70,
+                          endIndent: 70,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 15,
+                          ),
+                          child: WeekdaySelector(
+                            onChanged: (int day) {
+                              setState(() {
+                                final index = day % 7;
+                                workDays[index] = !workDays[index];
+                                currentListVacationDays =
+                                    boolToStringDays(context, workDays);
+                                currentListVacationDays
+                                    .removeWhere((value) => value == null);
+                                currentVacationDays =
+                                    currentListVacationDays.join(', ');
+                                // print(workDays);
+                                // print(currentVacationDays);
+                              });
+                            },
+                            values: workDays,
+                            firstDayOfWeek: DateTime.sunday,
+                            shortWeekdays: [
+                              AppLocalizations.of(context).translate('sun'),
+                              AppLocalizations.of(context).translate('mon'),
+                              AppLocalizations.of(context).translate('tue'),
+                              AppLocalizations.of(context).translate('wed'),
+                              AppLocalizations.of(context).translate('thu'),
+                              AppLocalizations.of(context).translate('fri'),
+                              AppLocalizations.of(context).translate('sat'),
+                            ],
+                            weekdays: [
+                              AppLocalizations.of(context).translate('sunday'),
+                              AppLocalizations.of(context).translate('monday'),
+                              AppLocalizations.of(context).translate('tuesday'),
+                              AppLocalizations.of(context)
+                                  .translate('wednesday'),
+                              AppLocalizations.of(context)
+                                  .translate('thursday'),
+                              AppLocalizations.of(context).translate('friday'),
+                              AppLocalizations.of(context)
+                                  .translate('saturday'),
+                            ],
+                            textDirection: textDirection,
+                            fillColor: Colors.white,
+                            selectedFillColor: Colors.deepOrange,
+                            selectedElevation: 0,
+                            elevation: 5,
+                            selectedShape: CircleBorder(
+                              side: BorderSide(color: Colors.black, width: 1),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Center(
+                          child: Text(
+                            AppLocalizations.of(context).translate(
+                              'work_hour',
+                            ),
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Divider(
+                          color: Colors.grey,
+                          thickness: 2,
+                          indent: 50,
+                          endIndent: 50,
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 15,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              InkWell(
+                                child: RichText(
+                                  text: TextSpan(
+                                      text: AppLocalizations.of(context)
+                                          .translate('from'),
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                      ),
+                                      children: [
+                                        TextSpan(
+                                          text:
+                                              '${_mainFromTime.format(context)}',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                            color: Colors.deepOrange,
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                                onTap: _pickMainFromTime,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Icon(Icons.arrow_forward),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              InkWell(
+                                child: RichText(
+                                  text: TextSpan(
+                                      text: AppLocalizations.of(context)
+                                          .translate('to'),
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                      ),
+                                      children: [
+                                        TextSpan(
+                                          text:
+                                              '${_mainToTime.format(context)}',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                            color: Colors.deepOrange,
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                                onTap: _pickMainToTime,
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        SwitchListTile(
+                            activeColor: Colors.deepOrange,
+                            dense: true,
+                            title: Text(
+                              AppLocalizations.of(context)
+                                  .translate('expcetion_days'),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16),
+                            ),
+                            value: _daySwitch,
+                            onChanged: (bool s) {
+                              setState(() {
+                                _daySwitch = s;
+                                _visibile = !_visibile;
+                              });
+                            }),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+
+                Visibility(
+                  visible: _visibile,
+                  child: Container(
+                    decoration: boxDecorationDoctor,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 15),
+                      child: Column(
+                        children: [
+                          Center(
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('expcetion_days'),
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Divider(
+                            color: Colors.grey,
+                            thickness: 2,
+                            indent: 40,
+                            endIndent: 40,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 15,
+                            ),
+                            child: DropdownButton(
+                              hint: Text(
+                                AppLocalizations.of(context)
+                                    .translate('select_days'),
+                              ),
+                              isExpanded: true,
+                              items: [
+                                DropdownMenuItem(
+                                  value: weekDaysList["1"][1],
+                                  child: Text(weekDaysList["1"][0]),
+                                ),
+                                DropdownMenuItem(
+                                  value: weekDaysList["2"][1],
+                                  child: Text(weekDaysList["2"][0]),
+                                ),
+                                DropdownMenuItem(
+                                  value: weekDaysList["3"][1],
+                                  child: Text(weekDaysList["3"][0]),
+                                ),
+                                DropdownMenuItem(
+                                  value: weekDaysList["4"][1],
+                                  child: Text(weekDaysList["4"][0]),
+                                ),
+                                DropdownMenuItem(
+                                  value: weekDaysList["5"][1],
+                                  child: Text(weekDaysList["5"][0]),
+                                ),
+                                DropdownMenuItem(
+                                  value: weekDaysList["6"][1],
+                                  child: Text(weekDaysList["5"][0]),
+                                ),
+                                DropdownMenuItem(
+                                  value: weekDaysList["7"][1],
+                                  child: Text(weekDaysList["5"][0]),
+                                ),
+                              ],
+                              onChanged: (value) {
+                                setState(() {
+                                  weekday = value;
+                                });
+                                print(weekday);
+                              },
+                              value: weekday,
+                              dropdownColor: Colors.white,
+                              elevation: 5,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 15,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                InkWell(
+                                  child: RichText(
+                                    text: TextSpan(
+                                        text: AppLocalizations.of(context)
+                                            .translate('from'),
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 18,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                '${_secondaryFromTime.format(context)}',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Colors.deepOrange,
+                                            ),
+                                          ),
+                                        ]),
+                                  ),
+                                  onTap: _pickSecondaryFromTime,
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Icon(Icons.arrow_forward),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                InkWell(
+                                  child: RichText(
+                                    text: TextSpan(
+                                        text: AppLocalizations.of(context)
+                                            .translate('to'),
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 18,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                '${_secondaryToTime.format(context)}',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Colors.deepOrange,
+                                            ),
+                                          ),
+                                        ]),
+                                  ),
+                                  onTap: _pickSecondaryToTime,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Container(
+                    child: Column(
+                      children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            InkWell(
-                              child: Text(
-                                AppLocalizations.of(context).translate('from') +
-                                    '${_fromTime.format(context)}',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: Colors.red,
-                                  decorationThickness: 3,
-                                ),
-                              ),
-                              onTap: _pickFromTime,
+                            Text(
+                              AppLocalizations.of(context)
+                                  .translate('location_setup'),
+                              style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Icon(Icons.arrow_forward),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            InkWell(
-                              child: Text(
-                                AppLocalizations.of(context).translate('to') +
-                                    '${_toTime.format(context)}',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: Colors.red,
-                                  decorationThickness: 3,
-                                ),
-                              ),
-                              onTap: _pickToTime,
+                            Icon(
+                              Icons.arrow_downward,
+                              size: 20,
                             ),
                           ],
                         ),
                         SizedBox(
                           height: 10,
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-                Spacer(
-                  flex: 6,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      AppLocalizations.of(context).translate('location_setup'),
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Icon(
-                      Icons.arrow_downward,
-                      size: 20,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                ButtonTheme(
-                  minWidth: double.infinity,
-                  child: RaisedButton.icon(
-                    color: Colors.deepOrange,
-                    icon: Icon(
-                      Icons.arrow_forward,
-                      color: Colors.white,
-                    ),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80.0)),
-                    onPressed: () async {
-                      if (_formKey.currentState.validate()) {
-                        if (currentaddress != '' &&
-                            currentVacationDays != '' &&
-                            currentWorkinghours != '') {
-                          await Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => DocMap(
-                                email: email,
-                                password: password,
-                                name: name,
-                                speciality: speciality,
-                                phone: phoneNumber,
-                                province: province,
-                                address: currentaddress,
-                                vacation: currentVacationDays,
-                                workinghours: currentWorkinghours,
-                              ),
+                        ButtonTheme(
+                          minWidth: double.infinity,
+                          child: RaisedButton.icon(
+                            color: Colors.deepOrange,
+                            icon: Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
                             ),
-                          );
-                        }
-                      }
-                    },
-                    label: Text(
-                      AppLocalizations.of(context).translate('google_map'),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(80.0)),
+                            onPressed: () async {
+                              if (_formKey.currentState.validate()) {
+                                if (currentaddress != '' &&
+                                    currentVacationDays != '' &&
+                                    mainWorkingHours != '') {
+                                  await Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => DocMap(
+                                        email: email,
+                                        password: password,
+                                        name: name,
+                                        speciality: speciality,
+                                        phone: phoneNumber,
+                                        province: province,
+                                        address: currentaddress,
+                                        vacation: currentVacationDays,
+                                        mainWorkingHours: mainWorkingHours,
+                                        secondaryWorkingHours : secondaryWorkingHours,
+                                      ),
+                                    ),
+                                  );
+                                }
+                              }
+                            },
+                            label: Text(
+                              AppLocalizations.of(context)
+                                  .translate('google_map'),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 )
@@ -337,10 +612,10 @@ class _ClinicFormState extends State<ClinicForm> {
     );
   }
 
-  _pickFromTime() async {
-    TimeOfDay fromTime = await showTimePicker(
+  _pickMainFromTime() async {
+    TimeOfDay mainfromTime = await showTimePicker(
         context: context,
-        initialTime: _fromTime,
+        initialTime: _mainFromTime,
         builder: (BuildContext context, Widget child) {
           return Theme(
             data: ThemeData(
@@ -355,18 +630,18 @@ class _ClinicFormState extends State<ClinicForm> {
             ),
           );
         });
-    if (fromTime != null)
+    if (mainfromTime != null)
       setState(() {
-        _fromTime = fromTime;
-        firstTime = _fromTime.format(context);
-        print(firstTime);
+        _mainFromTime = mainfromTime;
+        mainFromTimeString = _mainFromTime.format(context);
+        print(mainFromTimeString);
       });
   }
 
-  _pickToTime() async {
-    TimeOfDay toTime = await showTimePicker(
+  _pickMainToTime() async {
+    TimeOfDay maintoTime = await showTimePicker(
         context: context,
-        initialTime: _toTime,
+        initialTime: _mainToTime,
         builder: (BuildContext context, Widget child) {
           return Theme(
             data: ThemeData(
@@ -381,17 +656,75 @@ class _ClinicFormState extends State<ClinicForm> {
             ),
           );
         });
-    if (toTime != null)
+    if (maintoTime != null)
       setState(() {
-        _toTime = toTime;
-        secondTime = _toTime.format(context);
-        currentWorkinghours = AppLocalizations.of(context).translate('from') +
-            firstTime +
+        _mainToTime = maintoTime;
+        mainToTimeString = _mainToTime.format(context);
+        mainWorkingHours = AppLocalizations.of(context).translate('from') +
+            mainFromTimeString +
             ' ' +
             AppLocalizations.of(context).translate('to') +
-            secondTime;
-        print(secondTime);
-        print(currentWorkinghours);
+            mainToTimeString;
+        print(mainToTimeString);
+        print(mainWorkingHours);
+      });
+  }
+
+  _pickSecondaryFromTime() async {
+    TimeOfDay secondaryFromTime = await showTimePicker(
+        context: context,
+        initialTime: _secondaryFromTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (secondaryFromTime != null)
+      setState(() {
+        _secondaryFromTime = secondaryFromTime;
+        secondaryFromTimeString = _secondaryFromTime.format(context);
+        print(secondaryFromTimeString);
+      });
+  }
+
+  _pickSecondaryToTime() async {
+    TimeOfDay secondaryToTime = await showTimePicker(
+        context: context,
+        initialTime: _secondaryToTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (secondaryToTime != null)
+      setState(() {
+        _secondaryToTime = secondaryToTime;
+        secondaryToTimeString = _secondaryToTime.format(context);
+        secondaryWorkingHours = AppLocalizations.of(context).translate('from') +
+            secondaryFromTimeString +
+            ' ' +
+            AppLocalizations.of(context).translate('to') +
+            secondaryToTimeString;
+        print(secondaryToTimeString);
+        print(secondaryWorkingHours);
       });
   }
 

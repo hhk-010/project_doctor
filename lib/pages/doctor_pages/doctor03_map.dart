@@ -16,7 +16,8 @@ class DocMap extends StatefulWidget {
   final String province;
   final String address;
   final String vacation;
-  final String workinghours;
+  final String mainWorkingHours;
+  final String secondaryWorkingHours;
 
   DocMap(
       {this.email,
@@ -27,7 +28,8 @@ class DocMap extends StatefulWidget {
       this.province,
       this.address,
       this.vacation,
-      this.workinghours});
+      this.mainWorkingHours,
+      this.secondaryWorkingHours});
 
   @override
   _DocMapState createState() => _DocMapState(
@@ -39,7 +41,7 @@ class DocMap extends StatefulWidget {
       province: province,
       address: address,
       vacation: vacation,
-      workinghours: workinghours);
+      workinghours: mainWorkingHours);
 }
 
 class _DocMapState extends State<DocMap> {
