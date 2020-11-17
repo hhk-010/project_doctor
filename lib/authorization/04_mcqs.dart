@@ -131,7 +131,7 @@ class _MCQSState extends State<MCQS> {
                 ),
                 label: Text(
                   'Next',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                 ),
               ),
             ],

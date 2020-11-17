@@ -305,7 +305,7 @@ class _DoctorFormState extends State<DoctorForm> {
                     labelText:
                         AppLocalizations.of(context).translate('phoneNumber'),
                   ),
-                  validator: (val) => val.length < 11
+                  validator: (val) => val.length < 11 && val.length > 11
                       ? AppLocalizations.of(context)
                           .translate('phoneNumber_validator')
                       : null,

@@ -123,7 +123,7 @@ class _PreMCQsState extends State<PreMCQs> {
                 ),
                 label: Text(
                   'Next',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -154,7 +154,7 @@ class _PostpremcqState extends State<Postpremcq> {
       }
     }
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 50.0),
+      padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 25.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -165,9 +165,18 @@ class _PostpremcqState extends State<Postpremcq> {
               decoration: boxDecorationDoctor,
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 32, horizontal: 25),
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 25),
                 child: Column(
                   children: [
+                    SizedBox(
+                      height: 150,
+                      child: Image(
+                        image: AssetImage('assets/images/mcq.png'),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
                     FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Text(
@@ -177,7 +186,7 @@ class _PostpremcqState extends State<Postpremcq> {
                       ),
                     ),
                     Divider(
-                      color: Colors.grey,
+                      color: Colors.deepOrange,
                       thickness: 3,
                       indent: 30,
                       endIndent: 30,
@@ -196,10 +205,12 @@ class _PostpremcqState extends State<Postpremcq> {
                     ),
                     Text(
                       'If you already have an account return to the sign in page',
-                      textAlign: TextAlign.justify,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.bold,
+                        
+                        color: Colors.red
                       ),
                     ),
                   ],
