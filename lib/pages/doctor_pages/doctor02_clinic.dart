@@ -233,8 +233,9 @@ class _ClinicFormState extends State<ClinicForm> {
                                     .removeWhere((value) => value == null);
                                 currentVacationDays =
                                     currentListVacationDays.join(', ');
-                                // print(workDays);
-                                // print(currentVacationDays);
+                                //print(workDays);
+                                print(currentListVacationDays);
+                                print(currentVacationDays);
                               });
                             },
                             values: workDays,
@@ -440,11 +441,11 @@ class _ClinicFormState extends State<ClinicForm> {
                                 ),
                                 DropdownMenuItem(
                                   value: weekDaysList["6"][1],
-                                  child: Text(weekDaysList["5"][0]),
+                                  child: Text(weekDaysList["6"][0]),
                                 ),
                                 DropdownMenuItem(
                                   value: weekDaysList["7"][1],
-                                  child: Text(weekDaysList["5"][0]),
+                                  child: Text(weekDaysList["7"][0]),
                                 ),
                               ],
                               onChanged: (value) {
@@ -583,7 +584,8 @@ class _ClinicFormState extends State<ClinicForm> {
                                         address: currentaddress,
                                         vacation: currentVacationDays,
                                         mainWorkingHours: mainWorkingHours,
-                                        secondaryWorkingHours : secondaryWorkingHours,
+                                        secondaryWorkingHours:
+                                            secondaryWorkingHours,
                                       ),
                                     ),
                                   );
@@ -667,6 +669,8 @@ class _ClinicFormState extends State<ClinicForm> {
             mainToTimeString;
         print(mainToTimeString);
         print(mainWorkingHours);
+        currentListVacationDays.add(mainWorkingHours);
+        print(currentListVacationDays);
       });
   }
 
