@@ -85,7 +85,7 @@ class _PatientComplainState extends State<PatientComplain> {
         ),
         Text(
           title,
-          style: _textStylePatient.copyWith(fontSize: 16),
+          style: _textStylePatient.copyWith(fontSize: 14),
         )
       ],
     );
@@ -1688,18 +1688,22 @@ class _PatientComplainState extends State<PatientComplain> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      AppLocalizations.of(context).translate(
-                        'age',
-                      ),
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                    Center(
+                      child: Text(
+                        AppLocalizations.of(context).translate(
+                          'age_gender',
+                        ),
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 2,
+                      indent: 90,
+                      endIndent: 90,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -1729,18 +1733,14 @@ class _PatientComplainState extends State<PatientComplain> {
                             filled: true,
                           )),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 40, vertical: 8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          addRadioButton(0,
-                              AppLocalizations.of(context).translate('male')),
-                          addRadioButton(1,
-                              AppLocalizations.of(context).translate('female')),
-                        ],
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        addRadioButton(
+                            0, AppLocalizations.of(context).translate('male')),
+                        addRadioButton(1,
+                            AppLocalizations.of(context).translate('female')),
+                      ],
                     ),
                   ],
                 ),
@@ -1761,7 +1761,7 @@ class _PatientComplainState extends State<PatientComplain> {
                             AppLocalizations.of(context)
                                 .translate('main_complain'),
                             style: TextStyle(
-                                fontSize: 18.0, fontWeight: FontWeight.bold),
+                                fontSize: 16.0, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -1964,7 +1964,7 @@ class _PatientComplainState extends State<PatientComplain> {
                             AppLocalizations.of(context)
                                 .translate('add_complains'),
                             style: TextStyle(
-                                fontSize: 18.0, fontWeight: FontWeight.bold),
+                                fontSize: 16.0, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -2163,7 +2163,7 @@ class _PatientComplainState extends State<PatientComplain> {
                             AppLocalizations.of(context)
                                 .translate('add_complains'),
                             style: TextStyle(
-                                fontSize: 18.0, fontWeight: FontWeight.bold),
+                                fontSize: 16.0, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -2362,7 +2362,7 @@ class _PatientComplainState extends State<PatientComplain> {
                             AppLocalizations.of(context)
                                 .translate('add_complains'),
                             style: TextStyle(
-                                fontSize: 18.0, fontWeight: FontWeight.bold),
+                                fontSize: 16.0, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -2561,7 +2561,7 @@ class _PatientComplainState extends State<PatientComplain> {
                             AppLocalizations.of(context)
                                 .translate('add_complains'),
                             style: TextStyle(
-                                fontSize: 18.0, fontWeight: FontWeight.bold),
+                                fontSize: 16.0, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -2760,7 +2760,7 @@ class _PatientComplainState extends State<PatientComplain> {
                             AppLocalizations.of(context)
                                 .translate('add_complains'),
                             style: TextStyle(
-                                fontSize: 18.0, fontWeight: FontWeight.bold),
+                                fontSize: 16.0, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -2958,7 +2958,7 @@ class _PatientComplainState extends State<PatientComplain> {
                             AppLocalizations.of(context)
                                 .translate('add_complains'),
                             style: TextStyle(
-                                fontSize: 18.0, fontWeight: FontWeight.bold),
+                                fontSize: 16.0, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),

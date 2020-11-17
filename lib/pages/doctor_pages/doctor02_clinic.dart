@@ -42,8 +42,13 @@ String mainToTimeString = '';
 String secondaryWorkingHours = '';
 String secondaryFromTimeString = '';
 String secondaryToTimeString = '';
-bool _visibile = false;
-bool _daySwitch = false;
+String ternaryWorkingHours = '';
+String ternaryFromTimeString = '';
+String ternaryToTimeString = '';
+bool _visibile01 = false;
+bool _daySwitch01 = false;
+bool _visibile02 = false;
+bool _daySwitch02 = false;
 
 // print int as days for weekday selector widget
 List<bool> workDays = List.filled(7, false);
@@ -78,7 +83,10 @@ class _ClinicFormState extends State<ClinicForm> {
   TimeOfDay _mainToTime;
   TimeOfDay _secondaryFromTime;
   TimeOfDay _secondaryToTime;
-  String weekday;
+  TimeOfDay _ternaryFromTime;
+  TimeOfDay _ternaryToTime;
+  String weekday01;
+  String weekday02;
 
   _ClinicFormState({
     this.email,
@@ -96,6 +104,8 @@ class _ClinicFormState extends State<ClinicForm> {
     _secondaryFromTime = TimeOfDay.now();
     _mainToTime = TimeOfDay(hour: 00, minute: 0);
     _secondaryToTime = TimeOfDay(hour: 00, minute: 0);
+    _ternaryFromTime = TimeOfDay.now();
+    _ternaryToTime = TimeOfDay(hour: 00, minute: 0);
   }
 
   @override
@@ -370,11 +380,11 @@ class _ClinicFormState extends State<ClinicForm> {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16),
                             ),
-                            value: _daySwitch,
+                            value: _daySwitch01,
                             onChanged: (bool s) {
                               setState(() {
-                                _daySwitch = s;
-                                _visibile = !_visibile;
+                                _daySwitch01 = s;
+                                _visibile01 = !_visibile01;
                               });
                             }),
                       ],
@@ -386,7 +396,7 @@ class _ClinicFormState extends State<ClinicForm> {
                 ),
 
                 Visibility(
-                  visible: _visibile,
+                  visible: _visibile01,
                   child: Container(
                     decoration: boxDecorationDoctor,
                     child: Padding(
@@ -450,11 +460,11 @@ class _ClinicFormState extends State<ClinicForm> {
                               ],
                               onChanged: (value) {
                                 setState(() {
-                                  weekday = value;
+                                  weekday01 = value;
                                 });
-                                print(weekday);
+                                print(weekday01);
                               },
-                              value: weekday,
+                              value: weekday01,
                               dropdownColor: Colors.white,
                               elevation: 5,
                             ),
@@ -524,6 +534,176 @@ class _ClinicFormState extends State<ClinicForm> {
                                         ]),
                                   ),
                                   onTap: _pickSecondaryToTime,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          SwitchListTile(
+                              activeColor: Colors.deepOrange,
+                              dense: true,
+                              title: Text(
+                                AppLocalizations.of(context)
+                                    .translate('expcetion_days'),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 16),
+                              ),
+                              value: _daySwitch02,
+                              onChanged: (bool s) {
+                                setState(() {
+                                  _daySwitch02 = s;
+                                  _visibile02 = !_visibile02;
+                                });
+                              }),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Visibility(
+                  visible: _visibile02,
+                  child: Container(
+                    decoration: boxDecorationDoctor,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 15),
+                      child: Column(
+                        children: [
+                          Center(
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('expcetion_days'),
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Divider(
+                            color: Colors.grey,
+                            thickness: 2,
+                            indent: 40,
+                            endIndent: 40,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 15,
+                            ),
+                            child: DropdownButton(
+                              hint: Text(
+                                AppLocalizations.of(context)
+                                    .translate('select_days'),
+                              ),
+                              isExpanded: true,
+                              items: [
+                                DropdownMenuItem(
+                                  value: weekDaysList["1"][1],
+                                  child: Text(weekDaysList["1"][0]),
+                                ),
+                                DropdownMenuItem(
+                                  value: weekDaysList["2"][1],
+                                  child: Text(weekDaysList["2"][0]),
+                                ),
+                                DropdownMenuItem(
+                                  value: weekDaysList["3"][1],
+                                  child: Text(weekDaysList["3"][0]),
+                                ),
+                                DropdownMenuItem(
+                                  value: weekDaysList["4"][1],
+                                  child: Text(weekDaysList["4"][0]),
+                                ),
+                                DropdownMenuItem(
+                                  value: weekDaysList["5"][1],
+                                  child: Text(weekDaysList["5"][0]),
+                                ),
+                                DropdownMenuItem(
+                                  value: weekDaysList["6"][1],
+                                  child: Text(weekDaysList["5"][0]),
+                                ),
+                                DropdownMenuItem(
+                                  value: weekDaysList["7"][1],
+                                  child: Text(weekDaysList["5"][0]),
+                                ),
+                              ],
+                              onChanged: (value) {
+                                setState(() {
+                                  weekday02 = value;
+                                });
+                                print(weekday02);
+                              },
+                              value: weekday02,
+                              dropdownColor: Colors.white,
+                              elevation: 5,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 15,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                InkWell(
+                                  child: RichText(
+                                    text: TextSpan(
+                                        text: AppLocalizations.of(context)
+                                            .translate('from'),
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 18,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                '${_ternaryFromTime.format(context)}',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Colors.deepOrange,
+                                            ),
+                                          ),
+                                        ]),
+                                  ),
+                                  onTap: _pickTernaryFromTime,
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Icon(Icons.arrow_forward),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                InkWell(
+                                  child: RichText(
+                                    text: TextSpan(
+                                        text: AppLocalizations.of(context)
+                                            .translate('to'),
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 18,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                '${_ternaryToTime.format(context)}',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Colors.deepOrange,
+                                            ),
+                                          ),
+                                        ]),
+                                  ),
+                                  onTap: _pickTernaryToTime,
                                 ),
                               ],
                             ),
@@ -729,6 +909,64 @@ class _ClinicFormState extends State<ClinicForm> {
             secondaryToTimeString;
         print(secondaryToTimeString);
         print(secondaryWorkingHours);
+      });
+  }
+
+  _pickTernaryFromTime() async {
+    TimeOfDay ternaryFromTime = await showTimePicker(
+        context: context,
+        initialTime: _ternaryFromTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (ternaryFromTime != null)
+      setState(() {
+        _ternaryFromTime = ternaryFromTime;
+        ternaryFromTimeString = _ternaryFromTime.format(context);
+        print(ternaryFromTimeString);
+      });
+  }
+
+  _pickTernaryToTime() async {
+    TimeOfDay ternaryToTime = await showTimePicker(
+        context: context,
+        initialTime: _ternaryToTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (ternaryToTime != null)
+      setState(() {
+        _ternaryToTime = ternaryToTime;
+        ternaryToTimeString = _ternaryToTime.format(context);
+        ternaryWorkingHours = AppLocalizations.of(context).translate('from') +
+            ternaryFromTimeString +
+            ' ' +
+            AppLocalizations.of(context).translate('to') +
+            ternaryToTimeString;
+        print(ternaryToTimeString);
+        print(ternaryWorkingHours);
       });
   }
 

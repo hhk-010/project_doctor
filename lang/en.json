@@ -55,6 +55,7 @@
     "distances":"Distance to the doctor is about ",
     "km":"Km away",
     "doctor_locat":"Show Doctor Location",
+    "age_gender" : "Age & Gender",
 
 
 
@@ -130,6 +131,7 @@
     "open_time":"Doctor is available from ",
     "expcetion_days" : "Days with other timing",
     "select_days" : "Select the day",
+
     
 
 
