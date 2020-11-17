@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/services/app_localizations.dart';
