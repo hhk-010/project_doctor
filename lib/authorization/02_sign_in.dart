@@ -98,6 +98,14 @@ class _SignInState extends State<SignIn> {
                 key: _formKey,
                 child: Column(
                   children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.deepOrangeAccent,
+                      radius: 80,
+                      backgroundImage: AssetImage('assets/images/sign_in.png'),
+                    ),
+                    Spacer(
+                      flex: 3,
+                    ),
                     TextFormField(
                       validator: (val) => val.isEmpty
                           ? AppLocalizations.of(context)
@@ -150,7 +158,7 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     Spacer(
-                      flex: 10,
+                      flex: 5,
                     ),
                     Container(
                       height: 40.0,

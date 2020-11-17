@@ -317,7 +317,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
-                                        fontSize: 18,
+                                        fontSize: 16,
                                       ),
                                       children: [
                                         TextSpan(
@@ -325,7 +325,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                               '${_mainFromTime.format(context)}',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 18,
+                                            fontSize: 16,
                                             color: Colors.deepOrange,
                                           ),
                                         ),
@@ -348,7 +348,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
-                                        fontSize: 18,
+                                        fontSize: 16,
                                       ),
                                       children: [
                                         TextSpan(
@@ -356,7 +356,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                               '${_mainToTime.format(context)}',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 18,
+                                            fontSize: 16,
                                             color: Colors.deepOrange,
                                           ),
                                         ),
@@ -487,7 +487,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                         children: [
                                           TextSpan(
@@ -495,7 +495,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                                 '${_secondaryFromTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               color: Colors.deepOrange,
                                             ),
                                           ),
@@ -518,7 +518,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                         children: [
                                           TextSpan(
@@ -526,7 +526,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                                 '${_secondaryToTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               color: Colors.deepOrange,
                                             ),
                                           ),
@@ -657,7 +657,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                         children: [
                                           TextSpan(
@@ -665,7 +665,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                                 '${_ternaryFromTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               color: Colors.deepOrange,
                                             ),
                                           ),
@@ -688,7 +688,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                         children: [
                                           TextSpan(
@@ -696,7 +696,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                                 '${_ternaryToTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               color: Colors.deepOrange,
                                             ),
                                           ),

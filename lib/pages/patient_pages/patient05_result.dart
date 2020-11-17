@@ -140,7 +140,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CircleAvatar(
-                          backgroundColor: Colors.deepOrange,
+                          backgroundColor: Colors.deepOrangeAccent,
                           radius: 75,
                           backgroundImage:
                               AssetImage('assets/images/doctor.png'),

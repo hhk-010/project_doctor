@@ -32,12 +32,21 @@ class SpecialityResult extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
               child: Column(
                 children: [
+                  SizedBox(
+                    height: 150,
+                    child: Image(
+                      image: AssetImage('assets/images/speciality.png'),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
                   AutoSizeText(
                     AppLocalizations.of(context).translate('result_speciality'),
                     maxLines: 2,
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.justify,
+                    textAlign: TextAlign.center,
                   ),
                   SizedBox(
                     height: 10,
@@ -45,19 +54,18 @@ class SpecialityResult extends StatelessWidget {
                   Divider(
                     color: Colors.grey,
                     thickness: 2,
-                    indent: 30,
-                    endIndent: 30,
+                    indent: 20,
+                    endIndent: 20,
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Center(
                     child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.deepOrange,
-                        radius: 30,
-                        backgroundImage:
-                            AssetImage('assets/images/speciality.png'),
+                      leading: Icon(
+                        Icons.person_add,
+                        size: 40,
+                        color: Colors.deepOrangeAccent,
                       ),
                       title: FittedBox(
                         fit: BoxFit.scaleDown,

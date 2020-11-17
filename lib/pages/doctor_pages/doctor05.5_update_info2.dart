@@ -294,7 +294,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                         children: [
                                           TextSpan(
@@ -302,7 +302,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                                 '${_mainFromTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               color: Colors.deepOrange,
                                             ),
                                           ),
@@ -325,7 +325,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                         children: [
                                           TextSpan(
@@ -333,7 +333,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                                 '${_mainToTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               color: Colors.deepOrange,
                                             ),
                                           ),
@@ -464,7 +464,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
-                                            fontSize: 18,
+                                            fontSize: 16,
                                           ),
                                           children: [
                                             TextSpan(
@@ -472,7 +472,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                                   '${_secondaryFromTime.format(context)}',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 18,
+                                                fontSize: 16,
                                                 color: Colors.deepOrange,
                                               ),
                                             ),
@@ -495,7 +495,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
-                                            fontSize: 18,
+                                            fontSize: 16,
                                           ),
                                           children: [
                                             TextSpan(
@@ -503,7 +503,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                                   '${_secondaryToTime.format(context)}',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 18,
+                                                fontSize: 16,
                                                 color: Colors.deepOrange,
                                               ),
                                             ),
@@ -635,7 +635,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
-                                            fontSize: 18,
+                                            fontSize: 16,
                                           ),
                                           children: [
                                             TextSpan(
@@ -643,7 +643,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                                   '${_ternaryFromTime.format(context)}',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 18,
+                                                fontSize: 16,
                                                 color: Colors.deepOrange,
                                               ),
                                             ),
@@ -666,7 +666,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
-                                            fontSize: 18,
+                                            fontSize: 16,
                                           ),
                                           children: [
                                             TextSpan(
@@ -674,7 +674,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                                   '${_ternaryToTime.format(context)}',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 18,
+                                                fontSize: 16,
                                                 color: Colors.deepOrange,
                                               ),
                                             ),
@@ -739,179 +739,178 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
           ),
         ));
   }
-    _pickMainFromTime() async {
-      TimeOfDay mainfromTime = await showTimePicker(
-          context: context,
-          initialTime: _mainFromTime,
-          builder: (BuildContext context, Widget child) {
-            return Theme(
-              data: ThemeData(
-                primaryColor: Colors.deepOrange,
-                accentColor: Colors.deepOrange,
-                primarySwatch: Colors.deepOrange,
-              ),
-              child: MediaQuery(
-                data: MediaQuery.of(context)
-                    .copyWith(alwaysUse24HourFormat: false),
-                child: child,
-              ),
-            );
-          });
-      if (mainfromTime != null)
-        setState(() {
-          _mainFromTime = mainfromTime;
-          mainFromTimeString = _mainFromTime.format(context);
-          print(mainFromTimeString);
-        });
-    }
 
-    _pickMainToTime() async {
-      TimeOfDay maintoTime = await showTimePicker(
-          context: context,
-          initialTime: _mainToTime,
-          builder: (BuildContext context, Widget child) {
-            return Theme(
-              data: ThemeData(
-                primaryColor: Colors.deepOrange,
-                accentColor: Colors.deepOrange,
-                primarySwatch: Colors.deepOrange,
-              ),
-              child: MediaQuery(
-                data: MediaQuery.of(context)
-                    .copyWith(alwaysUse24HourFormat: false),
-                child: child,
-              ),
-            );
-          });
-      if (maintoTime != null)
-        setState(() {
-          _mainToTime = maintoTime;
-          mainToTimeString = _mainToTime.format(context);
-          mainWorkingHours = AppLocalizations.of(context).translate('from') +
-              mainFromTimeString +
-              ' ' +
-              AppLocalizations.of(context).translate('to') +
-              mainToTimeString;
-          print(mainToTimeString);
-          print(mainWorkingHours);
+  _pickMainFromTime() async {
+    TimeOfDay mainfromTime = await showTimePicker(
+        context: context,
+        initialTime: _mainFromTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
         });
-    }
-
-    _pickSecondaryFromTime() async {
-      TimeOfDay secondaryFromTime = await showTimePicker(
-          context: context,
-          initialTime: _secondaryFromTime,
-          builder: (BuildContext context, Widget child) {
-            return Theme(
-              data: ThemeData(
-                primaryColor: Colors.deepOrange,
-                accentColor: Colors.deepOrange,
-                primarySwatch: Colors.deepOrange,
-              ),
-              child: MediaQuery(
-                data: MediaQuery.of(context)
-                    .copyWith(alwaysUse24HourFormat: false),
-                child: child,
-              ),
-            );
-          });
-      if (secondaryFromTime != null)
-        setState(() {
-          _secondaryFromTime = secondaryFromTime;
-          secondaryFromTimeString = _secondaryFromTime.format(context);
-          print(secondaryFromTimeString);
-        });
-    }
-
-    _pickSecondaryToTime() async {
-      TimeOfDay secondaryToTime = await showTimePicker(
-          context: context,
-          initialTime: _secondaryToTime,
-          builder: (BuildContext context, Widget child) {
-            return Theme(
-              data: ThemeData(
-                primaryColor: Colors.deepOrange,
-                accentColor: Colors.deepOrange,
-                primarySwatch: Colors.deepOrange,
-              ),
-              child: MediaQuery(
-                data: MediaQuery.of(context)
-                    .copyWith(alwaysUse24HourFormat: false),
-                child: child,
-              ),
-            );
-          });
-      if (secondaryToTime != null)
-        setState(() {
-          _secondaryToTime = secondaryToTime;
-          secondaryToTimeString = _secondaryToTime.format(context);
-          secondaryWorkingHours =
-              AppLocalizations.of(context).translate('from') +
-                  secondaryFromTimeString +
-                  ' ' +
-                  AppLocalizations.of(context).translate('to') +
-                  secondaryToTimeString;
-          print(secondaryToTimeString);
-          print(secondaryWorkingHours);
-        });
-    }
-
-    _pickTernaryFromTime() async {
-      TimeOfDay ternaryFromTime = await showTimePicker(
-          context: context,
-          initialTime: _ternaryFromTime,
-          builder: (BuildContext context, Widget child) {
-            return Theme(
-              data: ThemeData(
-                primaryColor: Colors.deepOrange,
-                accentColor: Colors.deepOrange,
-                primarySwatch: Colors.deepOrange,
-              ),
-              child: MediaQuery(
-                data: MediaQuery.of(context)
-                    .copyWith(alwaysUse24HourFormat: false),
-                child: child,
-              ),
-            );
-          });
-      if (ternaryFromTime != null)
-        setState(() {
-          _ternaryFromTime = ternaryFromTime;
-          ternaryFromTimeString = _ternaryFromTime.format(context);
-          print(ternaryFromTimeString);
-        });
-    }
-
-    _pickTernaryToTime() async {
-      TimeOfDay ternaryToTime = await showTimePicker(
-          context: context,
-          initialTime: _ternaryToTime,
-          builder: (BuildContext context, Widget child) {
-            return Theme(
-              data: ThemeData(
-                primaryColor: Colors.deepOrange,
-                accentColor: Colors.deepOrange,
-                primarySwatch: Colors.deepOrange,
-              ),
-              child: MediaQuery(
-                data: MediaQuery.of(context)
-                    .copyWith(alwaysUse24HourFormat: false),
-                child: child,
-              ),
-            );
-          });
-      if (ternaryToTime != null)
-        setState(() {
-          _ternaryToTime = ternaryToTime;
-          ternaryToTimeString = _ternaryToTime.format(context);
-          ternaryWorkingHours = AppLocalizations.of(context).translate('from') +
-              ternaryFromTimeString +
-              ' ' +
-              AppLocalizations.of(context).translate('to') +
-              ternaryToTimeString;
-          print(ternaryToTimeString);
-          print(ternaryWorkingHours);
-        });
-    }
+    if (mainfromTime != null)
+      setState(() {
+        _mainFromTime = mainfromTime;
+        mainFromTimeString = _mainFromTime.format(context);
+        print(mainFromTimeString);
+      });
   }
 
+  _pickMainToTime() async {
+    TimeOfDay maintoTime = await showTimePicker(
+        context: context,
+        initialTime: _mainToTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (maintoTime != null)
+      setState(() {
+        _mainToTime = maintoTime;
+        mainToTimeString = _mainToTime.format(context);
+        mainWorkingHours = AppLocalizations.of(context).translate('from') +
+            mainFromTimeString +
+            ' ' +
+            AppLocalizations.of(context).translate('to') +
+            mainToTimeString;
+        print(mainToTimeString);
+        print(mainWorkingHours);
+      });
+  }
+
+  _pickSecondaryFromTime() async {
+    TimeOfDay secondaryFromTime = await showTimePicker(
+        context: context,
+        initialTime: _secondaryFromTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (secondaryFromTime != null)
+      setState(() {
+        _secondaryFromTime = secondaryFromTime;
+        secondaryFromTimeString = _secondaryFromTime.format(context);
+        print(secondaryFromTimeString);
+      });
+  }
+
+  _pickSecondaryToTime() async {
+    TimeOfDay secondaryToTime = await showTimePicker(
+        context: context,
+        initialTime: _secondaryToTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (secondaryToTime != null)
+      setState(() {
+        _secondaryToTime = secondaryToTime;
+        secondaryToTimeString = _secondaryToTime.format(context);
+        secondaryWorkingHours = AppLocalizations.of(context).translate('from') +
+            secondaryFromTimeString +
+            ' ' +
+            AppLocalizations.of(context).translate('to') +
+            secondaryToTimeString;
+        print(secondaryToTimeString);
+        print(secondaryWorkingHours);
+      });
+  }
+
+  _pickTernaryFromTime() async {
+    TimeOfDay ternaryFromTime = await showTimePicker(
+        context: context,
+        initialTime: _ternaryFromTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (ternaryFromTime != null)
+      setState(() {
+        _ternaryFromTime = ternaryFromTime;
+        ternaryFromTimeString = _ternaryFromTime.format(context);
+        print(ternaryFromTimeString);
+      });
+  }
+
+  _pickTernaryToTime() async {
+    TimeOfDay ternaryToTime = await showTimePicker(
+        context: context,
+        initialTime: _ternaryToTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (ternaryToTime != null)
+      setState(() {
+        _ternaryToTime = ternaryToTime;
+        ternaryToTimeString = _ternaryToTime.format(context);
+        ternaryWorkingHours = AppLocalizations.of(context).translate('from') +
+            ternaryFromTimeString +
+            ' ' +
+            AppLocalizations.of(context).translate('to') +
+            ternaryToTimeString;
+        print(ternaryToTimeString);
+        print(ternaryWorkingHours);
+      });
+  }
+}

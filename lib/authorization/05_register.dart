@@ -76,6 +76,15 @@ class _RegisterState extends State<Register> {
                   key: _formKey,
                   child: Column(
                     children: [
+                      CircleAvatar(
+                        backgroundColor: Colors.deepOrangeAccent,
+                        radius: 80,
+                        backgroundImage:
+                            AssetImage('assets/images/register.png'),
+                      ),
+                      Spacer(
+                        flex: 3,
+                      ),
                       TextFormField(
                         validator: (val) => val.isEmpty
                             ? AppLocalizations.of(context)
@@ -129,7 +138,7 @@ class _RegisterState extends State<Register> {
                         ),
                       ),
                       Spacer(
-                        flex: 10,
+                        flex: 5,
                       ),
                       Builder(builder: (context) {
                         return Container(
