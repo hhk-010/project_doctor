@@ -148,7 +148,7 @@ class _ClinicFormState extends State<ClinicForm> {
                 // _buildLocation(bloc),
 
                 Container(
-                  decoration: boxDecorationDoctor,
+                  decoration: boxDecoration,
                   child: Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
@@ -397,7 +397,7 @@ class _ClinicFormState extends State<ClinicForm> {
                 Visibility(
                   visible: _visibile01,
                   child: Container(
-                    decoration: boxDecorationDoctor,
+                    decoration: boxDecoration,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 15),
@@ -567,7 +567,7 @@ class _ClinicFormState extends State<ClinicForm> {
                 Visibility(
                   visible: _visibile02,
                   child: Container(
-                    decoration: boxDecorationDoctor,
+                    decoration: boxDecoration,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 15),

@@ -160,7 +160,7 @@ class _PostpremcqState extends State<Postpremcq> {
               height: 30.0,
             ),
             Container(
-              decoration: boxDecorationPatient,
+              decoration: boxDecoration,
               child: Column(
                 children: [
                   SizedBox(
@@ -195,7 +195,7 @@ class _PostpremcqState extends State<Postpremcq> {
               height: 30.0,
             ),
             Container(
-              decoration: boxDecorationPatient,
+              decoration: boxDecoration,
               child: Column(
                 children: [
                   SizedBox(

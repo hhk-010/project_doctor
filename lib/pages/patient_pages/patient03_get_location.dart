@@ -102,7 +102,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Container(
-              decoration: boxDecorationPatient,
+              decoration: boxDecoration,
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               child: Column(
                 children: [
@@ -166,7 +166,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
               ),
             ),
             Container(
-              decoration: boxDecorationPatient,
+              decoration: boxDecoration,
               padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
               child: Column(
                 children: [

@@ -27,7 +27,7 @@ class SpecialityResult extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              decoration: boxDecorationPatient,
+              decoration: boxDecoration,
               width: double.infinity,
               padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
               child: Column(

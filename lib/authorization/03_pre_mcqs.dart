@@ -123,7 +123,8 @@ class _PreMCQsState extends State<PreMCQs> {
                 ),
                 label: Text(
                   'Next',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -162,7 +163,7 @@ class _PostpremcqState extends State<Postpremcq> {
             textDirection: TextDirection.ltr,
             child: Container(
               width: double.infinity,
-              decoration: boxDecorationDoctor,
+              decoration: boxDecoration,
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 25),
@@ -207,11 +208,9 @@ class _PostpremcqState extends State<Postpremcq> {
                       'If you already have an account return to the sign in page',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.bold,
-                        
-                        color: Colors.red
-                      ),
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red),
                     ),
                   ],
                 ),

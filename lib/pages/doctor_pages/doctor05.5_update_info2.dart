@@ -121,7 +121,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                   // _buildLocation(bloc),
 
                   Container(
-                    decoration: boxDecorationDoctor,
+                    decoration: boxDecoration,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 15),
@@ -374,7 +374,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                   Visibility(
                     visible: _visibile01,
                     child: Container(
-                      decoration: boxDecorationDoctor,
+                      decoration: boxDecoration,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 15),
@@ -545,7 +545,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                   Visibility(
                     visible: _visibile02,
                     child: Container(
-                      decoration: boxDecorationDoctor,
+                      decoration: boxDecoration,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 15),

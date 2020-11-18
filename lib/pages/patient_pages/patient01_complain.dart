@@ -1681,7 +1681,7 @@ class _PatientComplainState extends State<PatientComplain> {
         child: ListView(
           children: [
             Container(
-              decoration: boxDecorationDoctor,
+              decoration: boxDecoration,
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
@@ -1748,7 +1748,7 @@ class _PatientComplainState extends State<PatientComplain> {
             ),
             SizedBox(height: 20),
             Container(
-              decoration: boxDecorationDoctor,
+              decoration: boxDecoration,
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
@@ -1953,7 +1953,7 @@ class _PatientComplainState extends State<PatientComplain> {
             Visibility(
               visible: _visibile01,
               child: Container(
-                decoration: boxDecorationPatient,
+                decoration: boxDecoration,
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
@@ -2152,7 +2152,7 @@ class _PatientComplainState extends State<PatientComplain> {
             Visibility(
               visible: _visibile02,
               child: Container(
-                decoration: boxDecorationPatient,
+                decoration: boxDecoration,
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
@@ -2351,7 +2351,7 @@ class _PatientComplainState extends State<PatientComplain> {
             Visibility(
               visible: _visibile03,
               child: Container(
-                decoration: boxDecorationPatient,
+                decoration: boxDecoration,
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
@@ -2550,7 +2550,7 @@ class _PatientComplainState extends State<PatientComplain> {
             Visibility(
               visible: _visibile04,
               child: Container(
-                decoration: boxDecorationPatient,
+                decoration: boxDecoration,
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
@@ -2749,7 +2749,7 @@ class _PatientComplainState extends State<PatientComplain> {
             Visibility(
               visible: _visibile05,
               child: Container(
-                decoration: boxDecorationPatient,
+                decoration: boxDecoration,
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
@@ -2947,7 +2947,7 @@ class _PatientComplainState extends State<PatientComplain> {
             Visibility(
               visible: _visibile06,
               child: Container(
-                decoration: boxDecorationPatient,
+                decoration: boxDecoration,
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(

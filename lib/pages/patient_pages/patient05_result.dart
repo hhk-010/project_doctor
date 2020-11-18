@@ -130,7 +130,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              decoration: boxDecorationPatient,
+              decoration: boxDecoration,
               child: Align(
                 alignment: Alignment.center,
                 child: Padding(

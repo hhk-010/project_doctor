@@ -34,7 +34,6 @@ class _UpdatePasswordState extends State<UpdatePassword> {
     }
   }
 
-  //------------the end --------------------
   //-----------------this function will return a snackbar instead of the old one
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
