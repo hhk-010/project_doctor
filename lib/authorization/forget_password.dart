@@ -80,14 +80,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             key: _formkey,
             child: Column(
               children: [
-                // SizedBox(
-                //   height: 150,
-                //   child: Image(
-                //     image: AssetImage(
-                //       'assets/images/reset_password.png',
-                //     ),
-                //   ),
-                // ),
+                SizedBox(
+                  height: 150,
+                  child: Image(
+                    image: AssetImage(
+                      'assets/images/reset_password.png',
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: 25,
                 ),

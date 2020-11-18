@@ -180,6 +180,7 @@ maindisease4(
   var o = 0;
   var oo = others.length;
   var r = 0;
+  print(r);
   var rr = riskf.length;
 
   var obscore = 0;

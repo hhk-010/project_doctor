@@ -26,7 +26,7 @@ class FinalScore {
   static int psychoscore;
   static int entscore;
   static int age;
-  static String Or;
+  static String or;
 }
 
 countfinal() {
@@ -109,10 +109,10 @@ countfinal() {
       FinalScore.speciality = _scoremap[x][0];
       if (_scoremap[x][0] != _scoremap[x][1]) {
         FinalScore.speciality2 = _scoremap[x][1];
-        FinalScore.Or = "Or";
+        FinalScore.or = "Or";
       } else {
         FinalScore.speciality2 = '';
-        FinalScore.Or = "";
+        FinalScore.or = "";
       }
     }
   }

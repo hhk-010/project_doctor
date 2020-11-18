@@ -26,6 +26,7 @@ class _PatientResultMapState extends State<PatientResultMap> {
     setState(() {
       _marker.add(Marker(markerId: MarkerId('0'), position: LatLng(lat, lng)));
     });
+    print(_mapController);
   }
 
   @override

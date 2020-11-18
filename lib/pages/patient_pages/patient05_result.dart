@@ -118,6 +118,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             realnearby = realdist.substring(0, dotindex);
             _getAddressFromLatLng();
           });
+          print(_province);
         }
       }
     }

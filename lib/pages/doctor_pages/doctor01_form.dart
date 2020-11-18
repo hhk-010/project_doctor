@@ -19,7 +19,7 @@ String currentName = '';
 String currentSpeciality;
 String currentPhoneNumber = '';
 String currentProvince;
-String _internist = 'internist';
+// String _internist = 'internist';
 
 class _DoctorFormState extends State<DoctorForm> {
   String email;

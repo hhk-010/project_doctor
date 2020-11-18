@@ -223,7 +223,6 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                           setState(() {
                             _error = AppLocalizations.of(context)
                                 .translate('snack_connectivity');
-                            ;
                           });
                           _showSnackBar();
                         }
@@ -303,13 +302,12 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
     try {
       List<Placemark> p = await geolocator.placemarkFromCoordinates(
           _currentPosition.latitude, _currentPosition.longitude);
-
       Placemark place = p[0];
-
       setState(() {
         _currentAddress =
             "${place.locality}, ${place.postalCode}, ${place.country}";
       });
+      print(_currentAddress);
     } catch (e) {
       print(e);
     }

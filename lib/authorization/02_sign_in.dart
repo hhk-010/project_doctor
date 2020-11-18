@@ -188,6 +188,7 @@ class _SignInState extends State<SignIn> {
                                   _showSnackBar();
                                 }
                               } on FirebaseAuthException catch (e) {
+                                print(e);
                                 setState(() {
                                   loading = false;
                                 });

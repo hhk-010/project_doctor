@@ -280,6 +280,7 @@ maindisease6(
   var oo = others.length;
   var r = 0;
   var rr = riskf.length;
+  print(r);
 
   var uroscore = 0;
   var ortscore = 0;

@@ -74,7 +74,7 @@ class SpecialityResult extends StatelessWidget {
                           AppLocalizations.of(context)
                                   .translate(FinalScore.speciality) +
                               AppLocalizations.of(context)
-                                  .translate(FinalScore.Or) +
+                                  .translate(FinalScore.or) +
                               AppLocalizations.of(context)
                                   .translate(FinalScore.speciality2),
                           style: TextStyle(

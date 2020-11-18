@@ -161,6 +161,7 @@ class _EmailVerificationState extends State<EmailVerification> {
 
   @override
   void dispose() {
+    super.dispose();
     if (_timer != null) {
       _timer.cancel();
     }
