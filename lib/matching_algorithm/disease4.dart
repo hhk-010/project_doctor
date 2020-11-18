@@ -179,8 +179,8 @@ maindisease4(
   ];
   var o = 0;
   var oo = others.length;
+  // ignore: unused_local_variable
   var r = 0;
-  print(r);
   var rr = riskf.length;
 
   var obscore = 0;

@@ -278,9 +278,9 @@ maindisease6(
   ];
   var o = 0;
   var oo = others.length;
+  // ignore: unused_local_variable
   var r = 0;
   var rr = riskf.length;
-  print(r);
 
   var uroscore = 0;
   var ortscore = 0;

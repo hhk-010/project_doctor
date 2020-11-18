@@ -18,6 +18,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
   String _error = '';
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
   Position _currentPosition;
+  // ignore: unused_field
   String _currentAddress;
 
   //function to show snackbar if the patient didn't
@@ -307,7 +308,6 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
         _currentAddress =
             "${place.locality}, ${place.postalCode}, ${place.country}";
       });
-      print(_currentAddress);
     } catch (e) {
       print(e);
     }

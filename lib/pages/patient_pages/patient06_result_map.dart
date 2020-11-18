@@ -20,13 +20,13 @@ class _PatientResultMapState extends State<PatientResultMap> {
   double lng;
   _PatientResultMapState({this.lat, this.lng});
   Set<Marker> _marker = HashSet<Marker>();
+  // ignore: unused_field
   GoogleMapController _mapController;
   void _onmapcreated(GoogleMapController controller) {
     _mapController = controller;
     setState(() {
       _marker.add(Marker(markerId: MarkerId('0'), position: LatLng(lat, lng)));
     });
-    print(_mapController);
   }
 
   @override
