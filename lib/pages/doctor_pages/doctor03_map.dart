@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/01_wrapper.dart';
+import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import '../../services/auth.dart';
 
@@ -56,6 +57,7 @@ class _DocMapState extends State<DocMap> {
   String address = '';
   String vacation = '';
   String workinghours = '';
+  bool loading = false;
 
   _DocMapState(
       {this.email,
@@ -140,121 +142,132 @@ class _DocMapState extends State<DocMap> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldkey,
-      appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
-        title: FittedBox(
-          fit: BoxFit.fitWidth,
-          child: Text(
-            AppLocalizations.of(context).translate('add_location'),
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: Stack(
-        children: [
-          GoogleMap(
-            initialCameraPosition:
-                CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 10),
-            markers: Set.from(mymarker),
-            onTap: handletap,
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
-            alignment: Alignment.topCenter,
-            child: Column(
+    return loading
+        ? Loading()
+        : Scaffold(
+            key: _scaffoldkey,
+            appBar: AppBar(
+              backgroundColor: Colors.deepOrange,
+              title: FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                  AppLocalizations.of(context).translate('add_location'),
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+              ),
+              centerTitle: true,
+            ),
+            body: Stack(
               children: [
-                Text(
-                  AppLocalizations.of(context).translate("zoom_in_out"),
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
+                GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                      target: LatLng(33.312805, 44.361488), zoom: 10),
+                  markers: Set.from(mymarker),
+                  onTap: handletap,
+                ),
+                Container(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
+                  alignment: Alignment.topCenter,
+                  child: Column(
+                    children: [
+                      Text(
+                        AppLocalizations.of(context).translate("zoom_in_out"),
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        AppLocalizations.of(context).translate("zoom_in"),
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        AppLocalizations.of(context).translate("zoom_out"),
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Text(
-                  AppLocalizations.of(context).translate("zoom_in"),
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  AppLocalizations.of(context).translate("zoom_out"),
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  padding:
+                      EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.deepOrange,
+                    child: Text(
+                      AppLocalizations.of(context).translate('ok'),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () async {
+                      checkInternet();
+                      if (_isInternet) {
+                        if (latlng == null) {
+                          error = AppLocalizations.of(context)
+                              .translate('snack_map');
+                          _showSnackBar();
+                        } else {
+                          setState(() {
+                            loading = true;
+                          });
+                          await geolocate(latlng: latlng);
+                          if (lattt != null && lnggg != null) {
+                            dynamic authResult =
+                                await _auth.registerWithEmailAndPassword(
+                                    email,
+                                    password,
+                                    name,
+                                    speciality,
+                                    phoneNumber,
+                                    province,
+                                    lattt,
+                                    lnggg,
+                                    address,
+                                    vacation,
+                                    workinghours);
+                            setState(() {
+                              Newclient.email = email;
+                            });
+                            //========Navigation to EmailVerification without the following
+                            // condition is a bug(emails Already in use can navigate)
+                            //------ direct navigation to the emailverfied widget will
+                            // give a fake page (when pressing continue) it will not respond)
+                            // I found put wrapper and transferred email by another method
+                            if (authResult != null) {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => Intermediate(),
+                                ),
+                              );
+                            } else {
+                              setState(() {
+                                loading = false;
+                                error = AppLocalizations.of(context)
+                                    .translate('snack_register');
+                              });
+                              _showSnackBar();
+                            }
+                          }
+                        }
+                      } else {
+                        setState(() {
+                          error = AppLocalizations.of(context)
+                              .translate('snack_connectivity');
+                        });
+                        _showSnackBar();
+                      }
+                    },
                   ),
                 ),
               ],
             ),
-          ),
-          Container(
-            alignment: Alignment.bottomCenter,
-            padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
-            child: FloatingActionButton(
-              backgroundColor: Colors.deepOrange,
-              child: Text(
-                AppLocalizations.of(context).translate('ok'),
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              onPressed: () async {
-                checkInternet();
-                if (_isInternet) {
-                  if (latlng == null) {
-                    error = AppLocalizations.of(context).translate('snack_map');
-                    _showSnackBar();
-                  } else {
-                    await geolocate(latlng: latlng);
-                    if (lattt != null && lnggg != null) {
-                      final result = await _auth.registerWithEmailAndPassword(
-                          email,
-                          password,
-                          name,
-                          speciality,
-                          phoneNumber,
-                          province,
-                          lattt,
-                          lnggg,
-                          address,
-                          vacation,
-                          workinghours);
-                      setState(() {
-                        Newclient.email = email;
-                      });
-                      //========Navigation to EmailVerification without the following
-                      // condition is a bug(emails Already in use can navigate)
-                      //------ direct navigation to the emailverfied widget will
-                      // give a fake page (when pressing continue) it will not respond)
-                      // I found put wrapper and transferred email by another method
-                      if (result != null) {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => Intermediate(),
-                          ),
-                        );
-                      } else {
-                        setState(() {
-                          error = AppLocalizations.of(context)
-                              .translate('snack_register');
-                        });
-                        _showSnackBar();
-                      }
-                    }
-                  }
-                } else {
-                  setState(() {
-                    error = AppLocalizations.of(context)
-                        .translate('snack_connectivity');
-                  });
-                }
-                _showSnackBar();
-              },
-            ),
-          ),
-        ],
-      ),
-    );
+          );
   }
 }
