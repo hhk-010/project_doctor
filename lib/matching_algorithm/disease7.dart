@@ -1,6 +1,6 @@
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 
-class disease7 {
+class Disease7 {
   String name;
   String sym1;
   String sym2;
@@ -10,7 +10,7 @@ class disease7 {
   String rf2;
   String rf3;
   String rf4;
-  disease7(this.name, this.sym1, this.sym2, this.sym3, this.sym4, this.rf1,
+  Disease7(this.name, this.sym1, this.sym2, this.sym3, this.sym4, this.rf1,
       this.rf2, this.rf3, this.rf4);
 }
 
@@ -44,7 +44,7 @@ maindisease7(
     String alcohol,
     String smok,
     String gender) {
-  var ophth = disease7(
+  var ophth = Disease7(
       'ophthalmic disease',
       'blurred vision',
       'squint',
@@ -54,7 +54,7 @@ maindisease7(
       'eye itching',
       'eye pigmentation',
       'photophobia');
-  var ophth2 = disease7(
+  var ophth2 = Disease7(
       'ophthalmic disease',
       'periorbital edema',
       'eyelid deformity',
@@ -64,7 +64,7 @@ maindisease7(
       'ophthalmoplegia',
       'other ophthalmological problems',
       'null');
-  var ophth3 = disease7(
+  var ophth3 = Disease7(
       'ophthalmic disease',
       'blurred vision',
       'squint',
@@ -74,7 +74,7 @@ maindisease7(
       'eye itching',
       'eye pigmentation',
       'photophobia');
-  var ophth4 = disease7(
+  var ophth4 = Disease7(
       'ophthalmic disease',
       'periorbital edema',
       'eyelid deformity',
@@ -84,7 +84,7 @@ maindisease7(
       'ophthalmoplegia',
       'other ophthalmological problems',
       'null');
-  var ophth5 = disease7(
+  var ophth5 = Disease7(
       'ophthalmic disease',
       'blurred vision',
       'squint',
@@ -94,7 +94,7 @@ maindisease7(
       'eye itching',
       'eye pigmentation',
       'photophobia');
-  var ophth6 = disease7(
+  var ophth6 = Disease7(
       'ophthalmic disease',
       'periorbital edema',
       'eyelid deformity',
@@ -105,7 +105,7 @@ maindisease7(
       'other ophthalmological problems',
       'null');
 
-  var derma = disease7(
+  var derma = Disease7(
       'dermatology',
       'skin appendage',
       'skin redness',
@@ -115,9 +115,9 @@ maindisease7(
       'acne',
       'skin pigmentation',
       'other dermatological problems');
-  var derma2 = disease7('dermatology', 'skin lesion', 'skin rash',
+  var derma2 = Disease7('dermatology', 'skin lesion', 'skin rash',
       'nail problems', 'dry skin', 'dry hair', 'skin lesion', 'null', 'null');
-  var derma3 = disease7(
+  var derma3 = Disease7(
       'dermatology',
       'skin appendage',
       'skin redness',
@@ -127,9 +127,9 @@ maindisease7(
       'acne',
       'skin pigmentation',
       'other dermatological problems');
-  var derma4 = disease7('dermatology', 'skin lesion', 'skin rash',
+  var derma4 = Disease7('dermatology', 'skin lesion', 'skin rash',
       'nail problems', 'dry skin', 'dry hair', 'skin lesion', 'null', 'null');
-  var derma5 = disease7(
+  var derma5 = Disease7(
       'dermatology',
       'skin appendage',
       'skin redness',
@@ -139,10 +139,10 @@ maindisease7(
       'acne',
       'skin pigmentation',
       'other dermatological problems');
-  var derma6 = disease7('dermatology', 'skin lesion', 'skin rash',
+  var derma6 = Disease7('dermatology', 'skin lesion', 'skin rash',
       'nail problems', 'dry skin', 'dry hair', 'skin lesion', 'null', 'null');
 
-  var psych = disease7(
+  var psych = Disease7(
       'psychaitry',
       'depression',
       'hallucination/delusion',
@@ -152,7 +152,7 @@ maindisease7(
       'attention deficit',
       'hyperactivity',
       'null');
-  var psych2 = disease7(
+  var psych2 = Disease7(
       'psychiatry',
       'stress',
       'psychological trauma',
@@ -162,7 +162,7 @@ maindisease7(
       'null',
       'other psychological problems',
       'null');
-  var psych3 = disease7(
+  var psych3 = Disease7(
       'psychaitry',
       'depression',
       'hallucination/delusion',
@@ -172,7 +172,7 @@ maindisease7(
       'attention deficit',
       'hyperactivity',
       'null');
-  var psych4 = disease7(
+  var psych4 = Disease7(
       'psychiatry',
       'stress',
       'psychological trauma',
@@ -182,7 +182,7 @@ maindisease7(
       'null',
       'other psychological problems',
       'null');
-  var psych5 = disease7(
+  var psych5 = Disease7(
       'psychaitry',
       'depression',
       'hallucination/delusion',
@@ -192,7 +192,7 @@ maindisease7(
       'attention deficit',
       'hyperactivity',
       'null');
-  var psych6 = disease7(
+  var psych6 = Disease7(
       'psychiatry',
       'stress',
       'psychological trauma',
@@ -204,9 +204,9 @@ maindisease7(
       'null');
 
   //neck mass will be left
-  var ent = disease7('ent', 'sore throat', 'hoarseness', 'deafness', 'vertigo',
+  var ent = Disease7('ent', 'sore throat', 'hoarseness', 'deafness', 'vertigo',
       'nasal discharge', 'nasal bleeding', 'nasal obstruction', 'tinnitus');
-  var ent2 = disease7(
+  var ent2 = Disease7(
       'ent',
       'nasal pain',
       'ear pain',
@@ -216,11 +216,11 @@ maindisease7(
       'nasal itching',
       'anosmia',
       'ear discharge');
-  var ent3 = disease7('ent', 'ear redness', 'other ent problems', 'null',
+  var ent3 = Disease7('ent', 'ear redness', 'other ent problems', 'null',
       'null', 'null', 'null', 'null', 'null');
-  var ent4 = disease7('ent', 'sore throat', 'hoarseness', 'deafness', 'vertigo',
+  var ent4 = Disease7('ent', 'sore throat', 'hoarseness', 'deafness', 'vertigo',
       'nasal discharge', 'nasal bleeding', 'nasal obstruction', 'tinnitus');
-  var ent5 = disease7(
+  var ent5 = Disease7(
       'ent',
       'nasal pain',
       'ear pain',
@@ -230,9 +230,9 @@ maindisease7(
       'nasal itching',
       'anosmia',
       'ear discharge');
-  var ent6 = disease7('ent', 'ear redness', 'other ent problems', 'null',
+  var ent6 = Disease7('ent', 'ear redness', 'other ent problems', 'null',
       'null', 'null', 'null', 'null', 'null');
-  var ent7 = disease7(
+  var ent7 = Disease7(
       'ent',
       'sore sthroat',
       'hoarseness',
@@ -242,7 +242,7 @@ maindisease7(
       'nasal bleeding',
       'nasal obstruction',
       'tinnitus');
-  var ent8 = disease7(
+  var ent8 = Disease7(
       'ent',
       'nasal pain',
       'ear pain',
@@ -252,7 +252,7 @@ maindisease7(
       'nasal itching',
       'anosmia',
       'ear discharge');
-  var ent9 = disease7('ent', 'ear redness', 'other ent problems', 'null',
+  var ent9 = Disease7('ent', 'ear redness', 'other ent problems', 'null',
       'null', 'null', 'null', 'null', 'null');
 
   var optha = [ophth, ophth2, ophth3, ophth4, ophth5, ophth6];
@@ -347,6 +347,7 @@ maindisease7(
   ];
   var o = 0;
   var oo = others.length;
+  // ignore: unused_local_variable
   var r = 0;
   var rr = riskf.length;
 

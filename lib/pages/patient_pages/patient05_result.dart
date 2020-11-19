@@ -118,6 +118,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             realnearby = realdist.substring(0, dotindex);
             _getAddressFromLatLng();
           });
+          print(_province);
         }
       }
     }
@@ -130,7 +131,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              decoration: boxDecorationPatient,
+              decoration: boxDecoration,
               child: Align(
                 alignment: Alignment.center,
                 child: Padding(
@@ -140,7 +141,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CircleAvatar(
-                          backgroundColor: Colors.deepOrange,
+                          backgroundColor: Colors.deepOrangeAccent,
                           radius: 75,
                           backgroundImage:
                               AssetImage('assets/images/doctor.png'),

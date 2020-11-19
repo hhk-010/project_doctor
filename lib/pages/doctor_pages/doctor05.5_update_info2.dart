@@ -142,7 +142,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                   // _buildLocation(bloc),
 
                   Container(
-                    decoration: boxDecorationDoctor,
+                    decoration: boxDecoration,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 15),
@@ -314,7 +314,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                         children: [
                                           TextSpan(
@@ -322,7 +322,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                                 '${_mainFromTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               color: Colors.deepOrange,
                                             ),
                                           ),
@@ -345,7 +345,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                         children: [
                                           TextSpan(
@@ -353,7 +353,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                                 '${_mainToTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               color: Colors.deepOrange,
                                             ),
                                           ),
@@ -394,7 +394,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                   Visibility(
                     visible: _visibile01,
                     child: Container(
-                      decoration: boxDecorationDoctor,
+                      decoration: boxDecoration,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 15),
@@ -484,7 +484,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
-                                            fontSize: 18,
+                                            fontSize: 16,
                                           ),
                                           children: [
                                             TextSpan(
@@ -492,7 +492,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                                   '${_secondaryFromTime.format(context)}',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 18,
+                                                fontSize: 16,
                                                 color: Colors.deepOrange,
                                               ),
                                             ),
@@ -515,7 +515,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
-                                            fontSize: 18,
+                                            fontSize: 16,
                                           ),
                                           children: [
                                             TextSpan(
@@ -523,7 +523,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                                   '${_secondaryToTime.format(context)}',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 18,
+                                                fontSize: 16,
                                                 color: Colors.deepOrange,
                                               ),
                                             ),
@@ -565,7 +565,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                   Visibility(
                     visible: _visibile02,
                     child: Container(
-                      decoration: boxDecorationDoctor,
+                      decoration: boxDecoration,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 15),
@@ -655,7 +655,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
-                                            fontSize: 18,
+                                            fontSize: 16,
                                           ),
                                           children: [
                                             TextSpan(
@@ -663,7 +663,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                                   '${_ternaryFromTime.format(context)}',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 18,
+                                                fontSize: 16,
                                                 color: Colors.deepOrange,
                                               ),
                                             ),
@@ -686,7 +686,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
-                                            fontSize: 18,
+                                            fontSize: 16,
                                           ),
                                           children: [
                                             TextSpan(
@@ -694,7 +694,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                                   '${_ternaryToTime.format(context)}',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 18,
+                                                fontSize: 16,
                                                 color: Colors.deepOrange,
                                               ),
                                             ),
@@ -795,6 +795,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       setState(() {
         _mainFromTime = mainfromTime;
         mainFromTimeString = _mainFromTime.format(context);
+<<<<<<< HEAD
         mainFromNo =
             mainFromTimeString.substring(0, mainFromTimeString.indexOf(' '));
         fromEnd = mainFromTimeString.substring(
@@ -805,6 +806,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
           fromAmPm = 'PM';
         }
         mainFromTimeString = mainFromNo + ' ' + fromAmPm;
+=======
+>>>>>>> 8e5d712ce73dcd46bd28a5c36c757fc25a25cb78
         print(mainFromTimeString);
       });
   }
@@ -831,6 +834,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       setState(() {
         _mainToTime = maintoTime;
         mainToTimeString = _mainToTime.format(context);
+<<<<<<< HEAD
         mainToNo = mainToTimeString.substring(0, mainToTimeString.indexOf(' '));
         toEnd = mainToTimeString.substring(
             mainToTimeString.indexOf(' '), mainToTimeString.length);
@@ -848,6 +852,13 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
             ' ' +
             AppLocalizations.of(context).translate('to') +
             mainToTimeString;*/
+=======
+        mainWorkingHours = AppLocalizations.of(context).translate('from') +
+            mainFromTimeString +
+            ' ' +
+            AppLocalizations.of(context).translate('to') +
+            mainToTimeString;
+>>>>>>> 8e5d712ce73dcd46bd28a5c36c757fc25a25cb78
         print(mainToTimeString);
         print(mainWorkingHours);
       });

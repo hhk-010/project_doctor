@@ -114,7 +114,7 @@ class _DoctorListState extends State<DoctorList> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              decoration: boxDecorationPatient,
+              decoration: boxDecoration,
               child: Align(
                 alignment: Alignment.center,
                 child: Padding(

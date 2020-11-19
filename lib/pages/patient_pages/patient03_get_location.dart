@@ -18,6 +18,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
   String _error = '';
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
   Position _currentPosition;
+  // ignore: unused_field
   String _currentAddress;
 
   //function to show snackbar if the patient didn't
@@ -102,7 +103,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Container(
-              decoration: boxDecorationPatient,
+              decoration: boxDecoration,
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               child: Column(
                 children: [
@@ -166,7 +167,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
               ),
             ),
             Container(
-              decoration: boxDecorationPatient,
+              decoration: boxDecoration,
               padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
               child: Column(
                 children: [
@@ -223,7 +224,6 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                           setState(() {
                             _error = AppLocalizations.of(context)
                                 .translate('snack_connectivity');
-                            ;
                           });
                           _showSnackBar();
                         }
@@ -303,9 +303,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
     try {
       List<Placemark> p = await geolocator.placemarkFromCoordinates(
           _currentPosition.latitude, _currentPosition.longitude);
-
       Placemark place = p[0];
-
       setState(() {
         _currentAddress =
             "${place.locality}, ${place.postalCode}, ${place.country}";

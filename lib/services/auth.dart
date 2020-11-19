@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/services/data_model.dart';
+import 'auth_exception_handling.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  AuthResultStatus _status;
 
   UserID _userfromfirebase(User user) {
     return user != null ? UserID(uid: user.uid) : null;
@@ -15,15 +17,20 @@ class AuthService {
 
   Future signInWithEmailAndPassword(String email, String password) async {
     try {
-      UserCredential result = await _auth.signInWithEmailAndPassword(
+      UserCredential authResult = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      User user = result.user;
-
+      User user = authResult.user;
+      if (authResult.user != null) {
+        _status = AuthResultStatus.successful;
+      } else {
+        _status = AuthResultStatus.undefined;
+      }
       return _userfromfirebase(user);
     } catch (e) {
-      print(e.message);
-      return null;
+      print('Exception @createAccount: $e');
+      _status = AuthExceptionHandler.handleException(e);
     }
+    return _status;
   }
 
   Future registerWithEmailAndPassword(
@@ -39,18 +46,25 @@ class AuthService {
       List vacation,
       String workinghours) async {
     try {
-      UserCredential result = await _auth.createUserWithEmailAndPassword(
+      UserCredential authResult = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      User user = result.user;
+      User user = authResult.user;
       // create a new document for the user with the id
       await DatabaseService(uid: user.uid).updateUserData(name, speciality,
           number, province, lat, lng, address, vacation, workinghours);
       await user.sendEmailVerification();
+      if (authResult.user != null) {
+        _status = AuthResultStatus.successful;
+      } else {
+        _status = AuthResultStatus.undefined;
+      }
+
       return _userfromfirebase(user);
     } catch (e) {
-      print(e.toString());
-      return null;
+      print('Exception @createAccount: $e');
+      _status = AuthExceptionHandler.handleException(e);
     }
+    return _status;
   }
 
   resendemail() {

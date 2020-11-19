@@ -75,11 +75,22 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       ),
       body: Container(
         height: double.maxFinite,
-        padding: EdgeInsets.symmetric(vertical: 75.0, horizontal: 50.0),
+        padding: EdgeInsets.fromLTRB(50, 75, 50, 25),
         child: Form(
             key: _formkey,
             child: Column(
               children: [
+                SizedBox(
+                  height: 150,
+                  child: Image(
+                    image: AssetImage(
+                      'assets/images/reset_password.png',
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
                 TextFormField(
                   decoration: textInputdecoration.copyWith(
                     hintText: AppLocalizations.of(context).translate(

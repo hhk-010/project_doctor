@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
+import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/pages/about_us.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_info2.dart';
@@ -66,59 +67,69 @@ class _MyAppState extends State<MyApp> {
         ),
       );
     } else {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Cura',
-        builder: (context, navigator) {
-          var lang = Localizations.localeOf(context).languageCode;
-          return Theme(
-            data: ThemeData(
-                fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
-            child: navigator,
-          );
-        },
-        theme: ThemeData(
-          primaryColor: Colors.deepOrange,
-        ),
-        locale: _locale,
-        supportedLocales: [
-          Locale('en', 'US'),
-          Locale("ar", "IQ"),
-        ],
-        localizationsDelegates: [
-          AppLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        localeResolutionCallback: (deviceLocale, supportedLocales) {
-          for (var locale in supportedLocales) {
-            if (locale.languageCode == deviceLocale.languageCode &&
-                locale.countryCode == deviceLocale.countryCode) {
-              return deviceLocale;
-            }
+      return GestureDetector(
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus &&
+              currentFocus.focusedChild != null) {
+            FocusManager.instance.primaryFocus.unfocus();
           }
-          return supportedLocales.first;
         },
-        initialRoute: '/home',
-        routes: {
-          '/home': (context) => Home(),
-          '/about_us': (context) => AboutUS(),
-          '/intermediate': (context) => Intermediate(),
-          '/patient_complain': (context) => PatientComplain(),
-          '/doctor_form': (context) => DoctorForm(),
-          '/doctor_clinic': (context) => ClinicForm(),
-          '/doctor_profile': (context) => DoctorProfile(),
-          '/patient_risk_factors': (context) => PatientRiskFactors(),
-          '/patient_speciality_result': (context) => SpecialityResult(),
-          '/patient_get_location': (context) => PatientGetLocation(),
-          '/patient_result': (context) => PatientResult(),
-          '/patmap': (context) => PatientMap(),
-          '/doctorlocate': (context) => PatientResultMap(),
-          '/email_verfication': (context) => EmailVerification(),
-          '/register': (context) => Register(),
-          '/update2': (context) => UpdateInfo2(),
-        },
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Cura',
+          builder: (context, navigator) {
+            var lang = Localizations.localeOf(context).languageCode;
+            return Theme(
+              data: ThemeData(
+                  fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+              child: navigator,
+            );
+          },
+          theme: ThemeData(
+            primaryColor: Colors.deepOrange,
+          ),
+          locale: _locale,
+          supportedLocales: [
+            Locale('en', 'US'),
+            Locale("ar", "IQ"),
+          ],
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          localeResolutionCallback: (deviceLocale, supportedLocales) {
+            for (var locale in supportedLocales) {
+              if (locale.languageCode == deviceLocale.languageCode &&
+                  locale.countryCode == deviceLocale.countryCode) {
+                return deviceLocale;
+              }
+            }
+            return supportedLocales.first;
+          },
+          initialRoute: '/home',
+          routes: {
+            '/home': (context) => Home(),
+            '/about_us': (context) => AboutUS(),
+            '/loading' : (context) => Loading(),
+            '/intermediate': (context) => Intermediate(),
+            '/patient_complain': (context) => PatientComplain(),
+            '/doctor_form': (context) => DoctorForm(),
+            '/doctor_clinic': (context) => ClinicForm(),
+            '/doctor_profile': (context) => DoctorProfile(),
+            '/patient_risk_factors': (context) => PatientRiskFactors(),
+            '/patient_speciality_result': (context) => SpecialityResult(),
+            '/patient_get_location': (context) => PatientGetLocation(),
+            '/patient_result': (context) => PatientResult(),
+            '/patmap': (context) => PatientMap(),
+            '/doctorlocate': (context) => PatientResultMap(),
+            '/email_verfication': (context) => EmailVerification(),
+            '/register': (context) => Register(),
+            '/update2': (context) => UpdateInfo2(),
+          },
+        ),
       );
     }
   }

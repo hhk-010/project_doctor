@@ -19,7 +19,7 @@ String currentName = '';
 String currentSpeciality;
 String currentPhoneNumber = '';
 String currentProvince;
-String _internist = 'internist';
+// String _internist = 'internist';
 
 class _DoctorFormState extends State<DoctorForm> {
   String email;
@@ -305,7 +305,7 @@ class _DoctorFormState extends State<DoctorForm> {
                     labelText:
                         AppLocalizations.of(context).translate('phoneNumber'),
                   ),
-                  validator: (val) => val.length < 11
+                  validator: (val) => val.length < 11 && val.length > 11
                       ? AppLocalizations.of(context)
                           .translate('phoneNumber_validator')
                       : null,

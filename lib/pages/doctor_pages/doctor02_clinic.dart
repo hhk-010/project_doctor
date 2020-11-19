@@ -168,7 +168,7 @@ class _ClinicFormState extends State<ClinicForm> {
                 // _buildLocation(bloc),
 
                 Container(
-                  decoration: boxDecorationDoctor,
+                  decoration: boxDecoration,
                   child: Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
@@ -339,7 +339,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
-                                        fontSize: 18,
+                                        fontSize: 16,
                                       ),
                                       children: [
                                         TextSpan(
@@ -347,7 +347,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                               '${_mainFromTime.format(context)}',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 18,
+                                            fontSize: 16,
                                             color: Colors.deepOrange,
                                           ),
                                         ),
@@ -370,7 +370,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
-                                        fontSize: 18,
+                                        fontSize: 16,
                                       ),
                                       children: [
                                         TextSpan(
@@ -378,7 +378,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                               '${_mainToTime.format(context)}',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 18,
+                                            fontSize: 16,
                                             color: Colors.deepOrange,
                                           ),
                                         ),
@@ -419,7 +419,7 @@ class _ClinicFormState extends State<ClinicForm> {
                 Visibility(
                   visible: _visibile01,
                   child: Container(
-                    decoration: boxDecorationDoctor,
+                    decoration: boxDecoration,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 15),
@@ -509,7 +509,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                         children: [
                                           TextSpan(
@@ -517,7 +517,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                                 '${_secondaryFromTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               color: Colors.deepOrange,
                                             ),
                                           ),
@@ -540,7 +540,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                         children: [
                                           TextSpan(
@@ -548,7 +548,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                                 '${_secondaryToTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               color: Colors.deepOrange,
                                             ),
                                           ),
@@ -589,7 +589,7 @@ class _ClinicFormState extends State<ClinicForm> {
                 Visibility(
                   visible: _visibile02,
                   child: Container(
-                    decoration: boxDecorationDoctor,
+                    decoration: boxDecoration,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 15),
@@ -679,7 +679,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                         children: [
                                           TextSpan(
@@ -687,7 +687,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                                 '${_ternaryFromTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               color: Colors.deepOrange,
                                             ),
                                           ),
@@ -710,7 +710,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                         ),
                                         children: [
                                           TextSpan(
@@ -718,7 +718,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                                 '${_ternaryToTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               color: Colors.deepOrange,
                                             ),
                                           ),

@@ -129,7 +129,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
           child: Column(
             children: [
               Container(
-                decoration: boxDecorationPatient,
+                decoration: boxDecoration,
                 padding: EdgeInsets.all(8.0),
                 child: Column(
                   children: [
@@ -313,8 +313,10 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                           });
                         }),
                     CheckboxListTile(
-                        title: Text(AppLocalizations.of(context).translate('cd_thyroid')
-                        , style: _textStyle),
+                        title: Text(
+                            AppLocalizations.of(context)
+                                .translate('cd_thyroid'),
+                            style: _textStyle),
                         value: goitreSelected,
                         onChanged: (val) {
                           setState(() {
@@ -400,7 +402,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                 height: 25,
               ),
               Container(
-                decoration: boxDecorationPatient,
+                decoration: boxDecoration,
                 padding: EdgeInsets.all(8.0),
                 child: Column(
                   children: [
@@ -408,7 +410,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                       padding: const EdgeInsets.all(8.0),
                       child: FittedBox(
                         fit: BoxFit.fitWidth,
-                                              child: Text(
+                        child: Text(
                           AppLocalizations.of(context).translate('life_style'),
                           style: TextStyle(
                               fontSize: 20.0, fontWeight: FontWeight.bold),

@@ -82,10 +82,12 @@ flutter:
   assets:
     - lang/en.json
     - lang/ar.json
+    - assets/images/
     - assets/images/email.png
     - assets/images/doctor.png
     - assets/images/password.png
     - assets/images/speciality.png
+
 
 
 
