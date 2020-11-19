@@ -795,7 +795,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       setState(() {
         _mainFromTime = mainfromTime;
         mainFromTimeString = _mainFromTime.format(context);
-<<<<<<< HEAD
         mainFromNo =
             mainFromTimeString.substring(0, mainFromTimeString.indexOf(' '));
         fromEnd = mainFromTimeString.substring(
@@ -806,8 +805,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
           fromAmPm = 'PM';
         }
         mainFromTimeString = mainFromNo + ' ' + fromAmPm;
-=======
->>>>>>> 8e5d712ce73dcd46bd28a5c36c757fc25a25cb78
         print(mainFromTimeString);
       });
   }
@@ -834,7 +831,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       setState(() {
         _mainToTime = maintoTime;
         mainToTimeString = _mainToTime.format(context);
-<<<<<<< HEAD
         mainToNo = mainToTimeString.substring(0, mainToTimeString.indexOf(' '));
         toEnd = mainToTimeString.substring(
             mainToTimeString.indexOf(' '), mainToTimeString.length);
@@ -852,13 +848,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
             ' ' +
             AppLocalizations.of(context).translate('to') +
             mainToTimeString;*/
-=======
-        mainWorkingHours = AppLocalizations.of(context).translate('from') +
-            mainFromTimeString +
-            ' ' +
-            AppLocalizations.of(context).translate('to') +
-            mainToTimeString;
->>>>>>> 8e5d712ce73dcd46bd28a5c36c757fc25a25cb78
         print(mainToTimeString);
         print(mainWorkingHours);
       });
