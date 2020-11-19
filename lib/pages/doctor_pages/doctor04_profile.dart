@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -83,7 +85,7 @@ class _DoctorListState extends State<DoctorList> {
   @override
   Widget build(BuildContext context) {
     TextStyle _textStyle = TextStyle(
-        fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold);
+        fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold);
     var uid = FirebaseAuth.instance.currentUser.uid;
     final doctorListProvider = Provider.of<QuerySnapshot>(context);
 
@@ -108,104 +110,155 @@ class _DoctorListState extends State<DoctorList> {
     }
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 75, horizontal: 50),
+      padding: EdgeInsets.fromLTRB(25, 25, 25, 25),
       child: Container(
-        height: double.maxFinite,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: ListView(
           children: [
             Container(
               decoration: boxDecoration,
-              child: Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.deepOrange,
-                          radius: 75,
-                          backgroundImage:
-                              AssetImage('assets/images/doctor.png'),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          name,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          speciality,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          number,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          _doctorAddress,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          _address,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate('open_time') +
-                              _workinghours,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate('vacation')
-                          /*_vacation*/,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ],
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: CircleAvatar(
+                        backgroundColor: Colors.deepOrange,
+                        radius: 50,
+                        backgroundImage: AssetImage('assets/images/doctor.png'),
+                      ),
                     ),
-                  ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Center(
+                      child: Text(
+                        name,
+                        style: _textStyle.copyWith(fontSize: 25),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Center(
+                      child: Text(
+                        _doctorAddress,
+                        style: _textStyle.copyWith(fontSize: 14),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Divider(
+                      color: Colors.grey[600],
+                      thickness: 3,
+                      indent: 25,
+                      endIndent: 25,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      'Speciality',
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.indigo,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      speciality,
+                      style: _textStyle,
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
+                    ),
+                    Text(
+                      'Phone Number',
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.indigo,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      number,
+                      style: _textStyle,
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
+                    ),
+                    Text(
+                      'Address',
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.indigo,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      _address,
+                      style: _textStyle,
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
+                    ),
+                    Text(
+                      'Time Availability',
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.indigo,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      AppLocalizations.of(context).translate('open_time') +
+                          _workinghours,
+                      style: _textStyle,
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
+                    ),
+                    Text(
+                      AppLocalizations.of(context).translate('vacation')
+                      /*_vacation*/,
+                      style: _textStyle,
+                    ),
+                  ],
                 ),
               ),
             ),
-            Spacer(),
-            RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(80.0)),
-              child: Text(
-                AppLocalizations.of(context).translate('update_info'),
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
+            SizedBox(
+              height: 25,
+            ),
+            SizedBox(
+              width: 25,
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(80.0)),
+                child: Text(
+                  AppLocalizations.of(context).translate('update_info'),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                ),
+                color: Colors.deepOrange,
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Updateinfo()));
+                },
               ),
-              color: Colors.deepOrange,
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Updateinfo()));
-              },
             ),
           ],
         ),
