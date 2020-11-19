@@ -368,7 +368,7 @@ maindisease7(
         oo -= 1;
       }
       while (rr > 0) {
-        if (riskf == opsym[opkey]) {
+        if (riskf[r] == opsym[opkey]) {
           opscore += 1;
         }
         r += 1;
@@ -411,7 +411,7 @@ maindisease7(
         oo -= 1;
       }
       while (rr > 0) {
-        if (riskf == dersym[derkey]) {
+        if (riskf[r] == dersym[derkey]) {
           derscore += 1;
         }
         r += 1;
@@ -454,7 +454,7 @@ maindisease7(
         oo -= 1;
       }
       while (rr > 0) {
-        if (riskf == psysym[psykey]) {
+        if (riskf[r] == psysym[psykey]) {
           psyscore += 1;
         }
         r += 1;
@@ -497,7 +497,7 @@ maindisease7(
         oo -= 1;
       }
       while (rr > 0) {
-        if (riskf == entsym[entkey]) {
+        if (riskf[r] == entsym[entkey]) {
           entscore += 1;
         }
         r += 1;

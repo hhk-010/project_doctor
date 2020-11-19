@@ -197,7 +197,7 @@ maindisease4(
         oo -= 1;
       }
       while (rr > 0) {
-        if (riskf == obsym[obskey]) {
+        if (riskf[r] == obsym[obskey]) {
           obscore += 1;
         }
         r += 1;

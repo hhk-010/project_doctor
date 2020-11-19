@@ -65,7 +65,7 @@ class _DoctorListState extends State<DoctorList> {
   double lat = 0.0;
   double lng = 0.0;
   String _address = '';
-  String _vacation = '';
+  List _vacation = [];
   String _workinghours = '';
 
 //get the user address from lat and lng
@@ -176,8 +176,8 @@ class _DoctorListState extends State<DoctorList> {
                           height: 5,
                         ),
                         Text(
-                          AppLocalizations.of(context).translate('vacation') +
-                              _vacation,
+                          AppLocalizations.of(context).translate('vacation')
+                          /*_vacation*/,
                           style: _textStyle,
                         ),
                         SizedBox(

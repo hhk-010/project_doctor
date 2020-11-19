@@ -298,7 +298,7 @@ maindisease6(
         oo -= 1;
       }
       while (rr > 0) {
-        if (riskf == urosym[urokey]) {
+        if (riskf[r] == urosym[urokey]) {
           uroscore += 1;
         }
         r += 1;
@@ -341,7 +341,7 @@ maindisease6(
         oo -= 1;
       }
       while (rr > 0) {
-        if (riskf == ortsym[ortkey]) {
+        if (riskf[r] == ortsym[ortkey]) {
           ortscore += 1;
         }
         r += 1;
@@ -384,7 +384,7 @@ maindisease6(
         oo -= 1;
       }
       while (rr > 0) {
-        if (riskf == neusym[neukey]) {
+        if (riskf[r] == neusym[neukey]) {
           neuscore += 1;
         }
         r += 1;
@@ -427,7 +427,7 @@ maindisease6(
         oo -= 1;
       }
       while (rr > 0) {
-        if (riskf == plasym[plaskey]) {
+        if (riskf[r] == plasym[plaskey]) {
           plascore += 1;
         }
         r += 1;

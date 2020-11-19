@@ -51,7 +51,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   double _lat = 0.0;
   double _lng = 0.0;
   String _address = '';
-  String _vacation = '';
+  List _vacation = [];
   String _workinghours = '';
   double distance = 0.0;
   double sum = 0.0;
@@ -189,8 +189,8 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                           style: _textStyle,
                         ),
                         Text(
-                          AppLocalizations.of(context).translate("vacation") +
-                              _vacation,
+                          AppLocalizations.of(context).translate("vacation")
+                          /*_vacation*/,
                           //'clinic vacation is ' + _vacation,
                           style: _textStyle,
                         ),

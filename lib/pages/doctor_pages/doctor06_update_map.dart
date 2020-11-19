@@ -16,7 +16,7 @@ class UpdateMap extends StatefulWidget {
   final String number;
   final String province;
   final String address;
-  final String vacation;
+  final List vacation;
   final String workinghours;
   UpdateMap(
       {this.name,
@@ -43,7 +43,7 @@ class _UpdateMapState extends State<UpdateMap> {
   String number;
   String province;
   String address = '';
-  String vacation = '';
+  List vacation = [];
   String workinghours = '';
 
   var latlng;

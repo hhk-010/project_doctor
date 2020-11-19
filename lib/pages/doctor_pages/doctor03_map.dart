@@ -15,7 +15,7 @@ class DocMap extends StatefulWidget {
   final String phone;
   final String province;
   final String address;
-  final String vacation;
+  final List vacation;
   final String mainWorkingHours;
   final String secondaryWorkingHours;
 
@@ -54,7 +54,7 @@ class _DocMapState extends State<DocMap> {
   var phoneNumber = '';
   var province = '';
   String address = '';
-  String vacation = '';
+  List vacation = [];
   String workinghours = '';
 
   _DocMapState(

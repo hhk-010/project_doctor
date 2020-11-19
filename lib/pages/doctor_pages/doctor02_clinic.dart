@@ -54,13 +54,27 @@ bool _daySwitch02 = false;
 List<bool> workDays = List.filled(7, false);
 List boolToStringDays(BuildContext context, List workDays) {
   return [
-    workDays[0] ? AppLocalizations.of(context).translate('sunday') : null,
-    workDays[1] ? AppLocalizations.of(context).translate('monday') : null,
-    workDays[2] ? AppLocalizations.of(context).translate('tuesday') : null,
-    workDays[3] ? AppLocalizations.of(context).translate('wednesday') : null,
-    workDays[4] ? AppLocalizations.of(context).translate('thursday') : null,
-    workDays[5] ? AppLocalizations.of(context).translate('friday') : null,
-    workDays[6] ? AppLocalizations.of(context).translate('saturday') : null,
+    workDays[0]
+        ? "sunday"
+        : null, //AppLocalizations.of(context).translate('sunday') : null,
+    workDays[1]
+        ? "monday"
+        : null, //AppLocalizations.of(context).translate('monday') : null,
+    workDays[2]
+        ? "tuesday"
+        : null, //AppLocalizations.of(context).translate('tuesday') : null,
+    workDays[3]
+        ? "wednesday"
+        : null, //AppLocalizations.of(context).translate('wednesday') : null,
+    workDays[4]
+        ? "thursday"
+        : null, //AppLocalizations.of(context).translate('thursday') : null,
+    workDays[5]
+        ? "friday"
+        : null, //AppLocalizations.of(context).translate('friday') : null,
+    workDays[6]
+        ? "saturday"
+        : null, //AppLocalizations.of(context).translate('saturday') : null,
   ];
 }
 
@@ -87,7 +101,13 @@ class _ClinicFormState extends State<ClinicForm> {
   TimeOfDay _ternaryToTime;
   String weekday01;
   String weekday02;
-
+  String mainFromTimeNo;
+  String mainToTimeNo;
+  String ampm;
+  String toampm;
+  String mainFromend;
+  String mainToend;
+  bool makeMePass = false;
   _ClinicFormState({
     this.email,
     this.password,
@@ -243,7 +263,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                     .removeWhere((value) => value == null);
                                 currentVacationDays =
                                     currentListVacationDays.join(', ');
-                                //print(workDays);
+                                print(workDays);
                                 print(currentListVacationDays);
                                 print(currentVacationDays);
                               });
@@ -261,7 +281,8 @@ class _ClinicFormState extends State<ClinicForm> {
                             ],
                             weekdays: [
                               AppLocalizations.of(context).translate('sunday'),
-                              AppLocalizations.of(context).translate('monday'),
+                              //AppLocalizations.of(context).translate('monday'),
+                              "monday",
                               AppLocalizations.of(context).translate('tuesday'),
                               AppLocalizations.of(context)
                                   .translate('wednesday'),
@@ -621,11 +642,11 @@ class _ClinicFormState extends State<ClinicForm> {
                                 ),
                                 DropdownMenuItem(
                                   value: weekDaysList["6"][1],
-                                  child: Text(weekDaysList["5"][0]),
+                                  child: Text(weekDaysList["6"][0]),
                                 ),
                                 DropdownMenuItem(
                                   value: weekDaysList["7"][1],
-                                  child: Text(weekDaysList["5"][0]),
+                                  child: Text(weekDaysList["7"][0]),
                                 ),
                               ],
                               onChanged: (value) {
@@ -751,7 +772,24 @@ class _ClinicFormState extends State<ClinicForm> {
                               if (_formKey.currentState.validate()) {
                                 if (currentaddress != '' &&
                                     currentVacationDays != '' &&
-                                    mainWorkingHours != '') {
+                                    mainFromTimeString != '' &&
+                                    mainToTimeString != '' &&
+                                    makeMePass == true) {
+                                  setState(() {
+                                    if (mainWorkingHours == '') {
+                                      currentListVacationDays
+                                          .add(mainWorkingHours);
+                                    } else {
+                                      currentListVacationDays.remove(
+                                          currentListVacationDays[
+                                              currentListVacationDays.length -
+                                                  1]);
+                                      currentListVacationDays
+                                          .add(mainWorkingHours);
+                                    }
+                                    makeMePass = false;
+                                    print(currentListVacationDays);
+                                  });
                                   await Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) => DocMap(
@@ -762,7 +800,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                         phone: phoneNumber,
                                         province: province,
                                         address: currentaddress,
-                                        vacation: currentVacationDays,
+                                        vacation: currentListVacationDays,
                                         mainWorkingHours: mainWorkingHours,
                                         secondaryWorkingHours:
                                             secondaryWorkingHours,
@@ -816,7 +854,16 @@ class _ClinicFormState extends State<ClinicForm> {
       setState(() {
         _mainFromTime = mainfromTime;
         mainFromTimeString = _mainFromTime.format(context);
-        print(mainFromTimeString);
+        mainFromTimeNo =
+            mainFromTimeString.substring(0, mainFromTimeString.indexOf(' '));
+        mainFromend = mainFromTimeString.substring(
+            mainFromTimeString.indexOf(' ') + 1, mainFromTimeString.length);
+        if (mainFromend == 'ص' || mainFromend == 'AM') {
+          ampm = 'AM';
+        } else {
+          ampm = 'PM';
+        }
+        mainFromTimeNo = mainFromTimeNo + ' ' + ampm;
       });
   }
 
@@ -842,15 +889,24 @@ class _ClinicFormState extends State<ClinicForm> {
       setState(() {
         _mainToTime = maintoTime;
         mainToTimeString = _mainToTime.format(context);
-        mainWorkingHours = AppLocalizations.of(context).translate('from') +
+        mainToTimeNo =
+            mainToTimeString.substring(0, mainToTimeString.indexOf(' '));
+        mainToend = mainToTimeString.substring(
+            mainToTimeString.indexOf(' '), mainToTimeString.length);
+        if (mainToend == 'ًص' || mainToend == 'AM') {
+          toampm = 'AM';
+        } else {
+          toampm = 'PM';
+        }
+        mainToTimeNo = mainToTimeNo + ' ' + toampm;
+        mainWorkingHours = 'from ' + mainFromTimeNo + ' to ' + mainToTimeNo;
+        makeMePass = true;
+        /*AppLocalizations.of(context).translate('from') +
             mainFromTimeString +
             ' ' +
             AppLocalizations.of(context).translate('to') +
-            mainToTimeString;
-        print(mainToTimeString);
+            mainToTimeString;*/
         print(mainWorkingHours);
-        currentListVacationDays.add(mainWorkingHours);
-        print(currentListVacationDays);
       });
   }
 

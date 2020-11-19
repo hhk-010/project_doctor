@@ -21,13 +21,27 @@ class UpdateInfo2 extends StatefulWidget {
 List<bool> workDays = List.filled(7, false);
 List boolToStringDays(BuildContext context, List workDays) {
   return [
-    workDays[0] ? AppLocalizations.of(context).translate('sunday') : null,
-    workDays[1] ? AppLocalizations.of(context).translate('monday') : null,
-    workDays[2] ? AppLocalizations.of(context).translate('tuesday') : null,
-    workDays[3] ? AppLocalizations.of(context).translate('wednesday') : null,
-    workDays[4] ? AppLocalizations.of(context).translate('thursday') : null,
-    workDays[5] ? AppLocalizations.of(context).translate('friday') : null,
-    workDays[6] ? AppLocalizations.of(context).translate('saturday') : null,
+    workDays[0]
+        ? 'sunday'
+        : null, //AppLocalizations.of(context).translate('sunday') : null,
+    workDays[1]
+        ? 'monday'
+        : null, //AppLocalizations.of(context).translate('monday') : null,
+    workDays[2]
+        ? 'tuesday'
+        : null, //AppLocalizations.of(context).translate('tuesday') : null,
+    workDays[3]
+        ? 'wednesday'
+        : null, //AppLocalizations.of(context).translate('wednesday') : null,
+    workDays[4]
+        ? 'thursday'
+        : null, //AppLocalizations.of(context).translate('thursday') : null,
+    workDays[5]
+        ? 'friday'
+        : null, //AppLocalizations.of(context).translate('friday') : null,
+    workDays[6]
+        ? 'saturday'
+        : null, //AppLocalizations.of(context).translate('saturday') : null,
   ];
 }
 
@@ -70,6 +84,13 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
   bool _daySwitch01 = false;
   bool _visibile02 = false;
   bool _daySwitch02 = false;
+  String mainFromNo = '';
+  String mainToNo = '';
+  String fromAmPm = '';
+  String toAmPm = '';
+  String fromEnd = '';
+  String toEnd = '';
+  bool makeMePass = false;
 
   @override
   void initState() {
@@ -216,8 +237,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                       .removeWhere((value) => value == null);
                                   currentVacationDays =
                                       currentListVacationDays.join(', ');
-                                  // print(workDays);
-                                  // print(currentVacationDays);
+                                  print(currentListVacationDays);
                                 });
                               },
                               values: workDays,
@@ -707,7 +727,20 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                         if (_formkey.currentState.validate()) {
                           if (address != '' &&
                               currentVacationDays != '' &&
-                              mainWorkingHours != '') {
+                              mainFromTimeString != '' &&
+                              mainToTimeString != '' &&
+                              makeMePass == true) {
+                            setState(() {
+                              if (mainWorkingHours == '') {
+                                currentListVacationDays.add(mainWorkingHours);
+                              } else {
+                                currentListVacationDays.remove(
+                                    currentListVacationDays[
+                                        currentListVacationDays.length - 1]);
+                                currentListVacationDays.add(mainWorkingHours);
+                              }
+                              makeMePass = false;
+                            });
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => UpdateMap(
@@ -716,7 +749,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                   number: phoneNumber,
                                   province: province,
                                   address: address,
-                                  vacation: currentVacationDays,
+                                  vacation: currentListVacationDays,
                                   workinghours: mainWorkingHours,
                                 ),
                               ),
@@ -739,179 +772,200 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
           ),
         ));
   }
-    _pickMainFromTime() async {
-      TimeOfDay mainfromTime = await showTimePicker(
-          context: context,
-          initialTime: _mainFromTime,
-          builder: (BuildContext context, Widget child) {
-            return Theme(
-              data: ThemeData(
-                primaryColor: Colors.deepOrange,
-                accentColor: Colors.deepOrange,
-                primarySwatch: Colors.deepOrange,
-              ),
-              child: MediaQuery(
-                data: MediaQuery.of(context)
-                    .copyWith(alwaysUse24HourFormat: false),
-                child: child,
-              ),
-            );
-          });
-      if (mainfromTime != null)
-        setState(() {
-          _mainFromTime = mainfromTime;
-          mainFromTimeString = _mainFromTime.format(context);
-          print(mainFromTimeString);
-        });
-    }
 
-    _pickMainToTime() async {
-      TimeOfDay maintoTime = await showTimePicker(
-          context: context,
-          initialTime: _mainToTime,
-          builder: (BuildContext context, Widget child) {
-            return Theme(
-              data: ThemeData(
-                primaryColor: Colors.deepOrange,
-                accentColor: Colors.deepOrange,
-                primarySwatch: Colors.deepOrange,
-              ),
-              child: MediaQuery(
-                data: MediaQuery.of(context)
-                    .copyWith(alwaysUse24HourFormat: false),
-                child: child,
-              ),
-            );
-          });
-      if (maintoTime != null)
-        setState(() {
-          _mainToTime = maintoTime;
-          mainToTimeString = _mainToTime.format(context);
-          mainWorkingHours = AppLocalizations.of(context).translate('from') +
-              mainFromTimeString +
-              ' ' +
-              AppLocalizations.of(context).translate('to') +
-              mainToTimeString;
-          print(mainToTimeString);
-          print(mainWorkingHours);
+  _pickMainFromTime() async {
+    TimeOfDay mainfromTime = await showTimePicker(
+        context: context,
+        initialTime: _mainFromTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
         });
-    }
-
-    _pickSecondaryFromTime() async {
-      TimeOfDay secondaryFromTime = await showTimePicker(
-          context: context,
-          initialTime: _secondaryFromTime,
-          builder: (BuildContext context, Widget child) {
-            return Theme(
-              data: ThemeData(
-                primaryColor: Colors.deepOrange,
-                accentColor: Colors.deepOrange,
-                primarySwatch: Colors.deepOrange,
-              ),
-              child: MediaQuery(
-                data: MediaQuery.of(context)
-                    .copyWith(alwaysUse24HourFormat: false),
-                child: child,
-              ),
-            );
-          });
-      if (secondaryFromTime != null)
-        setState(() {
-          _secondaryFromTime = secondaryFromTime;
-          secondaryFromTimeString = _secondaryFromTime.format(context);
-          print(secondaryFromTimeString);
-        });
-    }
-
-    _pickSecondaryToTime() async {
-      TimeOfDay secondaryToTime = await showTimePicker(
-          context: context,
-          initialTime: _secondaryToTime,
-          builder: (BuildContext context, Widget child) {
-            return Theme(
-              data: ThemeData(
-                primaryColor: Colors.deepOrange,
-                accentColor: Colors.deepOrange,
-                primarySwatch: Colors.deepOrange,
-              ),
-              child: MediaQuery(
-                data: MediaQuery.of(context)
-                    .copyWith(alwaysUse24HourFormat: false),
-                child: child,
-              ),
-            );
-          });
-      if (secondaryToTime != null)
-        setState(() {
-          _secondaryToTime = secondaryToTime;
-          secondaryToTimeString = _secondaryToTime.format(context);
-          secondaryWorkingHours =
-              AppLocalizations.of(context).translate('from') +
-                  secondaryFromTimeString +
-                  ' ' +
-                  AppLocalizations.of(context).translate('to') +
-                  secondaryToTimeString;
-          print(secondaryToTimeString);
-          print(secondaryWorkingHours);
-        });
-    }
-
-    _pickTernaryFromTime() async {
-      TimeOfDay ternaryFromTime = await showTimePicker(
-          context: context,
-          initialTime: _ternaryFromTime,
-          builder: (BuildContext context, Widget child) {
-            return Theme(
-              data: ThemeData(
-                primaryColor: Colors.deepOrange,
-                accentColor: Colors.deepOrange,
-                primarySwatch: Colors.deepOrange,
-              ),
-              child: MediaQuery(
-                data: MediaQuery.of(context)
-                    .copyWith(alwaysUse24HourFormat: false),
-                child: child,
-              ),
-            );
-          });
-      if (ternaryFromTime != null)
-        setState(() {
-          _ternaryFromTime = ternaryFromTime;
-          ternaryFromTimeString = _ternaryFromTime.format(context);
-          print(ternaryFromTimeString);
-        });
-    }
-
-    _pickTernaryToTime() async {
-      TimeOfDay ternaryToTime = await showTimePicker(
-          context: context,
-          initialTime: _ternaryToTime,
-          builder: (BuildContext context, Widget child) {
-            return Theme(
-              data: ThemeData(
-                primaryColor: Colors.deepOrange,
-                accentColor: Colors.deepOrange,
-                primarySwatch: Colors.deepOrange,
-              ),
-              child: MediaQuery(
-                data: MediaQuery.of(context)
-                    .copyWith(alwaysUse24HourFormat: false),
-                child: child,
-              ),
-            );
-          });
-      if (ternaryToTime != null)
-        setState(() {
-          _ternaryToTime = ternaryToTime;
-          ternaryToTimeString = _ternaryToTime.format(context);
-          ternaryWorkingHours = AppLocalizations.of(context).translate('from') +
-              ternaryFromTimeString +
-              ' ' +
-              AppLocalizations.of(context).translate('to') +
-              ternaryToTimeString;
-          print(ternaryToTimeString);
-          print(ternaryWorkingHours);
-        });
-    }
+    if (mainfromTime != null)
+      setState(() {
+        _mainFromTime = mainfromTime;
+        mainFromTimeString = _mainFromTime.format(context);
+        mainFromNo =
+            mainFromTimeString.substring(0, mainFromTimeString.indexOf(' '));
+        fromEnd = mainFromTimeString.substring(
+            mainFromTimeString.indexOf(' '), mainFromTimeString.length);
+        if (fromEnd == 'ص' || fromEnd == 'AM') {
+          fromAmPm = 'AM';
+        } else {
+          fromAmPm = 'PM';
+        }
+        mainFromTimeString = mainFromNo + ' ' + fromAmPm;
+        print(mainFromTimeString);
+      });
   }
 
+  _pickMainToTime() async {
+    TimeOfDay maintoTime = await showTimePicker(
+        context: context,
+        initialTime: _mainToTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (maintoTime != null)
+      setState(() {
+        _mainToTime = maintoTime;
+        mainToTimeString = _mainToTime.format(context);
+        mainToNo = mainToTimeString.substring(0, mainToTimeString.indexOf(' '));
+        toEnd = mainToTimeString.substring(
+            mainToTimeString.indexOf(' '), mainToTimeString.length);
+        if (toEnd == 'ًص' || toEnd == 'AM') {
+          toAmPm = "AM";
+        } else {
+          toAmPm = 'PM';
+        }
+        mainToTimeString = mainToNo + ' ' + toAmPm;
+        mainWorkingHours =
+            'from ' + mainFromTimeString + ' to ' + mainToTimeString;
+        makeMePass = true;
+        /*mainWorkingHours = AppLocalizations.of(context).translate('from') +
+            mainFromTimeString +
+            ' ' +
+            AppLocalizations.of(context).translate('to') +
+            mainToTimeString;*/
+        print(mainToTimeString);
+        print(mainWorkingHours);
+      });
+  }
+
+  _pickSecondaryFromTime() async {
+    TimeOfDay secondaryFromTime = await showTimePicker(
+        context: context,
+        initialTime: _secondaryFromTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (secondaryFromTime != null)
+      setState(() {
+        _secondaryFromTime = secondaryFromTime;
+        secondaryFromTimeString = _secondaryFromTime.format(context);
+        print(secondaryFromTimeString);
+      });
+  }
+
+  _pickSecondaryToTime() async {
+    TimeOfDay secondaryToTime = await showTimePicker(
+        context: context,
+        initialTime: _secondaryToTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (secondaryToTime != null)
+      setState(() {
+        _secondaryToTime = secondaryToTime;
+        secondaryToTimeString = _secondaryToTime.format(context);
+        secondaryWorkingHours = AppLocalizations.of(context).translate('from') +
+            secondaryFromTimeString +
+            ' ' +
+            AppLocalizations.of(context).translate('to') +
+            secondaryToTimeString;
+        print(secondaryToTimeString);
+        print(secondaryWorkingHours);
+      });
+  }
+
+  _pickTernaryFromTime() async {
+    TimeOfDay ternaryFromTime = await showTimePicker(
+        context: context,
+        initialTime: _ternaryFromTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (ternaryFromTime != null)
+      setState(() {
+        _ternaryFromTime = ternaryFromTime;
+        ternaryFromTimeString = _ternaryFromTime.format(context);
+        print(ternaryFromTimeString);
+      });
+  }
+
+  _pickTernaryToTime() async {
+    TimeOfDay ternaryToTime = await showTimePicker(
+        context: context,
+        initialTime: _ternaryToTime,
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            child: MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child,
+            ),
+          );
+        });
+    if (ternaryToTime != null)
+      setState(() {
+        _ternaryToTime = ternaryToTime;
+        ternaryToTimeString = _ternaryToTime.format(context);
+        ternaryWorkingHours = AppLocalizations.of(context).translate('from') +
+            ternaryFromTimeString +
+            ' ' +
+            AppLocalizations.of(context).translate('to') +
+            ternaryToTimeString;
+        print(ternaryToTimeString);
+        print(ternaryWorkingHours);
+      });
+  }
+}

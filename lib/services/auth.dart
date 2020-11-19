@@ -36,15 +36,15 @@ class AuthService {
       double lat,
       double lng,
       String address,
-      String vacation,
+      List vacation,
       String workinghours) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
       // create a new document for the user with the id
-      await DatabaseService(uid: user.uid)
-          .updateUserData(name, speciality, number, province, lat, lng,address,vacation,workinghours);
+      await DatabaseService(uid: user.uid).updateUserData(name, speciality,
+          number, province, lat, lng, address, vacation, workinghours);
       await user.sendEmailVerification();
       return _userfromfirebase(user);
     } catch (e) {

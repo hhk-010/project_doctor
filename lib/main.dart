@@ -19,7 +19,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor04_profile.dart';
 import 'package:project_doctor/pages/patient_pages/patient05_result.dart';
 import 'package:project_doctor/services/app_localizations.dart';
-import 'package:project_doctor/services/location_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

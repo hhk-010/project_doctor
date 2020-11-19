@@ -8,18 +8,26 @@ class DatabaseService {
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('doctorInfo');
 
-  Future updateUserData(String name, String speciality, String phoneNumber,
-      String province, double lat,double lng,String address, String vacation,String workinghours) async {
+  Future updateUserData(
+      String name,
+      String speciality,
+      String phoneNumber,
+      String province,
+      double lat,
+      double lng,
+      String address,
+      List vacation,
+      String workinghours) async {
     return await userCollection.doc(uid).set({
       'name': name,
       'speciality': speciality,
       'phoneNumber': phoneNumber,
       'province': province,
-      'lat':lat,
-      'lng':lng,
-      'address':address,
-      'vacation':vacation,
-      'workinghours':workinghours
+      'lat': lat,
+      'lng': lng,
+      'address': address,
+      'vacation': vacation,
+      'workinghours': workinghours
     });
   }
 
@@ -35,8 +43,8 @@ class DatabaseService {
   }
 
   // stream to get userdata from a snapshot and map it to a model data.
-  Stream<QuerySnapshot> get doctorDataProfileStream  {
-    return  userCollection.snapshots();
+  Stream<QuerySnapshot> get doctorDataProfileStream {
+    return userCollection.snapshots();
   }
 
   // stream to get user data
@@ -57,8 +65,7 @@ class DatabaseService {
 //     );
 //   }).toList();
 // }
-  Stream<QuerySnapshot> get doccol{
+  Stream<QuerySnapshot> get doccol {
     return userCollection.snapshots();
-}
-
+  }
 }
