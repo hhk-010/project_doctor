@@ -113,8 +113,9 @@
     "finish_update" : "اكمل تحديث معلوماتك بال",
     "change_password" : "هل تريد تغيير كلمة المرور؟",
     "change" : "تغيير",
-    "vacation":" عطلة العيادة في يوم",
+    "vacation":"عطلة العيادة في يوم",
     "address" : "العنوان باللغه العربيه",
+    "clinic_address" : "عنوان العياده",
     "detailed_address":"عنوان العيادة كاملا",
     "address_validator":"الرجاء ادخال عنوان مناسب",
     "work_days":"ايام دوام العيادة",
@@ -128,9 +129,7 @@
     "open_time":"وقت تواجد الطبيب ",
     "expcetion_days" : "حدد ايام بأوقات اخرى",
     "select_days" : "اختر اليوم",
-
-
-    
+    "time_availability" : "اوقات التواجد",
 
 
 

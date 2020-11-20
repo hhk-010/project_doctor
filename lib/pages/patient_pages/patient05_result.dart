@@ -53,7 +53,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   String _address = '';
   // ignore: unused_field
   List _vacation = [];
-  String _workinghours = '';
+  List _workinghours = [];
   double distance = 0.0;
   double sum = 0.0;
   double result = 0.0;
@@ -63,12 +63,12 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   String realnearby = '';
 
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-  String _currentAddress = '';
+  String _doctorAddress = '';
   _getAddressFromLatLng() async {
     List<Placemark> p = await geolocator.placemarkFromCoordinates(_lat, _lng);
     Placemark place = p[0];
     setState(() {
-      _currentAddress = "${place.locality}, ${place.country}";
+      _doctorAddress = "${place.locality}, ${place.country}";
     });
   }
 
@@ -124,101 +124,165 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
       }
     }
     return Padding(
-      padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
+      padding: EdgeInsets.fromLTRB(25, 25, 25, 25),
       child: Container(
-        height: double.maxFinite,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: ListView(
           children: [
             Container(
               decoration: boxDecoration,
-              child: Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.deepOrangeAccent,
-                          radius: 75,
-                          backgroundImage:
-                              AssetImage('assets/images/doctor.png'),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          _name,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate(_speciality),
-                          //_speciality,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          _number,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          _currentAddress,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          _address,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          _workinghours,
-                          style: _textStyle,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate("vacation")
-                          /*_vacation*/,
-                          //'clinic vacation is ' + _vacation,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate("distances"),
-                          //'Distance to the Doctor is about ',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Text(
-                          realnearby +
-                              AppLocalizations.of(context)
-                                  .translate("km"), //' Km away',
-                          style:
-                              TextStyle(color: Colors.deepOrange, fontSize: 20),
-                        ),
-                      ],
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: CircleAvatar(
+                        backgroundColor: Colors.deepOrange,
+                        radius: 50,
+                        backgroundImage: AssetImage('assets/images/doctor.png'),
+                      ),
                     ),
-                  ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Center(
+                      child: Text(
+                        _name,
+                        style: _textStyle.copyWith(fontSize: 25),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Center(
+                      child: Text(
+                        _doctorAddress,
+                        style: _textStyle.copyWith(fontSize: 14),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Divider(
+                      color: Colors.grey[600],
+                      thickness: 3,
+                      indent: 25,
+                      endIndent: 25,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      AppLocalizations.of(context).translate('speciality'),
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.indigo,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      AppLocalizations.of(context).translate(_speciality),
+                      style: _textStyle,
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
+                    ),
+                    Text(
+                      AppLocalizations.of(context).translate('phoneNumber'),
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.indigo,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      _number,
+                      style: _textStyle,
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
+                    ),
+                    Text(
+                      AppLocalizations.of(context).translate('clinic_address'),
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.indigo,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      _address,
+                      style: _textStyle,
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
+                    ),
+                    Text(
+                      AppLocalizations.of(context)
+                          .translate('time_availability'),
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.indigo,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      AppLocalizations.of(context).translate('open_time') +
+                          _workinghours.toString(),
+                      style: _textStyle,
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
+                    ),
+                    Text(
+                      AppLocalizations.of(context)
+                          .translate('time_availability'),
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.indigo,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      AppLocalizations.of(context).translate('vacation')
+                      /*_vacation*/,
+                      style: _textStyle,
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
+                    ),
+                    Text(
+                      AppLocalizations.of(context).translate("distances"),
+                      //'Distance to the Doctor is about ',
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.indigo,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      realnearby +
+                          AppLocalizations.of(context)
+                              .translate("km"), //' Km away',
+                      style: _textStyle,
+                    ),
+                  ],
                 ),
               ),
             ),
-            Spacer(
-              flex: 1,
+            SizedBox(
+              height: 25,
             ),
             RaisedButton.icon(
               color: Colors.deepOrange,

@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +68,7 @@ class _DoctorListState extends State<DoctorList> {
   String _address = '';
   // ignore: unused_field
   List _vacation = [];
-  String _workinghours = '';
+  List _workinghours = [];
 
 //get the user address from lat and lng
   String _doctorAddress = '';
@@ -161,14 +160,14 @@ class _DoctorListState extends State<DoctorList> {
                       height: 5,
                     ),
                     Text(
-                      'Speciality',
+                      AppLocalizations.of(context).translate('speciality'),
                       style: TextStyle(
                           fontSize: 10,
                           color: Colors.indigo,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      speciality,
+                      AppLocalizations.of(context).translate(speciality),
                       style: _textStyle,
                     ),
                     Divider(
@@ -178,7 +177,7 @@ class _DoctorListState extends State<DoctorList> {
                       endIndent: 0,
                     ),
                     Text(
-                      'Phone Number',
+                      AppLocalizations.of(context).translate('phoneNumber'),
                       style: TextStyle(
                           fontSize: 10,
                           color: Colors.indigo,
@@ -195,7 +194,7 @@ class _DoctorListState extends State<DoctorList> {
                       endIndent: 0,
                     ),
                     Text(
-                      'Address',
+                      AppLocalizations.of(context).translate('clinic_address'),
                       style: TextStyle(
                           fontSize: 10,
                           color: Colors.indigo,
@@ -212,7 +211,8 @@ class _DoctorListState extends State<DoctorList> {
                       endIndent: 0,
                     ),
                     Text(
-                      'Time Availability',
+                      AppLocalizations.of(context)
+                          .translate('time_availability'),
                       style: TextStyle(
                           fontSize: 10,
                           color: Colors.indigo,
@@ -220,7 +220,7 @@ class _DoctorListState extends State<DoctorList> {
                     ),
                     Text(
                       AppLocalizations.of(context).translate('open_time') +
-                          _workinghours,
+                          _workinghours.toString(),
                       style: _textStyle,
                     ),
                     Divider(
