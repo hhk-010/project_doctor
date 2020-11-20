@@ -17,8 +17,8 @@ class DocMap extends StatefulWidget {
   final String province;
   final String address;
   final List vacation;
-  final String mainWorkingHours;
-  final String secondaryWorkingHours;
+  final List mainWorkingHours;
+  final List secondaryWorkingHours;
 
   DocMap(
       {this.email,
@@ -42,7 +42,8 @@ class DocMap extends StatefulWidget {
       province: province,
       address: address,
       vacation: vacation,
-      workinghours: mainWorkingHours);
+      workinghours: mainWorkingHours,
+      workinghours2: secondaryWorkingHours);
 }
 
 class _DocMapState extends State<DocMap> {
@@ -56,7 +57,8 @@ class _DocMapState extends State<DocMap> {
   var province = '';
   String address = '';
   List vacation = [];
-  String workinghours = '';
+  List workinghours = [];
+  List workinghours2 = [];
   bool loading = false;
 
   _DocMapState(
@@ -68,7 +70,8 @@ class _DocMapState extends State<DocMap> {
       this.province,
       this.address,
       this.vacation,
-      this.workinghours});
+      this.workinghours,
+      this.workinghours2});
   String error = '';
   var latlng;
 
@@ -228,7 +231,8 @@ class _DocMapState extends State<DocMap> {
                                     lnggg,
                                     address,
                                     vacation,
-                                    workinghours);
+                                    workinghours,
+                                    workinghours2);
                             setState(() {
                               Newclient.email = email;
                             });

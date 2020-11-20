@@ -67,7 +67,7 @@ class _DoctorListState extends State<DoctorList> {
   String _address = '';
   // ignore: unused_field
   List _vacation = [];
-  String _workinghours = '';
+  List workinghours = [];
 
 //get the user address from lat and lng
   String _doctorAddress = '';
@@ -100,7 +100,7 @@ class _DoctorListState extends State<DoctorList> {
             lng = doc.data()['lng'];
             _address = doc.data()['address'];
             _vacation = doc.data()['vacation'];
-            _workinghours = doc.data()['workinghours'];
+            workinghours = doc.data()['workinghours'];
             _getAddressFromLatLng();
           });
         }
@@ -169,8 +169,9 @@ class _DoctorListState extends State<DoctorList> {
                           height: 5,
                         ),
                         Text(
-                          AppLocalizations.of(context).translate('open_time') +
-                              _workinghours,
+                          '',
+                          /*AppLocalizations.of(context).translate('open_time') +
+                              _workinghours,*/
                           style: _textStyle,
                         ),
                         SizedBox(

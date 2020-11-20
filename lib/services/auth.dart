@@ -44,14 +44,24 @@ class AuthService {
       double lng,
       String address,
       List vacation,
-      String workinghours) async {
+      List workinghours,
+      List workinghours2) async {
     try {
       UserCredential authResult = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User user = authResult.user;
       // create a new document for the user with the id
-      await DatabaseService(uid: user.uid).updateUserData(name, speciality,
-          number, province, lat, lng, address, vacation, workinghours);
+      await DatabaseService(uid: user.uid).updateUserData(
+          name,
+          speciality,
+          number,
+          province,
+          lat,
+          lng,
+          address,
+          vacation,
+          workinghours,
+          workinghours2);
       await user.sendEmailVerification();
       if (authResult.user != null) {
         _status = AuthResultStatus.successful;

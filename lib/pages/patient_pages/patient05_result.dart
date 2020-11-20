@@ -53,7 +53,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   String _address = '';
   // ignore: unused_field
   List _vacation = [];
-  String _workinghours = '';
+  List _workinghours = [];
   double distance = 0.0;
   double sum = 0.0;
   double result = 0.0;
@@ -187,7 +187,8 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                           height: 5,
                         ),
                         Text(
-                          _workinghours,
+                          '',
+                          //_workinghours,
                           style: _textStyle,
                         ),
                         Text(

@@ -93,7 +93,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
   String fromEnd = '';
   String toEnd = '';
   bool makeMePass = false;
-  List exception = [];
   List e1 = [];
   List e2 = [];
   String secondFromNo = '';
@@ -763,20 +762,25 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                           setState(() {
                             if (e1.isNotEmpty && t1.isNotEmpty) {
                               if (l1.isEmpty) {
-                                l1.add([e1[0], t1[0]]);
+                                l1.add(e1[0]);
+                                l1.add(t1[0]);
                               } else {
                                 l1 = [];
-                                l1.add([e1[0], t1[0]]);
+                                l1.add(e1[0]);
+                                l1.add(t1[0]);
                               }
                             } else if ((e1.isNotEmpty && t1.isEmpty) ||
                                 (e1.isEmpty && t1.isNotEmpty)) {
                               //show snackbar
-                            } else if (e2.isNotEmpty && t2.isNotEmpty) {
+                            }
+                            if (e2.isNotEmpty && t2.isNotEmpty) {
                               if (l2.isEmpty) {
-                                l2.add([e2[0], t2[0]]);
+                                l2.add(e2[0]);
+                                l2.add(t2[0]);
                               } else {
                                 l2 = [];
-                                l2.add([e2[0], t2[0]]);
+                                l2.add(e2[0]);
+                                l2.add(t2[0]);
                               }
                             } else if ((e2.isNotEmpty && t2.isEmpty) ||
                                 (e2.isEmpty && t2.isNotEmpty)) {
@@ -786,6 +790,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                           //main from time='' snackbar
                           //main to time='' snackbar
                           //main days =[] snackbar
+                          //reselct main days snackbar
                           if (address != '' &&
                               currentVacationDays != '' &&
                               mainFromTimeString != '' &&
@@ -801,10 +806,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                 currentListVacationDays.add(mainWorkingHours);
                               }
                               makeMePass = false;
-                              exception[0] = l1;
-                              exception[1] = l2;
-                              print(exception);
                             });
+                            print(l1);
+                            print(l2);
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => UpdateMap(
@@ -814,7 +818,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                   province: province,
                                   address: address,
                                   vacation: currentListVacationDays,
-                                  workinghours: mainWorkingHours,
+                                  workinghours: l1,
+                                  workinghours2: l2,
                                 ),
                               ),
                             );
@@ -971,10 +976,10 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       setState(() {
         _secondaryToTime = secondaryToTime;
         secondaryToTimeString = _secondaryToTime.format(context);
-        secondToNo = secondaryFromTimeString.substring(
-            0, secondaryFromTimeString.indexOf(' '));
-        secondToEnd = secondaryFromTimeString.substring(
-            0, secondaryFromTimeString.indexOf(' '));
+        secondToNo = secondaryToTimeString.substring(
+            0, secondaryToTimeString.indexOf(' '));
+        secondToEnd = secondaryToTimeString.substring(
+            0, secondaryToTimeString.indexOf(' '));
         if (secondToEnd == 'ص' || secondToEnd == 'AM') {
           secondToAmPm = 'AM';
         } else {
@@ -1057,10 +1062,10 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       setState(() {
         _ternaryToTime = ternaryToTime;
         ternaryToTimeString = _ternaryToTime.format(context);
-        thirdToNo = ternaryFromTimeString.substring(
-            0, ternaryFromTimeString.indexOf(' '));
-        thirdToEnd = ternaryFromTimeString.substring(
-            0, ternaryFromTimeString.indexOf(' '));
+        thirdToNo =
+            ternaryToTimeString.substring(0, ternaryToTimeString.indexOf(' '));
+        thirdToEnd = ternaryToTimeString.substring(
+            ternaryToTimeString.indexOf(' '), ternaryToTimeString.length);
         if (thirdToEnd == 'ص' || thirdToEnd == 'AM') {
           thirdToAmPm = 'AM';
         } else {

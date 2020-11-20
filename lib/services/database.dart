@@ -17,7 +17,8 @@ class DatabaseService {
       double lng,
       String address,
       List vacation,
-      String workinghours) async {
+      List workinghours,
+      List workinghours2) async {
     return await userCollection.doc(uid).set({
       'name': name,
       'speciality': speciality,
@@ -27,7 +28,8 @@ class DatabaseService {
       'lng': lng,
       'address': address,
       'vacation': vacation,
-      'workinghours': workinghours
+      'workinghours': workinghours,
+      'workinghours2': workinghours2
     });
   }
 

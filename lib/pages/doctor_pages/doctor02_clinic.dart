@@ -108,6 +108,24 @@ class _ClinicFormState extends State<ClinicForm> {
   String mainFromend;
   String mainToend;
   bool makeMePass = false;
+  List e1 = [];
+  List e2 = [];
+  String secondFromNo = '';
+  String secondFromEnd = '';
+  String secondFromAmPm = '';
+  String secondToNo = '';
+  String secondToEnd = '';
+  String secondToAmPm = '';
+  String thirdFromNo = '';
+  String thirdFromEnd = '';
+  String thirdFromAmPm = '';
+  String thirdToNo = '';
+  String thirdToEnd = '';
+  String thirdToAmPm = '';
+  List t1 = [];
+  List t2 = [];
+  List l1 = [];
+  List l2 = [];
   _ClinicFormState({
     this.email,
     this.password,
@@ -482,8 +500,15 @@ class _ClinicFormState extends State<ClinicForm> {
                               onChanged: (value) {
                                 setState(() {
                                   weekday01 = value;
+                                  if (e1 == []) {
+                                    e1.add(weekday01);
+                                  } else {
+                                    e1 = [];
+                                    e1.add(weekday01);
+                                  }
                                 });
                                 print(weekday01);
+                                print(e1);
                               },
                               value: weekday01,
                               dropdownColor: Colors.white,
@@ -652,8 +677,15 @@ class _ClinicFormState extends State<ClinicForm> {
                               onChanged: (value) {
                                 setState(() {
                                   weekday02 = value;
+                                  if (e2.isEmpty) {
+                                    e2.add(weekday02);
+                                  } else {
+                                    e2 = [];
+                                    e2.add(weekday02);
+                                  }
                                 });
                                 print(weekday02);
+                                print(e2);
                               },
                               value: weekday02,
                               dropdownColor: Colors.white,
@@ -770,6 +802,34 @@ class _ClinicFormState extends State<ClinicForm> {
                                 borderRadius: BorderRadius.circular(80.0)),
                             onPressed: () async {
                               if (_formKey.currentState.validate()) {
+                                if (e1.isNotEmpty && t1.isNotEmpty) {
+                                  if (l1.isEmpty) {
+                                    l1.add(e1[0]);
+                                    l1.add(t1[0]);
+                                  } else {
+                                    l1 = [];
+                                    l1.add(e1[0]);
+                                    l1.add(t1[0]);
+                                  }
+                                } else if ((e1.isEmpty && t1.isNotEmpty) ||
+                                    (e1.isNotEmpty && t1.isEmpty)) {
+                                  //snackbar
+                                }
+                                if (e2.isNotEmpty && t2.isNotEmpty) {
+                                  if (l2.isEmpty) {
+                                    l2.add(e2[0]);
+                                    l2.add(t2[0]);
+                                  } else {
+                                    l2 = [];
+                                    l2.add(e2[0]);
+                                    l2.add(t2[0]);
+                                  }
+                                } else if ((e2.isNotEmpty && t2.isEmpty) ||
+                                    (e2.isEmpty && t2.isNotEmpty)) {
+                                  //snackbar
+                                }
+                                print(l1);
+                                print(l2);
                                 if (currentaddress != '' &&
                                     currentVacationDays != '' &&
                                     mainFromTimeString != '' &&
@@ -801,9 +861,8 @@ class _ClinicFormState extends State<ClinicForm> {
                                         province: province,
                                         address: currentaddress,
                                         vacation: currentListVacationDays,
-                                        mainWorkingHours: mainWorkingHours,
-                                        secondaryWorkingHours:
-                                            secondaryWorkingHours,
+                                        mainWorkingHours: l1,
+                                        secondaryWorkingHours: l2,
                                       ),
                                     ),
                                   );
@@ -927,7 +986,17 @@ class _ClinicFormState extends State<ClinicForm> {
       setState(() {
         _secondaryFromTime = secondaryFromTime;
         secondaryFromTimeString = _secondaryFromTime.format(context);
-        print(secondaryFromTimeString);
+        secondFromNo = secondaryFromTimeString.substring(
+            0, secondaryFromTimeString.indexOf(' '));
+        secondFromEnd = secondaryFromTimeString.substring(
+            secondaryFromTimeString.indexOf(' '),
+            secondaryFromTimeString.length);
+        if (secondFromEnd == 'ص' || secondFromEnd == 'AM') {
+          secondFromAmPm = 'AM';
+        } else {
+          secondFromAmPm = 'PM';
+        }
+        secondaryFromTimeString = secondFromNo + ' ' + secondFromAmPm;
       });
   }
 
@@ -953,12 +1022,30 @@ class _ClinicFormState extends State<ClinicForm> {
       setState(() {
         _secondaryToTime = secondaryToTime;
         secondaryToTimeString = _secondaryToTime.format(context);
-        secondaryWorkingHours = AppLocalizations.of(context).translate('from') +
+        secondToNo = secondaryToTimeString.substring(
+            0, secondaryToTimeString.indexOf(' '));
+        secondToEnd = secondaryToTimeString.substring(
+            secondaryToTimeString.indexOf(' '), secondaryToTimeString.length);
+        if (secondToEnd == 'ص' || secondToEnd == 'AM') {
+          secondToAmPm = 'AM';
+        } else {
+          secondToAmPm = 'PM';
+        }
+        secondaryToTimeString = secondToNo + ' ' + secondToAmPm;
+        secondaryWorkingHours =
+            'from ' + secondaryFromTimeString + ' to ' + secondaryToTimeString;
+        /*secondaryWorkingHours = AppLocalizations.of(context).translate('from') +
             secondaryFromTimeString +
             ' ' +
             AppLocalizations.of(context).translate('to') +
-            secondaryToTimeString;
-        print(secondaryToTimeString);
+            secondaryToTimeString;*/
+        if (t1.isEmpty) {
+          t1.add(secondaryWorkingHours);
+        } else {
+          t1 = [];
+          t1.add(secondaryWorkingHours);
+        }
+        print(t1);
         print(secondaryWorkingHours);
       });
   }
@@ -985,7 +1072,16 @@ class _ClinicFormState extends State<ClinicForm> {
       setState(() {
         _ternaryFromTime = ternaryFromTime;
         ternaryFromTimeString = _ternaryFromTime.format(context);
-        print(ternaryFromTimeString);
+        thirdFromNo = ternaryFromTimeString.substring(
+            0, ternaryFromTimeString.indexOf(' '));
+        thirdFromEnd = ternaryFromTimeString.substring(
+            ternaryFromTimeString.indexOf(' '), ternaryFromTimeString.length);
+        if (thirdFromEnd == 'ص' || thirdFromEnd == 'AM') {
+          thirdFromAmPm = 'AM';
+        } else {
+          thirdFromAmPm = 'PM';
+        }
+        ternaryFromTimeString = thirdFromNo + ' ' + thirdFromAmPm;
       });
   }
 
@@ -1011,12 +1107,30 @@ class _ClinicFormState extends State<ClinicForm> {
       setState(() {
         _ternaryToTime = ternaryToTime;
         ternaryToTimeString = _ternaryToTime.format(context);
-        ternaryWorkingHours = AppLocalizations.of(context).translate('from') +
+        thirdToNo =
+            ternaryToTimeString.substring(0, ternaryToTimeString.indexOf(' '));
+        thirdFromEnd = ternaryToTimeString.substring(
+            ternaryToTimeString.indexOf(' '), ternaryToTimeString.length);
+        if (thirdToEnd == 'ص' || thirdToEnd == 'AM') {
+          thirdToAmPm = 'AM';
+        } else {
+          thirdToAmPm = 'PM';
+        }
+        ternaryToTimeString = thirdToNo + ' ' + thirdToAmPm;
+        ternaryWorkingHours =
+            'from ' + ternaryFromTimeString + ' to ' + ternaryToTimeString;
+        /*ternaryWorkingHours = AppLocalizations.of(context).translate('from') +
             ternaryFromTimeString +
             ' ' +
             AppLocalizations.of(context).translate('to') +
-            ternaryToTimeString;
-        print(ternaryToTimeString);
+            ternaryToTimeString;*/
+        if (t2.isEmpty) {
+          t2.add(ternaryWorkingHours);
+        } else {
+          t2 = [];
+          t2.add(ternaryWorkingHours);
+        }
+        print(t2);
         print(ternaryWorkingHours);
       });
   }

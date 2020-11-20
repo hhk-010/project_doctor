@@ -17,7 +17,8 @@ class UpdateMap extends StatefulWidget {
   final String province;
   final String address;
   final List vacation;
-  final String workinghours;
+  final List workinghours;
+  final List workinghours2;
   UpdateMap(
       {this.name,
       this.speciality,
@@ -25,7 +26,8 @@ class UpdateMap extends StatefulWidget {
       this.number,
       this.address,
       this.vacation,
-      this.workinghours});
+      this.workinghours,
+      this.workinghours2});
   @override
   _UpdateMapState createState() => _UpdateMapState(
       name: name,
@@ -34,7 +36,8 @@ class UpdateMap extends StatefulWidget {
       province: province,
       address: address,
       vacation: vacation,
-      workinghours: workinghours);
+      workinghours: workinghours,
+      workinghours2: workinghours2);
 }
 
 class _UpdateMapState extends State<UpdateMap> {
@@ -44,7 +47,8 @@ class _UpdateMapState extends State<UpdateMap> {
   String province;
   String address = '';
   List vacation = [];
-  String workinghours = '';
+  List workinghours = [];
+  List workinghours2 = [];
 
   var latlng;
   List<Marker> mymarker = [];
@@ -116,7 +120,8 @@ class _UpdateMapState extends State<UpdateMap> {
       this.province,
       this.address,
       this.vacation,
-      this.workinghours});
+      this.workinghours,
+      this.workinghours2});
 
   @override
   void initState() {
@@ -197,8 +202,17 @@ class _UpdateMapState extends State<UpdateMap> {
                       if (lattt != null && lnggg != null) {
                         await DatabaseService(
                                 uid: FirebaseAuth.instance.currentUser.uid)
-                            .updateUserData(name, speciality, number, province,
-                                lattt, lnggg, address, vacation, workinghours);
+                            .updateUserData(
+                                name,
+                                speciality,
+                                number,
+                                province,
+                                lattt,
+                                lnggg,
+                                address,
+                                vacation,
+                                workinghours,
+                                workinghours2);
                         Navigator.pop(context);
                       }
                     }
