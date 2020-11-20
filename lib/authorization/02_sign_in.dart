@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/forget_password.dart';
 import 'package:project_doctor/authorization/loading.dart';
@@ -5,8 +6,6 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'dart:io';
-
-import 'package:project_doctor/services/auth_exception_handling.dart';
 
 //------this class is for the snackbar text
 class SnackText {
@@ -171,18 +170,28 @@ class _SignInState extends State<SignIn> {
                           checkInternet();
                           if (_isInternet) {
                             if (_formKey.currentState.validate()) {
-                              setState(() {
-                                loading = true;
-                              });
-                              dynamic authResult = await _auth
-                                  .signInWithEmailAndPassword(email, password);
-                              if (authResult != AuthResultStatus.successful) {
+                              try {
+                                dynamic authResult =
+                                    await _auth.signInWithEmailAndPassword(
+                                        email, password);
+                                //if the credentials are in valid or internet connection is interrupted
+                                //after entering this page and pressing sign in the loading is activated
+                                // so it was better by this following if condition
+                                if (authResult != null) {
+                                  setState(() => loading = true);
+                                } else {
+                                  setState(() {
+                                    SnackText.errorMsg =
+                                        AppLocalizations.of(context)
+                                            .translate('snack_sign_in');
+                                  });
+                                  _showSnackBar();
+                                }
+                              } on FirebaseAuthException catch (e) {
                                 setState(() {
+                                  print(e);
                                   loading = false;
-                                  SnackText.errorMsg = AuthExceptionHandler
-                                      .generateExceptionMessage(authResult);
                                 });
-                                _showSnackBar();
                               }
                             }
                           } else {

@@ -214,9 +214,6 @@ class _DocMapState extends State<DocMap> {
                               .translate('snack_map');
                           _showSnackBar();
                         } else {
-                          setState(() {
-                            loading = true;
-                          });
                           await geolocate(latlng: latlng);
                           if (lattt != null && lnggg != null) {
                             dynamic authResult =
@@ -248,7 +245,6 @@ class _DocMapState extends State<DocMap> {
                               );
                             } else {
                               setState(() {
-                                loading = false;
                                 error = AppLocalizations.of(context)
                                     .translate('snack_register');
                               });
@@ -261,8 +257,8 @@ class _DocMapState extends State<DocMap> {
                           error = AppLocalizations.of(context)
                               .translate('snack_connectivity');
                         });
-                        _showSnackBar();
                       }
+                      _showSnackBar();
                     },
                   ),
                 ),

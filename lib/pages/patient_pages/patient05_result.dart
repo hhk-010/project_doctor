@@ -51,6 +51,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   double _lat = 0.0;
   double _lng = 0.0;
   String _address = '';
+  // ignore: unused_field
   List _vacation = [];
   String _workinghours = '';
   double distance = 0.0;

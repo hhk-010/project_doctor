@@ -65,6 +65,7 @@ class _DoctorListState extends State<DoctorList> {
   double lat = 0.0;
   double lng = 0.0;
   String _address = '';
+  // ignore: unused_field
   List _vacation = [];
   String _workinghours = '';
 
