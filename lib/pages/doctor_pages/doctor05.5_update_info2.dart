@@ -74,6 +74,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
   String mainWorkingHours = '';
   String mainFromTimeString = '';
   String mainToTimeString = '';
+  String primainFromTimeString = '';
+  String primainToTimeString = '';
   String secondaryWorkingHours = '';
   String secondaryFromTimeString = '';
   String secondaryToTimeString = '';
@@ -91,6 +93,25 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
   String fromEnd = '';
   String toEnd = '';
   bool makeMePass = false;
+  List exception = [];
+  List e1 = [];
+  List e2 = [];
+  String secondFromNo = '';
+  String secondToNo = '';
+  String secondFromAmPm = '';
+  String secondToAmPm = '';
+  String secondFromEnd = '';
+  String secondToEnd = '';
+  String thirdFromNo = '';
+  String thirdToNo = '';
+  String thirdFromAmPm = '';
+  String thirdToAmPm = '';
+  String thirdFromEnd = '';
+  String thirdToEnd = '';
+  List t1 = [];
+  List t2 = [];
+  List l1 = [];
+  List l2 = [];
 
   @override
   void initState() {
@@ -447,18 +468,25 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                   ),
                                   DropdownMenuItem(
                                     value: weekDaysList["6"][1],
-                                    child: Text(weekDaysList["5"][0]),
+                                    child: Text(weekDaysList["6"][0]),
                                   ),
                                   DropdownMenuItem(
                                     value: weekDaysList["7"][1],
-                                    child: Text(weekDaysList["5"][0]),
+                                    child: Text(weekDaysList["7"][0]),
                                   ),
                                 ],
                                 onChanged: (value) {
                                   setState(() {
                                     weekday01 = value;
+                                    if (e1.isEmpty) {
+                                      e1.add(weekday01);
+                                    } else {
+                                      e1.remove(e1[0]);
+                                      e1.add(weekday01);
+                                    }
                                   });
                                   print(weekday01);
+                                  print(e1);
                                 },
                                 value: weekday01,
                                 dropdownColor: Colors.white,
@@ -618,17 +646,24 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                   ),
                                   DropdownMenuItem(
                                     value: weekDaysList["6"][1],
-                                    child: Text(weekDaysList["5"][0]),
+                                    child: Text(weekDaysList["6"][0]),
                                   ),
                                   DropdownMenuItem(
                                     value: weekDaysList["7"][1],
-                                    child: Text(weekDaysList["5"][0]),
+                                    child: Text(weekDaysList["7"][0]),
                                   ),
                                 ],
                                 onChanged: (value) {
                                   setState(() {
                                     weekday02 = value;
+                                    if (e2.isEmpty) {
+                                      e2.add(weekday02);
+                                    } else {
+                                      e2.remove(e2[0]);
+                                      e2.add(weekday02);
+                                    }
                                   });
+                                  print(e2);
                                   print(weekday02);
                                 },
                                 value: weekday02,
@@ -725,6 +760,32 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                           borderRadius: BorderRadius.circular(80.0)),
                       onPressed: () {
                         if (_formkey.currentState.validate()) {
+                          setState(() {
+                            if (e1.isNotEmpty && t1.isNotEmpty) {
+                              if (l1.isEmpty) {
+                                l1.add([e1[0], t1[0]]);
+                              } else {
+                                l1 = [];
+                                l1.add([e1[0], t1[0]]);
+                              }
+                            } else if ((e1.isNotEmpty && t1.isEmpty) ||
+                                (e1.isEmpty && t1.isNotEmpty)) {
+                              //show snackbar
+                            } else if (e2.isNotEmpty && t2.isNotEmpty) {
+                              if (l2.isEmpty) {
+                                l2.add([e2[0], t2[0]]);
+                              } else {
+                                l2 = [];
+                                l2.add([e2[0], t2[0]]);
+                              }
+                            } else if ((e2.isNotEmpty && t2.isEmpty) ||
+                                (e2.isEmpty && t2.isNotEmpty)) {
+                              //show snackbar
+                            }
+                          });
+                          //main from time='' snackbar
+                          //main to time='' snackbar
+                          //main days =[] snackbar
                           if (address != '' &&
                               currentVacationDays != '' &&
                               mainFromTimeString != '' &&
@@ -740,6 +801,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                 currentListVacationDays.add(mainWorkingHours);
                               }
                               makeMePass = false;
+                              exception[0] = l1;
+                              exception[1] = l2;
+                              print(exception);
                             });
                             Navigator.of(context).push(
                               MaterialPageRoute(
@@ -843,11 +907,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
         mainWorkingHours =
             'from ' + mainFromTimeString + ' to ' + mainToTimeString;
         makeMePass = true;
-        /*mainWorkingHours = AppLocalizations.of(context).translate('from') +
-            mainFromTimeString +
-            ' ' +
-            AppLocalizations.of(context).translate('to') +
-            mainToTimeString;*/
         print(mainToTimeString);
         print(mainWorkingHours);
       });
@@ -875,6 +934,17 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       setState(() {
         _secondaryFromTime = secondaryFromTime;
         secondaryFromTimeString = _secondaryFromTime.format(context);
+        secondFromNo = secondaryFromTimeString.substring(
+            0, secondaryFromTimeString.indexOf(' '));
+        secondFromEnd = secondaryFromTimeString.substring(
+            secondaryFromTimeString.indexOf(' '),
+            secondaryFromTimeString.length);
+        if (secondFromEnd == 'ًص' || secondFromEnd == 'AM') {
+          secondFromAmPm = 'AM';
+        } else {
+          secondFromAmPm = 'PM';
+        }
+        secondaryFromTimeString = secondFromNo + ' ' + secondFromEnd;
         print(secondaryFromTimeString);
       });
   }
@@ -901,11 +971,29 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       setState(() {
         _secondaryToTime = secondaryToTime;
         secondaryToTimeString = _secondaryToTime.format(context);
-        secondaryWorkingHours = AppLocalizations.of(context).translate('from') +
+        secondToNo = secondaryFromTimeString.substring(
+            0, secondaryFromTimeString.indexOf(' '));
+        secondToEnd = secondaryFromTimeString.substring(
+            0, secondaryFromTimeString.indexOf(' '));
+        if (secondToEnd == 'ص' || secondToEnd == 'AM') {
+          secondToAmPm = 'AM';
+        } else {
+          secondToAmPm = 'PM';
+        }
+        secondaryToTimeString = secondToNo + ' ' + secondToAmPm;
+        secondaryWorkingHours =
+            'from ' + secondaryFromTimeString + ' to ' + secondaryToTimeString;
+        if (t1.length == 0) {
+          t1.add(secondaryWorkingHours);
+        } else if (t1.length >= 1) {
+          t1 = [];
+          t1.add(secondaryWorkingHours);
+        }
+        /*secondaryWorkingHours = AppLocalizations.of(context).translate('from') +
             secondaryFromTimeString +
             ' ' +
             AppLocalizations.of(context).translate('to') +
-            secondaryToTimeString;
+            secondaryToTimeString;*/
         print(secondaryToTimeString);
         print(secondaryWorkingHours);
       });
@@ -933,6 +1021,16 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       setState(() {
         _ternaryFromTime = ternaryFromTime;
         ternaryFromTimeString = _ternaryFromTime.format(context);
+        thirdFromNo = ternaryFromTimeString.substring(
+            0, ternaryFromTimeString.indexOf(' '));
+        thirdFromEnd = ternaryFromTimeString.substring(
+            ternaryFromTimeString.indexOf(' '), ternaryFromTimeString.length);
+        if (thirdFromEnd == 'ًص' || thirdFromEnd == 'AM') {
+          thirdFromAmPm = 'AM';
+        } else {
+          thirdFromAmPm = 'PM';
+        }
+        ternaryFromTimeString = thirdFromNo + ' ' + thirdFromAmPm;
         print(ternaryFromTimeString);
       });
   }
@@ -959,11 +1057,29 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       setState(() {
         _ternaryToTime = ternaryToTime;
         ternaryToTimeString = _ternaryToTime.format(context);
-        ternaryWorkingHours = AppLocalizations.of(context).translate('from') +
+        thirdToNo = ternaryFromTimeString.substring(
+            0, ternaryFromTimeString.indexOf(' '));
+        thirdToEnd = ternaryFromTimeString.substring(
+            0, ternaryFromTimeString.indexOf(' '));
+        if (thirdToEnd == 'ص' || thirdToEnd == 'AM') {
+          thirdToAmPm = 'AM';
+        } else {
+          thirdToAmPm = 'PM';
+        }
+        ternaryToTimeString = thirdToNo + ' ' + thirdToAmPm;
+        ternaryWorkingHours =
+            'from ' + ternaryFromTimeString + ' to ' + ternaryToTimeString;
+        if (t2.length == 0) {
+          t2.add(ternaryWorkingHours);
+        } else if (t2.length >= 1) {
+          t2 = [];
+          t2.add(ternaryWorkingHours);
+        }
+        /*ternaryWorkingHours = AppLocalizations.of(context).translate('from') +
             ternaryFromTimeString +
             ' ' +
             AppLocalizations.of(context).translate('to') +
-            ternaryToTimeString;
+            ternaryToTimeString;*/
         print(ternaryToTimeString);
         print(ternaryWorkingHours);
       });

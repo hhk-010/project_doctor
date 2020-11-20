@@ -901,11 +901,6 @@ class _ClinicFormState extends State<ClinicForm> {
         mainToTimeNo = mainToTimeNo + ' ' + toampm;
         mainWorkingHours = 'from ' + mainFromTimeNo + ' to ' + mainToTimeNo;
         makeMePass = true;
-        /*AppLocalizations.of(context).translate('from') +
-            mainFromTimeString +
-            ' ' +
-            AppLocalizations.of(context).translate('to') +
-            mainToTimeString;*/
         print(mainWorkingHours);
       });
   }
