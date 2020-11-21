@@ -178,37 +178,37 @@ class _ClinicFormState extends State<ClinicForm> {
       0: [
         workDays[0],
         AppLocalizations.of(context).translate('sunday'),
-        "Sunday"
+        "sunday"
       ],
       1: [
         workDays[1],
         AppLocalizations.of(context).translate('monday'),
-        "Monday"
+        "monday"
       ],
       2: [
         workDays[2],
         AppLocalizations.of(context).translate('tuesday'),
-        "Tuesday"
+        "tuesday"
       ],
       3: [
         workDays[3],
         AppLocalizations.of(context).translate('wednesday'),
-        "Wednesday"
+        "wednesday"
       ],
       4: [
         workDays[4],
         AppLocalizations.of(context).translate('thursday'),
-        "Thursday"
+        "thursday"
       ],
       5: [
         workDays[5],
         AppLocalizations.of(context).translate('friday'),
-        "Friday"
+        "friday"
       ],
       6: [
         workDays[6],
         AppLocalizations.of(context).translate('saturday'),
-        "Saturday"
+        "saturday"
       ],
     };
     void makeException1() {

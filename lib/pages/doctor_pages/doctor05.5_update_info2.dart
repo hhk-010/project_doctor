@@ -157,37 +157,37 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       0: [
         worksDays[0],
         AppLocalizations.of(context).translate('sunday'),
-        "Sunday"
+        "sunday"
       ],
       1: [
         worksDays[1],
         AppLocalizations.of(context).translate('monday'),
-        "Monday"
+        "monday"
       ],
       2: [
         worksDays[2],
         AppLocalizations.of(context).translate('tuesday'),
-        "Tuesday"
+        "tuesday"
       ],
       3: [
         worksDays[3],
         AppLocalizations.of(context).translate('wednesday'),
-        "Wednesday"
+        "wednesday"
       ],
       4: [
         worksDays[4],
         AppLocalizations.of(context).translate('thursday'),
-        "Thursday"
+        "thursday"
       ],
       5: [
         worksDays[5],
         AppLocalizations.of(context).translate('friday'),
-        "Friday"
+        "friday"
       ],
       6: [
         worksDays[6],
         AppLocalizations.of(context).translate('saturday'),
-        "Saturday"
+        "saturday"
       ],
     };
 

@@ -37,6 +37,8 @@
     "saturday" : "Saturday",
     "from" : "From ",
     "to" : "To ",
+    "AM":"AM",
+    "PM":"PM",
 
  
 
