@@ -325,7 +325,7 @@ class _DoctorListState extends State<DoctorList> {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'ddddd',
+                      _mainDays + '/' + _mainTime,
                       style: _textStyle,
                     ),
                     Divider(
@@ -335,33 +335,14 @@ class _DoctorListState extends State<DoctorList> {
                       endIndent: 0,
                     ),
                     Text(
-                      AppLocalizations.of(context)
-                          .translate('clinic_work'),
+                      AppLocalizations.of(context).translate('clinic_work'),
                       style: TextStyle(
                           fontSize: 10,
                           color: Colors.indigo,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      _mainDays +'/' + _mainTime,
-                      style: _textStyle,
-                    ),
-                    Divider(
-                      color: Colors.grey,
-                      thickness: 1,
-                      indent: 0,
-                      endIndent: 0,
-                    ),
-                     Text(
-                      AppLocalizations.of(context)
-                          .translate('clinic_work'),
-                      style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.indigo,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                    _firstEDay + _firstTime +'/' + _secondEDay + _secondTime,
+                      _firstEDay + _firstTime + '/' + _secondEDay + _secondTime,
                       style: _textStyle,
                     ),
                     Divider(

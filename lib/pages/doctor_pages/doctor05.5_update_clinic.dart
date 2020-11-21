@@ -398,24 +398,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                           SizedBox(
                             height: 25,
                           ),
-                          Center(
-                            child: Text(
-                              AppLocalizations.of(context).translate(
-                                'work_hour',
-                              ),
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Divider(
-                            color: Colors.grey,
-                            thickness: 2,
-                            indent: 50,
-                            endIndent: 50,
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
                           Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 15,
