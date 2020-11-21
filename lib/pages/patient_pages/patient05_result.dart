@@ -130,90 +130,6 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
           children: [
             Container(
               decoration: boxDecoration,
-<<<<<<< HEAD
-              child: Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.deepOrangeAccent,
-                          radius: 75,
-                          backgroundImage:
-                              AssetImage('assets/images/doctor.png'),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          _name,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate(_speciality),
-                          //_speciality,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          _number,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          _currentAddress,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          _address,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          '',
-                          //_workinghours,
-                          style: _textStyle,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate("vacation")
-                          /*_vacation*/,
-                          //'clinic vacation is ' + _vacation,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate("distances"),
-                          //'Distance to the Doctor is about ',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Text(
-                          realnearby +
-                              AppLocalizations.of(context)
-                                  .translate("km"), //' Km away',
-                          style:
-                              TextStyle(color: Colors.deepOrange, fontSize: 20),
-                        ),
-                      ],
-                    ),
-                  ),
-=======
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
@@ -362,7 +278,6 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                       style: _textStyle,
                     ),
                   ],
->>>>>>> dfc4da3e164ad010a9d07ff15dfaa07ba5f78c14
                 ),
               ),
             ),

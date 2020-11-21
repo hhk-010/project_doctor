@@ -68,11 +68,7 @@ class _DoctorListState extends State<DoctorList> {
   String _address = '';
   // ignore: unused_field
   List _vacation = [];
-<<<<<<< HEAD
-  List workinghours = [];
-=======
   List _workinghours = [];
->>>>>>> dfc4da3e164ad010a9d07ff15dfaa07ba5f78c14
 
 //get the user address from lat and lng
   String _doctorAddress = '';
@@ -105,7 +101,7 @@ class _DoctorListState extends State<DoctorList> {
             lng = doc.data()['lng'];
             _address = doc.data()['address'];
             _vacation = doc.data()['vacation'];
-            workinghours = doc.data()['workinghours'];
+            //workinghours = doc.data()['workinghours'];
             _getAddressFromLatLng();
           });
         }
@@ -119,80 +115,6 @@ class _DoctorListState extends State<DoctorList> {
           children: [
             Container(
               decoration: boxDecoration,
-<<<<<<< HEAD
-              child: Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.deepOrange,
-                          radius: 75,
-                          backgroundImage:
-                              AssetImage('assets/images/doctor.png'),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          name,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          speciality,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          number,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          _doctorAddress,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          _address,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          '',
-                          /*AppLocalizations.of(context).translate('open_time') +
-                              _workinghours,*/
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate('vacation')
-                          /*_vacation*/,
-                          style: _textStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ],
-                    ),
-                  ),
-=======
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
@@ -313,7 +235,6 @@ class _DoctorListState extends State<DoctorList> {
                       style: _textStyle,
                     ),
                   ],
->>>>>>> dfc4da3e164ad010a9d07ff15dfaa07ba5f78c14
                 ),
               ),
             ),
