@@ -18,28 +18,30 @@ class UpdateInfo2 extends StatefulWidget {
       province: province);
 }
 
-List<bool> workDays = List.filled(7, false);
-List boolToStringDays(BuildContext context, List workDays) {
+List<DropdownMenuItem<String>> exceptions1 = List();
+List<DropdownMenuItem<String>> exceptions2 = List();
+List<bool> worksDays = List.filled(7, false);
+List boolToStringDays(BuildContext context, List worksDays) {
   return [
-    workDays[0]
+    worksDays[0]
         ? 'sunday'
         : null, //AppLocalizations.of(context).translate('sunday') : null,
-    workDays[1]
+    worksDays[1]
         ? 'monday'
         : null, //AppLocalizations.of(context).translate('monday') : null,
-    workDays[2]
+    worksDays[2]
         ? 'tuesday'
         : null, //AppLocalizations.of(context).translate('tuesday') : null,
-    workDays[3]
+    worksDays[3]
         ? 'wednesday'
         : null, //AppLocalizations.of(context).translate('wednesday') : null,
-    workDays[4]
+    worksDays[4]
         ? 'thursday'
         : null, //AppLocalizations.of(context).translate('thursday') : null,
-    workDays[5]
+    worksDays[5]
         ? 'friday'
         : null, //AppLocalizations.of(context).translate('friday') : null,
-    workDays[6]
+    worksDays[6]
         ? 'saturday'
         : null, //AppLocalizations.of(context).translate('saturday') : null,
   ];
@@ -111,7 +113,13 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
   List t2 = [];
   List l1 = [];
   List l2 = [];
-
+  bool mainfrom = false;
+  bool mainto = false;
+  bool secfrom = false;
+  bool secto = false;
+  bool thirdfrom = false;
+  bool thirdto = false;
+  List oneday = [[]];
   @override
   void initState() {
     super.initState();
@@ -126,15 +134,68 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
   final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final weekDaysList = {
-      "1": [AppLocalizations.of(context).translate('sunday'), "Sunday"],
-      "2": [AppLocalizations.of(context).translate('monday'), "Monday"],
-      "3": [AppLocalizations.of(context).translate('tuesday'), "Tuesday"],
-      "4": [AppLocalizations.of(context).translate('wednesday'), "Wednesday"],
-      "5": [AppLocalizations.of(context).translate('thursday'), "Thursday"],
-      "6": [AppLocalizations.of(context).translate('friday'), "Friday"],
-      "7": [AppLocalizations.of(context).translate('saturday'), "Saturday"],
+    final otherweekDaysList = {
+      0: [
+        worksDays[0],
+        AppLocalizations.of(context).translate('sunday'),
+        "Sunday"
+      ],
+      1: [
+        worksDays[1],
+        AppLocalizations.of(context).translate('monday'),
+        "Monday"
+      ],
+      2: [
+        worksDays[2],
+        AppLocalizations.of(context).translate('tuesday'),
+        "Tuesday"
+      ],
+      3: [
+        worksDays[3],
+        AppLocalizations.of(context).translate('wednesday'),
+        "Wednesday"
+      ],
+      4: [
+        worksDays[4],
+        AppLocalizations.of(context).translate('thursday'),
+        "Thursday"
+      ],
+      5: [
+        worksDays[5],
+        AppLocalizations.of(context).translate('friday'),
+        "Friday"
+      ],
+      6: [
+        worksDays[6],
+        AppLocalizations.of(context).translate('saturday'),
+        "Saturday"
+      ],
     };
+
+    void makeExceptions1() {
+      exceptions1 = [];
+      for (int key in otherweekDaysList.keys) {
+        if (!otherweekDaysList[key][0] &&
+            otherweekDaysList[key][2] != myDays.day2) {
+          exceptions1.add(DropdownMenuItem<String>(
+              child: Text(otherweekDaysList[key][1]),
+              value: otherweekDaysList[key][2]));
+        }
+      }
+    }
+
+    void makeExceptions2() {
+      exceptions2 = [];
+      for (int key in otherweekDaysList.keys) {
+        if (!otherweekDaysList[key][0] &&
+            otherweekDaysList[key][2] != myDays.day1) {
+          exceptions2.add(DropdownMenuItem<String>(
+              child: Text(otherweekDaysList[key][1]),
+              value: otherweekDaysList[key][2]));
+        }
+      }
+    }
+
     final locale = Localizations.localeOf(context);
     final textDirection = getTextDirection(locale);
     return Scaffold(
@@ -250,17 +311,28 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                               onChanged: (int day) {
                                 setState(() {
                                   final index = day % 7;
-                                  workDays[index] = !workDays[index];
-                                  currentListVacationDays =
-                                      boolToStringDays(context, workDays);
-                                  currentListVacationDays
-                                      .removeWhere((value) => value == null);
-                                  currentVacationDays =
-                                      currentListVacationDays.join(', ');
-                                  print(currentListVacationDays);
+                                  if (myDays.day1 !=
+                                          otherweekDaysList[index][2] &&
+                                      myDays.day2 !=
+                                          otherweekDaysList[index][2]) {
+                                    worksDays[index] = !worksDays[index];
+
+                                    currentListVacationDays =
+                                        boolToStringDays(context, worksDays);
+                                    currentListVacationDays
+                                        .removeWhere((value) => value == null);
+                                    currentVacationDays =
+                                        currentListVacationDays.join(', ');
+                                    otherweekDaysList[index][0] =
+                                        !otherweekDaysList[index][0];
+                                    makeExceptions1();
+                                    makeExceptions2();
+                                  } else {
+                                    //showsnackbar
+                                  }
                                 });
                               },
-                              values: workDays,
+                              values: worksDays,
                               firstDayOfWeek: DateTime.sunday,
                               shortWeekdays: [
                                 AppLocalizations.of(context).translate('sun'),
@@ -343,7 +415,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16,
-                                              color: Colors.deepOrange,
+                                              color: mainfrom
+                                                  ? Colors.deepOrange
+                                                  : Colors.black,
                                             ),
                                           ),
                                         ]),
@@ -374,7 +448,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16,
-                                              color: Colors.deepOrange,
+                                              color: mainto
+                                                  ? Colors.deepOrange
+                                                  : Colors.black,
                                             ),
                                           ),
                                         ]),
@@ -444,7 +520,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                       .translate('select_days'),
                                 ),
                                 isExpanded: true,
-                                items: [
+                                items: exceptions1,
+                                /*[
                                   DropdownMenuItem(
                                     value: weekDaysList["1"][1],
                                     child: Text(weekDaysList["1"][0]),
@@ -473,7 +550,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                     value: weekDaysList["7"][1],
                                     child: Text(weekDaysList["7"][0]),
                                   ),
-                                ],
+                                ],*/
                                 onChanged: (value) {
                                   setState(() {
                                     weekday01 = value;
@@ -483,7 +560,10 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                       e1.remove(e1[0]);
                                       e1.add(weekday01);
                                     }
+                                    myDays.day1 = weekday01;
                                   });
+                                  makeExceptions2();
+                                  print(myDays.day1);
                                   print(weekday01);
                                   print(e1);
                                 },
@@ -520,7 +600,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16,
-                                                color: Colors.deepOrange,
+                                                color: secfrom
+                                                    ? Colors.deepOrange
+                                                    : Colors.black,
                                               ),
                                             ),
                                           ]),
@@ -551,7 +633,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16,
-                                                color: Colors.deepOrange,
+                                                color: secto
+                                                    ? Colors.deepOrange
+                                                    : Colors.black,
                                               ),
                                             ),
                                           ]),
@@ -622,7 +706,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                       .translate('select_days'),
                                 ),
                                 isExpanded: true,
-                                items: [
+                                items: exceptions2,
+                                /*[
                                   DropdownMenuItem(
                                     value: weekDaysList["1"][1],
                                     child: Text(weekDaysList["1"][0]),
@@ -651,7 +736,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                     value: weekDaysList["7"][1],
                                     child: Text(weekDaysList["7"][0]),
                                   ),
-                                ],
+                                ],*/
                                 onChanged: (value) {
                                   setState(() {
                                     weekday02 = value;
@@ -661,7 +746,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                       e2.remove(e2[0]);
                                       e2.add(weekday02);
                                     }
+                                    myDays.day2 = weekday02;
                                   });
+                                  makeExceptions1();
                                   print(e2);
                                   print(weekday02);
                                 },
@@ -698,7 +785,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16,
-                                                color: Colors.deepOrange,
+                                                color: thirdfrom
+                                                    ? Colors.deepOrange
+                                                    : Colors.black,
                                               ),
                                             ),
                                           ]),
@@ -729,7 +818,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16,
-                                                color: Colors.deepOrange,
+                                                color: thirdto
+                                                    ? Colors.deepOrange
+                                                    : Colors.black,
                                               ),
                                             ),
                                           ]),
@@ -809,6 +900,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                             });
                             print(l1);
                             print(l2);
+
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => UpdateMap(
@@ -823,6 +915,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                 ),
                               ),
                             );
+                            mainfrom = false;
+                            mainto = false;
                           }
                         }
                       },
@@ -874,6 +968,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
           fromAmPm = 'PM';
         }
         mainFromTimeString = mainFromNo + ' ' + fromAmPm;
+        mainfrom = true;
         print(mainFromTimeString);
       });
   }
@@ -912,6 +1007,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
         mainWorkingHours =
             'from ' + mainFromTimeString + ' to ' + mainToTimeString;
         makeMePass = true;
+        mainto = true;
         print(mainToTimeString);
         print(mainWorkingHours);
       });
@@ -950,6 +1046,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
           secondFromAmPm = 'PM';
         }
         secondaryFromTimeString = secondFromNo + ' ' + secondFromEnd;
+        secfrom = true;
         print(secondaryFromTimeString);
       });
   }
@@ -994,6 +1091,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
           t1 = [];
           t1.add(secondaryWorkingHours);
         }
+        secto = true;
         /*secondaryWorkingHours = AppLocalizations.of(context).translate('from') +
             secondaryFromTimeString +
             ' ' +
@@ -1035,6 +1133,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
         } else {
           thirdFromAmPm = 'PM';
         }
+        thirdfrom = true;
         ternaryFromTimeString = thirdFromNo + ' ' + thirdFromAmPm;
         print(ternaryFromTimeString);
       });
@@ -1080,6 +1179,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
           t2 = [];
           t2.add(ternaryWorkingHours);
         }
+        thirdto = true;
         /*ternaryWorkingHours = AppLocalizations.of(context).translate('from') +
             ternaryFromTimeString +
             ' ' +
@@ -1089,4 +1189,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
         print(ternaryWorkingHours);
       });
   }
+}
+
+class myDays {
+  static String day1;
+  static String day2;
 }
