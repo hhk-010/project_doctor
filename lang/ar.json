@@ -123,7 +123,7 @@
     "clinic_address" : "عنوان العياده",
     "detailed_address":"عنوان العيادة كاملا",
     "address_validator":"الرجاء ادخال عنوان مناسب",
-    "work_days":"ايام دوام العيادة",
+    "vacation_days":"ايام عطله العيادة",
     "vacation_validator":"لطفا حدد ايام عطلة العيادة",
     "work_hour":"اوقات عمل العيادة",
     "work_validator":"حدد اوقات عمل العيادة لطفا",

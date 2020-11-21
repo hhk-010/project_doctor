@@ -159,16 +159,20 @@ class _UpdateinfoState extends State<Updateinfo> {
           key: _formkey,
           child: Column(
             children: [
-              TextFormField(
-                decoration: textInputdecoration.copyWith(
-                    hintText: AppLocalizations.of(context).translate('name'),
-                    labelText: AppLocalizations.of(context).translate('name')),
-                onChanged: (val) {
-                  name = val;
-                },
-                validator: (val) => val.isEmpty
-                    ? AppLocalizations.of(context).translate('name_validator')
-                    : null,
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: TextFormField(
+                  decoration: textInputdecoration.copyWith(
+                      hintText: AppLocalizations.of(context).translate('name'),
+                      labelText:
+                          AppLocalizations.of(context).translate('name')),
+                  onChanged: (val) {
+                    name = val;
+                  },
+                  validator: (val) => val.isEmpty
+                      ? AppLocalizations.of(context).translate('name_validator')
+                      : null,
+                ),
               ),
               Spacer(),
               DropdownButtonFormField<String>(

@@ -126,7 +126,7 @@
     "detailed_address":"Detailed clinic address",
     "address" : "Address in arabic",
     "address_validator":"Please enter a valid address",
-    "work_days":"Clinic work days",
+    "vacation_days":"Clinic Vacation days",
     "vacation_validator":"Select valid vacation days",
     "work_hour":"Clinic working hours",
     "work_validator":"Please enter valid working hours",

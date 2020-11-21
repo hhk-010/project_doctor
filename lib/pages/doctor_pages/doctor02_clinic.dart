@@ -5,6 +5,11 @@ import 'package:weekday_selector/weekday_selector.dart';
 import 'dart:ui';
 import 'doctor03_map.dart';
 
+class ClinicDay {
+  static String day1;
+  static String day2;
+}
+
 class ClinicForm extends StatefulWidget {
   final String email;
   final String password;
@@ -214,7 +219,7 @@ class _ClinicFormState extends State<ClinicForm> {
     void makeException1() {
       exception1 = [];
       for (int key in weekDaysList.keys) {
-        if (!weekDaysList[key][0] && weekDaysList[key][2] != clinicday.day2) {
+        if (!weekDaysList[key][0] && weekDaysList[key][2] != ClinicDay.day2) {
           exception1.add(DropdownMenuItem<String>(
               child: Text(weekDaysList[key][1]), value: weekDaysList[key][2]));
         }
@@ -224,7 +229,7 @@ class _ClinicFormState extends State<ClinicForm> {
     void makeException2() {
       exception2 = [];
       for (int key in weekDaysList.keys) {
-        if (!weekDaysList[key][0] && weekDaysList[key][2] != clinicday.day1) {
+        if (!weekDaysList[key][0] && weekDaysList[key][2] != ClinicDay.day1) {
           exception2.add(DropdownMenuItem<String>(
               child: Text(weekDaysList[key][1]), value: weekDaysList[key][2]));
         }
@@ -323,7 +328,7 @@ class _ClinicFormState extends State<ClinicForm> {
                         Center(
                           child: Text(
                             AppLocalizations.of(context).translate(
-                              'work_days',
+                              'vacation_days',
                             ),
                             textAlign: TextAlign.right,
                             style: TextStyle(
@@ -349,8 +354,8 @@ class _ClinicFormState extends State<ClinicForm> {
                             onChanged: (int day) {
                               setState(() {
                                 final index = day % 7;
-                                if (clinicday.day1 != weekDaysList[index][2] &&
-                                    clinicday.day2 != weekDaysList[index][2]) {
+                                if (ClinicDay.day1 != weekDaysList[index][2] &&
+                                    ClinicDay.day2 != weekDaysList[index][2]) {
                                   workDays[index] = !workDays[index];
                                   currentListVacationDays =
                                       boolToStringDays(context, workDays);
@@ -382,8 +387,7 @@ class _ClinicFormState extends State<ClinicForm> {
                             ],
                             weekdays: [
                               AppLocalizations.of(context).translate('sunday'),
-                              //AppLocalizations.of(context).translate('monday'),
-                              "monday",
+                              AppLocalizations.of(context).translate('monday'),
                               AppLocalizations.of(context).translate('tuesday'),
                               AppLocalizations.of(context)
                                   .translate('wednesday'),
@@ -555,36 +559,6 @@ class _ClinicFormState extends State<ClinicForm> {
                               ),
                               isExpanded: true,
                               items: exception1,
-                              /*[
-                                DropdownMenuItem(
-                                  value: weekDaysList["1"][1],
-                                  child: Text(weekDaysList["1"][0]),
-                                ),
-                                DropdownMenuItem(
-                                  value: weekDaysList["2"][1],
-                                  child: Text(weekDaysList["2"][0]),
-                                ),
-                                DropdownMenuItem(
-                                  value: weekDaysList["3"][1],
-                                  child: Text(weekDaysList["3"][0]),
-                                ),
-                                DropdownMenuItem(
-                                  value: weekDaysList["4"][1],
-                                  child: Text(weekDaysList["4"][0]),
-                                ),
-                                DropdownMenuItem(
-                                  value: weekDaysList["5"][1],
-                                  child: Text(weekDaysList["5"][0]),
-                                ),
-                                DropdownMenuItem(
-                                  value: weekDaysList["6"][1],
-                                  child: Text(weekDaysList["6"][0]),
-                                ),
-                                DropdownMenuItem(
-                                  value: weekDaysList["7"][1],
-                                  child: Text(weekDaysList["7"][0]),
-                                ),
-                              ],*/
                               onChanged: (value) {
                                 setState(() {
                                   weekday01 = value;
@@ -594,12 +568,12 @@ class _ClinicFormState extends State<ClinicForm> {
                                     e1 = [];
                                     e1.add(weekday01);
                                   }
-                                  clinicday.day1 = weekday01;
+                                  ClinicDay.day1 = weekday01;
                                 });
                                 makeException2();
                                 print(weekday01);
                                 print(e1);
-                                print(clinicday.day1);
+                                print(ClinicDay.day1);
                               },
                               value: weekday01,
                               dropdownColor: Colors.white,
@@ -740,36 +714,6 @@ class _ClinicFormState extends State<ClinicForm> {
                               ),
                               isExpanded: true,
                               items: exception2,
-                              /*[
-                                DropdownMenuItem(
-                                  value: weekDaysList["1"][1],
-                                  child: Text(weekDaysList["1"][0]),
-                                ),
-                                DropdownMenuItem(
-                                  value: weekDaysList["2"][1],
-                                  child: Text(weekDaysList["2"][0]),
-                                ),
-                                DropdownMenuItem(
-                                  value: weekDaysList["3"][1],
-                                  child: Text(weekDaysList["3"][0]),
-                                ),
-                                DropdownMenuItem(
-                                  value: weekDaysList["4"][1],
-                                  child: Text(weekDaysList["4"][0]),
-                                ),
-                                DropdownMenuItem(
-                                  value: weekDaysList["5"][1],
-                                  child: Text(weekDaysList["5"][0]),
-                                ),
-                                DropdownMenuItem(
-                                  value: weekDaysList["6"][1],
-                                  child: Text(weekDaysList["6"][0]),
-                                ),
-                                DropdownMenuItem(
-                                  value: weekDaysList["7"][1],
-                                  child: Text(weekDaysList["7"][0]),
-                                ),
-                              ],*/
                               onChanged: (value) {
                                 setState(() {
                                   weekday02 = value;
@@ -779,7 +723,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                     e2 = [];
                                     e2.add(weekday02);
                                   }
-                                  clinicday.day2 = weekday02;
+                                  ClinicDay.day2 = weekday02;
                                 });
                                 makeException1();
                                 print(weekday02);
@@ -1341,9 +1285,4 @@ class _ClinicFormState extends State<ClinicForm> {
   //   );
   // }
 
-}
-
-class clinicday {
-  static String day1;
-  static String day2;
 }
