@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:project_doctor/pages/doctor_pages/doctor05_update_info.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor05_update_form.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
@@ -66,10 +66,9 @@ class _DoctorListState extends State<DoctorList> {
   double lat = 0.0;
   double lng = 0.0;
   String _address = '';
-  // ignore: unused_field
-  List _vacation = [];
-  List _workinghours = [];
-  List _workinghours2 = [];
+  List _workDays01 = [];
+  List _workDays02 = [];
+  List _workDays03 = [];
   String _mainDaysTranslation;
   String _mainDays = '';
   String _firstEDay = '';
@@ -126,10 +125,10 @@ class _DoctorListState extends State<DoctorList> {
             lat = doc.data()['lat'];
             lng = doc.data()['lng'];
             _address = doc.data()['address'];
-            _vacation = doc.data()['vacation'];
-            _workinghours = doc.data()['workinghours'];
-            _workinghours2 = doc.data()['workinghours2'];
-            for (String x in _vacation) {
+            _workDays01 = doc.data()['workDays01'];
+            _workDays02 = doc.data()['workDays02'];
+            _workDays03 = doc.data()['workDays03'];
+            for (String x in _workDays01) {
               if (x.length < 11) {
                 _mainDaysTranslation =
                     AppLocalizations.of(context).translate(x);
@@ -155,14 +154,14 @@ class _DoctorListState extends State<DoctorList> {
                     _mainToAmPm;
               }
             }
-            if (_workinghours.isNotEmpty) {
+            if (_workDays02.isNotEmpty) {
               _firstEDay =
-                  AppLocalizations.of(context).translate(_workinghours[0]);
-              _firstfrom = _workinghours[1].substring(
-                  _workinghours[1].indexOf('m') + 2,
-                  _workinghours[1].indexOf('t') - 1);
-              _firstTo = _workinghours[1].substring(
-                  _workinghours[1].indexOf('t') + 3, _workinghours[1].length);
+                  AppLocalizations.of(context).translate(_workDays02[0]);
+              _firstfrom = _workDays02[1].substring(
+                  _workDays02[1].indexOf('m') + 2,
+                  _workDays02[1].indexOf('t') - 1);
+              _firstTo = _workDays02[1].substring(
+                  _workDays02[1].indexOf('t') + 3, _workDays02[1].length);
               _firstfromTime = _firstfrom.substring(0, _firstfrom.indexOf(' '));
               _firstfromAmPm = AppLocalizations.of(context).translate(_firstfrom
                   .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
@@ -179,14 +178,14 @@ class _DoctorListState extends State<DoctorList> {
                   ' ' +
                   _firstToAmPm;
             }
-            if (_workinghours2.isNotEmpty) {
+            if (_workDays03.isNotEmpty) {
               _secondEDay =
-                  AppLocalizations.of(context).translate(_workinghours2[0]);
-              _secondfrom = _workinghours2[1].substring(
-                  _workinghours2[1].indexOf('m') + 2,
-                  _workinghours2[1].indexOf('t') - 1);
-              _secondTo = _workinghours2[1].substring(
-                  _workinghours2[1].indexOf('t') + 3, _workinghours2[1].length);
+                  AppLocalizations.of(context).translate(_workDays03[0]);
+              _secondfrom = _workDays03[1].substring(
+                  _workDays03[1].indexOf('m') + 2,
+                  _workDays03[1].indexOf('t') - 1);
+              _secondTo = _workDays03[1].substring(
+                  _workDays03[1].indexOf('t') + 3, _workDays03[1].length);
               _secondfromTime =
                   _secondfrom.substring(0, _secondfrom.indexOf(' '));
               _secondfromAmPm = AppLocalizations.of(context).translate(
@@ -242,7 +241,8 @@ class _DoctorListState extends State<DoctorList> {
                     Center(
                       child: Text(
                         name,
-                        style: _textStyle.copyWith(fontSize: 25),
+                        style: _textStyle.copyWith(
+                            fontSize: 25, fontFamily: 'noto_arabic'),
                       ),
                     ),
                     SizedBox(
@@ -309,6 +309,23 @@ class _DoctorListState extends State<DoctorList> {
                     ),
                     Text(
                       _address,
+                      style: _textStyle.copyWith(fontFamily: 'noto_arabic'),
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
+                    ),
+                    Text(
+                      AppLocalizations.of(context).translate('clinic_work'),
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.indigo,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'ddddd',
                       style: _textStyle,
                     ),
                     Divider(
@@ -319,15 +336,14 @@ class _DoctorListState extends State<DoctorList> {
                     ),
                     Text(
                       AppLocalizations.of(context)
-                          .translate('time_availability'),
+                          .translate('clinic_work'),
                       style: TextStyle(
                           fontSize: 10,
                           color: Colors.indigo,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      AppLocalizations.of(context).translate('open_time') +
-                          _workinghours.toString(),
+                      _mainDays +'/' + _mainTime,
                       style: _textStyle,
                     ),
                     Divider(
@@ -336,10 +352,23 @@ class _DoctorListState extends State<DoctorList> {
                       indent: 0,
                       endIndent: 0,
                     ),
+                     Text(
+                      AppLocalizations.of(context)
+                          .translate('clinic_work'),
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.indigo,
+                          fontWeight: FontWeight.bold),
+                    ),
                     Text(
-                      AppLocalizations.of(context).translate('vacation')
-                      /*_vacation*/,
+                    _firstEDay + _firstTime +'/' + _secondEDay + _secondTime,
                       style: _textStyle,
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
                     ),
                   ],
                 ),

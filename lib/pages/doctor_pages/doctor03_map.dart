@@ -16,9 +16,9 @@ class DocMap extends StatefulWidget {
   final String phone;
   final String province;
   final String address;
-  final List vacation;
-  final List mainWorkingHours;
-  final List secondaryWorkingHours;
+  final List workDays01;
+  final List workDays02;
+  final List workDays03;
 
   DocMap(
       {this.email,
@@ -28,9 +28,9 @@ class DocMap extends StatefulWidget {
       this.phone,
       this.province,
       this.address,
-      this.vacation,
-      this.mainWorkingHours,
-      this.secondaryWorkingHours});
+      this.workDays01,
+      this.workDays02,
+      this.workDays03});
 
   @override
   _DocMapState createState() => _DocMapState(
@@ -41,9 +41,9 @@ class DocMap extends StatefulWidget {
       phoneNumber: phone,
       province: province,
       address: address,
-      vacation: vacation,
-      workinghours: mainWorkingHours,
-      workinghours2: secondaryWorkingHours);
+      workDays01: workDays01,
+      workDays02: workDays02,
+      workDays03: workDays03);
 }
 
 class _DocMapState extends State<DocMap> {
@@ -56,9 +56,9 @@ class _DocMapState extends State<DocMap> {
   var phoneNumber = '';
   var province = '';
   String address = '';
-  List vacation = [];
-  List workinghours = [];
-  List workinghours2 = [];
+  List workDays01 = [];
+  List workDays02 = [];
+  List workDays03 = [];
   bool loading = false;
 
   _DocMapState(
@@ -69,9 +69,9 @@ class _DocMapState extends State<DocMap> {
       this.phoneNumber,
       this.province,
       this.address,
-      this.vacation,
-      this.workinghours,
-      this.workinghours2});
+      this.workDays01,
+      this.workDays02,
+      this.workDays03});
   String error = '';
   var latlng;
 
@@ -230,9 +230,9 @@ class _DocMapState extends State<DocMap> {
                                     lattt,
                                     lnggg,
                                     address,
-                                    vacation,
-                                    workinghours,
-                                    workinghours2);
+                                    workDays01,
+                                    workDays02,
+                                    workDays03);
                             setState(() {
                               Newclient.email = email;
                             });
