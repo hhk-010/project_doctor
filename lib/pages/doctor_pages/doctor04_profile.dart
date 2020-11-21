@@ -325,7 +325,9 @@ class _DoctorListState extends State<DoctorList> {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      _mainDays + '/' + _mainTime,
+                      // _mainDays +
+                       '\n'
+                       + _mainTime,
                       style: _textStyle,
                     ),
                     Divider(
@@ -342,7 +344,7 @@ class _DoctorListState extends State<DoctorList> {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      _firstEDay + _firstTime + '/' + _secondEDay + _secondTime,
+                      _firstEDay + " " + _firstTime + '\n' + _secondEDay + _secondTime,
                       style: _textStyle,
                     ),
                     Divider(
