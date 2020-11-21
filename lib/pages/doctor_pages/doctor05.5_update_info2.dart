@@ -119,7 +119,26 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
   bool secto = false;
   bool thirdfrom = false;
   bool thirdto = false;
-  List oneday = [[]];
+  String _error = '';
+  //==============snackbar for empty latlng============
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  _showSnackBar() {
+    var lang = Localizations.localeOf(context).languageCode;
+
+    final snackBar = new SnackBar(
+      content: new Text(
+        _error,
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+      ),
+
+      //duration: new Duration(seconds: 3),
+      backgroundColor: Colors.deepOrange,
+    );
+    _scaffoldkey.currentState.showSnackBar(snackBar);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -199,6 +218,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
     final locale = Localizations.localeOf(context);
     final textDirection = getTextDirection(locale);
     return Scaffold(
+        key: _scaffoldkey,
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
@@ -328,7 +348,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                     makeExceptions1();
                                     makeExceptions2();
                                   } else {
-                                    //showsnackbar
+                                    _error = AppLocalizations.of(context)
+                                        .translate("dayselected");
+                                    _showSnackBar();
                                   }
                                 });
                               },
@@ -886,7 +908,11 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                               currentVacationDays != '' &&
                               mainFromTimeString != '' &&
                               mainToTimeString != '' &&
-                              makeMePass == true) {
+                              makeMePass == true &&
+                              ((e1.isNotEmpty && t1.isNotEmpty) ||
+                                  (e1.isEmpty && t1.isEmpty)) &&
+                              ((e2.isNotEmpty && t2.isNotEmpty) ||
+                                  (e2.isEmpty && t2.isEmpty))) {
                             setState(() {
                               if (mainWorkingHours == '') {
                                 currentListVacationDays.add(mainWorkingHours);
@@ -917,6 +943,37 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                             );
                             mainfrom = false;
                             mainto = false;
+                          } else if (currentVacationDays == '') {
+                            _error = AppLocalizations.of(context)
+                                .translate('selectmaindays');
+                            _showSnackBar();
+                          } else if (mainFromTimeString == '' ||
+                              mainToTimeString == '') {
+                            _error = AppLocalizations.of(context)
+                                .translate('Select time');
+                            _showSnackBar();
+                          } else if (!((e1.isNotEmpty && t1.isNotEmpty) ||
+                              (e1.isEmpty && t1.isEmpty))) {
+                            if (e1.isEmpty) {
+                              _error = AppLocalizations.of(context)
+                                  .translate('choose 1st exceprion day');
+                              _showSnackBar();
+                            } else {
+                              _error = AppLocalizations.of(context)
+                                  .translate('choose 1st exception time');
+                              _showSnackBar();
+                            }
+                          } else if (!((e2.isNotEmpty && t2.isNotEmpty) ||
+                              (e2.isEmpty && t2.isEmpty))) {
+                            if (e2.isEmpty) {
+                              _error = AppLocalizations.of(context)
+                                  .translate('choose 2nd exception day');
+                              _showSnackBar();
+                            } else {
+                              _error = AppLocalizations.of(context)
+                                  .translate('choose 2nd exception time');
+                              _showSnackBar();
+                            }
                           }
                         }
                       },

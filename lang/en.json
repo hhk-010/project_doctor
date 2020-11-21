@@ -71,8 +71,13 @@
     "gender_message":"Please , Select a gender",
     "complain_message":"Please , select a main complaint",
     "geolocator_message":"Open your location service then press",
-
-
+    "dayselected":"This day is selected",
+    "selectmaindays":"Please , select working days",
+    "Select time":"Please , select working hours",
+    "choose 1st exceprion day":"Please , choose the first exceprion day",
+    "choose 1st exception time":"Please , choose the time of first excepted day ",
+    "choose 2nd exception day":"Please , choose the second exceprion day",
+    "choose 2nd exception time":"Please , choose the time of second excepted day ",
 
 "doctor_page" : "=======================================",
     "home_title" : "Welcome to Cura",
