@@ -117,6 +117,7 @@
     "change_password" : "Change Your Password?",
     "change" : "Change",
     "vacation":"Clinic vacation is in ",
+    "clinic_address" : "Clinic Address",
     "detailed_address":"Detailed clinic address",
     "address" : "Address in arabic",
     "address_validator":"Please enter a valid address",
@@ -128,9 +129,11 @@
     "passWord_reset":"Password Reset",
     "password_reset_email":"Send Email To Reset Password",
     "check_reset_email":"Check your Email and click on the link to Reset your Password",
-    "open_time":"Doctor is available from ",
+    "open_time":"Doctor is available",
     "expcetion_days" : "Days with other timing",
     "select_days" : "Select the day",
+    "time_availability" : "Time Availability",
+    
 
     
 
@@ -272,7 +275,7 @@
  "GIT and abdomen" : "=========================================",
     "abdominal pain":"Abdominal pain",
     "vomiting":"Vomiting",
-    "constipation":"Vonstipation",
+    "constipation":"Constipation",
     "bloody diarrhea":"Vloody diarrhea",
     "watery diarrhea":"Watery diarrhea",
     "dysphagia":"Dysphagia",
