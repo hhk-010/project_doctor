@@ -49,12 +49,12 @@ class DocMap extends StatefulWidget {
 class _DocMapState extends State<DocMap> {
   final AuthService _auth = AuthService();
 
-  var email = '';
+  String email = '';
   String password = '';
-  var name = '';
-  var speciality = '';
-  var phoneNumber = '';
-  var province = '';
+  String name = '';
+  String speciality = '';
+  String phoneNumber = '';
+  String province = '';
   String address = '';
   List workDays01 = [];
   List workDays02 = [];
@@ -79,9 +79,7 @@ class _DocMapState extends State<DocMap> {
 
   handletap(LatLng tappedpoint) {
     print(tappedpoint);
-
     latlng = tappedpoint.toString();
-
     setState(() {
       mymarker = [];
       mymarker.add(Marker(
@@ -221,20 +219,22 @@ class _DocMapState extends State<DocMap> {
                           if (lattt != null && lnggg != null) {
                             dynamic authResult =
                                 await _auth.registerWithEmailAndPassword(
-                                    email,
-                                    password,
-                                    name,
-                                    speciality,
-                                    phoneNumber,
-                                    province,
-                                    lattt,
-                                    lnggg,
-                                    address,
-                                    workDays01,
-                                    workDays02,
-                                    workDays03);
+                              email,
+                              password,
+                            );
                             setState(() {
-                              Newclient.email = email;
+                              DataFromMaptoVerify.email = email;
+                                                            DataFromMaptoVerify.name = name;
+
+                              DataFromMaptoVerify.speciality = speciality;
+                              DataFromMaptoVerify.phoneNumber = phoneNumber;
+                              DataFromMaptoVerify.province = province;
+                              DataFromMaptoVerify.address = address;
+                              DataFromMaptoVerify.workDays01 = workDays01;
+                              DataFromMaptoVerify.workDays02 = workDays02;
+                              DataFromMaptoVerify.workDays03 = workDays03;
+                              DataFromMaptoVerify.lat = lattt;
+                              DataFromMaptoVerify.lng = lnggg;
                             });
                             //========Navigation to EmailVerification without the following
                             // condition is a bug(emails Already in use can navigate)

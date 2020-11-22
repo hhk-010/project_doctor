@@ -4,24 +4,31 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
+import 'package:project_doctor/services/database.dart';
 
-//---------class for launching the registered email
-class Newclient {
+// class for getting the data from map to firebase through verfication.
+class DataFromMaptoVerify {
   static String email = '';
+  static String name = '';
+  static String speciality = '';
+  static String phoneNumber = '';
+  static String province = '';
+  static String address = '';
+  static List workDays01 = [];
+  static List workDays02 = [];
+  static List workDays03 = [];
+  static double lat;
+  static double lng;
 }
 
 class EmailVerification extends StatefulWidget {
-  final String email;
-  EmailVerification({this.email});
-
   @override
-  _EmailVerificationState createState() =>
-      _EmailVerificationState(email: email);
+  _EmailVerificationState createState() => _EmailVerificationState();
 }
 
 class _EmailVerificationState extends State<EmailVerification> {
-  String email;
-  _EmailVerificationState({this.email});
+  bool loading = false;
+
   final AuthService _auth = AuthService();
   Timer _timer;
   @override
@@ -37,7 +44,6 @@ class _EmailVerificationState extends State<EmailVerification> {
   @override
   Widget build(BuildContext context) {
     var lang = Localizations.localeOf(context).languageCode;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
@@ -85,7 +91,7 @@ class _EmailVerificationState extends State<EmailVerification> {
               flex: 1,
             ),
             Text(
-              Newclient.email,
+              DataFromMaptoVerify.email,
               //'$email',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
@@ -116,8 +122,21 @@ class _EmailVerificationState extends State<EmailVerification> {
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold)),
-              onPressed: () {
+              onPressed: () async {
                 if (FirebaseAuth.instance.currentUser.emailVerified) {
+                  await DatabaseService(
+                          uid: FirebaseAuth.instance.currentUser.uid)
+                      .updateUserData(
+                          DataFromMaptoVerify.name,
+                          DataFromMaptoVerify.speciality,
+                          DataFromMaptoVerify.phoneNumber,
+                          DataFromMaptoVerify.province,
+                          DataFromMaptoVerify.lat,
+                          DataFromMaptoVerify.lng,
+                          DataFromMaptoVerify.address,
+                          DataFromMaptoVerify.workDays01,
+                          DataFromMaptoVerify.workDays02,
+                          DataFromMaptoVerify.workDays03);
                   Navigator.pushNamed(context, '/intermediate');
                 }
               },

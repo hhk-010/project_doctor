@@ -921,9 +921,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                   number: phoneNumber,
                                   province: province,
                                   address: address,
-                                  vacation: workDays01,
-                                  workinghours: workDays0,
-                                  workinghours2: workDays03,
+                                  workDays01: workDays01,
+                                  workDays02: workDays0,
+                                  workDays03: workDays03,
                                 ),
                               ),
                             );
