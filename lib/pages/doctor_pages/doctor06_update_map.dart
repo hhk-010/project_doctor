@@ -16,18 +16,18 @@ class UpdateMap extends StatefulWidget {
   final String number;
   final String province;
   final String address;
-  final List vacation;
-  final List workinghours;
-  final List workinghours2;
+  final List workDays01;
+  final List workDays02;
+  final List workDays03;
   UpdateMap(
       {this.name,
       this.speciality,
       this.province,
       this.number,
       this.address,
-      this.vacation,
-      this.workinghours,
-      this.workinghours2});
+      this.workDays01,
+      this.workDays02,
+      this.workDays03});
   @override
   _UpdateMapState createState() => _UpdateMapState(
       name: name,
@@ -35,9 +35,9 @@ class UpdateMap extends StatefulWidget {
       number: number,
       province: province,
       address: address,
-      vacation: vacation,
-      workinghours: workinghours,
-      workinghours2: workinghours2);
+      workDays01: workDays01,
+      workDays02: workDays02,
+      workDays03: workDays03);
 }
 
 class _UpdateMapState extends State<UpdateMap> {
@@ -46,9 +46,9 @@ class _UpdateMapState extends State<UpdateMap> {
   String number;
   String province;
   String address = '';
-  List vacation = [];
-  List workinghours = [];
-  List workinghours2 = [];
+  List workDays01 = [];
+  List workDays02 = [];
+  List workDays03 = [];
 
   var latlng;
   List<Marker> mymarker = [];
@@ -119,9 +119,9 @@ class _UpdateMapState extends State<UpdateMap> {
       this.number,
       this.province,
       this.address,
-      this.vacation,
-      this.workinghours,
-      this.workinghours2});
+      this.workDays01,
+      this.workDays02,
+      this.workDays03});
 
   @override
   void initState() {
@@ -210,9 +210,9 @@ class _UpdateMapState extends State<UpdateMap> {
                                 lattt,
                                 lnggg,
                                 address,
-                                vacation,
-                                workinghours,
-                                workinghours2);
+                                workDays01,
+                                workDays02,
+                                workDays03);
                         Navigator.pop(context);
                       }
                     }
