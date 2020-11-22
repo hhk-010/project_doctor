@@ -4,6 +4,11 @@ import 'package:project_doctor/pages/doctor_pages/doctor06_update_map.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 
+class ClinicDay {
+  static String day1;
+  static String day2;
+}
+
 class UpdateInfo2 extends StatefulWidget {
   final String name;
   final String speciality;
@@ -72,7 +77,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
 
   String address = '';
   String currentVacationDays = '';
-  List currentListVacationDays = [];
+  List workDays01 = [];
+  List workDays0 = [];
+  List workDays03 = [];
   String mainWorkingHours = '';
   String mainFromTimeString = '';
   String mainToTimeString = '';
@@ -111,8 +118,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
   String thirdToEnd = '';
   List t1 = [];
   List t2 = [];
-  List l1 = [];
-  List l2 = [];
   bool mainfrom = false;
   bool mainto = false;
   bool secfrom = false;
@@ -195,7 +200,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       exceptions1 = [];
       for (int key in otherweekDaysList.keys) {
         if (!otherweekDaysList[key][0] &&
-            otherweekDaysList[key][2] != myDays.day2) {
+            otherweekDaysList[key][2] != ClinicDay.day2) {
           exceptions1.add(DropdownMenuItem<String>(
               child: Text(otherweekDaysList[key][1]),
               value: otherweekDaysList[key][2]));
@@ -207,7 +212,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       exceptions2 = [];
       for (int key in otherweekDaysList.keys) {
         if (!otherweekDaysList[key][0] &&
-            otherweekDaysList[key][2] != myDays.day1) {
+            otherweekDaysList[key][2] != ClinicDay.day1) {
           exceptions2.add(DropdownMenuItem<String>(
               child: Text(otherweekDaysList[key][1]),
               value: otherweekDaysList[key][2]));
@@ -331,18 +336,17 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                               onChanged: (int day) {
                                 setState(() {
                                   final index = day % 7;
-                                  if (myDays.day1 !=
+                                  if (ClinicDay.day1 !=
                                           otherweekDaysList[index][2] &&
-                                      myDays.day2 !=
+                                      ClinicDay.day2 !=
                                           otherweekDaysList[index][2]) {
                                     worksDays[index] = !worksDays[index];
 
-                                    currentListVacationDays =
+                                    workDays01 =
                                         boolToStringDays(context, worksDays);
-                                    currentListVacationDays
+                                    workDays01
                                         .removeWhere((value) => value == null);
-                                    currentVacationDays =
-                                        currentListVacationDays.join(', ');
+                                    currentVacationDays = workDays01.join(', ');
                                     otherweekDaysList[index][0] =
                                         !otherweekDaysList[index][0];
                                     makeExceptions1();
@@ -393,24 +397,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                           ),
                           SizedBox(
                             height: 25,
-                          ),
-                          Center(
-                            child: Text(
-                              AppLocalizations.of(context).translate(
-                                'work_hour',
-                              ),
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Divider(
-                            color: Colors.grey,
-                            thickness: 2,
-                            indent: 50,
-                            endIndent: 50,
-                          ),
-                          SizedBox(
-                            height: 15,
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(
@@ -582,10 +568,10 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                       e1.remove(e1[0]);
                                       e1.add(weekday01);
                                     }
-                                    myDays.day1 = weekday01;
+                                    ClinicDay.day1 = weekday01;
                                   });
                                   makeExceptions2();
-                                  print(myDays.day1);
+                                  print(ClinicDay.day1);
                                   print(weekday01);
                                   print(e1);
                                 },
@@ -768,7 +754,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                       e2.remove(e2[0]);
                                       e2.add(weekday02);
                                     }
-                                    myDays.day2 = weekday02;
+                                    ClinicDay.day2 = weekday02;
                                   });
                                   makeExceptions1();
                                   print(e2);
@@ -875,26 +861,26 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                           print(mainWorkingHours);
                           setState(() {
                             if (e1.isNotEmpty && t1.isNotEmpty) {
-                              if (l1.isEmpty) {
-                                l1.add(e1[0]);
-                                l1.add(t1[0]);
+                              if (workDays0.isEmpty) {
+                                workDays0.add(e1[0]);
+                                workDays0.add(t1[0]);
                               } else {
-                                l1 = [];
-                                l1.add(e1[0]);
-                                l1.add(t1[0]);
+                                workDays0 = [];
+                                workDays0.add(e1[0]);
+                                workDays0.add(t1[0]);
                               }
                             } else if ((e1.isNotEmpty && t1.isEmpty) ||
                                 (e1.isEmpty && t1.isNotEmpty)) {
                               //show snackbar
                             }
                             if (e2.isNotEmpty && t2.isNotEmpty) {
-                              if (l2.isEmpty) {
-                                l2.add(e2[0]);
-                                l2.add(t2[0]);
+                              if (workDays03.isEmpty) {
+                                workDays03.add(e2[0]);
+                                workDays03.add(t2[0]);
                               } else {
-                                l2 = [];
-                                l2.add(e2[0]);
-                                l2.add(t2[0]);
+                                workDays03 = [];
+                                workDays03.add(e2[0]);
+                                workDays03.add(t2[0]);
                               }
                             } else if ((e2.isNotEmpty && t2.isEmpty) ||
                                 (e2.isEmpty && t2.isNotEmpty)) {
@@ -916,17 +902,16 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                   (e2.isEmpty && t2.isEmpty))) {
                             setState(() {
                               if (mainWorkingHours == '') {
-                                currentListVacationDays.add(mainWorkingHours);
+                                workDays01.add(mainWorkingHours);
                               } else {
-                                currentListVacationDays.remove(
-                                    currentListVacationDays[
-                                        currentListVacationDays.length - 1]);
-                                currentListVacationDays.add(mainWorkingHours);
+                                workDays01
+                                    .remove(workDays01[workDays01.length - 1]);
+                                workDays01.add(mainWorkingHours);
                               }
                               makeMePass = false;
                             });
-                            print(l1);
-                            print(l2);
+                            print(workDays0);
+                            print(workDays03);
 
                             Navigator.of(context).push(
                               MaterialPageRoute(
@@ -936,9 +921,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                   number: phoneNumber,
                                   province: province,
                                   address: address,
-                                  vacation: currentListVacationDays,
-                                  workinghours: l1,
-                                  workinghours2: l2,
+                                  vacation: workDays01,
+                                  workinghours: workDays0,
+                                  workinghours2: workDays03,
                                 ),
                               ),
                             );
@@ -1256,9 +1241,4 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
         print(ternaryWorkingHours);
       });
   }
-}
-
-class myDays {
-  static String day1;
-  static String day2;
 }

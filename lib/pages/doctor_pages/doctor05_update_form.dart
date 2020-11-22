@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_info2.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_clinic.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
@@ -16,8 +16,6 @@ class _UpdateinfoState extends State<Updateinfo> {
   String phonenumber = '';
   String _province;
   String address = '';
-  String vacation = '';
-  String workinghours = '';
 
   final _formkey = GlobalKey<FormState>();
 
@@ -159,16 +157,20 @@ class _UpdateinfoState extends State<Updateinfo> {
           key: _formkey,
           child: Column(
             children: [
-              TextFormField(
-                decoration: textInputdecoration.copyWith(
-                    hintText: AppLocalizations.of(context).translate('name'),
-                    labelText: AppLocalizations.of(context).translate('name')),
-                onChanged: (val) {
-                  name = val;
-                },
-                validator: (val) => val.isEmpty
-                    ? AppLocalizations.of(context).translate('name_validator')
-                    : null,
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: TextFormField(
+                  decoration: textInputdecoration.copyWith(
+                      hintText: AppLocalizations.of(context).translate('name'),
+                      labelText:
+                          AppLocalizations.of(context).translate('name')),
+                  onChanged: (val) {
+                    name = val;
+                  },
+                  validator: (val) => val.isEmpty
+                      ? AppLocalizations.of(context).translate('name_validator')
+                      : null,
+                ),
               ),
               Spacer(),
               DropdownButtonFormField<String>(
@@ -338,30 +340,6 @@ class _UpdateinfoState extends State<Updateinfo> {
                     value == null ? 'Select your province' : null,
                 onChanged: (val) => setState(() => _province = val),
               ),
-              /*Spacer(),
-              TextFormField(
-                onChanged: (val) => setState(() => address = val),
-                decoration:
-                    textInputdecoration.copyWith(hintText: 'detailed address'),
-                validator: (val) =>
-                    val.isEmpty ? 'enter a valid address' : null,
-              ),
-              Spacer(),
-              TextFormField(
-                onChanged: (val) => setState(() => vacation = val),
-                decoration:
-                    textInputdecoration.copyWith(hintText: 'clinic vacation'),
-                validator: (val) =>
-                    val.isEmpty ? 'enter a valid clinic vacation days' : null,
-              ),
-              Spacer(),
-              TextFormField(
-                onChanged: (val) => setState(() => workinghours = val),
-                decoration:
-                    textInputdecoration.copyWith(hintText: 'working hours'),
-                validator: (val) =>
-                    val.isEmpty ? 'enter valid working hours' : null,
-              ),*/
               Spacer(
                 flex: 3,
               ),

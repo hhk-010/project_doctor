@@ -43,9 +43,9 @@ class AuthService {
       double lat,
       double lng,
       String address,
-      List vacation,
-      List workinghours,
-      List workinghours2) async {
+      List workDays01,
+      List workDays02,
+      List workDays03) async {
     try {
       UserCredential authResult = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -59,9 +59,9 @@ class AuthService {
           lat,
           lng,
           address,
-          vacation,
-          workinghours,
-          workinghours2);
+          workDays01,
+          workDays02,
+          workDays03);
       await user.sendEmailVerification();
       if (authResult.user != null) {
         _status = AuthResultStatus.successful;

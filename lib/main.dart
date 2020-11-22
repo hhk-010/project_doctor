@@ -4,7 +4,7 @@ import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/pages/about_us.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
-import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_info2.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_clinic.dart';
 import 'package:project_doctor/pages/patient_pages/patient02.5_speciality_result.dart';
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
 import 'package:project_doctor/pages/patient_pages/patient04_map.dart';

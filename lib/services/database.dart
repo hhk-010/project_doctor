@@ -16,9 +16,9 @@ class DatabaseService {
       double lat,
       double lng,
       String address,
-      List vacation,
-      List workinghours,
-      List workinghours2) async {
+      List workDays01,
+      List workDays02,
+      List workDays03) async {
     return await userCollection.doc(uid).set({
       'name': name,
       'speciality': speciality,
@@ -27,9 +27,9 @@ class DatabaseService {
       'lat': lat,
       'lng': lng,
       'address': address,
-      'vacation': vacation,
-      'workinghours': workinghours,
-      'workinghours2': workinghours2
+      'workDays01': workDays01,
+      'workDays02': workDays02,
+      'workDays03': workDays03,
     });
   }
 
