@@ -115,7 +115,7 @@ class _DoctorListState extends State<DoctorList> {
 
     if (doctorListProvider != null) {
       for (var doc in doctorListProvider.docs) {
-        if (doc.id == uid) {
+        /*if (doc.id == uid) {
           print(doc.data()['name']);
           setState(() {
             name = doc.data()['name'];
@@ -207,7 +207,7 @@ class _DoctorListState extends State<DoctorList> {
 
             _getAddressFromLatLng();
           });
-        }
+        }*/
       }
     }
 
@@ -323,8 +323,7 @@ class _DoctorListState extends State<DoctorList> {
                     ),
                     Text(
                       // _mainDays +
-                       '\n'
-                       + _mainTime,
+                      '\n' + _mainTime,
                       style: _textStyle,
                     ),
                     Divider(
@@ -341,7 +340,12 @@ class _DoctorListState extends State<DoctorList> {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      _firstEDay + " " + _firstTime + '\n' + _secondEDay + _secondTime,
+                      _firstEDay +
+                          " " +
+                          _firstTime +
+                          '\n' +
+                          _secondEDay +
+                          _secondTime,
                       style: _textStyle,
                     ),
                     Divider(

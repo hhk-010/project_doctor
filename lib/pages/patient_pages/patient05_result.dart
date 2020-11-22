@@ -103,7 +103,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
     TextStyle _textStyle = TextStyle(
         fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold);
     final doctorListProvider = Provider.of<QuerySnapshot>(context);
-    if (doctorListProvider != null) {
+    /*if (doctorListProvider != null) {
       for (var docu in doctorListProvider.docs) {
         sum = ((docu.data()['lat'] - MyVariables.lat) *
                 (docu.data()['lat'] - MyVariables.lat)) +
@@ -128,108 +128,106 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
         if (result <= distance &&
             (FinalScore.speciality == docu.data()['speciality'] ||
                 FinalScore.speciality2 == docu.data()['speciality'])) {
-          setState(() {
-            distance = result;
-            _name = docu.data()['name'];
-            _speciality = docu.data()['speciality'];
-            _number = docu.data()['phoneNumber'];
-            _province = docu.data()['province'];
-            _lat = docu.data()['lat'];
-            _lng = docu.data()['lng'];
-            _address = docu.data()['address'];
-            _vacation = docu.data()['vacation'];
-            _workinghours = docu.data()['workinghours'];
-            _workinghours2 = docu.data()['workinghours2'];
-            realdistance = distance * 100;
-            realdist = realdistance.toString();
-            dotindex = realdist.indexOf('.') + 3;
-            realnearby = realdist.substring(0, dotindex);
+          //setState(() {
+          /*distance = result;
+          _name = docu.data()['name'];
+          _speciality = docu.data()['speciality'];
+          _number = docu.data()['phoneNumber'];
+          _province = docu.data()['province'];
+          _lat = docu.data()['lat'];
+          _lng = docu.data()['lng'];
+          _address = docu.data()['address'];
+          _vacation = docu.data()['vacation'];
+          _workinghours = docu.data()['workinghours'];
+          _workinghours2 = docu.data()['workinghours2'];
+          realdistance = distance * 100;
+          realdist = realdistance.toString();
+          dotindex = realdist.indexOf('.') + 3;
+          realnearby = realdist.substring(0, dotindex);*/
 
-            for (String x in _vacation) {
-              if (x.length < 11) {
-                _mainDaysTranslation =
-                    AppLocalizations.of(context).translate(x);
-                _mainDays = _mainDays + ',' + _mainDaysTranslation;
-              } else {
-                _mainfrom = x.substring(x.indexOf('m') + 2, x.indexOf('t') - 1);
-                _mainTo = x.substring(x.indexOf('t') + 3, x.length);
-                _mainfromTime = _mainfrom.substring(0, _mainfrom.indexOf(' '));
-                _mainfromAmPm = AppLocalizations.of(context).translate(
-                    _mainfrom.substring(_mainfrom.indexOf(' ') + 1,
-                        _mainfrom.indexOf('M') + 1));
-                _mainToTime = _mainTo.substring(0, _mainTo.indexOf(' '));
-                _mainToAmPm = AppLocalizations.of(context).translate(_mainTo
-                    .substring(_mainTo.indexOf(' ') + 1, _mainTo.length));
-                _mainTime = AppLocalizations.of(context).translate('from') +
-                    _mainfromTime +
-                    ' ' +
-                    _mainfromAmPm +
-                    ' ' +
-                    AppLocalizations.of(context).translate('to') +
-                    _mainToTime +
-                    ' ' +
-                    _mainToAmPm;
-              }
-            }
-            if (_workinghours.isNotEmpty) {
-              _firstEDay =
-                  AppLocalizations.of(context).translate(_workinghours[0]);
-              _firstfrom = _workinghours[1].substring(
-                  _workinghours[1].indexOf('m') + 2,
-                  _workinghours[1].indexOf('t') - 1);
-              _firstTo = _workinghours[1].substring(
-                  _workinghours[1].indexOf('t') + 3, _workinghours[1].length);
-              _firstfromTime = _firstfrom.substring(0, _firstfrom.indexOf(' '));
-              _firstfromAmPm = AppLocalizations.of(context).translate(_firstfrom
-                  .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
-              _firstToTime = _firstTo.substring(0, _firstTo.indexOf(' '));
-              _firstToAmPm = AppLocalizations.of(context).translate(_firstTo
-                  .substring(_firstTo.indexOf(' ') + 1, _firstTo.length));
-              _firstTime = AppLocalizations.of(context).translate('from') +
-                  _firstfromTime +
+          for (String x in _vacation) {
+            if (x.length < 11) {
+              _mainDaysTranslation = AppLocalizations.of(context).translate(x);
+              _mainDays = _mainDays + ',' + _mainDaysTranslation;
+            } else {
+              _mainfrom = x.substring(x.indexOf('m') + 2, x.indexOf('t') - 1);
+              _mainTo = x.substring(x.indexOf('t') + 3, x.length);
+              _mainfromTime = _mainfrom.substring(0, _mainfrom.indexOf(' '));
+              _mainfromAmPm = AppLocalizations.of(context).translate(
+                  _mainfrom.substring(
+                      _mainfrom.indexOf(' ') + 1, _mainfrom.indexOf('M') + 1));
+              _mainToTime = _mainTo.substring(0, _mainTo.indexOf(' '));
+              _mainToAmPm = AppLocalizations.of(context).translate(
+                  _mainTo.substring(_mainTo.indexOf(' ') + 1, _mainTo.length));
+              _mainTime = AppLocalizations.of(context).translate('from') +
+                  _mainfromTime +
                   ' ' +
-                  _firstfromAmPm +
+                  _mainfromAmPm +
                   ' ' +
                   AppLocalizations.of(context).translate('to') +
-                  _firstToTime +
+                  _mainToTime +
                   ' ' +
-                  _firstToAmPm;
+                  _mainToAmPm;
             }
-            if (_workinghours2.isNotEmpty) {
-              _secondEDay =
-                  AppLocalizations.of(context).translate(_workinghours2[0]);
-              _secondfrom = _workinghours2[1].substring(
-                  _workinghours2[1].indexOf('m') + 2,
-                  _workinghours2[1].indexOf('t') - 1);
-              _secondTo = _workinghours2[1].substring(
-                  _workinghours2[1].indexOf('t') + 3, _workinghours2[1].length);
-              _secondfromTime =
-                  _secondfrom.substring(0, _secondfrom.indexOf(' '));
-              _secondfromAmPm = AppLocalizations.of(context).translate(
-                  _secondfrom.substring(
-                      _firstfrom.indexOf(' ') + 1, _firstfrom.length));
-              _secondToTime = _secondTo.substring(0, _secondTo.indexOf(' '));
-              _secondToAmPm = AppLocalizations.of(context).translate(_secondTo
-                  .substring(_secondTo.indexOf(' ') + 1, _secondTo.length));
-              _secondTime = AppLocalizations.of(context).translate('from') +
-                  _secondfromTime +
-                  ' ' +
-                  _secondfromAmPm +
-                  ' ' +
-                  AppLocalizations.of(context).translate('to') +
-                  _secondToTime +
-                  ' ' +
-                  _secondToAmPm;
-            }
+          }
+          if (_workinghours.isNotEmpty) {
+            _firstEDay =
+                AppLocalizations.of(context).translate(_workinghours[0]);
+            _firstfrom = _workinghours[1].substring(
+                _workinghours[1].indexOf('m') + 2,
+                _workinghours[1].indexOf('t') - 1);
+            _firstTo = _workinghours[1].substring(
+                _workinghours[1].indexOf('t') + 3, _workinghours[1].length);
+            _firstfromTime = _firstfrom.substring(0, _firstfrom.indexOf(' '));
+            _firstfromAmPm = AppLocalizations.of(context).translate(_firstfrom
+                .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
+            _firstToTime = _firstTo.substring(0, _firstTo.indexOf(' '));
+            _firstToAmPm = AppLocalizations.of(context).translate(
+                _firstTo.substring(_firstTo.indexOf(' ') + 1, _firstTo.length));
+            _firstTime = AppLocalizations.of(context).translate('from') +
+                _firstfromTime +
+                ' ' +
+                _firstfromAmPm +
+                ' ' +
+                AppLocalizations.of(context).translate('to') +
+                _firstToTime +
+                ' ' +
+                _firstToAmPm;
+          }
+          if (_workinghours2.isNotEmpty) {
+            _secondEDay =
+                AppLocalizations.of(context).translate(_workinghours2[0]);
+            _secondfrom = _workinghours2[1].substring(
+                _workinghours2[1].indexOf('m') + 2,
+                _workinghours2[1].indexOf('t') - 1);
+            _secondTo = _workinghours2[1].substring(
+                _workinghours2[1].indexOf('t') + 3, _workinghours2[1].length);
+            _secondfromTime =
+                _secondfrom.substring(0, _secondfrom.indexOf(' '));
+            _secondfromAmPm = AppLocalizations.of(context).translate(_secondfrom
+                .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
+            _secondToTime = _secondTo.substring(0, _secondTo.indexOf(' '));
+            _secondToAmPm = AppLocalizations.of(context).translate(_secondTo
+                .substring(_secondTo.indexOf(' ') + 1, _secondTo.length));
+            _secondTime = AppLocalizations.of(context).translate('from') +
+                _secondfromTime +
+                ' ' +
+                _secondfromAmPm +
+                ' ' +
+                AppLocalizations.of(context).translate('to') +
+                _secondToTime +
+                ' ' +
+                _secondToAmPm;
+          }
 
-            _getAddressFromLatLng();
-          });
+          _getAddressFromLatLng();
+          //});
           print(_mainTime);
           print(_firstTime);
           print(_secondTime);
         }
       }
-    }
+    }*/
     return Padding(
       padding: EdgeInsets.fromLTRB(25, 25, 25, 25),
       child: Container(
@@ -360,7 +358,8 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      AppLocalizations.of(context).translate('vacation')
+                      ''
+                      //AppLocalizations.of(context).translate('vacation')
                       /*_vacation*/,
                       style: _textStyle,
                     ),

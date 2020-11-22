@@ -896,13 +896,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                       ),
                                     ),
                                   );
-<<<<<<< HEAD
-                                } else if (currentVacationDays == '') {
-=======
-                                  mainfrom = false;
-                                  mainto = false;
                                 } else if (currentWorkDays == '') {
->>>>>>> b1945e4d05669069d6a4567a94d1ff45d9f65de2
                                   _error = AppLocalizations.of(context)
                                       .translate('selectmaindays');
                                   _showSnackBar();
@@ -991,7 +985,6 @@ class _ClinicFormState extends State<ClinicForm> {
         }
         mainFromTimeNo = mainFromTimeNo + ' ' + ampm;
         mainfrom = true;
-        print(mainFromend);
       });
   }
 
@@ -1023,16 +1016,15 @@ class _ClinicFormState extends State<ClinicForm> {
             mainToTimeString.indexOf(' '), mainToTimeString.length);
         if (mainToend.contains('ص') || mainToend.contains('AM')) {
           toampm = 'AM';
-        } else if (mainToend.contains('م')) {
+        } else if (mainToend.contains('م') || mainToend.contains('PM')) {
           toampm = 'PM';
         }
         mainToTimeNo = mainToTimeNo + ' ' + toampm;
         mainWorkingHours = 'from ' + mainFromTimeNo + ' to ' + mainToTimeNo;
         makeMePass = true;
         mainto = true;
-        print(mainToend);
-        print(mainWorkingHours);
       });
+    print(mainWorkingHours);
   }
 
   _pickSecondaryFromTime() async {
@@ -1069,7 +1061,6 @@ class _ClinicFormState extends State<ClinicForm> {
         }
         secondaryFromTimeString = secondFromNo + ' ' + secondFromAmPm;
         secfrom = true;
-        print(secondFromEnd);
       });
   }
 
@@ -1115,10 +1106,8 @@ class _ClinicFormState extends State<ClinicForm> {
           t1.add(secondaryWorkingHours);
         }
         secto = true;
-        print(secondToEnd);
-        print(t1);
-        print(secondaryWorkingHours);
       });
+    print(secondaryWorkingHours);
   }
 
   _pickTernaryFromTime() async {
@@ -1154,7 +1143,6 @@ class _ClinicFormState extends State<ClinicForm> {
         }
         ternaryFromTimeString = thirdFromNo + ' ' + thirdFromAmPm;
         thirdfrom = true;
-        print(thirdFromEnd);
       });
   }
 
@@ -1203,11 +1191,9 @@ class _ClinicFormState extends State<ClinicForm> {
           t2 = [];
           t2.add(ternaryWorkingHours);
         }
-        print(thirdToEnd);
-        print(t2);
-        print(ternaryWorkingHours);
         thirdto = true;
       });
+    print(ternaryWorkingHours);
   }
 
   // Widget _searchField(BuildContext context, LocationBloc bloc) {

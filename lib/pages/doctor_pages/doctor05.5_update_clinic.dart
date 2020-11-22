@@ -1012,8 +1012,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
         }
         mainFromTimeString = mainFromNo + ' ' + fromAmPm;
         mainfrom = true;
-        //print(fromEnd);
-        print(mainFromTimeString);
+        print(fromEnd);
       });
   }
 
@@ -1053,8 +1052,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
             'from ' + mainFromTimeString + ' to ' + mainToTimeString;
         makeMePass = true;
         mainto = true;
-        //print(toEnd);
-        print(mainToTimeString);
+        print(toEnd);
         print(mainWorkingHours);
       });
   }
@@ -1094,8 +1092,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
         }
         secondaryFromTimeString = secondFromNo + ' ' + secondFromAmPm;
         secfrom = true;
-        //print(secondFromEnd);
-        print(secondaryFromTimeString);
+        print(secondFromEnd);
       });
   }
 
@@ -1146,8 +1143,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
             ' ' +
             AppLocalizations.of(context).translate('to') +
             secondaryToTimeString;*/
-        //print(secondToEnd);
-        print(secondaryToTimeString);
+        print(secondToEnd);
         print(secondaryWorkingHours);
       });
   }
@@ -1185,8 +1181,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
         }
         thirdfrom = true;
         ternaryFromTimeString = thirdFromNo + ' ' + thirdFromAmPm;
-        //print(thirdFromEnd);
-        print(ternaryFromTimeString);
+        print(thirdFromEnd);
       });
   }
 
@@ -1236,8 +1231,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
             ' ' +
             AppLocalizations.of(context).translate('to') +
             ternaryToTimeString;*/
-        //print(thirdToEnd);
-        print(ternaryToTimeString);
+        print(thirdToEnd);
         print(ternaryWorkingHours);
       });
   }
