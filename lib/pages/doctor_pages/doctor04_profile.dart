@@ -208,9 +208,6 @@ class _DoctorListState extends State<DoctorList> {
 
             _getAddressFromLatLng();
           });
-          print(_mainTime);
-          print(_firstTime);
-          print(_secondTime);
         }
       }
     }
