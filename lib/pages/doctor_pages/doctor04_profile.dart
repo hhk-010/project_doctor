@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor05_update_form.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
@@ -69,7 +70,7 @@ class _DoctorListState extends State<DoctorList> {
   List _workDays01 = [];
   List _workDays02 = [];
   List _workDays03 = [];
-  String _mainDaysTranslation;
+  String _mainDaysTranslation = '';
   String _mainDays = '';
   String _firstEDay = '';
   String _secondEDay = '';
@@ -94,7 +95,6 @@ class _DoctorListState extends State<DoctorList> {
   String _mainTime = '';
   String _secondTime = '';
   String _firstTime = '';
-
 //get the user address from lat and lng
   String _doctorAddress = '';
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
@@ -115,45 +115,44 @@ class _DoctorListState extends State<DoctorList> {
 
     if (doctorListProvider != null) {
       for (var doc in doctorListProvider.docs) {
-        /*if (doc.id == uid) {
+        if (doc.id == uid) {
           print(doc.data()['name']);
-          setState(() {
-            name = doc.data()['name'];
-            speciality = doc.data()['speciality'];
-            number = doc.data()['phoneNumber'];
-            province = doc.data()['province'];
-            lat = doc.data()['lat'];
-            lng = doc.data()['lng'];
-            _address = doc.data()['address'];
-            _workDays01 = doc.data()['workDays01'];
-            _workDays02 = doc.data()['workDays02'];
-            _workDays03 = doc.data()['workDays03'];
-            for (String x in _workDays01) {
-              if (x.length < 11) {
-                _mainDaysTranslation =
-                    AppLocalizations.of(context).translate(x);
-                _mainDays = _mainDays + ',' + _mainDaysTranslation;
-              } else {
-                _mainfrom = x.substring(x.indexOf('m') + 2, x.indexOf('t') - 1);
-                _mainTo = x.substring(x.indexOf('t') + 3, x.length);
-                _mainfromTime = _mainfrom.substring(0, _mainfrom.indexOf(' '));
-                _mainfromAmPm = AppLocalizations.of(context).translate(
-                    _mainfrom.substring(_mainfrom.indexOf(' ') + 1,
-                        _mainfrom.indexOf('M') + 1));
-                _mainToTime = _mainTo.substring(0, _mainTo.indexOf(' '));
-                _mainToAmPm = AppLocalizations.of(context).translate(_mainTo
-                    .substring(_mainTo.indexOf(' ') + 1, _mainTo.length));
-                _mainTime = AppLocalizations.of(context).translate('from') +
-                    _mainfromTime +
-                    ' ' +
-                    _mainfromAmPm +
-                    ' ' +
-                    AppLocalizations.of(context).translate('to') +
-                    _mainToTime +
-                    ' ' +
-                    _mainToAmPm;
-              }
+          //setState(() {
+          name = doc.data()['name'];
+          speciality = doc.data()['speciality'];
+          number = doc.data()['phoneNumber'];
+          province = doc.data()['province'];
+          lat = doc.data()['lat'];
+          lng = doc.data()['lng'];
+          _address = doc.data()['address'];
+          _workDays01 = doc.data()['workDays01'];
+          _workDays02 = doc.data()['workDays02'];
+          _workDays03 = doc.data()['workDays03'];
+          for (String x in _workDays01) {
+            if (x.length < 11) {
+              _mainDaysTranslation = AppLocalizations.of(context).translate(x);
+              _mainDays = _mainDays + ',' + _mainDaysTranslation;
+            } else {
+              _mainfrom = x.substring(x.indexOf('m') + 2, x.indexOf('t') - 1);
+              _mainTo = x.substring(x.indexOf('t') + 3, x.length);
+              _mainfromTime = _mainfrom.substring(0, _mainfrom.indexOf(' '));
+              _mainfromAmPm = AppLocalizations.of(context).translate(
+                  _mainfrom.substring(
+                      _mainfrom.indexOf(' ') + 1, _mainfrom.indexOf('M') + 1));
+              _mainToTime = _mainTo.substring(0, _mainTo.indexOf(' '));
+              _mainToAmPm = AppLocalizations.of(context).translate(
+                  _mainTo.substring(_mainTo.indexOf(' ') + 1, _mainTo.length));
+              _mainTime = AppLocalizations.of(context).translate('from') +
+                  _mainfromTime +
+                  ' ' +
+                  _mainfromAmPm +
+                  ' ' +
+                  AppLocalizations.of(context).translate('to') +
+                  _mainToTime +
+                  ' ' +
+                  _mainToAmPm;
             }
+            //}
             if (_workDays02.isNotEmpty) {
               _firstEDay =
                   AppLocalizations.of(context).translate(_workDays02[0]);
@@ -205,12 +204,14 @@ class _DoctorListState extends State<DoctorList> {
                   _secondToAmPm;
             }
 
-            _getAddressFromLatLng();
-          });
-        }*/
+            //_getAddressFromLatLng();
+            //});
+            print(_mainDays);
+            print(_mainTime);
+          }
+        }
       }
     }
-
     return Padding(
       padding: EdgeInsets.fromLTRB(25, 25, 25, 25),
       child: Container(

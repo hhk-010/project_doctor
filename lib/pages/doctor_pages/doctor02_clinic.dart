@@ -4,6 +4,7 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import 'dart:ui';
 import 'doctor03_map.dart';
+import 'package:project_doctor/authorization/email_verfication.dart';
 
 class ClinicDay {
   static String day1;
@@ -880,6 +881,21 @@ class _ClinicFormState extends State<ClinicForm> {
                                   });
                                   mainfrom = false;
                                   mainto = false;
+                                  setState(() {
+                                    DataFromMaptoVerify.email = email;
+                                    DataFromMaptoVerify.password = password;
+                                    DataFromMaptoVerify.name = name;
+
+                                    DataFromMaptoVerify.speciality = speciality;
+                                    DataFromMaptoVerify.phoneNumber =
+                                        phoneNumber;
+                                    DataFromMaptoVerify.province = province;
+                                    DataFromMaptoVerify.address =
+                                        currentaddress;
+                                    DataFromMaptoVerify.workDays01 = workDays01;
+                                    DataFromMaptoVerify.workDays02 = workDays02;
+                                    DataFromMaptoVerify.workDays03 = workDays03;
+                                  });
                                   await Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) => DocMap(

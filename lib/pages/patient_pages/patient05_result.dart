@@ -103,7 +103,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
     TextStyle _textStyle = TextStyle(
         fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold);
     final doctorListProvider = Provider.of<QuerySnapshot>(context);
-    /*if (doctorListProvider != null) {
+    if (doctorListProvider != null) {
       for (var docu in doctorListProvider.docs) {
         sum = ((docu.data()['lat'] - MyVariables.lat) *
                 (docu.data()['lat'] - MyVariables.lat)) +
@@ -129,7 +129,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             (FinalScore.speciality == docu.data()['speciality'] ||
                 FinalScore.speciality2 == docu.data()['speciality'])) {
           //setState(() {
-          /*distance = result;
+          distance = result;
           _name = docu.data()['name'];
           _speciality = docu.data()['speciality'];
           _number = docu.data()['phoneNumber'];
@@ -137,13 +137,13 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
           _lat = docu.data()['lat'];
           _lng = docu.data()['lng'];
           _address = docu.data()['address'];
-          _vacation = docu.data()['vacation'];
-          _workinghours = docu.data()['workinghours'];
-          _workinghours2 = docu.data()['workinghours2'];
+          //_vacation = docu.data()['workDays01'];
+          //_workinghours = docu.data()['workDays02'];
+          //_workinghours2 = docu.data()['workDays03'];
           realdistance = distance * 100;
           realdist = realdistance.toString();
           dotindex = realdist.indexOf('.') + 3;
-          realnearby = realdist.substring(0, dotindex);*/
+          realnearby = realdist.substring(0, dotindex);
 
           for (String x in _vacation) {
             if (x.length < 11) {
@@ -220,14 +220,14 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                 _secondToAmPm;
           }
 
-          _getAddressFromLatLng();
+          //_getAddressFromLatLng();
           //});
           print(_mainTime);
           print(_firstTime);
           print(_secondTime);
         }
       }
-    }*/
+    }
     return Padding(
       padding: EdgeInsets.fromLTRB(25, 25, 25, 25),
       child: Container(

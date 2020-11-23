@@ -7,6 +7,9 @@ class DatabaseService {
 
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('doctorInfo');
+//Collection for our own database======
+  final CollectionReference basicCollection =
+      FirebaseFirestore.instance.collection('basicData');
 
   Future updateUserData(
       String name,
@@ -54,20 +57,11 @@ class DatabaseService {
     return userCollection.doc(uid).snapshots().map(_userDataFromSnapshot);
   }
 
-//     // doctordatalist model data from snapshot
-// List<QuerySnapshot> _doctorDataListFromSnapshot(
-//     QuerySnapshot snapshot) {
-//   return snapshot.docs.map((doc) {
-//     return DoctorDataListModel(
-//       name: doc.data()['name'] ?? '',
-//       speciality: doc.data()['speciality'] ?? '',
-//       phoneNumber: doc.data()['phoneNumber'] ?? '',
-//       province: doc.data()['province'] ?? '',
-//       location: doc.data()['location'] ?? '',
-//     );
-//   }).toList();
-// }
   Stream<QuerySnapshot> get doccol {
     return userCollection.snapshots();
+  }
+
+  Stream<QuerySnapshot> get basicData {
+    return basicCollection.snapshots();
   }
 }

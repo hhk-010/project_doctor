@@ -9,6 +9,7 @@ import 'package:project_doctor/services/database.dart';
 // class for getting the data from map to firebase through verfication.
 class DataFromMaptoVerify {
   static String email = '';
+  static String password = '';
   static String name = '';
   static String speciality = '';
   static String phoneNumber = '';
@@ -17,8 +18,8 @@ class DataFromMaptoVerify {
   static List workDays01 = [];
   static List workDays02 = [];
   static List workDays03 = [];
-  static double lat;
-  static double lng;
+  static double lat = 0.0;
+  static double lng = 0.0;
 }
 
 class EmailVerification extends StatefulWidget {
@@ -36,7 +37,7 @@ class _EmailVerificationState extends State<EmailVerification> {
     super.initState();
     Future(() async {
       _timer = Timer.periodic(Duration(seconds: 10), (timer) async {
-        FirebaseAuth.instance.currentUser..reload();
+        //FirebaseAuth.instance.currentUser..reload();
       });
     });
   }
