@@ -52,9 +52,9 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   double _lng = 0.0;
   String _address = '';
   // ignore: unused_field
-  List _vacation = [];
-  List _workinghours = [];
-  List _workinghours2 = [];
+  List _workDays01 = [];
+  List _workDays02 = [];
+  List _workDays03 = [];
   double distance = 0.0;
   double sum = 0.0;
   double result = 0.0;
@@ -107,8 +107,8 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
       for (var docu in doctorListProvider.docs) {
         sum = ((docu.data()['lat'] - MyVariables.lat) *
                 (docu.data()['lat'] - MyVariables.lat)) +
-            ((docu.data()['lng'] - MyVariables.long) *
-                (docu.data()['lng'] - MyVariables.long));
+            ((docu.data()['lng'] - MyVariables.lng) *
+                (docu.data()['lng'] - MyVariables.lng));
         result = sqrt(sum);
         if (result > distance &&
             (FinalScore.speciality == docu.data()['speciality'] ||
@@ -121,8 +121,8 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
       for (var docu in doctorListProvider.docs) {
         sum = ((docu.data()['lat'] - MyVariables.lat) *
                 (docu.data()['lat'] - MyVariables.lat)) +
-            ((docu.data()['lng'] - MyVariables.long) *
-                (docu.data()['lng'] - MyVariables.long));
+            ((docu.data()['lng'] - MyVariables.lng) *
+                (docu.data()['lng'] - MyVariables.lng));
         result = sqrt(sum);
 
         if (result <= distance &&
@@ -137,15 +137,15 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             _lat = docu.data()['lat'];
             _lng = docu.data()['lng'];
             _address = docu.data()['address'];
-            _vacation = docu.data()['vacation'];
-            _workinghours = docu.data()['workinghours'];
-            _workinghours2 = docu.data()['workinghours2'];
+            _workDays01 = docu.data()['vacation'];
+            _workDays02 = docu.data()['workinghours'];
+            _workDays03 = docu.data()['workinghours2'];
             realdistance = distance * 100;
             realdist = realdistance.toString();
             dotindex = realdist.indexOf('.') + 3;
             realnearby = realdist.substring(0, dotindex);
 
-            for (String x in _vacation) {
+            for (String x in _workDays01) {
               if (x.length < 11) {
                 _mainDaysTranslation =
                     AppLocalizations.of(context).translate(x);
@@ -171,14 +171,14 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                     _mainToAmPm;
               }
             }
-            if (_workinghours.isNotEmpty) {
+            if (_workDays02.isNotEmpty) {
               _firstEDay =
-                  AppLocalizations.of(context).translate(_workinghours[0]);
-              _firstfrom = _workinghours[1].substring(
-                  _workinghours[1].indexOf('m') + 2,
-                  _workinghours[1].indexOf('t') - 1);
-              _firstTo = _workinghours[1].substring(
-                  _workinghours[1].indexOf('t') + 3, _workinghours[1].length);
+                  AppLocalizations.of(context).translate(_workDays02[0]);
+              _firstfrom = _workDays02[1].substring(
+                  _workDays02[1].indexOf('m') + 2,
+                  _workDays02[1].indexOf('t') - 1);
+              _firstTo = _workDays02[1].substring(
+                  _workDays02[1].indexOf('t') + 3, _workDays02[1].length);
               _firstfromTime = _firstfrom.substring(0, _firstfrom.indexOf(' '));
               _firstfromAmPm = AppLocalizations.of(context).translate(_firstfrom
                   .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
@@ -195,14 +195,14 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                   ' ' +
                   _firstToAmPm;
             }
-            if (_workinghours2.isNotEmpty) {
+            if (_workDays03.isNotEmpty) {
               _secondEDay =
-                  AppLocalizations.of(context).translate(_workinghours2[0]);
-              _secondfrom = _workinghours2[1].substring(
-                  _workinghours2[1].indexOf('m') + 2,
-                  _workinghours2[1].indexOf('t') - 1);
-              _secondTo = _workinghours2[1].substring(
-                  _workinghours2[1].indexOf('t') + 3, _workinghours2[1].length);
+                  AppLocalizations.of(context).translate(_workDays03[0]);
+              _secondfrom = _workDays03[1].substring(
+                  _workDays03[1].indexOf('m') + 2,
+                  _workDays03[1].indexOf('t') - 1);
+              _secondTo = _workDays03[1].substring(
+                  _workDays03[1].indexOf('t') + 3, _workDays03[1].length);
               _secondfromTime =
                   _secondfrom.substring(0, _secondfrom.indexOf(' '));
               _secondfromAmPm = AppLocalizations.of(context).translate(
@@ -342,7 +342,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                     ),
                     Text(
                       AppLocalizations.of(context).translate('open_time') +
-                          _workinghours.toString(),
+                          _workDays02.toString(),
                       style: _textStyle,
                     ),
                     Divider(

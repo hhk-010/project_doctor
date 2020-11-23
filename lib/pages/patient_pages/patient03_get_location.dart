@@ -7,6 +7,14 @@ import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 
+class MyVariables {
+  static String speciality = '';
+  static String speciality2 = '';
+  static String province = '';
+  static double lat = 0.0;
+  static double lng = 0.0;
+}
+
 class PatientGetLocation extends StatefulWidget {
   @override
   _PatientGetLocationState createState() => _PatientGetLocationState();
@@ -216,7 +224,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                               //MyVariables.lat = double.parse(_currentPosition.latitude.toString() );
                               //MyVariables.long = double.parse(_currentPosition.longitude.toString() );
                               MyVariables.lat = _currentPosition.latitude;
-                              MyVariables.long = _currentPosition.longitude;
+                              MyVariables.lng = _currentPosition.longitude;
                             });
                             Navigator.pushNamed(context, '/patient_result');
                           }
@@ -312,12 +320,4 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
       print(e);
     }
   }
-}
-
-class MyVariables {
-  static String speciality = '';
-  static String speciality2 = '';
-  static String province = '';
-  static double lat = 0.0;
-  static double long = 0.0;
 }

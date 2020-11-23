@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // class for getting the data from map to firebase through verfication.
 class DataFromMaptoVerify {
@@ -20,6 +21,7 @@ class DataFromMaptoVerify {
   static double lat;
   static double lng;
 }
+
 
 class EmailVerification extends StatefulWidget {
   @override
@@ -38,6 +40,14 @@ class _EmailVerificationState extends State<EmailVerification> {
       _timer = Timer.periodic(Duration(seconds: 10), (timer) async {
         FirebaseAuth.instance.currentUser..reload();
       });
+    });
+  }
+
+_loadCounter() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      int _counter = (prefs.getInt('counter') ?? 0);
+      prefs.setInt('counter', _counter);
     });
   }
 
