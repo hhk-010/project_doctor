@@ -149,10 +149,10 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
     super.initState();
     _mainFromTime = TimeOfDay.now();
     _secondaryFromTime = TimeOfDay.now();
-    _mainToTime = TimeOfDay(hour: 00, minute: 0);
-    _secondaryToTime = TimeOfDay(hour: 00, minute: 0);
+    _mainToTime = TimeOfDay(hour: 12, minute: 0);
+    _secondaryToTime = TimeOfDay(hour: 12, minute: 0);
     _ternaryFromTime = TimeOfDay.now();
-    _ternaryToTime = TimeOfDay(hour: 00, minute: 0);
+    _ternaryToTime = TimeOfDay(hour: 12, minute: 0);
   }
 
   final _formkey = GlobalKey<FormState>();
@@ -858,6 +858,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                           borderRadius: BorderRadius.circular(80.0)),
                       onPressed: () {
                         if (_formkey.currentState.validate()) {
+                          print(mainWorkingHours);
                           setState(() {
                             if (e1.isNotEmpty && t1.isNotEmpty) {
                               if (workDays0.isEmpty) {
@@ -1004,14 +1005,13 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
             mainFromTimeString.substring(0, mainFromTimeString.indexOf(' '));
         fromEnd = mainFromTimeString.substring(
             mainFromTimeString.indexOf(' '), mainFromTimeString.length);
-        if (fromEnd == 'ص' || fromEnd == 'AM') {
+        if (fromEnd.contains('ص') || fromEnd.contains('AM')) {
           fromAmPm = 'AM';
-        } else {
+        } else if (fromEnd == ' م' || fromEnd.contains('PM')) {
           fromAmPm = 'PM';
         }
         mainFromTimeString = mainFromNo + ' ' + fromAmPm;
         mainfrom = true;
-        print(mainFromTimeString);
       });
   }
 
@@ -1037,10 +1037,11 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       setState(() {
         _mainToTime = maintoTime;
         mainToTimeString = _mainToTime.format(context);
+        print(mainToTimeString);
         mainToNo = mainToTimeString.substring(0, mainToTimeString.indexOf(' '));
         toEnd = mainToTimeString.substring(
-            mainToTimeString.indexOf(' '), mainToTimeString.length);
-        if (toEnd == 'ًص' || toEnd == 'AM') {
+            mainToTimeString.indexOf(' ') + 1, mainToTimeString.length);
+        if (toEnd.contains('ص') || toEnd.contains('AM')) {
           toAmPm = "AM";
         } else {
           toAmPm = 'PM';
@@ -1050,7 +1051,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
             'from ' + mainFromTimeString + ' to ' + mainToTimeString;
         makeMePass = true;
         mainto = true;
-        print(mainToTimeString);
         print(mainWorkingHours);
       });
   }
@@ -1082,14 +1082,13 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
         secondFromEnd = secondaryFromTimeString.substring(
             secondaryFromTimeString.indexOf(' '),
             secondaryFromTimeString.length);
-        if (secondFromEnd == 'ًص' || secondFromEnd == 'AM') {
+        if (secondFromEnd.contains('ص') || secondFromEnd.contains('AM')) {
           secondFromAmPm = 'AM';
         } else {
           secondFromAmPm = 'PM';
         }
-        secondaryFromTimeString = secondFromNo + ' ' + secondFromEnd;
+        secondaryFromTimeString = secondFromNo + ' ' + secondFromAmPm;
         secfrom = true;
-        print(secondaryFromTimeString);
       });
   }
 
@@ -1118,10 +1117,11 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
         secondToNo = secondaryToTimeString.substring(
             0, secondaryToTimeString.indexOf(' '));
         secondToEnd = secondaryToTimeString.substring(
-            0, secondaryToTimeString.indexOf(' '));
-        if (secondToEnd == 'ص' || secondToEnd == 'AM') {
+            secondaryToTimeString.indexOf(' '), secondaryToTimeString.length);
+        if (secondToEnd.contains('ص') || secondToEnd.contains('AM')) {
           secondToAmPm = 'AM';
-        } else {
+        } else if (secondToEnd.characters.contains('م') ||
+            secondToEnd.contains('PM')) {
           secondToAmPm = 'PM';
         }
         secondaryToTimeString = secondToNo + ' ' + secondToAmPm;
@@ -1139,7 +1139,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
             ' ' +
             AppLocalizations.of(context).translate('to') +
             secondaryToTimeString;*/
-        print(secondaryToTimeString);
         print(secondaryWorkingHours);
       });
   }
@@ -1170,14 +1169,13 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
             0, ternaryFromTimeString.indexOf(' '));
         thirdFromEnd = ternaryFromTimeString.substring(
             ternaryFromTimeString.indexOf(' '), ternaryFromTimeString.length);
-        if (thirdFromEnd == 'ًص' || thirdFromEnd == 'AM') {
+        if (thirdFromEnd.contains('ص') || thirdFromEnd.contains('AM')) {
           thirdFromAmPm = 'AM';
         } else {
           thirdFromAmPm = 'PM';
         }
         thirdfrom = true;
         ternaryFromTimeString = thirdFromNo + ' ' + thirdFromAmPm;
-        print(ternaryFromTimeString);
       });
   }
 
@@ -1207,7 +1205,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
             ternaryToTimeString.substring(0, ternaryToTimeString.indexOf(' '));
         thirdToEnd = ternaryToTimeString.substring(
             ternaryToTimeString.indexOf(' '), ternaryToTimeString.length);
-        if (thirdToEnd == 'ص' || thirdToEnd == 'AM') {
+        if (thirdToEnd.contains('ص') || thirdToEnd.contains('AM')) {
           thirdToAmPm = 'AM';
         } else {
           thirdToAmPm = 'PM';
@@ -1227,7 +1225,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
             ' ' +
             AppLocalizations.of(context).translate('to') +
             ternaryToTimeString;*/
-        print(ternaryToTimeString);
         print(ternaryWorkingHours);
       });
   }

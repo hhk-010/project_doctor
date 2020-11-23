@@ -4,6 +4,7 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import 'dart:ui';
 import 'doctor03_map.dart';
+import 'package:project_doctor/authorization/email_verfication.dart';
 
 class ClinicDay {
   static String day1;
@@ -172,10 +173,10 @@ class _ClinicFormState extends State<ClinicForm> {
     super.initState();
     _mainFromTime = TimeOfDay.now();
     _secondaryFromTime = TimeOfDay.now();
-    _mainToTime = TimeOfDay(hour: 00, minute: 0);
-    _secondaryToTime = TimeOfDay(hour: 00, minute: 0);
+    _mainToTime = TimeOfDay(hour: 12, minute: 0);
+    _secondaryToTime = TimeOfDay(hour: 12, minute: 0);
     _ternaryFromTime = TimeOfDay.now();
-    _ternaryToTime = TimeOfDay(hour: 00, minute: 0);
+    _ternaryToTime = TimeOfDay(hour: 12, minute: 0);
   }
 
   @override
@@ -878,6 +879,23 @@ class _ClinicFormState extends State<ClinicForm> {
                                     makeMePass = false;
                                     print(workDays01);
                                   });
+                                  mainfrom = false;
+                                  mainto = false;
+                                  setState(() {
+                                    DataFromMaptoVerify.email = email;
+                                    DataFromMaptoVerify.password = password;
+                                    DataFromMaptoVerify.name = name;
+
+                                    DataFromMaptoVerify.speciality = speciality;
+                                    DataFromMaptoVerify.phoneNumber =
+                                        phoneNumber;
+                                    DataFromMaptoVerify.province = province;
+                                    DataFromMaptoVerify.address =
+                                        currentaddress;
+                                    DataFromMaptoVerify.workDays01 = workDays01;
+                                    DataFromMaptoVerify.workDays02 = workDays02;
+                                    DataFromMaptoVerify.workDays03 = workDays03;
+                                  });
                                   await Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) => DocMap(
@@ -895,8 +913,6 @@ class _ClinicFormState extends State<ClinicForm> {
                                       ),
                                     ),
                                   );
-                                  mainfrom = false;
-                                  mainto = false;
                                 } else if (currentWorkDays == '') {
                                   _error = AppLocalizations.of(context)
                                       .translate('selectmaindays');
@@ -979,7 +995,7 @@ class _ClinicFormState extends State<ClinicForm> {
             mainFromTimeString.substring(0, mainFromTimeString.indexOf(' '));
         mainFromend = mainFromTimeString.substring(
             mainFromTimeString.indexOf(' ') + 1, mainFromTimeString.length);
-        if (mainFromend == 'ص' || mainFromend == 'AM') {
+        if (mainFromend.contains('ص') || mainFromend == 'AM') {
           ampm = 'AM';
         } else {
           ampm = 'PM';
@@ -1015,17 +1031,17 @@ class _ClinicFormState extends State<ClinicForm> {
             mainToTimeString.substring(0, mainToTimeString.indexOf(' '));
         mainToend = mainToTimeString.substring(
             mainToTimeString.indexOf(' '), mainToTimeString.length);
-        if (mainToend == 'ًص' || mainToend == 'AM') {
+        if (mainToend.contains('ص') || mainToend.contains('AM')) {
           toampm = 'AM';
-        } else {
+        } else if (mainToend.contains('م') || mainToend.contains('PM')) {
           toampm = 'PM';
         }
         mainToTimeNo = mainToTimeNo + ' ' + toampm;
         mainWorkingHours = 'from ' + mainFromTimeNo + ' to ' + mainToTimeNo;
         makeMePass = true;
         mainto = true;
-        print(mainWorkingHours);
       });
+    print(mainWorkingHours);
   }
 
   _pickSecondaryFromTime() async {
@@ -1055,7 +1071,7 @@ class _ClinicFormState extends State<ClinicForm> {
         secondFromEnd = secondaryFromTimeString.substring(
             secondaryFromTimeString.indexOf(' '),
             secondaryFromTimeString.length);
-        if (secondFromEnd == 'ص' || secondFromEnd == 'AM') {
+        if (secondFromEnd.contains('ص') || secondFromEnd.contains('AM')) {
           secondFromAmPm = 'AM';
         } else {
           secondFromAmPm = 'PM';
@@ -1091,7 +1107,7 @@ class _ClinicFormState extends State<ClinicForm> {
             0, secondaryToTimeString.indexOf(' '));
         secondToEnd = secondaryToTimeString.substring(
             secondaryToTimeString.indexOf(' '), secondaryToTimeString.length);
-        if (secondToEnd == 'ص' || secondToEnd == 'AM') {
+        if (secondToEnd.contains('ص') || secondToEnd.contains('AM')) {
           secondToAmPm = 'AM';
         } else {
           secondToAmPm = 'PM';
@@ -1107,9 +1123,8 @@ class _ClinicFormState extends State<ClinicForm> {
           t1.add(secondaryWorkingHours);
         }
         secto = true;
-        print(t1);
-        print(secondaryWorkingHours);
       });
+    print(secondaryWorkingHours);
   }
 
   _pickTernaryFromTime() async {
@@ -1138,7 +1153,7 @@ class _ClinicFormState extends State<ClinicForm> {
             0, ternaryFromTimeString.indexOf(' '));
         thirdFromEnd = ternaryFromTimeString.substring(
             ternaryFromTimeString.indexOf(' '), ternaryFromTimeString.length);
-        if (thirdFromEnd == 'ص' || thirdFromEnd == 'AM') {
+        if (thirdFromEnd.contains('ص') || thirdFromEnd.contains('AM')) {
           thirdFromAmPm = 'AM';
         } else {
           thirdFromAmPm = 'PM';
@@ -1172,9 +1187,9 @@ class _ClinicFormState extends State<ClinicForm> {
         ternaryToTimeString = _ternaryToTime.format(context);
         thirdToNo =
             ternaryToTimeString.substring(0, ternaryToTimeString.indexOf(' '));
-        thirdFromEnd = ternaryToTimeString.substring(
+        thirdToEnd = ternaryToTimeString.substring(
             ternaryToTimeString.indexOf(' '), ternaryToTimeString.length);
-        if (thirdToEnd == 'ص' || thirdToEnd == 'AM') {
+        if (thirdToEnd.contains('ص') || thirdToEnd.contains('AM')) {
           thirdToAmPm = 'AM';
         } else {
           thirdToAmPm = 'PM';
@@ -1193,10 +1208,9 @@ class _ClinicFormState extends State<ClinicForm> {
           t2 = [];
           t2.add(ternaryWorkingHours);
         }
-        print(t2);
-        print(ternaryWorkingHours);
         thirdto = true;
       });
+    print(ternaryWorkingHours);
   }
 
   // Widget _searchField(BuildContext context, LocationBloc bloc) {

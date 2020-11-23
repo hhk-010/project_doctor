@@ -51,7 +51,7 @@ class _EmailVerificationState extends State<EmailVerification> {
     _readDoctorInfo();
     Future(() async {
       _timer = Timer.periodic(Duration(seconds: 10), (timer) async {
-        FirebaseAuth.instance.currentUser..reload();
+        //FirebaseAuth.instance.currentUser..reload();
       });
     });
     super.initState();
@@ -152,7 +152,9 @@ class _EmailVerificationState extends State<EmailVerification> {
                           _workDays01,
                           _workDays02,
                           _workDays03);
-                  Navigator.pushNamed(context, '/intermediate');
+                  //if the user is email verified then there will be toggling to profile
+                  //---review wrapper===> no need for below navigation
+                  //Navigator.pushNamed(context, '/intermediate');
                 }
               },
             ),
