@@ -179,7 +179,7 @@ class _PostpremcqState extends State<Postpremcq> {
                     FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Text(
-                        ' Welcome to Cura',
+                        'Welcome to Cura',
                         style: TextStyle(
                             fontSize: 25.0, fontWeight: FontWeight.bold),
                       ),
