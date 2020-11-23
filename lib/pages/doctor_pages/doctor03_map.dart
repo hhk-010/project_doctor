@@ -4,12 +4,12 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/01_wrapper.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/auth.dart';
 
 class DocMap extends StatefulWidget {
@@ -20,9 +20,9 @@ class DocMap extends StatefulWidget {
   final String phone;
   final String province;
   final String address;
-  final List workDays01;
-  final List workDays02;
-  final List workDays03;
+  final List<String> workDays01;
+  final List<String> workDays02;
+  final List<String> workDays03;
 
   DocMap(
       {this.email,
@@ -57,9 +57,9 @@ class _DocMapState extends State<DocMap> {
   String phoneNumber = '';
   String province = '';
   String address = '';
-  List workDays01 = [];
-  List workDays02 = [];
-  List workDays03 = [];
+  List<String> workDays01 = [];
+  List<String> workDays02 = [];
+  List<String> workDays03 = [];
   bool loading = false;
 
   _DocMapState(
@@ -90,6 +90,17 @@ class FinalMap extends StatefulWidget {
 }
 
 class _FinalMapState extends State<FinalMap> {
+  String email = DataFromMaptoVerify.email;
+  String password = DataFromMaptoVerify.password;
+  String name = DataFromMaptoVerify.name;
+  String speciality = DataFromMaptoVerify.speciality;
+  String phoneNumber = DataFromMaptoVerify.phoneNumber;
+  String province = DataFromMaptoVerify.province;
+  String address = DataFromMaptoVerify.address;
+  List workDays01 = DataFromMaptoVerify.workDays01;
+  List workDays02 = DataFromMaptoVerify.workDays02;
+  List workDays03 = DataFromMaptoVerify.workDays03;
+
   final AuthService _auth = AuthService();
 
   var latlng;
@@ -269,12 +280,8 @@ class _FinalMapState extends State<FinalMap> {
                         kmDistance = finalDistance * 0.01;
                       });
 
-                      if (isValidUser && kmDistance < 50.0) {
-                        dynamic authResult =
-                            await _auth.registerWithEmailAndPassword(
-                                DataFromMaptoVerify.email,
-                                DataFromMaptoVerify.password);
-                        setState(() {
+                      //if (kmDistance < 5000000.0) {
+                      /*setState(() {
                           /*DataFromMaptoVerify.email = email;
                           DataFromMaptoVerify.name = name;
                           DataFromMaptoVerify.speciality = speciality;
@@ -286,31 +293,48 @@ class _FinalMapState extends State<FinalMap> {
                           DataFromMaptoVerify.workDays03 = workDays03;*/
                           DataFromMaptoVerify.lat = lattt;
                           DataFromMaptoVerify.lng = lnggg;
-                        });
-                        //========Navigation to EmailVerification without the following
-                        // condition is a bug(emails Already in use can navigate)
-                        //------ direct navigation to the emailverfied widget will
-                        // give a fake page (when pressing continue) it will not respond)
-                        // I found put wrapper and transferred email by another method
-                        if (authResult != null) {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => Intermediate(),
-                            ),
-                          );
-                        } else {
-                          setState(() {
-                            error = AppLocalizations.of(context)
-                                .translate('snack_register');
-                          });
-                          _showSnackBar();
-                        }
+                        });*/
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      setState(() {
+                        prefs.setString('email', email);
+                        prefs.setString('name', name);
+                        prefs.setString('speciality', speciality);
+                        prefs.setString('phoneNumber', phoneNumber);
+                        prefs.setString('province', province);
+                        prefs.setString('address', address);
+                        prefs.setDouble('lat', lattt);
+                        prefs.setDouble('lng', lnggg);
+                        prefs.setStringList('workDays01', workDays01);
+                        prefs.setStringList('workDays02', workDays02);
+                        prefs.setStringList('workDays03', workDays03);
+                      });
+                      //========Navigation to EmailVerification without the following
+                      // condition is a bug(emails Already in use can navigate)
+                      //------ direct navigation to the emailverfied widget will
+                      // give a fake page (when pressing continue) it will not respond)
+                      // I found put wrapper and transferred email by another method
+                      dynamic authResult = await _auth
+                          .registerWithEmailAndPassword(email, password);
+                      if (authResult != null) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => Intermediate(),
+                          ),
+                        );
                       } else {
+                        setState(() {
+                          error = AppLocalizations.of(context)
+                              .translate('snack_register');
+                        });
+                        _showSnackBar();
+                      }
+                      /*} else {
                         setState(() {
                           error = 'Try again later';
                         });
                         _showSnackBar();
-                      }
+                      }*/
                     }
                   }
                 } else {
@@ -327,4 +351,19 @@ class _FinalMapState extends State<FinalMap> {
       ),
     );
   }
+}
+
+class DataFromMaptoVerify {
+  static String email = '';
+  static String password = '';
+  static String name = '';
+  static String speciality = '';
+  static String phoneNumber = '';
+  static String province = '';
+  static String address = '';
+  static List workDays01 = [];
+  static List workDays02 = [];
+  static List workDays03 = [];
+  static double lat = 0.0;
+  static double lng = 0.0;
 }

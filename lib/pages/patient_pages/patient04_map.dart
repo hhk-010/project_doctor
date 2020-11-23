@@ -169,7 +169,7 @@ class _PatientMapState extends State<PatientMap> {
                       MyVariables.speciality = speciality;
                       MyVariables.province = province;
                       MyVariables.lat = patlatt;
-                      MyVariables.long = patlngg;
+                      MyVariables.lng = patlngg;
                       Navigator.pushNamed(context, '/patient_result');
                     });
                   }
