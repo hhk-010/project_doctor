@@ -66,9 +66,9 @@ class _DoctorListState extends State<DoctorList> {
   double lat = 0.0;
   double lng = 0.0;
   String _address = '';
-  List _workDays01 = [];
-  List _workDays02 = [];
-  List _workDays03 = [];
+  List<String> _workDays01 = [];
+  List<String> _workDays02 = [];
+  List<String> _workDays03 = [];
   String _mainDaysTranslation;
   String _mainDays = '';
   String _firstEDay = '';
@@ -117,6 +117,7 @@ class _DoctorListState extends State<DoctorList> {
       for (var doc in doctorListProvider.docs) {
         if (doc.id == uid) {
           print(doc.data()['name']);
+          print(doc.data()['workDays01']);
           setState(() {
             name = doc.data()['name'];
             speciality = doc.data()['speciality'];
@@ -125,9 +126,9 @@ class _DoctorListState extends State<DoctorList> {
             lat = doc.data()['lat'];
             lng = doc.data()['lng'];
             _address = doc.data()['address'];
-            _workDays01 = doc.data()['workDays01'];
-            _workDays02 = doc.data()['workDays02'];
-            _workDays03 = doc.data()['workDays03'];
+            _workDays01 = List<String>.from(doc.data()['workDays01']);
+            _workDays02 = List<String>.from(doc.data()['workDays02']);
+            _workDays03 = List<String>.from(doc.data()['workDays03']);
             for (String x in _workDays01) {
               if (x.length < 11) {
                 _mainDaysTranslation =
@@ -326,8 +327,7 @@ class _DoctorListState extends State<DoctorList> {
                     ),
                     Text(
                       // _mainDays +
-                       '\n'
-                       + _mainTime,
+                      '\n' + _mainTime,
                       style: _textStyle,
                     ),
                     Divider(
@@ -344,7 +344,12 @@ class _DoctorListState extends State<DoctorList> {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      _firstEDay + " " + _firstTime + '\n' + _secondEDay + _secondTime,
+                      _firstEDay +
+                          " " +
+                          _firstTime +
+                          '\n' +
+                          _secondEDay +
+                          _secondTime,
                       style: _textStyle,
                     ),
                     Divider(

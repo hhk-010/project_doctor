@@ -2,10 +2,10 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/01_wrapper.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/services/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/auth.dart';
 
 class DocMap extends StatefulWidget {
@@ -16,9 +16,9 @@ class DocMap extends StatefulWidget {
   final String phone;
   final String province;
   final String address;
-  final List workDays01;
-  final List workDays02;
-  final List workDays03;
+  final List<String> workDays01;
+  final List<String> workDays02;
+  final List<String> workDays03;
 
   DocMap(
       {this.email,
@@ -56,9 +56,9 @@ class _DocMapState extends State<DocMap> {
   String phoneNumber = '';
   String province = '';
   String address = '';
-  List workDays01 = [];
-  List workDays02 = [];
-  List workDays03 = [];
+  List<String> workDays01 = [];
+  List<String> workDays02 = [];
+  List<String> workDays03 = [];
   bool loading = false;
 
   _DocMapState(
@@ -222,19 +222,21 @@ class _DocMapState extends State<DocMap> {
                               email,
                               password,
                             );
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
                             setState(() {
-                              DataFromMaptoVerify.email = email;
-                                                            DataFromMaptoVerify.name = name;
-
-                              DataFromMaptoVerify.speciality = speciality;
-                              DataFromMaptoVerify.phoneNumber = phoneNumber;
-                              DataFromMaptoVerify.province = province;
-                              DataFromMaptoVerify.address = address;
-                              DataFromMaptoVerify.workDays01 = workDays01;
-                              DataFromMaptoVerify.workDays02 = workDays02;
-                              DataFromMaptoVerify.workDays03 = workDays03;
-                              DataFromMaptoVerify.lat = lattt;
-                              DataFromMaptoVerify.lng = lnggg;
+                              prefs.setString('email', email);
+                              prefs.setString('name', name);
+                              prefs.setString('speciality', speciality);
+                              prefs.setString('phoneNumber', phoneNumber);
+                              prefs.setString('province', province);
+                              prefs.setString('address', address);
+                              prefs.setDouble('lat', lattt);
+                              prefs.setDouble('lng', lnggg);
+                              prefs.setStringList('workDays01', workDays01);
+                              prefs.setStringList('workDays02', workDays02);
+                              prefs.setStringList('workDays03', workDays03);
+                             
                             });
                             //========Navigation to EmailVerification without the following
                             // condition is a bug(emails Already in use can navigate)

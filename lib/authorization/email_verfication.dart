@@ -8,21 +8,6 @@ import 'package:project_doctor/services/database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // class for getting the data from map to firebase through verfication.
-class DataFromMaptoVerify {
-  static String email = '';
-  static String name = '';
-  static String speciality = '';
-  static String phoneNumber = '';
-  static String province = '';
-  static String address = '';
-  static List workDays01 = [];
-  static List workDays02 = [];
-  static List workDays03 = [];
-  static double lat;
-  static double lng;
-}
-
-
 class EmailVerification extends StatefulWidget {
   @override
   _EmailVerificationState createState() => _EmailVerificationState();
@@ -30,25 +15,46 @@ class EmailVerification extends StatefulWidget {
 
 class _EmailVerificationState extends State<EmailVerification> {
   bool loading = false;
+  String _email = 'AAA';
+  String _name = '';
+  String _speciality = '';
+  String _phoneNumber = '';
+  String _province = '';
+  String _address = '';
+  double _lat = 0.0;
+  double _lng = 0.0;
+  List<String> _workDays01 = [];
+  List<String> _workDays02 = [];
+  List<String> _workDays03 = [];
 
   final AuthService _auth = AuthService();
   Timer _timer;
+  _readDoctorInfo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _email = prefs.getString('email') ?? null;
+      _name = prefs.getString('name') ?? null;
+      _speciality = prefs.getString('speciality') ?? null;
+      _phoneNumber = prefs.getString('phoneNumber') ?? null;
+      _province = prefs.getString('province') ?? null;
+      _address = prefs.getString('address') ?? null;
+      _lat = prefs.getDouble('lat') ?? null;
+      _lng = prefs.getDouble('lng') ?? null;
+      _workDays01 = prefs.getStringList('workDays01') ?? null;
+      _workDays02 = prefs.getStringList('workDays02') ?? null;
+      _workDays03 = prefs.getStringList('workDays03') ?? null;
+    });
+  }
+
   @override
   void initState() {
-    super.initState();
+    _readDoctorInfo();
     Future(() async {
       _timer = Timer.periodic(Duration(seconds: 10), (timer) async {
         FirebaseAuth.instance.currentUser..reload();
       });
     });
-  }
-
-_loadCounter() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      int _counter = (prefs.getInt('counter') ?? 0);
-      prefs.setInt('counter', _counter);
-    });
+    super.initState();
   }
 
   @override
@@ -101,8 +107,7 @@ _loadCounter() async {
               flex: 1,
             ),
             Text(
-              DataFromMaptoVerify.email,
-              //'$email',
+              _email,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             Spacer(
@@ -137,16 +142,16 @@ _loadCounter() async {
                   await DatabaseService(
                           uid: FirebaseAuth.instance.currentUser.uid)
                       .updateUserData(
-                          DataFromMaptoVerify.name,
-                          DataFromMaptoVerify.speciality,
-                          DataFromMaptoVerify.phoneNumber,
-                          DataFromMaptoVerify.province,
-                          DataFromMaptoVerify.lat,
-                          DataFromMaptoVerify.lng,
-                          DataFromMaptoVerify.address,
-                          DataFromMaptoVerify.workDays01,
-                          DataFromMaptoVerify.workDays02,
-                          DataFromMaptoVerify.workDays03);
+                          _name,
+                          _speciality,
+                          _phoneNumber,
+                          _province,
+                          _lat,
+                          _lng,
+                          _address,
+                          _workDays01,
+                          _workDays02,
+                          _workDays03);
                   Navigator.pushNamed(context, '/intermediate');
                 }
               },

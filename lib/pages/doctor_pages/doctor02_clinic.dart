@@ -100,8 +100,8 @@ class _ClinicFormState extends State<ClinicForm> {
   String phoneNumber;
   String province;
   List workDays01 = [];
-  List workDays02 = [];
-  List workDays03 = [];
+  List<String> workDays02 = [];
+  List<String> workDays03 = [];
   TimeOfDay _mainFromTime;
   TimeOfDay _mainToTime;
   TimeOfDay _secondaryFromTime;
@@ -888,7 +888,8 @@ class _ClinicFormState extends State<ClinicForm> {
                                         phone: phoneNumber,
                                         province: province,
                                         address: currentaddress,
-                                        workDays01: workDays01,
+                                        workDays01:
+                                            List<String>.from(workDays01),
                                         workDays02: workDays02,
                                         workDays03: workDays03,
                                       ),
