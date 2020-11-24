@@ -153,13 +153,13 @@ class _DoctorListState extends State<DoctorList> {
             }
           }
           //}
-          if (_workDays02.isNotEmpty) {
+          if (_workDays02.isNotEmpty && _workDays02.length == 2) {
             _firstEDay = AppLocalizations.of(context).translate(_workDays02[0]);
             _firstfrom = _workDays02[1].substring(
-                _workDays02[1].indexOf('m') + 1,
-                _workDays02[1].indexOf('t') - 0);
+                _workDays02[1].indexOf('m') + 2,
+                _workDays02[1].indexOf('t') - 1);
             _firstTo = _workDays02[1].substring(
-                _workDays02[1].indexOf('t') + 2, _workDays02[1].length);
+                _workDays02[1].indexOf('t') + 3, _workDays02[1].length);
             _firstfromTime = _firstfrom.substring(0, _firstfrom.indexOf(' '));
             _firstfromAmPm = AppLocalizations.of(context).translate(_firstfrom
                 .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
