@@ -116,8 +116,6 @@ class _DoctorListState extends State<DoctorList> {
     if (doctorListProvider != null) {
       for (var doc in doctorListProvider.docs) {
         if (doc.id == uid) {
-          print(doc.data()['name']);
-          print(doc.data()['workDays01']);
           //setState(() {
           name = doc.data()['name'];
           speciality = doc.data()['speciality'];
@@ -158,10 +156,10 @@ class _DoctorListState extends State<DoctorList> {
           if (_workDays02.isNotEmpty) {
             _firstEDay = AppLocalizations.of(context).translate(_workDays02[0]);
             _firstfrom = _workDays02[1].substring(
-                _workDays02[1].indexOf('m') + 2,
-                _workDays02[1].indexOf('t') - 1);
+                _workDays02[1].indexOf('m') + 1,
+                _workDays02[1].indexOf('t') - 0);
             _firstTo = _workDays02[1].substring(
-                _workDays02[1].indexOf('t') + 3, _workDays02[1].length);
+                _workDays02[1].indexOf('t') + 2, _workDays02[1].length);
             _firstfromTime = _firstfrom.substring(0, _firstfrom.indexOf(' '));
             _firstfromAmPm = AppLocalizations.of(context).translate(_firstfrom
                 .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
@@ -178,7 +176,7 @@ class _DoctorListState extends State<DoctorList> {
                 ' ' +
                 _firstToAmPm;
           }
-          if (_workDays03.isNotEmpty) {
+          if (_workDays03.isNotEmpty && _workDays03.length == 2) {
             _secondEDay =
                 AppLocalizations.of(context).translate(_workDays03[0]);
             _secondfrom = _workDays03[1].substring(
@@ -203,14 +201,12 @@ class _DoctorListState extends State<DoctorList> {
                 ' ' +
                 _secondToAmPm;
           }
-
-          //_getAddressFromLatLng();
+          print(_workDays02.length);
           //});
-          print(_mainDays);
-          print(_mainTime);
           //)}
         }
       }
+      //_getAddressFromLatLng();
     }
     return Padding(
       padding: EdgeInsets.fromLTRB(25, 25, 25, 25),

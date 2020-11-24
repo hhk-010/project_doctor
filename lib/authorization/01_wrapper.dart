@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
@@ -31,6 +33,17 @@ class Wrapper extends StatefulWidget {
 }
 
 class _WrapperState extends State<Wrapper> {
+  Timer _timer;
+  @override
+  void initState() {
+    super.initState();
+    Future(() async {
+      _timer = Timer.periodic(Duration(seconds: 10), (timer) async {
+        FirebaseAuth.instance.currentUser..reload();
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserID>(context);
@@ -43,6 +56,14 @@ class _WrapperState extends State<Wrapper> {
       } else {
         return DoctorProfile();
       }
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    if (_timer != null) {
+      _timer.cancel();
     }
   }
 }

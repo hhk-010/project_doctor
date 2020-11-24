@@ -66,6 +66,7 @@
     "snack_sign_in" : "Error Signing in",
     "snack_connectivity" : "No Internet Connection",
     "snack_register" : "Registeration Error, Please enter valid credentials",
+    "snack_update" : "Please enter valid credentials",
     "snack_map" : "Tap on your clinic location first",
     "snack_map_patient" : "Please add your current location",
     "age_message":"Please , Enter your age",

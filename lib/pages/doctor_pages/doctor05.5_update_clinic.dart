@@ -910,21 +910,23 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                               }
                               makeMePass = false;
                             });
-                            print(workDays0);
-                            print(workDays03);
+                            setState(() {
+                              DataFromProfiletoUpdate.name = name;
+                              DataFromProfiletoUpdate.speciality = speciality;
+                              DataFromProfiletoUpdate.phoneNumber = phoneNumber;
+                              DataFromProfiletoUpdate.province = province;
+                              DataFromProfiletoUpdate.address = address;
+                              DataFromProfiletoUpdate.workDays01 =
+                                  List<String>.from(workDays01);
+                              DataFromProfiletoUpdate.workDays02 =
+                                  List<String>.from(workDays0);
+                              DataFromProfiletoUpdate.workDays03 =
+                                  List<String>.from(workDays03);
+                            });
 
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => UpdateMap(
-                                  name: name,
-                                  speciality: speciality,
-                                  number: phoneNumber,
-                                  province: province,
-                                  address: address,
-                                  workDays01: workDays01,
-                                  workDays02: workDays0,
-                                  workDays03: workDays03,
-                                ),
+                                builder: (context) => MainUpdateMap(),
                               ),
                             );
                             mainfrom = false;

@@ -1,8 +1,11 @@
 import 'dart:io';
+import 'dart:math';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/services/app_localizations.dart';
+import 'package:provider/provider.dart';
 import '../../services/database.dart';
 
 // ----------------class for snackbar error
@@ -10,46 +13,27 @@ class SnackBarError {
   static String error = '';
 }
 
-class UpdateMap extends StatefulWidget {
-  final String name;
-  final String speciality;
-  final String number;
-  final String province;
-  final String address;
-  final List workDays01;
-  final List workDays02;
-  final List workDays03;
-  UpdateMap(
-      {this.name,
-      this.speciality,
-      this.province,
-      this.number,
-      this.address,
-      this.workDays01,
-      this.workDays02,
-      this.workDays03});
+class MainUpdateMap extends StatefulWidget {
   @override
-  _UpdateMapState createState() => _UpdateMapState(
-      name: name,
-      speciality: speciality,
-      number: number,
-      province: province,
-      address: address,
-      workDays01: workDays01,
-      workDays02: workDays02,
-      workDays03: workDays03);
+  _MainUpdateMapState createState() => _MainUpdateMapState();
+}
+
+class _MainUpdateMapState extends State<MainUpdateMap> {
+  @override
+  Widget build(BuildContext context) {
+    return StreamProvider<QuerySnapshot>.value(
+      value: DatabaseService().basicData,
+      child: UpdateMap(),
+    );
+  }
+}
+
+class UpdateMap extends StatefulWidget {
+  @override
+  _UpdateMapState createState() => _UpdateMapState();
 }
 
 class _UpdateMapState extends State<UpdateMap> {
-  String name;
-  String speciality;
-  String number;
-  String province;
-  String address = '';
-  List workDays01 = [];
-  List workDays02 = [];
-  List workDays03 = [];
-
   var latlng;
   List<Marker> mymarker = [];
 
@@ -111,18 +95,13 @@ class _UpdateMapState extends State<UpdateMap> {
       setState(() {});
     }
   }
+
   //------------the end --------------------
-
-  _UpdateMapState(
-      {this.name,
-      this.speciality,
-      this.number,
-      this.province,
-      this.address,
-      this.workDays01,
-      this.workDays02,
-      this.workDays03});
-
+  double _lt = 0.0;
+  double _lg = 0.0;
+  double _result = 0.0;
+  double _finalDistance = 0.0;
+  double _kmDistance = 0.0;
   @override
   void initState() {
     checkInternet();
@@ -131,6 +110,18 @@ class _UpdateMapState extends State<UpdateMap> {
 
   @override
   Widget build(BuildContext context) {
+    final basicDatabase = Provider.of<QuerySnapshot>(context);
+    if (basicDatabase != null) {
+      for (var x in basicDatabase.docs) {
+        print(x.data()['lt']);
+        print(x.data()['lg']);
+        if (DataFromProfiletoUpdate.name == x.data()['n'] &&
+            DataFromProfiletoUpdate.speciality == x.data()['s']) {
+          _lt = x.data()['lt'];
+          _lg = x.data()['lg'];
+        }
+      }
+    }
     return Scaffold(
       key: _scaffoldkey,
       appBar: AppBar(
@@ -200,20 +191,35 @@ class _UpdateMapState extends State<UpdateMap> {
                     } else {
                       await geolocate(latlng: latlng);
                       if (lattt != null && lnggg != null) {
-                        await DatabaseService(
-                                uid: FirebaseAuth.instance.currentUser.uid)
-                            .updateUserData(
-                                name,
-                                speciality,
-                                number,
-                                province,
-                                lattt,
-                                lnggg,
-                                address,
-                                workDays01,
-                                workDays02,
-                                workDays03);
-                        Navigator.pop(context);
+                        setState(() {
+                          _result =
+                              pow((lattt - _lt), 2) + pow((lnggg - _lg), 2);
+                          _finalDistance = sqrt(_result);
+                          _kmDistance = _finalDistance * 100;
+                        });
+                        print(_kmDistance);
+                        if (_kmDistance < 100) {
+                          await DatabaseService(
+                                  uid: FirebaseAuth.instance.currentUser.uid)
+                              .updateUserData(
+                                  DataFromProfiletoUpdate.name,
+                                  DataFromProfiletoUpdate.speciality,
+                                  DataFromProfiletoUpdate.phoneNumber,
+                                  DataFromProfiletoUpdate.province,
+                                  lattt,
+                                  lnggg,
+                                  DataFromProfiletoUpdate.address,
+                                  DataFromProfiletoUpdate.workDays01,
+                                  DataFromProfiletoUpdate.workDays02,
+                                  DataFromProfiletoUpdate.workDays03);
+                          Navigator.pop(context);
+                        } else {
+                          setState(() {
+                            SnackBarError.error = AppLocalizations.of(context)
+                                .translate('snack_update');
+                          });
+                          _showSnackBar();
+                        }
                       }
                     }
                   } else {
@@ -229,4 +235,15 @@ class _UpdateMapState extends State<UpdateMap> {
       ),
     );
   }
+}
+
+class DataFromProfiletoUpdate {
+  static String name = '';
+  static String speciality = '';
+  static String phoneNumber = '';
+  static String province = '';
+  static String address = '';
+  static List<String> workDays01 = [];
+  static List<String> workDays02 = [];
+  static List<String> workDays03 = [];
 }
