@@ -856,8 +856,6 @@ class _ClinicFormState extends State<ClinicForm> {
                                     (e2.isEmpty && t2.isNotEmpty)) {
                                   //snackbar
                                 }
-                                print(workDays02);
-                                print(workDays03);
                                 if (currentaddress != '' &&
                                     currentWorkDays != '' &&
                                     mainFromTimeString != '' &&
@@ -875,6 +873,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                           workDays01[workDays01.length - 1]);
                                       workDays01.add(mainWorkingHours);
                                     }
+
                                     makeMePass = false;
                                     print(workDays01);
                                   });
@@ -891,25 +890,16 @@ class _ClinicFormState extends State<ClinicForm> {
                                     DataFromMaptoVerify.province = province;
                                     DataFromMaptoVerify.address =
                                         currentaddress;
-                                    DataFromMaptoVerify.workDays01 = workDays01;
-                                    DataFromMaptoVerify.workDays02 = workDays02;
-                                    DataFromMaptoVerify.workDays03 = workDays03;
+                                    DataFromMaptoVerify.workDays01 =
+                                        List<String>.from(workDays01);
+                                    DataFromMaptoVerify.workDays02 =
+                                        List<String>.from(workDays02);
+                                    DataFromMaptoVerify.workDays03 =
+                                        List<String>.from(workDays03);
                                   });
                                   await Navigator.of(context).push(
                                     MaterialPageRoute(
-                                      builder: (context) => DocMap(
-                                        email: email,
-                                        password: password,
-                                        name: name,
-                                        speciality: speciality,
-                                        phone: phoneNumber,
-                                        province: province,
-                                        address: currentaddress,
-                                        workDays01:
-                                            List<String>.from(workDays01),
-                                        workDays02: workDays02,
-                                        workDays03: workDays03,
-                                      ),
+                                      builder: (context) => DocMap(),
                                     ),
                                   );
                                 } else if (currentWorkDays == '') {
@@ -1196,11 +1186,6 @@ class _ClinicFormState extends State<ClinicForm> {
         ternaryToTimeString = thirdToNo + ' ' + thirdToAmPm;
         ternaryWorkingHours =
             'from ' + ternaryFromTimeString + ' to ' + ternaryToTimeString;
-        /*ternaryWorkingHours = AppLocalizations.of(context).translate('from') +
-            ternaryFromTimeString +
-            ' ' +
-            AppLocalizations.of(context).translate('to') +
-            ternaryToTimeString;*/
         if (t2.isEmpty) {
           t2.add(ternaryWorkingHours);
         } else {

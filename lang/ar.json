@@ -63,6 +63,7 @@
     "snack_sign_in" : "خطا في الدخول",
     "snack_connectivity" : "لا يوجد اتصال بالشبكه",
     "snack_register" : "خطا في التسجيل اضف معلومات صحيحه اولا",
+    "snack_update" : "اضف معلومات صحيحه اولا",
     "snack_map" : "حدد موقع عيادتك اولا",
     "snack_map_patient" : "لطفا حدد موقعك اولا",
     "age_message":"حدد عمرك لطفا",

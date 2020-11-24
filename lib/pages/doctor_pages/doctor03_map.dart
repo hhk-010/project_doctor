@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/authorization/01_wrapper.dart';
@@ -13,66 +14,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/auth.dart';
 
 class DocMap extends StatefulWidget {
-  final String email;
-  final String password;
-  final String name;
-  final String speciality;
-  final String phone;
-  final String province;
-  final String address;
-  final List<String> workDays01;
-  final List<String> workDays02;
-  final List<String> workDays03;
-
-  DocMap(
-      {this.email,
-      this.password,
-      this.name,
-      this.speciality,
-      this.phone,
-      this.province,
-      this.address,
-      this.workDays01,
-      this.workDays02,
-      this.workDays03});
   @override
-  _DocMapState createState() => _DocMapState(
-      email: email,
-      password: password,
-      name: name,
-      speciality: speciality,
-      phoneNumber: phone,
-      province: province,
-      address: address,
-      workDays01: workDays01,
-      workDays02: workDays02,
-      workDays03: workDays03);
+  _DocMapState createState() => _DocMapState();
 }
 
 class _DocMapState extends State<DocMap> {
-  String email = '';
-  String password = '';
-  String name = '';
-  String speciality = '';
-  String phoneNumber = '';
-  String province = '';
-  String address = '';
-  List<String> workDays01 = [];
-  List<String> workDays02 = [];
-  List<String> workDays03 = [];
   bool loading = false;
-
-  _DocMapState(
-      {this.email,
-      this.password,
-      this.name,
-      this.speciality,
-      this.phoneNumber,
-      this.province,
-      this.address,
-      this.workDays01,
-      this.workDays02,
-      this.workDays03});
   @override
   Widget build(BuildContext context) {
     return loading
@@ -90,17 +37,6 @@ class FinalMap extends StatefulWidget {
 }
 
 class _FinalMapState extends State<FinalMap> {
-  String email = DataFromMaptoVerify.email;
-  String password = DataFromMaptoVerify.password;
-  String name = DataFromMaptoVerify.name;
-  String speciality = DataFromMaptoVerify.speciality;
-  String phoneNumber = DataFromMaptoVerify.phoneNumber;
-  String province = DataFromMaptoVerify.province;
-  String address = DataFromMaptoVerify.address;
-  List workDays01 = DataFromMaptoVerify.workDays01;
-  List workDays02 = DataFromMaptoVerify.workDays02;
-  List workDays03 = DataFromMaptoVerify.workDays03;
-
   final AuthService _auth = AuthService();
 
   var latlng;
@@ -187,13 +123,6 @@ class _FinalMapState extends State<FinalMap> {
     final basicData = Provider.of<QuerySnapshot>(context);
     if (basicData != null) {
       for (var x in basicData.docs) {
-        print(x.data()['n']);
-        print(x.data()['s']);
-        print(x.data()['lt']);
-        print(x.data()['lg']);
-        n = x.data()['n'];
-        s = x.data()['s'];
-
         if (DataFromMaptoVerify.name == x.data()['n'] &&
             DataFromMaptoVerify.speciality == x.data()['s']) {
           isValidUser = true;
@@ -262,8 +191,6 @@ class _FinalMapState extends State<FinalMap> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               onPressed: () async {
-                print([n, s, lt, lg]);
-
                 checkInternet();
                 if (_isInternet) {
                   if (latlng == null) {
@@ -274,54 +201,60 @@ class _FinalMapState extends State<FinalMap> {
 
                     if (lattt != null && lnggg != null) {
                       setState(() {
-                        finalResult = ((lattt - lt) * (lattt - lt)) +
-                            ((lnggg - lg) * (lg - lnggg));
+                        finalResult =
+                            pow((lattt - lt), 2) + pow((lnggg - lg), 2);
                         finalDistance = sqrt(finalResult);
-                        kmDistance = finalDistance * 0.01;
+                        kmDistance = finalDistance * 100;
                       });
-
-                      //if (kmDistance < 5000000.0) {
-                      /*setState(() {
-                          /*DataFromMaptoVerify.email = email;
-                          DataFromMaptoVerify.name = name;
-                          DataFromMaptoVerify.speciality = speciality;
-                          DataFromMaptoVerify.phoneNumber = phoneNumber;
-                          DataFromMaptoVerify.province = province;
-                          DataFromMaptoVerify.address = address;
-                          DataFromMaptoVerify.workDays01 = workDays01;
-                          DataFromMaptoVerify.workDays02 = workDays02;
-                          DataFromMaptoVerify.workDays03 = workDays03;*/
-                          DataFromMaptoVerify.lat = lattt;
-                          DataFromMaptoVerify.lng = lnggg;
-                        });*/
-                      SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                      setState(() {
-                        prefs.setString('email', email);
-                        prefs.setString('name', name);
-                        prefs.setString('speciality', speciality);
-                        prefs.setString('phoneNumber', phoneNumber);
-                        prefs.setString('province', province);
-                        prefs.setString('address', address);
-                        prefs.setDouble('lat', lattt);
-                        prefs.setDouble('lng', lnggg);
-                        prefs.setStringList('workDays01', workDays01);
-                        prefs.setStringList('workDays02', workDays02);
-                        prefs.setStringList('workDays03', workDays03);
-                      });
+                      print(kmDistance);
                       //========Navigation to EmailVerification without the following
                       // condition is a bug(emails Already in use can navigate)
                       //------ direct navigation to the emailverfied widget will
                       // give a fake page (when pressing continue) it will not respond)
                       // I found put wrapper and transferred email by another method
-                      dynamic authResult = await _auth
-                          .registerWithEmailAndPassword(email, password);
-                      if (authResult != null) {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => Intermediate(),
-                          ),
-                        );
+
+                      //--------------at least 10 km away from bashar abbas------------------
+                      if (kmDistance < 100.0) {
+                        dynamic authResult =
+                            await _auth.registerWithEmailAndPassword(
+                                DataFromMaptoVerify.email,
+                                DataFromMaptoVerify.password);
+
+                        if (authResult != null) {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          setState(() {
+                            prefs.setString('email', DataFromMaptoVerify.email);
+                            prefs.setString('name', DataFromMaptoVerify.name);
+                            prefs.setString(
+                                'speciality', DataFromMaptoVerify.speciality);
+                            prefs.setString(
+                                'phoneNumber', DataFromMaptoVerify.phoneNumber);
+                            prefs.setString(
+                                'province', DataFromMaptoVerify.province);
+                            prefs.setString(
+                                'address', DataFromMaptoVerify.address);
+                            prefs.setDouble('lat', lattt);
+                            prefs.setDouble('lng', lnggg);
+                            prefs.setStringList(
+                                'workDays01', DataFromMaptoVerify.workDays01);
+                            prefs.setStringList(
+                                'workDays02', DataFromMaptoVerify.workDays02);
+                            prefs.setStringList(
+                                'workDays03', DataFromMaptoVerify.workDays03);
+                          });
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => Intermediate(),
+                            ),
+                          );
+                        } else {
+                          setState(() {
+                            error = AppLocalizations.of(context)
+                                .translate('snack_register');
+                          });
+                          _showSnackBar();
+                        }
                       } else {
                         setState(() {
                           error = AppLocalizations.of(context)
@@ -329,12 +262,6 @@ class _FinalMapState extends State<FinalMap> {
                         });
                         _showSnackBar();
                       }
-                      /*} else {
-                        setState(() {
-                          error = 'Try again later';
-                        });
-                        _showSnackBar();
-                      }*/
                     }
                   }
                 } else {
@@ -361,9 +288,7 @@ class DataFromMaptoVerify {
   static String phoneNumber = '';
   static String province = '';
   static String address = '';
-  static List workDays01 = [];
-  static List workDays02 = [];
-  static List workDays03 = [];
-  static double lat = 0.0;
-  static double lng = 0.0;
+  static List<String> workDays01 = [];
+  static List<String> workDays02 = [];
+  static List<String> workDays03 = [];
 }

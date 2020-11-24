@@ -99,6 +99,12 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _getAddressFromLatLng();
+  }
+
+  @override
   Widget build(BuildContext context) {
     TextStyle _textStyle = TextStyle(
         fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold);
@@ -137,9 +143,9 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             _lat = docu.data()['lat'];
             _lng = docu.data()['lng'];
             _address = docu.data()['address'];
-            _workDays01 = docu.data()['vacation'];
-            _workDays02 = docu.data()['workinghours'];
-            _workDays03 = docu.data()['workinghours2'];
+            _workDays01 = docu.data()['workDays01'];
+            _workDays02 = docu.data()['workDays02'];
+            _workDays03 = docu.data()['workDays03'];
             realdistance = distance * 100;
             realdist = realdistance.toString();
             dotindex = realdist.indexOf('.') + 3;
@@ -171,7 +177,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                     _mainToAmPm;
               }
             }
-            if (_workDays02.isNotEmpty) {
+            if (_workDays02.isEmpty && _workDays02.length == 2) {
               _firstEDay =
                   AppLocalizations.of(context).translate(_workDays02[0]);
               _firstfrom = _workDays02[1].substring(
@@ -195,7 +201,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                   ' ' +
                   _firstToAmPm;
             }
-            if (_workDays03.isNotEmpty) {
+            if (_workDays03.isNotEmpty && _workDays03.length == 2) {
               _secondEDay =
                   AppLocalizations.of(context).translate(_workDays03[0]);
               _secondfrom = _workDays03[1].substring(
@@ -221,62 +227,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                   ' ' +
                   _secondToAmPm;
             }
-
-            /*if (_workinghours.isNotEmpty) {
-            _firstEDay =
-                AppLocalizations.of(context).translate(_workinghours[0]);
-            _firstfrom = _workinghours[1].substring(
-                _workinghours[1].indexOf('m') + 2,
-                _workinghours[1].indexOf('t') - 1);
-            _firstTo = _workinghours[1].substring(
-                _workinghours[1].indexOf('t') + 3, _workinghours[1].length);
-            _firstfromTime = _firstfrom.substring(0, _firstfrom.indexOf(' '));
-            _firstfromAmPm = AppLocalizations.of(context).translate(_firstfrom
-                .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
-            _firstToTime = _firstTo.substring(0, _firstTo.indexOf(' '));
-            _firstToAmPm = AppLocalizations.of(context).translate(
-                _firstTo.substring(_firstTo.indexOf(' ') + 1, _firstTo.length));
-            _firstTime = AppLocalizations.of(context).translate('from') +
-                _firstfromTime +
-                ' ' +
-                _firstfromAmPm +
-                ' ' +
-                AppLocalizations.of(context).translate('to') +
-                _firstToTime +
-                ' ' +
-                _firstToAmPm;
-          }*/
-            /*if (_workinghours2.isNotEmpty) {
-            _secondEDay =
-                AppLocalizations.of(context).translate(_workinghours2[0]);
-            _secondfrom = _workinghours2[1].substring(
-                _workinghours2[1].indexOf('m') + 2,
-                _workinghours2[1].indexOf('t') - 1);
-            _secondTo = _workinghours2[1].substring(
-                _workinghours2[1].indexOf('t') + 3, _workinghours2[1].length);
-            _secondfromTime =
-                _secondfrom.substring(0, _secondfrom.indexOf(' '));
-            _secondfromAmPm = AppLocalizations.of(context).translate(_secondfrom
-                .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
-            _secondToTime = _secondTo.substring(0, _secondTo.indexOf(' '));
-            _secondToAmPm = AppLocalizations.of(context).translate(_secondTo
-                .substring(_secondTo.indexOf(' ') + 1, _secondTo.length));
-            _secondTime = AppLocalizations.of(context).translate('from') +
-                _secondfromTime +
-                ' ' +
-                _secondfromAmPm +
-                ' ' +
-                AppLocalizations.of(context).translate('to') +
-                _secondToTime +
-                ' ' +
-                _secondToAmPm;
-          }*/
-
-            //_getAddressFromLatLng();
           });
-          print(_mainTime);
-          print(_firstTime);
-          print(_secondTime);
         }
       }
     }
