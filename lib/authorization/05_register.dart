@@ -183,7 +183,7 @@ class _RegisterState extends State<Register> {
                 }),
                 Spacer(),
                 Text(error),
-                Divider(color: Colors.black),
+                Divider(color: Colors.black, thickness: 1,),
                 InkWell(
                   onTap: () {
                     //widget.toogleView();

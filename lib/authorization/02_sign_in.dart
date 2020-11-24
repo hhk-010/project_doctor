@@ -229,7 +229,7 @@ class _SignInState extends State<SignIn> {
                       error,
                       style: TextStyle(color: Colors.deepOrange),
                     ),
-                    Divider(color: Colors.black),
+                    Divider(color: Colors.black, thickness: 1,),
                     InkWell(
                       onTap: () {
                         widget.toogleView();
