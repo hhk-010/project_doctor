@@ -4,7 +4,6 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import 'dart:ui';
 import 'doctor03_map.dart';
-import 'package:project_doctor/authorization/email_verfication.dart';
 
 class ClinicDay {
   static String day1;
