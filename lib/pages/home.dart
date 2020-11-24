@@ -43,25 +43,28 @@ class _HomeState extends State<Home> {
         actions: [
           SafeArea(
             child: Padding(
-              padding: EdgeInsets.all(16.0),
-              child: DropdownButton(
-                onChanged: (Language language) {
-                  _changeLanguage(language);
-                },
-                underline: SizedBox(),
-                icon: Icon(
-                  Icons.language,
-                  color: Colors.white,
+              padding: EdgeInsets.fromLTRB(0, 16, 16, 14),
+              child: Tooltip(
+                message: AppLocalizations.of(context).translate('language'),
+                child: DropdownButton(
+                  onChanged: (Language language) {
+                    _changeLanguage(language);
+                  },
+                  underline: SizedBox(),
+                  icon: Icon(
+                    Icons.language,
+                    color: Colors.white,
+                  ),
+                  items: Language.languageList(context)
+                      .map<DropdownMenuItem<Language>>(
+                        (lang) => DropdownMenuItem(
+                            value: lang,
+                            child: Text(
+                              lang.name,
+                            )),
+                      )
+                      .toList(),
                 ),
-                items: Language.languageList(context)
-                    .map<DropdownMenuItem<Language>>(
-                      (lang) => DropdownMenuItem(
-                          value: lang,
-                          child: Text(
-                            lang.name,
-                          )),
-                    )
-                    .toList(),
               ),
             ),
           ),
