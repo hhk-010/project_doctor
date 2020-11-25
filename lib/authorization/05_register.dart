@@ -57,9 +57,7 @@ class _RegisterState extends State<Register> {
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: FittedBox(
-            fit: BoxFit.fitWidth,
-            child: Text(AppLocalizations.of(context).translate('register'),
-                style: _textStyle.copyWith(fontSize: 25))),
+            fit: BoxFit.fitWidth, child: Text(AppLocalizations.of(context).translate('register'), style: _textStyle.copyWith(fontSize: 25))),
         centerTitle: true,
         elevation: 0.0,
       ),
@@ -80,27 +78,20 @@ class _RegisterState extends State<Register> {
                   flex: 3,
                 ),
                 TextFormField(
-                  validator: (val) => val.isEmpty
-                      ? AppLocalizations.of(context)
-                          .translate('enter_your_email')
-                      : null,
+                  validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('enter_your_email') : null,
                   onChanged: (val) {
                     setState(() => email = val);
                   },
                   cursorColor: Colors.black,
                   keyboardType: TextInputType.emailAddress,
                   decoration: textInputdecoration.copyWith(
-                    hintText: AppLocalizations.of(context)
-                        .translate('enter_your_email'),
+                    hintText: AppLocalizations.of(context).translate('enter_your_email'),
                     labelText: AppLocalizations.of(context).translate('email'),
                   ),
                 ),
                 Spacer(),
                 TextFormField(
-                  validator: (val) => val.length < 8
-                      ? AppLocalizations.of(context)
-                          .translate('password_validator')
-                      : null,
+                  validator: (val) => val.length < 8 ? AppLocalizations.of(context).translate('password_validator') : null,
                   //? 'Enter a password 8 or long'
                   obscureText: !_passwordVisible,
                   onChanged: (val) {
@@ -109,16 +100,12 @@ class _RegisterState extends State<Register> {
                   cursorColor: Colors.black,
                   keyboardType: TextInputType.text,
                   decoration: textInputdecoration.copyWith(
-                    hintText: AppLocalizations.of(context)
-                        .translate('enter_your_password'),
-                    labelText:
-                        AppLocalizations.of(context).translate('password'),
+                    hintText: AppLocalizations.of(context).translate('enter_your_password'),
+                    labelText: AppLocalizations.of(context).translate('password'),
                     suffixIcon: IconButton(
                       icon: Icon(
                         // Based on passwordVisible state choose the icon
-                        _passwordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
+                        _passwordVisible ? Icons.visibility : Icons.visibility_off,
                         color: Colors.deepOrange,
                       ),
                       onPressed: () {
@@ -160,30 +147,25 @@ class _RegisterState extends State<Register> {
                           : () {
                               SnackBar errorSnackBar = SnackBar(
                                 content: Text(
-                                  AppLocalizations.of(context)
-                                      .translate('snack_connectivity'),
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: lang == 'ar'
-                                          ? 'noto_arabic'
-                                          : 'Helvetica'),
+                                  AppLocalizations.of(context).translate('snack_connectivity'),
+                                  style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
                                 ),
                                 backgroundColor: Colors.deepOrange,
                               );
                               Scaffold.of(context).showSnackBar(errorSnackBar);
                             },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(80.0)),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                       color: Colors.deepOrange,
-                      child: Text(
-                          AppLocalizations.of(context).translate('register'),
-                          style: _textStyle.copyWith(color: Colors.white)),
+                      child: Text(AppLocalizations.of(context).translate('register'), style: _textStyle.copyWith(color: Colors.white)),
                     ),
                   );
                 }),
                 Spacer(),
                 Text(error),
-                Divider(color: Colors.black, thickness: 1,),
+                Divider(
+                  color: Colors.black,
+                  thickness: 1,
+                ),
                 InkWell(
                   onTap: () {
                     //widget.toogleView();
@@ -191,22 +173,14 @@ class _RegisterState extends State<Register> {
                   },
                   child: RichText(
                     text: new TextSpan(
-                      style: new TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.black,
-                          fontFamily:
-                              lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+                      style: new TextStyle(fontSize: 14.0, color: Colors.black, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
                       children: <TextSpan>[
                         TextSpan(
-                          text: AppLocalizations.of(context)
-                              .translate('does_have_account'),
+                          text: AppLocalizations.of(context).translate('does_have_account'),
                         ),
                         TextSpan(
-                            text: AppLocalizations.of(context)
-                                .translate('sign_in'),
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.redAccent)),
+                            text: AppLocalizations.of(context).translate('sign_in'),
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.redAccent)),
                       ],
                     ),
                   ),

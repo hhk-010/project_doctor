@@ -97,116 +97,99 @@ class _DoctorListState extends State<DoctorList> {
 //get the user address from lat and lng
   String _doctorAddress = '';
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-  _getAddressFromLatLng() async {
-    List<Placemark> p = await geolocator.placemarkFromCoordinates(lat, lng);
-    Placemark place = p[0];
-    setState(() {
-      _doctorAddress = "${place.locality}, ${place.country}";
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    TextStyle _textStyle = TextStyle(
-        fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold);
+    TextStyle _textStyle = TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold);
     var uid = FirebaseAuth.instance.currentUser.uid;
     final doctorListProvider = Provider.of<QuerySnapshot>(context);
-
     if (doctorListProvider != null) {
       for (var doc in doctorListProvider.docs) {
         if (doc.id == uid) {
-          //setState(() {
-          name = doc.data()['name'];
-          speciality = doc.data()['speciality'];
-          number = doc.data()['phoneNumber'];
-          province = doc.data()['province'];
-          lat = doc.data()['lat'];
-          lng = doc.data()['lng'];
-          _address = doc.data()['address'];
-          _workDays01 = List<String>.from(doc.data()['workDays01']);
-          _workDays02 = List<String>.from(doc.data()['workDays02']);
-          _workDays03 = List<String>.from(doc.data()['workDays03']);
-          for (String x in _workDays01) {
-            if (x.length < 11) {
-              _mainDaysTranslation = AppLocalizations.of(context).translate(x);
-              _mainDays = _mainDays + ',' + _mainDaysTranslation;
-            } else {
-              _mainfrom = x.substring(x.indexOf('m') + 2, x.indexOf('t') - 1);
-              _mainTo = x.substring(x.indexOf('t') + 3, x.length);
-              _mainfromTime = _mainfrom.substring(0, _mainfrom.indexOf(' '));
-              _mainfromAmPm = AppLocalizations.of(context).translate(
-                  _mainfrom.substring(
-                      _mainfrom.indexOf(' ') + 1, _mainfrom.indexOf('M') + 1));
-              _mainToTime = _mainTo.substring(0, _mainTo.indexOf(' '));
-              _mainToAmPm = AppLocalizations.of(context).translate(
-                  _mainTo.substring(_mainTo.indexOf(' ') + 1, _mainTo.length));
-              _mainTime = AppLocalizations.of(context).translate('from') +
-                  _mainfromTime +
-                  ' ' +
-                  _mainfromAmPm +
-                  ' ' +
-                  AppLocalizations.of(context).translate('to') +
-                  _mainToTime +
-                  ' ' +
-                  _mainToAmPm;
-            }
-          }
-          //}
-          if (_workDays02.isNotEmpty && _workDays02.length == 2) {
-            _firstEDay = AppLocalizations.of(context).translate(_workDays02[0]);
-            _firstfrom = _workDays02[1].substring(
-                _workDays02[1].indexOf('m') + 2,
-                _workDays02[1].indexOf('t') - 1);
-            _firstTo = _workDays02[1].substring(
-                _workDays02[1].indexOf('t') + 3, _workDays02[1].length);
-            _firstfromTime = _firstfrom.substring(0, _firstfrom.indexOf(' '));
-            _firstfromAmPm = AppLocalizations.of(context).translate(_firstfrom
-                .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
-            _firstToTime = _firstTo.substring(0, _firstTo.indexOf(' '));
-            _firstToAmPm = AppLocalizations.of(context).translate(
-                _firstTo.substring(_firstTo.indexOf(' ') + 1, _firstTo.length));
-            _firstTime = AppLocalizations.of(context).translate('from') +
-                _firstfromTime +
-                ' ' +
-                _firstfromAmPm +
-                ' ' +
-                AppLocalizations.of(context).translate('to') +
-                _firstToTime +
-                ' ' +
-                _firstToAmPm;
-          }
-          if (_workDays03.isNotEmpty && _workDays03.length == 2) {
-            _secondEDay =
-                AppLocalizations.of(context).translate(_workDays03[0]);
-            _secondfrom = _workDays03[1].substring(
-                _workDays03[1].indexOf('m') + 2,
-                _workDays03[1].indexOf('t') - 1);
-            _secondTo = _workDays03[1].substring(
-                _workDays03[1].indexOf('t') + 3, _workDays03[1].length);
-            _secondfromTime =
-                _secondfrom.substring(0, _secondfrom.indexOf(' '));
-            _secondfromAmPm = AppLocalizations.of(context).translate(_secondfrom
-                .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
-            _secondToTime = _secondTo.substring(0, _secondTo.indexOf(' '));
-            _secondToAmPm = AppLocalizations.of(context).translate(_secondTo
-                .substring(_secondTo.indexOf(' ') + 1, _secondTo.length));
-            _secondTime = AppLocalizations.of(context).translate('from') +
-                _secondfromTime +
-                ' ' +
-                _secondfromAmPm +
-                ' ' +
-                AppLocalizations.of(context).translate('to') +
-                _secondToTime +
-                ' ' +
-                _secondToAmPm;
-          }
-          print(_workDays02.length);
-          //});
-          //)}
+          setState(() {
+            name = doc.data()['name'];
+            speciality = doc.data()['speciality'];
+            number = doc.data()['phoneNumber'];
+            province = doc.data()['province'];
+            lat = doc.data()['lat'];
+            lng = doc.data()['lng'];
+            _address = doc.data()['address'];
+            _workDays01 = List<String>.from(doc.data()['workDays01']);
+            _workDays02 = List<String>.from(doc.data()['workDays02']);
+            _workDays03 = List<String>.from(doc.data()['workDays03']);
+          });
         }
       }
-      //_getAddressFromLatLng();
     }
+    for (String x in _workDays01) {
+      if (x.length < 11) {
+        _mainDaysTranslation = AppLocalizations.of(context).translate(x);
+        _mainDays = _mainDays + ', ' + _mainDaysTranslation;
+      } else {
+        _mainfrom = x.substring(x.indexOf('m') + 2, x.indexOf('t') - 1);
+        _mainTo = x.substring(x.indexOf('t') + 3, x.length);
+        _mainfromTime = _mainfrom.substring(0, _mainfrom.indexOf(' '));
+        _mainfromAmPm = AppLocalizations.of(context).translate(_mainfrom.substring(_mainfrom.indexOf(' ') + 1, _mainfrom.indexOf('M') + 1));
+        _mainToTime = _mainTo.substring(0, _mainTo.indexOf(' '));
+        _mainToAmPm = AppLocalizations.of(context).translate(_mainTo.substring(_mainTo.indexOf(' ') + 1, _mainTo.length));
+        _mainTime = AppLocalizations.of(context).translate('from') +
+            _mainfromTime +
+            ' ' +
+            _mainfromAmPm +
+            ' ' +
+            AppLocalizations.of(context).translate('to') +
+            _mainToTime +
+            ' ' +
+            _mainToAmPm;
+      }
+    }
+
+    if (_workDays02.isNotEmpty && _workDays02.length == 2) {
+      _firstEDay = AppLocalizations.of(context).translate(_workDays02[0]);
+      _firstfrom = _workDays02[1].substring(_workDays02[1].indexOf('m') + 2, _workDays02[1].indexOf('t') - 1);
+      _firstTo = _workDays02[1].substring(_workDays02[1].indexOf('t') + 3, _workDays02[1].length);
+      _firstfromTime = _firstfrom.substring(0, _firstfrom.indexOf(' '));
+      _firstfromAmPm = AppLocalizations.of(context).translate(_firstfrom.substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
+      _firstToTime = _firstTo.substring(0, _firstTo.indexOf(' '));
+      _firstToAmPm = AppLocalizations.of(context).translate(_firstTo.substring(_firstTo.indexOf(' ') + 1, _firstTo.length));
+      _firstTime = AppLocalizations.of(context).translate('from') +
+          _firstfromTime +
+          ' ' +
+          _firstfromAmPm +
+          ' ' +
+          AppLocalizations.of(context).translate('to') +
+          _firstToTime +
+          ' ' +
+          _firstToAmPm;
+    }
+    if (_workDays03.isNotEmpty && _workDays03.length == 2) {
+      _secondEDay = AppLocalizations.of(context).translate(_workDays03[0]);
+      _secondfrom = _workDays03[1].substring(_workDays03[1].indexOf('m') + 2, _workDays03[1].indexOf('t') - 1);
+      _secondTo = _workDays03[1].substring(_workDays03[1].indexOf('t') + 3, _workDays03[1].length);
+      _secondfromTime = _secondfrom.substring(0, _secondfrom.indexOf(' '));
+      _secondfromAmPm = AppLocalizations.of(context).translate(_secondfrom.substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
+      _secondToTime = _secondTo.substring(0, _secondTo.indexOf(' '));
+      _secondToAmPm = AppLocalizations.of(context).translate(_secondTo.substring(_secondTo.indexOf(' ') + 1, _secondTo.length));
+      _secondTime = AppLocalizations.of(context).translate('from') +
+          _secondfromTime +
+          ' ' +
+          _secondfromAmPm +
+          ' ' +
+          AppLocalizations.of(context).translate('to') +
+          _secondToTime +
+          ' ' +
+          _secondToAmPm;
+    }
+    print(_workDays02.length);
+    // method to get user location through geolocater
+    // _getAddressFromLatLng() async {
+    //   List<Placemark> p = await geolocator.placemarkFromCoordinates(lat, lng);
+    //   Placemark place = p[0];
+    //   setState(() {
+    //     _doctorAddress = "${place.locality}, ${place.country}";
+    //   });
+    // }
+
     return Padding(
       padding: EdgeInsets.fromLTRB(25, 25, 25, 25),
       child: Container(
@@ -215,8 +198,7 @@ class _DoctorListState extends State<DoctorList> {
             Container(
               decoration: boxDecoration,
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -234,8 +216,7 @@ class _DoctorListState extends State<DoctorList> {
                     Center(
                       child: Text(
                         name,
-                        style: _textStyle.copyWith(
-                            fontSize: 25, fontFamily: 'noto_arabic'),
+                        style: _textStyle.copyWith(fontSize: 25, fontFamily: 'noto_arabic'),
                       ),
                     ),
                     SizedBox(
@@ -261,10 +242,10 @@ class _DoctorListState extends State<DoctorList> {
                     ),
                     Text(
                       AppLocalizations.of(context).translate('speciality'),
-                      style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.indigo,
-                          fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 10, color: Colors.indigo, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 2,
                     ),
                     Text(
                       AppLocalizations.of(context).translate(speciality),
@@ -278,10 +259,10 @@ class _DoctorListState extends State<DoctorList> {
                     ),
                     Text(
                       AppLocalizations.of(context).translate('phoneNumber'),
-                      style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.indigo,
-                          fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 10, color: Colors.indigo, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 2,
                     ),
                     Text(
                       number,
@@ -295,10 +276,10 @@ class _DoctorListState extends State<DoctorList> {
                     ),
                     Text(
                       AppLocalizations.of(context).translate('clinic_address'),
-                      style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.indigo,
-                          fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 10, color: Colors.indigo, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 2,
                     ),
                     Text(
                       _address,
@@ -312,14 +293,13 @@ class _DoctorListState extends State<DoctorList> {
                     ),
                     Text(
                       AppLocalizations.of(context).translate('clinic_work'),
-                      style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.indigo,
-                          fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 10, color: Colors.indigo, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 2,
                     ),
                     Text(
-                      // _mainDays +
-                      '\n' + _mainTime,
+                      _mainDays + '\n' + _mainTime,
                       style: _textStyle,
                     ),
                     Divider(
@@ -330,18 +310,10 @@ class _DoctorListState extends State<DoctorList> {
                     ),
                     Text(
                       AppLocalizations.of(context).translate('clinic_work'),
-                      style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.indigo,
-                          fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 10, color: Colors.indigo, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      _firstEDay +
-                          " " +
-                          _firstTime +
-                          '\n' +
-                          _secondEDay +
-                          _secondTime,
+                      _firstEDay + " " + _firstTime + '\n' + _secondEDay + _secondTime,
                       style: _textStyle,
                     ),
                     Divider(
@@ -360,19 +332,14 @@ class _DoctorListState extends State<DoctorList> {
             SizedBox(
               width: 25,
               child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(80.0)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                 child: Text(
                   AppLocalizations.of(context).translate('update_info'),
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
                 ),
                 color: Colors.deepOrange,
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Updateinfo()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Updateinfo()));
                 },
               ),
             ),

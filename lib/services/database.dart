@@ -57,7 +57,7 @@ class DatabaseService {
     return userCollection.doc(uid).snapshots().map(_userDataFromSnapshot);
   }
 
-  Stream<QuerySnapshot> get doccol {
+  Stream<QuerySnapshot> get doccCol {
     return userCollection.snapshots();
   }
 

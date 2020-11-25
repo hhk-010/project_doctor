@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/authorization/01_wrapper.dart';
@@ -12,6 +11,19 @@ import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/auth.dart';
+
+class DataFromMaptoVerify {
+  static String email = '';
+  static String password = '';
+  static String name = '';
+  static String speciality = '';
+  static String phoneNumber = '';
+  static String province = '';
+  static String address = '';
+  static List<String> workDays01 = [];
+  static List<String> workDays02 = [];
+  static List<String> workDays03 = [];
+}
 
 class DocMap extends StatefulWidget {
   @override
@@ -79,9 +91,7 @@ class _FinalMapState extends State<FinalMap> {
     final _snackBar = new SnackBar(
       content: Text(
         error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -123,8 +133,7 @@ class _FinalMapState extends State<FinalMap> {
     final basicData = Provider.of<QuerySnapshot>(context);
     if (basicData != null) {
       for (var x in basicData.docs) {
-        if (DataFromMaptoVerify.name == x.data()['n'] &&
-            DataFromMaptoVerify.speciality == x.data()['s']) {
+        if (DataFromMaptoVerify.name == x.data()['n'] && DataFromMaptoVerify.speciality == x.data()['s']) {
           isValidUser = true;
           lt = x.data()['lt'];
           lg = x.data()['lg'];
@@ -147,8 +156,7 @@ class _FinalMapState extends State<FinalMap> {
       body: Stack(
         children: [
           GoogleMap(
-            initialCameraPosition:
-                CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 10),
+            initialCameraPosition: CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 10),
             markers: Set.from(mymarker),
             onTap: handletap,
           ),
@@ -200,9 +208,11 @@ class _FinalMapState extends State<FinalMap> {
                     await geolocate(latlng: latlng);
 
                     if (lattt != null && lnggg != null) {
+                      print(lattt);
+                      print(lnggg);
+
                       setState(() {
-                        finalResult =
-                            pow((lattt - lt), 2) + pow((lnggg - lg), 2);
+                        finalResult = pow((lattt - lt), 2) + pow((lnggg - lg), 2);
                         finalDistance = sqrt(finalResult);
                         kmDistance = finalDistance * 100;
                       });
@@ -213,35 +223,23 @@ class _FinalMapState extends State<FinalMap> {
                       // give a fake page (when pressing continue) it will not respond)
                       // I found put wrapper and transferred email by another method
 
-                      //--------------at least 10 km away from bashar abbas------------------
+                      //--------------at least 10 km away from bashar abbas---------------
                       if (kmDistance < 100.0) {
-                        dynamic authResult =
-                            await _auth.registerWithEmailAndPassword(
-                                DataFromMaptoVerify.email,
-                                DataFromMaptoVerify.password);
-
+                        dynamic authResult = await _auth.registerWithEmailAndPassword(DataFromMaptoVerify.email, DataFromMaptoVerify.password);
                         if (authResult != null) {
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
                           setState(() {
                             prefs.setString('email', DataFromMaptoVerify.email);
                             prefs.setString('name', DataFromMaptoVerify.name);
-                            prefs.setString(
-                                'speciality', DataFromMaptoVerify.speciality);
-                            prefs.setString(
-                                'phoneNumber', DataFromMaptoVerify.phoneNumber);
-                            prefs.setString(
-                                'province', DataFromMaptoVerify.province);
-                            prefs.setString(
-                                'address', DataFromMaptoVerify.address);
+                            prefs.setString('speciality', DataFromMaptoVerify.speciality);
+                            prefs.setString('phoneNumber', DataFromMaptoVerify.phoneNumber);
+                            prefs.setString('province', DataFromMaptoVerify.province);
+                            prefs.setString('address', DataFromMaptoVerify.address);
                             prefs.setDouble('lat', lattt);
                             prefs.setDouble('lng', lnggg);
-                            prefs.setStringList(
-                                'workDays01', DataFromMaptoVerify.workDays01);
-                            prefs.setStringList(
-                                'workDays02', DataFromMaptoVerify.workDays02);
-                            prefs.setStringList(
-                                'workDays03', DataFromMaptoVerify.workDays03);
+                            prefs.setStringList('workDays01', DataFromMaptoVerify.workDays01);
+                            prefs.setStringList('workDays02', DataFromMaptoVerify.workDays02);
+                            prefs.setStringList('workDays03', DataFromMaptoVerify.workDays03);
                           });
                           Navigator.of(context).push(
                             MaterialPageRoute(
@@ -250,15 +248,13 @@ class _FinalMapState extends State<FinalMap> {
                           );
                         } else {
                           setState(() {
-                            error = AppLocalizations.of(context)
-                                .translate('snack_register');
+                            error = AppLocalizations.of(context).translate('snack_register');
                           });
                           _showSnackBar();
                         }
                       } else {
                         setState(() {
-                          error = AppLocalizations.of(context)
-                              .translate('snack_register');
+                          error = AppLocalizations.of(context).translate('snack_register');
                         });
                         _showSnackBar();
                       }
@@ -266,8 +262,7 @@ class _FinalMapState extends State<FinalMap> {
                   }
                 } else {
                   setState(() {
-                    error = AppLocalizations.of(context)
-                        .translate('snack_connectivity');
+                    error = AppLocalizations.of(context).translate('snack_connectivity');
                   });
                 }
                 _showSnackBar();
@@ -278,17 +273,4 @@ class _FinalMapState extends State<FinalMap> {
       ),
     );
   }
-}
-
-class DataFromMaptoVerify {
-  static String email = '';
-  static String password = '';
-  static String name = '';
-  static String speciality = '';
-  static String phoneNumber = '';
-  static String province = '';
-  static String address = '';
-  static List<String> workDays01 = [];
-  static List<String> workDays02 = [];
-  static List<String> workDays03 = [];
 }

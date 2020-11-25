@@ -68,6 +68,10 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
+          IconButton(
+            icon: Icon(Icons.perm_device_info),
+            onPressed: () => Navigator.pushNamed(context, '/register'),
+          )
         ],
       ),
       body: SafeArea(

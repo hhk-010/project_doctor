@@ -883,7 +883,6 @@ class _ClinicFormState extends State<ClinicForm> {
                                     DataFromMaptoVerify.email = email;
                                     DataFromMaptoVerify.password = password;
                                     DataFromMaptoVerify.name = name;
-
                                     DataFromMaptoVerify.speciality = speciality;
                                     DataFromMaptoVerify.phoneNumber =
                                         phoneNumber;

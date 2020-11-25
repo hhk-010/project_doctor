@@ -127,31 +127,14 @@ class _EmailVerificationState extends State<EmailVerification> {
                 Icons.arrow_forward,
                 color: Colors.white,
               ),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(80.0)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
               color: Colors.deepOrange,
-              label: Text(
-                  AppLocalizations.of(context)
-                      .translate("continue"), //'Continue',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold)),
+              label: Text(AppLocalizations.of(context).translate("continue"), //'Continue',
+                  style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
               onPressed: () async {
                 if (FirebaseAuth.instance.currentUser.emailVerified) {
-                  await DatabaseService(
-                          uid: FirebaseAuth.instance.currentUser.uid)
-                      .updateUserData(
-                          _name,
-                          _speciality,
-                          _phoneNumber,
-                          _province,
-                          _lat,
-                          _lng,
-                          _address,
-                          _workDays01,
-                          _workDays02,
-                          _workDays03);
+                  await DatabaseService(uid: FirebaseAuth.instance.currentUser.uid)
+                      .updateUserData(_name, _speciality, _phoneNumber, _province, _lat, _lng, _address, _workDays01, _workDays02, _workDays03);
                   await Navigator.pushNamed(context, '/intermediate');
                 }
               },
@@ -167,17 +150,12 @@ class _EmailVerificationState extends State<EmailVerification> {
                 textAlign: TextAlign.center,
                 text: new TextSpan(
                   style: new TextStyle(
-                      fontSize: 14.0,
-                      color: Colors.black,
-                      fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
-                      fontWeight: FontWeight.bold),
+                      fontSize: 14.0, color: Colors.black, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica', fontWeight: FontWeight.bold),
                   children: <TextSpan>[
                     //----text has been changed because if the client clicked resend
                     // for two time with less than one to twe minutes in between
                     // firebase will consider it as unusual activity -----
-                    new TextSpan(
-                        text: AppLocalizations.of(context)
-                            .translate("didnot receive")),
+                    new TextSpan(text: AppLocalizations.of(context).translate("didnot receive")),
                     //" Didn't receive email ? Please wait for few minutes then "),
                     new TextSpan(
                         text: AppLocalizations.of(context).translate("resend"),
