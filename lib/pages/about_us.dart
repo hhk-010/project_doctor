@@ -28,7 +28,7 @@ class AboutUS extends StatelessWidget {
           child: ListView(
             children: [
               SizedBox(
-                height: 250,
+                height: 200,
                 child: Image(
                   image: AssetImage('assets/images/about_us.png'),
                 ),
