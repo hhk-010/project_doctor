@@ -1,12 +1,14 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
 
 class DoctorForm extends StatefulWidget {
-  final String email;
-  final String password;
+  String email = '';
+  String password = '';
+
   DoctorForm({this.email, this.password});
   @override
   _DoctorFormState createState() =>
@@ -25,6 +27,7 @@ class _DoctorFormState extends State<DoctorForm> {
   String email;
   String password;
   _DoctorFormState({this.email, this.password});
+
   @override
   Widget build(BuildContext context) {
     final Map specialities = {

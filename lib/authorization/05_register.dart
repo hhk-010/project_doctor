@@ -36,9 +36,9 @@ class _RegisterState extends State<Register> {
 
   @override
   void initState() {
+    super.initState();
     _passwordVisible = false;
     checkInternet();
-    super.initState();
   }
 
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
@@ -140,16 +140,19 @@ class _RegisterState extends State<Register> {
                     child: RaisedButton(
                       onPressed: _isInternet
                           ? () async {
+                              print(ModalRoute.of(context));
                               if (_formKey.currentState.validate()) {
                                 if (email != '' && password != '') {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => DoctorForm(
-                                        email: email,
-                                        password: password,
+                                  if (ModalRoute.of(context) != false) {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => DoctorForm(
+                                          email: email,
+                                          password: password,
+                                        ),
                                       ),
-                                    ),
-                                  );
+                                    );
+                                  }
                                 }
                                 //added because if the user return to this page
                                 // without registeration loading will run without showing register
@@ -183,7 +186,10 @@ class _RegisterState extends State<Register> {
                 }),
                 Spacer(),
                 Text(error),
-                Divider(color: Colors.black, thickness: 1,),
+                Divider(
+                  color: Colors.black,
+                  thickness: 1,
+                ),
                 InkWell(
                   onTap: () {
                     //widget.toogleView();

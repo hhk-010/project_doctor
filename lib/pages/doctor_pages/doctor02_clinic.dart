@@ -167,6 +167,8 @@ class _ClinicFormState extends State<ClinicForm> {
     _scaffoldkey.currentState.showSnackBar(snackBar);
   }
 
+  //---this variable is assigned to make workdays element false---
+  int _x = 6;
   @override
   void initState() {
     super.initState();
@@ -176,6 +178,12 @@ class _ClinicFormState extends State<ClinicForm> {
     _secondaryToTime = TimeOfDay(hour: 12, minute: 0);
     _ternaryFromTime = TimeOfDay.now();
     _ternaryToTime = TimeOfDay(hour: 12, minute: 0);
+    workDays01 = [];
+    currentWorkDays = '';
+    while (_x >= 0) {
+      workDays[_x] = false;
+      _x -= 1;
+    }
   }
 
   @override
@@ -363,8 +371,8 @@ class _ClinicFormState extends State<ClinicForm> {
                                   workDays01
                                       .removeWhere((value) => value == null);
                                   currentWorkDays = workDays01.join(', ');
-                                  weekDaysList[index][0] = workDays[index];
-                                  //!weekDaysList[index][0];
+                                  weekDaysList[index][0] = //workDays[index];
+                                      !weekDaysList[index][0];
                                   makeException1();
                                   makeException2();
                                 } else {
@@ -907,7 +915,9 @@ class _ClinicFormState extends State<ClinicForm> {
                                       .translate('selectmaindays');
                                   _showSnackBar();
                                 } else if (mainFromTimeString == '' ||
-                                    mainToTimeString == '') {
+                                    mainToTimeString == '' ||
+                                    !mainfrom ||
+                                    !mainto) {
                                   _error = AppLocalizations.of(context)
                                       .translate('Select time');
                                   _showSnackBar();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor06_update_map.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:weekday_selector/weekday_selector.dart';
@@ -144,6 +145,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
     _scaffoldkey.currentState.showSnackBar(snackBar);
   }
 
+//--x is workdays list counter-----
+  int _x = 6;
   @override
   void initState() {
     super.initState();
@@ -153,6 +156,14 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
     _secondaryToTime = TimeOfDay(hour: 12, minute: 0);
     _ternaryFromTime = TimeOfDay.now();
     _ternaryToTime = TimeOfDay(hour: 12, minute: 0);
+    currentVacationDays = '';
+    workDays01 = [];
+    while (_x >= 0) {
+      setState(() {
+        workDays[_x] = false;
+      });
+      _x -= 1;
+    }
   }
 
   final _formkey = GlobalKey<FormState>();
@@ -936,7 +947,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                 .translate('selectmaindays');
                             _showSnackBar();
                           } else if (mainFromTimeString == '' ||
-                              mainToTimeString == '') {
+                              mainToTimeString == '' ||
+                              !mainfrom ||
+                              !mainto) {
                             _error = AppLocalizations.of(context)
                                 .translate('Select time');
                             _showSnackBar();

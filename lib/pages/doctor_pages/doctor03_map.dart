@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/authorization/01_wrapper.dart';
 import 'package:project_doctor/authorization/loading.dart';
+import 'package:project_doctor/pages/home.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
@@ -215,7 +216,7 @@ class _FinalMapState extends State<FinalMap> {
 
                       //--------------at least 10 km away from bashar abbas------------------
                       if (kmDistance < 100.0) {
-                        dynamic authResult =
+                        final authResult =
                             await _auth.registerWithEmailAndPassword(
                                 DataFromMaptoVerify.email,
                                 DataFromMaptoVerify.password);

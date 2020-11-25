@@ -31,6 +31,7 @@ class AuthService {
     }
     return _status;
   }
+
   Future registerWithEmailAndPassword(
     String email,
     String password,
@@ -41,18 +42,19 @@ class AuthService {
       User user = authResult.user;
       // create a new document for the user with the id
       await user.sendEmailVerification();
-      if (authResult.user != null) {
+      /*if (authResult.user != null) {
         _status = AuthResultStatus.successful;
       } else {
         _status = AuthResultStatus.undefined;
-      }
+      }*/
 
       return _userfromfirebase(user);
     } catch (e) {
       print('Exception @createAccount: $e');
       _status = AuthExceptionHandler.handleException(e);
+      //return _status;
+      return null;
     }
-    return _status;
   }
 
   resendemail() {
@@ -64,6 +66,7 @@ class AuthService {
       return null;
     }
   }
+
   Future signOut() async {
     try {
       return await _auth.signOut();
@@ -76,6 +79,7 @@ class AuthService {
   passwordisvalid(String passwords) async {
     return await AuthService().validatepass(passwords);
   }
+
   Future<bool> validatepass(String pass) async {
     User user = _auth.currentUser;
     AuthCredential credentials =

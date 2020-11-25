@@ -706,7 +706,7 @@ class QuestionsShuffle {
       'Hypovolemia',
       'Neurogenic shock',
       'Cardiogenic shock',
-      'Aeptic shock',
+      'Septic shock',
       'Massive pulmonary embolism',
       'Pneumothorax',
     ],
