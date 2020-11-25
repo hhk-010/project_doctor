@@ -43,6 +43,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
               ),
               onPressed: () async {
                 await _auth.signOut();
+                Navigator.pop(context);
               },
             )
           ],

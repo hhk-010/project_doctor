@@ -113,7 +113,7 @@ class _MyAppState extends State<MyApp> {
           routes: {
             '/home': (context) => Home(),
             '/about_us': (context) => AboutUS(),
-            '/loading' : (context) => Loading(),
+            '/loading': (context) => Loading(),
             '/intermediate': (context) => Intermediate(),
             '/patient_complain': (context) => PatientComplain(),
             '/doctor_form': (context) => DoctorForm(),

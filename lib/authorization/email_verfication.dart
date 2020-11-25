@@ -80,6 +80,7 @@ class _EmailVerificationState extends State<EmailVerification> {
             ),
             onPressed: () async {
               await _auth.signOut();
+              Navigator.pop(context);
             },
           )
         ],
