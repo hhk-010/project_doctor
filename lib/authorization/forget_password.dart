@@ -34,8 +34,6 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     }
   }
 
-  //-----------------there was a problem in the old snackbar
-  //-----------------this function will return a snackbar instead of the old one
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
     var lang = Localizations.localeOf(context).languageCode;
@@ -75,7 +73,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         padding: EdgeInsets.fromLTRB(50, 75, 50, 25),
         child: Form(
             key: _formkey,
-            child: Column(
+            child: ListView(
               children: [
                 SizedBox(
                   height: 150,
@@ -100,7 +98,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   },
                   validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('enter_your_email') : null,
                 ),
-                Spacer(),
+                SizedBox(
+                  height: 150,
+                ),
                 RaisedButton(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                   color: Colors.deepOrange,

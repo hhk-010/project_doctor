@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
+import 'package:project_doctor/services/responsive_size.dart';
 import '../../services/auth.dart';
 
 class UpdatePassword extends StatefulWidget {
@@ -42,9 +43,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
     final _snackbar = new SnackBar(
       content: Text(
         error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -78,42 +77,46 @@ class _UpdatePasswordState extends State<UpdatePassword> {
         ),
       ),
       body: Container(
-        height: double.maxFinite,
-        padding: EdgeInsets.symmetric(vertical: 75.0, horizontal: 50.0),
+        padding: EdgeInsets.fromLTRB(50, 75, 50, 25),
         child: Form(
           key: _formkey,
-          child: Column(
+          child: ListView(
             children: [
+              SizedBox(
+                height: displayHeight(context) * 0.2,
+                child: Image(
+                  image: AssetImage(
+                    'assets/images/update_password.png',
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 25,
+              ),
               TextFormField(
                 decoration: textInputdecoration.copyWith(
-                  hintText: AppLocalizations.of(context)
-                      .translate('current_password'),
-                  labelText:
-                      AppLocalizations.of(context).translate('old_password'),
+                  hintText: AppLocalizations.of(context).translate('current_password'),
+                  labelText: AppLocalizations.of(context).translate('old_password'),
                 ),
                 onChanged: (val) {
                   _oldPassword = val;
                 },
-                validator: (val) => val.length < 8
-                    ? AppLocalizations.of(context).translate('valid_password')
-                    : null,
+                validator: (val) => val.length < 8 ? AppLocalizations.of(context).translate('valid_password') : null,
               ),
-              Spacer(),
+              SizedBox(
+                height: 25,
+              ),
               TextFormField(
                 obscureText: !_passwordVisible,
                 onChanged: (val) {
                   setState(() => _newPassword = val);
                 },
                 decoration: textInputdecoration.copyWith(
-                  hintText: AppLocalizations.of(context)
-                      .translate('new_password_hint'),
-                  labelText:
-                      AppLocalizations.of(context).translate('new_password'),
+                  hintText: AppLocalizations.of(context).translate('new_password_hint'),
+                  labelText: AppLocalizations.of(context).translate('new_password'),
                   suffixIcon: IconButton(
                     icon: Icon(
-                      _passwordVisible
-                          ? Icons.visibility
-                          : Icons.visibility_off,
+                      _passwordVisible ? Icons.visibility : Icons.visibility_off,
                       color: Colors.deepOrange,
                     ),
                     onPressed: () {
@@ -123,43 +126,33 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                     },
                   ),
                 ),
-                validator: (val) => val.length < 8
-                    ? AppLocalizations.of(context)
-                        .translate('password_validator')
-                    : null,
+                validator: (val) => val.length < 8 ? AppLocalizations.of(context).translate('password_validator') : null,
               ),
-              Spacer(
-                flex: 5,
+              SizedBox(
+                height: 150,
               ),
-              ButtonTheme(
-                minWidth: double.infinity,
-                height: 45,
+              Container(
+                height: 40,
+                width: double.maxFinite,
                 child: RaisedButton.icon(
                   color: Colors.deepOrange,
                   icon: Icon(
                     Icons.arrow_forward,
                     color: Colors.white,
                   ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                   onPressed: () async {
                     checkInternet();
                     if (_isInternet) {
                       if (_formkey.currentState.validate()) {
                         AuthService().passwordisvalid(_oldPassword);
-                        passwordvalid =
-                            await AuthService().validatepass(_oldPassword);
+                        passwordvalid = await AuthService().validatepass(_oldPassword);
                         if (passwordvalid) {
                           AuthService().updatepass(_newPassword);
-                          //====when using push masterial page rout to the profle
-                          // there will be routing errors
-                          /*Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => DoctorProfile()));*/
                           Navigator.pop(context);
                         } else {
                           setState(() {
-                            error = AppLocalizations.of(context)
-                                .translate('invalid_password');
+                            error = AppLocalizations.of(context).translate('invalid_password');
                           });
                           //--------snackbar problem
                           _showSnackBar();
@@ -167,35 +160,17 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                       }
                     } else {
                       setState(() {
-                        error = AppLocalizations.of(context)
-                            .translate('snack_connectivity');
+                        error = AppLocalizations.of(context).translate('snack_connectivity');
                       });
                       _showSnackBar();
                     }
                   },
                   label: Text(
                     AppLocalizations.of(context).translate('update'),
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
-              Spacer(
-                flex: 1,
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Center(
-                  child: Text(
-                    '',
-                    //error,
-                    style: TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              )
             ],
           ),
         ),

@@ -18,22 +18,11 @@ class ClinicForm extends StatefulWidget {
   final String phoneNumber;
   final String province;
 
-  ClinicForm(
-      {this.email,
-      this.password,
-      this.name,
-      this.phoneNumber,
-      this.speciality,
-      this.province});
+  ClinicForm({this.email, this.password, this.name, this.phoneNumber, this.speciality, this.province});
 
   @override
-  _ClinicFormState createState() => _ClinicFormState(
-      email: email,
-      password: password,
-      name: name,
-      speciality: speciality,
-      phoneNumber: phoneNumber,
-      province: province);
+  _ClinicFormState createState() =>
+      _ClinicFormState(email: email, password: password, name: name, speciality: speciality, phoneNumber: phoneNumber, province: province);
 }
 
 List<DropdownMenuItem<String>> exception1 = List();
@@ -60,35 +49,19 @@ bool _daySwitch02 = false;
 List<bool> workDays = List.filled(7, false);
 List boolToStringDays(BuildContext context, List workDays) {
   return [
-    workDays[0]
-        ? "sunday"
-        : null, //AppLocalizations.of(context).translate('sunday') : null,
-    workDays[1]
-        ? "monday"
-        : null, //AppLocalizations.of(context).translate('monday') : null,
-    workDays[2]
-        ? "tuesday"
-        : null, //AppLocalizations.of(context).translate('tuesday') : null,
-    workDays[3]
-        ? "wednesday"
-        : null, //AppLocalizations.of(context).translate('wednesday') : null,
-    workDays[4]
-        ? "thursday"
-        : null, //AppLocalizations.of(context).translate('thursday') : null,
-    workDays[5]
-        ? "friday"
-        : null, //AppLocalizations.of(context).translate('friday') : null,
-    workDays[6]
-        ? "saturday"
-        : null, //AppLocalizations.of(context).translate('saturday') : null,
+    workDays[0] ? "sunday" : null, //AppLocalizations.of(context).translate('sunday') : null,
+    workDays[1] ? "monday" : null, //AppLocalizations.of(context).translate('monday') : null,
+    workDays[2] ? "tuesday" : null, //AppLocalizations.of(context).translate('tuesday') : null,
+    workDays[3] ? "wednesday" : null, //AppLocalizations.of(context).translate('wednesday') : null,
+    workDays[4] ? "thursday" : null, //AppLocalizations.of(context).translate('thursday') : null,
+    workDays[5] ? "friday" : null, //AppLocalizations.of(context).translate('friday') : null,
+    workDays[6] ? "saturday" : null, //AppLocalizations.of(context).translate('saturday') : null,
   ];
 }
 
 TextDirection getTextDirection(Locale locale) {
   const rtlLanguages = ['ar'];
-  return rtlLanguages.contains(locale.languageCode)
-      ? TextDirection.rtl
-      : TextDirection.ltr;
+  return rtlLanguages.contains(locale.languageCode) ? TextDirection.rtl : TextDirection.ltr;
 }
 
 class _ClinicFormState extends State<ClinicForm> {
@@ -156,9 +129,7 @@ class _ClinicFormState extends State<ClinicForm> {
     final snackBar = new SnackBar(
       content: new Text(
         _error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
 
       //duration: new Duration(seconds: 3),
@@ -189,48 +160,19 @@ class _ClinicFormState extends State<ClinicForm> {
   @override
   Widget build(BuildContext context) {
     final weekDaysList = {
-      0: [
-        workDays[0],
-        AppLocalizations.of(context).translate('sunday'),
-        "sunday"
-      ],
-      1: [
-        workDays[1],
-        AppLocalizations.of(context).translate('monday'),
-        "monday"
-      ],
-      2: [
-        workDays[2],
-        AppLocalizations.of(context).translate('tuesday'),
-        "tuesday"
-      ],
-      3: [
-        workDays[3],
-        AppLocalizations.of(context).translate('wednesday'),
-        "wednesday"
-      ],
-      4: [
-        workDays[4],
-        AppLocalizations.of(context).translate('thursday'),
-        "thursday"
-      ],
-      5: [
-        workDays[5],
-        AppLocalizations.of(context).translate('friday'),
-        "friday"
-      ],
-      6: [
-        workDays[6],
-        AppLocalizations.of(context).translate('saturday'),
-        "saturday"
-      ],
+      0: [workDays[0], AppLocalizations.of(context).translate('sunday'), "sunday"],
+      1: [workDays[1], AppLocalizations.of(context).translate('monday'), "monday"],
+      2: [workDays[2], AppLocalizations.of(context).translate('tuesday'), "tuesday"],
+      3: [workDays[3], AppLocalizations.of(context).translate('wednesday'), "wednesday"],
+      4: [workDays[4], AppLocalizations.of(context).translate('thursday'), "thursday"],
+      5: [workDays[5], AppLocalizations.of(context).translate('friday'), "friday"],
+      6: [workDays[6], AppLocalizations.of(context).translate('saturday'), "saturday"],
     };
     void makeException1() {
       exception1 = [];
       for (int key in weekDaysList.keys) {
         if (!weekDaysList[key][0] && weekDaysList[key][2] != ClinicDay.day2) {
-          exception1.add(DropdownMenuItem<String>(
-              child: Text(weekDaysList[key][1]), value: weekDaysList[key][2]));
+          exception1.add(DropdownMenuItem<String>(child: Text(weekDaysList[key][1]), value: weekDaysList[key][2]));
         }
       }
     }
@@ -239,8 +181,7 @@ class _ClinicFormState extends State<ClinicForm> {
       exception2 = [];
       for (int key in weekDaysList.keys) {
         if (!weekDaysList[key][0] && weekDaysList[key][2] != ClinicDay.day1) {
-          exception2.add(DropdownMenuItem<String>(
-              child: Text(weekDaysList[key][1]), value: weekDaysList[key][2]));
+          exception2.add(DropdownMenuItem<String>(child: Text(weekDaysList[key][1]), value: weekDaysList[key][2]));
         }
       }
     }
@@ -277,8 +218,7 @@ class _ClinicFormState extends State<ClinicForm> {
                 Container(
                   decoration: boxDecoration,
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -310,23 +250,13 @@ class _ClinicFormState extends State<ClinicForm> {
                           child: Directionality(
                             textDirection: TextDirection.rtl,
                             child: TextFormField(
-                              validator: (val) => val.isEmpty
-                                  ? AppLocalizations.of(context)
-                                      .translate('address_validator')
-                                  : null,
-                              onChanged: (val) =>
-                                  setState(() => currentaddress = val),
+                              validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('address_validator') : null,
+                              onChanged: (val) => setState(() => currentaddress = val),
                               decoration: textInputdecoration.copyWith(
-                                hintText:
-                                    'مثال: شارع المغرب مجاور صيدليه الشفاء',
-                                hintStyle: TextStyle(
-                                    fontSize: 14.0,
-                                    color: Colors.deepOrange,
-                                    fontFamily: 'noto_arabic'),
+                                hintText: 'مثال: شارع المغرب مجاور صيدليه الشفاء',
+                                hintStyle: TextStyle(fontSize: 14.0, color: Colors.deepOrange, fontFamily: 'noto_arabic'),
                                 labelText: 'عنوان العياده',
-                                labelStyle: TextStyle(
-                                    color: Colors.grey[750],
-                                    fontFamily: 'noto_arabic'),
+                                labelStyle: TextStyle(color: Colors.grey[750], fontFamily: 'noto_arabic'),
                               ),
                             ),
                           ),
@@ -363,21 +293,17 @@ class _ClinicFormState extends State<ClinicForm> {
                             onChanged: (int day) {
                               setState(() {
                                 final index = day % 7;
-                                if (ClinicDay.day1 != weekDaysList[index][2] &&
-                                    ClinicDay.day2 != weekDaysList[index][2]) {
+                                if (ClinicDay.day1 != weekDaysList[index][2] && ClinicDay.day2 != weekDaysList[index][2]) {
                                   workDays[index] = !workDays[index];
-                                  workDays01 =
-                                      boolToStringDays(context, workDays);
-                                  workDays01
-                                      .removeWhere((value) => value == null);
+                                  workDays01 = boolToStringDays(context, workDays);
+                                  workDays01.removeWhere((value) => value == null);
                                   currentWorkDays = workDays01.join(', ');
                                   weekDaysList[index][0] = //workDays[index];
                                       !weekDaysList[index][0];
                                   makeException1();
                                   makeException2();
                                 } else {
-                                  _error = AppLocalizations.of(context)
-                                      .translate("dayselected");
+                                  _error = AppLocalizations.of(context).translate("dayselected");
                                   _showSnackBar();
                                 }
                               });
@@ -397,13 +323,10 @@ class _ClinicFormState extends State<ClinicForm> {
                               AppLocalizations.of(context).translate('sunday'),
                               AppLocalizations.of(context).translate('monday'),
                               AppLocalizations.of(context).translate('tuesday'),
-                              AppLocalizations.of(context)
-                                  .translate('wednesday'),
-                              AppLocalizations.of(context)
-                                  .translate('thursday'),
+                              AppLocalizations.of(context).translate('wednesday'),
+                              AppLocalizations.of(context).translate('thursday'),
                               AppLocalizations.of(context).translate('friday'),
-                              AppLocalizations.of(context)
-                                  .translate('saturday'),
+                              AppLocalizations.of(context).translate('saturday'),
                             ],
                             textDirection: textDirection,
                             fillColor: Colors.white,
@@ -429,8 +352,7 @@ class _ClinicFormState extends State<ClinicForm> {
                               InkWell(
                                 child: RichText(
                                   text: TextSpan(
-                                      text: AppLocalizations.of(context)
-                                          .translate('from'),
+                                      text: AppLocalizations.of(context).translate('from'),
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
@@ -438,14 +360,11 @@ class _ClinicFormState extends State<ClinicForm> {
                                       ),
                                       children: [
                                         TextSpan(
-                                          text:
-                                              '${_mainFromTime.format(context)}',
+                                          text: '${_mainFromTime.format(context)}',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 16,
-                                            color: mainfrom
-                                                ? Colors.deepOrange
-                                                : Colors.black,
+                                            color: mainfrom ? Colors.deepOrange : Colors.black,
                                           ),
                                         ),
                                       ]),
@@ -462,8 +381,7 @@ class _ClinicFormState extends State<ClinicForm> {
                               InkWell(
                                 child: RichText(
                                   text: TextSpan(
-                                      text: AppLocalizations.of(context)
-                                          .translate('to'),
+                                      text: AppLocalizations.of(context).translate('to'),
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
@@ -471,14 +389,11 @@ class _ClinicFormState extends State<ClinicForm> {
                                       ),
                                       children: [
                                         TextSpan(
-                                          text:
-                                              '${_mainToTime.format(context)}',
+                                          text: '${_mainToTime.format(context)}',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 16,
-                                            color: mainto
-                                                ? Colors.deepOrange
-                                                : Colors.black,
+                                            color: mainto ? Colors.deepOrange : Colors.black,
                                           ),
                                         ),
                                       ]),
@@ -495,10 +410,8 @@ class _ClinicFormState extends State<ClinicForm> {
                             activeColor: Colors.deepOrange,
                             dense: true,
                             title: Text(
-                              AppLocalizations.of(context)
-                                  .translate('expcetion_days'),
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
+                              AppLocalizations.of(context).translate('expcetion_days'),
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                             ),
                             value: _daySwitch01,
                             onChanged: (bool s) {
@@ -520,16 +433,13 @@ class _ClinicFormState extends State<ClinicForm> {
                   child: Container(
                     decoration: boxDecoration,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 15),
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
                       child: Column(
                         children: [
                           Center(
                             child: Text(
-                              AppLocalizations.of(context)
-                                  .translate('expcetion_days'),
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
+                              AppLocalizations.of(context).translate('expcetion_days'),
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                           ),
                           Divider(
@@ -544,8 +454,7 @@ class _ClinicFormState extends State<ClinicForm> {
                             ),
                             child: DropdownButton(
                               hint: Text(
-                                AppLocalizations.of(context)
-                                    .translate('select_days'),
+                                AppLocalizations.of(context).translate('select_days'),
                               ),
                               isExpanded: true,
                               items: exception1,
@@ -584,8 +493,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                 InkWell(
                                   child: RichText(
                                     text: TextSpan(
-                                        text: AppLocalizations.of(context)
-                                            .translate('from'),
+                                        text: AppLocalizations.of(context).translate('from'),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
@@ -593,14 +501,11 @@ class _ClinicFormState extends State<ClinicForm> {
                                         ),
                                         children: [
                                           TextSpan(
-                                            text:
-                                                '${_secondaryFromTime.format(context)}',
+                                            text: '${_secondaryFromTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16,
-                                              color: secfrom
-                                                  ? Colors.deepOrange
-                                                  : Colors.black,
+                                              color: secfrom ? Colors.deepOrange : Colors.black,
                                             ),
                                           ),
                                         ]),
@@ -617,8 +522,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                 InkWell(
                                   child: RichText(
                                     text: TextSpan(
-                                        text: AppLocalizations.of(context)
-                                            .translate('to'),
+                                        text: AppLocalizations.of(context).translate('to'),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
@@ -626,14 +530,11 @@ class _ClinicFormState extends State<ClinicForm> {
                                         ),
                                         children: [
                                           TextSpan(
-                                            text:
-                                                '${_secondaryToTime.format(context)}',
+                                            text: '${_secondaryToTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16,
-                                              color: secto
-                                                  ? Colors.deepOrange
-                                                  : Colors.black,
+                                              color: secto ? Colors.deepOrange : Colors.black,
                                             ),
                                           ),
                                         ]),
@@ -650,10 +551,8 @@ class _ClinicFormState extends State<ClinicForm> {
                               activeColor: Colors.deepOrange,
                               dense: true,
                               title: Text(
-                                AppLocalizations.of(context)
-                                    .translate('expcetion_days'),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 16),
+                                AppLocalizations.of(context).translate('expcetion_days'),
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                               ),
                               value: _daySwitch02,
                               onChanged: (bool s) {
@@ -675,16 +574,13 @@ class _ClinicFormState extends State<ClinicForm> {
                   child: Container(
                     decoration: boxDecoration,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 15),
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
                       child: Column(
                         children: [
                           Center(
                             child: Text(
-                              AppLocalizations.of(context)
-                                  .translate('expcetion_days'),
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
+                              AppLocalizations.of(context).translate('expcetion_days'),
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                           ),
                           Divider(
@@ -699,8 +595,7 @@ class _ClinicFormState extends State<ClinicForm> {
                             ),
                             child: DropdownButton(
                               hint: Text(
-                                AppLocalizations.of(context)
-                                    .translate('select_days'),
+                                AppLocalizations.of(context).translate('select_days'),
                               ),
                               isExpanded: true,
                               items: exception2,
@@ -738,8 +633,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                 InkWell(
                                   child: RichText(
                                     text: TextSpan(
-                                        text: AppLocalizations.of(context)
-                                            .translate('from'),
+                                        text: AppLocalizations.of(context).translate('from'),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
@@ -747,14 +641,11 @@ class _ClinicFormState extends State<ClinicForm> {
                                         ),
                                         children: [
                                           TextSpan(
-                                            text:
-                                                '${_ternaryFromTime.format(context)}',
+                                            text: '${_ternaryFromTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16,
-                                              color: thirdfrom
-                                                  ? Colors.deepOrange
-                                                  : Colors.black,
+                                              color: thirdfrom ? Colors.deepOrange : Colors.black,
                                             ),
                                           ),
                                         ]),
@@ -771,8 +662,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                 InkWell(
                                   child: RichText(
                                     text: TextSpan(
-                                        text: AppLocalizations.of(context)
-                                            .translate('to'),
+                                        text: AppLocalizations.of(context).translate('to'),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
@@ -780,14 +670,11 @@ class _ClinicFormState extends State<ClinicForm> {
                                         ),
                                         children: [
                                           TextSpan(
-                                            text:
-                                                '${_ternaryToTime.format(context)}',
+                                            text: '${_ternaryToTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16,
-                                              color: thirdto
-                                                  ? Colors.deepOrange
-                                                  : Colors.black,
+                                              color: thirdto ? Colors.deepOrange : Colors.black,
                                             ),
                                           ),
                                         ]),
@@ -813,8 +700,7 @@ class _ClinicFormState extends State<ClinicForm> {
                         Row(
                           children: [
                             Text(
-                              AppLocalizations.of(context)
-                                  .translate('location_setup'),
+                              AppLocalizations.of(context).translate('location_setup'),
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             Icon(
@@ -826,132 +712,109 @@ class _ClinicFormState extends State<ClinicForm> {
                         SizedBox(
                           height: 10,
                         ),
-                        ButtonTheme(
-                          minWidth: double.infinity,
-                          child: RaisedButton.icon(
-                            color: Colors.deepOrange,
-                            icon: Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                            ),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(80.0)),
-                            onPressed: () async {
-                              if (_formKey.currentState.validate()) {
-                                if (e1.isNotEmpty && t1.isNotEmpty) {
-                                  if (workDays02.isEmpty) {
-                                    workDays02.add(e1[0]);
-                                    workDays02.add(t1[0]);
-                                  } else {
-                                    workDays02 = [];
-                                    workDays02.add(e1[0]);
-                                    workDays02.add(t1[0]);
-                                  }
-                                } else if ((e1.isEmpty && t1.isNotEmpty) ||
-                                    (e1.isNotEmpty && t1.isEmpty)) {
-                                  //snackbar
-                                }
-                                if (e2.isNotEmpty && t2.isNotEmpty) {
-                                  if (workDays03.isEmpty) {
-                                    workDays03.add(e2[0]);
-                                    workDays03.add(t2[0]);
-                                  } else {
-                                    workDays03 = [];
-                                    workDays03.add(e2[0]);
-                                    workDays03.add(t2[0]);
-                                  }
-                                } else if ((e2.isNotEmpty && t2.isEmpty) ||
-                                    (e2.isEmpty && t2.isNotEmpty)) {
-                                  //snackbar
-                                }
-                                if (currentaddress != '' &&
-                                    currentWorkDays != '' &&
-                                    mainFromTimeString != '' &&
-                                    mainToTimeString != '' &&
-                                    makeMePass == true &&
-                                    ((e1.isNotEmpty && t1.isNotEmpty) ||
-                                        (e1.isEmpty && t1.isEmpty)) &&
-                                    ((e2.isNotEmpty && t2.isNotEmpty) ||
-                                        (e2.isEmpty && t2.isEmpty))) {
-                                  setState(() {
-                                    if (mainWorkingHours == '') {
-                                      workDays01.add(mainWorkingHours);
+                        Container(
+                          height: 40,
+                          width: double.infinity,
+                          child: ButtonTheme(
+                            child: RaisedButton.icon(
+                              color: Colors.deepOrange,
+                              icon: Icon(
+                                Icons.arrow_forward,
+                                color: Colors.white,
+                              ),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                              onPressed: () async {
+                                if (_formKey.currentState.validate()) {
+                                  if (e1.isNotEmpty && t1.isNotEmpty) {
+                                    if (workDays02.isEmpty) {
+                                      workDays02.add(e1[0]);
+                                      workDays02.add(t1[0]);
                                     } else {
-                                      workDays01.remove(
-                                          workDays01[workDays01.length - 1]);
-                                      workDays01.add(mainWorkingHours);
+                                      workDays02 = [];
+                                      workDays02.add(e1[0]);
+                                      workDays02.add(t1[0]);
                                     }
-
-                                    makeMePass = false;
-                                    print(workDays01);
-                                  });
-                                  mainfrom = false;
-                                  mainto = false;
-                                  setState(() {
-                                    DataFromMaptoVerify.email = email;
-                                    DataFromMaptoVerify.password = password;
-                                    DataFromMaptoVerify.name = name;
-                                    DataFromMaptoVerify.speciality = speciality;
-                                    DataFromMaptoVerify.phoneNumber =
-                                        phoneNumber;
-                                    DataFromMaptoVerify.province = province;
-                                    DataFromMaptoVerify.address =
-                                        currentaddress;
-                                    DataFromMaptoVerify.workDays01 =
-                                        List<String>.from(workDays01);
-                                    DataFromMaptoVerify.workDays02 =
-                                        List<String>.from(workDays02);
-                                    DataFromMaptoVerify.workDays03 =
-                                        List<String>.from(workDays03);
-                                  });
-                                  await Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => DocMap(),
-                                    ),
-                                  );
-                                } else if (currentWorkDays == '') {
-                                  _error = AppLocalizations.of(context)
-                                      .translate('selectmaindays');
-                                  _showSnackBar();
-                                } else if (mainFromTimeString == '' ||
-                                    mainToTimeString == '' ||
-                                    !mainfrom ||
-                                    !mainto) {
-                                  _error = AppLocalizations.of(context)
-                                      .translate('Select time');
-                                  _showSnackBar();
-                                } else if (!((e1.isNotEmpty && t1.isNotEmpty) ||
-                                    (e1.isEmpty && t1.isEmpty))) {
-                                  if (e1.isEmpty) {
-                                    _error = AppLocalizations.of(context)
-                                        .translate('choose 1st exceprion day');
-                                    _showSnackBar();
-                                  } else {
-                                    _error = AppLocalizations.of(context)
-                                        .translate('choose 1st exception time');
-                                    _showSnackBar();
+                                  } else if ((e1.isEmpty && t1.isNotEmpty) || (e1.isNotEmpty && t1.isEmpty)) {
+                                    //snackbar
                                   }
-                                } else if (!((e2.isNotEmpty && t2.isNotEmpty) ||
-                                    (e2.isEmpty && t2.isEmpty))) {
-                                  if (e2.isEmpty) {
-                                    _error = AppLocalizations.of(context)
-                                        .translate('choose 2nd exception day');
+                                  if (e2.isNotEmpty && t2.isNotEmpty) {
+                                    if (workDays03.isEmpty) {
+                                      workDays03.add(e2[0]);
+                                      workDays03.add(t2[0]);
+                                    } else {
+                                      workDays03 = [];
+                                      workDays03.add(e2[0]);
+                                      workDays03.add(t2[0]);
+                                    }
+                                  } else if ((e2.isNotEmpty && t2.isEmpty) || (e2.isEmpty && t2.isNotEmpty)) {
+                                    //snackbar
+                                  }
+                                  if (currentaddress != '' &&
+                                      currentWorkDays != '' &&
+                                      mainFromTimeString != '' &&
+                                      mainToTimeString != '' &&
+                                      makeMePass == true &&
+                                      ((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty)) &&
+                                      ((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
+                                    setState(() {
+                                      if (mainWorkingHours == '') {
+                                        workDays01.add(mainWorkingHours);
+                                      } else {
+                                        workDays01.remove(workDays01[workDays01.length - 1]);
+                                        workDays01.add(mainWorkingHours);
+                                      }
+
+                                      makeMePass = false;
+                                      print(workDays01);
+                                    });
+                                    mainfrom = false;
+                                    mainto = false;
+                                    setState(() {
+                                      DataFromMaptoVerify.email = email;
+                                      DataFromMaptoVerify.password = password;
+                                      DataFromMaptoVerify.name = name;
+                                      DataFromMaptoVerify.speciality = speciality;
+                                      DataFromMaptoVerify.phoneNumber = phoneNumber;
+                                      DataFromMaptoVerify.province = province;
+                                      DataFromMaptoVerify.address = currentaddress;
+                                      DataFromMaptoVerify.workDays01 = List<String>.from(workDays01);
+                                      DataFromMaptoVerify.workDays02 = List<String>.from(workDays02);
+                                      DataFromMaptoVerify.workDays03 = List<String>.from(workDays03);
+                                    });
+                                    await Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => DocMap(),
+                                      ),
+                                    );
+                                  } else if (currentWorkDays == '') {
+                                    _error = AppLocalizations.of(context).translate('selectmaindays');
                                     _showSnackBar();
-                                  } else {
-                                    _error = AppLocalizations.of(context)
-                                        .translate('choose 2nd exception time');
+                                  } else if (mainFromTimeString == '' || mainToTimeString == '' || !mainfrom || !mainto) {
+                                    _error = AppLocalizations.of(context).translate('Select time');
                                     _showSnackBar();
+                                  } else if (!((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty))) {
+                                    if (e1.isEmpty) {
+                                      _error = AppLocalizations.of(context).translate('choose 1st exceprion day');
+                                      _showSnackBar();
+                                    } else {
+                                      _error = AppLocalizations.of(context).translate('choose 1st exception time');
+                                      _showSnackBar();
+                                    }
+                                  } else if (!((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
+                                    if (e2.isEmpty) {
+                                      _error = AppLocalizations.of(context).translate('choose 2nd exception day');
+                                      _showSnackBar();
+                                    } else {
+                                      _error = AppLocalizations.of(context).translate('choose 2nd exception time');
+                                      _showSnackBar();
+                                    }
                                   }
                                 }
-                              }
-                            },
-                            label: Text(
-                              AppLocalizations.of(context)
-                                  .translate('google_map'),
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
+                              },
+                              label: Text(
+                                AppLocalizations.of(context).translate('google_map'),
+                                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
                             ),
                           ),
                         ),
@@ -979,8 +842,7 @@ class _ClinicFormState extends State<ClinicForm> {
               primarySwatch: Colors.deepOrange,
             ),
             child: MediaQuery(
-              data:
-                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
               child: child,
             ),
           );
@@ -989,10 +851,8 @@ class _ClinicFormState extends State<ClinicForm> {
       setState(() {
         _mainFromTime = mainfromTime;
         mainFromTimeString = _mainFromTime.format(context);
-        mainFromTimeNo =
-            mainFromTimeString.substring(0, mainFromTimeString.indexOf(' '));
-        mainFromend = mainFromTimeString.substring(
-            mainFromTimeString.indexOf(' ') + 1, mainFromTimeString.length);
+        mainFromTimeNo = mainFromTimeString.substring(0, mainFromTimeString.indexOf(' '));
+        mainFromend = mainFromTimeString.substring(mainFromTimeString.indexOf(' ') + 1, mainFromTimeString.length);
         if (mainFromend.contains('ص') || mainFromend == 'AM') {
           ampm = 'AM';
         } else {
@@ -1015,8 +875,7 @@ class _ClinicFormState extends State<ClinicForm> {
               primarySwatch: Colors.deepOrange,
             ),
             child: MediaQuery(
-              data:
-                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
               child: child,
             ),
           );
@@ -1025,10 +884,8 @@ class _ClinicFormState extends State<ClinicForm> {
       setState(() {
         _mainToTime = maintoTime;
         mainToTimeString = _mainToTime.format(context);
-        mainToTimeNo =
-            mainToTimeString.substring(0, mainToTimeString.indexOf(' '));
-        mainToend = mainToTimeString.substring(
-            mainToTimeString.indexOf(' '), mainToTimeString.length);
+        mainToTimeNo = mainToTimeString.substring(0, mainToTimeString.indexOf(' '));
+        mainToend = mainToTimeString.substring(mainToTimeString.indexOf(' '), mainToTimeString.length);
         if (mainToend.contains('ص') || mainToend.contains('AM')) {
           toampm = 'AM';
         } else if (mainToend.contains('م') || mainToend.contains('PM')) {
@@ -1054,8 +911,7 @@ class _ClinicFormState extends State<ClinicForm> {
               primarySwatch: Colors.deepOrange,
             ),
             child: MediaQuery(
-              data:
-                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
               child: child,
             ),
           );
@@ -1064,11 +920,8 @@ class _ClinicFormState extends State<ClinicForm> {
       setState(() {
         _secondaryFromTime = secondaryFromTime;
         secondaryFromTimeString = _secondaryFromTime.format(context);
-        secondFromNo = secondaryFromTimeString.substring(
-            0, secondaryFromTimeString.indexOf(' '));
-        secondFromEnd = secondaryFromTimeString.substring(
-            secondaryFromTimeString.indexOf(' '),
-            secondaryFromTimeString.length);
+        secondFromNo = secondaryFromTimeString.substring(0, secondaryFromTimeString.indexOf(' '));
+        secondFromEnd = secondaryFromTimeString.substring(secondaryFromTimeString.indexOf(' '), secondaryFromTimeString.length);
         if (secondFromEnd.contains('ص') || secondFromEnd.contains('AM')) {
           secondFromAmPm = 'AM';
         } else {
@@ -1091,8 +944,7 @@ class _ClinicFormState extends State<ClinicForm> {
               primarySwatch: Colors.deepOrange,
             ),
             child: MediaQuery(
-              data:
-                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
               child: child,
             ),
           );
@@ -1101,18 +953,15 @@ class _ClinicFormState extends State<ClinicForm> {
       setState(() {
         _secondaryToTime = secondaryToTime;
         secondaryToTimeString = _secondaryToTime.format(context);
-        secondToNo = secondaryToTimeString.substring(
-            0, secondaryToTimeString.indexOf(' '));
-        secondToEnd = secondaryToTimeString.substring(
-            secondaryToTimeString.indexOf(' '), secondaryToTimeString.length);
+        secondToNo = secondaryToTimeString.substring(0, secondaryToTimeString.indexOf(' '));
+        secondToEnd = secondaryToTimeString.substring(secondaryToTimeString.indexOf(' '), secondaryToTimeString.length);
         if (secondToEnd.contains('ص') || secondToEnd.contains('AM')) {
           secondToAmPm = 'AM';
         } else {
           secondToAmPm = 'PM';
         }
         secondaryToTimeString = secondToNo + ' ' + secondToAmPm;
-        secondaryWorkingHours =
-            'from ' + secondaryFromTimeString + ' to ' + secondaryToTimeString;
+        secondaryWorkingHours = 'from ' + secondaryFromTimeString + ' to ' + secondaryToTimeString;
 
         if (t1.isEmpty) {
           t1.add(secondaryWorkingHours);
@@ -1137,8 +986,7 @@ class _ClinicFormState extends State<ClinicForm> {
               primarySwatch: Colors.deepOrange,
             ),
             child: MediaQuery(
-              data:
-                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
               child: child,
             ),
           );
@@ -1147,10 +995,8 @@ class _ClinicFormState extends State<ClinicForm> {
       setState(() {
         _ternaryFromTime = ternaryFromTime;
         ternaryFromTimeString = _ternaryFromTime.format(context);
-        thirdFromNo = ternaryFromTimeString.substring(
-            0, ternaryFromTimeString.indexOf(' '));
-        thirdFromEnd = ternaryFromTimeString.substring(
-            ternaryFromTimeString.indexOf(' '), ternaryFromTimeString.length);
+        thirdFromNo = ternaryFromTimeString.substring(0, ternaryFromTimeString.indexOf(' '));
+        thirdFromEnd = ternaryFromTimeString.substring(ternaryFromTimeString.indexOf(' '), ternaryFromTimeString.length);
         if (thirdFromEnd.contains('ص') || thirdFromEnd.contains('AM')) {
           thirdFromAmPm = 'AM';
         } else {
@@ -1173,8 +1019,7 @@ class _ClinicFormState extends State<ClinicForm> {
               primarySwatch: Colors.deepOrange,
             ),
             child: MediaQuery(
-              data:
-                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
               child: child,
             ),
           );
@@ -1183,18 +1028,15 @@ class _ClinicFormState extends State<ClinicForm> {
       setState(() {
         _ternaryToTime = ternaryToTime;
         ternaryToTimeString = _ternaryToTime.format(context);
-        thirdToNo =
-            ternaryToTimeString.substring(0, ternaryToTimeString.indexOf(' '));
-        thirdToEnd = ternaryToTimeString.substring(
-            ternaryToTimeString.indexOf(' '), ternaryToTimeString.length);
+        thirdToNo = ternaryToTimeString.substring(0, ternaryToTimeString.indexOf(' '));
+        thirdToEnd = ternaryToTimeString.substring(ternaryToTimeString.indexOf(' '), ternaryToTimeString.length);
         if (thirdToEnd.contains('ص') || thirdToEnd.contains('AM')) {
           thirdToAmPm = 'AM';
         } else {
           thirdToAmPm = 'PM';
         }
         ternaryToTimeString = thirdToNo + ' ' + thirdToAmPm;
-        ternaryWorkingHours =
-            'from ' + ternaryFromTimeString + ' to ' + ternaryToTimeString;
+        ternaryWorkingHours = 'from ' + ternaryFromTimeString + ' to ' + ternaryToTimeString;
         if (t2.isEmpty) {
           t2.add(ternaryWorkingHours);
         } else {

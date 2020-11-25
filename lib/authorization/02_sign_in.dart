@@ -146,7 +146,7 @@ class _SignInState extends State<SignIn> {
                     ),
                     Container(
                       height: 40.0,
-                      width: 200.0,
+                      width: 200,
                       child: RaisedButton(
                         onPressed: () async {
                           //conection will be checked after pressing not only in the begining

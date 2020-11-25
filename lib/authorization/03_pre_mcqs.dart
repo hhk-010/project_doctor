@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/04_mcqs.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/database.dart';
+import 'package:project_doctor/services/responsive_size.dart';
 import 'package:provider/provider.dart';
 
 class MCQss {
@@ -65,6 +66,7 @@ class _PreMCQsState extends State<PreMCQs> {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           key: _scaffoldkey,
           backgroundColor: Colors.grey[200],
           appBar: AppBar(
@@ -149,11 +151,13 @@ class _PostpremcqState extends State<Postpremcq> {
       padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 25.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Directionality(
             textDirection: TextDirection.ltr,
             child: Container(
-              width: double.infinity,
+              width: displayWidth(context) * 0.9,
+              height: (displayHeight(context) - MediaQuery.of(context).padding.top - kToolbarHeight) * 0.55,
               decoration: boxDecoration,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 25),
@@ -172,7 +176,7 @@ class _PostpremcqState extends State<Postpremcq> {
                       fit: BoxFit.fitWidth,
                       child: Text(
                         'Welcome to Cura',
-                        style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: displayWidth(context) * 0.06, fontWeight: FontWeight.bold),
                       ),
                     ),
                     Divider(
@@ -186,8 +190,8 @@ class _PostpremcqState extends State<Postpremcq> {
                     ),
                     Text(
                       'To Create a new account you must answer a few Medical Questions to Verify your Identity',
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: displayWidth(context) * 0.04, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: 50,
@@ -195,7 +199,7 @@ class _PostpremcqState extends State<Postpremcq> {
                     Text(
                       'If you already have an account return to the sign in page',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.red),
+                      style: TextStyle(fontSize: displayWidth(context) * 0.03, fontWeight: FontWeight.bold, color: Colors.red),
                     ),
                   ],
                 ),
