@@ -17,7 +17,11 @@ class UpdateInfo2 extends StatefulWidget {
   final String province;
   UpdateInfo2({this.name, this.speciality, this.phoneNumber, this.province});
   @override
-  _UpdateInfo2State createState() => _UpdateInfo2State(name: name, speciality: speciality, phoneNumber: phoneNumber, province: province);
+  _UpdateInfo2State createState() => _UpdateInfo2State(
+      name: name,
+      speciality: speciality,
+      phoneNumber: phoneNumber,
+      province: province);
 }
 
 List<DropdownMenuItem<String>> exceptions1 = List();
@@ -25,19 +29,35 @@ List<DropdownMenuItem<String>> exceptions2 = List();
 List<bool> worksDays = List.filled(7, false);
 List boolToStringDays(BuildContext context, List worksDays) {
   return [
-    worksDays[0] ? 'sunday' : null, //AppLocalizations.of(context).translate('sunday') : null,
-    worksDays[1] ? 'monday' : null, //AppLocalizations.of(context).translate('monday') : null,
-    worksDays[2] ? 'tuesday' : null, //AppLocalizations.of(context).translate('tuesday') : null,
-    worksDays[3] ? 'wednesday' : null, //AppLocalizations.of(context).translate('wednesday') : null,
-    worksDays[4] ? 'thursday' : null, //AppLocalizations.of(context).translate('thursday') : null,
-    worksDays[5] ? 'friday' : null, //AppLocalizations.of(context).translate('friday') : null,
-    worksDays[6] ? 'saturday' : null, //AppLocalizations.of(context).translate('saturday') : null,
+    worksDays[0]
+        ? 'sunday'
+        : null, //AppLocalizations.of(context).translate('sunday') : null,
+    worksDays[1]
+        ? 'monday'
+        : null, //AppLocalizations.of(context).translate('monday') : null,
+    worksDays[2]
+        ? 'tuesday'
+        : null, //AppLocalizations.of(context).translate('tuesday') : null,
+    worksDays[3]
+        ? 'wednesday'
+        : null, //AppLocalizations.of(context).translate('wednesday') : null,
+    worksDays[4]
+        ? 'thursday'
+        : null, //AppLocalizations.of(context).translate('thursday') : null,
+    worksDays[5]
+        ? 'friday'
+        : null, //AppLocalizations.of(context).translate('friday') : null,
+    worksDays[6]
+        ? 'saturday'
+        : null, //AppLocalizations.of(context).translate('saturday') : null,
   ];
 }
 
 TextDirection getTextDirection(Locale locale) {
   const rtlLanguages = ['ar'];
-  return rtlLanguages.contains(locale.languageCode) ? TextDirection.rtl : TextDirection.ltr;
+  return rtlLanguages.contains(locale.languageCode)
+      ? TextDirection.rtl
+      : TextDirection.ltr;
 }
 
 class _UpdateInfo2State extends State<UpdateInfo2> {
@@ -53,7 +73,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
   TimeOfDay _ternaryToTime;
   String weekday01;
   String weekday02;
-  _UpdateInfo2State({this.name, this.speciality, this.phoneNumber, this.province});
+  _UpdateInfo2State(
+      {this.name, this.speciality, this.phoneNumber, this.province});
 
   String address = '';
   String currentVacationDays = '';
@@ -113,7 +134,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
     final snackBar = new SnackBar(
       content: new Text(
         _error,
-        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
 
       //duration: new Duration(seconds: 3),
@@ -137,7 +160,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
     workDays01 = [];
     while (_x >= 0) {
       setState(() {
-        workDays[_x] = false;
+        worksDays[_x] = false;
       });
       _x -= 1;
     }
@@ -147,20 +170,51 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
   @override
   Widget build(BuildContext context) {
     final otherweekDaysList = {
-      0: [worksDays[0], AppLocalizations.of(context).translate('sunday'), "sunday"],
-      1: [worksDays[1], AppLocalizations.of(context).translate('monday'), "monday"],
-      2: [worksDays[2], AppLocalizations.of(context).translate('tuesday'), "tuesday"],
-      3: [worksDays[3], AppLocalizations.of(context).translate('wednesday'), "wednesday"],
-      4: [worksDays[4], AppLocalizations.of(context).translate('thursday'), "thursday"],
-      5: [worksDays[5], AppLocalizations.of(context).translate('friday'), "friday"],
-      6: [worksDays[6], AppLocalizations.of(context).translate('saturday'), "saturday"],
+      0: [
+        worksDays[0],
+        AppLocalizations.of(context).translate('sunday'),
+        "sunday"
+      ],
+      1: [
+        worksDays[1],
+        AppLocalizations.of(context).translate('monday'),
+        "monday"
+      ],
+      2: [
+        worksDays[2],
+        AppLocalizations.of(context).translate('tuesday'),
+        "tuesday"
+      ],
+      3: [
+        worksDays[3],
+        AppLocalizations.of(context).translate('wednesday'),
+        "wednesday"
+      ],
+      4: [
+        worksDays[4],
+        AppLocalizations.of(context).translate('thursday'),
+        "thursday"
+      ],
+      5: [
+        worksDays[5],
+        AppLocalizations.of(context).translate('friday'),
+        "friday"
+      ],
+      6: [
+        worksDays[6],
+        AppLocalizations.of(context).translate('saturday'),
+        "saturday"
+      ],
     };
 
     void makeExceptions1() {
       exceptions1 = [];
       for (int key in otherweekDaysList.keys) {
-        if (!otherweekDaysList[key][0] && otherweekDaysList[key][2] != ClinicDay.day2) {
-          exceptions1.add(DropdownMenuItem<String>(child: Text(otherweekDaysList[key][1]), value: otherweekDaysList[key][2]));
+        if (!otherweekDaysList[key][0] &&
+            otherweekDaysList[key][2] != ClinicDay.day2) {
+          exceptions1.add(DropdownMenuItem<String>(
+              child: Text(otherweekDaysList[key][1]),
+              value: otherweekDaysList[key][2]));
         }
       }
     }
@@ -168,8 +222,11 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
     void makeExceptions2() {
       exceptions2 = [];
       for (int key in otherweekDaysList.keys) {
-        if (!otherweekDaysList[key][0] && otherweekDaysList[key][2] != ClinicDay.day1) {
-          exceptions2.add(DropdownMenuItem<String>(child: Text(otherweekDaysList[key][1]), value: otherweekDaysList[key][2]));
+        if (!otherweekDaysList[key][0] &&
+            otherweekDaysList[key][2] != ClinicDay.day1) {
+          exceptions2.add(DropdownMenuItem<String>(
+              child: Text(otherweekDaysList[key][1]),
+              value: otherweekDaysList[key][2]));
         }
       }
     }
@@ -204,7 +261,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                   Container(
                     decoration: boxDecoration,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 15),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -236,13 +294,23 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                             child: Directionality(
                               textDirection: TextDirection.rtl,
                               child: TextFormField(
-                                validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('address_validator') : null,
-                                onChanged: (val) => setState(() => address = val),
+                                validator: (val) => val.isEmpty
+                                    ? AppLocalizations.of(context)
+                                        .translate('address_validator')
+                                    : null,
+                                onChanged: (val) =>
+                                    setState(() => address = val),
                                 decoration: textInputdecoration.copyWith(
-                                  hintText: 'مثال: شارع المغرب مجاور صيدليه الشفاء',
-                                  hintStyle: TextStyle(fontSize: 14.0, color: Colors.deepOrange, fontFamily: 'noto_arabic'),
+                                  hintText:
+                                      'مثال: شارع المغرب مجاور صيدليه الشفاء',
+                                  hintStyle: TextStyle(
+                                      fontSize: 14.0,
+                                      color: Colors.deepOrange,
+                                      fontFamily: 'noto_arabic'),
                                   labelText: 'عنوان العياده',
-                                  labelStyle: TextStyle(color: Colors.grey[750], fontFamily: 'noto_arabic'),
+                                  labelStyle: TextStyle(
+                                      color: Colors.grey[750],
+                                      fontFamily: 'noto_arabic'),
                                 ),
                               ),
                             ),
@@ -279,17 +347,24 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                               onChanged: (int day) {
                                 setState(() {
                                   final index = day % 7;
-                                  if (ClinicDay.day1 != otherweekDaysList[index][2] && ClinicDay.day2 != otherweekDaysList[index][2]) {
+                                  if (ClinicDay.day1 !=
+                                          otherweekDaysList[index][2] &&
+                                      ClinicDay.day2 !=
+                                          otherweekDaysList[index][2]) {
                                     worksDays[index] = !worksDays[index];
 
-                                    workDays01 = boolToStringDays(context, worksDays);
-                                    workDays01.removeWhere((value) => value == null);
+                                    workDays01 =
+                                        boolToStringDays(context, worksDays);
+                                    workDays01
+                                        .removeWhere((value) => value == null);
                                     currentVacationDays = workDays01.join(', ');
-                                    otherweekDaysList[index][0] = !otherweekDaysList[index][0];
+                                    otherweekDaysList[index][0] =
+                                        !otherweekDaysList[index][0];
                                     makeExceptions1();
                                     makeExceptions2();
                                   } else {
-                                    _error = AppLocalizations.of(context).translate("dayselected");
+                                    _error = AppLocalizations.of(context)
+                                        .translate("dayselected");
                                     _showSnackBar();
                                   }
                                 });
@@ -306,13 +381,20 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                 AppLocalizations.of(context).translate('sat'),
                               ],
                               weekdays: [
-                                AppLocalizations.of(context).translate('sunday'),
-                                AppLocalizations.of(context).translate('monday'),
-                                AppLocalizations.of(context).translate('tuesday'),
-                                AppLocalizations.of(context).translate('wednesday'),
-                                AppLocalizations.of(context).translate('thursday'),
-                                AppLocalizations.of(context).translate('friday'),
-                                AppLocalizations.of(context).translate('saturday'),
+                                AppLocalizations.of(context)
+                                    .translate('sunday'),
+                                AppLocalizations.of(context)
+                                    .translate('monday'),
+                                AppLocalizations.of(context)
+                                    .translate('tuesday'),
+                                AppLocalizations.of(context)
+                                    .translate('wednesday'),
+                                AppLocalizations.of(context)
+                                    .translate('thursday'),
+                                AppLocalizations.of(context)
+                                    .translate('friday'),
+                                AppLocalizations.of(context)
+                                    .translate('saturday'),
                               ],
                               textDirection: textDirection,
                               fillColor: Colors.white,
@@ -338,7 +420,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                 InkWell(
                                   child: RichText(
                                     text: TextSpan(
-                                        text: AppLocalizations.of(context).translate('from'),
+                                        text: AppLocalizations.of(context)
+                                            .translate('from'),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
@@ -346,11 +429,14 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                         ),
                                         children: [
                                           TextSpan(
-                                            text: '${_mainFromTime.format(context)}',
+                                            text:
+                                                '${_mainFromTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16,
-                                              color: mainfrom ? Colors.deepOrange : Colors.black,
+                                              color: mainfrom
+                                                  ? Colors.deepOrange
+                                                  : Colors.black,
                                             ),
                                           ),
                                         ]),
@@ -367,7 +453,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                 InkWell(
                                   child: RichText(
                                     text: TextSpan(
-                                        text: AppLocalizations.of(context).translate('to'),
+                                        text: AppLocalizations.of(context)
+                                            .translate('to'),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
@@ -375,11 +462,14 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                         ),
                                         children: [
                                           TextSpan(
-                                            text: '${_mainToTime.format(context)}',
+                                            text:
+                                                '${_mainToTime.format(context)}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16,
-                                              color: mainto ? Colors.deepOrange : Colors.black,
+                                              color: mainto
+                                                  ? Colors.deepOrange
+                                                  : Colors.black,
                                             ),
                                           ),
                                         ]),
@@ -396,8 +486,10 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                               activeColor: Colors.deepOrange,
                               dense: true,
                               title: Text(
-                                AppLocalizations.of(context).translate('expcetion_days'),
-                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                AppLocalizations.of(context)
+                                    .translate('expcetion_days'),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 16),
                               ),
                               value: _daySwitch01,
                               onChanged: (bool s) {
@@ -419,13 +511,16 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                     child: Container(
                       decoration: boxDecoration,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 15),
                         child: Column(
                           children: [
                             Center(
                               child: Text(
-                                AppLocalizations.of(context).translate('expcetion_days'),
-                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                AppLocalizations.of(context)
+                                    .translate('expcetion_days'),
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
                               ),
                             ),
                             Divider(
@@ -440,7 +535,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                               ),
                               child: DropdownButton(
                                 hint: Text(
-                                  AppLocalizations.of(context).translate('select_days'),
+                                  AppLocalizations.of(context)
+                                      .translate('select_days'),
                                 ),
                                 isExpanded: true,
                                 items: exceptions1,
@@ -509,7 +605,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                   InkWell(
                                     child: RichText(
                                       text: TextSpan(
-                                          text: AppLocalizations.of(context).translate('from'),
+                                          text: AppLocalizations.of(context)
+                                              .translate('from'),
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
@@ -517,11 +614,14 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                           ),
                                           children: [
                                             TextSpan(
-                                              text: '${_secondaryFromTime.format(context)}',
+                                              text:
+                                                  '${_secondaryFromTime.format(context)}',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16,
-                                                color: secfrom ? Colors.deepOrange : Colors.black,
+                                                color: secfrom
+                                                    ? Colors.deepOrange
+                                                    : Colors.black,
                                               ),
                                             ),
                                           ]),
@@ -538,7 +638,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                   InkWell(
                                     child: RichText(
                                       text: TextSpan(
-                                          text: AppLocalizations.of(context).translate('to'),
+                                          text: AppLocalizations.of(context)
+                                              .translate('to'),
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
@@ -546,11 +647,14 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                           ),
                                           children: [
                                             TextSpan(
-                                              text: '${_secondaryToTime.format(context)}',
+                                              text:
+                                                  '${_secondaryToTime.format(context)}',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16,
-                                                color: secto ? Colors.deepOrange : Colors.black,
+                                                color: secto
+                                                    ? Colors.deepOrange
+                                                    : Colors.black,
                                               ),
                                             ),
                                           ]),
@@ -567,8 +671,11 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                 activeColor: Colors.deepOrange,
                                 dense: true,
                                 title: Text(
-                                  AppLocalizations.of(context).translate('expcetion_days'),
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                  AppLocalizations.of(context)
+                                      .translate('expcetion_days'),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
                                 ),
                                 value: _daySwitch02,
                                 onChanged: (bool s) {
@@ -590,13 +697,16 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                     child: Container(
                       decoration: boxDecoration,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 15),
                         child: Column(
                           children: [
                             Center(
                               child: Text(
-                                AppLocalizations.of(context).translate('expcetion_days'),
-                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                AppLocalizations.of(context)
+                                    .translate('expcetion_days'),
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
                               ),
                             ),
                             Divider(
@@ -611,7 +721,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                               ),
                               child: DropdownButton(
                                 hint: Text(
-                                  AppLocalizations.of(context).translate('select_days'),
+                                  AppLocalizations.of(context)
+                                      .translate('select_days'),
                                 ),
                                 isExpanded: true,
                                 items: exceptions2,
@@ -679,7 +790,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                   InkWell(
                                     child: RichText(
                                       text: TextSpan(
-                                          text: AppLocalizations.of(context).translate('from'),
+                                          text: AppLocalizations.of(context)
+                                              .translate('from'),
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
@@ -687,11 +799,14 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                           ),
                                           children: [
                                             TextSpan(
-                                              text: '${_ternaryFromTime.format(context)}',
+                                              text:
+                                                  '${_ternaryFromTime.format(context)}',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16,
-                                                color: thirdfrom ? Colors.deepOrange : Colors.black,
+                                                color: thirdfrom
+                                                    ? Colors.deepOrange
+                                                    : Colors.black,
                                               ),
                                             ),
                                           ]),
@@ -708,7 +823,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                   InkWell(
                                     child: RichText(
                                       text: TextSpan(
-                                          text: AppLocalizations.of(context).translate('to'),
+                                          text: AppLocalizations.of(context)
+                                              .translate('to'),
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
@@ -716,11 +832,14 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                           ),
                                           children: [
                                             TextSpan(
-                                              text: '${_ternaryToTime.format(context)}',
+                                              text:
+                                                  '${_ternaryToTime.format(context)}',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16,
-                                                color: thirdto ? Colors.deepOrange : Colors.black,
+                                                color: thirdto
+                                                    ? Colors.deepOrange
+                                                    : Colors.black,
                                               ),
                                             ),
                                           ]),
@@ -747,7 +866,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                         Icons.arrow_forward,
                         color: Colors.white,
                       ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80.0)),
                       onPressed: () {
                         if (_formkey.currentState.validate()) {
                           print(mainWorkingHours);
@@ -761,7 +881,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                 workDays0.add(e1[0]);
                                 workDays0.add(t1[0]);
                               }
-                            } else if ((e1.isNotEmpty && t1.isEmpty) || (e1.isEmpty && t1.isNotEmpty)) {
+                            } else if ((e1.isNotEmpty && t1.isEmpty) ||
+                                (e1.isEmpty && t1.isNotEmpty)) {
                               //show snackbar
                             }
                             if (e2.isNotEmpty && t2.isNotEmpty) {
@@ -773,7 +894,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                 workDays03.add(e2[0]);
                                 workDays03.add(t2[0]);
                               }
-                            } else if ((e2.isNotEmpty && t2.isEmpty) || (e2.isEmpty && t2.isNotEmpty)) {
+                            } else if ((e2.isNotEmpty && t2.isEmpty) ||
+                                (e2.isEmpty && t2.isNotEmpty)) {
                               //show snackbar
                             }
                           });
@@ -786,13 +908,16 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                               mainFromTimeString != '' &&
                               mainToTimeString != '' &&
                               makeMePass == true &&
-                              ((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty)) &&
-                              ((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
+                              ((e1.isNotEmpty && t1.isNotEmpty) ||
+                                  (e1.isEmpty && t1.isEmpty)) &&
+                              ((e2.isNotEmpty && t2.isNotEmpty) ||
+                                  (e2.isEmpty && t2.isEmpty))) {
                             setState(() {
                               if (mainWorkingHours == '') {
                                 workDays01.add(mainWorkingHours);
                               } else {
-                                workDays01.remove(workDays01[workDays01.length - 1]);
+                                workDays01
+                                    .remove(workDays01[workDays01.length - 1]);
                                 workDays01.add(mainWorkingHours);
                               }
                               makeMePass = false;
@@ -803,9 +928,12 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                               DataFromProfiletoUpdate.phoneNumber = phoneNumber;
                               DataFromProfiletoUpdate.province = province;
                               DataFromProfiletoUpdate.address = address;
-                              DataFromProfiletoUpdate.workDays01 = List<String>.from(workDays01);
-                              DataFromProfiletoUpdate.workDays02 = List<String>.from(workDays0);
-                              DataFromProfiletoUpdate.workDays03 = List<String>.from(workDays03);
+                              DataFromProfiletoUpdate.workDays01 =
+                                  List<String>.from(workDays01);
+                              DataFromProfiletoUpdate.workDays02 =
+                                  List<String>.from(workDays0);
+                              DataFromProfiletoUpdate.workDays03 =
+                                  List<String>.from(workDays03);
                             });
 
                             Navigator.of(context).push(
@@ -816,25 +944,36 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                             mainfrom = false;
                             mainto = false;
                           } else if (currentVacationDays == '') {
-                            _error = AppLocalizations.of(context).translate('selectmaindays');
+                            _error = AppLocalizations.of(context)
+                                .translate('selectmaindays');
                             _showSnackBar();
-                          } else if (mainFromTimeString == '' || mainToTimeString == '' || !mainfrom || !mainto) {
-                            _error = AppLocalizations.of(context).translate('Select time');
+                          } else if (mainFromTimeString == '' ||
+                              mainToTimeString == '' ||
+                              !mainfrom ||
+                              !mainto) {
+                            _error = AppLocalizations.of(context)
+                                .translate('Select time');
                             _showSnackBar();
-                          } else if (!((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty))) {
+                          } else if (!((e1.isNotEmpty && t1.isNotEmpty) ||
+                              (e1.isEmpty && t1.isEmpty))) {
                             if (e1.isEmpty) {
-                              _error = AppLocalizations.of(context).translate('choose 1st exceprion day');
+                              _error = AppLocalizations.of(context)
+                                  .translate('choose 1st exceprion day');
                               _showSnackBar();
                             } else {
-                              _error = AppLocalizations.of(context).translate('choose 1st exception time');
+                              _error = AppLocalizations.of(context)
+                                  .translate('choose 1st exception time');
                               _showSnackBar();
                             }
-                          } else if (!((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
+                          } else if (!((e2.isNotEmpty && t2.isNotEmpty) ||
+                              (e2.isEmpty && t2.isEmpty))) {
                             if (e2.isEmpty) {
-                              _error = AppLocalizations.of(context).translate('choose 2nd exception day');
+                              _error = AppLocalizations.of(context)
+                                  .translate('choose 2nd exception day');
                               _showSnackBar();
                             } else {
-                              _error = AppLocalizations.of(context).translate('choose 2nd exception time');
+                              _error = AppLocalizations.of(context)
+                                  .translate('choose 2nd exception time');
                               _showSnackBar();
                             }
                           }
@@ -842,7 +981,10 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                       },
                       label: Text(
                         AppLocalizations.of(context).translate('google_map'),
-                        style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -865,7 +1007,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
               primarySwatch: Colors.deepOrange,
             ),
             child: MediaQuery(
-              data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
               child: child,
             ),
           );
@@ -874,8 +1017,10 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       setState(() {
         _mainFromTime = mainfromTime;
         mainFromTimeString = _mainFromTime.format(context);
-        mainFromNo = mainFromTimeString.substring(0, mainFromTimeString.indexOf(' '));
-        fromEnd = mainFromTimeString.substring(mainFromTimeString.indexOf(' '), mainFromTimeString.length);
+        mainFromNo =
+            mainFromTimeString.substring(0, mainFromTimeString.indexOf(' '));
+        fromEnd = mainFromTimeString.substring(
+            mainFromTimeString.indexOf(' '), mainFromTimeString.length);
         if (fromEnd.contains('ص') || fromEnd.contains('AM')) {
           fromAmPm = 'AM';
         } else if (fromEnd == ' م' || fromEnd.contains('PM')) {
@@ -898,7 +1043,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
               primarySwatch: Colors.deepOrange,
             ),
             child: MediaQuery(
-              data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
               child: child,
             ),
           );
@@ -909,14 +1055,16 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
         mainToTimeString = _mainToTime.format(context);
         print(mainToTimeString);
         mainToNo = mainToTimeString.substring(0, mainToTimeString.indexOf(' '));
-        toEnd = mainToTimeString.substring(mainToTimeString.indexOf(' ') + 1, mainToTimeString.length);
+        toEnd = mainToTimeString.substring(
+            mainToTimeString.indexOf(' ') + 1, mainToTimeString.length);
         if (toEnd.contains('ص') || toEnd.contains('AM')) {
           toAmPm = "AM";
         } else {
           toAmPm = 'PM';
         }
         mainToTimeString = mainToNo + ' ' + toAmPm;
-        mainWorkingHours = 'from ' + mainFromTimeString + ' to ' + mainToTimeString;
+        mainWorkingHours =
+            'from ' + mainFromTimeString + ' to ' + mainToTimeString;
         makeMePass = true;
         mainto = true;
         print(mainWorkingHours);
@@ -935,7 +1083,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
               primarySwatch: Colors.deepOrange,
             ),
             child: MediaQuery(
-              data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
               child: child,
             ),
           );
@@ -944,8 +1093,11 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       setState(() {
         _secondaryFromTime = secondaryFromTime;
         secondaryFromTimeString = _secondaryFromTime.format(context);
-        secondFromNo = secondaryFromTimeString.substring(0, secondaryFromTimeString.indexOf(' '));
-        secondFromEnd = secondaryFromTimeString.substring(secondaryFromTimeString.indexOf(' '), secondaryFromTimeString.length);
+        secondFromNo = secondaryFromTimeString.substring(
+            0, secondaryFromTimeString.indexOf(' '));
+        secondFromEnd = secondaryFromTimeString.substring(
+            secondaryFromTimeString.indexOf(' '),
+            secondaryFromTimeString.length);
         if (secondFromEnd.contains('ص') || secondFromEnd.contains('AM')) {
           secondFromAmPm = 'AM';
         } else {
@@ -968,7 +1120,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
               primarySwatch: Colors.deepOrange,
             ),
             child: MediaQuery(
-              data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
               child: child,
             ),
           );
@@ -977,15 +1130,19 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       setState(() {
         _secondaryToTime = secondaryToTime;
         secondaryToTimeString = _secondaryToTime.format(context);
-        secondToNo = secondaryToTimeString.substring(0, secondaryToTimeString.indexOf(' '));
-        secondToEnd = secondaryToTimeString.substring(secondaryToTimeString.indexOf(' '), secondaryToTimeString.length);
+        secondToNo = secondaryToTimeString.substring(
+            0, secondaryToTimeString.indexOf(' '));
+        secondToEnd = secondaryToTimeString.substring(
+            secondaryToTimeString.indexOf(' '), secondaryToTimeString.length);
         if (secondToEnd.contains('ص') || secondToEnd.contains('AM')) {
           secondToAmPm = 'AM';
-        } else if (secondToEnd.characters.contains('م') || secondToEnd.contains('PM')) {
+        } else if (secondToEnd.characters.contains('م') ||
+            secondToEnd.contains('PM')) {
           secondToAmPm = 'PM';
         }
         secondaryToTimeString = secondToNo + ' ' + secondToAmPm;
-        secondaryWorkingHours = 'from ' + secondaryFromTimeString + ' to ' + secondaryToTimeString;
+        secondaryWorkingHours =
+            'from ' + secondaryFromTimeString + ' to ' + secondaryToTimeString;
         if (t1.length == 0) {
           t1.add(secondaryWorkingHours);
         } else if (t1.length >= 1) {
@@ -1014,7 +1171,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
               primarySwatch: Colors.deepOrange,
             ),
             child: MediaQuery(
-              data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
               child: child,
             ),
           );
@@ -1023,8 +1181,10 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       setState(() {
         _ternaryFromTime = ternaryFromTime;
         ternaryFromTimeString = _ternaryFromTime.format(context);
-        thirdFromNo = ternaryFromTimeString.substring(0, ternaryFromTimeString.indexOf(' '));
-        thirdFromEnd = ternaryFromTimeString.substring(ternaryFromTimeString.indexOf(' '), ternaryFromTimeString.length);
+        thirdFromNo = ternaryFromTimeString.substring(
+            0, ternaryFromTimeString.indexOf(' '));
+        thirdFromEnd = ternaryFromTimeString.substring(
+            ternaryFromTimeString.indexOf(' '), ternaryFromTimeString.length);
         if (thirdFromEnd.contains('ص') || thirdFromEnd.contains('AM')) {
           thirdFromAmPm = 'AM';
         } else {
@@ -1047,7 +1207,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
               primarySwatch: Colors.deepOrange,
             ),
             child: MediaQuery(
-              data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
               child: child,
             ),
           );
@@ -1056,15 +1217,18 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       setState(() {
         _ternaryToTime = ternaryToTime;
         ternaryToTimeString = _ternaryToTime.format(context);
-        thirdToNo = ternaryToTimeString.substring(0, ternaryToTimeString.indexOf(' '));
-        thirdToEnd = ternaryToTimeString.substring(ternaryToTimeString.indexOf(' '), ternaryToTimeString.length);
+        thirdToNo =
+            ternaryToTimeString.substring(0, ternaryToTimeString.indexOf(' '));
+        thirdToEnd = ternaryToTimeString.substring(
+            ternaryToTimeString.indexOf(' '), ternaryToTimeString.length);
         if (thirdToEnd.contains('ص') || thirdToEnd.contains('AM')) {
           thirdToAmPm = 'AM';
         } else {
           thirdToAmPm = 'PM';
         }
         ternaryToTimeString = thirdToNo + ' ' + thirdToAmPm;
-        ternaryWorkingHours = 'from ' + ternaryFromTimeString + ' to ' + ternaryToTimeString;
+        ternaryWorkingHours =
+            'from ' + ternaryFromTimeString + ' to ' + ternaryToTimeString;
         if (t2.length == 0) {
           t2.add(ternaryWorkingHours);
         } else if (t2.length >= 1) {

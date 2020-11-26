@@ -70,7 +70,9 @@ class _UpdateMapState extends State<UpdateMap> {
     final snackBar = new SnackBar(
       content: new Text(
         SnackBarError.error,
-        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
 
       //duration: new Duration(seconds: 3),
@@ -113,7 +115,8 @@ class _UpdateMapState extends State<UpdateMap> {
       for (var x in basicDatabase.docs) {
         print(x.data()['lt']);
         print(x.data()['lg']);
-        if (DataFromProfiletoUpdate.name == x.data()['n'] && DataFromProfiletoUpdate.speciality == x.data()['s']) {
+        if (DataFromProfiletoUpdate.name == x.data()['n'] &&
+            DataFromProfiletoUpdate.speciality == x.data()['s']) {
           _lt = x.data()['lt'];
           _lg = x.data()['lg'];
         }
@@ -173,43 +176,51 @@ class _UpdateMapState extends State<UpdateMap> {
             padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
             child: FloatingActionButton(
                 backgroundColor: Colors.deepOrange,
-                child: Text(AppLocalizations.of(context).translate('ok'), style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                child: Text(AppLocalizations.of(context).translate('ok'),
+                    style:
+                        TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
                 onPressed: () async {
                   checkInternet();
                   if (_isInternet) {
                     if (latlng == null) {
                       setState(() {
-                        SnackBarError.error = AppLocalizations.of(context).translate('snack_map');
+                        SnackBarError.error =
+                            AppLocalizations.of(context).translate('snack_map');
                       });
                       _showSnackBar();
                     } else {
                       await geolocate(latlng: latlng);
                       if (lattt != null && lnggg != null) {
                         setState(() {
-                          _result = pow((lattt - _lt), 2) + pow((lnggg - _lg), 2);
+                          _result =
+                              pow((lattt - _lt), 2) + pow((lnggg - _lg), 2);
                           _finalDistance = sqrt(_result);
                           _kmDistance = _finalDistance * 100;
                         });
                         print(_kmDistance);
                         if (_kmDistance < 100) {
-                          await DatabaseService(uid: FirebaseAuth.instance.currentUser.uid).updateUserData(
-                              DataFromProfiletoUpdate.name,
-                              DataFromProfiletoUpdate.speciality,
-                              DataFromProfiletoUpdate.phoneNumber,
-                              DataFromProfiletoUpdate.province,
-                              lattt,
-                              lnggg,
-                              DataFromProfiletoUpdate.address,
-                              DataFromProfiletoUpdate.workDays01,
-                              DataFromProfiletoUpdate.workDays02,
-                              DataFromProfiletoUpdate.workDays03);
+                          await DatabaseService(
+                                  uid: FirebaseAuth.instance.currentUser.uid)
+                              .updateUserData(
+                                  DataFromProfiletoUpdate.name,
+                                  DataFromProfiletoUpdate.speciality,
+                                  DataFromProfiletoUpdate.phoneNumber,
+                                  DataFromProfiletoUpdate.province,
+                                  lattt,
+                                  lnggg,
+                                  DataFromProfiletoUpdate.address,
+                                  DataFromProfiletoUpdate.workDays01,
+                                  DataFromProfiletoUpdate.workDays02,
+                                  DataFromProfiletoUpdate.workDays03);
                           int count = 0;
+
                           Navigator.popUntil(context, (route) {
                             return count++ == 3;
                           });
                         } else {
                           setState(() {
-                            SnackBarError.error = AppLocalizations.of(context).translate('snack_update');
+                            SnackBarError.error = AppLocalizations.of(context)
+                                .translate('snack_update');
                           });
                           _showSnackBar();
                         }
@@ -217,7 +228,8 @@ class _UpdateMapState extends State<UpdateMap> {
                     }
                   } else {
                     setState(() {
-                      SnackBarError.error = AppLocalizations.of(context).translate('snack_connectivity');
+                      SnackBarError.error = AppLocalizations.of(context)
+                          .translate('snack_connectivity');
                     });
                     _showSnackBar();
                   }

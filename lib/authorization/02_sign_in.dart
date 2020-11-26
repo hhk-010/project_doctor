@@ -28,7 +28,8 @@ class _SignInState extends State<SignIn> {
   String password = '';
   String error = '';
   bool _passwordVisible = false;
-  TextStyle _textStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white);
+  TextStyle _textStyle =
+      TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white);
 
   bool _isInternet = true;
   checkInternet() async {
@@ -52,7 +53,9 @@ class _SignInState extends State<SignIn> {
     final _snackbar = new SnackBar(
       content: Text(
         SnackText.errorMsg,
-        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -103,20 +106,28 @@ class _SignInState extends State<SignIn> {
                       flex: 3,
                     ),
                     TextFormField(
-                      validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('enter_your_email') : null,
+                      validator: (val) => val.isEmpty
+                          ? AppLocalizations.of(context)
+                              .translate('enter_your_email')
+                          : null,
                       onChanged: (val) {
                         setState(() => email = val);
                       },
                       cursorColor: Colors.black,
                       keyboardType: TextInputType.emailAddress,
                       decoration: textInputdecoration.copyWith(
-                        hintText: AppLocalizations.of(context).translate('enter_your_email'),
-                        labelText: AppLocalizations.of(context).translate('email'),
+                        hintText: AppLocalizations.of(context)
+                            .translate('enter_your_email'),
+                        labelText:
+                            AppLocalizations.of(context).translate('email'),
                       ),
                     ),
                     Spacer(),
                     TextFormField(
-                      validator: (val) => val.length < 8 ? AppLocalizations.of(context).translate('password_validator') : null,
+                      validator: (val) => val.length < 8
+                          ? AppLocalizations.of(context)
+                              .translate('password_validator')
+                          : null,
                       obscureText: !_passwordVisible,
                       onChanged: (val) {
                         setState(() => password = val);
@@ -124,12 +135,16 @@ class _SignInState extends State<SignIn> {
                       cursorColor: Colors.black,
                       keyboardType: TextInputType.text,
                       decoration: textInputdecoration.copyWith(
-                        hintText: AppLocalizations.of(context).translate('enter_your_password'),
-                        labelText: AppLocalizations.of(context).translate('password'),
+                        hintText: AppLocalizations.of(context)
+                            .translate('enter_your_password'),
+                        labelText:
+                            AppLocalizations.of(context).translate('password'),
                         suffixIcon: IconButton(
                           icon: Icon(
                             // Based on passwordVisible state choose the icon
-                            _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                            _passwordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
                             color: Colors.deepOrange,
                           ),
                           onPressed: () {
@@ -155,7 +170,9 @@ class _SignInState extends State<SignIn> {
                           if (_isInternet) {
                             if (_formKey.currentState.validate()) {
                               try {
-                                dynamic authResult = await _auth.signInWithEmailAndPassword(email, password);
+                                dynamic authResult =
+                                    await _auth.signInWithEmailAndPassword(
+                                        email, password);
                                 //if the credentials are in valid or internet connection is interrupted
                                 //after entering this page and pressing sign in the loading is activated
                                 // so it was better by this following if condition
@@ -163,7 +180,9 @@ class _SignInState extends State<SignIn> {
                                   setState(() => loading = true);
                                 } else {
                                   setState(() {
-                                    SnackText.errorMsg = AppLocalizations.of(context).translate('snack_sign_in');
+                                    SnackText.errorMsg =
+                                        AppLocalizations.of(context)
+                                            .translate('snack_sign_in');
                                   });
                                   _showSnackBar();
                                 }
@@ -176,13 +195,15 @@ class _SignInState extends State<SignIn> {
                             }
                           } else {
                             setState(() {
-                              SnackText.errorMsg = AppLocalizations.of(context).translate('snack_connectivity');
+                              SnackText.errorMsg = AppLocalizations.of(context)
+                                  .translate('snack_connectivity');
                             });
                             _showSnackBar();
                           }
                         },
                         color: Colors.deepOrange,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80.0)),
                         child: Text(
                           AppLocalizations.of(context).translate('sign_in'),
                           style: _textStyle.copyWith(color: Colors.white),
@@ -192,11 +213,14 @@ class _SignInState extends State<SignIn> {
                     FlatButton.icon(
                       icon: Icon(Icons.arrow_forward),
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForgetPassword()));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ForgetPassword()));
                       },
                       label: Text(
-                        AppLocalizations.of(context).translate('forget_password'),
-                        style: _textStyle.copyWith(color: Colors.black, fontSize: 16),
+                        AppLocalizations.of(context)
+                            .translate('forget_password'),
+                        style: _textStyle.copyWith(
+                            color: Colors.black, fontSize: 16),
                       ),
                     ),
                     Spacer(),
@@ -214,12 +238,21 @@ class _SignInState extends State<SignIn> {
                       },
                       child: RichText(
                         text: TextSpan(
-                          style: TextStyle(fontSize: 14.0, color: Colors.black, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+                          style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.black,
+                              fontFamily:
+                                  lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
                           children: <TextSpan>[
-                            TextSpan(text: AppLocalizations.of(context).translate('does_not_have_account')),
                             TextSpan(
-                                text: AppLocalizations.of(context).translate('register'),
-                                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.redAccent)),
+                                text: AppLocalizations.of(context)
+                                    .translate('does_not_have_account')),
+                            TextSpan(
+                                text: AppLocalizations.of(context)
+                                    .translate('register'),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.redAccent)),
                           ],
                         ),
                       ),
