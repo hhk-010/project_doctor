@@ -98,6 +98,7 @@ class _DoctorListState extends State<DoctorList> {
   String x = '';
   int _z = 0;
   int _y = 0;
+
 //get the user address from lat and lng
   // final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
   // String _doctorAddress = '';
@@ -215,17 +216,6 @@ class _DoctorListState extends State<DoctorList> {
       }
     }
 
-    //for (String x in _workDays01)
-
-    // method to get user location through geolocater
-    // _getAddressFromLatLng() async {
-    //   List<Placemark> p = await geolocator.placemarkFromCoordinates(lat, lng);
-    //   Placemark place = p[0];
-    //   setState(() {
-    //     _doctorAddress = "${place.locality}, ${place.country}";
-    //   });
-    // }
-
     return Padding(
       padding: EdgeInsets.fromLTRB(30, 25, 30, 0),
       child: ListView(
@@ -336,7 +326,7 @@ class _DoctorListState extends State<DoctorList> {
                   FittedBox(
                     fit: BoxFit.fitWidth,
                     child: Text(
-                      _mainDays + '\n' + _mainTime,
+                      _finalMainDays + '\n' + _mainTime,
                       style: _textStyle,
                     ),
                   ),
