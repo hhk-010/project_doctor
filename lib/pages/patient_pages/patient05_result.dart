@@ -87,6 +87,8 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   String _mainTime = '';
   String _secondTime = '';
   String _firstTime = '';
+  int _y = 0;
+  String x = '';
 
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
   String _doctorAddress = '';
@@ -150,8 +152,10 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             realdist = realdistance.toString();
             dotindex = realdist.indexOf('.') + 3;
             realnearby = realdist.substring(0, dotindex);
-
-            for (String x in _workDays01) {
+            _y = _workDays01.length - 1;
+            //for (String x in _workDays01)
+            while (_y > 0) {
+              x = _workDays01[_y];
               if (x.length < 11) {
                 _mainDaysTranslation =
                     AppLocalizations.of(context).translate(x);
@@ -176,6 +180,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                     ' ' +
                     _mainToAmPm;
               }
+              _y -= 1;
             }
             if (_workDays02.isEmpty && _workDays02.length == 2) {
               _firstEDay =

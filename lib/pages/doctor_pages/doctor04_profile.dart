@@ -97,6 +97,13 @@ class _DoctorListState extends State<DoctorList> {
   String _firstTime = '';
   int _y = 0;
   String x = '';
+  String _day0 = '';
+  String _day1 = '';
+  String _day2 = '';
+  String _day3 = '';
+  String _day4 = '';
+  String _day5 = '';
+  String _day6 = '';
 //get the user address from lat and lng
   String _doctorAddress = '';
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
@@ -130,8 +137,44 @@ class _DoctorListState extends State<DoctorList> {
     while (_y >= 0) {
       x = _workDays01[_y];
       if (x.length < 11) {
+        if (_y == 0) {
+          _day0 = AppLocalizations.of(context).translate(x);
+          if (x != '') {
+            _mainDays = _mainDays + ' , ' + _day0;
+          }
+        } else if (_y == 1) {
+          _day1 = AppLocalizations.of(context).translate(x);
+          if (x != '') {
+            _mainDays = _mainDays + ' , ' + _day1;
+          }
+        } else if (_y == 2) {
+          _day2 = AppLocalizations.of(context).translate(x);
+          if (x != '') {
+            _mainDays = _mainDays + ' , ' + _day2;
+          }
+        } else if (_y == 3) {
+          _day3 = AppLocalizations.of(context).translate(x);
+          if (x != '') {
+            _mainDays = _mainDays + ' , ' + _day3;
+          }
+        } else if (_y == 4) {
+          _day4 = AppLocalizations.of(context).translate(x);
+          if (x != '') {
+            _mainDays = _mainDays + ' , ' + _day4;
+          }
+        } else if (_y == 5) {
+          _day5 = AppLocalizations.of(context).translate(x);
+          if (x != '') {
+            _mainDays = _mainDays + ' , ' + _day5;
+          }
+        } else if (_y == 6) {
+          _day6 = AppLocalizations.of(context).translate(x);
+          if (x != '') {
+            _mainDays = _mainDays + ' , ' + _day6;
+          }
+        }
         _mainDaysTranslation = AppLocalizations.of(context).translate(x);
-        _mainDays = _mainDays + ', ' + _mainDaysTranslation;
+        //_mainDays = _mainDays + ', ' + _mainDaysTranslation;
       } else {
         _mainfrom = x.substring(x.indexOf('m') + 2, x.indexOf('t') - 1);
         _mainTo = x.substring(x.indexOf('t') + 3, x.length);
@@ -198,7 +241,13 @@ class _DoctorListState extends State<DoctorList> {
           ' ' +
           _secondToAmPm;
     }
-    print(_workDays02.length);
+    print(_day0);
+    print(_day1);
+    print(_day2);
+    print(_day3);
+    print(_day4);
+    print(_day5);
+    print(_day6);
     // method to get user location through geolocater
     // _getAddressFromLatLng() async {
     //   List<Placemark> p = await geolocator.placemarkFromCoordinates(lat, lng);
