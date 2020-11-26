@@ -1,18 +1,16 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
 
 class DoctorForm extends StatefulWidget {
-  String email = '';
-  String password = '';
+  final String email;
+  final String password;
 
   DoctorForm({this.email, this.password});
   @override
-  _DoctorFormState createState() =>
-      _DoctorFormState(email: email, password: password);
+  _DoctorFormState createState() => _DoctorFormState(email: email, password: password);
 }
 
 final _formKey = GlobalKey<FormState>();
@@ -21,7 +19,6 @@ String currentName = '';
 String currentSpeciality;
 String currentPhoneNumber = '';
 String currentProvince;
-// String _internist = 'internist';
 
 class _DoctorFormState extends State<DoctorForm> {
   String email;
@@ -32,94 +29,28 @@ class _DoctorFormState extends State<DoctorForm> {
   Widget build(BuildContext context) {
     final Map specialities = {
       "1": [AppLocalizations.of(context).translate('Internist'), 'Internist'],
-      "2": [
-        AppLocalizations.of(context).translate('Pediatrician'),
-        'Pediatrician'
-      ],
-      "3": [
-        AppLocalizations.of(context).translate('Cardiologist'),
-        'Cardiologist'
-      ],
-      "4": [
-        AppLocalizations.of(context).translate('Pulmonologist'),
-        'Pulmonologist'
-      ],
-      "5": [
-        AppLocalizations.of(context).translate('Endocrinologist'),
-        'Endocrinologist'
-      ],
-      "6": [
-        AppLocalizations.of(context).translate('Enterologist'),
-        'Enterologist'
-      ],
-      "7": [
-        AppLocalizations.of(context).translate('Neurologist'),
-        'Neurologist'
-      ],
-      "8": [
-        AppLocalizations.of(context).translate('Neurosurgeon'),
-        'Neurosurgeon'
-      ],
-      "9": [
-        AppLocalizations.of(context).translate('Heamatologist'),
-        'Heamatologist'
-      ],
-      "10": [
-        AppLocalizations.of(context).translate('Nephrologist'),
-        'Nephrologist'
-      ],
-      "11": [
-        AppLocalizations.of(context).translate('Rheumatologist'),
-        'Rheumatologist'
-      ],
-      "12": [
-        AppLocalizations.of(context).translate('Emergency physician'),
-        'Emergency physician'
-      ],
-      "13": [
-        AppLocalizations.of(context).translate('Dermatologist'),
-        'Dermatologist'
-      ],
-      "14": [
-        AppLocalizations.of(context).translate('Psychiatrist'),
-        'Psychiatrist'
-      ],
-      "15": [
-        AppLocalizations.of(context).translate('Gynecologist'),
-        'Gynecologist'
-      ],
-      "16": [
-        AppLocalizations.of(context).translate('General Surgeon'),
-        'General Surgeon'
-      ],
-      "17": [
-        AppLocalizations.of(context).translate('Pediatric Surgeon'),
-        'Pediatric Surgeon'
-      ],
-      "18": [
-        AppLocalizations.of(context).translate('ThoracoVascular Surgeon'),
-        'ThoracoVascular Surgeon'
-      ],
-      "19": [
-        AppLocalizations.of(context).translate('Orthopaedic Surgeon'),
-        'Orthopaedic Surgeon'
-      ],
-      "20": [
-        AppLocalizations.of(context).translate('Urosurgeon'),
-        'Urosurgeon'
-      ],
-      "21": [
-        AppLocalizations.of(context).translate('Plastic Surgeon'),
-        'Plastic Surgeon'
-      ],
-      "22": [
-        AppLocalizations.of(context).translate('Ophthalmologist'),
-        'Ophthalmologist'
-      ],
-      "23": [
-        AppLocalizations.of(context).translate('Laryngologist'),
-        'Laryngologist'
-      ],
+      "2": [AppLocalizations.of(context).translate('Pediatrician'), 'Pediatrician'],
+      "3": [AppLocalizations.of(context).translate('Cardiologist'), 'Cardiologist'],
+      "4": [AppLocalizations.of(context).translate('Pulmonologist'), 'Pulmonologist'],
+      "5": [AppLocalizations.of(context).translate('Endocrinologist'), 'Endocrinologist'],
+      "6": [AppLocalizations.of(context).translate('Enterologist'), 'Enterologist'],
+      "7": [AppLocalizations.of(context).translate('Neurologist'), 'Neurologist'],
+      "8": [AppLocalizations.of(context).translate('Neurosurgeon'), 'Neurosurgeon'],
+      "9": [AppLocalizations.of(context).translate('Heamatologist'), 'Heamatologist'],
+      "10": [AppLocalizations.of(context).translate('Nephrologist'), 'Nephrologist'],
+      "11": [AppLocalizations.of(context).translate('Rheumatologist'), 'Rheumatologist'],
+      "12": [AppLocalizations.of(context).translate('Emergency physician'), 'Emergency physician'],
+      "13": [AppLocalizations.of(context).translate('Dermatologist'), 'Dermatologist'],
+      "14": [AppLocalizations.of(context).translate('Psychiatrist'), 'Psychiatrist'],
+      "15": [AppLocalizations.of(context).translate('Gynecologist'), 'Gynecologist'],
+      "16": [AppLocalizations.of(context).translate('General Surgeon'), 'General Surgeon'],
+      "17": [AppLocalizations.of(context).translate('Pediatric Surgeon'), 'Pediatric Surgeon'],
+      "18": [AppLocalizations.of(context).translate('ThoracoVascular Surgeon'), 'ThoracoVascular Surgeon'],
+      "19": [AppLocalizations.of(context).translate('Orthopaedic Surgeon'), 'Orthopaedic Surgeon'],
+      "20": [AppLocalizations.of(context).translate('Urosurgeon'), 'Urosurgeon'],
+      "21": [AppLocalizations.of(context).translate('Plastic Surgeon'), 'Plastic Surgeon'],
+      "22": [AppLocalizations.of(context).translate('Ophthalmologist'), 'Ophthalmologist'],
+      "23": [AppLocalizations.of(context).translate('Laryngologist'), 'Laryngologist'],
     };
     final province = {
       "1": [
@@ -170,10 +101,7 @@ class _DoctorFormState extends State<DoctorForm> {
                       hintText: AppLocalizations.of(context).translate('name'),
                       labelText: AppLocalizations.of(context).translate('name'),
                     ),
-                    validator: (val) => val.isEmpty
-                        ? AppLocalizations.of(context)
-                            .translate('name_validator')
-                        : null,
+                    validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('name_validator') : null,
                     onChanged: (val) => setState(() => currentName = val),
                   ),
                 ),
@@ -292,10 +220,7 @@ class _DoctorFormState extends State<DoctorForm> {
                       child: Text('$speciality'),
                     );
                   }).toList(),*/
-                  validator: (value) => value == null
-                      ? AppLocalizations.of(context)
-                          .translate('speciality_validator')
-                      : null,
+                  validator: (value) => value == null ? AppLocalizations.of(context).translate('speciality_validator') : null,
                   onChanged: (val) => setState(() => currentSpeciality = val),
                 ),
                 Spacer(),
@@ -303,15 +228,10 @@ class _DoctorFormState extends State<DoctorForm> {
                   onChanged: (val) => setState(() => currentPhoneNumber = val),
                   keyboardType: TextInputType.phone,
                   decoration: textInputdecoration.copyWith(
-                    hintText:
-                        AppLocalizations.of(context).translate('phoneNumber'),
-                    labelText:
-                        AppLocalizations.of(context).translate('phoneNumber'),
+                    hintText: AppLocalizations.of(context).translate('phoneNumber'),
+                    labelText: AppLocalizations.of(context).translate('phoneNumber'),
                   ),
-                  validator: (val) => val.length < 11 && val.length > 11
-                      ? AppLocalizations.of(context)
-                          .translate('phoneNumber_validator')
-                      : null,
+                  validator: (val) => val.length < 11 && val.length > 11 ? AppLocalizations.of(context).translate('phoneNumber_validator') : null,
                 ),
                 Spacer(),
                 DropdownButtonFormField<String>(
@@ -353,52 +273,47 @@ class _DoctorFormState extends State<DoctorForm> {
                       child: Text('$province'),
                     );
                   }).toList(),*/
-                  validator: (value) =>
-                      value == null ? 'Select your province' : null,
+                  validator: (value) => value == null ? 'Select your province' : null,
                   onChanged: (val) => setState(() => currentProvince = val),
                 ),
                 Spacer(
                   flex: 5,
                 ),
-                ButtonTheme(
-                  minWidth: double.infinity,
-                  child: RaisedButton.icon(
-                    color: Colors.deepOrange,
-                    icon: Icon(
-                      Icons.arrow_forward,
-                      color: Colors.white,
-                    ),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80.0)),
-                    onPressed: () async {
-                      print(currentSpeciality);
-                      print(currentProvince);
-                      if (_formKey.currentState.validate()) {
-                        if (currentName != null &&
-                            currentSpeciality != null &&
-                            currentPhoneNumber != null &&
-                            currentProvince != null) {
-                          await Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => ClinicForm(
-                                email: email,
-                                password: password,
-                                name: currentName,
-                                speciality: currentSpeciality,
-                                phoneNumber: currentPhoneNumber,
-                                province: currentProvince,
+                Container(
+                  height: 40,
+                  width: double.infinity,
+                  child: ButtonTheme(
+                    child: RaisedButton.icon(
+                      color: Colors.deepOrange,
+                      icon: Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                      ),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                      onPressed: () async {
+                        print(currentSpeciality);
+                        print(currentProvince);
+                        if (_formKey.currentState.validate()) {
+                          if (currentName != null && currentSpeciality != null && currentPhoneNumber != null && currentProvince != null) {
+                            await Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => ClinicForm(
+                                  email: email,
+                                  password: password,
+                                  name: currentName,
+                                  speciality: currentSpeciality,
+                                  phoneNumber: currentPhoneNumber,
+                                  province: currentProvince,
+                                ),
                               ),
-                            ),
-                          );
+                            );
+                          }
                         }
-                      }
-                    },
-                    label: Text(
-                      AppLocalizations.of(context).translate('next'),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                      },
+                      label: Text(
+                        AppLocalizations.of(context).translate('next'),
+                        style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 )

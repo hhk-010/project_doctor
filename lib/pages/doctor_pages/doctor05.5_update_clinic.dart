@@ -160,7 +160,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
     workDays01 = [];
     while (_x >= 0) {
       setState(() {
-        workDays[_x] = false;
+        worksDays[_x] = false;
       });
       _x -= 1;
     }
@@ -857,8 +857,9 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                   SizedBox(
                     height: 25,
                   ),
-                  ButtonTheme(
-                    minWidth: double.infinity,
+                  Container(
+                    height: 40,
+                    width: double.maxFinite,
                     child: RaisedButton.icon(
                       color: Colors.deepOrange,
                       icon: Icon(

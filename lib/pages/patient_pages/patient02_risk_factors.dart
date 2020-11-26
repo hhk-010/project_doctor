@@ -527,7 +527,8 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                 height: 25,
               ),
               Container(
-                width: double.maxFinite,
+                height: 40,
+                width: double.infinity,
                 child: RaisedButton.icon(
                   color: Colors.deepOrange,
                   icon: Icon(

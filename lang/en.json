@@ -16,7 +16,7 @@
 
 
 "regions":"---------------------------------",
-    "Baghdad":"Baghdad",
+    "Baghdad":"Baghdad, Iraq",
     "Northern Region":"Northern Region of Iraq",
     "Southern Region":"Southern Region of Iraq",
     "Western Region":"Western Region of Iraq",
@@ -127,7 +127,8 @@
     "finish_update" : "Finish Updating your Information by ",
     "change_password" : "Change Your Password?",
     "change" : "Change",
-    "clinic_work":"Clinic work",
+    "clinic_work":"Clinic workday & time",
+    "another_clinic_work" : "Other clinic workday & time",
     "clinic_address" : "Clinic Address",
     "detailed_address":"Detailed clinic address",
     "address" : "Address in arabic",

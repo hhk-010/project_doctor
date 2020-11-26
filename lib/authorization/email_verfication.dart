@@ -15,7 +15,7 @@ class EmailVerification extends StatefulWidget {
 
 class _EmailVerificationState extends State<EmailVerification> {
   bool loading = false;
-  String _email = 'AAA';
+  String _email = '';
   String _name = '';
   String _speciality = '';
   String _phoneNumber = '';
@@ -123,22 +123,26 @@ class _EmailVerificationState extends State<EmailVerification> {
             Spacer(
               flex: 3,
             ),
-            RaisedButton.icon(
-              icon: Icon(
-                Icons.arrow_forward,
-                color: Colors.white,
+            Container(
+              height: 40,
+              width: 200,
+              child: RaisedButton.icon(
+                icon: Icon(
+                  Icons.arrow_forward,
+                  color: Colors.white,
+                ),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                color: Colors.deepOrange,
+                label: Text(AppLocalizations.of(context).translate("continue"), //'Continue',
+                    style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                onPressed: () async {
+                  if (FirebaseAuth.instance.currentUser.emailVerified) {
+                    await DatabaseService(uid: FirebaseAuth.instance.currentUser.uid)
+                        .updateUserData(_name, _speciality, _phoneNumber, _province, _lat, _lng, _address, _workDays01, _workDays02, _workDays03);
+                    await Navigator.pushNamed(context, '/intermediate');
+                  }
+                },
               ),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-              color: Colors.deepOrange,
-              label: Text(AppLocalizations.of(context).translate("continue"), //'Continue',
-                  style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
-              onPressed: () async {
-                if (FirebaseAuth.instance.currentUser.emailVerified) {
-                  await DatabaseService(uid: FirebaseAuth.instance.currentUser.uid)
-                      .updateUserData(_name, _speciality, _phoneNumber, _province, _lat, _lng, _address, _workDays01, _workDays02, _workDays03);
-                  await Navigator.pushNamed(context, '/intermediate');
-                }
-              },
             ),
             Spacer(
               flex: 2,

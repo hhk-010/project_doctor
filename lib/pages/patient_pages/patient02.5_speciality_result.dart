@@ -87,7 +87,7 @@ class SpecialityResult extends StatelessWidget {
               ),
             ),
             Container(
-              height: 45,
+              height: 40,
               width: double.maxFinite,
               child: RaisedButton.icon(
                 color: Colors.deepOrange,

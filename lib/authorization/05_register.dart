@@ -52,7 +52,7 @@ class _RegisterState extends State<Register> {
     var lang = Localizations.localeOf(context).languageCode;
     return Scaffold(
       key: _scaffoldkey,
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
@@ -64,7 +64,7 @@ class _RegisterState extends State<Register> {
       body: Container(
         height: double.maxFinite,
         child: Padding(
-          padding: EdgeInsets.fromLTRB(50, 75, 50, 25),
+          padding: EdgeInsets.fromLTRB(50, 75, 50, 10),
           child: Form(
             key: _formKey,
             child: Column(
@@ -130,7 +130,7 @@ class _RegisterState extends State<Register> {
                               print(ModalRoute.of(context));
                               if (_formKey.currentState.validate()) {
                                 if (email != '' && password != '') {
-                                  if (ModalRoute.of(context) != false) {
+                                  if (ModalRoute.of(context) != null) {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) => DoctorForm(
@@ -164,7 +164,6 @@ class _RegisterState extends State<Register> {
                   );
                 }),
                 Spacer(),
-                Text(error),
                 Divider(
                   color: Colors.black,
                   thickness: 1,

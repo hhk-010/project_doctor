@@ -21,6 +21,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     var lang = Localizations.localeOf(context).languageCode;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         leading: IconButton(
@@ -90,8 +91,7 @@ class _HomeState extends State<Home> {
                     height: 90,
                     width: 300,
                     child: RaisedButton.icon(
-                      onPressed: () =>
-                          Navigator.pushNamed(context, '/patient_complain'),
+                      onPressed: () => Navigator.pushNamed(context, '/patient_complain'),
                       icon: Icon(
                         Icons.search,
                         size: 70,
@@ -101,23 +101,17 @@ class _HomeState extends State<Home> {
                         padding: const EdgeInsets.all(10.0),
                         child: AutoSizeText.rich(
                           TextSpan(
-                              text: AppLocalizations.of(context)
-                                  .translate('home_patient_title'),
+                              text: AppLocalizations.of(context).translate('home_patient_title'),
                               style: TextStyle(
-                                  fontFamily: lang == 'ar'
-                                      ? 'noto_arabic'
-                                      : 'Helvetica',
+                                  fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
                                   fontSize: 26,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                               children: [
                                 TextSpan(
-                                    text: AppLocalizations.of(context)
-                                        .translate('home_patient_subtitle'),
+                                    text: AppLocalizations.of(context).translate('home_patient_subtitle'),
                                     style: TextStyle(
-                                        fontFamily: lang == 'ar'
-                                            ? 'noto_arabic'
-                                            : 'Helvetica',
+                                        fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white)),
@@ -125,8 +119,7 @@ class _HomeState extends State<Home> {
                           maxLines: 2,
                         ),
                       ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(80.0)),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                       color: Colors.deepOrange,
                     ),
                   ),
@@ -134,8 +127,7 @@ class _HomeState extends State<Home> {
                     height: 90,
                     width: 300,
                     child: RaisedButton.icon(
-                      onPressed: () =>
-                          Navigator.pushNamed(context, '/intermediate'),
+                      onPressed: () => Navigator.pushNamed(context, '/intermediate'),
                       icon: Icon(
                         Icons.people,
                         size: 70,
@@ -145,31 +137,24 @@ class _HomeState extends State<Home> {
                         padding: const EdgeInsets.all(10.0),
                         child: AutoSizeText.rich(
                           TextSpan(
-                              text: AppLocalizations.of(context)
-                                  .translate('home_doctor_title'),
+                              text: AppLocalizations.of(context).translate('home_doctor_title'),
                               style: TextStyle(
                                   fontSize: 26,
-                                  fontFamily: lang == 'ar'
-                                      ? 'noto_arabic'
-                                      : 'Helvetica',
+                                  fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                               children: [
                                 TextSpan(
-                                    text: AppLocalizations.of(context)
-                                        .translate('home_doctor_subtitle'),
+                                    text: AppLocalizations.of(context).translate('home_doctor_subtitle'),
                                     style: TextStyle(
-                                        fontFamily: lang == 'ar'
-                                            ? 'noto_arabic'
-                                            : 'Helvetica',
+                                        fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white)),
                               ]),
                         ),
                       ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(80.0)),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                       color: Colors.deepOrange,
                     ),
                   ),

@@ -212,7 +212,11 @@ class _UpdateMapState extends State<UpdateMap> {
                                   DataFromProfiletoUpdate.workDays01,
                                   DataFromProfiletoUpdate.workDays02,
                                   DataFromProfiletoUpdate.workDays03);
-                          Navigator.pop(context);
+                          int count = 0;
+
+                          Navigator.popUntil(context, (route) {
+                            return count++ == 3;
+                          });
                         } else {
                           setState(() {
                             SnackBarError.error = AppLocalizations.of(context)
