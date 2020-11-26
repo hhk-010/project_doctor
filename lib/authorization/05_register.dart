@@ -52,7 +52,7 @@ class _RegisterState extends State<Register> {
     var lang = Localizations.localeOf(context).languageCode;
     return Scaffold(
       key: _scaffoldkey,
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,

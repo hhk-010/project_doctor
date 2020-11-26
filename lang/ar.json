@@ -67,6 +67,7 @@
     "snack_update" : "اضف معلومات صحيحه اولا",
     "snack_map" : "حدد موقع عيادتك اولا",
     "snack_map_patient" : "لطفا حدد موقعك اولا",
+    "snack_verification" : "تحقق من الايميل اولا",
     "age_message":"حدد عمرك لطفا",
     "age_message_error":"يجب ان يكون العمر بين 0 و 130 عام",
     "gender_message":"حدد الجنس لطفا",

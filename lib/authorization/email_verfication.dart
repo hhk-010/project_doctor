@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,35 @@ class _EmailVerificationState extends State<EmailVerification> {
   List<String> _workDays02 = [];
   List<String> _workDays03 = [];
 
+  bool _isInternet = true;
+  checkInternet() async {
+    try {
+      final response = await InternetAddress.lookup('google.com');
+      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
+        _isInternet = true; // internet
+        setState(() {});
+      }
+    } on SocketException catch (_) {
+      _isInternet = false; // no internet
+      setState(() {});
+    }
+  }
+
+// snackbar function
+  String error = '';
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  _showSnackBar() {
+    var lang = Localizations.localeOf(context).languageCode;
+    final _snackBar = new SnackBar(
+      content: Text(
+        error,
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+      ),
+      backgroundColor: Colors.deepOrange,
+    );
+    _scaffoldkey.currentState.showSnackBar(_snackBar);
+  }
+
   final AuthService _auth = AuthService();
   Timer _timer;
   _readDoctorInfo() async {
@@ -49,6 +79,7 @@ class _EmailVerificationState extends State<EmailVerification> {
   @override
   void initState() {
     super.initState();
+    checkInternet();
     Future(() async {
       _timer = Timer.periodic(Duration(seconds: 10), (timer) async {
         FirebaseAuth.instance.currentUser..reload();
@@ -61,6 +92,7 @@ class _EmailVerificationState extends State<EmailVerification> {
   Widget build(BuildContext context) {
     var lang = Localizations.localeOf(context).languageCode;
     return Scaffold(
+      key: _scaffoldkey,
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
         title: Text(
@@ -136,10 +168,23 @@ class _EmailVerificationState extends State<EmailVerification> {
                 label: Text(AppLocalizations.of(context).translate("continue"), //'Continue',
                     style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                 onPressed: () async {
-                  if (FirebaseAuth.instance.currentUser.emailVerified) {
-                    await DatabaseService(uid: FirebaseAuth.instance.currentUser.uid)
-                        .updateUserData(_name, _speciality, _phoneNumber, _province, _lat, _lng, _address, _workDays01, _workDays02, _workDays03);
-                    await Navigator.pushNamed(context, '/intermediate');
+                  checkInternet();
+                  if (_isInternet) {
+                    if (FirebaseAuth.instance.currentUser.emailVerified) {
+                      await DatabaseService(uid: FirebaseAuth.instance.currentUser.uid)
+                          .updateUserData(_name, _speciality, _phoneNumber, _province, _lat, _lng, _address, _workDays01, _workDays02, _workDays03);
+                      await Navigator.pushNamed(context, '/intermediate');
+                    } else {
+                      setState(() {
+                        error = AppLocalizations.of(context).translate('snack_verification');
+                      });
+                      _showSnackBar();
+                    }
+                  } else {
+                    setState(() {
+                      error = AppLocalizations.of(context).translate('snack_connectivity');
+                    });
+                    _showSnackBar();
                   }
                 },
               ),
