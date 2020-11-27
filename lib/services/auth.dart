@@ -28,8 +28,9 @@ class AuthService {
     } catch (e) {
       print('Exception @createAccount: $e');
       _status = AuthExceptionHandler.handleException(e);
+      return null;
     }
-    return _status;
+    //return _status;
   }
 
   Future registerWithEmailAndPassword(

@@ -113,8 +113,6 @@ class _UpdateMapState extends State<UpdateMap> {
     final basicDatabase = Provider.of<QuerySnapshot>(context);
     if (basicDatabase != null) {
       for (var x in basicDatabase.docs) {
-        print(x.data()['lt']);
-        print(x.data()['lg']);
         if (DataFromProfiletoUpdate.name == x.data()['n'] &&
             DataFromProfiletoUpdate.speciality == x.data()['s']) {
           _lt = x.data()['lt'];
@@ -213,7 +211,6 @@ class _UpdateMapState extends State<UpdateMap> {
                                   DataFromProfiletoUpdate.workDays02,
                                   DataFromProfiletoUpdate.workDays03);
                           int count = 0;
-
                           Navigator.popUntil(context, (route) {
                             return count++ == 3;
                           });

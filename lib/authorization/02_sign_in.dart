@@ -169,29 +169,29 @@ class _SignInState extends State<SignIn> {
                           checkInternet();
                           if (_isInternet) {
                             if (_formKey.currentState.validate()) {
-                              try {
-                                dynamic authResult =
-                                    await _auth.signInWithEmailAndPassword(
-                                        email, password);
-                                //if the credentials are in valid or internet connection is interrupted
-                                //after entering this page and pressing sign in the loading is activated
-                                // so it was better by this following if condition
-                                if (authResult != null) {
-                                  setState(() => loading = true);
-                                } else {
-                                  setState(() {
-                                    SnackText.errorMsg =
-                                        AppLocalizations.of(context)
-                                            .translate('snack_sign_in');
-                                  });
-                                  _showSnackBar();
-                                }
-                              } on FirebaseAuthException catch (e) {
+                              //try {
+                              dynamic authResult = await _auth
+                                  .signInWithEmailAndPassword(email, password);
+                              //if the credentials are in valid or internet connection is interrupted
+                              //after entering this page and pressing sign in the loading is activated
+                              // so it was better by this following if condition
+                              if (authResult != null) {
+                                setState(() => loading = true);
+                              } else {
+                                setState(() {
+                                  setState(() => loading = false);
+                                  SnackText.errorMsg =
+                                      AppLocalizations.of(context)
+                                          .translate('snack_sign_in');
+                                });
+                                _showSnackBar();
+                              }
+                              /*} on FirebaseAuthException catch (e) {
                                 setState(() {
                                   print(e);
                                   loading = false;
                                 });
-                              }
+                              }*/
                             }
                           } else {
                             setState(() {

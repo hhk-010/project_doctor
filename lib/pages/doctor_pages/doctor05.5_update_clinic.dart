@@ -367,6 +367,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                     _showSnackBar();
                                   }
                                 });
+                                print(workDays01);
                               },
                               values: worksDays,
                               firstDayOfWeek: DateTime.sunday,
@@ -912,7 +913,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                               ((e2.isNotEmpty && t2.isNotEmpty) ||
                                   (e2.isEmpty && t2.isEmpty))) {
                             setState(() {
-                              if (mainWorkingHours == '') {
+                              if (workDays01[workDays01.length - 1].length <
+                                  11) {
                                 workDays01.add(mainWorkingHours);
                               } else {
                                 workDays01
@@ -934,7 +936,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                               DataFromProfiletoUpdate.workDays03 =
                                   List<String>.from(workDays03);
                             });
-
+                            print(workDays01);
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => MainUpdateMap(),
