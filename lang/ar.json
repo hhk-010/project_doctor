@@ -100,7 +100,7 @@
     "does_not_have_account" : "لم تسجل في التطبيق سابقا؟",
     "does_have_account" : "لديك حساب سابق؟",
     "doctor_form" : "معلومات الطبيب",
-    "name" : "الاسم الثلاثي باللغه العربيه",
+    "name" : "الاسم (كما مكتوب على لافتة العيادة)",
     "name_validator" : "ادخل اسمك الثلاثي",
     "speciality" : "الاختصاص",
     "speciality_validator" : "اختر اختصاصك الطبي",

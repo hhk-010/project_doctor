@@ -73,19 +73,6 @@ class _PreMCQsState extends State<PreMCQs> {
             backgroundColor: Colors.deepOrange,
             title: Text(''),
             actions: [
-              // FlatButton.icon(
-              //   onPressed: () {
-              //     widget.signInToogleView();
-              //   },
-              //   icon: Icon(
-              //     Icons.arrow_back,
-              //     color: Colors.white,
-              //   ),
-              //   label: Text(
-              //     'Sign in',
-              //     style: TextStyle(color: Colors.white),
-              //   ),
-              // ),
               FlatButton.icon(
                 onPressed: () {
                   checkInternet();

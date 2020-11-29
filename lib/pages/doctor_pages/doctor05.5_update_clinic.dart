@@ -28,27 +28,13 @@ List<DropdownMenuItem<String>> exceptions2 = List();
 List<bool> worksDays = List.filled(7, false);
 List boolToStringDays(BuildContext context, List worksDays) {
   return [
-    worksDays[0]
-        ? 'sunday'
-        : null, //AppLocalizations.of(context).translate('sunday') : null,
-    worksDays[1]
-        ? 'monday'
-        : null, //AppLocalizations.of(context).translate('monday') : null,
-    worksDays[2]
-        ? 'tuesday'
-        : null, //AppLocalizations.of(context).translate('tuesday') : null,
-    worksDays[3]
-        ? 'wednesday'
-        : null, //AppLocalizations.of(context).translate('wednesday') : null,
-    worksDays[4]
-        ? 'thursday'
-        : null, //AppLocalizations.of(context).translate('thursday') : null,
-    worksDays[5]
-        ? 'friday'
-        : null, //AppLocalizations.of(context).translate('friday') : null,
-    worksDays[6]
-        ? 'saturday'
-        : null, //AppLocalizations.of(context).translate('saturday') : null,
+    worksDays[0] ? 'sunday' : null,
+    worksDays[1] ? 'monday' : null,
+    worksDays[2] ? 'tuesday' : null,
+    worksDays[3] ? 'wednesday' : null,
+    worksDays[4] ? 'thursday' : null,
+    worksDays[5] ? 'friday' : null,
+    worksDays[6] ? 'saturday' : null,
   ];
 }
 
@@ -540,36 +526,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                 ),
                                 isExpanded: true,
                                 items: exceptions1,
-                                /*[
-                                  DropdownMenuItem(
-                                    value: weekDaysList["1"][1],
-                                    child: Text(weekDaysList["1"][0]),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: weekDaysList["2"][1],
-                                    child: Text(weekDaysList["2"][0]),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: weekDaysList["3"][1],
-                                    child: Text(weekDaysList["3"][0]),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: weekDaysList["4"][1],
-                                    child: Text(weekDaysList["4"][0]),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: weekDaysList["5"][1],
-                                    child: Text(weekDaysList["5"][0]),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: weekDaysList["6"][1],
-                                    child: Text(weekDaysList["6"][0]),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: weekDaysList["7"][1],
-                                    child: Text(weekDaysList["7"][0]),
-                                  ),
-                                ],*/
                                 onChanged: (value) {
                                   setState(() {
                                     weekday01 = value;
@@ -726,36 +682,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                 ),
                                 isExpanded: true,
                                 items: exceptions2,
-                                /*[
-                                  DropdownMenuItem(
-                                    value: weekDaysList["1"][1],
-                                    child: Text(weekDaysList["1"][0]),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: weekDaysList["2"][1],
-                                    child: Text(weekDaysList["2"][0]),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: weekDaysList["3"][1],
-                                    child: Text(weekDaysList["3"][0]),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: weekDaysList["4"][1],
-                                    child: Text(weekDaysList["4"][0]),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: weekDaysList["5"][1],
-                                    child: Text(weekDaysList["5"][0]),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: weekDaysList["6"][1],
-                                    child: Text(weekDaysList["6"][0]),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: weekDaysList["7"][1],
-                                    child: Text(weekDaysList["7"][0]),
-                                  ),
-                                ],*/
                                 onChanged: (value) {
                                   setState(() {
                                     weekday02 = value;
@@ -1151,11 +1077,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
           t1.add(secondaryWorkingHours);
         }
         secto = true;
-        /*secondaryWorkingHours = AppLocalizations.of(context).translate('from') +
-            secondaryFromTimeString +
-            ' ' +
-            AppLocalizations.of(context).translate('to') +
-            secondaryToTimeString;*/
         print(secondaryWorkingHours);
       });
   }
@@ -1237,11 +1158,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
           t2.add(ternaryWorkingHours);
         }
         thirdto = true;
-        /*ternaryWorkingHours = AppLocalizations.of(context).translate('from') +
-            ternaryFromTimeString +
-            ' ' +
-            AppLocalizations.of(context).translate('to') +
-            ternaryToTimeString;*/
         print(ternaryWorkingHours);
       });
   }

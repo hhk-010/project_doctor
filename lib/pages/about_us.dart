@@ -101,7 +101,7 @@ class AboutUS extends StatelessWidget {
                                     TextSpan(
                                         text: 'M.B.CH.B\n',
                                         style: TextStyle(color: Colors.redAccent)),
-                                    TextSpan(text: 'Lead Programmer', style: TextStyle()),
+                                    TextSpan(text: 'Programmer', style: TextStyle()),
                                   ],
                                 ),
                               ),

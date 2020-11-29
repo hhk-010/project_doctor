@@ -60,27 +60,13 @@ bool _daySwitch02 = false;
 List<bool> workDays = List.filled(7, false);
 List boolToStringDays(BuildContext context, List workDays) {
   return [
-    workDays[0]
-        ? "sunday"
-        : null, //AppLocalizations.of(context).translate('sunday') : null,
-    workDays[1]
-        ? "monday"
-        : null, //AppLocalizations.of(context).translate('monday') : null,
-    workDays[2]
-        ? "tuesday"
-        : null, //AppLocalizations.of(context).translate('tuesday') : null,
-    workDays[3]
-        ? "wednesday"
-        : null, //AppLocalizations.of(context).translate('wednesday') : null,
-    workDays[4]
-        ? "thursday"
-        : null, //AppLocalizations.of(context).translate('thursday') : null,
-    workDays[5]
-        ? "friday"
-        : null, //AppLocalizations.of(context).translate('friday') : null,
-    workDays[6]
-        ? "saturday"
-        : null, //AppLocalizations.of(context).translate('saturday') : null,
+    workDays[0] ? "sunday" : null,
+    workDays[1] ? "monday" : null,
+    workDays[2] ? "tuesday" : null,
+    workDays[3] ? "wednesday" : null,
+    workDays[4] ? "thursday" : null,
+    workDays[5] ? "friday" : null,
+    workDays[6] ? "saturday" : null,
   ];
 }
 

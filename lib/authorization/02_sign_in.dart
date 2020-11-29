@@ -169,7 +169,6 @@ class _SignInState extends State<SignIn> {
                           checkInternet();
                           if (_isInternet) {
                             if (_formKey.currentState.validate()) {
-                              //try {
                               dynamic authResult = await _auth
                                   .signInWithEmailAndPassword(email, password);
                               //if the credentials are in valid or internet connection is interrupted
@@ -186,12 +185,6 @@ class _SignInState extends State<SignIn> {
                                 });
                                 _showSnackBar();
                               }
-                              /*} on FirebaseAuthException catch (e) {
-                                setState(() {
-                                  print(e);
-                                  loading = false;
-                                });
-                              }*/
                             }
                           } else {
                             setState(() {

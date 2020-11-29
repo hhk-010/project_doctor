@@ -474,20 +474,6 @@ class _PatientComplainState extends State<PatientComplain> {
         'other health problems'
       ],
     };
-    /*final bpPrLab = {
-      "1": AppLocalizations.of(context).translate(''),
-      "2": AppLocalizations.of(context).translate(''),
-      "3": AppLocalizations.of(context).translate(''),
-      "4": AppLocalizations.of(context).translate(''),
-      "5": AppLocalizations.of(context).translate(''),
-      "6": AppLocalizations.of(context).translate(''),
-      "7": AppLocalizations.of(context).translate(''),
-      "8": AppLocalizations.of(context).translate(''),
-      "9": AppLocalizations.of(context).translate(''),
-      "10": AppLocalizations.of(context).translate(''),
-      "11": AppLocalizations.of(context).translate(''),
-      "12": AppLocalizations.of(context).translate(''),
-    };*/
 
     final injuriesSuicideIntoxicationBurn = {
       "9": [AppLocalizations.of(context).translate('msk injury'), 'msk injury'],
@@ -938,14 +924,6 @@ class _PatientComplainState extends State<PatientComplain> {
       }
     }
 
-    /*void populateBpPrLab() {
-      for (String key in bpPrLab.keys) {
-        menuitems.add(DropdownMenuItem<String>(
-          child: Text(bpPrLab[key]),
-          value: bpPrLab[key],
-        ));
-      }
-    }*/
 
     void populateInjuriesSuicideIntoxicationBurn() {
       for (String key in injuriesSuicideIntoxicationBurn.keys) {
@@ -1805,11 +1783,6 @@ class _PatientComplainState extends State<PatientComplain> {
                                 child: Text(AppLocalizations.of(context)
                                     .translate('brain_neuron')),
                               ),
-                              /*DropdownMenuItem<String>(
-                                value: "bpPrLab",
-                                child: Text(AppLocalizations.of(context)
-                                    .translate('bpPrLab')),
-                              ),*/
                               DropdownMenuItem<String>(
                                 value: "musckuloskeletal",
                                 child: Text(AppLocalizations.of(context)
@@ -2010,11 +1983,6 @@ class _PatientComplainState extends State<PatientComplain> {
                                   child: Text(AppLocalizations.of(context)
                                       .translate('brain_neuron')),
                                 ),
-                                /*DropdownMenuItem<String>(
-                                  value: "bpPrLab",
-                                  child: Text(AppLocalizations.of(context)
-                                      .translate('bpPrLab')),
-                                ),*/
                                 DropdownMenuItem<String>(
                                   value: "musckuloskeletal",
                                   child: Text(AppLocalizations.of(context)
@@ -2212,11 +2180,6 @@ class _PatientComplainState extends State<PatientComplain> {
                                   child: Text(AppLocalizations.of(context)
                                       .translate('brain_neuron')),
                                 ),
-                                /*DropdownMenuItem<String>(
-                                  value: "bpPrLab",
-                                  child: Text(AppLocalizations.of(context)
-                                      .translate('bpPrLab')),
-                                ),*/
                                 DropdownMenuItem<String>(
                                   value: "musckuloskeletal",
                                   child: Text(AppLocalizations.of(context)
@@ -2414,11 +2377,6 @@ class _PatientComplainState extends State<PatientComplain> {
                                   child: Text(AppLocalizations.of(context)
                                       .translate('brain_neuron')),
                                 ),
-                                /*DropdownMenuItem<String>(
-                                  value: "bpPrLab",
-                                  child: Text(AppLocalizations.of(context)
-                                      .translate('bpPrLab')),
-                                ),*/
                                 DropdownMenuItem<String>(
                                   value: "musckuloskeletal",
                                   child: Text(AppLocalizations.of(context)
@@ -2616,11 +2574,6 @@ class _PatientComplainState extends State<PatientComplain> {
                                   child: Text(AppLocalizations.of(context)
                                       .translate('brain_neuron')),
                                 ),
-                                /*DropdownMenuItem<String>(
-                                  value: "bpPrLab",
-                                  child: Text(AppLocalizations.of(context)
-                                      .translate('bpPrLab')),
-                                ),*/
                                 DropdownMenuItem<String>(
                                   value: "musckuloskeletal",
                                   child: Text(AppLocalizations.of(context)
@@ -2818,11 +2771,6 @@ class _PatientComplainState extends State<PatientComplain> {
                                   child: Text(AppLocalizations.of(context)
                                       .translate('brain_neuron')),
                                 ),
-                                /*DropdownMenuItem<String>(
-                                  value: "bpPrLab",
-                                  child: Text(AppLocalizations.of(context)
-                                      .translate('bpPrLab')),
-                                ),*/
                                 DropdownMenuItem<String>(
                                   value: "musckuloskeletal",
                                   child: Text(AppLocalizations.of(context)
@@ -3019,11 +2967,6 @@ class _PatientComplainState extends State<PatientComplain> {
                                   child: Text(AppLocalizations.of(context)
                                       .translate('brain_neuron')),
                                 ),
-                                /*DropdownMenuItem<String>(
-                                  value: "bpPrLab",
-                                  child: Text(AppLocalizations.of(context)
-                                      .translate('bpPrLab')),
-                                ),*/
                                 DropdownMenuItem<String>(
                                   value: "musckuloskeletal",
                                   child: Text(AppLocalizations.of(context)

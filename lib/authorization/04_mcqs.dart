@@ -60,19 +60,6 @@ class _MCQSState extends State<MCQS> {
           appBar: AppBar(
             backgroundColor: Colors.deepOrange,
             actions: [
-              // FlatButton.icon(
-              //   onPressed: () {
-              //     widget.premcq();
-              //   },
-              //   icon: Icon(
-              //     Icons.arrow_back,
-              //     color: Colors.white,
-              //   ),
-              //   label: Text(
-              //     'Sign in',
-              //     style: TextStyle(color: Colors.white),
-              //   ),
-              // ),
               FlatButton.icon(
                 onPressed: () {
                   checkInternet();
@@ -426,7 +413,6 @@ class _QuestionsState extends State<Questions> {
                         ),
                       ],
                       onChanged: (value) => selected3b(value),
-                      // value: QuestionsShuffle.value3,
                     ),
                   ],
                 ),
@@ -745,12 +731,7 @@ void selected3b(_value) {
   print(QuestionsShuffle.value3);
 }
 
-/*void selected4b(_value) {
-  QuestionsShuffle.value4 = QuestionsShuffle
-          .choices[QuestionsShuffle.questions[QuestionsShuffle.counter + 3]]
-      [int.parse(_value)];
-  print(QuestionsShuffle.value4);
-}*/
+
 
 getscore1b() {
   if (QuestionsShuffle.value1 == QuestionsShuffle.answers[QuestionsShuffle.questions[QuestionsShuffle.counter]]) {
@@ -770,10 +751,3 @@ getscore3b() {
   }
 }
 
-/*getscore4b() {
-  if (QuestionsShuffle.value4 ==
-      QuestionsShuffle
-          .answers[QuestionsShuffle.questions[QuestionsShuffle.counter + 3]]) {
-    QuestionsShuffle.score += 1;
-  }
-}*/

@@ -248,22 +248,6 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                             print(ckd);
                           });
                         }),
-                    /*CheckboxListTile(
-                        title: Text(
-                            AppLocalizations.of(context).translate('cd_ctd'),
-                            style: _textStyle),
-                        value: ctdSelected,
-                        onChanged: (val) {
-                          setState(() {
-                            ctdSelected = val;
-                            if (ctdSelected) {
-                              ctd = 'CTD';
-                            } else {
-                              ctd = '';
-                            }
-                            print(ctd);
-                          });
-                        }),*/
                     CheckboxListTile(
                         title: Text(
                             AppLocalizations.of(context).translate('cd_liver'),

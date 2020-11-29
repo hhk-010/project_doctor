@@ -207,12 +207,6 @@ class _UpdateinfoState extends State<Updateinfo> {
                     child: Text(specialities["23"][0]),
                   )
                 ],
-                /*items: specialities.map((speciality) {
-                  return DropdownMenuItem(
-                    value: speciality,
-                    child: Text('$speciality'),
-                  );
-                }).toList(),*/
                 validator: (value) => value == null ? AppLocalizations.of(context).translate('speciality_validator') : null,
                 onChanged: (val) => setState(() => speciality = val),
               ),

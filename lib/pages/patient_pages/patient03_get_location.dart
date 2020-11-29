@@ -156,10 +156,6 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                           child: Text(iraqRegions["5"][0]),
                         ),
                       ],
-                      /*items: iraqRegions
-                          .map((String item) => DropdownMenuItem<String>(
-                              child: Text(item), value: item))
-                          .toList(),*/
                       onChanged: (value) {
                         setState(() {
                           region = value;

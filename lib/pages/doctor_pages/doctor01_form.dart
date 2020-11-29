@@ -214,12 +214,6 @@ class _DoctorFormState extends State<DoctorForm> {
                       child: Text(specialities["23"][0]),
                     )
                   ],
-                  /*items: specialities.map((speciality) {
-                    return DropdownMenuItem(
-                      value: speciality,
-                      child: Text('$speciality'),
-                    );
-                  }).toList(),*/
                   validator: (value) => value == null ? AppLocalizations.of(context).translate('speciality_validator') : null,
                   onChanged: (val) => setState(() => currentSpeciality = val),
                 ),
