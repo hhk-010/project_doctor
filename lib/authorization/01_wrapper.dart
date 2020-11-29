@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/04_mcqs.dart';
 import 'package:project_doctor/authorization/03_pre_mcqs.dart';
+import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/auth.dart';
@@ -21,6 +23,21 @@ class _IntermediateState extends State<Intermediate> {
   Widget build(BuildContext context) {
     return StreamProvider<UserID>.value(
       value: AuthService().user,
+      child: GrandWrapper(),
+    );
+  }
+}
+
+class GrandWrapper extends StatefulWidget {
+  @override
+  _GrandWrapperState createState() => _GrandWrapperState();
+}
+
+class _GrandWrapperState extends State<GrandWrapper> {
+  @override
+  Widget build(BuildContext context) {
+    return StreamProvider<QuerySnapshot>.value(
+      value: DatabaseService().doctorDataProfileStream,
       child: Wrapper(),
     );
   }
@@ -46,11 +63,19 @@ class _WrapperState extends State<Wrapper> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserID>(context);
-
+    final userDoc = Provider.of<QuerySnapshot>(context);
+    var docID;
+    if (userDoc != null && user != null) {
+      for (var x in userDoc.docs) {
+        if (x.id == FirebaseAuth.instance.currentUser.uid) {
+          docID = FirebaseAuth.instance.currentUser.uid;
+        }
+      }
+    }
     if (user == null) {
       return Authenticate();
     } else {
-      if (!FirebaseAuth.instance.currentUser.emailVerified) {
+      if (!FirebaseAuth.instance.currentUser.emailVerified || docID == null) {
         return EmailVerification();
       } else {
         return DoctorProfile();

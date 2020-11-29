@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor03_map.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
@@ -27,7 +28,6 @@ class _EmailVerificationState extends State<EmailVerification> {
   List<String> _workDays01 = [];
   List<String> _workDays02 = [];
   List<String> _workDays03 = [];
-
   bool _isInternet = true;
   checkInternet() async {
     try {
@@ -50,7 +50,9 @@ class _EmailVerificationState extends State<EmailVerification> {
     final _snackBar = new SnackBar(
       content: Text(
         error,
-        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -61,19 +63,21 @@ class _EmailVerificationState extends State<EmailVerification> {
   Timer _timer;
   _readDoctorInfo() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _email = prefs.getString('email') ?? null;
-      _name = prefs.getString('name') ?? null;
-      _speciality = prefs.getString('speciality') ?? null;
-      _phoneNumber = prefs.getString('phoneNumber') ?? null;
-      _province = prefs.getString('province') ?? null;
-      _address = prefs.getString('address') ?? null;
-      _lat = prefs.getDouble('lat') ?? null;
-      _lng = prefs.getDouble('lng') ?? null;
-      _workDays01 = prefs.getStringList('workDays01') ?? null;
-      _workDays02 = prefs.getStringList('workDays02') ?? null;
-      _workDays03 = prefs.getStringList('workDays03') ?? null;
-    });
+    if (FirebaseAuth.instance.currentUser.email == prefs.getString('email')) {
+      setState(() {
+        _email = prefs.getString('email') ?? '';
+        _name = prefs.getString('name') ?? '';
+        _speciality = prefs.getString('speciality') ?? '';
+        _phoneNumber = prefs.getString('phoneNumber') ?? '';
+        _province = prefs.getString('province') ?? '';
+        _address = prefs.getString('address') ?? '';
+        _lat = prefs.getDouble('lat') ?? 0.0;
+        _lng = prefs.getDouble('lng') ?? 0.0;
+        _workDays01 = prefs.getStringList('workDays01') ?? [];
+        _workDays02 = prefs.getStringList('workDays02') ?? [];
+        _workDays03 = prefs.getStringList('workDays03') ?? [];
+      });
+    }
   }
 
   @override
@@ -86,6 +90,7 @@ class _EmailVerificationState extends State<EmailVerification> {
       });
     });
     _readDoctorInfo();
+    _email = FirebaseAuth.instance.currentUser.email;
   }
 
   @override
@@ -163,26 +168,79 @@ class _EmailVerificationState extends State<EmailVerification> {
                   Icons.arrow_forward,
                   color: Colors.white,
                 ),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(80.0)),
                 color: Colors.deepOrange,
-                label: Text(AppLocalizations.of(context).translate("continue"), //'Continue',
-                    style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                label: Text(
+                    AppLocalizations.of(context)
+                        .translate("continue"), //'Continue',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold)),
                 onPressed: () async {
                   checkInternet();
                   if (_isInternet) {
                     if (FirebaseAuth.instance.currentUser.emailVerified) {
-                      await DatabaseService(uid: FirebaseAuth.instance.currentUser.uid)
-                          .updateUserData(_name, _speciality, _phoneNumber, _province, _lat, _lng, _address, _workDays01, _workDays02, _workDays03);
+                      if (DataFromMaptoVerify.email != '' &&
+                          DataFromMaptoVerify.name != '' &&
+                          DataFromMaptoVerify.speciality != '' &&
+                          DataFromMaptoVerify.address != '' &&
+                          DataFromMaptoVerify.workDays01 != [] &&
+                          DataFromMaptoVerify.lattt != 0.0 &&
+                          DataFromMaptoVerify.lnggg != 0.0) {
+                        setState(() {
+                          _name = DataFromMaptoVerify.name;
+                          _speciality = DataFromMaptoVerify.speciality;
+                          _phoneNumber = DataFromMaptoVerify.phoneNumber;
+                          _province = DataFromMaptoVerify.province;
+                          _address = DataFromMaptoVerify.address;
+                          _workDays01 = DataFromMaptoVerify.workDays01;
+                          _workDays02 = DataFromMaptoVerify.workDays02;
+                          _workDays03 = DataFromMaptoVerify.workDays03;
+                          _lat = DataFromMaptoVerify.lattt;
+                          _lng = DataFromMaptoVerify.lnggg;
+                        });
+                      }
+                      await DatabaseService(
+                              uid: FirebaseAuth.instance.currentUser.uid)
+                          .updateUserData(
+                              _name,
+                              _speciality,
+                              _phoneNumber,
+                              _province,
+                              _lat,
+                              _lng,
+                              _address,
+                              _workDays01,
+                              _workDays02,
+                              _workDays03);
+                      SharedPreferences rprefs =
+                          await SharedPreferences.getInstance();
+                      setState(() {
+                        rprefs.remove('name');
+                        rprefs.remove('speciality');
+                        rprefs.remove('phoneNumber');
+                        rprefs.remove('province');
+                        rprefs.remove('address');
+                        rprefs.remove('lat');
+                        rprefs.remove('lng');
+                        rprefs.remove('workDays01');
+                        rprefs.remove('workDays02');
+                        rprefs.remove('workDays03');
+                      });
                       await Navigator.pushNamed(context, '/intermediate');
                     } else {
                       setState(() {
-                        error = AppLocalizations.of(context).translate('snack_verification');
+                        error = AppLocalizations.of(context)
+                            .translate('snack_verification');
                       });
                       _showSnackBar();
                     }
                   } else {
                     setState(() {
-                      error = AppLocalizations.of(context).translate('snack_connectivity');
+                      error = AppLocalizations.of(context)
+                          .translate('snack_connectivity');
                     });
                     _showSnackBar();
                   }
@@ -200,12 +258,17 @@ class _EmailVerificationState extends State<EmailVerification> {
                 textAlign: TextAlign.center,
                 text: new TextSpan(
                   style: new TextStyle(
-                      fontSize: 14.0, color: Colors.black, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica', fontWeight: FontWeight.bold),
+                      fontSize: 14.0,
+                      color: Colors.black,
+                      fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
+                      fontWeight: FontWeight.bold),
                   children: <TextSpan>[
                     //----text has been changed because if the client clicked resend
                     // for two time with less than one to twe minutes in between
                     // firebase will consider it as unusual activity -----
-                    new TextSpan(text: AppLocalizations.of(context).translate("didnot receive")),
+                    new TextSpan(
+                        text: AppLocalizations.of(context)
+                            .translate("didnot receive")),
                     //" Didn't receive email ? Please wait for few minutes then "),
                     new TextSpan(
                         text: AppLocalizations.of(context).translate("resend"),

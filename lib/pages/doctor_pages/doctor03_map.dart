@@ -22,6 +22,8 @@ class DataFromMaptoVerify {
   static List<String> workDays01 = [];
   static List<String> workDays02 = [];
   static List<String> workDays03 = [];
+  static double lattt = 0.0;
+  static double lnggg = 0.0;
 }
 
 class DocMap extends StatefulWidget {
@@ -230,10 +232,13 @@ class _FinalMapState extends State<FinalMap> {
                                 DataFromMaptoVerify.email,
                                 DataFromMaptoVerify.password);
                         if (authResult != null) {
+                          setState(() {
+                            DataFromMaptoVerify.lattt = lattt;
+                            DataFromMaptoVerify.lnggg = lnggg;
+                          });
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           setState(() {
-                            prefs.setString('email', DataFromMaptoVerify.email);
                             prefs.setString('name', DataFromMaptoVerify.name);
                             prefs.setString(
                                 'speciality', DataFromMaptoVerify.speciality);
