@@ -92,9 +92,7 @@ class _FinalMapState extends State<FinalMap> {
     final _snackBar = new SnackBar(
       content: Text(
         error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -136,8 +134,7 @@ class _FinalMapState extends State<FinalMap> {
     final basicData = Provider.of<QuerySnapshot>(context);
     if (basicData != null) {
       for (var x in basicData.docs) {
-        if (DataFromMaptoVerify.name == x.data()['n'] &&
-            DataFromMaptoVerify.speciality == x.data()['s']) {
+        if (DataFromMaptoVerify.name == x.data()['n'] && DataFromMaptoVerify.speciality == x.data()['s']) {
           isValidUser = true;
           lt = x.data()['lt'];
           lg = x.data()['lg'];
@@ -160,8 +157,7 @@ class _FinalMapState extends State<FinalMap> {
       body: Stack(
         children: [
           GoogleMap(
-            initialCameraPosition:
-                CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 10),
+            initialCameraPosition: CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 10),
             markers: Set.from(mymarker),
             onTap: handletap,
           ),
@@ -214,8 +210,7 @@ class _FinalMapState extends State<FinalMap> {
 
                     if (lattt != null && lnggg != null) {
                       setState(() {
-                        finalResult =
-                            pow((lattt - lt), 2) + pow((lnggg - lg), 2);
+                        finalResult = pow((lattt - lt), 2) + pow((lnggg - lg), 2);
                         finalDistance = sqrt(finalResult);
                         kmDistance = finalDistance * 100;
                       });
@@ -224,38 +219,26 @@ class _FinalMapState extends State<FinalMap> {
                       //------ direct navigation to the emailverfied widget will
                       // give a fake page (when pressing continue) it will not respond)
                       // I found put wrapper and transferred email by another method
-
                       //--------------at least 10 km away from bashar abbas---------------
                       if (kmDistance < 100.0) {
-                        final authResult =
-                            await _auth.registerWithEmailAndPassword(
-                                DataFromMaptoVerify.email,
-                                DataFromMaptoVerify.password);
+                        final authResult = await _auth.registerWithEmailAndPassword(DataFromMaptoVerify.email, DataFromMaptoVerify.password);
                         if (authResult != null) {
                           setState(() {
                             DataFromMaptoVerify.lattt = lattt;
                             DataFromMaptoVerify.lnggg = lnggg;
                           });
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
                           setState(() {
                             prefs.setString('name', DataFromMaptoVerify.name);
-                            prefs.setString(
-                                'speciality', DataFromMaptoVerify.speciality);
-                            prefs.setString(
-                                'phoneNumber', DataFromMaptoVerify.phoneNumber);
-                            prefs.setString(
-                                'province', DataFromMaptoVerify.province);
-                            prefs.setString(
-                                'address', DataFromMaptoVerify.address);
+                            prefs.setString('speciality', DataFromMaptoVerify.speciality);
+                            prefs.setString('phoneNumber', DataFromMaptoVerify.phoneNumber);
+                            prefs.setString('province', DataFromMaptoVerify.province);
+                            prefs.setString('address', DataFromMaptoVerify.address);
                             prefs.setDouble('lat', lattt);
                             prefs.setDouble('lng', lnggg);
-                            prefs.setStringList(
-                                'workDays01', DataFromMaptoVerify.workDays01);
-                            prefs.setStringList(
-                                'workDays02', DataFromMaptoVerify.workDays02);
-                            prefs.setStringList(
-                                'workDays03', DataFromMaptoVerify.workDays03);
+                            prefs.setStringList('workDays01', DataFromMaptoVerify.workDays01);
+                            prefs.setStringList('workDays02', DataFromMaptoVerify.workDays02);
+                            prefs.setStringList('workDays03', DataFromMaptoVerify.workDays03);
                           });
                           int count = 0;
                           Navigator.popUntil(context, (route) {
@@ -263,15 +246,13 @@ class _FinalMapState extends State<FinalMap> {
                           });
                         } else {
                           setState(() {
-                            error = AppLocalizations.of(context)
-                                .translate('snack_register');
+                            error = AppLocalizations.of(context).translate('snack_register');
                           });
                           _showSnackBar();
                         }
                       } else {
                         setState(() {
-                          error = AppLocalizations.of(context)
-                              .translate('snack_register');
+                          error = AppLocalizations.of(context).translate('snack_register');
                         });
                         _showSnackBar();
                       }
@@ -279,8 +260,7 @@ class _FinalMapState extends State<FinalMap> {
                   }
                 } else {
                   setState(() {
-                    error = AppLocalizations.of(context)
-                        .translate('snack_connectivity');
+                    error = AppLocalizations.of(context).translate('snack_connectivity');
                   });
                 }
                 _showSnackBar();
