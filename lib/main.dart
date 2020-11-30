@@ -32,7 +32,9 @@ void main() async {
     statusBarColor: Colors.deepOrange,
   ));
   runApp(
-    DevicePreview(enabled: !kReleaseMode, builder: (context) => MyApp()),
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => MyApp()),
   );
 }
 
