@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/04_mcqs.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/services/responsive_size.dart';
+import 'package:project_doctor/ui/sizing_information.dart';
 import 'package:provider/provider.dart';
 
 class MCQss {
