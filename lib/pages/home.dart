@@ -5,6 +5,9 @@ import 'package:flutter/rendering.dart';
 import 'package:project_doctor/main.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/language.dart';
+import 'package:project_doctor/ui/device_screen_type.dart';
+import 'package:project_doctor/ui/responsive_builder.dart';
+import 'package:project_doctor/ui/sizing_information.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -20,162 +23,164 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     var lang = Localizations.localeOf(context).languageCode;
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.info),
-          tooltip: AppLocalizations.of(context).translate('about_us'),
-          onPressed: () {
-            Navigator.pushNamed(context, '/about_us');
-          },
-        ),
-        title: FittedBox(
-          fit: BoxFit.fitWidth,
-          child: Text(
-            AppLocalizations.of(context).translate('home_title'),
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+    return ResponsiveBuilder(builder: (context, sizingInformation) {
+
+
+      // double buttonHeight =  sizingInformation.deviceScreenType == DeviceScreenType.Mobile ? : ;
+      // double buttonWidth =  sizingInformation.deviceScreenType == DeviceScreenType.Tablet ? : ;
+
+
+
+
+
+
+
+
+
+
+
+
+      return Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.grey[200],
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.info),
+            tooltip: AppLocalizations.of(context).translate('about_us'),
+            onPressed: () {
+              Navigator.pushNamed(context, '/about_us');
+            },
           ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.deepOrange,
-        elevation: 0,
-        actions: [
-          SafeArea(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(0, 16, 16, 14),
-              child: Tooltip(
-                message: AppLocalizations.of(context).translate('language'),
-                child: DropdownButton(
-                  onChanged: (Language language) {
-                    _changeLanguage(language);
-                  },
-                  underline: SizedBox(),
-                  icon: Icon(
-                    Icons.language,
-                    color: Colors.white,
+          title: FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Text(
+              AppLocalizations.of(context).translate('home_title'),
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.deepOrange,
+          elevation: 0,
+          actions: [
+            SafeArea(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 16, 16, 14),
+                child: Tooltip(
+                  message: AppLocalizations.of(context).translate('language'),
+                  child: DropdownButton(
+                    onChanged: (Language language) {
+                      _changeLanguage(language);
+                    },
+                    underline: SizedBox(),
+                    icon: Icon(
+                      Icons.language,
+                      color: Colors.white,
+                    ),
+                    items: Language.languageList(context)
+                        .map<DropdownMenuItem<Language>>(
+                          (lang) => DropdownMenuItem(
+                              value: lang,
+                              child: Text(
+                                lang.name,
+                              )),
+                        )
+                        .toList(),
                   ),
-                  items: Language.languageList(context)
-                      .map<DropdownMenuItem<Language>>(
-                        (lang) => DropdownMenuItem(
-                            value: lang,
-                            child: Text(
-                              lang.name,
-                            )),
-                      )
-                      .toList(),
+                ),
+              ),
+            ),
+          ],
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 75),
+            child: Container(
+              height: double.maxFinite,
+              width: double.maxFinite,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Container(
+                      height: displayHeight(context) * 0.15,
+                      width: displayWidth(context) * 0.9,
+                      child: RaisedButton.icon(
+                        onPressed: () => Navigator.pushNamed(context, '/patient_complain'),
+                        icon: Icon(
+                          Icons.search,
+                          size: 70,
+                          color: Colors.white,
+                        ),
+                        label: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: AutoSizeText.rich(
+                            TextSpan(
+                                text: AppLocalizations.of(context).translate('home_patient_title'),
+                                style: TextStyle(
+                                    fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
+                                    fontSize: 26,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                                children: [
+                                  TextSpan(
+                                      text: AppLocalizations.of(context).translate('home_patient_subtitle'),
+                                      style: TextStyle(
+                                          fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white)),
+                                ]),
+                            maxLines: 2,
+                          ),
+                        ),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                        color: Colors.deepOrange,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 90,
+                      width: 300,
+                      child: RaisedButton.icon(
+                        onPressed: () => Navigator.pushNamed(context, '/intermediate'),
+                        icon: Icon(
+                          Icons.people,
+                          size: 70,
+                          color: Colors.white,
+                        ),
+                        label: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: AutoSizeText.rich(
+                            TextSpan(
+                                text: AppLocalizations.of(context).translate('home_doctor_title'),
+                                style: TextStyle(
+                                    fontSize: 26,
+                                    fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                                children: [
+                                  TextSpan(
+                                      text: AppLocalizations.of(context).translate('home_doctor_subtitle'),
+                                      style: TextStyle(
+                                          fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white)),
+                                ]),
+                          ),
+                        ),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                        color: Colors.deepOrange,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
           ),
-        ],
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 75),
-          child: Container(
-            height: double.maxFinite,
-            width: double.maxFinite,
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  SizedBox(
-                    height: 90,
-                    width: 300,
-                    child: RaisedButton.icon(
-                      onPressed: () =>
-                          Navigator.pushNamed(context, '/patient_complain'),
-                      icon: Icon(
-                        Icons.search,
-                        size: 70,
-                        color: Colors.white,
-                      ),
-                      label: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: AutoSizeText.rich(
-                          TextSpan(
-                              text: AppLocalizations.of(context)
-                                  .translate('home_patient_title'),
-                              style: TextStyle(
-                                  fontFamily: lang == 'ar'
-                                      ? 'noto_arabic'
-                                      : 'Helvetica',
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                              children: [
-                                TextSpan(
-                                    text: AppLocalizations.of(context)
-                                        .translate('home_patient_subtitle'),
-                                    style: TextStyle(
-                                        fontFamily: lang == 'ar'
-                                            ? 'noto_arabic'
-                                            : 'Helvetica',
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white)),
-                              ]),
-                          maxLines: 2,
-                        ),
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(80.0)),
-                      color: Colors.deepOrange,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 90,
-                    width: 300,
-                    child: RaisedButton.icon(
-                      onPressed: () =>
-                          Navigator.pushNamed(context, '/intermediate'),
-                      icon: Icon(
-                        Icons.people,
-                        size: 70,
-                        color: Colors.white,
-                      ),
-                      label: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: AutoSizeText.rich(
-                          TextSpan(
-                              text: AppLocalizations.of(context)
-                                  .translate('home_doctor_title'),
-                              style: TextStyle(
-                                  fontSize: 26,
-                                  fontFamily: lang == 'ar'
-                                      ? 'noto_arabic'
-                                      : 'Helvetica',
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                              children: [
-                                TextSpan(
-                                    text: AppLocalizations.of(context)
-                                        .translate('home_doctor_subtitle'),
-                                    style: TextStyle(
-                                        fontFamily: lang == 'ar'
-                                            ? 'noto_arabic'
-                                            : 'Helvetica',
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white)),
-                              ]),
-                        ),
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(80.0)),
-                      color: Colors.deepOrange,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
