@@ -42,6 +42,7 @@ dependencies:
   change_app_package_name: ^0.1.2
   auto_size_text: ^2.1.0
   weekday_selector: ^0.4.0
+  path_provider: 1.6.24
 
 
 

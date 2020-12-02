@@ -1,12 +1,16 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/authorization/loading.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/database.dart';
+import 'package:project_doctor/services/readerwriter.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/auth.dart';
@@ -26,6 +30,7 @@ class DataFromMaptoVerify {
   static double lnggg = 0.0;
 }
 
+//-------------------------------------
 class DocMap extends StatefulWidget {
   @override
   _DocMapState createState() => _DocMapState();
@@ -44,7 +49,10 @@ class _DocMapState extends State<DocMap> {
   }
 }
 
+//===============================================
 class FinalMap extends StatefulWidget {
+  final Storage dataStorage = Storage();
+
   @override
   _FinalMapState createState() => _FinalMapState();
 }
@@ -116,10 +124,95 @@ class _FinalMapState extends State<FinalMap> {
     }
   }
 
+  //--------vars to write--------------
+  String _name = '';
+  String _speciality = '';
+  String _phoneNumber = '';
+  String _province = '';
+  String _address = '';
+  String _writtenlat = '';
+  String _writtenlng = '';
+  String _workDays01s = '';
+  String _workDays02s = '';
+  String _workDays03s = '';
+  //==============ended=================
   @override
   void initState() {
+    super.initState();
     checkInternet();
     super.initState();
+  }
+  //----------------------------------
+
+  Future<File> _writeName(value) {
+    setState(() {
+      _name = value;
+    });
+    return widget.dataStorage.writeName(_name);
+  }
+
+  Future<File> _writeSpeciality(value) {
+    setState(() {
+      _speciality = value;
+    });
+    return widget.dataStorage.writeSpeciality(_speciality);
+  }
+
+  Future<File> _writeNumber(value) {
+    setState(() {
+      _phoneNumber = value;
+    });
+    return widget.dataStorage.writeNumber(_phoneNumber);
+  }
+
+  Future<File> _writeProvince(value) {
+    setState(() {
+      _province = value;
+    });
+    return widget.dataStorage.writeProvince(_province);
+  }
+
+  Future<File> _writeAddress(value) {
+    setState(() {
+      _address = value;
+    });
+    return widget.dataStorage.writeAddress(_address);
+  }
+
+  //===================lat to list=================
+  Future<File> _writelat(value) {
+    setState(() {
+      _writtenlat = value;
+    });
+    return widget.dataStorage.writeLat(_writtenlat);
+  }
+
+  Future<File> _writelng(value) {
+    setState(() {
+      _writtenlng = value;
+    });
+    return widget.dataStorage.writeLng(_writtenlng);
+  }
+
+  Future<File> _writeWorkDays01(value) {
+    setState(() {
+      _workDays01s = value;
+    });
+    return widget.dataStorage.writeWork01(_workDays01s);
+  }
+
+  Future<File> _writeWorkDays02(value) {
+    setState(() {
+      _workDays02s = value;
+    });
+    return widget.dataStorage.writeWork02(_workDays02s);
+  }
+
+  Future<File> _writeWorkDays03(value) {
+    setState(() {
+      _workDays03s = value;
+    });
+    return widget.dataStorage.writeWork03(_workDays03s);
   }
 
   //=================vars For testing=========
@@ -130,7 +223,6 @@ class _FinalMapState extends State<FinalMap> {
   double finalDistance = 0.0;
   double finalResult = 0.0;
   double kmDistance = 0.0;
-  bool isValidUser = false;
   @override
   Widget build(BuildContext context) {
     final basicData = Provider.of<QuerySnapshot>(context);
@@ -138,7 +230,6 @@ class _FinalMapState extends State<FinalMap> {
       for (var x in basicData.docs) {
         if (DataFromMaptoVerify.name == x.data()['n'] &&
             DataFromMaptoVerify.speciality == x.data()['s']) {
-          isValidUser = true;
           lt = x.data()['lt'];
           lg = x.data()['lg'];
         }
@@ -227,6 +318,40 @@ class _FinalMapState extends State<FinalMap> {
 
                       //--------------at least 10 km away from bashar abbas---------------
                       if (kmDistance < 100.0) {
+                        /*SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        setState(() {
+                          prefs.setString('name', DataFromMaptoVerify.name);
+                          prefs.setString(
+                              'speciality', DataFromMaptoVerify.speciality);
+                          prefs.setString(
+                              'phoneNumber', DataFromMaptoVerify.phoneNumber);
+                          prefs.setString(
+                              'province', DataFromMaptoVerify.province);
+                          prefs.setString(
+                              'address', DataFromMaptoVerify.address);
+                          prefs.setDouble('lat', lattt);
+                          prefs.setDouble('lng', lnggg);
+                          prefs.setStringList(
+                              'workDays01', DataFromMaptoVerify.workDays01);
+                          prefs.setStringList(
+                              'workDays02', DataFromMaptoVerify.workDays02);
+                          prefs.setStringList(
+                              'workDays03', DataFromMaptoVerify.workDays03);
+                        });*/
+                        _writeName(DataFromMaptoVerify.name);
+                        _writeSpeciality(DataFromMaptoVerify.speciality);
+                        _writeNumber(DataFromMaptoVerify.phoneNumber);
+                        _writeProvince(DataFromMaptoVerify.province);
+                        _writeAddress(DataFromMaptoVerify.address);
+                        _writelat(lattt.toString());
+                        _writelng(lnggg.toString());
+                        _writeWorkDays01(
+                            json.encode(DataFromMaptoVerify.workDays01));
+                        _writeWorkDays02(
+                            json.encode(DataFromMaptoVerify.workDays02));
+                        _writeWorkDays03(
+                            json.encode(DataFromMaptoVerify.workDays03));
                         final authResult =
                             await _auth.registerWithEmailAndPassword(
                                 DataFromMaptoVerify.email,
@@ -235,27 +360,6 @@ class _FinalMapState extends State<FinalMap> {
                           setState(() {
                             DataFromMaptoVerify.lattt = lattt;
                             DataFromMaptoVerify.lnggg = lnggg;
-                          });
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          setState(() {
-                            prefs.setString('name', DataFromMaptoVerify.name);
-                            prefs.setString(
-                                'speciality', DataFromMaptoVerify.speciality);
-                            prefs.setString(
-                                'phoneNumber', DataFromMaptoVerify.phoneNumber);
-                            prefs.setString(
-                                'province', DataFromMaptoVerify.province);
-                            prefs.setString(
-                                'address', DataFromMaptoVerify.address);
-                            prefs.setDouble('lat', lattt);
-                            prefs.setDouble('lng', lnggg);
-                            prefs.setStringList(
-                                'workDays01', DataFromMaptoVerify.workDays01);
-                            prefs.setStringList(
-                                'workDays02', DataFromMaptoVerify.workDays02);
-                            prefs.setStringList(
-                                'workDays03', DataFromMaptoVerify.workDays03);
                           });
                           int count = 0;
                           Navigator.popUntil(context, (route) {

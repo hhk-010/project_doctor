@@ -7,6 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:provider/provider.dart';
 import '../../services/database.dart';
+import 'doctor04_profile.dart';
 
 // ----------------class for snackbar error
 class SnackBarError {
@@ -210,6 +211,9 @@ class _UpdateMapState extends State<UpdateMap> {
                                   DataFromProfiletoUpdate.workDays01,
                                   DataFromProfiletoUpdate.workDays02,
                                   DataFromProfiletoUpdate.workDays03);
+                          setState(() {
+                            empty.isEmpty = false;
+                          });
                           int count = 0;
                           Navigator.popUntil(context, (route) {
                             return count++ == 3;

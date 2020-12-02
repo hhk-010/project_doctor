@@ -13,7 +13,8 @@
     "google_map" : "Google Map",
     "Or": " Or ",
     "":"",
-
+    "data_error":"An error had occurred , please update your information",
+    "prof_error":"Error !!",
 
 "regions":"---------------------------------",
     "Baghdad":"Baghdad, Iraq",

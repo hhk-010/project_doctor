@@ -7,10 +7,12 @@ import 'package:project_doctor/pages/doctor_pages/doctor03_map.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
+import 'package:project_doctor/services/readerwriter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // class for getting the data from map to firebase through verfication.
 class EmailVerification extends StatefulWidget {
+  final Storage dataReadStorage = Storage();
   @override
   _EmailVerificationState createState() => _EmailVerificationState();
 }
@@ -25,9 +27,10 @@ class _EmailVerificationState extends State<EmailVerification> {
   String _address = '';
   double _lat = 0.0;
   double _lng = 0.0;
-  List<String> _workDays01 = [];
-  List<String> _workDays02 = [];
-  List<String> _workDays03 = [];
+  List _workDays01 = [];
+  List _workDays02 = [];
+  List _workDays03 = [];
+
   bool _isInternet = true;
   checkInternet() async {
     try {
@@ -61,7 +64,7 @@ class _EmailVerificationState extends State<EmailVerification> {
 
   final AuthService _auth = AuthService();
   Timer _timer;
-  _readDoctorInfo() async {
+  /*_readDoctorInfo() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (FirebaseAuth.instance.currentUser.email == prefs.getString('email')) {
       setState(() {
@@ -78,7 +81,7 @@ class _EmailVerificationState extends State<EmailVerification> {
         _workDays03 = prefs.getStringList('workDays03') ?? [];
       });
     }
-  }
+  }*/
 
   @override
   void initState() {
@@ -89,8 +92,70 @@ class _EmailVerificationState extends State<EmailVerification> {
         FirebaseAuth.instance.currentUser..reload();
       });
     });
-    _readDoctorInfo();
+    //_readDoctorInfo();
     _email = FirebaseAuth.instance.currentUser.email;
+
+    //-------reading data---------
+
+    widget.dataReadStorage.readName().then((String value) {
+      setState(() {
+        _name = value;
+      });
+    });
+
+    widget.dataReadStorage.readSpeciality().then((String value) {
+      setState(() {
+        _speciality = value;
+      });
+    });
+
+    widget.dataReadStorage.readNumber().then((String value) {
+      setState(() {
+        _phoneNumber = value;
+      });
+    });
+
+    widget.dataReadStorage.readProvince().then((String value) {
+      setState(() {
+        _province = value;
+      });
+    });
+
+    widget.dataReadStorage.readAddress().then((String value) {
+      setState(() {
+        _address = value;
+      });
+    });
+//====================lat to list==========================
+    widget.dataReadStorage.readLat().then((double value) {
+      setState(() {
+        _lat = value;
+      });
+    });
+
+    widget.dataReadStorage.readLng().then((double value) {
+      setState(() {
+        _lng = value;
+      });
+    });
+
+    widget.dataReadStorage.workDays01reader().then((List value) {
+      setState(() {
+        _workDays01 = value;
+      });
+    });
+
+    widget.dataReadStorage.readWorkDays02().then((List value) {
+      setState(() {
+        _workDays02 = value;
+      });
+    });
+
+    widget.dataReadStorage.readWorkDays03().then((List value) {
+      setState(() {
+        _workDays03 = value;
+      });
+    });
   }
 
   @override
@@ -182,7 +247,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                   checkInternet();
                   if (_isInternet) {
                     if (FirebaseAuth.instance.currentUser.emailVerified) {
-                      if (DataFromMaptoVerify.email != '' &&
+                      /*if (DataFromMaptoVerify.email != '' &&
                           DataFromMaptoVerify.name != '' &&
                           DataFromMaptoVerify.speciality != '' &&
                           DataFromMaptoVerify.address != '' &&
@@ -201,7 +266,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                           _lat = DataFromMaptoVerify.lattt;
                           _lng = DataFromMaptoVerify.lnggg;
                         });
-                      }
+                      }*/
                       await DatabaseService(
                               uid: FirebaseAuth.instance.currentUser.uid)
                           .updateUserData(
@@ -215,7 +280,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                               _workDays01,
                               _workDays02,
                               _workDays03);
-                      SharedPreferences rprefs =
+                      /*SharedPreferences rprefs =
                           await SharedPreferences.getInstance();
                       setState(() {
                         rprefs.remove('name');
@@ -228,7 +293,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                         rprefs.remove('workDays01');
                         rprefs.remove('workDays02');
                         rprefs.remove('workDays03');
-                      });
+                      });*/
                       await Navigator.pushNamed(context, '/intermediate');
                     } else {
                       setState(() {
