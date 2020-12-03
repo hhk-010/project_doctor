@@ -24,7 +24,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     var lang = Localizations.localeOf(context).languageCode;
     return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBar;
+      double appBarTitle;
       double appBarIcon;
       double appBarHeight;
       double buttonHeight;
@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
       double buttonIconSize;
 
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBar = displayHeight(context) * 0.03;
+        appBarTitle = displayHeight(context) * 0.03;
         appBarIcon = 25;
         appBarHeight = 60;
         buttonHeight = displayHeight(context) * 0.13;
@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
         buttonSubTitle = displayHeight(context) * 0.022;
         buttonIconSize = 70;
       } else {
-        appBar = displayHeight(context) * 0.045;
+        appBarTitle = displayHeight(context) * 0.045;
         appBarIcon = 40;
         appBarHeight = 75;
         buttonHeight = displayHeight(context) * 0.15;
@@ -71,7 +71,7 @@ class _HomeState extends State<Home> {
               fit: BoxFit.fitWidth,
               child: Text(
                 AppLocalizations.of(context).translate('home_title'),
-                style: TextStyle(fontSize: appBar, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
               ),
             ),
             centerTitle: true,

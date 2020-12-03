@@ -3,6 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/services/app_localizations.dart';
+import 'package:project_doctor/ui/responsive_builder.dart';
+import 'package:project_doctor/ui/device_screen_type.dart';
+import 'package:project_doctor/ui/sizing_information.dart';
 
 //this file is to show the location of the doctor on the map to the patient
 
@@ -11,8 +14,7 @@ class PatientResultMap extends StatefulWidget {
   final double lng;
   PatientResultMap({this.lat, this.lng});
   @override
-  _PatientResultMapState createState() =>
-      _PatientResultMapState(lat: lat, lng: lng);
+  _PatientResultMapState createState() => _PatientResultMapState(lat: lat, lng: lng);
 }
 
 class _PatientResultMapState extends State<PatientResultMap> {
@@ -31,71 +33,89 @@ class _PatientResultMapState extends State<PatientResultMap> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
-        title: FittedBox(
-            fit: BoxFit.fitWidth,
-            child: Text(
-              AppLocalizations.of(context).translate('doctor_location'),
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-            )),
-        centerTitle: true,
-        elevation: 0,
-      ),
-      body: Stack(
-        children: [
-          GoogleMap(
-            onMapCreated: _onmapcreated,
-            initialCameraPosition:
-                CameraPosition(target: LatLng(lat, lng), zoom: 10),
-            markers: _marker,
+    return ResponsiveBuilder(builder: (context, sizingInformation) {
+      double appBarTitle;
+      double appBarHeight;
+      double title;
+
+      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
+        appBarTitle = displayHeight(context) * 0.03;
+        appBarHeight = 50;
+        title = displayWidth(context) * 0.05;
+      } else {
+        appBarTitle = displayHeight(context) * 0.045;
+        appBarHeight = 75;
+        title = displayWidth(context) * 0.035;
+      }
+
+      return Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(appBarHeight),
+          child: AppBar(
+            backgroundColor: Colors.deepOrange,
+            title: FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                  AppLocalizations.of(context).translate('doctor_location'),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: appBarTitle),
+                )),
+            centerTitle: true,
+            elevation: 0,
           ),
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
-            alignment: Alignment.topCenter,
-            child: Column(
-              children: [
-                Text(
-                  AppLocalizations.of(context).translate("zoom_in_out"),
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  AppLocalizations.of(context).translate("zoom_in"),
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  AppLocalizations.of(context).translate("zoom_out"),
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
+        ),
+        body: Stack(
+          children: [
+            GoogleMap(
+              onMapCreated: _onmapcreated,
+              initialCameraPosition: CameraPosition(target: LatLng(lat, lng), zoom: 10),
+              markers: _marker,
             ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 25.0),
-            alignment: Alignment.bottomCenter,
-            child: FloatingActionButton(
-              backgroundColor: Colors.deepOrange,
-              child: Text(
-                AppLocalizations.of(context).translate('ok'),
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
+              alignment: Alignment.topCenter,
+              child: Column(
+                children: [
+                  Text(
+                    AppLocalizations.of(context).translate("zoom_in_out"),
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    AppLocalizations.of(context).translate("zoom_in"),
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    AppLocalizations.of(context).translate("zoom_out"),
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/home');
-              },
             ),
-          ),
-        ],
-      ),
-    );
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 25.0),
+              alignment: Alignment.bottomCenter,
+              child: FloatingActionButton(
+                backgroundColor: Colors.deepOrange,
+                child: Text(
+                  AppLocalizations.of(context).translate('ok'),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: title),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/home');
+                },
+              ),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
