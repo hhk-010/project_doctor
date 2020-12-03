@@ -13,6 +13,9 @@
     "google_map" : "خرائط كوكل",
     "Or": " أو ",
     "":"",
+    "data_error":"حدث خطأ اثناء التسجيل , قم بتحديث معلوماتك لطفا",
+    "prof_error":"خطأ !!",
+    
 
 "regions":"---------------------------------",
     "Baghdad":"بغداد , العراق",
@@ -149,7 +152,7 @@
     "Cardiologist" : "قلبيه",
     "Pulmonologist" : "تنفسيه",
     "Endocrinologist" : "غدد صماء",
-    "Enterologist" : " طب الجهاز الهضمي",
+    "Enterologist" : "طب الجهاز الهضمي",
     "General Surgeon" : "جراحه عامه",
     "Pediatric Surgeon" : "جراحه اطفال",
     "ThoracoVascular Surgeon" : "جراحه صدر واوعيه دمويه",

@@ -992,11 +992,11 @@ class _ClinicFormState extends State<ClinicForm> {
         mainFromend = mainFromTimeString.substring(
             mainFromTimeString.indexOf(' ') + 1, mainFromTimeString.length);
         if (mainFromend.contains('ص') || mainFromend == 'AM') {
-          ampm = 'AM';
+          ampm = "AM";
         } else {
-          ampm = 'PM';
+          ampm = "PM";
         }
-        mainFromTimeNo = mainFromTimeNo + ' ' + ampm;
+        mainFromTimeNo = mainFromTimeNo + " " + ampm;
         mainfrom = true;
       });
   }
@@ -1028,12 +1028,12 @@ class _ClinicFormState extends State<ClinicForm> {
         mainToend = mainToTimeString.substring(
             mainToTimeString.indexOf(' '), mainToTimeString.length);
         if (mainToend.contains('ص') || mainToend.contains('AM')) {
-          toampm = 'AM';
+          toampm = "AM";
         } else if (mainToend.contains('م') || mainToend.contains('PM')) {
-          toampm = 'PM';
+          toampm = "PM";
         }
-        mainToTimeNo = mainToTimeNo + ' ' + toampm;
-        mainWorkingHours = 'from ' + mainFromTimeNo + ' to ' + mainToTimeNo;
+        mainToTimeNo = mainToTimeNo + " " + toampm;
+        mainWorkingHours = "from " + mainFromTimeNo + " to " + mainToTimeNo;
         makeMePass = true;
         mainto = true;
       });
