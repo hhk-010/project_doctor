@@ -12,7 +12,6 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/services/readerwriter.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/auth.dart';
 
 class DataFromMaptoVerify {
@@ -315,30 +314,8 @@ class _FinalMapState extends State<FinalMap> {
                       //------ direct navigation to the emailverfied widget will
                       // give a fake page (when pressing continue) it will not respond)
                       // I found put wrapper and transferred email by another method
-
                       //--------------at least 10 km away from bashar abbas---------------
                       if (kmDistance < 100.0) {
-                        /*SharedPreferences prefs =
-                            await SharedPreferences.getInstance();
-                        setState(() {
-                          prefs.setString('name', DataFromMaptoVerify.name);
-                          prefs.setString(
-                              'speciality', DataFromMaptoVerify.speciality);
-                          prefs.setString(
-                              'phoneNumber', DataFromMaptoVerify.phoneNumber);
-                          prefs.setString(
-                              'province', DataFromMaptoVerify.province);
-                          prefs.setString(
-                              'address', DataFromMaptoVerify.address);
-                          prefs.setDouble('lat', lattt);
-                          prefs.setDouble('lng', lnggg);
-                          prefs.setStringList(
-                              'workDays01', DataFromMaptoVerify.workDays01);
-                          prefs.setStringList(
-                              'workDays02', DataFromMaptoVerify.workDays02);
-                          prefs.setStringList(
-                              'workDays03', DataFromMaptoVerify.workDays03);
-                        });*/
                         _writeName(DataFromMaptoVerify.name);
                         _writeSpeciality(DataFromMaptoVerify.speciality);
                         _writeNumber(DataFromMaptoVerify.phoneNumber);

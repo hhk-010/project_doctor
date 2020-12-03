@@ -16,8 +16,7 @@ class AuthService {
 
   Future signInWithEmailAndPassword(String email, String password) async {
     try {
-      UserCredential authResult = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential authResult = await _auth.signInWithEmailAndPassword(email: email, password: password);
       User user = authResult.user;
       if (authResult.user != null) {
         _status = AuthResultStatus.successful;
@@ -27,6 +26,7 @@ class AuthService {
       return _userfromfirebase(user);
     } catch (e) {
       print('Exception @createAccount: $e');
+      print(_status);
       _status = AuthExceptionHandler.handleException(e);
       return null;
     }
@@ -38,8 +38,7 @@ class AuthService {
     String password,
   ) async {
     try {
-      UserCredential authResult = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential authResult = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User user = authResult.user;
       // create a new document for the user with the id
       await user.sendEmailVerification();
@@ -83,11 +82,9 @@ class AuthService {
 
   Future<bool> validatepass(String pass) async {
     User user = _auth.currentUser;
-    AuthCredential credentials =
-        EmailAuthProvider.credential(email: user.email, password: pass);
+    AuthCredential credentials = EmailAuthProvider.credential(email: user.email, password: pass);
     try {
-      UserCredential cred =
-          await user.reauthenticateWithCredential(credentials);
+      UserCredential cred = await user.reauthenticateWithCredential(credentials);
       return cred.user != null;
     } catch (e) {
       print(e);

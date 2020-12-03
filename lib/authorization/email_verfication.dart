@@ -8,7 +8,6 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/services/readerwriter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // class for getting the data from map to firebase through verfication.
 class EmailVerification extends StatefulWidget {
@@ -64,24 +63,6 @@ class _EmailVerificationState extends State<EmailVerification> {
 
   final AuthService _auth = AuthService();
   Timer _timer;
-  /*_readDoctorInfo() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (FirebaseAuth.instance.currentUser.email == prefs.getString('email')) {
-      setState(() {
-        _email = prefs.getString('email') ?? '';
-        _name = prefs.getString('name') ?? '';
-        _speciality = prefs.getString('speciality') ?? '';
-        _phoneNumber = prefs.getString('phoneNumber') ?? '';
-        _province = prefs.getString('province') ?? '';
-        _address = prefs.getString('address') ?? '';
-        _lat = prefs.getDouble('lat') ?? 0.0;
-        _lng = prefs.getDouble('lng') ?? 0.0;
-        _workDays01 = prefs.getStringList('workDays01') ?? [];
-        _workDays02 = prefs.getStringList('workDays02') ?? [];
-        _workDays03 = prefs.getStringList('workDays03') ?? [];
-      });
-    }
-  }*/
 
   @override
   void initState() {
@@ -247,26 +228,6 @@ class _EmailVerificationState extends State<EmailVerification> {
                   checkInternet();
                   if (_isInternet) {
                     if (FirebaseAuth.instance.currentUser.emailVerified) {
-                      /*if (DataFromMaptoVerify.email != '' &&
-                          DataFromMaptoVerify.name != '' &&
-                          DataFromMaptoVerify.speciality != '' &&
-                          DataFromMaptoVerify.address != '' &&
-                          DataFromMaptoVerify.workDays01 != [] &&
-                          DataFromMaptoVerify.lattt != 0.0 &&
-                          DataFromMaptoVerify.lnggg != 0.0) {
-                        setState(() {
-                          _name = DataFromMaptoVerify.name;
-                          _speciality = DataFromMaptoVerify.speciality;
-                          _phoneNumber = DataFromMaptoVerify.phoneNumber;
-                          _province = DataFromMaptoVerify.province;
-                          _address = DataFromMaptoVerify.address;
-                          _workDays01 = DataFromMaptoVerify.workDays01;
-                          _workDays02 = DataFromMaptoVerify.workDays02;
-                          _workDays03 = DataFromMaptoVerify.workDays03;
-                          _lat = DataFromMaptoVerify.lattt;
-                          _lng = DataFromMaptoVerify.lnggg;
-                        });
-                      }*/
                       await DatabaseService(
                               uid: FirebaseAuth.instance.currentUser.uid)
                           .updateUserData(
@@ -280,20 +241,6 @@ class _EmailVerificationState extends State<EmailVerification> {
                               _workDays01,
                               _workDays02,
                               _workDays03);
-                      /*SharedPreferences rprefs =
-                          await SharedPreferences.getInstance();
-                      setState(() {
-                        rprefs.remove('name');
-                        rprefs.remove('speciality');
-                        rprefs.remove('phoneNumber');
-                        rprefs.remove('province');
-                        rprefs.remove('address');
-                        rprefs.remove('lat');
-                        rprefs.remove('lng');
-                        rprefs.remove('workDays01');
-                        rprefs.remove('workDays02');
-                        rprefs.remove('workDays03');
-                      });*/
                       await Navigator.pushNamed(context, '/intermediate');
                     } else {
                       setState(() {

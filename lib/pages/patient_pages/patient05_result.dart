@@ -47,6 +47,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   String _name = '';
   String _speciality = '';
   String _number = '';
+  // ignore: unused_field
   String _province = '';
   double _lat = 0.0;
   double _lng = 0.0;
