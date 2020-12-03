@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/04_mcqs.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/database.dart';
+import 'package:project_doctor/ui/device_screen_type.dart';
+import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
 import 'package:provider/provider.dart';
 
@@ -134,67 +136,98 @@ class _PostpremcqState extends State<Postpremcq> {
         }
       }
     }
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 25.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Directionality(
-            textDirection: TextDirection.ltr,
-            child: Container(
-              width: displayWidth(context) * 0.9,
-              height: (displayHeight(context) - MediaQuery.of(context).padding.top - kToolbarHeight) * 0.55,
-              decoration: boxDecoration,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 25),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 150,
-                      child: Image(
-                        image: AssetImage('assets/images/mcq.png'),
-                      ),
+    return ResponsiveBuilder(builder: (context, sizingInformation) {
+      double appBarTitle;
+      double appBarHeight;
+      double containerHeight;
+      double containerWidth;
+      double buttonHeight;
+      double buttonWidth;
+      double title;
+      double subTitle;
+
+      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
+        appBarTitle = displayHeight(context) * 0.03;
+        appBarHeight = 50;
+        containerHeight = displayHeight(context) * 0.75;
+        containerWidth = displayWidth(context) * 0.85;
+        title = displayWidth(context) * 0.045;
+        subTitle = displayWidth(context) * 0.035;
+        buttonHeight = displayHeight(context) * 0.05;
+        buttonWidth = displayWidth(context) * 0.7;
+      } else {
+        appBarTitle = displayHeight(context) * 0.045;
+        appBarHeight = 75;
+        containerHeight = displayHeight(context) * 0.7;
+        containerWidth = displayWidth(context) * 0.5;
+        title = displayWidth(context) * 0.035;
+        subTitle = displayWidth(context) * 0.025;
+        buttonHeight = displayHeight(context) * 0.04;
+        buttonWidth = displayWidth(context) * 0.4;
+      }
+      return Center(
+        child: Container(
+          height: containerHeight,
+          width: containerWidth,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Directionality(
+                textDirection: TextDirection.ltr,
+                child: Container(
+                  decoration: boxDecoration,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 25),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 150,
+                          child: Image(
+                            image: AssetImage('assets/images/mcq.png'),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(
+                            'Welcome to Cura',
+                            style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Divider(
+                          color: Colors.deepOrange,
+                          thickness: 3,
+                          indent: 30,
+                          endIndent: 30,
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          'To Create a new account you must answer a few Medical Questions to Verify your Identity',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: subTitle, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 50,
+                        ),
+                        Text(
+                          'If you already have an account return to the sign in page',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: subTitle, fontWeight: FontWeight.bold, color: Colors.red),
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    FittedBox(
-                      fit: BoxFit.fitWidth,
-                      child: Text(
-                        'Welcome to Cura',
-                        style: TextStyle(fontSize: displayWidth(context) * 0.06, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Divider(
-                      color: Colors.deepOrange,
-                      thickness: 3,
-                      indent: 30,
-                      endIndent: 30,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      'To Create a new account you must answer a few Medical Questions to Verify your Identity',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: displayWidth(context) * 0.04, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Text(
-                      'If you already have an account return to the sign in page',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: displayWidth(context) * 0.03, fontWeight: FontWeight.bold, color: Colors.red),
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
-    );
+        ),
+      );
+    });
   }
 }
