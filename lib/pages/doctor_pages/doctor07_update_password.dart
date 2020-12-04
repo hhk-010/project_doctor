@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
@@ -53,6 +54,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
   }
 
   //-------------------the end ----------------------
+  bool isloading = false;
   @override
   void initState() {
     _passwordVisible = false;
@@ -147,29 +149,34 @@ class _UpdatePasswordState extends State<UpdatePassword> {
               Container(
                 height: 40,
                 width: double.maxFinite,
-                child: RaisedButton.icon(
-                  color: Colors.deepOrange,
+                child: LoadingButtonIcon(
+                  isloading: isloading,
+                  loadercolor: Colors.white,
+                  backgroundcolor: Colors.deepOrange,
                   icon: Icon(
                     Icons.arrow_forward,
                     color: Colors.white,
                   ),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(80.0)),
-                  onPressed: () async {
+                  onpressed: () async {
                     checkInternet();
                     if (_isInternet) {
                       if (_formkey.currentState.validate()) {
+                        setState(() => isloading = true);
                         AuthService().passwordisvalid(_oldPassword);
                         passwordvalid =
                             await AuthService().validatepass(_oldPassword);
                         if (passwordvalid) {
                           AuthService().updatepass(_newPassword);
+                          setState(() => isloading = false);
                           int count = 0;
                           Navigator.popUntil(context, (route) {
                             return count++ == 2;
                           });
                         } else {
                           setState(() {
+                            isloading = false;
                             error = AppLocalizations.of(context)
                                 .translate('invalid_password');
                           });

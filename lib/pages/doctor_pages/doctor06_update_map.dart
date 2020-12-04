@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:provider/provider.dart';
 import '../../services/database.dart';
@@ -103,6 +104,7 @@ class _UpdateMapState extends State<UpdateMap> {
   double _result = 0.0;
   double _finalDistance = 0.0;
   double _kmDistance = 0.0;
+  bool isloading = false;
   @override
   void initState() {
     checkInternet();
@@ -173,8 +175,10 @@ class _UpdateMapState extends State<UpdateMap> {
           Container(
             alignment: Alignment.bottomCenter,
             padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
-            child: FloatingActionButton(
-                backgroundColor: Colors.deepOrange,
+            child: FloatingLoadingButton(
+                isloading: isloading,
+                loadercolor: Colors.white,
+                backgroundcolor: Colors.deepOrange,
                 child: Text(AppLocalizations.of(context).translate('ok'),
                     style:
                         TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
@@ -191,6 +195,7 @@ class _UpdateMapState extends State<UpdateMap> {
                       await geolocate(latlng: latlng);
                       if (lattt != null && lnggg != null) {
                         setState(() {
+                          isloading = true;
                           _result =
                               pow((lattt - _lt), 2) + pow((lnggg - _lg), 2);
                           _finalDistance = sqrt(_result);
@@ -212,6 +217,7 @@ class _UpdateMapState extends State<UpdateMap> {
                                   DataFromProfiletoUpdate.workDays02,
                                   DataFromProfiletoUpdate.workDays03);
                           setState(() {
+                            isloading = false;
                             empty.isEmpty = false;
                           });
                           int count = 0;
@@ -220,6 +226,7 @@ class _UpdateMapState extends State<UpdateMap> {
                           });
                         } else {
                           setState(() {
+                            isloading = false;
                             SnackBarError.error = AppLocalizations.of(context)
                                 .translate('snack_update');
                           });

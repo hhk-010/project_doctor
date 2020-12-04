@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor03_map.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
@@ -63,7 +64,8 @@ class _EmailVerificationState extends State<EmailVerification> {
 
   final AuthService _auth = AuthService();
   Timer _timer;
-
+//================isLoading=========
+  bool isLoading = false;
   @override
   void initState() {
     super.initState();
@@ -209,14 +211,16 @@ class _EmailVerificationState extends State<EmailVerification> {
             Container(
               height: 40,
               width: 200,
-              child: RaisedButton.icon(
+              child: LoadingButtonIcon(
+                isloading: isLoading,
+                loadercolor: Colors.white,
                 icon: Icon(
                   Icons.arrow_forward,
                   color: Colors.white,
                 ),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(80.0)),
-                color: Colors.deepOrange,
+                backgroundcolor: Colors.deepOrange,
                 label: Text(
                     AppLocalizations.of(context)
                         .translate("continue"), //'Continue',
@@ -224,9 +228,10 @@ class _EmailVerificationState extends State<EmailVerification> {
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold)),
-                onPressed: () async {
+                onpressed: () async {
                   checkInternet();
                   if (_isInternet) {
+                    setState(() => isLoading = true);
                     if (FirebaseAuth.instance.currentUser.emailVerified) {
                       await DatabaseService(
                               uid: FirebaseAuth.instance.currentUser.uid)
@@ -241,9 +246,11 @@ class _EmailVerificationState extends State<EmailVerification> {
                               _workDays01,
                               _workDays02,
                               _workDays03);
+                      setState(() => isLoading = false);
                       await Navigator.pushNamed(context, '/intermediate');
                     } else {
                       setState(() {
+                        isLoading = false;
                         error = AppLocalizations.of(context)
                             .translate('snack_verification');
                       });

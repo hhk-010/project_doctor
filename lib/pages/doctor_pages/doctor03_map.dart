@@ -134,6 +134,7 @@ class _FinalMapState extends State<FinalMap> {
   String _workDays01s = '';
   String _workDays02s = '';
   String _workDays03s = '';
+  bool isloading = false;
   //==============ended=================
   @override
   void initState() {
@@ -287,8 +288,10 @@ class _FinalMapState extends State<FinalMap> {
           Container(
             alignment: Alignment.bottomCenter,
             padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
-            child: FloatingActionButton(
-              backgroundColor: Colors.deepOrange,
+            child: FloatingLoadingButton(
+              loadercolor: Colors.white,
+              isloading: isloading,
+              backgroundcolor: Colors.deepOrange,
               child: Text(
                 AppLocalizations.of(context).translate('ok'),
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -301,7 +304,7 @@ class _FinalMapState extends State<FinalMap> {
                     _showSnackBar();
                   } else {
                     await geolocate(latlng: latlng);
-
+                    setState(() => isloading = true);
                     if (lattt != null && lnggg != null) {
                       setState(() {
                         finalResult =
@@ -334,16 +337,14 @@ class _FinalMapState extends State<FinalMap> {
                                 DataFromMaptoVerify.email,
                                 DataFromMaptoVerify.password);
                         if (authResult != null) {
-                          setState(() {
-                            DataFromMaptoVerify.lattt = lattt;
-                            DataFromMaptoVerify.lnggg = lnggg;
-                          });
+                          setState(() => isloading = false);
                           int count = 0;
                           Navigator.popUntil(context, (route) {
                             return count++ == 3;
                           });
                         } else {
                           setState(() {
+                            isloading = false;
                             error = AppLocalizations.of(context)
                                 .translate('snack_register');
                           });
@@ -351,6 +352,7 @@ class _FinalMapState extends State<FinalMap> {
                         }
                       } else {
                         setState(() {
+                          isloading = false;
                           error = AppLocalizations.of(context)
                               .translate('snack_register');
                         });
