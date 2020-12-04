@@ -61,6 +61,19 @@ class _SignInState extends State<SignIn> {
     _scaffoldkey.currentState.showSnackBar(_snackbar);
   }
 
+  //==============bordershape===================
+  _borderType() {
+    if (loading) {
+      ShapeBorder border = CircleBorder();
+      return border;
+    } else {
+      ShapeBorder border =
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0));
+      return border;
+    }
+  }
+
+//=======================================
   @override
   void initState() {
     _passwordVisible = false;
@@ -158,7 +171,7 @@ class _SignInState extends State<SignIn> {
               ),
               Container(
                 height: 40.0,
-                width: 200,
+                width: loading ? 40.0 : 200.0,
                 child: LoadingButton(
                   isloading: loading,
                   loadercolor: Colors.white,

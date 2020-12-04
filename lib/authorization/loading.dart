@@ -120,10 +120,14 @@ class LoadingButtonIcon extends StatelessWidget {
         ? SizedBox(
             width: 20,
             height: 20,
-            child: CircularProgressIndicator(
-              strokeWidth: 4,
-              backgroundColor: Colors.deepOrange,
-              valueColor: AlwaysStoppedAnimation(this.loadercolor),
+            child: Container(
+              height: 40,
+              width: 40,
+              child: CircularProgressIndicator(
+                strokeWidth: 4,
+                backgroundColor: Colors.deepOrange,
+                valueColor: AlwaysStoppedAnimation(this.loadercolor),
+              ),
             ))
         : RaisedButton.icon(
             label: label,

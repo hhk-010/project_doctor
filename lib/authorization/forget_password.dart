@@ -112,41 +112,45 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 SizedBox(
                   height: 150,
                 ),
-                LoadingButton(
-                  isloading: isloading,
-                  loadercolor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0)),
-                  backgroundcolor: Colors.deepOrange,
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: Text(
-                      AppLocalizations.of(context)
-                          .translate('password_reset_email'),
-                      style: _textStyle.copyWith(
-                          color: Colors.white, fontSize: 20),
+                Container(
+                  height: 40,
+                  width: isloading ? 40 : 200,
+                  child: LoadingButton(
+                    isloading: isloading,
+                    loadercolor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(80.0)),
+                    backgroundcolor: Colors.deepOrange,
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        AppLocalizations.of(context)
+                            .translate('password_reset_email'),
+                        style: _textStyle.copyWith(
+                            color: Colors.white, fontSize: 20),
+                      ),
                     ),
-                  ),
-                  onpressed: () async {
-                    checkInternet();
-                    if (_isInternet) {
-                      if (_formkey.currentState.validate()) {
-                        setState(() => isloading = true);
-                        await FirebaseAuth.instance
-                            .sendPasswordResetEmail(email: email);
-                        setState(() => isloading = false);
-                        await Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                PasswordResetContinue(email: email)));
+                    onpressed: () async {
+                      checkInternet();
+                      if (_isInternet) {
+                        if (_formkey.currentState.validate()) {
+                          setState(() => isloading = true);
+                          await FirebaseAuth.instance
+                              .sendPasswordResetEmail(email: email);
+                          setState(() => isloading = false);
+                          await Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  PasswordResetContinue(email: email)));
+                        }
+                      } else {
+                        setState(() {
+                          error = AppLocalizations.of(context)
+                              .translate('snack_connectivity');
+                        });
+                        _showSnackBar();
                       }
-                    } else {
-                      setState(() {
-                        error = AppLocalizations.of(context)
-                            .translate('snack_connectivity');
-                      });
-                      _showSnackBar();
-                    }
-                  },
+                    },
+                  ),
                 ),
               ],
             )),

@@ -210,7 +210,7 @@ class _EmailVerificationState extends State<EmailVerification> {
             ),
             Container(
               height: 40,
-              width: 200,
+              width: isLoading ? 40 : 200,
               child: LoadingButtonIcon(
                 isloading: isLoading,
                 loadercolor: Colors.white,

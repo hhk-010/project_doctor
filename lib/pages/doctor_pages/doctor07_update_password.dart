@@ -148,7 +148,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
               ),
               Container(
                 height: 40,
-                width: double.maxFinite,
+                width: !isloading ? double.maxFinite : 40,
                 child: LoadingButtonIcon(
                   isloading: isloading,
                   loadercolor: Colors.white,
