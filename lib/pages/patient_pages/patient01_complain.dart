@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
@@ -1215,31 +1216,31 @@ class _PatientComplainState extends State<PatientComplain> {
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       double appBar;
       double appBarHeight;
-      double containerHeight;
       double containerWidth;
       double buttonHeight;
       double buttonWidth;
       double title;
       double subTitle;
+      double floatingActionHeight;
 
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBar = displayHeight(context) * 0.03;
+        appBar = 25;
         appBarHeight = 50;
-        containerHeight = displayHeight(context) * 0.75;
         containerWidth = displayWidth(context) * 0.85;
         title = displayWidth(context) * 0.045;
         subTitle = displayWidth(context) * 0.04;
         buttonHeight = displayHeight(context) * 0.05;
         buttonWidth = displayWidth(context) * 0.7;
+        floatingActionHeight = 10;
       } else {
         appBar = displayHeight(context) * 0.045;
         appBarHeight = 75;
-        containerHeight = displayHeight(context) * 0.7;
         containerWidth = displayWidth(context) * 0.5;
         title = displayWidth(context) * 0.035;
         subTitle = displayWidth(context) * 0.025;
         buttonHeight = displayHeight(context) * 0.04;
         buttonWidth = displayWidth(context) * 0.4;
+        floatingActionHeight = 50.0;
       }
       return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -1257,1236 +1258,1242 @@ class _PatientComplainState extends State<PatientComplain> {
             elevation: 0,
           ),
         ),
-        body: Center(
+        floatingActionButton: Padding(
+          padding: EdgeInsets.only(bottom: floatingActionHeight),
           child: Container(
-            height: containerHeight,
-            width: containerWidth,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  child: ListView(
-                    children: [
-                      Container(
-                        decoration: boxDecoration,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Center(
-                                child: Text(
-                                  AppLocalizations.of(context).translate(
-                                    'age_gender',
-                                  ),
-                                  style: TextStyle(
-                                    fontSize: title,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              Divider(
-                                color: Colors.grey,
-                                thickness: 2,
-                                indent: 90,
-                                endIndent: 90,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                    keyboardType: TextInputType.number,
-                                    controller: ageController,
-                                    onChanged: (ageController) {
-                                      if (ageController.isEmpty) {
-                                        setState(() {
-                                          _age = '';
-                                        });
-                                      } else {
-                                        setState(() {
-                                          _age = ageController.toString();
-                                        });
-                                      }
-                                    },
-                                    decoration: textInputdecoration.copyWith(
-                                      hintText: AppLocalizations.of(context).translate(
-                                        'age',
-                                      ),
-                                      hintStyle: TextStyle(fontSize: subTitle),
-                                      prefixIcon: Icon(
-                                        Icons.account_box,
-                                        //changed beacause its not defined here , you can return it back
-                                        // Icons.person_search,
-                                        color: Colors.deepOrange,
-                                      ),
-                                      filled: true,
-                                    )),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Flexible(
-                                    fit: FlexFit.loose,
-                                    child: RadioListTile(
-                                      title: Text(
-                                        AppLocalizations.of(context).translate('male'),
-                                        style: _textStylePatient.copyWith(fontSize: subTitle),
-                                      ),
-                                      activeColor: Colors.deepOrange,
-                                      value: radioGender[0],
-                                      groupValue: radioSelect,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          radioSelect = value;
-                                        });
-                                      },
+            height: buttonHeight,
+            width: buttonWidth,
+            child: FloatingActionButton.extended(
+              icon: Icon(
+                Icons.arrow_forward,
+                color: Colors.white,
+              ),
+              elevation: 0.0,
+              backgroundColor: Colors.deepOrange,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+              onPressed: () {
+                //print(_age);
+                if (_age == '') {
+                  setState(() {
+                    _error = AppLocalizations.of(context).translate("age_message"); //'Please , enter your age';
+                  });
+                  _showSnackBar();
+                } else if (int.parse(_age) > 130) {
+                  setState(() {
+                    _error = AppLocalizations.of(context).translate("age_message_error"); //'Age should be from 0 to 130';
+                  });
+                  _showSnackBar();
+                } else {
+                  getage();
+                  if (radioSelect == '') {
+                    setState(() {
+                      _error = AppLocalizations.of(context).translate("gender_message"); //'Please , select a gender';
+                    });
+                    _showSnackBar();
+                  } else {
+                    if (complainSelected01 == null) {
+                      setState(() {
+                        _error = AppLocalizations.of(context).translate("complain_message"); //'Please , select a main complaint';
+                      });
+                      _showSnackBar();
+                    } else {
+                      print(complainSelected01);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => PatientRiskFactors(
+                            chiefcomplaint: complainSelected01,
+                            sym2: complainSelected02,
+                            sym3: complainSelected03,
+                            sym4: complainSelected04,
+                            sym5: complainSelected05,
+                            sym6: complainSelected06,
+                            sym7: complainSelected07,
+                          ),
+                        ),
+                      );
+                    }
+                  }
+                }
+              },
+              label: Text(AppLocalizations.of(context).translate('next'),
+                  style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold)),
+            ),
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 25),
+            child: Container(
+              width: containerWidth,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    child: ListView(
+                      children: [
+                        Container(
+                          decoration: boxDecoration,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Center(
+                                  child: Text(
+                                    AppLocalizations.of(context).translate(
+                                      'age_gender',
+                                    ),
+                                    style: TextStyle(
+                                      fontSize: title,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Flexible(
+                                ),
+                                Divider(
+                                  color: Colors.grey,
+                                  thickness: 2,
+                                  indent: 90,
+                                  endIndent: 90,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: TextField(
+                                      keyboardType: TextInputType.numberWithOptions(decimal: true),
+                                      inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9.,]')),],
+                                      controller: ageController,
+                                      onChanged: (ageController) {
+                                        if (ageController.isEmpty) {
+                                          setState(() {
+                                            _age = '';
+                                          });
+                                        } else {
+                                          setState(() {
+                                            _age = ageController.toString();
+                                          });
+                                        }
+                                      },
+                                      decoration: textInputdecoration.copyWith(
+                                        hintText: AppLocalizations.of(context).translate(
+                                          'age',
+                                        ),
+                                        hintStyle: TextStyle(fontSize: subTitle),
+                                        prefixIcon: Icon(
+                                          Icons.account_box,
+                                          //changed beacause its not defined here , you can return it back
+                                          // Icons.person_search,
+                                          color: Colors.deepOrange,
+                                        ),
+                                        filled: true,
+                                      )),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Flexible(
                                       fit: FlexFit.loose,
                                       child: RadioListTile(
                                         title: Text(
-                                          AppLocalizations.of(context).translate('female'),
+                                          AppLocalizations.of(context).translate('male'),
                                           style: _textStylePatient.copyWith(fontSize: subTitle),
                                         ),
                                         activeColor: Colors.deepOrange,
-                                        value: radioGender[1],
+                                        value: radioGender[0],
                                         groupValue: radioSelect,
                                         onChanged: (value) {
                                           setState(() {
                                             radioSelect = value;
                                           });
                                         },
-                                      )),
+                                      ),
+                                    ),
+                                    Flexible(
+                                        fit: FlexFit.loose,
+                                        child: RadioListTile(
+                                          title: Text(
+                                            AppLocalizations.of(context).translate('female'),
+                                            style: _textStylePatient.copyWith(fontSize: subTitle),
+                                          ),
+                                          activeColor: Colors.deepOrange,
+                                          value: radioGender[1],
+                                          groupValue: radioSelect,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              radioSelect = value;
+                                            });
+                                          },
+                                        )),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Container(
+                          decoration: boxDecoration,
+                          child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Center(
+                                  child: Container(
+                                    child: FittedBox(
+                                      fit: BoxFit.fitWidth,
+                                      child: Text(
+                                        AppLocalizations.of(context).translate('main_complain'),
+                                        style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Divider(
+                                  color: Colors.grey,
+                                  thickness: 2,
+                                  indent: 30,
+                                  endIndent: 30,
+                                ),
+                                DropdownButton<String>(
+                                  isExpanded: true,
+                                  items: [
+                                    DropdownMenuItem<String>(
+                                      value: "cardioRespiratory",
+                                      child: Text(AppLocalizations.of(context).translate('heart_lung')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "gastroIntestinal",
+                                      child: Text(AppLocalizations.of(context).translate('git')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "peiranalAbdomen",
+                                      child: Text(AppLocalizations.of(context).translate('perianal_abdomen')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "neurology",
+                                      child: Text(AppLocalizations.of(context).translate('brain_neuron')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "musckuloskeletal",
+                                      child: Text(AppLocalizations.of(context).translate('skeleton_muscles')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "headNeckBack",
+                                      child: Text(AppLocalizations.of(context).translate('head_neck_back')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "upperLimb",
+                                      child: Text(AppLocalizations.of(context).translate('upper_limb')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "lowerLimb",
+                                      child: Text(AppLocalizations.of(context).translate('lower_limb')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "hand",
+                                      child: Text(AppLocalizations.of(context).translate('Hand')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "mouth",
+                                      child: Text(AppLocalizations.of(context).translate('mouth')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "appetite",
+                                      child: Text(AppLocalizations.of(context).translate('appetite')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "entThroat",
+                                      child: Text(AppLocalizations.of(context).translate('throat')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "entNose",
+                                      child: Text(AppLocalizations.of(context).translate('nose')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "entEar",
+                                      child: Text(AppLocalizations.of(context).translate('ear')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "ophthalmology",
+                                      child: Text(AppLocalizations.of(context).translate('eye')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "dermatology",
+                                      child: Text(AppLocalizations.of(context).translate('skin')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "uroKidney",
+                                      child: Text(AppLocalizations.of(context).translate('uro')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "maleGenital",
+                                      child: Text(AppLocalizations.of(context).translate('male_genital')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "gynecology",
+                                      child: Text(AppLocalizations.of(context).translate('gynecology')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "breast",
+                                      child: Text(AppLocalizations.of(context).translate('Breast')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "psychology",
+                                      child: Text(AppLocalizations.of(context).translate('psychology')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "injuriesSuicideIntoxicationBurn",
+                                      child: Text(AppLocalizations.of(context).translate('injuriesSuicideIntoxicationBurn')),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: "others",
+                                      child: Text(AppLocalizations.of(context).translate('other_symptoms')),
+                                    ),
+                                  ],
+                                  //if one choose a region then reselect another one ---> there will be an error which
+                                  // was fixed by removing the arguement value
+                                  value: regionSelected01,
+                                  onChanged: (_value) => selected01(_value),
+                                  hint: FittedBox(
+                                    fit: BoxFit.fitWidth,
+                                    child: Text(AppLocalizations.of(context).translate('complain_area')),
+                                  ),
+                                ),
+                                DropdownButton<String>(
+                                  isExpanded: true,
+                                  items: menuitems,
+                                  // the same reason above
+                                  //value: complainSelected01,
+                                  onChanged: disabledropdown01 ? null : (value) => secondselected(value),
+                                  hint: Text(AppLocalizations.of(context).translate('choose_complain')),
+                                  disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
+                                ),
+                                SwitchListTile(
+                                    activeColor: Colors.deepOrange,
+                                    dense: true,
+                                    title: AutoSizeText(
+                                      AppLocalizations.of(context).translate('other_complain'),
+                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: subTitle),
+                                      maxLines: 1,
+                                    ),
+                                    value: _switch01,
+                                    onChanged: (bool s) {
+                                      setState(() {
+                                        _switch01 = s;
+                                        _visibile01 = !_visibile01;
+                                      });
+                                    }),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Visibility(
+                          visible: _visibile01,
+                          child: Container(
+                            decoration: boxDecoration,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                children: [
+                                  Center(
+                                    child: Container(
+                                      child: Text(
+                                        AppLocalizations.of(context).translate('add_complains'),
+                                        style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                  Divider(
+                                    color: Colors.grey,
+                                    thickness: 2,
+                                    indent: 30,
+                                    endIndent: 30,
+                                  ),
+                                  DropdownButton<String>(
+                                    isExpanded: true,
+                                    items: [
+                                      DropdownMenuItem<String>(
+                                        value: "cardioRespiratory",
+                                        child: Text(AppLocalizations.of(context).translate('heart_lung')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "gastroIntestinal",
+                                        child: Text(AppLocalizations.of(context).translate('git')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "peiranalAbdomen",
+                                        child: Text(AppLocalizations.of(context).translate('perianal_abdomen')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "neurology",
+                                        child: Text(AppLocalizations.of(context).translate('brain_neuron')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "musckuloskeletal",
+                                        child: Text(AppLocalizations.of(context).translate('skeleton_muscles')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "headNeckBack",
+                                        child: Text(AppLocalizations.of(context).translate('head_neck_back')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "upperLimb",
+                                        child: Text(AppLocalizations.of(context).translate('upper_limb')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "lowerLimb",
+                                        child: Text(AppLocalizations.of(context).translate('lower_limb')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "hand",
+                                        child: Text(AppLocalizations.of(context).translate('Hand')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "mouth",
+                                        child: Text(AppLocalizations.of(context).translate('mouth')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "appetite",
+                                        child: Text(AppLocalizations.of(context).translate('appetite')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entThroat",
+                                        child: Text(AppLocalizations.of(context).translate('throat')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entNose",
+                                        child: Text(AppLocalizations.of(context).translate('nose')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entEar",
+                                        child: Text(AppLocalizations.of(context).translate('ear')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "ophthalmology",
+                                        child: Text(AppLocalizations.of(context).translate('eye')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "dermatology",
+                                        child: Text(AppLocalizations.of(context).translate('skin')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "uroKidney",
+                                        child: Text(AppLocalizations.of(context).translate('uro')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "maleGenital",
+                                        child: Text(AppLocalizations.of(context).translate('male_genital')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "gynecology",
+                                        child: Text(AppLocalizations.of(context).translate('gynecology')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "breast",
+                                        child: Text(AppLocalizations.of(context).translate('Breast')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "psychology",
+                                        child: Text(AppLocalizations.of(context).translate('psychology')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "injuriesSuicideIntoxicationBurn",
+                                        child: Text(AppLocalizations.of(context).translate('injuriesSuicideIntoxicationBurn')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "others",
+                                        child: Text(AppLocalizations.of(context).translate('other_symptoms')),
+                                      ),
+                                    ],
+                                    value: regionSelected02,
+                                    onChanged: (_value) => selected02(_value),
+                                    hint: FittedBox(
+                                      fit: BoxFit.fitWidth,
+                                      child: Text(AppLocalizations.of(context).translate('complain_area')),
+                                    ),
+                                  ),
+                                  DropdownButton<String>(
+                                    isExpanded: true,
+                                    items: menuitems,
+                                    onChanged: disabledropdown02 ? null : (value) => secondselected2(value),
+                                    hint: Text(AppLocalizations.of(context).translate('choose_complain')),
+                                    disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
+                                  ),
+                                  SwitchListTile(
+                                      activeColor: Colors.deepOrange,
+                                      dense: true,
+                                      title: AutoSizeText(
+                                        AppLocalizations.of(context).translate('other_complain'),
+                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: subTitle),
+                                        maxLines: 1,
+                                      ),
+                                      value: _switch02,
+                                      onChanged: (bool s) {
+                                        setState(() {
+                                          _switch02 = s;
+                                          _visibile02 = !_visibile02;
+                                        });
+                                      }),
                                 ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 20),
-                      Container(
-                        decoration: boxDecoration,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Center(
-                                child: Container(
-                                  child: FittedBox(
-                                    fit: BoxFit.fitWidth,
-                                    child: Text(
-                                      AppLocalizations.of(context).translate('main_complain'),
-                                      style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                        SizedBox(height: 20),
+                        Visibility(
+                          visible: _visibile02,
+                          child: Container(
+                            decoration: boxDecoration,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                children: [
+                                  Center(
+                                    child: Container(
+                                      child: Text(
+                                        AppLocalizations.of(context).translate('add_complains'),
+                                        style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                                      ),
                                     ),
                                   ),
-                                ),
+                                  Divider(
+                                    color: Colors.grey,
+                                    thickness: 2,
+                                    indent: 30,
+                                    endIndent: 30,
+                                  ),
+                                  DropdownButton<String>(
+                                    isExpanded: true,
+                                    items: [
+                                      DropdownMenuItem<String>(
+                                        value: "cardioRespiratory",
+                                        child: Text(AppLocalizations.of(context).translate('heart_lung')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "gastroIntestinal",
+                                        child: Text(AppLocalizations.of(context).translate('git')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "peiranalAbdomen",
+                                        child: Text(AppLocalizations.of(context).translate('perianal_abdomen')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "neurology",
+                                        child: Text(AppLocalizations.of(context).translate('brain_neuron')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "musckuloskeletal",
+                                        child: Text(AppLocalizations.of(context).translate('skeleton_muscles')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "headNeckBack",
+                                        child: Text(AppLocalizations.of(context).translate('head_neck_back')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "upperLimb",
+                                        child: Text(AppLocalizations.of(context).translate('upper_limb')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "lowerLimb",
+                                        child: Text(AppLocalizations.of(context).translate('lower_limb')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "hand",
+                                        child: Text(AppLocalizations.of(context).translate('Hand')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "mouth",
+                                        child: Text(AppLocalizations.of(context).translate('mouth')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "appetite",
+                                        child: Text(AppLocalizations.of(context).translate('appetite')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entThroat",
+                                        child: Text(AppLocalizations.of(context).translate('throat')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entNose",
+                                        child: Text(AppLocalizations.of(context).translate('nose')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entEar",
+                                        child: Text(AppLocalizations.of(context).translate('ear')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "ophthalmology",
+                                        child: Text(AppLocalizations.of(context).translate('eye')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "dermatology",
+                                        child: Text(AppLocalizations.of(context).translate('skin')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "uroKidney",
+                                        child: Text(AppLocalizations.of(context).translate('uro')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "maleGenital",
+                                        child: Text(AppLocalizations.of(context).translate('male_genital')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "gynecology",
+                                        child: Text(AppLocalizations.of(context).translate('gynecology')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "breast",
+                                        child: Text(AppLocalizations.of(context).translate('Breast')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "psychology",
+                                        child: Text(AppLocalizations.of(context).translate('psychology')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "injuriesSuicideIntoxicationBurn",
+                                        child: Text(AppLocalizations.of(context).translate('injuriesSuicideIntoxicationBurn')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "others",
+                                        child: Text(AppLocalizations.of(context).translate('other_symptoms')),
+                                      ),
+                                    ],
+                                    value: regionSelected03,
+                                    onChanged: (_value) => selected03(_value),
+                                    hint: FittedBox(
+                                      fit: BoxFit.fitWidth,
+                                      child: Text(AppLocalizations.of(context).translate('complain_area')),
+                                    ),
+                                  ),
+                                  DropdownButton<String>(
+                                    isExpanded: true,
+                                    items: menuitems,
+                                    onChanged: disabledropdown03 ? null : (value) => secondselected3(value),
+                                    hint: Text(AppLocalizations.of(context).translate('choose_complain')),
+                                    disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
+                                  ),
+                                  SwitchListTile(
+                                      activeColor: Colors.deepOrange,
+                                      dense: true,
+                                      title: AutoSizeText(
+                                        AppLocalizations.of(context).translate('other_complain'),
+                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: subTitle),
+                                        maxLines: 1,
+                                      ),
+                                      value: _switch03,
+                                      onChanged: (bool s) {
+                                        setState(() {
+                                          _switch03 = s;
+                                          _visibile03 = !_visibile03;
+                                        });
+                                      }),
+                                ],
                               ),
-                              Divider(
-                                color: Colors.grey,
-                                thickness: 2,
-                                indent: 30,
-                                endIndent: 30,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Visibility(
+                          visible: _visibile03,
+                          child: Container(
+                            decoration: boxDecoration,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                children: [
+                                  Center(
+                                    child: Container(
+                                      child: Text(
+                                        AppLocalizations.of(context).translate('add_complains'),
+                                        style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                  Divider(
+                                    color: Colors.grey,
+                                    thickness: 2,
+                                    indent: 30,
+                                    endIndent: 30,
+                                  ),
+                                  DropdownButton<String>(
+                                    isExpanded: true,
+                                    items: [
+                                      DropdownMenuItem<String>(
+                                        value: "cardioRespiratory",
+                                        child: Text(AppLocalizations.of(context).translate('heart_lung')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "gastroIntestinal",
+                                        child: Text(AppLocalizations.of(context).translate('git')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "peiranalAbdomen",
+                                        child: Text(AppLocalizations.of(context).translate('perianal_abdomen')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "neurology",
+                                        child: Text(AppLocalizations.of(context).translate('brain_neuron')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "musckuloskeletal",
+                                        child: Text(AppLocalizations.of(context).translate('skeleton_muscles')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "headNeckBack",
+                                        child: Text(AppLocalizations.of(context).translate('head_neck_back')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "upperLimb",
+                                        child: Text(AppLocalizations.of(context).translate('upper_limb')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "lowerLimb",
+                                        child: Text(AppLocalizations.of(context).translate('lower_limb')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "hand",
+                                        child: Text(AppLocalizations.of(context).translate('Hand')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "mouth",
+                                        child: Text(AppLocalizations.of(context).translate('mouth')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "appetite",
+                                        child: Text(AppLocalizations.of(context).translate('appetite')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entThroat",
+                                        child: Text(AppLocalizations.of(context).translate('throat')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entNose",
+                                        child: Text(AppLocalizations.of(context).translate('nose')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entEar",
+                                        child: Text(AppLocalizations.of(context).translate('ear')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "ophthalmology",
+                                        child: Text(AppLocalizations.of(context).translate('eye')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "dermatology",
+                                        child: Text(AppLocalizations.of(context).translate('skin')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "uroKidney",
+                                        child: Text(AppLocalizations.of(context).translate('uro')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "maleGenital",
+                                        child: Text(AppLocalizations.of(context).translate('male_genital')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "gynecology",
+                                        child: Text(AppLocalizations.of(context).translate('gynecology')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "breast",
+                                        child: Text(AppLocalizations.of(context).translate('Breast')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "psychology",
+                                        child: Text(AppLocalizations.of(context).translate('psychology')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "injuriesSuicideIntoxicationBurn",
+                                        child: Text(AppLocalizations.of(context).translate('injuriesSuicideIntoxicationBurn')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "others",
+                                        child: Text(AppLocalizations.of(context).translate('other_symptoms')),
+                                      ),
+                                    ],
+                                    value: regionSelected04,
+                                    onChanged: (_value) => selected04(_value),
+                                    hint: FittedBox(
+                                      fit: BoxFit.fitWidth,
+                                      child: Text(AppLocalizations.of(context).translate('complain_area')),
+                                    ),
+                                  ),
+                                  DropdownButton<String>(
+                                    isExpanded: true,
+                                    items: menuitems,
+                                    onChanged: disabledropdown04 ? null : (value) => secondselected4(value),
+                                    hint: Text(AppLocalizations.of(context).translate('choose_complain')),
+                                    disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
+                                  ),
+                                  SwitchListTile(
+                                      activeColor: Colors.deepOrange,
+                                      dense: true,
+                                      title: AutoSizeText(
+                                        AppLocalizations.of(context).translate('other_complain'),
+                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: subTitle),
+                                        maxLines: 1,
+                                      ),
+                                      value: _switch04,
+                                      onChanged: (bool s) {
+                                        setState(() {
+                                          _switch04 = s;
+                                          _visibile04 = !_visibile04;
+                                        });
+                                      }),
+                                ],
                               ),
-                              DropdownButton<String>(
-                                isExpanded: true,
-                                items: [
-                                  DropdownMenuItem<String>(
-                                    value: "cardioRespiratory",
-                                    child: Text(AppLocalizations.of(context).translate('heart_lung')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Visibility(
+                          visible: _visibile04,
+                          child: Container(
+                            decoration: boxDecoration,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                children: [
+                                  Center(
+                                    child: Container(
+                                      child: Text(
+                                        AppLocalizations.of(context).translate('add_complains'),
+                                        style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
                                   ),
-                                  DropdownMenuItem<String>(
-                                    value: "gastroIntestinal",
-                                    child: Text(AppLocalizations.of(context).translate('git')),
+                                  Divider(
+                                    color: Colors.grey,
+                                    thickness: 2,
+                                    indent: 30,
+                                    endIndent: 30,
                                   ),
-                                  DropdownMenuItem<String>(
-                                    value: "peiranalAbdomen",
-                                    child: Text(AppLocalizations.of(context).translate('perianal_abdomen')),
+                                  DropdownButton<String>(
+                                    isExpanded: true,
+                                    items: [
+                                      DropdownMenuItem<String>(
+                                        value: "cardioRespiratory",
+                                        child: Text(AppLocalizations.of(context).translate('heart_lung')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "gastroIntestinal",
+                                        child: Text(AppLocalizations.of(context).translate('git')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "peiranalAbdomen",
+                                        child: Text(AppLocalizations.of(context).translate('perianal_abdomen')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "neurology",
+                                        child: Text(AppLocalizations.of(context).translate('brain_neuron')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "musckuloskeletal",
+                                        child: Text(AppLocalizations.of(context).translate('skeleton_muscles')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "headNeckBack",
+                                        child: Text(AppLocalizations.of(context).translate('head_neck_back')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "upperLimb",
+                                        child: Text(AppLocalizations.of(context).translate('upper_limb')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "lowerLimb",
+                                        child: Text(AppLocalizations.of(context).translate('lower_limb')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "hand",
+                                        child: Text(AppLocalizations.of(context).translate('Hand')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "mouth",
+                                        child: Text(AppLocalizations.of(context).translate('mouth')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "appetite",
+                                        child: Text(AppLocalizations.of(context).translate('appetite')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entThroat",
+                                        child: Text(AppLocalizations.of(context).translate('throat')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entNose",
+                                        child: Text(AppLocalizations.of(context).translate('nose')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entEar",
+                                        child: Text(AppLocalizations.of(context).translate('ear')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "ophthalmology",
+                                        child: Text(AppLocalizations.of(context).translate('eye')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "dermatology",
+                                        child: Text(AppLocalizations.of(context).translate('skin')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "uroKidney",
+                                        child: Text(AppLocalizations.of(context).translate('uro')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "maleGenital",
+                                        child: Text(AppLocalizations.of(context).translate('male_genital')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "gynecology",
+                                        child: Text(AppLocalizations.of(context).translate('gynecology')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "breast",
+                                        child: Text(AppLocalizations.of(context).translate('Breast')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "psychology",
+                                        child: Text(AppLocalizations.of(context).translate('psychology')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "injuriesSuicideIntoxicationBurn",
+                                        child: Text(AppLocalizations.of(context).translate('injuriesSuicideIntoxicationBurn')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "others",
+                                        child: Text(AppLocalizations.of(context).translate('other_symptoms')),
+                                      ),
+                                    ],
+                                    value: regionSelected05,
+                                    onChanged: (_value) => selected05(_value),
+                                    hint: FittedBox(
+                                      fit: BoxFit.fitWidth,
+                                      child: Text(AppLocalizations.of(context).translate('complain_area')),
+                                    ),
                                   ),
-                                  DropdownMenuItem<String>(
-                                    value: "neurology",
-                                    child: Text(AppLocalizations.of(context).translate('brain_neuron')),
+                                  DropdownButton<String>(
+                                    isExpanded: true,
+                                    items: menuitems,
+                                    onChanged: disabledropdown05 ? null : (value) => secondselected5(value),
+                                    hint: Text(AppLocalizations.of(context).translate('choose_complain')),
+                                    disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
                                   ),
-                                  DropdownMenuItem<String>(
-                                    value: "musckuloskeletal",
-                                    child: Text(AppLocalizations.of(context).translate('skeleton_muscles')),
+                                  SwitchListTile(
+                                      activeColor: Colors.deepOrange,
+                                      dense: true,
+                                      title: AutoSizeText(
+                                        AppLocalizations.of(context).translate('other_complain'),
+                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: subTitle),
+                                        maxLines: 1,
+                                      ),
+                                      value: _switch05,
+                                      onChanged: (bool s) {
+                                        setState(() {
+                                          _switch05 = s;
+                                          _visibile05 = !_visibile05;
+                                        });
+                                      }),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Visibility(
+                          visible: _visibile05,
+                          child: Container(
+                            decoration: boxDecoration,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                children: [
+                                  Center(
+                                    child: Container(
+                                      child: Text(
+                                        AppLocalizations.of(context).translate('add_complains'),
+                                        style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
                                   ),
-                                  DropdownMenuItem<String>(
-                                    value: "headNeckBack",
-                                    child: Text(AppLocalizations.of(context).translate('head_neck_back')),
+                                  Divider(
+                                    color: Colors.grey,
+                                    thickness: 2,
+                                    indent: 30,
+                                    endIndent: 30,
                                   ),
-                                  DropdownMenuItem<String>(
-                                    value: "upperLimb",
-                                    child: Text(AppLocalizations.of(context).translate('upper_limb')),
+                                  DropdownButton<String>(
+                                    isExpanded: true,
+                                    items: [
+                                      DropdownMenuItem<String>(
+                                        value: "cardioRespiratory",
+                                        child: Text(AppLocalizations.of(context).translate('heart_lung')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "gastroIntestinal",
+                                        child: Text(AppLocalizations.of(context).translate('git')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "peiranalAbdomen",
+                                        child: Text(AppLocalizations.of(context).translate('perianal_abdomen')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "neurology",
+                                        child: Text(AppLocalizations.of(context).translate('brain_neuron')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "musckuloskeletal",
+                                        child: Text(AppLocalizations.of(context).translate('skeleton_muscles')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "headNeckBack",
+                                        child: Text(AppLocalizations.of(context).translate('head_neck_back')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "upperLimb",
+                                        child: Text(AppLocalizations.of(context).translate('upper_limb')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "lowerLimb",
+                                        child: Text(AppLocalizations.of(context).translate('lower_limb')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "hand",
+                                        child: Text(AppLocalizations.of(context).translate('Hand')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "mouth",
+                                        child: Text(AppLocalizations.of(context).translate('mouth')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "appetite",
+                                        child: Text(AppLocalizations.of(context).translate('appetite')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entThroat",
+                                        child: Text(AppLocalizations.of(context).translate('throat')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entNose",
+                                        child: Text(AppLocalizations.of(context).translate('nose')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entEar",
+                                        child: Text(AppLocalizations.of(context).translate('ear')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "ophthalmology",
+                                        child: Text(AppLocalizations.of(context).translate('eye')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "dermatology",
+                                        child: Text(AppLocalizations.of(context).translate('skin')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "uroKidney",
+                                        child: Text(AppLocalizations.of(context).translate('uro')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "maleGenital",
+                                        child: Text(AppLocalizations.of(context).translate('male_genital')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "gynecology",
+                                        child: Text(AppLocalizations.of(context).translate('gynecology')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "breast",
+                                        child: Text(AppLocalizations.of(context).translate('Breast')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "psychology",
+                                        child: Text(AppLocalizations.of(context).translate('psychology')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "injuriesSuicideIntoxicationBurn",
+                                        child: Text(AppLocalizations.of(context).translate('injuriesSuicideIntoxicationBurn')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "others",
+                                        child: Text(AppLocalizations.of(context).translate('other_symptoms')),
+                                      ),
+                                    ],
+                                    value: regionSelected06,
+                                    onChanged: (_value) => selected06(_value),
+                                    hint: FittedBox(
+                                      fit: BoxFit.fitWidth,
+                                      child: Text(AppLocalizations.of(context).translate('complain_area')),
+                                    ),
                                   ),
-                                  DropdownMenuItem<String>(
-                                    value: "lowerLimb",
-                                    child: Text(AppLocalizations.of(context).translate('lower_limb')),
+                                  DropdownButton<String>(
+                                    isExpanded: true,
+                                    items: menuitems,
+                                    onChanged: disabledropdown06 ? null : (value) => secondselected6(value),
+                                    hint: Text(AppLocalizations.of(context).translate('choose_complain')),
+                                    disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
                                   ),
-                                  DropdownMenuItem<String>(
-                                    value: "hand",
-                                    child: Text(AppLocalizations.of(context).translate('Hand')),
+                                  SwitchListTile(
+                                      activeColor: Colors.deepOrange,
+                                      dense: true,
+                                      title: AutoSizeText(
+                                        AppLocalizations.of(context).translate('other_complain'),
+                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: subTitle),
+                                        maxLines: 1,
+                                      ),
+                                      value: _switch06,
+                                      onChanged: (bool s) {
+                                        setState(() {
+                                          _switch06 = s;
+                                          _visibile06 = !_visibile06;
+                                        });
+                                      }),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Visibility(
+                          visible: _visibile06,
+                          child: Container(
+                            decoration: boxDecoration,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                children: [
+                                  Center(
+                                    child: Container(
+                                      child: Text(
+                                        AppLocalizations.of(context).translate('add_complains'),
+                                        style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
                                   ),
-                                  DropdownMenuItem<String>(
-                                    value: "mouth",
-                                    child: Text(AppLocalizations.of(context).translate('mouth')),
+                                  Divider(
+                                    color: Colors.grey,
+                                    thickness: 2,
+                                    indent: 30,
+                                    endIndent: 30,
                                   ),
-                                  DropdownMenuItem<String>(
-                                    value: "appetite",
-                                    child: Text(AppLocalizations.of(context).translate('appetite')),
+                                  DropdownButton<String>(
+                                    isExpanded: true,
+                                    items: [
+                                      DropdownMenuItem<String>(
+                                        value: "cardioRespiratory",
+                                        child: Text(AppLocalizations.of(context).translate('heart_lung')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "gastroIntestinal",
+                                        child: Text(AppLocalizations.of(context).translate('git')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "peiranalAbdomen",
+                                        child: Text(AppLocalizations.of(context).translate('perianal_abdomen')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "neurology",
+                                        child: Text(AppLocalizations.of(context).translate('brain_neuron')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "musckuloskeletal",
+                                        child: Text(AppLocalizations.of(context).translate('skeleton_muscles')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "headNeckBack",
+                                        child: Text(AppLocalizations.of(context).translate('head_neck_back')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "upperLimb",
+                                        child: Text(AppLocalizations.of(context).translate('upper_limb')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "lowerLimb",
+                                        child: Text(AppLocalizations.of(context).translate('lower_limb')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "hand",
+                                        child: Text(AppLocalizations.of(context).translate('Hand')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "mouth",
+                                        child: Text(AppLocalizations.of(context).translate('mouth')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "appetite",
+                                        child: Text(AppLocalizations.of(context).translate('appetite')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entThroat",
+                                        child: Text(AppLocalizations.of(context).translate('throat')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entNose",
+                                        child: Text(AppLocalizations.of(context).translate('nose')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "entEar",
+                                        child: Text(AppLocalizations.of(context).translate('ear')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "ophthalmology",
+                                        child: Text(AppLocalizations.of(context).translate('eye')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "dermatology",
+                                        child: Text(AppLocalizations.of(context).translate('skin')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "uroKidney",
+                                        child: Text(AppLocalizations.of(context).translate('uro')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "maleGenital",
+                                        child: Text(AppLocalizations.of(context).translate('male_genital')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "gynecology",
+                                        child: Text(AppLocalizations.of(context).translate('gynecology')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "breast",
+                                        child: Text(AppLocalizations.of(context).translate('Breast')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "psychology",
+                                        child: Text(AppLocalizations.of(context).translate('psychology')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "injuriesSuicideIntoxicationBurn",
+                                        child: Text(AppLocalizations.of(context).translate('injuriesSuicideIntoxicationBurn')),
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        value: "others",
+                                        child: Text(AppLocalizations.of(context).translate('other_symptoms')),
+                                      ),
+                                    ],
+                                    value: regionSelected07,
+                                    onChanged: (_value) => selected07(_value),
+                                    hint: FittedBox(
+                                      fit: BoxFit.fitWidth,
+                                      child: Text(AppLocalizations.of(context).translate('complain_area')),
+                                    ),
                                   ),
-                                  DropdownMenuItem<String>(
-                                    value: "entThroat",
-                                    child: Text(AppLocalizations.of(context).translate('throat')),
-                                  ),
-                                  DropdownMenuItem<String>(
-                                    value: "entNose",
-                                    child: Text(AppLocalizations.of(context).translate('nose')),
-                                  ),
-                                  DropdownMenuItem<String>(
-                                    value: "entEar",
-                                    child: Text(AppLocalizations.of(context).translate('ear')),
-                                  ),
-                                  DropdownMenuItem<String>(
-                                    value: "ophthalmology",
-                                    child: Text(AppLocalizations.of(context).translate('eye')),
-                                  ),
-                                  DropdownMenuItem<String>(
-                                    value: "dermatology",
-                                    child: Text(AppLocalizations.of(context).translate('skin')),
-                                  ),
-                                  DropdownMenuItem<String>(
-                                    value: "uroKidney",
-                                    child: Text(AppLocalizations.of(context).translate('uro')),
-                                  ),
-                                  DropdownMenuItem<String>(
-                                    value: "maleGenital",
-                                    child: Text(AppLocalizations.of(context).translate('male_genital')),
-                                  ),
-                                  DropdownMenuItem<String>(
-                                    value: "gynecology",
-                                    child: Text(AppLocalizations.of(context).translate('gynecology')),
-                                  ),
-                                  DropdownMenuItem<String>(
-                                    value: "breast",
-                                    child: Text(AppLocalizations.of(context).translate('Breast')),
-                                  ),
-                                  DropdownMenuItem<String>(
-                                    value: "psychology",
-                                    child: Text(AppLocalizations.of(context).translate('psychology')),
-                                  ),
-                                  DropdownMenuItem<String>(
-                                    value: "injuriesSuicideIntoxicationBurn",
-                                    child: Text(AppLocalizations.of(context).translate('injuriesSuicideIntoxicationBurn')),
-                                  ),
-                                  DropdownMenuItem<String>(
-                                    value: "others",
-                                    child: Text(AppLocalizations.of(context).translate('other_symptoms')),
+                                  DropdownButton<String>(
+                                    isExpanded: true,
+                                    items: menuitems,
+                                    onChanged: disabledropdown07 ? null : (value) => secondselected7(value),
+                                    hint: Text(AppLocalizations.of(context).translate('choose_complain')),
+                                    disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
                                   ),
                                 ],
-                                //if one choose a region then reselect another one ---> there will be an error which
-                                // was fixed by removing the arguement value
-                                value: regionSelected01,
-                                onChanged: (_value) => selected01(_value),
-                                hint: FittedBox(
-                                  fit: BoxFit.fitWidth,
-                                  child: Text(AppLocalizations.of(context).translate('complain_area')),
-                                ),
                               ),
-                              DropdownButton<String>(
-                                isExpanded: true,
-                                items: menuitems,
-                                // the same reason above
-                                //value: complainSelected01,
-                                onChanged: disabledropdown01 ? null : (value) => secondselected(value),
-                                hint: Text(AppLocalizations.of(context).translate('choose_complain')),
-                                disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
-                              ),
-                              SwitchListTile(
-                                  activeColor: Colors.deepOrange,
-                                  dense: true,
-                                  title: AutoSizeText(
-                                    AppLocalizations.of(context).translate('other_complain'),
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: subTitle),
-                                    maxLines: 1,
-                                  ),
-                                  value: _switch01,
-                                  onChanged: (bool s) {
-                                    setState(() {
-                                      _switch01 = s;
-                                      _visibile01 = !_visibile01;
-                                    });
-                                  }),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      Visibility(
-                        visible: _visibile01,
-                        child: Container(
-                          decoration: boxDecoration,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              children: [
-                                Center(
-                                  child: Container(
-                                    child: Text(
-                                      AppLocalizations.of(context).translate('add_complains'),
-                                      style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                                Divider(
-                                  color: Colors.grey,
-                                  thickness: 2,
-                                  indent: 30,
-                                  endIndent: 30,
-                                ),
-                                DropdownButton<String>(
-                                  isExpanded: true,
-                                  items: [
-                                    DropdownMenuItem<String>(
-                                      value: "cardioRespiratory",
-                                      child: Text(AppLocalizations.of(context).translate('heart_lung')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "gastroIntestinal",
-                                      child: Text(AppLocalizations.of(context).translate('git')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "peiranalAbdomen",
-                                      child: Text(AppLocalizations.of(context).translate('perianal_abdomen')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "neurology",
-                                      child: Text(AppLocalizations.of(context).translate('brain_neuron')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "musckuloskeletal",
-                                      child: Text(AppLocalizations.of(context).translate('skeleton_muscles')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "headNeckBack",
-                                      child: Text(AppLocalizations.of(context).translate('head_neck_back')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "upperLimb",
-                                      child: Text(AppLocalizations.of(context).translate('upper_limb')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "lowerLimb",
-                                      child: Text(AppLocalizations.of(context).translate('lower_limb')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "hand",
-                                      child: Text(AppLocalizations.of(context).translate('Hand')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "mouth",
-                                      child: Text(AppLocalizations.of(context).translate('mouth')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "appetite",
-                                      child: Text(AppLocalizations.of(context).translate('appetite')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entThroat",
-                                      child: Text(AppLocalizations.of(context).translate('throat')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entNose",
-                                      child: Text(AppLocalizations.of(context).translate('nose')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entEar",
-                                      child: Text(AppLocalizations.of(context).translate('ear')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "ophthalmology",
-                                      child: Text(AppLocalizations.of(context).translate('eye')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "dermatology",
-                                      child: Text(AppLocalizations.of(context).translate('skin')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "uroKidney",
-                                      child: Text(AppLocalizations.of(context).translate('uro')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "maleGenital",
-                                      child: Text(AppLocalizations.of(context).translate('male_genital')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "gynecology",
-                                      child: Text(AppLocalizations.of(context).translate('gynecology')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "breast",
-                                      child: Text(AppLocalizations.of(context).translate('Breast')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "psychology",
-                                      child: Text(AppLocalizations.of(context).translate('psychology')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "injuriesSuicideIntoxicationBurn",
-                                      child: Text(AppLocalizations.of(context).translate('injuriesSuicideIntoxicationBurn')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "others",
-                                      child: Text(AppLocalizations.of(context).translate('other_symptoms')),
-                                    ),
-                                  ],
-                                  value: regionSelected02,
-                                  onChanged: (_value) => selected02(_value),
-                                  hint: FittedBox(
-                                    fit: BoxFit.fitWidth,
-                                    child: Text(AppLocalizations.of(context).translate('complain_area')),
-                                  ),
-                                ),
-                                DropdownButton<String>(
-                                  isExpanded: true,
-                                  items: menuitems,
-                                  onChanged: disabledropdown02 ? null : (value) => secondselected2(value),
-                                  hint: Text(AppLocalizations.of(context).translate('choose_complain')),
-                                  disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
-                                ),
-                                SwitchListTile(
-                                    activeColor: Colors.deepOrange,
-                                    dense: true,
-                                    title: AutoSizeText(
-                                      AppLocalizations.of(context).translate('other_complain'),
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: subTitle),
-                                      maxLines: 1,
-                                    ),
-                                    value: _switch02,
-                                    onChanged: (bool s) {
-                                      setState(() {
-                                        _switch02 = s;
-                                        _visibile02 = !_visibile02;
-                                      });
-                                    }),
-                              ],
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 20),
-                      Visibility(
-                        visible: _visibile02,
-                        child: Container(
-                          decoration: boxDecoration,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              children: [
-                                Center(
-                                  child: Container(
-                                    child: Text(
-                                      AppLocalizations.of(context).translate('add_complains'),
-                                      style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                                Divider(
-                                  color: Colors.grey,
-                                  thickness: 2,
-                                  indent: 30,
-                                  endIndent: 30,
-                                ),
-                                DropdownButton<String>(
-                                  isExpanded: true,
-                                  items: [
-                                    DropdownMenuItem<String>(
-                                      value: "cardioRespiratory",
-                                      child: Text(AppLocalizations.of(context).translate('heart_lung')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "gastroIntestinal",
-                                      child: Text(AppLocalizations.of(context).translate('git')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "peiranalAbdomen",
-                                      child: Text(AppLocalizations.of(context).translate('perianal_abdomen')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "neurology",
-                                      child: Text(AppLocalizations.of(context).translate('brain_neuron')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "musckuloskeletal",
-                                      child: Text(AppLocalizations.of(context).translate('skeleton_muscles')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "headNeckBack",
-                                      child: Text(AppLocalizations.of(context).translate('head_neck_back')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "upperLimb",
-                                      child: Text(AppLocalizations.of(context).translate('upper_limb')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "lowerLimb",
-                                      child: Text(AppLocalizations.of(context).translate('lower_limb')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "hand",
-                                      child: Text(AppLocalizations.of(context).translate('Hand')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "mouth",
-                                      child: Text(AppLocalizations.of(context).translate('mouth')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "appetite",
-                                      child: Text(AppLocalizations.of(context).translate('appetite')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entThroat",
-                                      child: Text(AppLocalizations.of(context).translate('throat')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entNose",
-                                      child: Text(AppLocalizations.of(context).translate('nose')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entEar",
-                                      child: Text(AppLocalizations.of(context).translate('ear')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "ophthalmology",
-                                      child: Text(AppLocalizations.of(context).translate('eye')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "dermatology",
-                                      child: Text(AppLocalizations.of(context).translate('skin')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "uroKidney",
-                                      child: Text(AppLocalizations.of(context).translate('uro')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "maleGenital",
-                                      child: Text(AppLocalizations.of(context).translate('male_genital')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "gynecology",
-                                      child: Text(AppLocalizations.of(context).translate('gynecology')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "breast",
-                                      child: Text(AppLocalizations.of(context).translate('Breast')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "psychology",
-                                      child: Text(AppLocalizations.of(context).translate('psychology')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "injuriesSuicideIntoxicationBurn",
-                                      child: Text(AppLocalizations.of(context).translate('injuriesSuicideIntoxicationBurn')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "others",
-                                      child: Text(AppLocalizations.of(context).translate('other_symptoms')),
-                                    ),
-                                  ],
-                                  value: regionSelected03,
-                                  onChanged: (_value) => selected03(_value),
-                                  hint: FittedBox(
-                                    fit: BoxFit.fitWidth,
-                                    child: Text(AppLocalizations.of(context).translate('complain_area')),
-                                  ),
-                                ),
-                                DropdownButton<String>(
-                                  isExpanded: true,
-                                  items: menuitems,
-                                  onChanged: disabledropdown03 ? null : (value) => secondselected3(value),
-                                  hint: Text(AppLocalizations.of(context).translate('choose_complain')),
-                                  disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
-                                ),
-                                SwitchListTile(
-                                    activeColor: Colors.deepOrange,
-                                    dense: true,
-                                    title: AutoSizeText(
-                                      AppLocalizations.of(context).translate('other_complain'),
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: subTitle),
-                                      maxLines: 1,
-                                    ),
-                                    value: _switch03,
-                                    onChanged: (bool s) {
-                                      setState(() {
-                                        _switch03 = s;
-                                        _visibile03 = !_visibile03;
-                                      });
-                                    }),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      Visibility(
-                        visible: _visibile03,
-                        child: Container(
-                          decoration: boxDecoration,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              children: [
-                                Center(
-                                  child: Container(
-                                    child: Text(
-                                      AppLocalizations.of(context).translate('add_complains'),
-                                      style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                                Divider(
-                                  color: Colors.grey,
-                                  thickness: 2,
-                                  indent: 30,
-                                  endIndent: 30,
-                                ),
-                                DropdownButton<String>(
-                                  isExpanded: true,
-                                  items: [
-                                    DropdownMenuItem<String>(
-                                      value: "cardioRespiratory",
-                                      child: Text(AppLocalizations.of(context).translate('heart_lung')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "gastroIntestinal",
-                                      child: Text(AppLocalizations.of(context).translate('git')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "peiranalAbdomen",
-                                      child: Text(AppLocalizations.of(context).translate('perianal_abdomen')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "neurology",
-                                      child: Text(AppLocalizations.of(context).translate('brain_neuron')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "musckuloskeletal",
-                                      child: Text(AppLocalizations.of(context).translate('skeleton_muscles')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "headNeckBack",
-                                      child: Text(AppLocalizations.of(context).translate('head_neck_back')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "upperLimb",
-                                      child: Text(AppLocalizations.of(context).translate('upper_limb')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "lowerLimb",
-                                      child: Text(AppLocalizations.of(context).translate('lower_limb')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "hand",
-                                      child: Text(AppLocalizations.of(context).translate('Hand')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "mouth",
-                                      child: Text(AppLocalizations.of(context).translate('mouth')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "appetite",
-                                      child: Text(AppLocalizations.of(context).translate('appetite')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entThroat",
-                                      child: Text(AppLocalizations.of(context).translate('throat')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entNose",
-                                      child: Text(AppLocalizations.of(context).translate('nose')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entEar",
-                                      child: Text(AppLocalizations.of(context).translate('ear')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "ophthalmology",
-                                      child: Text(AppLocalizations.of(context).translate('eye')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "dermatology",
-                                      child: Text(AppLocalizations.of(context).translate('skin')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "uroKidney",
-                                      child: Text(AppLocalizations.of(context).translate('uro')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "maleGenital",
-                                      child: Text(AppLocalizations.of(context).translate('male_genital')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "gynecology",
-                                      child: Text(AppLocalizations.of(context).translate('gynecology')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "breast",
-                                      child: Text(AppLocalizations.of(context).translate('Breast')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "psychology",
-                                      child: Text(AppLocalizations.of(context).translate('psychology')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "injuriesSuicideIntoxicationBurn",
-                                      child: Text(AppLocalizations.of(context).translate('injuriesSuicideIntoxicationBurn')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "others",
-                                      child: Text(AppLocalizations.of(context).translate('other_symptoms')),
-                                    ),
-                                  ],
-                                  value: regionSelected04,
-                                  onChanged: (_value) => selected04(_value),
-                                  hint: FittedBox(
-                                    fit: BoxFit.fitWidth,
-                                    child: Text(AppLocalizations.of(context).translate('complain_area')),
-                                  ),
-                                ),
-                                DropdownButton<String>(
-                                  isExpanded: true,
-                                  items: menuitems,
-                                  onChanged: disabledropdown04 ? null : (value) => secondselected4(value),
-                                  hint: Text(AppLocalizations.of(context).translate('choose_complain')),
-                                  disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
-                                ),
-                                SwitchListTile(
-                                    activeColor: Colors.deepOrange,
-                                    dense: true,
-                                    title: AutoSizeText(
-                                      AppLocalizations.of(context).translate('other_complain'),
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: subTitle),
-                                      maxLines: 1,
-                                    ),
-                                    value: _switch04,
-                                    onChanged: (bool s) {
-                                      setState(() {
-                                        _switch04 = s;
-                                        _visibile04 = !_visibile04;
-                                      });
-                                    }),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      Visibility(
-                        visible: _visibile04,
-                        child: Container(
-                          decoration: boxDecoration,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              children: [
-                                Center(
-                                  child: Container(
-                                    child: Text(
-                                      AppLocalizations.of(context).translate('add_complains'),
-                                      style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                                Divider(
-                                  color: Colors.grey,
-                                  thickness: 2,
-                                  indent: 30,
-                                  endIndent: 30,
-                                ),
-                                DropdownButton<String>(
-                                  isExpanded: true,
-                                  items: [
-                                    DropdownMenuItem<String>(
-                                      value: "cardioRespiratory",
-                                      child: Text(AppLocalizations.of(context).translate('heart_lung')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "gastroIntestinal",
-                                      child: Text(AppLocalizations.of(context).translate('git')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "peiranalAbdomen",
-                                      child: Text(AppLocalizations.of(context).translate('perianal_abdomen')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "neurology",
-                                      child: Text(AppLocalizations.of(context).translate('brain_neuron')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "musckuloskeletal",
-                                      child: Text(AppLocalizations.of(context).translate('skeleton_muscles')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "headNeckBack",
-                                      child: Text(AppLocalizations.of(context).translate('head_neck_back')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "upperLimb",
-                                      child: Text(AppLocalizations.of(context).translate('upper_limb')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "lowerLimb",
-                                      child: Text(AppLocalizations.of(context).translate('lower_limb')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "hand",
-                                      child: Text(AppLocalizations.of(context).translate('Hand')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "mouth",
-                                      child: Text(AppLocalizations.of(context).translate('mouth')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "appetite",
-                                      child: Text(AppLocalizations.of(context).translate('appetite')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entThroat",
-                                      child: Text(AppLocalizations.of(context).translate('throat')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entNose",
-                                      child: Text(AppLocalizations.of(context).translate('nose')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entEar",
-                                      child: Text(AppLocalizations.of(context).translate('ear')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "ophthalmology",
-                                      child: Text(AppLocalizations.of(context).translate('eye')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "dermatology",
-                                      child: Text(AppLocalizations.of(context).translate('skin')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "uroKidney",
-                                      child: Text(AppLocalizations.of(context).translate('uro')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "maleGenital",
-                                      child: Text(AppLocalizations.of(context).translate('male_genital')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "gynecology",
-                                      child: Text(AppLocalizations.of(context).translate('gynecology')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "breast",
-                                      child: Text(AppLocalizations.of(context).translate('Breast')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "psychology",
-                                      child: Text(AppLocalizations.of(context).translate('psychology')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "injuriesSuicideIntoxicationBurn",
-                                      child: Text(AppLocalizations.of(context).translate('injuriesSuicideIntoxicationBurn')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "others",
-                                      child: Text(AppLocalizations.of(context).translate('other_symptoms')),
-                                    ),
-                                  ],
-                                  value: regionSelected05,
-                                  onChanged: (_value) => selected05(_value),
-                                  hint: FittedBox(
-                                    fit: BoxFit.fitWidth,
-                                    child: Text(AppLocalizations.of(context).translate('complain_area')),
-                                  ),
-                                ),
-                                DropdownButton<String>(
-                                  isExpanded: true,
-                                  items: menuitems,
-                                  onChanged: disabledropdown05 ? null : (value) => secondselected5(value),
-                                  hint: Text(AppLocalizations.of(context).translate('choose_complain')),
-                                  disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
-                                ),
-                                SwitchListTile(
-                                    activeColor: Colors.deepOrange,
-                                    dense: true,
-                                    title: AutoSizeText(
-                                      AppLocalizations.of(context).translate('other_complain'),
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: subTitle),
-                                      maxLines: 1,
-                                    ),
-                                    value: _switch05,
-                                    onChanged: (bool s) {
-                                      setState(() {
-                                        _switch05 = s;
-                                        _visibile05 = !_visibile05;
-                                      });
-                                    }),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      Visibility(
-                        visible: _visibile05,
-                        child: Container(
-                          decoration: boxDecoration,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              children: [
-                                Center(
-                                  child: Container(
-                                    child: Text(
-                                      AppLocalizations.of(context).translate('add_complains'),
-                                      style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                                Divider(
-                                  color: Colors.grey,
-                                  thickness: 2,
-                                  indent: 30,
-                                  endIndent: 30,
-                                ),
-                                DropdownButton<String>(
-                                  isExpanded: true,
-                                  items: [
-                                    DropdownMenuItem<String>(
-                                      value: "cardioRespiratory",
-                                      child: Text(AppLocalizations.of(context).translate('heart_lung')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "gastroIntestinal",
-                                      child: Text(AppLocalizations.of(context).translate('git')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "peiranalAbdomen",
-                                      child: Text(AppLocalizations.of(context).translate('perianal_abdomen')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "neurology",
-                                      child: Text(AppLocalizations.of(context).translate('brain_neuron')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "musckuloskeletal",
-                                      child: Text(AppLocalizations.of(context).translate('skeleton_muscles')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "headNeckBack",
-                                      child: Text(AppLocalizations.of(context).translate('head_neck_back')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "upperLimb",
-                                      child: Text(AppLocalizations.of(context).translate('upper_limb')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "lowerLimb",
-                                      child: Text(AppLocalizations.of(context).translate('lower_limb')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "hand",
-                                      child: Text(AppLocalizations.of(context).translate('Hand')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "mouth",
-                                      child: Text(AppLocalizations.of(context).translate('mouth')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "appetite",
-                                      child: Text(AppLocalizations.of(context).translate('appetite')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entThroat",
-                                      child: Text(AppLocalizations.of(context).translate('throat')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entNose",
-                                      child: Text(AppLocalizations.of(context).translate('nose')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entEar",
-                                      child: Text(AppLocalizations.of(context).translate('ear')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "ophthalmology",
-                                      child: Text(AppLocalizations.of(context).translate('eye')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "dermatology",
-                                      child: Text(AppLocalizations.of(context).translate('skin')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "uroKidney",
-                                      child: Text(AppLocalizations.of(context).translate('uro')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "maleGenital",
-                                      child: Text(AppLocalizations.of(context).translate('male_genital')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "gynecology",
-                                      child: Text(AppLocalizations.of(context).translate('gynecology')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "breast",
-                                      child: Text(AppLocalizations.of(context).translate('Breast')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "psychology",
-                                      child: Text(AppLocalizations.of(context).translate('psychology')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "injuriesSuicideIntoxicationBurn",
-                                      child: Text(AppLocalizations.of(context).translate('injuriesSuicideIntoxicationBurn')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "others",
-                                      child: Text(AppLocalizations.of(context).translate('other_symptoms')),
-                                    ),
-                                  ],
-                                  value: regionSelected06,
-                                  onChanged: (_value) => selected06(_value),
-                                  hint: FittedBox(
-                                    fit: BoxFit.fitWidth,
-                                    child: Text(AppLocalizations.of(context).translate('complain_area')),
-                                  ),
-                                ),
-                                DropdownButton<String>(
-                                  isExpanded: true,
-                                  items: menuitems,
-                                  onChanged: disabledropdown06 ? null : (value) => secondselected6(value),
-                                  hint: Text(AppLocalizations.of(context).translate('choose_complain')),
-                                  disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
-                                ),
-                                SwitchListTile(
-                                    activeColor: Colors.deepOrange,
-                                    dense: true,
-                                    title: AutoSizeText(
-                                      AppLocalizations.of(context).translate('other_complain'),
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: subTitle),
-                                      maxLines: 1,
-                                    ),
-                                    value: _switch06,
-                                    onChanged: (bool s) {
-                                      setState(() {
-                                        _switch06 = s;
-                                        _visibile06 = !_visibile06;
-                                      });
-                                    }),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Visibility(
-                        visible: _visibile06,
-                        child: Container(
-                          decoration: boxDecoration,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              children: [
-                                Center(
-                                  child: Container(
-                                    child: Text(
-                                      AppLocalizations.of(context).translate('add_complains'),
-                                      style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                                Divider(
-                                  color: Colors.grey,
-                                  thickness: 2,
-                                  indent: 30,
-                                  endIndent: 30,
-                                ),
-                                DropdownButton<String>(
-                                  isExpanded: true,
-                                  items: [
-                                    DropdownMenuItem<String>(
-                                      value: "cardioRespiratory",
-                                      child: Text(AppLocalizations.of(context).translate('heart_lung')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "gastroIntestinal",
-                                      child: Text(AppLocalizations.of(context).translate('git')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "peiranalAbdomen",
-                                      child: Text(AppLocalizations.of(context).translate('perianal_abdomen')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "neurology",
-                                      child: Text(AppLocalizations.of(context).translate('brain_neuron')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "musckuloskeletal",
-                                      child: Text(AppLocalizations.of(context).translate('skeleton_muscles')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "headNeckBack",
-                                      child: Text(AppLocalizations.of(context).translate('head_neck_back')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "upperLimb",
-                                      child: Text(AppLocalizations.of(context).translate('upper_limb')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "lowerLimb",
-                                      child: Text(AppLocalizations.of(context).translate('lower_limb')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "hand",
-                                      child: Text(AppLocalizations.of(context).translate('Hand')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "mouth",
-                                      child: Text(AppLocalizations.of(context).translate('mouth')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "appetite",
-                                      child: Text(AppLocalizations.of(context).translate('appetite')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entThroat",
-                                      child: Text(AppLocalizations.of(context).translate('throat')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entNose",
-                                      child: Text(AppLocalizations.of(context).translate('nose')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "entEar",
-                                      child: Text(AppLocalizations.of(context).translate('ear')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "ophthalmology",
-                                      child: Text(AppLocalizations.of(context).translate('eye')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "dermatology",
-                                      child: Text(AppLocalizations.of(context).translate('skin')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "uroKidney",
-                                      child: Text(AppLocalizations.of(context).translate('uro')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "maleGenital",
-                                      child: Text(AppLocalizations.of(context).translate('male_genital')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "gynecology",
-                                      child: Text(AppLocalizations.of(context).translate('gynecology')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "breast",
-                                      child: Text(AppLocalizations.of(context).translate('Breast')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "psychology",
-                                      child: Text(AppLocalizations.of(context).translate('psychology')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "injuriesSuicideIntoxicationBurn",
-                                      child: Text(AppLocalizations.of(context).translate('injuriesSuicideIntoxicationBurn')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "others",
-                                      child: Text(AppLocalizations.of(context).translate('other_symptoms')),
-                                    ),
-                                  ],
-                                  value: regionSelected07,
-                                  onChanged: (_value) => selected07(_value),
-                                  hint: FittedBox(
-                                    fit: BoxFit.fitWidth,
-                                    child: Text(AppLocalizations.of(context).translate('complain_area')),
-                                  ),
-                                ),
-                                DropdownButton<String>(
-                                  isExpanded: true,
-                                  items: menuitems,
-                                  onChanged: disabledropdown07 ? null : (value) => secondselected7(value),
-                                  hint: Text(AppLocalizations.of(context).translate('choose_complain')),
-                                  disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 25,
-                ),
-                Container(
-                  height: buttonHeight,
-                  width: buttonWidth,
-                  child: RaisedButton.icon(
-                    icon: Icon(
-                      Icons.arrow_forward,
-                      color: Colors.white,
+                      ],
                     ),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                    color: Colors.deepOrange,
-                    label: Text(AppLocalizations.of(context).translate('next'),
-                        style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold)),
-                    onPressed: () {
-                      //print(_age);
-                      if (_age == '') {
-                        setState(() {
-                          _error = AppLocalizations.of(context).translate("age_message"); //'Please , enter your age';
-                        });
-                        _showSnackBar();
-                      } else if (int.parse(_age) > 130) {
-                        setState(() {
-                          _error = AppLocalizations.of(context).translate("age_message_error"); //'Age should be from 0 to 130';
-                        });
-                        _showSnackBar();
-                      } else {
-                        getage();
-                        if (radioSelect == '') {
-                          setState(() {
-                            _error = AppLocalizations.of(context).translate("gender_message"); //'Please , select a gender';
-                          });
-                          _showSnackBar();
-                        } else {
-                          if (complainSelected01 == null) {
-                            setState(() {
-                              _error = AppLocalizations.of(context).translate("complain_message"); //'Please , select a main complaint';
-                            });
-                            _showSnackBar();
-                          } else {
-                            print(complainSelected01);
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => PatientRiskFactors(
-                                  chiefcomplaint: complainSelected01,
-                                  sym2: complainSelected02,
-                                  sym3: complainSelected03,
-                                  sym4: complainSelected04,
-                                  sym5: complainSelected05,
-                                  sym6: complainSelected06,
-                                  sym7: complainSelected07,
-                                ),
-                              ),
-                            );
-                          }
-                        }
-                      }
-                    },
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

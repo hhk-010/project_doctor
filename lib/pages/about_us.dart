@@ -23,7 +23,7 @@ class AboutUS extends StatelessWidget {
       double techIconSize;
 
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBar = displayHeight(context) * 0.03;
+        appBar =  25;
         appBarHeight = 50;
         containerHeight = displayHeight(context) * 0.85;
         containerWidth = displayWidth(context) * 0.85;

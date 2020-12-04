@@ -7,10 +7,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/authorization/loading.dart';
-import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/services/readerwriter.dart';
+import 'package:project_doctor/services/reader_writer.dart';
 import 'package:provider/provider.dart';
 import '../../services/auth.dart';
 

@@ -87,7 +87,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
       double title;
 
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = displayHeight(context) * 0.03;
+        appBarTitle =  25;
         appBarHeight = 50;
         containerHeight = displayHeight(context) * 0.75;
         containerWidth = displayWidth(context) * 0.85;

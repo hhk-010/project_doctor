@@ -218,7 +218,7 @@ class _UpdateMapState extends State<UpdateMap> {
                                   DataFromProfiletoUpdate.workDays03);
                           setState(() {
                             isloading = false;
-                            empty.isEmpty = false;
+                            Empty.isEmpty = false;
                           });
                           int count = 0;
                           Navigator.popUntil(context, (route) {

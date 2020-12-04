@@ -39,7 +39,7 @@ class _PatientResultMapState extends State<PatientResultMap> {
       double title;
 
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = displayHeight(context) * 0.03;
+        appBarTitle =  25;
         appBarHeight = 50;
         title = displayWidth(context) * 0.05;
       } else {

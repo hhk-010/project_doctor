@@ -4,11 +4,10 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/loading.dart';
-import 'package:project_doctor/pages/doctor_pages/doctor03_map.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/services/readerwriter.dart';
+import 'package:project_doctor/services/reader_writer.dart';
 
 // class for getting the data from map to firebase through verfication.
 class EmailVerification extends StatefulWidget {

@@ -63,58 +63,73 @@ class _PreMCQsState extends State<PreMCQs> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<QuerySnapshot>.value(
-      value: DatabaseService().doctorDataProfileStream,
-      child: Directionality(
-        textDirection: TextDirection.ltr,
-        child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          key: _scaffoldkey,
-          backgroundColor: Colors.grey[200],
-          appBar: AppBar(
-            backgroundColor: Colors.deepOrange,
-            title: Text(''),
-            actions: [
-              FlatButton.icon(
-                onPressed: () {
-                  checkInternet();
-                  if (_isInternet) {
-                    if (MCQss.length > 3) {
-                      setState(() {
-                        MCQss.length -= 3;
-                        MCQss.counter += 3;
-                      });
-                    } else {
-                      setState(() {
-                        MCQss.length = QuestionsShuffle.questions.length;
-                        MCQss.counter = 0;
-                      });
-                    }
-                    DatabaseService(uid: MCQss.uid).updateUserData(MCQss.counter.toString(), 'tester', '0101001101010022', MCQss.length.toString(),
-                        0.000000230033, 0.000000032044, '', [], [], []);
-                    widget.preMCQToogleView();
-                  } else {
-                    setState(() {
-                      MCQss.error = 'No internet connection';
-                    });
-                    _showSnackBar();
-                  }
-                },
-                icon: Icon(
-                  Icons.arrow_forward,
-                  color: Colors.white,
-                ),
-                label: Text(
-                  'Next',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                ),
+    return ResponsiveBuilder(builder: (context, sizingInformation) {
+      double appBarHeight;
+      double appBarAction;
+      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
+        appBarHeight = 50;
+        appBarAction = 16;
+      } else {
+        appBarHeight = 75;
+        appBarAction = 25;
+      }
+      return StreamProvider<QuerySnapshot>.value(
+        value: DatabaseService().doctorDataProfileStream,
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            key: _scaffoldkey,
+            backgroundColor: Colors.grey[200],
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(appBarHeight),
+              child: AppBar(
+                backgroundColor: Colors.deepOrange,
+                elevation: 0,
+                title: Text(''),
+                actions: [
+                  FlatButton.icon(
+                    onPressed: () {
+                      checkInternet();
+                      if (_isInternet) {
+                        if (MCQss.length > 3) {
+                          setState(() {
+                            MCQss.length -= 3;
+                            MCQss.counter += 3;
+                          });
+                        } else {
+                          setState(() {
+                            MCQss.length = QuestionsShuffle.questions.length;
+                            MCQss.counter = 0;
+                          });
+                        }
+                        DatabaseService(uid: MCQss.uid).updateUserData(MCQss.counter.toString(), 'tester', '0101001101010022',
+                            MCQss.length.toString(), 0.000000230033, 0.000000032044, '', [], [], []);
+                        widget.preMCQToogleView();
+                      } else {
+                        setState(() {
+                          MCQss.error = 'No internet connection';
+                        });
+                        _showSnackBar();
+                      }
+                    },
+                    icon: Icon(
+                      Icons.arrow_forward,
+                      color: Colors.white,
+                    ),
+                    label: Text(
+                      'Next',
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: appBarAction),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
+            body: Postpremcq(),
           ),
-          body: Postpremcq(),
         ),
-      ),
-    );
+      );
+    });
   }
 }
 
@@ -137,33 +152,27 @@ class _PostpremcqState extends State<Postpremcq> {
       }
     }
     return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
       double containerHeight;
       double containerWidth;
-      double buttonHeight;
-      double buttonWidth;
       double title;
       double subTitle;
+      double footer;
+      double imageSize;
 
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 50;
         containerHeight = displayHeight(context) * 0.75;
         containerWidth = displayWidth(context) * 0.85;
-        title = displayWidth(context) * 0.045;
-        subTitle = displayWidth(context) * 0.035;
-        buttonHeight = displayHeight(context) * 0.05;
-        buttonWidth = displayWidth(context) * 0.7;
+        title = displayWidth(context) * 0.05;
+        subTitle = displayWidth(context) * 0.04;
+        footer = displayWidth(context) * 0.03;
+        imageSize = 150;
       } else {
-        appBarTitle = displayHeight(context) * 0.045;
-        appBarHeight = 75;
-        containerHeight = displayHeight(context) * 0.7;
-        containerWidth = displayWidth(context) * 0.5;
-        title = displayWidth(context) * 0.035;
-        subTitle = displayWidth(context) * 0.025;
-        buttonHeight = displayHeight(context) * 0.04;
-        buttonWidth = displayWidth(context) * 0.4;
+        containerHeight = displayHeight(context) * 0.8;
+        containerWidth = displayWidth(context) * 0.65;
+        title = displayWidth(context) * 0.05;
+        subTitle = displayWidth(context) * 0.035;
+        footer = displayWidth(context) * 0.03;
+        imageSize = 200;
       }
       return Center(
         child: Container(
@@ -182,7 +191,7 @@ class _PostpremcqState extends State<Postpremcq> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 150,
+                          height: imageSize,
                           child: Image(
                             image: AssetImage('assets/images/mcq.png'),
                           ),
@@ -217,7 +226,7 @@ class _PostpremcqState extends State<Postpremcq> {
                         Text(
                           'If you already have an account return to the sign in page',
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: subTitle, fontWeight: FontWeight.bold, color: Colors.red),
+                          style: TextStyle(fontSize: footer, fontWeight: FontWeight.bold, color: Colors.red),
                         ),
                       ],
                     ),
