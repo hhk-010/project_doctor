@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
       double buttonIconSize;
 
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = displayHeight(context) * 0.03;
+        appBarTitle = 25;
         appBarIcon = 25;
         appBarHeight = 60;
         buttonHeight = displayHeight(context) * 0.13;
@@ -64,7 +64,7 @@ class _HomeState extends State<Home> {
               tooltip: AppLocalizations.of(context).translate('about_us'),
               iconSize: appBarIcon,
               onPressed: () {
-                Navigator.pushNamed(context, '/about_us');
+                Navigator.pushNamed(context, '/register');
               },
             ),
             title: FittedBox(
@@ -80,7 +80,7 @@ class _HomeState extends State<Home> {
             actions: [
               SafeArea(
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, 16, 16, 14),
+                  padding: EdgeInsets.fromLTRB(16, 16, 16, 14),
                   child: Tooltip(
                     message: AppLocalizations.of(context).translate('language'),
                     child: DropdownButton(

@@ -237,7 +237,7 @@ class _DoctorListState extends State<DoctorList> {
                   doc.data()['phoneNumber'] == null) &&
               (doc.data()['address'] == '' || doc.data()['address'] == null)) {
             setState(() {
-              empty.isEmpty = true;
+              Empty.isEmpty = true;
             });
           }
         }
@@ -253,7 +253,7 @@ class _DoctorListState extends State<DoctorList> {
             decoration: boxDecoration,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-              child: empty.isEmpty
+              child: Empty.isEmpty
                   ? Column(
                       children: [
                         Text(
@@ -469,6 +469,6 @@ class _DoctorListState extends State<DoctorList> {
   }
 }
 
-class empty {
+class Empty {
   static bool isEmpty = false;
 }

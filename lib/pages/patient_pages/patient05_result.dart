@@ -25,7 +25,7 @@ class _PatientResultState extends State<PatientResult> {
       double appBarTitle;
       double appBarHeight;
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = displayHeight(context) * 0.03;
+        appBarTitle =  25;
         appBarHeight = 50;
       } else {
         appBarTitle = displayHeight(context) * 0.045;
