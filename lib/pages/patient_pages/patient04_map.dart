@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project_doctor/pages/home.dart';
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 
@@ -10,8 +11,7 @@ class PatientMap extends StatefulWidget {
   final String province;
   PatientMap({this.speciality, this.province});
   @override
-  _PatientMapState createState() =>
-      _PatientMapState(speciality: speciality, province: province);
+  _PatientMapState createState() => _PatientMapState(speciality: speciality, province: province);
 }
 
 class _PatientMapState extends State<PatientMap> {
@@ -59,9 +59,7 @@ class _PatientMapState extends State<PatientMap> {
     final _snackBar = new SnackBar(
       content: Text(
         _error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -110,8 +108,7 @@ class _PatientMapState extends State<PatientMap> {
       body: Stack(
         children: [
           GoogleMap(
-            initialCameraPosition:
-                CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 8),
+            initialCameraPosition: CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 8),
             markers: Set.from(_mymarker),
             onTap: handletap,
           ),
@@ -159,8 +156,7 @@ class _PatientMapState extends State<PatientMap> {
                 if (_isInternet) {
                   if (patientlatlng == null) {
                     setState(() {
-                      _error = AppLocalizations.of(context)
-                          .translate('snack_map_patient');
+                      _error = AppLocalizations.of(context).translate('snack_map_patient');
                     });
                     _showSnackBar();
                   } else {
@@ -170,13 +166,13 @@ class _PatientMapState extends State<PatientMap> {
                       MyVariables.province = province;
                       MyVariables.lat = patlatt;
                       MyVariables.lng = patlngg;
+                      ShowFloatingActionButton.show = true;
                       Navigator.pushNamed(context, '/patient_result');
                     });
                   }
                 } else {
                   setState(() {
-                    _error = AppLocalizations.of(context)
-                        .translate('snack_connectivity');
+                    _error = AppLocalizations.of(context).translate('snack_connectivity');
                   });
                   _showSnackBar();
                 }

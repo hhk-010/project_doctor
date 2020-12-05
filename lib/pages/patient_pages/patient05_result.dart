@@ -1,8 +1,13 @@
+import 'dart:convert';
 import 'dart:math';
+import 'dart:io';
+import 'dart:async';
+import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
+import 'package:project_doctor/pages/last_searched/read_write_path.dart';
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
 import 'package:project_doctor/pages/patient_pages/patient06_result_map.dart';
 import 'package:project_doctor/services/app_localizations.dart';
@@ -57,6 +62,8 @@ class _PatientResultState extends State<PatientResult> {
 }
 
 class ResultDoctorProfile extends StatefulWidget {
+  final LastSearchedStorage writeToStorage = LastSearchedStorage();
+
   @override
   _ResultDoctorProfileState createState() => _ResultDoctorProfileState();
 }
@@ -64,7 +71,7 @@ class ResultDoctorProfile extends StatefulWidget {
 class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   String _name = '';
   String _speciality = '';
-  String _number = '';
+  String _phone = '';
   // ignore: unused_field
   String _province = '';
   double _lat = 0.0;
@@ -120,6 +127,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
       throw 'Could not launch $url';
     }
   }
+
   // final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
   // String _doctorAddress = '';
   // _getAddressFromLatLng() async {
@@ -129,6 +137,87 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   //     _doctorAddress = "${place.locality}, ${place.country}";
   //   });
   // }
+
+  String _nameR = '';
+  String _specialityR = '';
+  String _phoneNumberR = '';
+  String _provinceR = '';
+  String _addressR = '';
+  String _latR = '';
+  String _lngR = '';
+  String _workDays01R = '';
+  String _workDays02R = '';
+  String _workDays03R = '';
+  Future<File> _writeName(String value) {
+    setState(() {
+      _nameR = value;
+    });
+    return widget.writeToStorage.writeName(_nameR);
+  }
+
+  Future<File> _writeSpeciality(String value) {
+    setState(() {
+      _specialityR = value;
+    });
+    return widget.writeToStorage.writeSpeciality(_specialityR);
+  }
+
+  Future<File> _writeNumber(String value) {
+    setState(() {
+      _phoneNumberR = value;
+    });
+    return widget.writeToStorage.writeNumber(_phoneNumberR);
+  }
+
+  Future<File> _writeProvince(String value) {
+    setState(() {
+      _provinceR = value;
+    });
+    return widget.writeToStorage.writeProvince(_provinceR);
+  }
+
+  Future<File> _writeAddress(String value) {
+    setState(() {
+      _addressR = value;
+    });
+    return widget.writeToStorage.writeAddress(_addressR);
+  }
+
+  //===================lat to list=================
+  Future<File> _writelat(String value) {
+    setState(() {
+      _latR = value;
+    });
+    return widget.writeToStorage.writeLat(_latR);
+  }
+
+  Future<File> _writelng(String value) {
+    setState(() {
+      _lngR = value;
+    });
+    return widget.writeToStorage.writeLng(_lngR);
+  }
+
+  Future<File> _writeWorkDays01(String value) {
+    setState(() {
+      _workDays01R = value;
+    });
+    return widget.writeToStorage.writeWork01(_workDays01R);
+  }
+
+  Future<File> _writeWorkDays02(String value) {
+    setState(() {
+      _workDays02R = value;
+    });
+    return widget.writeToStorage.writeWork02(_workDays02R);
+  }
+
+  Future<File> _writeWorkDays03(String value) {
+    setState(() {
+      _workDays03R = value;
+    });
+    return widget.writeToStorage.writeWork03(_workDays03R);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +243,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             distance = result;
             _name = docu.data()['name'];
             _speciality = docu.data()['speciality'];
-            _number = docu.data()['phoneNumber'];
+            _phone = docu.data()['phoneNumber'];
             _province = docu.data()['province'];
             _lat = docu.data()['lat'];
             _lng = docu.data()['lng'];
@@ -166,6 +255,16 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             realdist = realdistance.toString();
             dotindex = realdist.indexOf('.') + 3;
             realnearby = realdist.substring(0, dotindex);
+            _writeName(_name);
+            _writeSpeciality(_speciality);
+            _writeNumber(_phone);
+            _writeProvince(_province);
+            _writeAddress(_address);
+            _writelat(_lat.toString());
+            _writelng(_lng.toString());
+            _writeWorkDays01(json.encode(_workDays01));
+            _writeWorkDays02(json.encode(_workDays02));
+            _writeWorkDays03(json.encode(_workDays02));
             _y = _workDays01.length - 1;
             //for (String x in _workDays01)
             while (_y > 0) {
@@ -352,16 +451,26 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                       ),
                       GestureDetector(
                         onTap: () => setState(() {
-                          _makePhoneCall('tel:$_number');
+                          _makePhoneCall('tel:$_phone');
                         }),
                         child: Row(
                           children: [
-                            Icon(Icons.arrow_forward, color: Colors.indigo,),
-                            SizedBox(width: 10,),
-                             Icon(Icons.phone, color: Colors.deepOrange,),
-                            SizedBox(width: 10,),
+                            Icon(
+                              Icons.arrow_forward,
+                              color: Colors.indigo,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(
+                              Icons.phone,
+                              color: Colors.deepOrange,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
                             Text(
-                              _number,
+                              _phone,
                               style: _textStyle,
                             ),
                           ],
@@ -398,7 +507,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                         height: 2,
                       ),
                       Text(
-                        _finalMainDays,
+                        _finalMainDays + '\n' + _mainTime,
                         style: _textStyle,
                       ),
                       Divider(
@@ -464,7 +573,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                     color: Colors.white,
                   ),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                  onPressed: () async {
+                  onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => PatientResultMap(
                               lat: _lat,

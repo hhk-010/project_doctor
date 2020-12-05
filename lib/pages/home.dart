@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:project_doctor/main.dart';
+import 'package:project_doctor/pages/last_searched/Profile.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/language.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
@@ -32,6 +33,9 @@ class _HomeState extends State<Home> {
       double buttonTitle;
       double buttonSubTitle;
       double buttonIconSize;
+      double floatingButtonHeight;
+      double floatingButtonWidth;
+      double floatingButtonTitle;
 
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
         appBarTitle = 25;
@@ -42,6 +46,9 @@ class _HomeState extends State<Home> {
         buttonTitle = displayHeight(context) * 0.035;
         buttonSubTitle = displayHeight(context) * 0.022;
         buttonIconSize = 70;
+        floatingButtonHeight = displayHeight(context) * 0.05;
+        floatingButtonWidth = displayWidth(context) * 0.55;
+        floatingButtonTitle = displayHeight(context) * 0.015;
       } else {
         appBarTitle = displayHeight(context) * 0.045;
         appBarIcon = 40;
@@ -51,6 +58,9 @@ class _HomeState extends State<Home> {
         buttonTitle = displayHeight(context) * 0.045;
         buttonSubTitle = displayHeight(context) * 0.03;
         buttonIconSize = 100;
+        floatingButtonHeight = displayHeight(context) * 0.05;
+        floatingButtonWidth = displayWidth(context) * 0.5;
+        floatingButtonTitle = displayHeight(context) * 0.025;
       }
 
       return Scaffold(
@@ -109,6 +119,27 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
+        floatingActionButton: ShowFloatingActionButton.show
+            ? Container(
+                height: floatingButtonHeight,
+                width: floatingButtonWidth,
+                child: FloatingActionButton.extended(
+                  icon: Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                  ),
+                  elevation: 0.0,
+                  backgroundColor: Colors.deepOrange,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LastSearchedDoctor()));
+                  },
+                  label: Text(AppLocalizations.of(context).translate('last_searched_doctor'),
+                      style: TextStyle(color: Colors.white, fontSize: floatingButtonTitle, fontWeight: FontWeight.bold)),
+                ),
+              )
+            : null,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: SafeArea(
           child: Container(
             height: double.maxFinite,
@@ -198,4 +229,8 @@ class _HomeState extends State<Home> {
       );
     });
   }
+}
+
+class ShowFloatingActionButton {
+  static bool show = false;
 }

@@ -7,7 +7,6 @@
     "submit" : "Submit",
     "update" : "Update",
     "language" : "Language",
-
     "ok" : "OK",
     "Ok":"OK",
     "google_map" : "Google Map",
@@ -15,6 +14,7 @@
     "":"",
     "data_error":"An error had occurred , please update your information",
     "prof_error":"Error !!",
+    "last_searched_doctor" : "Last Searched Doctor",
 
 "regions":"---------------------------------",
     "Baghdad":"Baghdad, Iraq",

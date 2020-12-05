@@ -9,7 +9,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/services/reader_writer.dart';
+import 'package:project_doctor/services/read_write_path.dart';
 import 'package:provider/provider.dart';
 import '../../services/auth.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';

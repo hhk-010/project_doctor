@@ -8,7 +8,7 @@ import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/services/reader_writer.dart';
+import 'package:project_doctor/services/read_write_path.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
@@ -30,9 +30,9 @@ class _EmailVerificationState extends State<EmailVerification> {
   String _address = '';
   double _lat = 0.0;
   double _lng = 0.0;
-  List _workDays01 = [];
-  List _workDays02 = [];
-  List _workDays03 = [];
+  List<String> _workDays01 = [];
+  List<String> _workDays02 = [];
+  List<String> _workDays03 = [];
 
   bool _isInternet = true;
   checkInternet() async {
@@ -156,8 +156,7 @@ class _EmailVerificationState extends State<EmailVerification> {
       double footer;
       double subTitle;
       double imageHeight;
-            double textWidth;
-
+      double textWidth;
 
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
         appBarTitle = 25;
@@ -170,8 +169,7 @@ class _EmailVerificationState extends State<EmailVerification> {
         buttonHeight = displayHeight(context) * 0.05;
         buttonWidth = displayWidth(context) * 0.5;
         imageHeight = 150;
-                textWidth = displayWidth(context) * 0.7;
-
+        textWidth = displayWidth(context) * 0.7;
       } else {
         appBarTitle = displayHeight(context) * 0.045;
         appBarHeight = 75;
@@ -183,8 +181,7 @@ class _EmailVerificationState extends State<EmailVerification> {
         buttonHeight = displayHeight(context) * 0.04;
         buttonWidth = displayWidth(context) * 0.4;
         imageHeight = 200;
-                textWidth = displayWidth(context) * 0.7;
-
+        textWidth = displayWidth(context) * 0.7;
       }
       return Scaffold(
         key: _scaffoldkey,
@@ -265,7 +262,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                 ),
                 SizedBox(
                   width: textWidth,
-                                  child: Text(
+                  child: Text(
                     AppLocalizations.of(context).translate("confirm"),
                     //'Check your email and click on the confirmation link then',
                     style: TextStyle(fontSize: subTitle, fontWeight: FontWeight.normal),
