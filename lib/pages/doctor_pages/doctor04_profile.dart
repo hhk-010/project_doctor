@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,11 +19,53 @@ class DoctorProfile extends StatefulWidget {
 class _DoctorProfileState extends State<DoctorProfile> {
   final AuthService _auth = AuthService();
 
+  bool _isInternet = true;
+  String _error = '';
+  //================================================
+  checkInternet() async {
+    try {
+      final response = await InternetAddress.lookup('google.com');
+      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
+        _isInternet = true; // internet
+        setState(() {});
+      }
+    } on SocketException catch (_) {
+      // no internet
+      setState(() {
+        _isInternet = false;
+      });
+    }
+  }
+
+  //================================================
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  _showSnackBar() {
+    var lang = Localizations.localeOf(context).languageCode;
+    final _snackBar = new SnackBar(
+      content: Text(
+        _error,
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+      ),
+      backgroundColor: Colors.deepOrange,
+    );
+    _scaffoldkey.currentState.showSnackBar(_snackBar);
+  }
+
+//=================================================
+  @override
+  void initState() {
+    super.initState();
+    checkInternet();
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
       value: DatabaseService().doctorDataProfileStream,
       child: Scaffold(
+        key: _scaffoldkey,
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
           centerTitle: true,
@@ -42,8 +85,16 @@ class _DoctorProfileState extends State<DoctorProfile> {
                 Icons.account_box_rounded,
               ),
               onPressed: () async {
-                await _auth.signOut();
-                Navigator.pop(context);
+                if (_isInternet) {
+                  await _auth.signOut();
+                  Navigator.pop(context);
+                } else {
+                  setState(() {
+                    _error = AppLocalizations.of(context)
+                        .translate('snack_connectivity');
+                  });
+                  _showSnackBar();
+                }
               },
             )
           ],

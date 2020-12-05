@@ -163,8 +163,16 @@ class _EmailVerificationState extends State<EmailVerification> {
               Icons.account_box,
             ),
             onPressed: () async {
-              await _auth.signOut();
-              Navigator.pop(context);
+              if (_isInternet) {
+                await _auth.signOut();
+                Navigator.pop(context);
+              } else {
+                setState(() {
+                  error = AppLocalizations.of(context)
+                      .translate('snack_connectivity');
+                });
+                _showSnackBar();
+              }
             },
           )
         ],
