@@ -4,6 +4,9 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor07_update_password.dart';
+import 'package:project_doctor/ui/responsive_builder.dart';
+import 'package:project_doctor/ui/device_screen_type.dart';
+import 'package:project_doctor/ui/sizing_information.dart';
 
 class Updateinfo extends StatefulWidget {
   @override
@@ -70,270 +73,315 @@ class _UpdateinfoState extends State<Updateinfo> {
         AppLocalizations.of(context).translate("Middle Region"),
       ],
     };
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
-        title: FittedBox(
-          fit: BoxFit.fitWidth,
-          child: Text(
-            AppLocalizations.of(context).translate('update_info'),
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+
+    return ResponsiveBuilder(builder: (context, sizingInformation) {
+      double appBarTitle;
+      double appBarHeight;
+      double containerWidth;
+      double buttonHeight;
+      double buttonWidth;
+      double title;
+      double footer;
+      double topInset;
+      double buttomInset;
+
+      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
+        appBarTitle = 25;
+        appBarHeight = 50;
+        containerWidth = displayWidth(context) * 0.75;
+        title = displayWidth(context) * 0.05;
+        footer = displayWidth(context) * 0.035;
+        buttonWidth = displayWidth(context) * 0.7;
+        topInset = 50;
+        buttomInset = 15;
+      } else {
+        appBarTitle = displayHeight(context) * 0.045;
+        appBarHeight = 75;
+        containerWidth = displayWidth(context) * 0.5;
+        title = displayWidth(context) * 0.035;
+        footer = displayWidth(context) * 0.025;
+        buttonHeight = displayHeight(context) * 0.04;
+        buttonWidth = displayWidth(context) * 0.4;
+        topInset = 200;
+        buttomInset = 80;
+      }
+      return Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.grey[200],
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(appBarHeight),
+          child: AppBar(
+            backgroundColor: Colors.deepOrange,
+            title: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(
+                AppLocalizations.of(context).translate('update_info'),
+                style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+              ),
+            ),
+            centerTitle: true,
           ),
         ),
-        centerTitle: true,
-      ),
-      body: Container(
-        height: double.maxFinite,
-        padding: EdgeInsets.fromLTRB(50, 75, 50, 25),
-        child: Form(
-          key: _formkey,
-          child: Column(
-            children: [
-              Directionality(
-                textDirection: TextDirection.rtl,
-                child: TextFormField(
-                  decoration: textInputdecoration.copyWith(
-                      hintText: AppLocalizations.of(context).translate('name'), labelText: AppLocalizations.of(context).translate('name')),
-                  onChanged: (val) {
-                    name = val;
-                  },
-                  validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('name_validator') : null,
-                ),
-              ),
-              Spacer(),
-              DropdownButtonFormField<String>(
-                decoration: textInputdecoration,
-                isDense: false,
-                hint: Text(
-                  AppLocalizations.of(context).translate('speciality'),
-                ),
-                dropdownColor: Colors.grey[200],
-                elevation: 5,
-                icon: Icon(Icons.arrow_drop_down),
-                isExpanded: true,
-                items: [
-                  DropdownMenuItem(
-                    value: specialities['1'][1],
-                    child: Text(specialities['1'][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["2"][1],
-                    child: Text(specialities["2"][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["3"][1],
-                    child: Text(specialities["3"][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["4"][1],
-                    child: Text(specialities["4"][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["5"][1],
-                    child: Text(specialities["5"][0]),
-                  ), //5
-                  DropdownMenuItem(
-                    value: specialities["6"][1],
-                    child: Text(specialities["6"][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["7"][1],
-                    child: Text(specialities["7"][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["8"][1],
-                    child: Text(specialities["8"][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["9"][1],
-                    child: Text(specialities["9"][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["10"][1],
-                    child: Text(specialities["10"][0]),
-                  ), //10
-                  DropdownMenuItem(
-                    value: specialities["11"][1],
-                    child: Text(specialities["11"][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["12"][1],
-                    child: Text(specialities["12"][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["13"][1],
-                    child: Text(specialities['13'][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["14"][1],
-                    child: Text(specialities["14"][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["15"][1],
-                    child: Text(specialities["15"][0]),
-                  ), //15
-                  DropdownMenuItem(
-                    value: specialities["16"][1],
-                    child: Text(specialities["16"][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["17"][1],
-                    child: Text(specialities["17"][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["18"][1],
-                    child: Text(specialities["18"][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["19"][1],
-                    child: Text(specialities["19"][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["20"][1],
-                    child: Text(specialities["20"][0]),
-                  ), //20
-                  DropdownMenuItem(
-                    value: specialities["21"][1],
-                    child: Text(specialities["21"][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["22"][1],
-                    child: Text(specialities["22"][0]),
-                  ),
-                  DropdownMenuItem(
-                    value: specialities["23"][1],
-                    child: Text(specialities["23"][0]),
-                  )
-                ],
-                validator: (value) => value == null ? AppLocalizations.of(context).translate('speciality_validator') : null,
-                onChanged: (val) => setState(() => speciality = val),
-              ),
-              Spacer(),
-              TextFormField(
-                  onChanged: (val) => setState(() => phonenumber = val),
-                  keyboardType: TextInputType.phone,
-                  decoration: textInputdecoration.copyWith(
-                    hintText: AppLocalizations.of(context).translate('phoneNumber'),
-                    labelText: AppLocalizations.of(context).translate('phoneNumber'),
-                  ),
-                  validator: (val) => val.length < 11 && val.length > 11 ? AppLocalizations.of(context).translate('phoneNumber_validator') : null),
-              Spacer(),
-              DropdownButtonFormField<String>(
-                isDense: false,
-                decoration: textInputdecoration,
-                hint: Text(
-                  AppLocalizations.of(context).translate('province'),
-                ),
-                dropdownColor: Colors.grey[200],
-                elevation: 5,
-                icon: Icon(Icons.arrow_drop_down),
-                isExpanded: true,
-                items: [
-                  DropdownMenuItem(
-                    value: province["1"][0],
-                    child: Text(province["1"][1]),
-                  ),
-                  DropdownMenuItem(
-                    value: province["2"][0],
-                    child: Text(province["2"][1]),
-                  ),
-                  DropdownMenuItem(
-                    value: province["3"][0],
-                    child: Text(province["3"][1]),
-                  ),
-                  DropdownMenuItem(
-                    value: province["4"][0],
-                    child: Text(province["4"][1]),
-                  ),
-                  DropdownMenuItem(
-                    value: province["5"][0],
-                    child: Text(province["5"][1]),
-                  ),
-                ],
-                validator: (value) => value == null ? 'Select your province' : null,
-                onChanged: (val) => setState(() => _province = val),
-              ),
-              Spacer(
-                flex: 3,
-              ),
-              Row(
-                children: [
-                  Text(
-                    AppLocalizations.of(context).translate('finish_update'),
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Icon(
-                    Icons.arrow_downward,
-                    size: 20,
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: 40,
-                width: double.maxFinite,
-                child: RaisedButton.icon(
-                  color: Colors.deepOrange,
-                  icon: Icon(
-                    Icons.arrow_forward,
-                    color: Colors.white,
-                  ),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                  onPressed: () {
-                    if (_formkey.currentState.validate()) {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => UpdateInfo2(
-                            name: name,
-                            speciality: speciality,
-                            phoneNumber: phonenumber,
-                            province: _province,
-                          ),
-                        ),
-                      );
-                    }
-                  },
-                  label: Text(
-                    AppLocalizations.of(context).translate('next'),
-                    style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              Spacer(
-                flex: 3,
-              ),
-              Divider(color: Colors.black),
-              InkWell(
-                onTap: () {
-                  print(speciality);
-                  print(_province);
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => UpdatePassword()));
-                },
-                child: RichText(
-                  text: TextSpan(
-                    text: '',
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      color: Colors.black,
-                      fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
+        body: Center(
+          child: Container(
+            width: containerWidth,
+            padding: EdgeInsets.fromLTRB(0, topInset, 0, buttomInset),
+            child: Form(
+              key: _formkey,
+              child: Container(
+                height: double.maxFinite,
+                child: Column(
+                  children: [
+                    Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: TextFormField(
+                        decoration: textInputdecoration.copyWith(
+                            hintText: AppLocalizations.of(context).translate('name'), labelText: AppLocalizations.of(context).translate('name')),
+                        onChanged: (val) {
+                          name = val;
+                        },
+                        validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('name_validator') : null,
+                      ),
                     ),
-                    children: <TextSpan>[
-                      TextSpan(text: AppLocalizations.of(context).translate('change_password')),
-                      TextSpan(
-                          text: " " + AppLocalizations.of(context).translate('change'),
-                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
-                    ],
-                  ),
+                    Spacer(),
+                    DropdownButtonFormField<String>(
+                      decoration: textInputdecoration,
+                      isDense: false,
+                      hint: Text(
+                        AppLocalizations.of(context).translate('speciality'),
+                      ),
+                      dropdownColor: Colors.grey[200],
+                      elevation: 5,
+                      icon: Icon(Icons.arrow_drop_down),
+                      isExpanded: true,
+                      items: [
+                        DropdownMenuItem(
+                          value: specialities['1'][1],
+                          child: Text(specialities['1'][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["2"][1],
+                          child: Text(specialities["2"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["3"][1],
+                          child: Text(specialities["3"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["4"][1],
+                          child: Text(specialities["4"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["5"][1],
+                          child: Text(specialities["5"][0]),
+                        ), //5
+                        DropdownMenuItem(
+                          value: specialities["6"][1],
+                          child: Text(specialities["6"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["7"][1],
+                          child: Text(specialities["7"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["8"][1],
+                          child: Text(specialities["8"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["9"][1],
+                          child: Text(specialities["9"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["10"][1],
+                          child: Text(specialities["10"][0]),
+                        ), //10
+                        DropdownMenuItem(
+                          value: specialities["11"][1],
+                          child: Text(specialities["11"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["12"][1],
+                          child: Text(specialities["12"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["13"][1],
+                          child: Text(specialities['13'][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["14"][1],
+                          child: Text(specialities["14"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["15"][1],
+                          child: Text(specialities["15"][0]),
+                        ), //15
+                        DropdownMenuItem(
+                          value: specialities["16"][1],
+                          child: Text(specialities["16"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["17"][1],
+                          child: Text(specialities["17"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["18"][1],
+                          child: Text(specialities["18"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["19"][1],
+                          child: Text(specialities["19"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["20"][1],
+                          child: Text(specialities["20"][0]),
+                        ), //20
+                        DropdownMenuItem(
+                          value: specialities["21"][1],
+                          child: Text(specialities["21"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["22"][1],
+                          child: Text(specialities["22"][0]),
+                        ),
+                        DropdownMenuItem(
+                          value: specialities["23"][1],
+                          child: Text(specialities["23"][0]),
+                        )
+                      ],
+                      validator: (value) => value == null ? AppLocalizations.of(context).translate('speciality_validator') : null,
+                      onChanged: (val) => setState(() => speciality = val),
+                    ),
+                    Spacer(),
+                    TextFormField(
+                        onChanged: (val) => setState(() => phonenumber = val),
+                        keyboardType: TextInputType.phone,
+                        decoration: textInputdecoration.copyWith(
+                          hintText: AppLocalizations.of(context).translate('phoneNumber'),
+                          labelText: AppLocalizations.of(context).translate('phoneNumber'),
+                        ),
+                        validator: (val) =>
+                            val.length < 11 && val.length > 11 ? AppLocalizations.of(context).translate('phoneNumber_validator') : null),
+                    Spacer(),
+                    DropdownButtonFormField<String>(
+                      isDense: false,
+                      decoration: textInputdecoration,
+                      hint: Text(
+                        AppLocalizations.of(context).translate('province'),
+                      ),
+                      dropdownColor: Colors.grey[200],
+                      elevation: 5,
+                      icon: Icon(Icons.arrow_drop_down),
+                      isExpanded: true,
+                      items: [
+                        DropdownMenuItem(
+                          value: province["1"][0],
+                          child: Text(province["1"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["2"][0],
+                          child: Text(province["2"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["3"][0],
+                          child: Text(province["3"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["4"][0],
+                          child: Text(province["4"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["5"][0],
+                          child: Text(province["5"][1]),
+                        ),
+                      ],
+                      validator: (value) => value == null ? 'Select your province' : null,
+                      onChanged: (val) => setState(() => _province = val),
+                    ),
+                    Spacer(
+                      flex: 3,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          AppLocalizations.of(context).translate('finish_update'),
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: footer),
+                        ),
+                        Icon(
+                          Icons.arrow_downward,
+                          size: 20,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      height: buttonHeight,
+                      width: buttonWidth,
+                      child: RaisedButton.icon(
+                        color: Colors.deepOrange,
+                        icon: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                        ),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                        onPressed: () {
+                          if (_formkey.currentState.validate()) {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => UpdateInfo2(
+                                  name: name,
+                                  speciality: speciality,
+                                  phoneNumber: phonenumber,
+                                  province: _province,
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                        label: Text(
+                          AppLocalizations.of(context).translate('next'),
+                          style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    Spacer(
+                      flex: 3,
+                    ),
+                    Divider(
+                      color: Colors.black,
+                      thickness: 1,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        print(speciality);
+                        print(_province);
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => UpdatePassword()));
+                      },
+                      child: RichText(
+                        text: TextSpan(
+                          text: '',
+                          style: TextStyle(
+                            fontSize: footer,
+                            color: Colors.black,
+                            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(text: AppLocalizations.of(context).translate('change_password')),
+                            TextSpan(
+                                text: " " + AppLocalizations.of(context).translate('change'),
+                                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-              )
-            ],
+              ),
+            ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
