@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor05_update_form.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
@@ -20,7 +19,6 @@ class DoctorProfile extends StatefulWidget {
 
 class _DoctorProfileState extends State<DoctorProfile> {
   final AuthService _auth = AuthService();
-
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(builder: (context, sizingInformation) {
@@ -118,15 +116,15 @@ class _DoctorListState extends State<DoctorList> {
   int _y = 0;
 
 //get the user address from lat and lng
-  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-  String _doctorAddress = '';
-  _getAddressFromLatLng() async {
-    List<Placemark> p = await geolocator.placemarkFromCoordinates(lat, lng);
-    Placemark place = p[0];
-    setState(() {
-      _doctorAddress = "${place.locality}, ${place.country}";
-    });
-  }
+  // final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  // String _doctorAddress = '';
+  // _getAddressFromLatLng() async {
+  //   List<Placemark> p = await geolocator.placemarkFromCoordinates(lat, lng);
+  //   Placemark place = p[0];
+  //   setState(() {
+  //     _doctorAddress = "${place.locality}, ${place.country}";
+  //   });
+  // }
 
   @override
   void initState() {
@@ -240,11 +238,10 @@ class _DoctorListState extends State<DoctorList> {
           }
         }
       }
-      _getAddressFromLatLng();
+      // _getAddressFromLatLng();
     }
 
     return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double containerHeight;
       double containerWidth;
       double buttonHeight;
       double buttonWidth;
@@ -252,9 +249,9 @@ class _DoctorListState extends State<DoctorList> {
       double subTitle;
       double footer;
       double avatarSize;
+      double containerInset;
 
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        containerHeight = displayHeight(context) * 0.75;
         containerWidth = displayWidth(context) * 0.85;
         title = displayWidth(context) * 0.05;
         subTitle = displayWidth(context) * 0.04;
@@ -262,8 +259,8 @@ class _DoctorListState extends State<DoctorList> {
         buttonWidth = displayWidth(context) * 0.7;
         footer = displayWidth(context) * 0.025;
         avatarSize = 50;
+        containerInset = 25;
       } else {
-        containerHeight = displayHeight(context) * 0.8;
         containerWidth = displayWidth(context) * 0.6;
         title = displayWidth(context) * 0.045;
         subTitle = displayWidth(context) * 0.03;
@@ -271,13 +268,14 @@ class _DoctorListState extends State<DoctorList> {
         buttonWidth = displayWidth(context) * 0.4;
         footer = displayWidth(context) * 0.02;
         avatarSize = 70;
+        containerInset = 50;
       }
       TextStyle _textStyle = TextStyle(fontSize: subTitle, color: Colors.black, fontWeight: FontWeight.bold);
 
       return Center(
         child: Container(
-          height: containerHeight,
           width: containerWidth,
+          padding: EdgeInsets.only(top: containerInset),
           child: ListView(
             children: [
               Container(
@@ -322,8 +320,8 @@ class _DoctorListState extends State<DoctorList> {
                             ),
                             Center(
                               child: Text(
-                                _doctorAddress,
-                                //AppLocalizations.of(context).translate(province),
+                                // _doctorAddress,
+                                AppLocalizations.of(context).translate(province),
                                 style: _textStyle.copyWith(fontSize: footer),
                               ),
                             ),
@@ -446,24 +444,21 @@ class _DoctorListState extends State<DoctorList> {
                 ),
               ),
               SizedBox(
-                height: 50,
+                height: 25,
               ),
-              Flexible(
-                fit: FlexFit.loose,
-                child: Container(
-                  height: buttonHeight,
-                  width: buttonWidth,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                    child: Text(
-                      AppLocalizations.of(context).translate('update_info'),
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: subTitle),
-                    ),
-                    color: Colors.deepOrange,
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Updateinfo()));
-                    },
+              Container(
+                height: buttonHeight,
+                width: buttonWidth,
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                  child: Text(
+                    AppLocalizations.of(context).translate('update_info'),
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: subTitle),
                   ),
+                  color: Colors.deepOrange,
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Updateinfo()));
+                  },
                 ),
               ),
             ],

@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
@@ -12,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PatientResult extends StatefulWidget {
   @override
@@ -113,15 +113,22 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   int _z = 0;
   String x = '';
 
-  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-  String _doctorAddress = '';
-  _getAddressFromLatLng() async {
-    List<Placemark> p = await geolocator.placemarkFromCoordinates(_lat, _lng);
-    Placemark place = p[0];
-    setState(() {
-      _doctorAddress = "${place.locality}, ${place.country}";
-    });
+  Future<void> _makePhoneCall(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
+  // final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  // String _doctorAddress = '';
+  // _getAddressFromLatLng() async {
+  //   List<Placemark> p = await geolocator.placemarkFromCoordinates(_lat, _lng);
+  //   Placemark place = p[0];
+  //   setState(() {
+  //     _doctorAddress = "${place.locality}, ${place.country}";
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -234,11 +241,10 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
           });
         }
       }
-      _getAddressFromLatLng();
+      // _getAddressFromLatLng();
     }
 
     return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double containerHeight;
       double containerWidth;
       double buttonHeight;
       double buttonWidth;
@@ -246,9 +252,9 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
       double subTitle;
       double footer;
       double avatarSize;
+      double containerInset;
 
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        containerHeight = displayHeight(context) * 0.75;
         containerWidth = displayWidth(context) * 0.85;
         title = displayWidth(context) * 0.05;
         subTitle = displayWidth(context) * 0.04;
@@ -256,8 +262,8 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
         buttonWidth = displayWidth(context) * 0.7;
         footer = displayWidth(context) * 0.025;
         avatarSize = 50;
+        containerInset = 25;
       } else {
-        containerHeight = displayHeight(context) * 0.8;
         containerWidth = displayWidth(context) * 0.6;
         title = displayWidth(context) * 0.045;
         subTitle = displayWidth(context) * 0.03;
@@ -265,12 +271,13 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
         buttonWidth = displayWidth(context) * 0.4;
         footer = displayWidth(context) * 0.02;
         avatarSize = 70;
+        containerInset = 50;
       }
       TextStyle _textStyle = TextStyle(fontSize: subTitle, color: Colors.black, fontWeight: FontWeight.bold);
       return Center(
         child: Container(
-          height: containerHeight,
           width: containerWidth,
+          padding: EdgeInsets.only(top: containerInset),
           child: ListView(
             children: [
               Container(
@@ -302,8 +309,8 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                       ),
                       Center(
                         child: Text(
-                          _doctorAddress,
-                          //AppLocalizations.of(context).translate(_province),
+                          // _doctorAddress,
+                          AppLocalizations.of(context).translate(_province),
                           style: _textStyle.copyWith(fontSize: footer),
                         ),
                       ),
@@ -343,9 +350,22 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                       SizedBox(
                         height: 2,
                       ),
-                      Text(
-                        _number,
-                        style: _textStyle,
+                      GestureDetector(
+                        onTap: () => setState(() {
+                          _makePhoneCall('tel:$_number');
+                        }),
+                        child: Row(
+                          children: [
+                            Icon(Icons.arrow_forward, color: Colors.indigo,),
+                            SizedBox(width: 10,),
+                             Icon(Icons.phone, color: Colors.deepOrange,),
+                            SizedBox(width: 10,),
+                            Text(
+                              _number,
+                              style: _textStyle,
+                            ),
+                          ],
+                        ),
                       ),
                       Divider(
                         color: Colors.grey,
@@ -434,30 +454,27 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
               SizedBox(
                 height: 25,
               ),
-              Flexible(
-                fit: FlexFit.loose,
-                child: Container(
-                  height: buttonHeight,
-                  width: buttonWidth,
-                  child: RaisedButton.icon(
-                    color: Colors.deepOrange,
-                    icon: Icon(
-                      Icons.arrow_forward,
-                      color: Colors.white,
-                    ),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                    onPressed: () async {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => PatientResultMap(
-                                lat: _lat,
-                                lng: _lng,
-                              )));
-                    },
-                    label: Text(
-                      AppLocalizations.of(context).translate("doctor_locat"),
-                      //'View Doctor Location',
-                      style: TextStyle(color: Colors.white, fontSize: subTitle, fontWeight: FontWeight.bold),
-                    ),
+              Container(
+                height: buttonHeight,
+                width: buttonWidth,
+                child: RaisedButton.icon(
+                  color: Colors.deepOrange,
+                  icon: Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                  ),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                  onPressed: () async {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => PatientResultMap(
+                              lat: _lat,
+                              lng: _lng,
+                            )));
+                  },
+                  label: Text(
+                    AppLocalizations.of(context).translate("doctor_locat"),
+                    //'View Doctor Location',
+                    style: TextStyle(color: Colors.white, fontSize: subTitle, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),

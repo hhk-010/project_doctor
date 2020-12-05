@@ -28,16 +28,11 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.deepOrange,
   ));
-  runApp(
-    MyApp(),
-  );
-}
+  runApp(MyApp());
 
-//     DevicePreview(
-//     enabled: !kReleaseMode,
-//     builder: (context) => MyApp(),
-//   ));
-// }
+  //   DevicePreview(enabled: !kReleaseMode, builder: (context) => MyApp()),
+  // );
+}
 
 class MyApp extends StatefulWidget {
   static void setLocale(BuildContext context, Locale locale) {
