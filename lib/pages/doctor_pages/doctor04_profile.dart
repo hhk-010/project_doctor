@@ -9,6 +9,9 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
+import 'package:project_doctor/ui/responsive_builder.dart';
+import 'package:project_doctor/ui/device_screen_type.dart';
+import 'package:project_doctor/ui/sizing_information.dart';
 
 class DoctorProfile extends StatefulWidget {
   @override
@@ -20,37 +23,51 @@ class _DoctorProfileState extends State<DoctorProfile> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<QuerySnapshot>.value(
-      value: DatabaseService().doctorDataProfileStream,
-      child: Scaffold(
-        backgroundColor: Colors.grey[200],
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.deepOrange,
-          title: FittedBox(
-            fit: BoxFit.fitWidth,
-            child: Text(
-              AppLocalizations.of(context).translate('profile'),
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+    return ResponsiveBuilder(builder: (context, sizingInformation) {
+      double appBarTitle;
+      double appBarHeight;
+      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
+        appBarTitle = 25;
+        appBarHeight = 50;
+      } else {
+        appBarTitle = displayHeight(context) * 0.045;
+        appBarHeight = 75;
+      }
+      return StreamProvider<QuerySnapshot>.value(
+        value: DatabaseService().doctorDataProfileStream,
+        child: Scaffold(
+          backgroundColor: Colors.grey[200],
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(appBarHeight),
+            child: AppBar(
+              centerTitle: true,
+              backgroundColor: Colors.deepOrange,
+              title: FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                  AppLocalizations.of(context).translate('profile'),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: appBarTitle),
+                ),
+              ),
+              elevation: 0,
+              actions: [
+                IconButton(
+                  icon: Icon(
+                    //i changed it because it is not defined on my device
+                    Icons.account_box_rounded,
+                  ),
+                  onPressed: () async {
+                    await _auth.signOut();
+                    Navigator.pop(context);
+                  },
+                )
+              ],
             ),
           ),
-          elevation: 0,
-          actions: [
-            IconButton(
-              icon: Icon(
-                //i changed it because it is not defined on my device
-                Icons.account_box_rounded,
-              ),
-              onPressed: () async {
-                await _auth.signOut();
-                Navigator.pop(context);
-              },
-            )
-          ],
+          body: DoctorList(),
         ),
-        body: DoctorList(),
-      ),
-    );
+      );
+    });
   }
 }
 
@@ -123,8 +140,6 @@ class _DoctorListState extends State<DoctorList> {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle _textStyle = TextStyle(
-        fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold);
     var uid = FirebaseAuth.instance.currentUser.uid;
     final doctorListProvider = Provider.of<QuerySnapshot>(context);
     if (doctorListProvider != null) {
@@ -159,12 +174,9 @@ class _DoctorListState extends State<DoctorList> {
               _mainfrom = x.substring(x.indexOf('m') + 2, x.indexOf('t') - 1);
               _mainTo = x.substring(x.indexOf('t') + 3, x.length);
               _mainfromTime = _mainfrom.substring(0, _mainfrom.indexOf(' '));
-              _mainfromAmPm = AppLocalizations.of(context).translate(
-                  _mainfrom.substring(
-                      _mainfrom.indexOf(' ') + 1, _mainfrom.indexOf('M') + 1));
+              _mainfromAmPm = AppLocalizations.of(context).translate(_mainfrom.substring(_mainfrom.indexOf(' ') + 1, _mainfrom.indexOf('M') + 1));
               _mainToTime = _mainTo.substring(0, _mainTo.indexOf(' '));
-              _mainToAmPm = AppLocalizations.of(context).translate(
-                  _mainTo.substring(_mainTo.indexOf(' ') + 1, _mainTo.length));
+              _mainToAmPm = AppLocalizations.of(context).translate(_mainTo.substring(_mainTo.indexOf(' ') + 1, _mainTo.length));
               _mainTime = AppLocalizations.of(context).translate('from') +
                   _mainfromTime +
                   ' ' +
@@ -184,17 +196,12 @@ class _DoctorListState extends State<DoctorList> {
           _mainDays = '';
           if (_workDays02.isNotEmpty && _workDays02.length == 2) {
             _firstEDay = AppLocalizations.of(context).translate(_workDays02[0]);
-            _firstfrom = _workDays02[1].substring(
-                _workDays02[1].indexOf('m') + 2,
-                _workDays02[1].indexOf('t') - 1);
-            _firstTo = _workDays02[1].substring(
-                _workDays02[1].indexOf('t') + 3, _workDays02[1].length);
+            _firstfrom = _workDays02[1].substring(_workDays02[1].indexOf('m') + 2, _workDays02[1].indexOf('t') - 1);
+            _firstTo = _workDays02[1].substring(_workDays02[1].indexOf('t') + 3, _workDays02[1].length);
             _firstfromTime = _firstfrom.substring(0, _firstfrom.indexOf(' '));
-            _firstfromAmPm = AppLocalizations.of(context).translate(_firstfrom
-                .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
+            _firstfromAmPm = AppLocalizations.of(context).translate(_firstfrom.substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
             _firstToTime = _firstTo.substring(0, _firstTo.indexOf(' '));
-            _firstToAmPm = AppLocalizations.of(context).translate(
-                _firstTo.substring(_firstTo.indexOf(' ') + 1, _firstTo.length));
+            _firstToAmPm = AppLocalizations.of(context).translate(_firstTo.substring(_firstTo.indexOf(' ') + 1, _firstTo.length));
             _firstTime = AppLocalizations.of(context).translate('from') +
                 _firstfromTime +
                 ' ' +
@@ -206,20 +213,13 @@ class _DoctorListState extends State<DoctorList> {
                 _firstToAmPm;
           }
           if (_workDays03.isNotEmpty && _workDays03.length == 2) {
-            _secondEDay =
-                AppLocalizations.of(context).translate(_workDays03[0]);
-            _secondfrom = _workDays03[1].substring(
-                _workDays03[1].indexOf('m') + 2,
-                _workDays03[1].indexOf('t') - 1);
-            _secondTo = _workDays03[1].substring(
-                _workDays03[1].indexOf('t') + 3, _workDays03[1].length);
-            _secondfromTime =
-                _secondfrom.substring(0, _secondfrom.indexOf(' '));
-            _secondfromAmPm = AppLocalizations.of(context).translate(_secondfrom
-                .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
+            _secondEDay = AppLocalizations.of(context).translate(_workDays03[0]);
+            _secondfrom = _workDays03[1].substring(_workDays03[1].indexOf('m') + 2, _workDays03[1].indexOf('t') - 1);
+            _secondTo = _workDays03[1].substring(_workDays03[1].indexOf('t') + 3, _workDays03[1].length);
+            _secondfromTime = _secondfrom.substring(0, _secondfrom.indexOf(' '));
+            _secondfromAmPm = AppLocalizations.of(context).translate(_secondfrom.substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
             _secondToTime = _secondTo.substring(0, _secondTo.indexOf(' '));
-            _secondToAmPm = AppLocalizations.of(context).translate(_secondTo
-                .substring(_secondTo.indexOf(' ') + 1, _secondTo.length));
+            _secondToAmPm = AppLocalizations.of(context).translate(_secondTo.substring(_secondTo.indexOf(' ') + 1, _secondTo.length));
             _secondTime = AppLocalizations.of(context).translate('from') +
                 _secondfromTime +
                 ' ' +
@@ -231,10 +231,8 @@ class _DoctorListState extends State<DoctorList> {
                 _secondToAmPm;
           }
           if ((doc.data()['name'] == '' || doc.data()['name'] == null) &&
-              (doc.data()['speciality'] == '' ||
-                  doc.data()['speciality'] == null) &&
-              (doc.data()['phoneNumber'] == '' ||
-                  doc.data()['phoneNumber'] == null) &&
+              (doc.data()['speciality'] == '' || doc.data()['speciality'] == null) &&
+              (doc.data()['phoneNumber'] == '' || doc.data()['phoneNumber'] == null) &&
               (doc.data()['address'] == '' || doc.data()['address'] == null)) {
             setState(() {
               Empty.isEmpty = true;
@@ -245,227 +243,234 @@ class _DoctorListState extends State<DoctorList> {
       _getAddressFromLatLng();
     }
 
-    return Padding(
-      padding: EdgeInsets.fromLTRB(30, 25, 30, 0),
-      child: ListView(
-        children: [
-          Container(
-            decoration: boxDecoration,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-              child: Empty.isEmpty
-                  ? Column(
-                      children: [
-                        Text(
-                          AppLocalizations.of(context).translate('prof_error'),
-                          style:
-                              TextStyle(fontSize: 20, color: Colors.deepOrange),
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate('data_error'),
-                          style: TextStyle(fontSize: 16),
+    return ResponsiveBuilder(builder: (context, sizingInformation) {
+      double containerHeight;
+      double containerWidth;
+      double buttonHeight;
+      double buttonWidth;
+      double title;
+      double subTitle;
+      double footer;
+      double avatarSize;
+
+      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
+        containerHeight = displayHeight(context) * 0.75;
+        containerWidth = displayWidth(context) * 0.85;
+        title = displayWidth(context) * 0.05;
+        subTitle = displayWidth(context) * 0.04;
+        buttonHeight = displayHeight(context) * 0.05;
+        buttonWidth = displayWidth(context) * 0.7;
+        footer = displayWidth(context) * 0.025;
+        avatarSize = 50;
+      } else {
+        containerHeight = displayHeight(context) * 0.8;
+        containerWidth = displayWidth(context) * 0.6;
+        title = displayWidth(context) * 0.045;
+        subTitle = displayWidth(context) * 0.03;
+        buttonHeight = displayHeight(context) * 0.04;
+        buttonWidth = displayWidth(context) * 0.4;
+        footer = displayWidth(context) * 0.02;
+        avatarSize = 70;
+      }
+      TextStyle _textStyle = TextStyle(fontSize: subTitle, color: Colors.black, fontWeight: FontWeight.bold);
+
+      return Center(
+        child: Container(
+          height: containerHeight,
+          width: containerWidth,
+          child: ListView(
+            children: [
+              Container(
+                decoration: boxDecoration,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  child: Empty.isEmpty
+                      ? Column(
+                          children: [
+                            Text(
+                              AppLocalizations.of(context).translate('prof_error'),
+                              style: TextStyle(fontSize: title, color: Colors.deepOrange),
+                            ),
+                            Text(
+                              AppLocalizations.of(context).translate('data_error'),
+                              style: TextStyle(fontSize: subTitle),
+                            )
+                          ],
                         )
-                      ],
-                    )
-                  : Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Center(
-                          child: CircleAvatar(
-                            backgroundColor: Colors.deepOrange,
-                            radius: 50,
-                            backgroundImage:
-                                AssetImage('assets/images/doctor.png'),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Center(
-                          child: Text(
-                            name,
-                            style: _textStyle.copyWith(
-                                fontSize: 25, fontFamily: 'noto_arabic'),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Center(
-                          child: Text(
-                            _doctorAddress,
-                            //AppLocalizations.of(context).translate(province),
-                            style: _textStyle.copyWith(fontSize: 14),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Divider(
-                          color: Colors.grey[600],
-                          thickness: 3,
-                          indent: 25,
-                          endIndent: 25,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate('speciality'),
-                          style: TextStyle(
-                              fontSize: 10,
-                              color: Colors.indigo,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate(speciality),
-                          style: _textStyle,
-                        ),
-                        Divider(
-                          color: Colors.grey,
-                          thickness: 1,
-                          indent: 0,
-                          endIndent: 0,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate('phoneNumber'),
-                          style: TextStyle(
-                              fontSize: 10,
-                              color: Colors.indigo,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          number,
-                          style: _textStyle,
-                        ),
-                        Divider(
-                          color: Colors.grey,
-                          thickness: 1,
-                          indent: 0,
-                          endIndent: 0,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)
-                              .translate('clinic_address'),
-                          style: TextStyle(
-                              fontSize: 10,
-                              color: Colors.indigo,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          _address,
-                          style: _textStyle.copyWith(fontFamily: 'noto_arabic'),
-                        ),
-                        Divider(
-                          color: Colors.grey,
-                          thickness: 1,
-                          indent: 0,
-                          endIndent: 0,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate('clinic_work'),
-                          style: TextStyle(
-                              fontSize: 10,
-                              color: Colors.indigo,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        FittedBox(
-                          fit: BoxFit.fitWidth,
-                          child: Text(
-                            _finalMainDays + '\n' + _mainTime,
-                            style: _textStyle,
-                          ),
-                        ),
-                        Divider(
-                          color: Colors.grey,
-                          thickness: 1,
-                          indent: 0,
-                          endIndent: 0,
-                        ),
-                        _workDays02.isEmpty
-                            ? SizedBox(
-                                height: 5,
-                              )
-                            : Container(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      AppLocalizations.of(context)
-                                          .translate('another_clinic_work'),
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: Colors.indigo,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(
-                                      height: 2,
-                                    ),
-                                    FittedBox(
-                                      fit: BoxFit.fitWidth,
-                                      child: Text(
-                                        _firstEDay +
-                                            " " +
-                                            _firstTime +
-                                            '\n' +
-                                            _secondEDay +
-                                            " " +
-                                            _secondTime,
-                                        style: _textStyle,
-                                      ),
-                                    ),
-                                    Divider(
-                                      color: Colors.grey,
-                                      thickness: 1,
-                                      indent: 0,
-                                      endIndent: 0,
-                                    ),
-                                  ],
-                                ),
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Center(
+                              child: CircleAvatar(
+                                backgroundColor: Colors.deepOrange,
+                                radius: avatarSize,
+                                backgroundImage: AssetImage('assets/images/doctor.png'),
                               ),
-                      ],
-                    ),
-            ),
-          ),
-          SizedBox(
-            height: 50,
-          ),
-          Container(
-            height: 40,
-            width: double.maxFinite,
-            child: RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(80.0)),
-              child: Text(
-                AppLocalizations.of(context).translate('update_info'),
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Center(
+                              child: Text(
+                                name,
+                                style: _textStyle.copyWith(fontSize: title, fontFamily: 'noto_arabic'),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Center(
+                              child: Text(
+                                _doctorAddress,
+                                //AppLocalizations.of(context).translate(province),
+                                style: _textStyle.copyWith(fontSize: footer),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Divider(
+                              color: Colors.grey[600],
+                              thickness: 3,
+                              indent: 25,
+                              endIndent: 25,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              AppLocalizations.of(context).translate('speciality'),
+                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 2,
+                            ),
+                            Text(
+                              AppLocalizations.of(context).translate(speciality),
+                              style: _textStyle,
+                            ),
+                            Divider(
+                              color: Colors.grey,
+                              thickness: 1,
+                              indent: 0,
+                              endIndent: 0,
+                            ),
+                            Text(
+                              AppLocalizations.of(context).translate('phoneNumber'),
+                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 2,
+                            ),
+                            Text(
+                              number,
+                              style: _textStyle,
+                            ),
+                            Divider(
+                              color: Colors.grey,
+                              thickness: 1,
+                              indent: 0,
+                              endIndent: 0,
+                            ),
+                            Text(
+                              AppLocalizations.of(context).translate('clinic_address'),
+                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 2,
+                            ),
+                            Text(
+                              _address,
+                              style: _textStyle.copyWith(fontFamily: 'noto_arabic'),
+                            ),
+                            Divider(
+                              color: Colors.grey,
+                              thickness: 1,
+                              indent: 0,
+                              endIndent: 0,
+                            ),
+                            Text(
+                              AppLocalizations.of(context).translate('clinic_work'),
+                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 2,
+                            ),
+                            FittedBox(
+                              fit: BoxFit.fitWidth,
+                              child: Text(
+                                _finalMainDays + '\n' + _mainTime,
+                                style: _textStyle,
+                              ),
+                            ),
+                            Divider(
+                              color: Colors.grey,
+                              thickness: 1,
+                              indent: 0,
+                              endIndent: 0,
+                            ),
+                            _workDays02.isEmpty
+                                ? SizedBox(
+                                    height: 5,
+                                  )
+                                : Container(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          AppLocalizations.of(context).translate('another_clinic_work'),
+                                          style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(
+                                          height: 2,
+                                        ),
+                                        FittedBox(
+                                          fit: BoxFit.fitWidth,
+                                          child: Text(
+                                            _firstEDay + " " + _firstTime + '\n' + _secondEDay + " " + _secondTime,
+                                            style: _textStyle,
+                                          ),
+                                        ),
+                                        Divider(
+                                          color: Colors.grey,
+                                          thickness: 1,
+                                          indent: 0,
+                                          endIndent: 0,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                          ],
+                        ),
+                ),
               ),
-              color: Colors.deepOrange,
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Updateinfo()));
-              },
-            ),
+              SizedBox(
+                height: 50,
+              ),
+              Flexible(
+                fit: FlexFit.loose,
+                child: Container(
+                  height: buttonHeight,
+                  width: buttonWidth,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                    child: Text(
+                      AppLocalizations.of(context).translate('update_info'),
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: subTitle),
+                    ),
+                    color: Colors.deepOrange,
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Updateinfo()));
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        ),
+      );
+    });
   }
 }
 

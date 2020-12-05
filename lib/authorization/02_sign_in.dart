@@ -219,7 +219,7 @@ class _SignInState extends State<SignIn> {
                                 ),
                                 Container(
                                   height: buttonHeight,
-                                  width: loading ? buttonWidth : 200.0,
+                                  width: loading ? buttonHeight : buttonWidth,
                                   child: LoadingButton(
                                     isloading: loading,
                                     loadercolor: Colors.white,
@@ -255,7 +255,7 @@ class _SignInState extends State<SignIn> {
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                                     child: Text(
                                       AppLocalizations.of(context).translate('sign_in'),
-                                      style: TextStyle(fontSize: title), //_textStyle.copyWith(color: Colors.white),
+                                      style: TextStyle(fontSize: title, color: Colors.white), //_textStyle.copyWith(color: Colors.white),
                                     ),
                                   ),
                                 ),

@@ -9,6 +9,9 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:provider/provider.dart';
 import '../../services/database.dart';
 import 'doctor04_profile.dart';
+import 'package:project_doctor/ui/responsive_builder.dart';
+import 'package:project_doctor/ui/device_screen_type.dart';
+import 'package:project_doctor/ui/sizing_information.dart';
 
 // ----------------class for snackbar error
 class SnackBarError {
@@ -72,9 +75,7 @@ class _UpdateMapState extends State<UpdateMap> {
     final snackBar = new SnackBar(
       content: new Text(
         SnackBarError.error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
 
       //duration: new Duration(seconds: 3),
@@ -116,136 +117,145 @@ class _UpdateMapState extends State<UpdateMap> {
     final basicDatabase = Provider.of<QuerySnapshot>(context);
     if (basicDatabase != null) {
       for (var x in basicDatabase.docs) {
-        if (DataFromProfiletoUpdate.name == x.data()['n'] &&
-            DataFromProfiletoUpdate.speciality == x.data()['s']) {
+        if (DataFromProfiletoUpdate.name == x.data()['n'] && DataFromProfiletoUpdate.speciality == x.data()['s']) {
           _lt = x.data()['lt'];
           _lg = x.data()['lg'];
         }
       }
     }
-    return Scaffold(
-      key: _scaffoldkey,
-      appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
-        title: Text(
-          AppLocalizations.of(context).translate("update_location"),
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+    return ResponsiveBuilder(builder: (context, sizingInformation) {
+      double appBarTitle;
+      double appBarHeight;
+      double title;
+
+      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
+        appBarTitle = 25;
+        appBarHeight = 50;
+        title = displayWidth(context) * 0.05;
+      } else {
+        appBarTitle = displayHeight(context) * 0.045;
+        appBarHeight = 75;
+        title = displayWidth(context) * 0.035;
+      }
+      return Scaffold(
+        key: _scaffoldkey,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(appBarHeight),
+                  child: AppBar(
+            backgroundColor: Colors.deepOrange,
+            title: Text(
+              AppLocalizations.of(context).translate("update_location"),
+              style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+            ),
+            centerTitle: true,
+          ),
         ),
-        centerTitle: true,
-      ),
-      body: Stack(
-        children: [
-          GoogleMap(
-            initialCameraPosition: CameraPosition(
-              target: LatLng(33.312805, 44.361488),
-              zoom: 10,
+        body: Stack(
+          children: [
+            GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: LatLng(33.312805, 44.361488),
+                zoom: 10,
+              ),
+              markers: Set.from(mymarker),
+              onTap: handletap,
             ),
-            markers: Set.from(mymarker),
-            onTap: handletap,
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
-            alignment: Alignment.topCenter,
-            child: Column(
-              children: [
-                Text(
-                  AppLocalizations.of(context).translate("zoom_in_out"),
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
+              alignment: Alignment.topCenter,
+              child: Column(
+                children: [
+                  Text(
+                    AppLocalizations.of(context).translate("zoom_in_out"),
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Text(
-                  AppLocalizations.of(context).translate("zoom_in"),
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    AppLocalizations.of(context).translate("zoom_in"),
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Text(
-                  AppLocalizations.of(context).translate("zoom_out"),
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    AppLocalizations.of(context).translate("zoom_out"),
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Container(
-            alignment: Alignment.bottomCenter,
-            padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
-            child: FloatingLoadingButton(
-                isloading: isloading,
-                loadercolor: Colors.white,
-                backgroundcolor: Colors.deepOrange,
-                child: Text(AppLocalizations.of(context).translate('ok'),
-                    style:
-                        TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-                onPressed: () async {
-                  checkInternet();
-                  if (_isInternet) {
-                    if (latlng == null) {
-                      setState(() {
-                        SnackBarError.error =
-                            AppLocalizations.of(context).translate('snack_map');
-                      });
-                      _showSnackBar();
-                    } else {
-                      await geolocate(latlng: latlng);
-                      if (lattt != null && lnggg != null) {
+            Container(
+              alignment: Alignment.bottomCenter,
+              padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
+              child: FloatingLoadingButton(
+                  isloading: isloading,
+                  loadercolor: Colors.white,
+                  backgroundcolor: Colors.deepOrange,
+                  child: Text(AppLocalizations.of(context).translate('ok'), style: TextStyle(fontSize: title, fontWeight: FontWeight.bold)),
+                  onPressed: () async {
+                    checkInternet();
+                    if (_isInternet) {
+                      if (latlng == null) {
                         setState(() {
-                          isloading = true;
-                          _result =
-                              pow((lattt - _lt), 2) + pow((lnggg - _lg), 2);
-                          _finalDistance = sqrt(_result);
-                          _kmDistance = _finalDistance * 100;
+                          SnackBarError.error = AppLocalizations.of(context).translate('snack_map');
                         });
-                        print(_kmDistance);
-                        if (_kmDistance < 100) {
-                          await DatabaseService(
-                                  uid: FirebaseAuth.instance.currentUser.uid)
-                              .updateUserData(
-                                  DataFromProfiletoUpdate.name,
-                                  DataFromProfiletoUpdate.speciality,
-                                  DataFromProfiletoUpdate.phoneNumber,
-                                  DataFromProfiletoUpdate.province,
-                                  lattt,
-                                  lnggg,
-                                  DataFromProfiletoUpdate.address,
-                                  DataFromProfiletoUpdate.workDays01,
-                                  DataFromProfiletoUpdate.workDays02,
-                                  DataFromProfiletoUpdate.workDays03);
+                        _showSnackBar();
+                      } else {
+                        await geolocate(latlng: latlng);
+                        if (lattt != null && lnggg != null) {
                           setState(() {
-                            isloading = false;
-                            Empty.isEmpty = false;
+                            isloading = true;
+                            _result = pow((lattt - _lt), 2) + pow((lnggg - _lg), 2);
+                            _finalDistance = sqrt(_result);
+                            _kmDistance = _finalDistance * 100;
                           });
-                          int count = 0;
-                          Navigator.popUntil(context, (route) {
-                            return count++ == 3;
-                          });
-                        } else {
-                          setState(() {
-                            isloading = false;
-                            SnackBarError.error = AppLocalizations.of(context)
-                                .translate('snack_update');
-                          });
-                          _showSnackBar();
+                          print(_kmDistance);
+                          if (_kmDistance < 100) {
+                            await DatabaseService(uid: FirebaseAuth.instance.currentUser.uid).updateUserData(
+                                DataFromProfiletoUpdate.name,
+                                DataFromProfiletoUpdate.speciality,
+                                DataFromProfiletoUpdate.phoneNumber,
+                                DataFromProfiletoUpdate.province,
+                                lattt,
+                                lnggg,
+                                DataFromProfiletoUpdate.address,
+                                DataFromProfiletoUpdate.workDays01,
+                                DataFromProfiletoUpdate.workDays02,
+                                DataFromProfiletoUpdate.workDays03);
+                            setState(() {
+                              isloading = false;
+                              Empty.isEmpty = false;
+                            });
+                            int count = 0;
+                            Navigator.popUntil(context, (route) {
+                              return count++ == 3;
+                            });
+                          } else {
+                            setState(() {
+                              isloading = false;
+                              SnackBarError.error = AppLocalizations.of(context).translate('snack_update');
+                            });
+                            _showSnackBar();
+                          }
                         }
                       }
+                    } else {
+                      setState(() {
+                        SnackBarError.error = AppLocalizations.of(context).translate('snack_connectivity');
+                      });
+                      _showSnackBar();
                     }
-                  } else {
-                    setState(() {
-                      SnackBarError.error = AppLocalizations.of(context)
-                          .translate('snack_connectivity');
-                    });
-                    _showSnackBar();
-                  }
-                }),
-          ),
-        ],
-      ),
-    );
+                  }),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
 

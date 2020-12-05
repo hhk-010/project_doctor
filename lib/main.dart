@@ -1,5 +1,3 @@
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
@@ -7,6 +5,7 @@ import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/pages/about_us.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_clinic.dart';
+import 'package:project_doctor/pages/doctor_pages/doctor07_update_password.dart';
 import 'package:project_doctor/pages/patient_pages/patient02.5_speciality_result.dart';
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
 import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
@@ -29,11 +28,16 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.deepOrange,
   ));
-  runApp(DevicePreview(
-    enabled: !kReleaseMode,
-    builder: (context) => MyApp(),
-  ));
+  runApp(
+    MyApp(),
+  );
 }
+
+//     DevicePreview(
+//     enabled: !kReleaseMode,
+//     builder: (context) => MyApp(),
+//   ));
+// }
 
 class MyApp extends StatefulWidget {
   static void setLocale(BuildContext context, Locale locale) {
@@ -75,22 +79,21 @@ class _MyAppState extends State<MyApp> {
       return GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus &&
-              currentFocus.focusedChild != null) {
+          if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
             FocusManager.instance.primaryFocus.unfocus();
           }
         },
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Cura',
-          builder: DevicePreview.appBuilder,
-          // builder: (context, navigator) {
-          //   var lang = Localizations.localeOf(context).languageCode;
-          //   return Theme(
-          //     data: ThemeData(fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
-          //     child: navigator,
-          //   );
-          // },
+          // builder: DevicePreview.appBuilder,
+          builder: (context, navigator) {
+            var lang = Localizations.localeOf(context).languageCode;
+            return Theme(
+              data: ThemeData(fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+              child: navigator,
+            );
+          },
           theme: ThemeData(
             primaryColor: Colors.deepOrange,
           ),
@@ -107,8 +110,7 @@ class _MyAppState extends State<MyApp> {
           ],
           localeResolutionCallback: (deviceLocale, supportedLocales) {
             for (var locale in supportedLocales) {
-              if (locale.languageCode == deviceLocale.languageCode &&
-                  locale.countryCode == deviceLocale.countryCode) {
+              if (locale.languageCode == deviceLocale.languageCode && locale.countryCode == deviceLocale.countryCode) {
                 return deviceLocale;
               }
             }
@@ -133,6 +135,7 @@ class _MyAppState extends State<MyApp> {
             '/email_verfication': (context) => EmailVerification(),
             '/register': (context) => Register(),
             '/update2': (context) => UpdateInfo2(),
+            '/update_password': (context) => UpdatePassword(),
           },
         ),
       );

@@ -29,19 +29,13 @@ class _DDDDState extends State<DDDD> {
 }
 
 class LoadingButton extends StatelessWidget {
-  bool isloading;
-  Widget child;
-  Function onpressed;
-  Color backgroundcolor;
-  Color loadercolor;
-  ShapeBorder shape;
-  LoadingButton(
-      {@required this.isloading,
-      @required this.child,
-      @required this.onpressed,
-      this.backgroundcolor,
-      this.loadercolor,
-      this.shape});
+  final bool isloading;
+  final Widget child;
+  final Function onpressed;
+  final Color backgroundcolor;
+  final Color loadercolor;
+  final ShapeBorder shape;
+  LoadingButton({@required this.isloading, @required this.child, @required this.onpressed, this.backgroundcolor, this.loadercolor, this.shape});
   @override
   Widget build(BuildContext context) {
     return isloading
@@ -63,19 +57,14 @@ class LoadingButton extends StatelessWidget {
 }
 
 class FloatingLoadingButton extends StatelessWidget {
-  bool isloading;
-  Widget child;
-  Function onPressed;
-  Color backgroundcolor;
-  Color loadercolor;
-  ShapeBorder shape;
+  final bool isloading;
+  final Widget child;
+  final Function onPressed;
+  final Color backgroundcolor;
+  final Color loadercolor;
+  final ShapeBorder shape;
   FloatingLoadingButton(
-      {@required this.isloading,
-      @required this.child,
-      @required this.onPressed,
-      this.backgroundcolor,
-      this.loadercolor,
-      this.shape});
+      {@required this.isloading, @required this.child, @required this.onPressed, this.backgroundcolor, this.loadercolor, this.shape});
   @override
   Widget build(BuildContext context) {
     return isloading
@@ -97,14 +86,14 @@ class FloatingLoadingButton extends StatelessWidget {
 }
 
 class LoadingButtonIcon extends StatelessWidget {
-  bool isloading;
-  Widget label;
-  Function onpressed;
-  Color backgroundcolor;
-  Color loadercolor;
-  ShapeBorder shape;
-  ShapeBorder loadershape;
-  Icon icon;
+  final bool isloading;
+  final Widget label;
+  final Function onpressed;
+  final Color backgroundcolor;
+  final Color loadercolor;
+  final ShapeBorder shape;
+  final ShapeBorder loadershape;
+  final Icon icon;
   LoadingButtonIcon(
       {@required this.isloading,
       @required this.label,
@@ -112,7 +101,7 @@ class LoadingButtonIcon extends StatelessWidget {
       this.backgroundcolor,
       this.loadercolor,
       this.shape,
-      //this.loadershape,
+      this.loadershape,
       this.icon});
   @override
   Widget build(BuildContext context) {
