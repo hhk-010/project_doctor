@@ -1,7 +1,7 @@
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/authorization/04_mcqs.dart';
+import 'package:project_doctor/authorization/04_mcqs_new.dart';
+import 'package:project_doctor/authorization/questions.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
@@ -27,37 +27,37 @@ class PreMCQs extends StatefulWidget {
 
 class _PreMCQsState extends State<PreMCQs> {
   //-------------------checking internet connection
-  bool _isInternet = true;
-  checkInternet() async {
-    try {
-      final response = await InternetAddress.lookup('google.com');
-      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
-        _isInternet = true; // internet
-        setState(() {});
-      }
-    } on SocketException catch (_) {
-      _isInternet = false; // no internet
-      setState(() {});
-    }
-  }
+  // bool _isInternet = true;
+  // checkInternet() async {
+  //   try {
+  //     final response = await InternetAddress.lookup('google.com');
+  //     if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
+  //       _isInternet = true; // internet
+  //       setState(() {});
+  //     }
+  //   } on SocketException catch (_) {
+  //     _isInternet = false; // no internet
+  //     setState(() {});
+  //   }
+  // }
 
   //this function will return a snackbar instead of the old one
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
-  _showSnackBar() {
-    final _snackbar = new SnackBar(
-      content: Text(
-        MCQss.error,
-        style: TextStyle(fontSize: 15, fontFamily: 'Helvetica'),
-      ),
-      backgroundColor: Colors.deepOrange,
-    );
-    _scaffoldkey.currentState.showSnackBar(_snackbar);
-  }
+  // _showSnackBar() {
+  //   final _snackbar = new SnackBar(
+  //     content: Text(
+  //       MCQss.error,
+  //       style: TextStyle(fontSize: 15, fontFamily: 'Helvetica'),
+  //     ),
+  //     backgroundColor: Colors.deepOrange,
+  //   );
+  //   _scaffoldkey.currentState.showSnackBar(_snackbar);
+  // }
 
   //-------------------the end ----------------------
   @override
   void initState() {
-    checkInternet();
+    // checkInternet();
     super.initState();
   }
 
@@ -90,34 +90,34 @@ class _PreMCQsState extends State<PreMCQs> {
                 actions: [
                   FlatButton.icon(
                     onPressed: () {
-                      checkInternet();
-                      if (_isInternet) {
-                        if (MCQss.length > 3) {
-                          setState(() {
-                            MCQss.length -= 3;
-                            MCQss.counter += 3;
-                          });
-                        } else {
-                          setState(() {
-                            MCQss.length = QuestionsShuffle.questions.length;
-                            MCQss.counter = 0;
-                          });
-                        }
-                        DatabaseService(uid: MCQss.uid).updateUserData(
-                            MCQss.counter.toString(),
-                            'tester',
-                            '0101001101010022',
-                            MCQss.length.toString(),
-                            0.0230,
-                            0.0320,
-                            '', [], [], []);
-                        widget.preMCQToogleView();
-                      } else {
-                        setState(() {
-                          MCQss.error = 'No internet connection';
-                        });
-                        _showSnackBar();
-                      }
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => QuestionsWidget())); // checkInternet();
+                      // if (_isInternet) {
+                      //   if (MCQss.length > 3) {
+                      //     setState(() {
+                      //       MCQss.length -= 3;
+                      //       MCQss.counter += 3;
+                      //     });
+                      //   } else {
+                      //     setState(() {
+                      //       MCQss.length = QuestionsShuffle.questions.length;
+                      //       MCQss.counter = 0;
+                      //     });
+                      //   }
+                      //   DatabaseService(uid: MCQss.uid).updateUserData(
+                      //       MCQss.counter.toString(),
+                      //       'tester',
+                      //       '0101001101010022',
+                      //       MCQss.length.toString(),
+                      //       0.0230,
+                      //       0.0320,
+                      //       '', [], [], []);
+                      //   widget.preMCQToogleView();
+                      // } else {
+                      //   setState(() {
+                      //     MCQss.error = 'No internet connection';
+                      //   });
+                      //   _showSnackBar();
+                      // }
                     },
                     icon: Icon(
                       Icons.arrow_forward,
@@ -125,10 +125,7 @@ class _PreMCQsState extends State<PreMCQs> {
                     ),
                     label: Text(
                       'Next',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: appBarAction),
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: appBarAction),
                     ),
                   ),
                 ],
@@ -196,8 +193,7 @@ class _PostpremcqState extends State<Postpremcq> {
                 child: Container(
                   decoration: boxDecoration,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 16, horizontal: 25),
+                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 25),
                     child: Column(
                       children: [
                         SizedBox(
@@ -213,8 +209,7 @@ class _PostpremcqState extends State<Postpremcq> {
                           fit: BoxFit.fitWidth,
                           child: Text(
                             'Welcome to Cura',
-                            style: TextStyle(
-                                fontSize: title, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
                           ),
                         ),
                         Divider(
@@ -229,8 +224,7 @@ class _PostpremcqState extends State<Postpremcq> {
                         Text(
                           'To Create a new account you must answer a few Medical Questions to Verify your Identity',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: subTitle, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: subTitle, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
                           height: 50,
@@ -238,10 +232,7 @@ class _PostpremcqState extends State<Postpremcq> {
                         Text(
                           'If you already have an account return to the sign in page',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: footer,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.red),
+                          style: TextStyle(fontSize: footer, fontWeight: FontWeight.bold, color: Colors.red),
                         ),
                       ],
                     ),

@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
-import 'package:project_doctor/authorization/04_mcqs.dart';
 import 'package:project_doctor/authorization/03_pre_mcqs.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
@@ -129,12 +128,12 @@ class _AuthenticateState extends State<Authenticate> {
           signInToogleView: signInToogleView,
         );
       } else {
-        if (showMCQ) {
-          return MCQS(
-            mcq: mcqToogleView,
-            premcq: preMCQToogleView,
-          );
-        }
+        // if (showMCQ) {
+        //   return MCQS(
+        //     mcq: mcqToogleView,
+        //     premcq: preMCQToogleView,
+        //   );
+        // }
         return Register(
           mcq: mcqToogleView,
         );

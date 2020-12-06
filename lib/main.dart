@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_doctor/authorization/04_mcqs_new.dart';
 import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/loading.dart';
@@ -134,6 +135,7 @@ class _MyAppState extends State<MyApp> {
             '/update2': (context) => UpdateInfo2(),
             '/update_password': (context) => UpdatePassword(),
             '/last_searched_profile': (context) => LastSearchedDoctor(),
+            '/questions': (context) => QuestionsWidget(),
           },
         ),
       );

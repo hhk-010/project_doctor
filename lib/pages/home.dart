@@ -7,7 +7,6 @@ import 'package:project_doctor/pages/last_searched/Profile.dart';
 import 'package:project_doctor/pages/last_searched/read_write_path.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/language.dart';
-import 'package:project_doctor/services/show_floating_button.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
@@ -20,37 +19,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // String _name = '';
   void _changeLanguage(Language language) async {
     Locale _temp = await setLocale(language.languageCode);
     MyApp.setLocale(context, _temp);
   }
-
-  // bool showFloatingActionButton() {
-  //   if (_name != null && _name != '') {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   super.initState();
-  //   widget.readFromStorage.readName().then((String value) {
-  //     setState(() {
-  //       _name = value;
-  //       print(_name);
-  //       bool showFloatingActionButton() {
-  //         if (_name != null && _name != '') {
-  //           return true;
-  //         } else {
-  //           return false;
-  //         }
-  //       }
-  //     });
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +77,7 @@ class _HomeState extends State<Home> {
               tooltip: AppLocalizations.of(context).translate('about_us'),
               iconSize: appBarIcon,
               onPressed: () {
-                Navigator.pushNamed(context, '/about_us');
+                Navigator.pushNamed(context, '/register');
               },
             ),
             title: FittedBox(
@@ -148,15 +120,14 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              FlatButton(
-                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => LastSearchedDoctor())),
-                  child: Text('search'))
+             
             ],
           ),
         ),
-        floatingActionButton: ShowFloatingActionButton.show
-            ? Container(
+        floatingActionButton: 
+        // ShowFloatingActionButton.show
+        //     ? 
+            Container(
                 height: floatingButtonHeight,
                 width: floatingButtonWidth,
                 child: FloatingActionButton.extended(
@@ -167,7 +138,12 @@ class _HomeState extends State<Home> {
                   elevation: 0.0,
                   backgroundColor: Colors.deepOrange,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0)),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20.0),
+                        topRight: Radius.zero,
+                        bottomLeft: Radius.circular(20.0),
+                        bottomRight: Radius.zero,
+                        )),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => LastSearchedDoctor()));
@@ -180,8 +156,8 @@ class _HomeState extends State<Home> {
                           fontSize: floatingButtonTitle,
                           fontWeight: FontWeight.bold)),
                 ),
-              )
-            : null,
+              ),
+            // : null,
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: SafeArea(
           child: Container(
