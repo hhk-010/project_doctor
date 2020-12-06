@@ -71,6 +71,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
 
   @override
   void initState() {
+    super.initState();
     widget.readFromStorage.readName().then((String value) {
       setState(() {
         _name = value;
@@ -129,7 +130,6 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
         _workDays03 = value;
       });
     });
-    super.initState();
   }
 
   @override

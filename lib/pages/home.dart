@@ -4,22 +4,53 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:project_doctor/main.dart';
 import 'package:project_doctor/pages/last_searched/Profile.dart';
+import 'package:project_doctor/pages/last_searched/read_write_path.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/language.dart';
+import 'package:project_doctor/services/show_floating_button.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
 
 class Home extends StatefulWidget {
+  final LastSearchedStorage readFromStorage = LastSearchedStorage();
+
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+  // String _name = '';
   void _changeLanguage(Language language) async {
     Locale _temp = await setLocale(language.languageCode);
     MyApp.setLocale(context, _temp);
   }
+
+  // bool showFloatingActionButton() {
+  //   if (_name != null && _name != '') {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   super.initState();
+  //   widget.readFromStorage.readName().then((String value) {
+  //     setState(() {
+  //       _name = value;
+  //       print(_name);
+  //       bool showFloatingActionButton() {
+  //         if (_name != null && _name != '') {
+  //           return true;
+  //         } else {
+  //           return false;
+  //         }
+  //       }
+  //     });
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -229,8 +260,4 @@ class _HomeState extends State<Home> {
       );
     });
   }
-}
-
-class ShowFloatingActionButton {
-  static bool show = false;
 }
