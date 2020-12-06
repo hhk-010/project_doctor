@@ -103,8 +103,14 @@ class _PreMCQsState extends State<PreMCQs> {
                             MCQss.counter = 0;
                           });
                         }
-                        DatabaseService(uid: MCQss.uid).updateUserData(MCQss.counter.toString(), 'tester', '0101001101010022',
-                            MCQss.length.toString(), 0.000000230033, 0.000000032044, '', [], [], []);
+                        DatabaseService(uid: MCQss.uid).updateUserData(
+                            MCQss.counter.toString(),
+                            'tester',
+                            '0101001101010022',
+                            MCQss.length.toString(),
+                            0.0230,
+                            0.0320,
+                            '', [], [], []);
                         widget.preMCQToogleView();
                       } else {
                         setState(() {
@@ -119,7 +125,10 @@ class _PreMCQsState extends State<PreMCQs> {
                     ),
                     label: Text(
                       'Next',
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: appBarAction),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: appBarAction),
                     ),
                   ),
                 ],
@@ -187,7 +196,8 @@ class _PostpremcqState extends State<Postpremcq> {
                 child: Container(
                   decoration: boxDecoration,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 25),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16, horizontal: 25),
                     child: Column(
                       children: [
                         SizedBox(
@@ -203,7 +213,8 @@ class _PostpremcqState extends State<Postpremcq> {
                           fit: BoxFit.fitWidth,
                           child: Text(
                             'Welcome to Cura',
-                            style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: title, fontWeight: FontWeight.bold),
                           ),
                         ),
                         Divider(
@@ -218,7 +229,8 @@ class _PostpremcqState extends State<Postpremcq> {
                         Text(
                           'To Create a new account you must answer a few Medical Questions to Verify your Identity',
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: subTitle, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: subTitle, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
                           height: 50,
@@ -226,7 +238,10 @@ class _PostpremcqState extends State<Postpremcq> {
                         Text(
                           'If you already have an account return to the sign in page',
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: footer, fontWeight: FontWeight.bold, color: Colors.red),
+                          style: TextStyle(
+                              fontSize: footer,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red),
                         ),
                       ],
                     ),

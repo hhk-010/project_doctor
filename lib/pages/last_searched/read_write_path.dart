@@ -160,7 +160,7 @@ class LastSearchedStorage {
     }
   }
 
-  Future<List<String>> workDays01reader() async {
+  Future<List> workDays01reader() async {
     try {
       final file = await _work01File;
 
@@ -174,7 +174,7 @@ class LastSearchedStorage {
     }
   }
 
-  Future<List<String>> readWorkDays02() async {
+  Future<List> readWorkDays02() async {
     try {
       final file = await _work02File;
 
@@ -188,7 +188,7 @@ class LastSearchedStorage {
     }
   }
 
-  Future<List<String>> readWorkDays03() async {
+  Future<List> readWorkDays03() async {
     try {
       final file = await _work03File;
 
