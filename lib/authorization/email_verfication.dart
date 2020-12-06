@@ -8,7 +8,7 @@ import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/services/reader_writer.dart';
+import 'package:project_doctor/services/read_write_path.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
@@ -30,9 +30,9 @@ class _EmailVerificationState extends State<EmailVerification> {
   String _address = '';
   double _lat = 0.0;
   double _lng = 0.0;
-  List _workDays01 = [];
-  List _workDays02 = [];
-  List _workDays03 = [];
+  List<String> _workDays01 = [];
+  List<String> _workDays02 = [];
+  List<String> _workDays03 = [];
 
   bool _isInternet = true;
   checkInternet() async {

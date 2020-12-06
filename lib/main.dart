@@ -6,6 +6,7 @@ import 'package:project_doctor/pages/about_us.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor07_update_password.dart';
+import 'package:project_doctor/pages/last_searched/Profile.dart';
 import 'package:project_doctor/pages/patient_pages/patient02.5_speciality_result.dart';
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
 import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
@@ -28,16 +29,12 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.deepOrange,
   ));
-  runApp(
-    MyApp(),
-  );
-}
+  runApp(MyApp());
 
-//     DevicePreview(
-//     enabled: !kReleaseMode,
-//     builder: (context) => MyApp(),
-//   ));
-// }
+  // runApp(
+  //   DevicePreview(enabled: !kReleaseMode, builder: (context) => MyApp()),
+  // );
+}
 
 class MyApp extends StatefulWidget {
   static void setLocale(BuildContext context, Locale locale) {
@@ -136,6 +133,7 @@ class _MyAppState extends State<MyApp> {
             '/register': (context) => Register(),
             '/update2': (context) => UpdateInfo2(),
             '/update_password': (context) => UpdatePassword(),
+            '/last_searched_profile': (context) => LastSearchedDoctor(),
           },
         ),
       );
