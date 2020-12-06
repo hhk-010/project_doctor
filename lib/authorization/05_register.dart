@@ -10,9 +10,9 @@ import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
 
 class Register extends StatefulWidget {
-  final Function toogleView;
+  final Function registerToggleView;
   final Function mcq;
-  Register({this.toogleView, this.mcq});
+  Register({this.registerToggleView, this.mcq});
   @override
   _RegisterState createState() => _RegisterState();
 }
@@ -106,9 +106,7 @@ class _RegisterState extends State<Register> {
             title: FittedBox(
                 fit: BoxFit.fitWidth,
                 child:
-                    Text(AppLocalizations.of(context).translate('register'), style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold)
-                    )
-                    ),
+                    Text(AppLocalizations.of(context).translate('register'), style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold))),
             centerTitle: true,
             elevation: 0.0,
           ),
@@ -231,7 +229,8 @@ class _RegisterState extends State<Register> {
                                     },
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                               color: Colors.deepOrange,
-                              child: Text(AppLocalizations.of(context).translate('register'), style:TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: title)),
+                              child: Text(AppLocalizations.of(context).translate('register'),
+                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: title)),
                             ),
                           ),
                         ],
@@ -250,8 +249,8 @@ class _RegisterState extends State<Register> {
                         ),
                         InkWell(
                           onTap: () {
-                            //widget.toogleView();
-                            widget.mcq();
+                            widget.registerToggleView();
+                            // widget.mcq();
                           },
                           child: RichText(
                             text: new TextSpan(

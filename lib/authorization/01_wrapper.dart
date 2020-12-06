@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_doctor/authorization/04_mcqs_new.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/03_pre_mcqs.dart';
 import 'package:project_doctor/services/database.dart';
@@ -97,49 +98,33 @@ class Authenticate extends StatefulWidget {
 }
 
 class _AuthenticateState extends State<Authenticate> {
-//=================================toogle_functions
-  bool showSignIn = false;
-  void signInToogleView() {
+  bool showQuestions = false;
+  void questionsToogleView() {
     setState(() {
-      showSignIn = !showSignIn;
+      showQuestions = !showQuestions;
     });
   }
 
-  bool showPreMCQ = true;
-  void preMCQToogleView() {
+  bool showRegister = false;
+  void registerToggleView() {
     setState(() {
-      showPreMCQ = !showPreMCQ;
-    });
-  }
-
-  bool showMCQ = true;
-  void mcqToogleView() {
-    setState(() {
-      showMCQ = !showMCQ;
+      showRegister = !showRegister;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (showSignIn) {
-      if (showPreMCQ) {
-        return PreMCQs(
-          preMCQToogleView: preMCQToogleView,
-          signInToogleView: signInToogleView,
-        );
-      } else {
-        // if (showMCQ) {
-        //   return MCQS(
-        //     mcq: mcqToogleView,
-        //     premcq: preMCQToogleView,
-        //   );
-        // }
-        return Register(
-          mcq: mcqToogleView,
-        );
-      }
-    } else {
-      return SignIn(toogleView: signInToogleView);
+    if (showQuestions) {
+      return QuestionsWidget(
+        questionsToogleView: questionsToogleView,
+        registerToggleView: registerToggleView,
+      );
     }
+    if (showRegister) {
+      return Register(
+        registerToggleView: registerToggleView,
+      );
+    }
+    return SignIn(questionsToogleView: questionsToogleView);
   }
 }

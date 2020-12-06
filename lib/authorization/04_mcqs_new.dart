@@ -1,15 +1,17 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/authorization/questions.dart';
-
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
 
 class QuestionsWidget extends StatefulWidget {
+  final Function registerToggleView;
+  final Function questionsToogleView;
+
+  const QuestionsWidget({Key key, this.registerToggleView, this.questionsToogleView}) : super(key: key);
+
   @override
   _QuestionsWidgetState createState() => _QuestionsWidgetState();
 }
@@ -417,7 +419,9 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                             getscore2b();
                             getscore3b();
                             if (QuestionsShuffle.score >= 3) {
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Register()));
+                              widget.registerToggleView();
+                              widget.questionsToogleView();
+                              // Navigator.of(context).push(MaterialPageRoute(builder: (context) => Register()));
                             } else {
                               setState(() {
                                 QuestionsShuffle.snackerror = 'Please , answer the questions correctly';

@@ -16,8 +16,8 @@ class SnackText {
 }
 
 class SignIn extends StatefulWidget {
-  final Function toogleView;
-  SignIn({this.toogleView});
+  final Function questionsToogleView;
+  SignIn({this.questionsToogleView});
 
   @override
   _SignInState createState() => _SignInState();
@@ -318,7 +318,7 @@ class _SignInState extends State<SignIn> {
                         ),
                         InkWell(
                           onTap: () {
-                            widget.toogleView();
+                            widget.questionsToogleView();
                           },
                           child: RichText(
                             text: TextSpan(
