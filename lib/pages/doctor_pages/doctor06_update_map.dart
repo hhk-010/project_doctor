@@ -75,7 +75,9 @@ class _UpdateMapState extends State<UpdateMap> {
     final snackBar = new SnackBar(
       content: new Text(
         SnackBarError.error,
-        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
 
       //duration: new Duration(seconds: 3),
@@ -117,7 +119,8 @@ class _UpdateMapState extends State<UpdateMap> {
     final basicDatabase = Provider.of<QuerySnapshot>(context);
     if (basicDatabase != null) {
       for (var x in basicDatabase.docs) {
-        if (DataFromProfiletoUpdate.name == x.data()['n'] && DataFromProfiletoUpdate.speciality == x.data()['s']) {
+        if (DataFromProfiletoUpdate.name == x.data()['n'] &&
+            DataFromProfiletoUpdate.speciality == x.data()['s']) {
           _lt = x.data()['lt'];
           _lg = x.data()['lg'];
         }
@@ -141,11 +144,12 @@ class _UpdateMapState extends State<UpdateMap> {
         key: _scaffoldkey,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(appBarHeight),
-                  child: AppBar(
+          child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: Text(
               AppLocalizations.of(context).translate("update_location"),
-              style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
             ),
             centerTitle: true,
           ),
@@ -196,13 +200,16 @@ class _UpdateMapState extends State<UpdateMap> {
                   isloading: isloading,
                   loadercolor: Colors.white,
                   backgroundcolor: Colors.deepOrange,
-                  child: Text(AppLocalizations.of(context).translate('ok'), style: TextStyle(fontSize: title, fontWeight: FontWeight.bold)),
+                  child: Text(AppLocalizations.of(context).translate('ok'),
+                      style: TextStyle(
+                          fontSize: title, fontWeight: FontWeight.bold)),
                   onPressed: () async {
                     checkInternet();
                     if (_isInternet) {
                       if (latlng == null) {
                         setState(() {
-                          SnackBarError.error = AppLocalizations.of(context).translate('snack_map');
+                          SnackBarError.error = AppLocalizations.of(context)
+                              .translate('snack_map');
                         });
                         _showSnackBar();
                       } else {
@@ -210,23 +217,26 @@ class _UpdateMapState extends State<UpdateMap> {
                         if (lattt != null && lnggg != null) {
                           setState(() {
                             isloading = true;
-                            _result = pow((lattt - _lt), 2) + pow((lnggg - _lg), 2);
+                            _result =
+                                pow((lattt - _lt), 2) + pow((lnggg - _lg), 2);
                             _finalDistance = sqrt(_result);
                             _kmDistance = _finalDistance * 100;
                           });
                           print(_kmDistance);
                           if (_kmDistance < 100) {
-                            await DatabaseService(uid: FirebaseAuth.instance.currentUser.uid).updateUserData(
-                                DataFromProfiletoUpdate.name,
-                                DataFromProfiletoUpdate.speciality,
-                                DataFromProfiletoUpdate.phoneNumber,
-                                DataFromProfiletoUpdate.province,
-                                lattt,
-                                lnggg,
-                                DataFromProfiletoUpdate.address,
-                                DataFromProfiletoUpdate.workDays01,
-                                DataFromProfiletoUpdate.workDays02,
-                                DataFromProfiletoUpdate.workDays03);
+                            await DatabaseService(
+                                    uid: FirebaseAuth.instance.currentUser.uid)
+                                .updateUserData(
+                                    DataFromProfiletoUpdate.name,
+                                    DataFromProfiletoUpdate.speciality,
+                                    DataFromProfiletoUpdate.phoneNumber,
+                                    DataFromProfiletoUpdate.province,
+                                    lattt,
+                                    lnggg,
+                                    DataFromProfiletoUpdate.address,
+                                    DataFromProfiletoUpdate.workDays01,
+                                    DataFromProfiletoUpdate.workDays02,
+                                    DataFromProfiletoUpdate.workDays03);
                             setState(() {
                               isloading = false;
                               Empty.isEmpty = false;
@@ -238,7 +248,8 @@ class _UpdateMapState extends State<UpdateMap> {
                           } else {
                             setState(() {
                               isloading = false;
-                              SnackBarError.error = AppLocalizations.of(context).translate('snack_update');
+                              SnackBarError.error = AppLocalizations.of(context)
+                                  .translate('snack_update');
                             });
                             _showSnackBar();
                           }
@@ -246,7 +257,8 @@ class _UpdateMapState extends State<UpdateMap> {
                       }
                     } else {
                       setState(() {
-                        SnackBarError.error = AppLocalizations.of(context).translate('snack_connectivity');
+                        SnackBarError.error = AppLocalizations.of(context)
+                            .translate('snack_connectivity');
                       });
                       _showSnackBar();
                     }

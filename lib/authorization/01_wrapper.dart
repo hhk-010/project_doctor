@@ -119,12 +119,13 @@ class _AuthenticateState extends State<Authenticate> {
         questionsToogleView: questionsToogleView,
         registerToggleView: registerToggleView,
       );
+    } else {
+      return SignIn(questionsToogleView: questionsToogleView);
     }
-    if (showRegister) {
+    /*if (showRegister) {
       return Register(
         registerToggleView: registerToggleView,
       );
-    }
-    return SignIn(questionsToogleView: questionsToogleView);
+    }*/
   }
 }

@@ -101,7 +101,9 @@ class _FinalMapState extends State<FinalMap> {
     final _snackBar = new SnackBar(
       content: Text(
         error,
-        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -228,7 +230,8 @@ class _FinalMapState extends State<FinalMap> {
     final basicData = Provider.of<QuerySnapshot>(context);
     if (basicData != null) {
       for (var x in basicData.docs) {
-        if (DataFromMaptoVerify.name == x.data()['n'] && DataFromMaptoVerify.speciality == x.data()['s']) {
+        if (DataFromMaptoVerify.name == x.data()['n'] &&
+            DataFromMaptoVerify.speciality == x.data()['s']) {
           lt = x.data()['lt'];
           lg = x.data()['lg'];
         }
@@ -252,13 +255,14 @@ class _FinalMapState extends State<FinalMap> {
         key: _scaffoldkey,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(appBarHeight),
-                  child: AppBar(
+          child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: FittedBox(
               fit: BoxFit.fitWidth,
               child: Text(
                 AppLocalizations.of(context).translate('add_location'),
-                style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: appBarTitle, fontWeight: FontWeight.bold),
               ),
             ),
             centerTitle: true,
@@ -267,7 +271,8 @@ class _FinalMapState extends State<FinalMap> {
         body: Stack(
           children: [
             GoogleMap(
-              initialCameraPosition: CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 10),
+              initialCameraPosition: CameraPosition(
+                  target: LatLng(33.312805, 44.361488), zoom: 10),
               markers: Set.from(mymarker),
               onTap: handletap,
             ),
@@ -309,20 +314,23 @@ class _FinalMapState extends State<FinalMap> {
                 backgroundcolor: Colors.deepOrange,
                 child: Text(
                   AppLocalizations.of(context).translate('ok'),
-                  style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: title, fontWeight: FontWeight.bold),
                 ),
                 onPressed: () async {
                   checkInternet();
                   if (_isInternet) {
                     if (latlng == null) {
-                      error = AppLocalizations.of(context).translate('snack_map');
+                      error =
+                          AppLocalizations.of(context).translate('snack_map');
                       _showSnackBar();
                     } else {
                       await geolocate(latlng: latlng);
                       setState(() => isloading = true);
                       if (lattt != null && lnggg != null) {
                         setState(() {
-                          finalResult = pow((lattt - lt), 2) + pow((lnggg - lg), 2);
+                          finalResult =
+                              pow((lattt - lt), 2) + pow((lnggg - lg), 2);
                           finalDistance = sqrt(finalResult);
                           kmDistance = finalDistance * 100;
                         });
@@ -340,27 +348,35 @@ class _FinalMapState extends State<FinalMap> {
                           _writeAddress(DataFromMaptoVerify.address);
                           _writelat(lattt.toString());
                           _writelng(lnggg.toString());
-                          _writeWorkDays01(json.encode(DataFromMaptoVerify.workDays01));
-                          _writeWorkDays02(json.encode(DataFromMaptoVerify.workDays02));
-                          _writeWorkDays03(json.encode(DataFromMaptoVerify.workDays03));
-                          final authResult = await _auth.registerWithEmailAndPassword(DataFromMaptoVerify.email, DataFromMaptoVerify.password);
+                          _writeWorkDays01(
+                              json.encode(DataFromMaptoVerify.workDays01));
+                          _writeWorkDays02(
+                              json.encode(DataFromMaptoVerify.workDays02));
+                          _writeWorkDays03(
+                              json.encode(DataFromMaptoVerify.workDays03));
+                          final authResult =
+                              await _auth.registerWithEmailAndPassword(
+                                  DataFromMaptoVerify.email,
+                                  DataFromMaptoVerify.password);
                           if (authResult != null) {
                             setState(() => isloading = false);
                             int count = 0;
                             Navigator.popUntil(context, (route) {
-                              return count++ == 3;
+                              return count++ == 4;
                             });
                           } else {
                             setState(() {
                               isloading = false;
-                              error = AppLocalizations.of(context).translate('snack_register');
+                              error = AppLocalizations.of(context)
+                                  .translate('snack_register');
                             });
                             _showSnackBar();
                           }
                         } else {
                           setState(() {
                             isloading = false;
-                            error = AppLocalizations.of(context).translate('snack_register');
+                            error = AppLocalizations.of(context)
+                                .translate('snack_register');
                           });
                           _showSnackBar();
                         }
@@ -368,7 +384,8 @@ class _FinalMapState extends State<FinalMap> {
                     }
                   } else {
                     setState(() {
-                      error = AppLocalizations.of(context).translate('snack_connectivity');
+                      error = AppLocalizations.of(context)
+                          .translate('snack_connectivity');
                     });
                   }
                   _showSnackBar();

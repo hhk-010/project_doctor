@@ -30,9 +30,9 @@ class _EmailVerificationState extends State<EmailVerification> {
   String _address = '';
   double _lat = 0.0;
   double _lng = 0.0;
-  List<String> _workDays01 = [];
-  List<String> _workDays02 = [];
-  List<String> _workDays03 = [];
+  List _workDays01 = [];
+  List _workDays02 = [];
+  List _workDays03 = [];
 
   bool _isInternet = true;
   checkInternet() async {
