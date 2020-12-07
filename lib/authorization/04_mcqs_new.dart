@@ -43,7 +43,6 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
   String value1;
   String value2;
   String value3;
-  String value4;
   @override
   Widget build(BuildContext context) {
     int question01 = counterList[1];
@@ -58,11 +57,17 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
     }
 
     void selected2b(_value) {
-      QuestionsShuffle.value2 = QuestionsShuffle.choices[QuestionsShuffle.questions[question02]][int.parse(_value)];
+      setState(() {
+        QuestionsShuffle.value2 = QuestionsShuffle.choices[QuestionsShuffle.questions[question02]][int.parse(_value)];
+        value2 = QuestionsShuffle.value2;
+      });
     }
 
     void selected3b(_value) {
-      QuestionsShuffle.value3 = QuestionsShuffle.choices[QuestionsShuffle.questions[question03]][int.parse(_value)];
+      setState(() {
+        QuestionsShuffle.value3 = QuestionsShuffle.choices[QuestionsShuffle.questions[question03]][int.parse(_value)];
+        value3 = QuestionsShuffle.value3;
+      });
     }
 
     getscore1b() {
@@ -167,7 +172,9 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                               isExpanded: true,
                               hint: Text(
                                 value1 == null ? 'Choose the Right answer' : value1,
-                                style: TextStyle(),
+                                style: TextStyle(
+                                  color: value1 == null ? Colors.grey[700] : Colors.black,
+                                ),
                               ),
                               items: [
                                 DropdownMenuItem<String>(
@@ -257,7 +264,12 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                             ),
                             DropdownButton(
                               isExpanded: true,
-                              hint: Text('Choose the Right answer'),
+                              hint: Text(
+                                value2 == null ? 'Choose the Right answer' : value2,
+                                style: TextStyle(
+                                  color: value2 == null ? Colors.grey[700] : Colors.black,
+                                ),
+                              ),
                               items: [
                                 DropdownMenuItem<String>(
                                   value: '0',
@@ -346,7 +358,12 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                             ),
                             DropdownButton(
                               isExpanded: true,
-                              hint: Text('Choose the Right answer'),
+                              hint: Text(
+                                value3 == null ? 'Choose the Right answer' : value3,
+                                style: TextStyle(
+                                  color: value3 == null ? Colors.grey[700] : Colors.black,
+                                ),
+                              ),
                               items: [
                                 DropdownMenuItem<String>(
                                   value: '0',

@@ -1173,7 +1173,6 @@ class _PatientComplainState extends State<PatientComplain> {
     void secondselected(_value) {
       setState(() {
         complainSelected01 = _value;
-        print(_value);
       });
     }
 
@@ -1222,6 +1221,7 @@ class _PatientComplainState extends State<PatientComplain> {
       double title;
       double subTitle;
       double floatingActionHeight;
+      double upperInset;
 
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
         appBar = 25;
@@ -1232,6 +1232,7 @@ class _PatientComplainState extends State<PatientComplain> {
         buttonHeight = displayHeight(context) * 0.05;
         buttonWidth = displayWidth(context) * 0.7;
         floatingActionHeight = 10;
+        upperInset = 25;
       } else {
         appBar = displayHeight(context) * 0.045;
         appBarHeight = 75;
@@ -1241,6 +1242,7 @@ class _PatientComplainState extends State<PatientComplain> {
         buttonHeight = displayHeight(context) * 0.04;
         buttonWidth = displayWidth(context) * 0.4;
         floatingActionHeight = 50.0;
+        upperInset = 50;
       }
       return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -1323,7 +1325,7 @@ class _PatientComplainState extends State<PatientComplain> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: Center(
           child: Padding(
-            padding: const EdgeInsets.only(top: 25),
+            padding: EdgeInsets.only(top: upperInset),
             child: Container(
               width: containerWidth,
               child: Column(
@@ -1360,7 +1362,9 @@ class _PatientComplainState extends State<PatientComplain> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: TextField(
                                       keyboardType: TextInputType.numberWithOptions(decimal: true),
-                                      inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9.,]')),],
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.allow(RegExp('[0-9.,]')),
+                                      ],
                                       controller: ageController,
                                       onChanged: (ageController) {
                                         if (ageController.isEmpty) {
@@ -1547,8 +1551,6 @@ class _PatientComplainState extends State<PatientComplain> {
                                       child: Text(AppLocalizations.of(context).translate('other_symptoms')),
                                     ),
                                   ],
-                                  //if one choose a region then reselect another one ---> there will be an error which
-                                  // was fixed by removing the arguement value
                                   value: regionSelected01,
                                   onChanged: (_value) => selected01(_value),
                                   hint: FittedBox(
@@ -1559,10 +1561,13 @@ class _PatientComplainState extends State<PatientComplain> {
                                 DropdownButton<String>(
                                   isExpanded: true,
                                   items: menuitems,
-                                  // the same reason above
-                                  //value: complainSelected01,
                                   onChanged: disabledropdown01 ? null : (value) => secondselected(value),
-                                  hint: Text(AppLocalizations.of(context).translate('choose_complain')),
+                                  hint: Text(
+                                    complainSelected01 == null
+                                        ? AppLocalizations.of(context).translate('choose_complain')
+                                        : AppLocalizations.of(context).translate(complainSelected01),
+                                    style: TextStyle(color: complainSelected01 == null ? Colors.grey[700] : Colors.black),
+                                  ),
                                   disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
                                 ),
                                 SwitchListTile(
@@ -1714,7 +1719,12 @@ class _PatientComplainState extends State<PatientComplain> {
                                     isExpanded: true,
                                     items: menuitems,
                                     onChanged: disabledropdown02 ? null : (value) => secondselected2(value),
-                                    hint: Text(AppLocalizations.of(context).translate('choose_complain')),
+                                    hint: Text(
+                                      complainSelected02 == null
+                                          ? AppLocalizations.of(context).translate('choose_complain')
+                                          : AppLocalizations.of(context).translate(complainSelected02),
+                                      style: TextStyle(color: complainSelected02 == null ? Colors.grey[700] : Colors.black),
+                                    ),
                                     disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
                                   ),
                                   SwitchListTile(
@@ -1867,7 +1877,12 @@ class _PatientComplainState extends State<PatientComplain> {
                                     isExpanded: true,
                                     items: menuitems,
                                     onChanged: disabledropdown03 ? null : (value) => secondselected3(value),
-                                    hint: Text(AppLocalizations.of(context).translate('choose_complain')),
+                                    hint: Text(
+                                      complainSelected03 == null
+                                          ? AppLocalizations.of(context).translate('choose_complain')
+                                          : AppLocalizations.of(context).translate(complainSelected03),
+                                      style: TextStyle(color: complainSelected03 == null ? Colors.grey[700] : Colors.black),
+                                    ),
                                     disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
                                   ),
                                   SwitchListTile(
@@ -2020,7 +2035,12 @@ class _PatientComplainState extends State<PatientComplain> {
                                     isExpanded: true,
                                     items: menuitems,
                                     onChanged: disabledropdown04 ? null : (value) => secondselected4(value),
-                                    hint: Text(AppLocalizations.of(context).translate('choose_complain')),
+                                    hint: Text(
+                                      complainSelected04 == null
+                                          ? AppLocalizations.of(context).translate('choose_complain')
+                                          : AppLocalizations.of(context).translate(complainSelected04),
+                                      style: TextStyle(color: complainSelected04 == null ? Colors.grey[700] : Colors.black),
+                                    ),
                                     disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
                                   ),
                                   SwitchListTile(
@@ -2173,7 +2193,12 @@ class _PatientComplainState extends State<PatientComplain> {
                                     isExpanded: true,
                                     items: menuitems,
                                     onChanged: disabledropdown05 ? null : (value) => secondselected5(value),
-                                    hint: Text(AppLocalizations.of(context).translate('choose_complain')),
+                                    hint: Text(
+                                      complainSelected05 == null
+                                          ? AppLocalizations.of(context).translate('choose_complain')
+                                          : AppLocalizations.of(context).translate(complainSelected05),
+                                      style: TextStyle(color: complainSelected05 == null ? Colors.grey[700] : Colors.black),
+                                    ),
                                     disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
                                   ),
                                   SwitchListTile(
@@ -2326,7 +2351,12 @@ class _PatientComplainState extends State<PatientComplain> {
                                     isExpanded: true,
                                     items: menuitems,
                                     onChanged: disabledropdown06 ? null : (value) => secondselected6(value),
-                                    hint: Text(AppLocalizations.of(context).translate('choose_complain')),
+                                    hint: Text(
+                                      complainSelected06 == null
+                                          ? AppLocalizations.of(context).translate('choose_complain')
+                                          : AppLocalizations.of(context).translate(complainSelected06),
+                                      style: TextStyle(color: complainSelected06 == null ? Colors.grey[700] : Colors.black),
+                                    ),
                                     disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
                                   ),
                                   SwitchListTile(
@@ -2479,13 +2509,21 @@ class _PatientComplainState extends State<PatientComplain> {
                                     isExpanded: true,
                                     items: menuitems,
                                     onChanged: disabledropdown07 ? null : (value) => secondselected7(value),
-                                    hint: Text(AppLocalizations.of(context).translate('choose_complain')),
+                                    hint: Text(
+                                      complainSelected07 == null
+                                          ? AppLocalizations.of(context).translate('choose_complain')
+                                          : AppLocalizations.of(context).translate(complainSelected07),
+                                      style: TextStyle(color: complainSelected07 == null ? Colors.grey[700] : Colors.black),
+                                    ),
                                     disabledHint: Text(AppLocalizations.of(context).translate('first_choose_complain')),
                                   ),
                                 ],
                               ),
                             ),
                           ),
+                        ),
+                        SizedBox(
+                          height: 100,
                         ),
                       ],
                     ),
