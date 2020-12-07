@@ -165,7 +165,10 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                             ),
                             DropdownButton(
                               isExpanded: true,
-                              hint: Text( value1 == null ?'Choose the Right answer' : value1, style: TextStyle(font),),
+                              hint: Text(
+                                value1 == null ? 'Choose the Right answer' : value1,
+                                style: TextStyle(),
+                              ),
                               items: [
                                 DropdownMenuItem<String>(
                                   value: '0',
