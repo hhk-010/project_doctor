@@ -276,6 +276,7 @@ class _RegisterState extends State<Register> {
                         ),
                         InkWell(
                           onTap: () {
+                            Navigator.pop(context);
                             //widget.registerToggleView();
                             // widget.mcq();
                           },
