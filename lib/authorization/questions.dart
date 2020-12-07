@@ -8,7 +8,10 @@ class QuestionsShuffle {
   static String value4;
   static int score = 0;
   static String snackerror = '';
-  static List questions = [
+  bool operator ==(dynamic other) => other != null && other is QuestionsShuffle;
+  @override
+  int get hashCode => super.hashCode;
+  static final List questions = [
     '60 years old male with +ve PMH for HTN and DM presented to the ER complaining of central suffocating chest pain, dyspnea and vomiting OE conscious ,alert ,oriented ,looks ill ,BP 190/100,ecg shows St segment elevation in L1,avL,V5,V6 with reciprocal changes and elevated troponin,what is the most likely dx?',
     '65 years old male with +ve PMH for HTN,ischemic heart disease with previous CCU admissions,presented with dyspnea ,cough and white colored sputum ,OE he was dyspneic ,BP 100/60 ,chest auscultation reveals bilateral basal crepitations he brought his previous investigations with him and his echocardiogram shows EF=30%, and his current ecg shows old ischemic changes and his current WBC count is normal but his PCV is relatively low ,what is the most likely dx?',
     '15 years old female pt known case of type 1 DM developed ,flu like illness and fever followed by polyuria , polydipsia,abdominal pain and vomiting , associated with fruity odor breathing ,presented to the ER , her pulse rate is 120 bpm,temp is 38 C axillary corrected, she looks tachypneic, her RBS is about 500 mg/dl and her ABG shows elevated pH,what is the most likely dx?',
@@ -38,7 +41,7 @@ class QuestionsShuffle {
     '27 years old pregnant female developed vaginal bleeding , she was admitted to the ER , her pulse rate was elevated , BP was low , with cold peripheries her B.urea was 120 mg/dl and her serum creatinine was 2.2 mg/dl , what is the most likely cause of her elevated renal indices ?',
     //'56 years old male non diabetic with untreated benign prostatic hyperplasia , presented to the ER with confusion associated with bilateral leg edema and generalized swelling of the body , his general examination reveals hypertension and near normal pulse , his chest examination shows decrease air entry on the right side , his abdominal examination reveals abdominal distension , his chest X-ray show Rt lower zone radio-opacity obliterating Rt costophrenic angle , his B.urea was 145 mg/dl and his S. creatinine was 2.5 mg/dl , and S.k was 5.5 mmol/l ,what is the most likely dx ?',
   ];
-  static Map choices = {
+  static final Map choices = {
     '60 years old male with +ve PMH for HTN and DM presented to the ER complaining of central suffocating chest pain, dyspnea and vomiting OE conscious ,alert ,oriented ,looks ill ,BP 190/100,ecg shows St segment elevation in L1,avL,V5,V6 with reciprocal changes and elevated troponin,what is the most likely dx?':
         ['Stroke', 'Pericarditis', 'Pulseless electrical activity', 'Ventricular fibrillation', 'Acute MI', 'Pectoralis spasm'],
     '65 years old male with +ve PMH for HTN,ischemic heart disease with previous CCU admissions,presented with dyspnea ,cough and white colored sputum ,OE he was dyspneic ,BP 100/60 ,chest auscultation reveals bilateral basal crepitations he brought his previous investigations with him and his echocardiogram shows EF=30%, and his current ecg shows old ischemic changes and his current WBC count is normal but his PCV is relatively low ,what is the most likely dx?':
@@ -229,7 +232,7 @@ class QuestionsShuffle {
       'Hypovolemia',
     ],
   };
-  static Map answers = {
+  static final Map answers = {
     '60 years old male with +ve PMH for HTN and DM presented to the ER complaining of central suffocating chest pain, dyspnea and vomiting OE conscious ,alert ,oriented ,looks ill ,BP 190/100,ecg shows St segment elevation in L1,avL,V5,V6 with reciprocal changes and elevated troponin,what is the most likely dx?':
         'Acute MI',
     '65 years old male with +ve PMH for HTN,ischemic heart disease with previous CCU admissions,presented with dyspnea ,cough and white colored sputum ,OE he was dyspneic ,BP 100/60 ,chest auscultation reveals bilateral basal crepitations he brought his previous investigations with him and his echocardiogram shows EF=30%, and his current ecg shows old ischemic changes and his current WBC count is normal but his PCV is relatively low ,what is the most likely dx?':
@@ -288,5 +291,3 @@ class QuestionsShuffle {
         'Hypovolemia',
   };
 }
-
-

@@ -112,7 +112,7 @@
     "phoneNumber" : "Booking Phone Number",
     "phoneNumber_validator" : "Phone Number should be 11 digits",
     "province": "Province",
-    "province_validator" : "Enter Your Province",
+    "province_validator" : "Select Your Province",
     "location": "Location",
     "add_location" : "Add Clinic Location",
     "location_setup" : "Set up Your Clinic Location",

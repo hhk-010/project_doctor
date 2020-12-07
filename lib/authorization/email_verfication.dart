@@ -204,7 +204,7 @@ class _EmailVerificationState extends State<EmailVerification> {
               IconButton(
                 icon: Icon(
                   //========changed beacause it is not defined on my device
-                  Icons.account_box,
+                  Icons.logout
                 ),
                 onPressed: () async {
                   if (_isInternet) {

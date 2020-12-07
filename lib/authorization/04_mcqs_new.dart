@@ -11,9 +11,7 @@ class QuestionsWidget extends StatefulWidget {
   final Function registerToggleView;
   final Function questionsToogleView;
 
-  const QuestionsWidget(
-      {Key key, this.registerToggleView, this.questionsToogleView})
-      : super(key: key);
+  const QuestionsWidget({Key key, this.registerToggleView, this.questionsToogleView}) : super(key: key);
 
   @override
   _QuestionsWidgetState createState() => _QuestionsWidgetState();
@@ -21,6 +19,7 @@ class QuestionsWidget extends StatefulWidget {
 
 class _QuestionsWidgetState extends State<QuestionsWidget> {
   List<int> counterList = Iterable<int>.generate(26).toList();
+
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
 
   _showSnackBar() {
@@ -35,47 +34,51 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     counterList.shuffle();
+
+    super.initState();
+  }
+
+  String value1;
+  String value2;
+  String value3;
+  String value4;
+  @override
+  Widget build(BuildContext context) {
     int question01 = counterList[1];
     int question02 = counterList[2];
     int question03 = counterList[3];
 
     void selected1b(_value) {
-      QuestionsShuffle.value1 = QuestionsShuffle
-          .choices[QuestionsShuffle.questions[question01]][int.parse(_value)];
-      print(QuestionsShuffle.value1);
+      setState(() {
+        QuestionsShuffle.value1 = QuestionsShuffle.choices[QuestionsShuffle.questions[question01]][int.parse(_value)];
+        value1 = QuestionsShuffle.value1;
+      });
     }
 
     void selected2b(_value) {
-      QuestionsShuffle.value2 = QuestionsShuffle
-          .choices[QuestionsShuffle.questions[question02]][int.parse(_value)];
-      print(QuestionsShuffle.value2);
+      QuestionsShuffle.value2 = QuestionsShuffle.choices[QuestionsShuffle.questions[question02]][int.parse(_value)];
     }
 
     void selected3b(_value) {
-      QuestionsShuffle.value3 = QuestionsShuffle
-          .choices[QuestionsShuffle.questions[question03]][int.parse(_value)];
-      print(QuestionsShuffle.value3);
+      QuestionsShuffle.value3 = QuestionsShuffle.choices[QuestionsShuffle.questions[question03]][int.parse(_value)];
     }
 
     getscore1b() {
-      if (QuestionsShuffle.value1 ==
-          QuestionsShuffle.answers[QuestionsShuffle.questions[question01]]) {
+      if (QuestionsShuffle.value1 == QuestionsShuffle.answers[QuestionsShuffle.questions[question01]]) {
         QuestionsShuffle.score += 1;
       }
     }
 
     getscore2b() {
-      if (QuestionsShuffle.value2 ==
-          QuestionsShuffle.answers[QuestionsShuffle.questions[question02]]) {
+      if (QuestionsShuffle.value2 == QuestionsShuffle.answers[QuestionsShuffle.questions[question02]]) {
         QuestionsShuffle.score += 1;
       }
     }
 
     getscore3b() {
-      if (QuestionsShuffle.value3 ==
-          QuestionsShuffle.answers[QuestionsShuffle.questions[question03]]) {
+      if (QuestionsShuffle.value3 == QuestionsShuffle.answers[QuestionsShuffle.questions[question03]]) {
         QuestionsShuffle.score += 1;
       }
     }
@@ -121,8 +124,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                   elevation: 0,
                   title: Text(
                     'Questions',
-                    style: TextStyle(
-                        fontSize: appBarTitle, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -133,7 +135,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                   child: SingleChildScrollView(
                     child: Column(children: [
                       Text(
-                        'To register , answer the following :',
+                        'To Register , Answer the following :',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.black,
@@ -146,8 +148,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                       ),
                       Container(
                         decoration: boxDecoration,
-                        padding: EdgeInsets.symmetric(
-                            vertical: 30.0, horizontal: 30.0),
+                        padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
                         child: Column(
                           children: [
                             Center(
@@ -163,18 +164,15 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                               height: 15.0,
                             ),
                             DropdownButton(
-                              // value: QuestionsShuffle.value1,
                               isExpanded: true,
-                              hint: Text('Choose the Right answer'),
-
+                              hint: Text( value1 == null ?'Choose the Right answer' : value1, style: TextStyle(font),),
                               items: [
                                 DropdownMenuItem<String>(
                                   value: '0',
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question01]][0],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question01]][0],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -184,8 +182,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question01]][1],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question01]][1],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -195,8 +192,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question01]][2],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question01]][2],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -206,8 +202,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question01]][3],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question01]][3],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -217,8 +212,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question01]][4],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question01]][4],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -228,15 +222,14 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question01]][5],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question01]][5],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
                                 ),
                               ],
                               onChanged: (value) => selected1b(value),
-                              // value: QuestionsShuffle.value1,
+                              // value: value1,
                             ),
                           ],
                         ),
@@ -246,8 +239,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                       ),
                       Container(
                         decoration: boxDecoration,
-                        padding: EdgeInsets.symmetric(
-                            vertical: 30.0, horizontal: 30.0),
+                        padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
                         child: Column(
                           children: [
                             Center(
@@ -269,8 +261,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question02]][0],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question02]][0],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -280,8 +271,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question02]][1],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question02]][1],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -291,8 +281,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question02]][2],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question02]][2],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -302,8 +291,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question02]][3],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question02]][3],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -313,8 +301,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question02]][4],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question02]][4],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -324,8 +311,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question02]][5],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question02]][5],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -342,8 +328,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                       ),
                       Container(
                         decoration: boxDecoration,
-                        padding: EdgeInsets.symmetric(
-                            vertical: 30.0, horizontal: 30.0),
+                        padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
                         child: Column(
                           children: [
                             Center(
@@ -365,8 +350,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question03]][0],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question03]][0],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -376,8 +360,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question03]][1],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question03]][1],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -387,8 +370,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question03]][2],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question03]][2],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -398,8 +380,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question03]][3],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question03]][3],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -409,8 +390,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question03]][4],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question03]][4],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -420,8 +400,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      QuestionsShuffle.choices[QuestionsShuffle
-                                          .questions[question03]][5],
+                                      QuestionsShuffle.choices[QuestionsShuffle.questions[question03]][5],
                                       textDirection: TextDirection.ltr,
                                     ),
                                   ),
@@ -444,8 +423,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                             Icons.arrow_forward,
                             color: Colors.white,
                           ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80.0)),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                           onPressed: () {
                             getscore1b();
                             getscore2b();
@@ -453,12 +431,10 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                             if (QuestionsShuffle.score >= 3) {
                               //widget.registerToggleView();
                               //widget.questionsToogleView();
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Register()));
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Register()));
                             } else {
                               setState(() {
-                                QuestionsShuffle.snackerror =
-                                    'Please , answer the questions correctly';
+                                QuestionsShuffle.snackerror = 'Please , answer the questions correctly';
                               });
                               _showSnackBar();
                             }
@@ -468,12 +444,12 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                           },
                           label: Text(
                             'Next',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: title,
-                                fontWeight: FontWeight.bold),
+                            style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
                           ),
                         ),
+                      ),
+                      SizedBox(
+                        height: 25,
                       ),
                     ]),
                   ),

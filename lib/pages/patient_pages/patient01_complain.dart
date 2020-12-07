@@ -1379,9 +1379,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                         ),
                                         hintStyle: TextStyle(fontSize: subTitle),
                                         prefixIcon: Icon(
-                                          Icons.account_box,
-                                          //changed beacause its not defined here , you can return it back
-                                          // Icons.person_search,
+                                          Icons.person_search,
                                           color: Colors.deepOrange,
                                         ),
                                         filled: true,

@@ -255,13 +255,13 @@ class _DoctorFormState extends State<DoctorForm> {
                     ),
                     Spacer(),
                     TextFormField(
-                      onChanged: (val) => setState(() => currentPhoneNumber = val),
                       keyboardType: TextInputType.phone,
                       decoration: textInputdecoration.copyWith(
                         hintText: AppLocalizations.of(context).translate('phoneNumber'),
                         labelText: AppLocalizations.of(context).translate('phoneNumber'),
                       ),
-                      validator: (val) => val.length < 11 && val.length > 11 ? AppLocalizations.of(context).translate('phoneNumber_validator') : null,
+                      validator: (val) => val.length < 11 ? AppLocalizations.of(context).translate('phoneNumber_validator') : null,
+                      onChanged: (val) => setState(() => currentPhoneNumber = val),
                     ),
                     Spacer(),
                     DropdownButtonFormField<String>(
@@ -303,7 +303,7 @@ class _DoctorFormState extends State<DoctorForm> {
                         child: Text('$province'),
                       );
                     }).toList(),*/
-                      validator: (value) => value == null ? 'Select your province' : null,
+                      validator: (val) => val == null ? AppLocalizations.of(context).translate('province_validator') : null,
                       onChanged: (val) => setState(() => currentProvince = val),
                     ),
                     Spacer(

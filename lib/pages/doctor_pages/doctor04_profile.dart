@@ -96,7 +96,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                 IconButton(
                   icon: Icon(
                     //i changed it because it is not defined on my device
-                    Icons.account_box_rounded,
+                    Icons.logout,
                   ),
                   onPressed: () async {
                     if (_isInternet) {
