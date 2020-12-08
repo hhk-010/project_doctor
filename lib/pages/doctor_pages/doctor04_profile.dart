@@ -60,6 +60,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
   void initState() {
     super.initState();
     checkInternet();
+    Empty.isEmpty = false;
   }
 
   @override

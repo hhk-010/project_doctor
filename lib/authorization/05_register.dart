@@ -209,30 +209,31 @@ class _RegisterState extends State<Register> {
                             height: buttonHeight,
                             width: buttonWidth,
                             child: RaisedButton(
-                              onPressed: _isInternet
-                                  ? () async {
-                                      print(ModalRoute.of(context));
-                                      if (_formKey.currentState.validate()) {
-                                        if (email != '' && password != '') {
-                                          if (ModalRoute.of(context) != null) {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    DoctorForm(
-                                                  email: email,
-                                                  password: password,
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                        }
-                                        //added because if the user return to this page
-                                        // without registeration loading will run without showing register
-                                        // page
-
-                                      }
+                              onPressed:
+                                  /*_isInternet
+                                  ?*/
+                                  () async {
+                                print(ModalRoute.of(context));
+                                if (_formKey.currentState.validate()) {
+                                  if (email != '' && password != '') {
+                                    if (ModalRoute.of(context) != null) {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => DoctorForm(
+                                            email: email,
+                                            password: password,
+                                          ),
+                                        ),
+                                      );
                                     }
-                                  : () {
+                                  }
+                                  //added because if the user return to this page
+                                  // without registeration loading will run without showing register
+                                  // page
+
+                                }
+                              }
+                              /*: () {
                                       SnackBar errorSnackBar = SnackBar(
                                         content: Text(
                                           AppLocalizations.of(context)
@@ -247,7 +248,8 @@ class _RegisterState extends State<Register> {
                                       );
                                       Scaffold.of(context)
                                           .showSnackBar(errorSnackBar);
-                                    },
+                                    }*/
+                              ,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(80.0)),
                               color: Colors.deepOrange,

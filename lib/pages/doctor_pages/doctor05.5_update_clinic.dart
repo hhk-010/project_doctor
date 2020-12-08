@@ -146,6 +146,12 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
     _ternaryToTime = TimeOfDay(hour: 12, minute: 0);
     currentVacationDays = '';
     workDays01 = [];
+    mainFromTimeString = '';
+    mainToTimeString = '';
+    secondaryFromTimeString = '';
+    secondaryToTimeString = '';
+    ternaryFromTimeString = '';
+    ternaryToTimeString = '';
     while (_x >= 0) {
       setState(() {
         worksDays[_x] = false;

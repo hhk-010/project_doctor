@@ -224,6 +224,9 @@ class _UpdateMapState extends State<UpdateMap> {
                           });
                           print(_kmDistance);
                           if (_kmDistance < 100) {
+                            setState(() {
+                              Empty.isEmpty = false;
+                            });
                             await DatabaseService(
                                     uid: FirebaseAuth.instance.currentUser.uid)
                                 .updateUserData(
@@ -239,7 +242,6 @@ class _UpdateMapState extends State<UpdateMap> {
                                     DataFromProfiletoUpdate.workDays03);
                             setState(() {
                               isloading = false;
-                              Empty.isEmpty = false;
                             });
                             int count = 0;
                             Navigator.popUntil(context, (route) {

@@ -23,7 +23,7 @@ class AboutUS extends StatelessWidget {
       double techIconSize;
 
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBar =  25;
+        appBar = 25;
         appBarHeight = 50;
         containerHeight = displayHeight(context) * 0.85;
         containerWidth = displayWidth(context) * 0.85;
@@ -58,7 +58,8 @@ class AboutUS extends StatelessWidget {
                 fit: BoxFit.fitWidth,
                 child: Text(
                   AppLocalizations.of(context).translate('about_us'),
-                  style: TextStyle(fontSize: appBar, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: appBar, fontWeight: FontWeight.bold),
                 ),
               ),
               centerTitle: true,
@@ -88,7 +89,8 @@ class AboutUS extends StatelessWidget {
                         Center(
                           child: Text(
                             'Purpose',
-                            style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: title, fontWeight: FontWeight.bold),
                           ),
                         ),
                         SizedBox(
@@ -99,9 +101,11 @@ class AboutUS extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "This app is made with the purpose of simplifying process of choosing the right doctor for the patient's Complain.",
+                              "This app is made with the purpose of simplifying process of choosing the right doctor for the patient's Complaint.",
                               textAlign: TextAlign.justify,
-                              style: TextStyle(fontSize: subTitle, fontWeight: FontWeight.normal),
+                              style: TextStyle(
+                                  fontSize: subTitle,
+                                  fontWeight: FontWeight.normal),
                             ),
                           ),
                         ),
@@ -111,7 +115,8 @@ class AboutUS extends StatelessWidget {
                         Center(
                           child: Text(
                             'Developers',
-                            style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: title, fontWeight: FontWeight.bold),
                           ),
                         ),
                         SizedBox(
@@ -127,11 +132,14 @@ class AboutUS extends StatelessWidget {
                                   leading: CircleAvatar(
                                     backgroundColor: Colors.grey[200],
                                     radius: avatarRadius,
-                                    backgroundImage: AssetImage('assets/images/ahmed.png'),
+                                    backgroundImage:
+                                        AssetImage('assets/images/ahmed.png'),
                                   ),
                                   title: Text(
                                     'A K',
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: title),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: title),
                                   ),
                                   subtitle: RichText(
                                     text: TextSpan(
@@ -139,10 +147,17 @@ class AboutUS extends StatelessWidget {
                                           fontSize: subTitle,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.indigoAccent,
-                                          fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+                                          fontFamily: lang == 'ar'
+                                              ? 'noto_arabic'
+                                              : 'Helvetica'),
                                       children: <TextSpan>[
-                                        TextSpan(text: 'M.B.CH.B\n', style: TextStyle(color: Colors.redAccent)),
-                                        TextSpan(text: 'Programmer', style: TextStyle()),
+                                        TextSpan(
+                                            text: 'M.B.CH.B\n',
+                                            style: TextStyle(
+                                                color: Colors.redAccent)),
+                                        TextSpan(
+                                            text: 'Programmer',
+                                            style: TextStyle()),
                                       ],
                                     ),
                                   ),
@@ -157,11 +172,14 @@ class AboutUS extends StatelessWidget {
                                   leading: CircleAvatar(
                                     backgroundColor: Colors.grey[200],
                                     radius: avatarRadius,
-                                    backgroundImage: AssetImage('assets/images/hhk.png'),
+                                    backgroundImage:
+                                        AssetImage('assets/images/hhk.png'),
                                   ),
                                   title: Text(
                                     'H H K',
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: title),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: title),
                                   ),
                                   subtitle: RichText(
                                     text: TextSpan(
@@ -169,10 +187,17 @@ class AboutUS extends StatelessWidget {
                                           fontSize: subTitle,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.indigoAccent,
-                                          fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+                                          fontFamily: lang == 'ar'
+                                              ? 'noto_arabic'
+                                              : 'Helvetica'),
                                       children: <TextSpan>[
-                                        TextSpan(text: 'M.B.CH.B\n', style: TextStyle(color: Colors.redAccent)),
-                                        TextSpan(text: 'Programmer', style: TextStyle()),
+                                        TextSpan(
+                                            text: 'M.B.CH.B\n',
+                                            style: TextStyle(
+                                                color: Colors.redAccent)),
+                                        TextSpan(
+                                            text: 'Programmer',
+                                            style: TextStyle()),
                                       ],
                                     ),
                                   ),
@@ -188,7 +213,9 @@ class AboutUS extends StatelessWidget {
                           child: Text(
                             'This app is developed using the following technologies:',
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: subTitle, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: subTitle,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                         SizedBox(
@@ -206,21 +233,24 @@ class AboutUS extends StatelessWidget {
                                   height: techIconSize,
                                   width: techIconSize,
                                   child: Image(
-                                    image: AssetImage('assets/images/windows.png'),
+                                    image:
+                                        AssetImage('assets/images/windows.png'),
                                   ),
                                 ),
                                 SizedBox(
                                   height: techIconSize,
                                   width: techIconSize,
                                   child: Image(
-                                    image: AssetImage('assets/images/apple.png'),
+                                    image:
+                                        AssetImage('assets/images/apple.png'),
                                   ),
                                 ),
                                 SizedBox(
                                   height: techIconSize,
                                   width: techIconSize,
                                   child: Image(
-                                    image: AssetImage('assets/images/flutter.png'),
+                                    image:
+                                        AssetImage('assets/images/flutter.png'),
                                   ),
                                 ),
                                 SizedBox(
@@ -234,21 +264,24 @@ class AboutUS extends StatelessWidget {
                                   height: techIconSize,
                                   width: techIconSize,
                                   child: Image(
-                                    image: AssetImage('assets/images/VScode.png'),
+                                    image:
+                                        AssetImage('assets/images/VScode.png'),
                                   ),
                                 ),
                                 SizedBox(
                                   height: techIconSize,
                                   width: techIconSize,
                                   child: Image(
-                                    image: AssetImage('assets/images/firebase.png'),
+                                    image: AssetImage(
+                                        'assets/images/firebase.png'),
                                   ),
                                 ),
                                 SizedBox(
                                   height: techIconSize,
                                   width: techIconSize,
                                   child: Image(
-                                    image: AssetImage('assets/images/google_map.png'),
+                                    image: AssetImage(
+                                        'assets/images/google_map.png'),
                                   ),
                                 ),
                               ],
@@ -268,7 +301,6 @@ class AboutUS extends StatelessWidget {
                         '© 2020 Cura Team. All Rights Reserved.',
                         style: TextStyle(fontSize: footer),
                       ),
-                      
                     ],
                   )
                 ],

@@ -167,6 +167,12 @@ class _ClinicFormState extends State<ClinicForm> {
     _secondaryToTime = TimeOfDay(hour: 12, minute: 0);
     _ternaryFromTime = TimeOfDay.now();
     _ternaryToTime = TimeOfDay(hour: 12, minute: 0);
+    mainFromTimeString = '';
+    mainToTimeString = '';
+    secondaryFromTimeString = '';
+    secondaryToTimeString = '';
+    ternaryFromTimeString = '';
+    ternaryToTimeString = '';
     workDays01 = [];
     currentWorkDays = '';
     while (_x >= 0) {
