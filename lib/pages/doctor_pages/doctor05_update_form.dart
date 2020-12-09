@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/services.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_clinic.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -255,6 +256,9 @@ class _UpdateinfoState extends State<Updateinfo> {
                     TextFormField(
                         onChanged: (val) => setState(() => phonenumber = val),
                         keyboardType: TextInputType.phone,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp('[0-9.,]')),
+                        ],
                         decoration: textInputdecoration.copyWith(
                           hintText: AppLocalizations.of(context).translate('phoneNumber'),
                           labelText: AppLocalizations.of(context).translate('phoneNumber'),
