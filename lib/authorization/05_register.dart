@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
@@ -25,7 +24,9 @@ class _RegisterState extends State<Register> {
   bool _passwordVisible = false;
 
   // check internet connection
+  // ignore: unused_field
   bool _isInternet = true;
+
   checkInternet() async {
     try {
       final response = await InternetAddress.lookup('google.com');
