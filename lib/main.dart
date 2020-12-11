@@ -5,9 +5,11 @@ import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/pages/about_us.dart';
+import 'package:project_doctor/pages/doctor_pages/delete_doctor.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor07_update_password.dart';
+import 'package:project_doctor/pages/doctor_pages/validate_user.dart';
 import 'package:project_doctor/pages/last_searched/Profile.dart';
 import 'package:project_doctor/pages/patient_pages/patient02.5_speciality_result.dart';
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
@@ -140,7 +142,7 @@ class _MyAppState extends State<MyApp> {
             '/update_password': (context) => UpdatePassword(),
             '/last_searched_profile': (context) => LastSearchedDoctor(),
             '/questions': (context) => QuestionsWidget(),
-            //'/phone': (context) => Phone(),
+            '/pre_delete': (context) => PreDeleteUser(),
           },
         ),
       );

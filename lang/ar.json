@@ -165,8 +165,9 @@
     "expcetion_days" : "حدد ايام بأوقات اخرى",
     "select_days" : "اختر اليوم",
     "time_availability" : "اوقات التواجد",
-
-
+    "predelete_password":"ادخل كلمة المرور",
+    "delete":"حذف",
+    "delete_user":"حذف المستخدم",
 
 "specialities" : "=======================================",
     "Cardiologist" : "قلبيه",

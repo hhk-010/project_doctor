@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project_doctor/services/data_model.dart';
+import 'package:project_doctor/services/database.dart';
 import 'auth_exception_handling.dart';
 
 class AuthService {
@@ -16,7 +17,8 @@ class AuthService {
 
   Future signInWithEmailAndPassword(String email, String password) async {
     try {
-      UserCredential authResult = await _auth.signInWithEmailAndPassword(email: email, password: password);
+      UserCredential authResult = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       User user = authResult.user;
       if (authResult.user != null) {
         _status = AuthResultStatus.successful;
@@ -38,7 +40,8 @@ class AuthService {
     String password,
   ) async {
     try {
-      UserCredential authResult = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      UserCredential authResult = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
       User user = authResult.user;
       // create a new document for the user with the id
       await user.sendEmailVerification();
@@ -82,9 +85,11 @@ class AuthService {
 
   Future<bool> validatepass(String pass) async {
     User user = _auth.currentUser;
-    AuthCredential credentials = EmailAuthProvider.credential(email: user.email, password: pass);
+    AuthCredential credentials =
+        EmailAuthProvider.credential(email: user.email, password: pass);
     try {
-      UserCredential cred = await user.reauthenticateWithCredential(credentials);
+      UserCredential cred =
+          await user.reauthenticateWithCredential(credentials);
       return cred.user != null;
     } catch (e) {
       print(e);
@@ -96,4 +101,24 @@ class AuthService {
     User user = FirebaseAuth.instance.currentUser;
     user.updatePassword(password);
   }
+
+  //============delete user===============
+  Future deleteUser(String email, String password) async {
+    try {
+      User user = await _auth.currentUser;
+      AuthCredential credentials =
+          EmailAuthProvider.credential(email: email, password: password);
+      print(user);
+      UserCredential result =
+          await user.reauthenticateWithCredential(credentials);
+      await DatabaseService(uid: result.user.uid)
+          .deleteuser(); // called from database class
+      await result.user.delete();
+      return true;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+  //===============end====================
 }

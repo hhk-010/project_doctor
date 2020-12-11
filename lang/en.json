@@ -167,6 +167,9 @@
     "expcetion_days" : "Days with other timing",
     "select_days" : "Select the day",
     "time_availability" : "Time Availability",
+    "predelete_password":"Enter password",
+    "delete":"delete",
+    "delete_user":"Delete account",
     
 
     
