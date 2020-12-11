@@ -120,7 +120,8 @@ class _UpdateMapState extends State<UpdateMap> {
     if (basicDatabase != null) {
       for (var x in basicDatabase.docs) {
         if (DataFromProfiletoUpdate.name == x.data()['n'] &&
-            DataFromProfiletoUpdate.speciality == x.data()['s']) {
+            DataFromProfiletoUpdate.speciality == x.data()['s'] &&
+            DataFromProfiletoUpdate.province == x.data()['c']) {
           _lt = x.data()['lt'];
           _lg = x.data()['lg'];
         }
@@ -279,7 +280,7 @@ class DataFromProfiletoUpdate {
   static String phoneNumber = '';
   static String province = '';
   static String address = '';
-  static List<String> workDays01 = [];
-  static List<String> workDays02 = [];
-  static List<String> workDays03 = [];
+  static List workDays01 = [];
+  static List workDays02 = [];
+  static List workDays03 = [];
 }

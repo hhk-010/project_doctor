@@ -29,31 +29,97 @@ class _UpdateinfoState extends State<Updateinfo> {
 
     final specialities = {
       "1": [AppLocalizations.of(context).translate('Internist'), 'Internist'],
-      "2": [AppLocalizations.of(context).translate('Pediatrician'), 'Pediatrician'],
-      "3": [AppLocalizations.of(context).translate('Cardiologist'), 'Cardiologist'],
-      "4": [AppLocalizations.of(context).translate('Pulmonologist'), 'Pulmonologist'],
-      "5": [AppLocalizations.of(context).translate('Endocrinologist'), 'Endocrinologist'],
-      "6": [AppLocalizations.of(context).translate('Enterologist'), 'Enterologist'],
-      "7": [AppLocalizations.of(context).translate('Neurologist'), 'Neurologist'],
-      "8": [AppLocalizations.of(context).translate('Neurosurgeon'), 'Neurosurgeon'],
-      "9": [AppLocalizations.of(context).translate('Heamatologist'), 'Heamatologist'],
-      "10": [AppLocalizations.of(context).translate('Nephrologist'), 'Nephrologist'],
-      "11": [AppLocalizations.of(context).translate('Rheumatologist'), 'Rheumatologist'],
-      "12": [AppLocalizations.of(context).translate('Emergency physician'), 'Emergency physician'],
-      "13": [AppLocalizations.of(context).translate('Dermatologist'), 'Dermatologist'],
-      "14": [AppLocalizations.of(context).translate('Psychiatrist'), 'Psychiatrist'],
-      "15": [AppLocalizations.of(context).translate('Gynecologist'), 'Gynecologist'],
-      "16": [AppLocalizations.of(context).translate('General Surgeon'), 'General Surgeon'],
-      "17": [AppLocalizations.of(context).translate('Pediatric Surgeon'), 'Pediatric Surgeon'],
-      "18": [AppLocalizations.of(context).translate('ThoracoVascular Surgeon'), 'ThoracoVascular Surgeon'],
-      "19": [AppLocalizations.of(context).translate('Orthopaedic Surgeon'), 'Orthopaedic Surgeon'],
-      "20": [AppLocalizations.of(context).translate('Urosurgeon'), 'Urosurgeon'],
-      "21": [AppLocalizations.of(context).translate('Plastic Surgeon'), 'Plastic Surgeon'],
-      "22": [AppLocalizations.of(context).translate('Ophthalmologist'), 'Ophthalmologist'],
-      "23": [AppLocalizations.of(context).translate('Laryngologist'), 'Laryngologist'],
+      "2": [
+        AppLocalizations.of(context).translate('Pediatrician'),
+        'Pediatrician'
+      ],
+      "3": [
+        AppLocalizations.of(context).translate('Cardiologist'),
+        'Cardiologist'
+      ],
+      "4": [
+        AppLocalizations.of(context).translate('Pulmonologist'),
+        'Pulmonologist'
+      ],
+      "5": [
+        AppLocalizations.of(context).translate('Endocrinologist'),
+        'Endocrinologist'
+      ],
+      "6": [
+        AppLocalizations.of(context).translate('Enterologist'),
+        'Enterologist'
+      ],
+      "7": [
+        AppLocalizations.of(context).translate('Neurologist'),
+        'Neurologist'
+      ],
+      "8": [
+        AppLocalizations.of(context).translate('Neurosurgeon'),
+        'Neurosurgeon'
+      ],
+      "9": [
+        AppLocalizations.of(context).translate('Heamatologist'),
+        'Heamatologist'
+      ],
+      "10": [
+        AppLocalizations.of(context).translate('Nephrologist'),
+        'Nephrologist'
+      ],
+      "11": [
+        AppLocalizations.of(context).translate('Rheumatologist'),
+        'Rheumatologist'
+      ],
+      "12": [
+        AppLocalizations.of(context).translate('Emergency physician'),
+        'Emergency physician'
+      ],
+      "13": [
+        AppLocalizations.of(context).translate('Dermatologist'),
+        'Dermatologist'
+      ],
+      "14": [
+        AppLocalizations.of(context).translate('Psychiatrist'),
+        'Psychiatrist'
+      ],
+      "15": [
+        AppLocalizations.of(context).translate('Gynecologist'),
+        'Gynecologist'
+      ],
+      "16": [
+        AppLocalizations.of(context).translate('General Surgeon'),
+        'General Surgeon'
+      ],
+      "17": [
+        AppLocalizations.of(context).translate('Pediatric Surgeon'),
+        'Pediatric Surgeon'
+      ],
+      "18": [
+        AppLocalizations.of(context).translate('ThoracoVascular Surgeon'),
+        'ThoracoVascular Surgeon'
+      ],
+      "19": [
+        AppLocalizations.of(context).translate('Orthopaedic Surgeon'),
+        'Orthopaedic Surgeon'
+      ],
+      "20": [
+        AppLocalizations.of(context).translate('Urosurgeon'),
+        'Urosurgeon'
+      ],
+      "21": [
+        AppLocalizations.of(context).translate('Plastic Surgeon'),
+        'Plastic Surgeon'
+      ],
+      "22": [
+        AppLocalizations.of(context).translate('Ophthalmologist'),
+        'Ophthalmologist'
+      ],
+      "23": [
+        AppLocalizations.of(context).translate('Laryngologist'),
+        'Laryngologist'
+      ],
     };
     final province = {
-      "1": [
+      /*"1": [
         'Baghdad',
         AppLocalizations.of(context).translate('Baghdad'),
       ],
@@ -72,7 +138,52 @@ class _UpdateinfoState extends State<Updateinfo> {
       "5": [
         'Middle Region',
         AppLocalizations.of(context).translate("Middle Region"),
+      ],*/
+      "1": [
+        "Erbil",
+        AppLocalizations.of(context).translate("Erbil"),
       ],
+      "2": [
+        "Al Anbar",
+        AppLocalizations.of(context).translate("Al Anbar"),
+      ],
+      "3": [
+        "Basra",
+        AppLocalizations.of(context).translate("Basra"),
+      ],
+      "4": [
+        "Al Qadisiyyah",
+        AppLocalizations.of(context).translate("Al Qadisiyyah"),
+      ],
+      "5": [
+        "Muthanna",
+        AppLocalizations.of(context).translate("Muthanna"),
+      ],
+      "6": [
+        "Najaf",
+        AppLocalizations.of(context).translate("Najaf"),
+      ],
+      "7": [
+        "Babil",
+        AppLocalizations.of(context).translate("Babil"),
+      ],
+      "8": [
+        'Baghdad',
+        AppLocalizations.of(context).translate('Baghdad'),
+      ],
+      "9": ["Duhok", AppLocalizations.of(context).translate("Duhok")],
+      "10": ["Diyala", AppLocalizations.of(context).translate("Diyala")],
+      "11": ["Dhi Qar", AppLocalizations.of(context).translate("Dhi Qar")],
+      "12": [
+        "Sulaymaniyah",
+        AppLocalizations.of(context).translate("Sulaymaniyah")
+      ],
+      "13": ["Saladin", AppLocalizations.of(context).translate("Saladin")],
+      "14": ["Karbala", AppLocalizations.of(context).translate("Karbala")],
+      "15": ["Kirkuk", AppLocalizations.of(context).translate("Kirkuk")],
+      "16": ["Maysan", AppLocalizations.of(context).translate("Maysan")],
+      "17": ["Nineveh", AppLocalizations.of(context).translate("Nineveh")],
+      "18": ["Wasit", AppLocalizations.of(context).translate("Wasit")],
     };
 
     return ResponsiveBuilder(builder: (context, sizingInformation) {
@@ -117,7 +228,8 @@ class _UpdateinfoState extends State<Updateinfo> {
               fit: BoxFit.fitWidth,
               child: Text(
                 AppLocalizations.of(context).translate('update_info'),
-                style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: appBarTitle, fontWeight: FontWeight.bold),
               ),
             ),
             centerTitle: true,
@@ -137,11 +249,17 @@ class _UpdateinfoState extends State<Updateinfo> {
                       textDirection: TextDirection.rtl,
                       child: TextFormField(
                         decoration: textInputdecoration.copyWith(
-                            hintText: AppLocalizations.of(context).translate('name'), labelText: AppLocalizations.of(context).translate('name')),
+                            hintText:
+                                AppLocalizations.of(context).translate('name'),
+                            labelText:
+                                AppLocalizations.of(context).translate('name')),
                         onChanged: (val) {
                           name = val;
                         },
-                        validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('name_validator') : null,
+                        validator: (val) => val.isEmpty
+                            ? AppLocalizations.of(context)
+                                .translate('name_validator')
+                            : null,
                       ),
                     ),
                     Spacer(),
@@ -249,7 +367,10 @@ class _UpdateinfoState extends State<Updateinfo> {
                           child: Text(specialities["23"][0]),
                         )
                       ],
-                      validator: (value) => value == null ? AppLocalizations.of(context).translate('speciality_validator') : null,
+                      validator: (value) => value == null
+                          ? AppLocalizations.of(context)
+                              .translate('speciality_validator')
+                          : null,
                       onChanged: (val) => setState(() => speciality = val),
                     ),
                     Spacer(),
@@ -260,11 +381,15 @@ class _UpdateinfoState extends State<Updateinfo> {
                           FilteringTextInputFormatter.allow(RegExp('[0-9.,]')),
                         ],
                         decoration: textInputdecoration.copyWith(
-                          hintText: AppLocalizations.of(context).translate('phoneNumber'),
-                          labelText: AppLocalizations.of(context).translate('phoneNumber'),
+                          hintText: AppLocalizations.of(context)
+                              .translate('phoneNumber'),
+                          labelText: AppLocalizations.of(context)
+                              .translate('phoneNumber'),
                         ),
-                        validator: (val) =>
-                            val.length < 11 && val.length > 11 ? AppLocalizations.of(context).translate('phoneNumber_validator') : null),
+                        validator: (val) => val.length < 11 && val.length > 11
+                            ? AppLocalizations.of(context)
+                                .translate('phoneNumber_validator')
+                            : null),
                     Spacer(),
                     DropdownButtonFormField<String>(
                       isDense: false,
@@ -297,8 +422,61 @@ class _UpdateinfoState extends State<Updateinfo> {
                           value: province["5"][0],
                           child: Text(province["5"][1]),
                         ),
+                        DropdownMenuItem(
+                          value: province["6"][0],
+                          child: Text(province["6"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["7"][0],
+                          child: Text(province["7"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["8"][0],
+                          child: Text(province["8"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["9"][0],
+                          child: Text(province["9"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["10"][0],
+                          child: Text(province["10"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["11"][0],
+                          child: Text(province["11"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["12"][0],
+                          child: Text(province["12"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["13"][0],
+                          child: Text(province["13"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["14"][0],
+                          child: Text(province["14"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["15"][0],
+                          child: Text(province["15"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["16"][0],
+                          child: Text(province["16"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["17"][0],
+                          child: Text(province["17"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["18"][0],
+                          child: Text(province["18"][1]),
+                        ),
                       ],
-                      validator: (value) => value == null ? 'Select your province' : null,
+                      validator: (value) =>
+                          value == null ? 'Select your province' : null,
                       onChanged: (val) => setState(() => _province = val),
                     ),
                     Spacer(
@@ -307,8 +485,10 @@ class _UpdateinfoState extends State<Updateinfo> {
                     Row(
                       children: [
                         Text(
-                          AppLocalizations.of(context).translate('finish_update'),
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: footer),
+                          AppLocalizations.of(context)
+                              .translate('finish_update'),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: footer),
                         ),
                         Icon(
                           Icons.arrow_downward,
@@ -328,12 +508,13 @@ class _UpdateinfoState extends State<Updateinfo> {
                           Icons.arrow_forward,
                           color: Colors.white,
                         ),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80.0)),
                         onPressed: () {
                           if (_formkey.currentState.validate()) {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => UpdateInfo2(
+                                builder: (context) => GrandUpdateInfo2(
                                   name: name,
                                   speciality: speciality,
                                   phoneNumber: phonenumber,
@@ -345,7 +526,10 @@ class _UpdateinfoState extends State<Updateinfo> {
                         },
                         label: Text(
                           AppLocalizations.of(context).translate('next'),
-                          style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: title,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -360,7 +544,8 @@ class _UpdateinfoState extends State<Updateinfo> {
                       onTap: () {
                         print(speciality);
                         print(_province);
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => UpdatePassword()));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => UpdatePassword()));
                       },
                       child: RichText(
                         text: TextSpan(
@@ -368,13 +553,20 @@ class _UpdateinfoState extends State<Updateinfo> {
                           style: TextStyle(
                             fontSize: footer,
                             color: Colors.black,
-                            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
+                            fontFamily:
+                                lang == 'ar' ? 'noto_arabic' : 'Helvetica',
                           ),
                           children: <TextSpan>[
-                            TextSpan(text: AppLocalizations.of(context).translate('change_password')),
                             TextSpan(
-                                text: " " + AppLocalizations.of(context).translate('change'),
-                                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
+                                text: AppLocalizations.of(context)
+                                    .translate('change_password')),
+                            TextSpan(
+                                text: " " +
+                                    AppLocalizations.of(context)
+                                        .translate('change'),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.red)),
                           ],
                         ),
                       ),

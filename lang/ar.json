@@ -23,6 +23,25 @@
     "Southern Region":"المنطقة الجنوبية في العراق",
     "Western Region":"المنطقة الغربية في العراق",
     "Middle Region":"المنطقة الوسطى في العراق",
+    "Al Anbar":"الانبار",
+    "Babil":"بابل",
+    "Basra":"البصرة",
+    "Dhi Qar":"ذي قار",
+    "Al Qadisiyyah":"القادسية",
+    "Diyala":"ديالى",
+    "Duhok":"دهوك",
+    "Erbil":"اربيل",
+    "Karbala":"كربلاء",
+    "Kirkuk":"كركوك",
+    "Maysan":"ميسان",
+    "Muthanna":"المثنى",
+    "Najaf":"النجف",
+    "Nineveh":"نينوى",
+    "Saladin":"صلاح الدين",
+    "Sulaymaniyah":"السليمانية",
+    "Wasit":"واسط",
+
+
 
 "weekdays" : "----------------------------",
     "sun" : "ح",
@@ -84,6 +103,7 @@
     "choose 2nd exception day":"حدد اليوم المستثنى الثاني",
     "choose 2nd exception time":"حدد وفت العمل في اليوم المستثنى الثاني",
     "reasign_days":"اعد تحديد ايام العمل",
+    "already_registered":"عذرا , تم تسجيلك مسبقا",
 
 "doctor_page" : "=======================================",
     "home_title" : "اهلا بك في كيورا",
@@ -145,8 +165,9 @@
     "expcetion_days" : "حدد ايام بأوقات اخرى",
     "select_days" : "اختر اليوم",
     "time_availability" : "اوقات التواجد",
-
-
+    "predelete_password":"ادخل كلمة المرور",
+    "delete":"حذف",
+    "delete_user":"حذف المستخدم",
 
 "specialities" : "=======================================",
     "Cardiologist" : "قلبيه",

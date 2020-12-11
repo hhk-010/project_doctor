@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:project_doctor/authorization/03_pre_mcqs.dart';
 import 'package:project_doctor/authorization/04_mcqs_new.dart';
 import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/pages/about_us.dart';
+import 'package:project_doctor/pages/doctor_pages/delete_doctor.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor07_update_password.dart';
+import 'package:project_doctor/pages/doctor_pages/validate_user.dart';
 import 'package:project_doctor/pages/last_searched/Profile.dart';
 import 'package:project_doctor/pages/patient_pages/patient02.5_speciality_result.dart';
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
@@ -77,7 +80,8 @@ class _MyAppState extends State<MyApp> {
       return GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+          if (!currentFocus.hasPrimaryFocus &&
+              currentFocus.focusedChild != null) {
             FocusManager.instance.primaryFocus.unfocus();
           }
         },
@@ -88,7 +92,8 @@ class _MyAppState extends State<MyApp> {
           builder: (context, navigator) {
             var lang = Localizations.localeOf(context).languageCode;
             return Theme(
-              data: ThemeData(fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+              data: ThemeData(
+                  fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
               child: navigator,
             );
           },
@@ -108,7 +113,8 @@ class _MyAppState extends State<MyApp> {
           ],
           localeResolutionCallback: (deviceLocale, supportedLocales) {
             for (var locale in supportedLocales) {
-              if (locale.languageCode == deviceLocale.languageCode && locale.countryCode == deviceLocale.countryCode) {
+              if (locale.languageCode == deviceLocale.languageCode &&
+                  locale.countryCode == deviceLocale.countryCode) {
                 return deviceLocale;
               }
             }
@@ -136,6 +142,7 @@ class _MyAppState extends State<MyApp> {
             '/update_password': (context) => UpdatePassword(),
             '/last_searched_profile': (context) => LastSearchedDoctor(),
             '/questions': (context) => QuestionsWidget(),
+            '/pre_delete': (context) => PreDeleteUser(),
           },
         ),
       );

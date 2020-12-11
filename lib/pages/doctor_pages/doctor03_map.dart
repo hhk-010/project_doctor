@@ -41,12 +41,13 @@ class _DocMapState extends State<DocMap> {
   bool loading = false;
   @override
   Widget build(BuildContext context) {
-    return loading
+    return /*loading
         ? Loading()
-        : StreamProvider<QuerySnapshot>.value(
-            value: DatabaseService().basicData,
-            child: FinalMap(),
-          );
+        :*/
+        StreamProvider<QuerySnapshot>.value(
+      value: DatabaseService().basicData,
+      child: FinalMap(),
+    );
   }
 }
 
@@ -231,7 +232,8 @@ class _FinalMapState extends State<FinalMap> {
     if (basicData != null) {
       for (var x in basicData.docs) {
         if (DataFromMaptoVerify.name == x.data()['n'] &&
-            DataFromMaptoVerify.speciality == x.data()['s']) {
+            DataFromMaptoVerify.speciality == x.data()['s'] &&
+            DataFromMaptoVerify.province == x.data()['c']) {
           lt = x.data()['lt'];
           lg = x.data()['lg'];
         }

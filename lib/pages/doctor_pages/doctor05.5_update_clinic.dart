@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor06_update_map.dart';
 import 'package:project_doctor/services/app_localizations.dart';
+import 'package:project_doctor/services/database.dart';
+import 'package:provider/provider.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
@@ -10,6 +13,42 @@ import 'package:project_doctor/ui/sizing_information.dart';
 class ClinicDay {
   static String day1;
   static String day2;
+}
+
+class GrandUpdateInfo2 extends StatefulWidget {
+  final String name;
+  final String speciality;
+  final String phoneNumber;
+  final String province;
+  GrandUpdateInfo2(
+      {this.name, this.speciality, this.phoneNumber, this.province});
+  @override
+  _GrandUpdateInfo2State createState() => _GrandUpdateInfo2State(
+      name: name,
+      speciality: speciality,
+      phoneNumber: phoneNumber,
+      province: province);
+}
+
+class _GrandUpdateInfo2State extends State<GrandUpdateInfo2> {
+  final String name;
+  final String speciality;
+  final String phoneNumber;
+  final String province;
+  _GrandUpdateInfo2State(
+      {this.name, this.speciality, this.phoneNumber, this.province});
+  @override
+  Widget build(BuildContext context) {
+    return StreamProvider<QuerySnapshot>.value(
+      value: DatabaseService().doctorDataProfileStream,
+      child: UpdateInfo2(
+        name: name,
+        speciality: speciality,
+        phoneNumber: phoneNumber,
+        province: province,
+      ),
+    );
+  }
 }
 
 class UpdateInfo2 extends StatefulWidget {
@@ -135,6 +174,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
 
 //--x is workdays list counter-----
   int _x = 6;
+//===bool to check wether the doctor is registered or not==
+  bool registered = false;
   @override
   void initState() {
     super.initState();
@@ -158,6 +199,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       });
       _x -= 1;
     }
+    registered = false;
   }
 
   final _formkey = GlobalKey<FormState>();
@@ -227,7 +269,19 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
 
     final locale = Localizations.localeOf(context);
     final textDirection = getTextDirection(locale);
-
+//====to check wether te doctor is alrady registered or not===
+    final doctorDoc = Provider.of<QuerySnapshot>(context);
+    if (doctorDoc != null) {
+      for (var x in doctorDoc.docs) {
+        if (name == x.data()['name'] &&
+            speciality == x.data()['speciality'] &&
+            province == x.data()['province']) {
+          setState(() {
+            registered = true;
+          });
+        }
+      }
+    }
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       double appBarTitle;
       double appBarHeight;
@@ -899,40 +953,49 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                       (e1.isEmpty && t1.isEmpty)) &&
                                   ((e2.isNotEmpty && t2.isNotEmpty) ||
                                       (e2.isEmpty && t2.isEmpty))) {
-                                setState(() {
-                                  if (workDays01[workDays01.length - 1].length <
-                                      11) {
-                                    workDays01.add(mainWorkingHours);
-                                  } else {
-                                    workDays01.remove(
-                                        workDays01[workDays01.length - 1]);
-                                    workDays01.add(mainWorkingHours);
-                                  }
-                                  makeMePass = false;
-                                });
-                                setState(() {
-                                  DataFromProfiletoUpdate.name = name;
-                                  DataFromProfiletoUpdate.speciality =
-                                      speciality;
-                                  DataFromProfiletoUpdate.phoneNumber =
-                                      phoneNumber;
-                                  DataFromProfiletoUpdate.province = province;
-                                  DataFromProfiletoUpdate.address = address;
-                                  DataFromProfiletoUpdate.workDays01 =
-                                      List<String>.from(workDays01);
-                                  DataFromProfiletoUpdate.workDays02 =
-                                      List<String>.from(workDays0);
-                                  DataFromProfiletoUpdate.workDays03 =
-                                      List<String>.from(workDays03);
-                                });
-                                print(workDays01);
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => MainUpdateMap(),
-                                  ),
-                                );
-                                mainfrom = false;
-                                mainto = false;
+                                if (!registered) {
+                                  setState(() {
+                                    if (workDays01[workDays01.length - 1]
+                                            .length <
+                                        11) {
+                                      workDays01.add(mainWorkingHours);
+                                    } else {
+                                      workDays01.remove(
+                                          workDays01[workDays01.length - 1]);
+                                      workDays01.add(mainWorkingHours);
+                                    }
+                                    makeMePass = false;
+                                  });
+                                  setState(() {
+                                    DataFromProfiletoUpdate.name = name;
+                                    DataFromProfiletoUpdate.speciality =
+                                        speciality;
+                                    DataFromProfiletoUpdate.phoneNumber =
+                                        phoneNumber;
+                                    DataFromProfiletoUpdate.province = province;
+                                    DataFromProfiletoUpdate.address = address;
+                                    DataFromProfiletoUpdate.workDays01 =
+                                        List<String>.from(workDays01);
+                                    DataFromProfiletoUpdate.workDays02 =
+                                        List<String>.from(workDays0);
+                                    DataFromProfiletoUpdate.workDays03 =
+                                        List<String>.from(workDays03);
+                                  });
+                                  print(workDays01);
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => MainUpdateMap(),
+                                    ),
+                                  );
+                                  mainfrom = false;
+                                  mainto = false;
+                                } else if (registered) {
+                                  setState(() {
+                                    _error = AppLocalizations.of(context)
+                                        .translate('already_registered');
+                                  });
+                                  _showSnackBar();
+                                }
                               } else if (currentVacationDays == '') {
                                 _error = AppLocalizations.of(context)
                                     .translate('selectmaindays');

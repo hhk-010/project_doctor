@@ -47,6 +47,12 @@ class DatabaseService {
     );
   }
 
+  //========delete user=======
+  Future deleteuser() {
+    return userCollection.doc(uid).delete();
+  }
+
+  //===========end============
   // stream to get userdata from a snapshot and map it to a model data.
   Stream<QuerySnapshot> get doctorDataProfileStream {
     return userCollection.snapshots();

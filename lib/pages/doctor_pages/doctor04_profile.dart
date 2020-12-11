@@ -95,6 +95,13 @@ class _DoctorProfileState extends State<DoctorProfile> {
               elevation: 0,
               actions: [
                 IconButton(
+                  icon: Icon(Icons.person_remove),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/pre_delete');
+                  },
+                  color: Colors.blueAccent,
+                ),
+                IconButton(
                   icon: Icon(
                     //i changed it because it is not defined on my device
                     Icons.logout,
@@ -111,7 +118,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       _showSnackBar();
                     }
                   },
-                )
+                ),
               ],
             ),
           ),
