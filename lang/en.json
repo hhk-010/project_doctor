@@ -62,9 +62,6 @@
     "AM":"AM",
     "PM":"PM",
 
- 
-
-
 "email verification page":"=========================",
     "email_v_title":"Email Confirmation", 
     "email_sent":"We Sent an Email to: ",
@@ -577,11 +574,5 @@
     "breast lump":"Breast lump",
     "breast skin lesion":"Breast skin lesion",
     "other breast problems":"Other breast problems"
-
-
-
-
-
-
 
 }
