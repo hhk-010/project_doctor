@@ -105,7 +105,7 @@ class AuthService {
   //============delete user===============
   Future deleteUser(String email, String password) async {
     try {
-      User user = await _auth.currentUser;
+      User user = _auth.currentUser;
       AuthCredential credentials =
           EmailAuthProvider.credential(email: email, password: password);
       print(user);
