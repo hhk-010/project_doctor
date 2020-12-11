@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
+import 'package:project_doctor/services/database.dart';
+import 'package:provider/provider.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import 'dart:ui';
 import 'doctor03_map.dart';
@@ -11,6 +14,62 @@ import 'package:project_doctor/ui/sizing_information.dart';
 class ClinicDay {
   static String day1;
   static String day2;
+}
+
+class GrandClinicForm extends StatefulWidget {
+  final String email;
+  final String password;
+  final String name;
+  final String speciality;
+  final String phoneNumber;
+  final String province;
+  GrandClinicForm(
+      {this.email,
+      this.password,
+      this.name,
+      this.phoneNumber,
+      this.speciality,
+      this.province});
+  @override
+  _GrandClinicFormState createState() => _GrandClinicFormState(
+      email: email,
+      password: password,
+      name: name,
+      speciality: speciality,
+      phoneNumber: phoneNumber,
+      province: province);
+}
+
+class _GrandClinicFormState extends State<GrandClinicForm> {
+  String email;
+  String password;
+  String name;
+  String speciality;
+  String phoneNumber;
+  String province;
+  _GrandClinicFormState({
+    this.email,
+    this.password,
+    this.name,
+    this.speciality,
+    this.phoneNumber,
+    this.province,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamProvider<QuerySnapshot>.value(
+      value: DatabaseService().doctorDataProfileStream,
+      child: ClinicForm(
+        email: email,
+        password: password,
+        name: name,
+        speciality: speciality,
+        phoneNumber: phoneNumber,
+        province: province,
+      ),
+    );
+  }
 }
 
 class ClinicForm extends StatefulWidget {
@@ -158,6 +217,8 @@ class _ClinicFormState extends State<ClinicForm> {
 
   //---this variable is assigned to make workdays element false---
   int _x = 6;
+  //=======bool value to inspect wether the doctor is registered===
+  bool registered = false;
   @override
   void initState() {
     super.initState();
@@ -179,6 +240,7 @@ class _ClinicFormState extends State<ClinicForm> {
       workDays[_x] = false;
       _x -= 1;
     }
+    registered = false;
   }
 
   @override
@@ -243,6 +305,19 @@ class _ClinicFormState extends State<ClinicForm> {
     // final bloc = LocationProvider.of(context);
     final locale = Localizations.localeOf(context);
     final textDirection = getTextDirection(locale);
+    //=====to see wether the current user is registered already===
+    final doctorDocs = Provider.of<QuerySnapshot>(context);
+    if (doctorDocs != null) {
+      for (var x in doctorDocs.docs) {
+        if (name == x.data()['name'] &&
+            speciality == x.data()['speciality'] &&
+            province == x.data()['province']) {
+          setState(() {
+            registered = true;
+          });
+        }
+      }
+    }
 
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       double appBarTitle;
@@ -924,47 +999,58 @@ class _ClinicFormState extends State<ClinicForm> {
                                               (e1.isEmpty && t1.isEmpty)) &&
                                           ((e2.isNotEmpty && t2.isNotEmpty) ||
                                               (e2.isEmpty && t2.isEmpty))) {
-                                        setState(() {
-                                          if (workDays01[workDays01.length - 1]
-                                                  .length <
-                                              11) {
-                                            workDays01.add(mainWorkingHours);
-                                          } else {
-                                            workDays01.remove(workDays01[
-                                                workDays01.length - 1]);
-                                            workDays01.add(mainWorkingHours);
-                                          }
+                                        if (!registered) {
+                                          setState(() {
+                                            if (workDays01[
+                                                        workDays01.length - 1]
+                                                    .length <
+                                                11) {
+                                              workDays01.add(mainWorkingHours);
+                                            } else {
+                                              workDays01.remove(workDays01[
+                                                  workDays01.length - 1]);
+                                              workDays01.add(mainWorkingHours);
+                                            }
 
-                                          makeMePass = false;
-                                          print(workDays01);
-                                        });
-                                        mainfrom = false;
-                                        mainto = false;
-                                        setState(() {
-                                          DataFromMaptoVerify.email = email;
-                                          DataFromMaptoVerify.password =
-                                              password;
-                                          DataFromMaptoVerify.name = name;
-                                          DataFromMaptoVerify.speciality =
-                                              speciality;
-                                          DataFromMaptoVerify.phoneNumber =
-                                              phoneNumber;
-                                          DataFromMaptoVerify.province =
-                                              province;
-                                          DataFromMaptoVerify.address =
-                                              currentaddress;
-                                          DataFromMaptoVerify.workDays01 =
-                                              List<String>.from(workDays01);
-                                          DataFromMaptoVerify.workDays02 =
-                                              List<String>.from(workDays02);
-                                          DataFromMaptoVerify.workDays03 =
-                                              List<String>.from(workDays03);
-                                        });
-                                        await Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                            builder: (context) => DocMap(),
-                                          ),
-                                        );
+                                            makeMePass = false;
+                                            print(workDays01);
+                                          });
+                                          mainfrom = false;
+                                          mainto = false;
+                                          setState(() {
+                                            DataFromMaptoVerify.email = email;
+                                            DataFromMaptoVerify.password =
+                                                password;
+                                            DataFromMaptoVerify.name = name;
+                                            DataFromMaptoVerify.speciality =
+                                                speciality;
+                                            DataFromMaptoVerify.phoneNumber =
+                                                phoneNumber;
+                                            DataFromMaptoVerify.province =
+                                                province;
+                                            DataFromMaptoVerify.address =
+                                                currentaddress;
+                                            DataFromMaptoVerify.workDays01 =
+                                                List<String>.from(workDays01);
+                                            DataFromMaptoVerify.workDays02 =
+                                                List<String>.from(workDays02);
+                                            DataFromMaptoVerify.workDays03 =
+                                                List<String>.from(workDays03);
+                                          });
+                                          await Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) => DocMap(),
+                                            ),
+                                          );
+                                        } else if (registered) {
+                                          setState(() {
+                                            _error =
+                                                AppLocalizations.of(context)
+                                                    .translate(
+                                                        'already_registered');
+                                          });
+                                          _showSnackBar();
+                                        }
                                       } else if (currentWorkDays == '') {
                                         _error = AppLocalizations.of(context)
                                             .translate('selectmaindays');

@@ -514,7 +514,7 @@ class _DoctorFormState extends State<DoctorForm> {
                                   currentProvince != null) {
                                 await Navigator.of(context).push(
                                   MaterialPageRoute(
-                                    builder: (context) => ClinicForm(
+                                    builder: (context) => GrandClinicForm(
                                       email: email,
                                       password: password,
                                       name: currentName,

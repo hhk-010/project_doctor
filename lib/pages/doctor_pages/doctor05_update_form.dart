@@ -139,35 +139,35 @@ class _UpdateinfoState extends State<Updateinfo> {
         'Middle Region',
         AppLocalizations.of(context).translate("Middle Region"),
       ],*/
-      "2": [
+      "1": [
         "Erbil",
         AppLocalizations.of(context).translate("Erbil"),
       ],
-      "3": [
+      "2": [
         "Al Anbar",
         AppLocalizations.of(context).translate("Al Anbar"),
       ],
-      "4": [
+      "3": [
         "Basra",
         AppLocalizations.of(context).translate("Basra"),
       ],
-      "5": [
+      "4": [
         "Al Qadisiyyah",
         AppLocalizations.of(context).translate("Al Qadisiyyah"),
       ],
-      "6": [
+      "5": [
         "Muthanna",
         AppLocalizations.of(context).translate("Muthanna"),
       ],
-      "7": [
+      "6": [
         "Najaf",
         AppLocalizations.of(context).translate("Najaf"),
       ],
-      "8": [
+      "7": [
         "Babil",
         AppLocalizations.of(context).translate("Babil"),
       ],
-      "1": [
+      "8": [
         'Baghdad',
         AppLocalizations.of(context).translate('Baghdad'),
       ],
@@ -514,7 +514,7 @@ class _UpdateinfoState extends State<Updateinfo> {
                           if (_formkey.currentState.validate()) {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => UpdateInfo2(
+                                builder: (context) => GrandUpdateInfo2(
                                   name: name,
                                   speciality: speciality,
                                   phoneNumber: phonenumber,
