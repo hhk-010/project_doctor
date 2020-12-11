@@ -336,13 +336,7 @@ class _FinalMapState extends State<FinalMap> {
                           finalDistance = sqrt(finalResult);
                           kmDistance = finalDistance * 100;
                         });
-                        //========Navigation to EmailVerification without the following
-                        // condition is a bug(emails Already in use can navigate)
-                        //------ direct navigation to the emailverfied widget will
-                        // give a fake page (when pressing continue) it will not respond)
-                        // I found put wrapper and transferred email by another method
-                        //--------------at least 10 km away from bashar abbas---------------
-                        if (kmDistance < 100.0) {
+                        if (kmDistance < 3.0) {
                           _writeName(DataFromMaptoVerify.name);
                           _writeSpeciality(DataFromMaptoVerify.speciality);
                           _writeNumber(DataFromMaptoVerify.phoneNumber);

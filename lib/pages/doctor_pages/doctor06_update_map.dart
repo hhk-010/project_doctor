@@ -224,7 +224,7 @@ class _UpdateMapState extends State<UpdateMap> {
                             _kmDistance = _finalDistance * 100;
                           });
                           print(_kmDistance);
-                          if (_kmDistance < 100) {
+                          if (_kmDistance < 3) {
                             setState(() {
                               Empty.isEmpty = false;
                             });

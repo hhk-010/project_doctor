@@ -514,7 +514,7 @@ class _UpdateinfoState extends State<Updateinfo> {
                           if (_formkey.currentState.validate()) {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => GrandUpdateInfo2(
+                                builder: (context) => UpdateInfo2(
                                   name: name,
                                   speciality: speciality,
                                   phoneNumber: phonenumber,
