@@ -231,7 +231,8 @@ class _FinalMapState extends State<FinalMap> {
     if (basicData != null) {
       for (var x in basicData.docs) {
         if (DataFromMaptoVerify.name == x.data()['n'] &&
-            DataFromMaptoVerify.speciality == x.data()['s']) {
+            DataFromMaptoVerify.speciality == x.data()['s'] &&
+            DataFromMaptoVerify.province == x.data()['c']) {
           lt = x.data()['lt'];
           lg = x.data()['lg'];
         }

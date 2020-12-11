@@ -246,3 +246,102 @@
 //     });
 //   }
 // }
+/*import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+
+class Phone extends StatefulWidget {
+  @override
+  _PhoneState createState() => _PhoneState();
+}
+
+class _PhoneState extends State<Phone> {
+  String phoneNumber = '';
+  String code = '';
+  String verificationId = '';
+
+
+  /*PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth).setPhoneNumber(phoneNumber).setTimeout(60L, TimeUnit.SECONDS).setActivity(this).setCallbacks(mCallbacks).build();
+  PhoneAuthProvider.verifyPhoneNumber(options);  */
+
+
+  Future<bool> verifyNumber(String phoneNumber, BuildContext context) async {
+
+       
+    /*final PhoneCodeAutoRetrievalTimeout autoRetrieval = (String verId) {
+      this.verificationId = verId;
+    };
+
+    FirebaseAuth _auth = FirebaseAuth.instance;
+    _auth.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        timeout: Duration(seconds: 60),
+        verificationCompleted: (AuthCredential credentials) {
+          Navigator.pop(context);
+          print('yes its mine');
+        },
+        verificationFailed: (FirebaseAuthException exception) {
+          print('no its not');
+        },
+        codeSent: (String verificationId, [int forceResendToken]) {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) {
+              return AlertDialog(
+                title: Text('enter code'),
+                content: Column(
+                  children: [
+                    TextFormField(
+                      decoration: InputDecoration(hintText: 'enter code here'),
+                      onChanged: (val) => code = val,
+                    ),
+                  ],
+                ),
+                actions: [
+                  RaisedButton(
+                    onPressed: () {
+                      AuthCredential credentials = PhoneAuthProvider.credential(
+                          verificationId: verificationId, smsCode: code);
+                      if (code == verificationId) {
+                        print('number==credentials');
+                      } else {
+                        print('no its not equal');
+                      }
+                      print('hello' + credentials.toString());
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        },
+        codeAutoRetrievalTimeout: autoRetrieval);*/
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Verify Number'),
+        backgroundColor: Colors.deepOrange,
+      ),
+      body: Column(
+        children: [
+          SizedBox(height: 20.0),
+          TextFormField(
+            decoration: InputDecoration(hintText: 'Enter Number'),
+            onChanged: (val) => phoneNumber = val,
+          ),
+          SizedBox(height: 20.0),
+          RaisedButton(
+            onPressed: () {
+              verifyNumber(phoneNumber, context);
+            },
+            child: Text('verified'),
+          ),
+        ],
+      ),
+    );
+  }
+}*/

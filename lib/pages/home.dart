@@ -84,7 +84,8 @@ class _HomeState extends State<Home> {
               fit: BoxFit.fitWidth,
               child: Text(
                 AppLocalizations.of(context).translate('home_title'),
-                style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: appBarTitle, fontWeight: FontWeight.bold),
               ),
             ),
             centerTitle: true,
@@ -143,10 +144,16 @@ class _HomeState extends State<Home> {
               bottomRight: Radius.zero,
             )),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => LastSearchedDoctor()));
+              //Navigator.pushNamed(context, '/phone');
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => LastSearchedDoctor()));
             },
-            label: Text(AppLocalizations.of(context).translate('last_searched_doctor'),
-                style: TextStyle(color: Colors.white, fontSize: floatingButtonTitle, fontWeight: FontWeight.bold)),
+            label: Text(
+                AppLocalizations.of(context).translate('last_searched_doctor'),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: floatingButtonTitle,
+                    fontWeight: FontWeight.bold)),
           ),
         ),
         // : null,
@@ -165,7 +172,8 @@ class _HomeState extends State<Home> {
                     height: buttonHeight,
                     width: buttonWidth,
                     child: RaisedButton.icon(
-                      onPressed: () => Navigator.pushNamed(context, '/patient_complain'),
+                      onPressed: () =>
+                          Navigator.pushNamed(context, '/patient_complain'),
                       icon: Icon(
                         Icons.search,
                         size: buttonIconSize,
@@ -175,17 +183,23 @@ class _HomeState extends State<Home> {
                         padding: const EdgeInsets.all(10.0),
                         child: AutoSizeText.rich(
                           TextSpan(
-                              text: AppLocalizations.of(context).translate('home_patient_title'),
+                              text: AppLocalizations.of(context)
+                                  .translate('home_patient_title'),
                               style: TextStyle(
-                                  fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
+                                  fontFamily: lang == 'ar'
+                                      ? 'noto_arabic'
+                                      : 'Helvetica',
                                   fontSize: buttonTitle,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                               children: [
                                 TextSpan(
-                                    text: AppLocalizations.of(context).translate('home_patient_subtitle'),
+                                    text: AppLocalizations.of(context)
+                                        .translate('home_patient_subtitle'),
                                     style: TextStyle(
-                                        fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
+                                        fontFamily: lang == 'ar'
+                                            ? 'noto_arabic'
+                                            : 'Helvetica',
                                         fontSize: buttonSubTitle,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white)),
@@ -193,7 +207,8 @@ class _HomeState extends State<Home> {
                           maxLines: 2,
                         ),
                       ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80.0)),
                       color: Colors.deepOrange,
                     ),
                   ),
@@ -201,7 +216,8 @@ class _HomeState extends State<Home> {
                     height: buttonHeight,
                     width: buttonWidth,
                     child: RaisedButton.icon(
-                      onPressed: () => Navigator.pushNamed(context, '/intermediate'),
+                      onPressed: () =>
+                          Navigator.pushNamed(context, '/intermediate'),
                       icon: Icon(
                         Icons.people,
                         size: buttonIconSize,
@@ -211,24 +227,31 @@ class _HomeState extends State<Home> {
                         padding: const EdgeInsets.all(10.0),
                         child: AutoSizeText.rich(
                           TextSpan(
-                              text: AppLocalizations.of(context).translate('home_doctor_title'),
+                              text: AppLocalizations.of(context)
+                                  .translate('home_doctor_title'),
                               style: TextStyle(
                                   fontSize: buttonTitle,
-                                  fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
+                                  fontFamily: lang == 'ar'
+                                      ? 'noto_arabic'
+                                      : 'Helvetica',
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                               children: [
                                 TextSpan(
-                                    text: AppLocalizations.of(context).translate('home_doctor_subtitle'),
+                                    text: AppLocalizations.of(context)
+                                        .translate('home_doctor_subtitle'),
                                     style: TextStyle(
-                                        fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
+                                        fontFamily: lang == 'ar'
+                                            ? 'noto_arabic'
+                                            : 'Helvetica',
                                         fontSize: buttonSubTitle,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white)),
                               ]),
                         ),
                       ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80.0)),
                       color: Colors.deepOrange,
                     ),
                   ),
