@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:project_doctor/authorization/03_pre_mcqs.dart';
 import 'package:project_doctor/authorization/04_mcqs_new.dart';
 import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/pages/about_us.dart';
-import 'package:project_doctor/pages/doctor_pages/delete_doctor.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor07_update_password.dart';

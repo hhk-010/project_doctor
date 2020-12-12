@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:ui';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/constants/theme.dart';
@@ -195,7 +194,8 @@ class _DeleteUserState extends State<DeleteUser> {
                               } else {
                                 setState(() {
                                   isloading = false;
-                                  error = 'can_not_delete';
+                                  error = AppLocalizations.of(context)
+                                      .translate('can_not_delete');
                                 });
                                 _showSnackBar();
                               }

@@ -103,6 +103,9 @@
     "choose 2nd exception time":"Please , choose the time of second excepted day ",
     "reasign_days":"Reasign work days",
     "already_registered":"Sorry , You are registered already",
+    "can_not_delete":"Sorry , the user can't be deleted",
+    "invalid_address":"Please , Enter a valid address",
+
 
 "doctor_page" : "=======================================",
     "home_title" : "Welcome to Cura",

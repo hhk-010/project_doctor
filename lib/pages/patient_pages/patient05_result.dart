@@ -367,6 +367,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
           });
         }
       }
+
       // _getAddressFromLatLng();
     }
 

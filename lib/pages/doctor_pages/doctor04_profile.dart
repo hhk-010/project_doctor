@@ -177,13 +177,13 @@ class _DoctorListState extends State<DoctorList> {
 
 //get the user address from lat and lng
   // final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-  // String _doctorAddress = '';
-  // _getAddressFromLatLng() async {
+  //String _doctorAddress = '';
+  //_getAddressFromLatLng() async {
   //   List<Placemark> p = await geolocator.placemarkFromCoordinates(lat, lng);
   //   Placemark place = p[0];
   //   setState(() {
   //     _doctorAddress = "${place.locality}, ${place.country}";
-  //   });
+  //  });
   // }
 
   @override
@@ -575,8 +575,11 @@ class _DoctorListState extends State<DoctorList> {
                   ),
                   color: Colors.deepOrange,
                   onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => Updateinfo()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => Updateinfo(
+                              profileName: name,
+                              profileSpeciality: speciality,
+                            )));
                   },
                 ),
               ),
