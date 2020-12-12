@@ -538,8 +538,6 @@ class _UpdateinfoState extends State<Updateinfo> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
                         onPressed: () {
-                          print(profileName);
-                          print(profileSpeciality);
                           if (_formkey.currentState.validate()) {
                             if ((profileName == name || profileName == '') &&
                                 (profileSpeciality == speciality ||

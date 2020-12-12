@@ -1,10 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor06_update_map.dart';
 import 'package:project_doctor/services/app_localizations.dart';
-import 'package:project_doctor/services/database.dart';
-import 'package:provider/provider.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
@@ -136,6 +134,23 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
     _scaffoldkey.currentState.showSnackBar(snackBar);
   }
 
+  String latlng = '';
+//===========geo encode address=======
+  getCoordinatesFromAddress(String address) async {
+    try {
+      final query = address;
+      var addresses = await Geocoder.local.findAddressesFromQuery(query);
+      var first = addresses.first;
+      print("${first.featureName} : ${first.coordinates}");
+      latlng = "${first.coordinates}";
+      return latlng;
+    } catch (e) {
+      print(e);
+      return '';
+    }
+  }
+
+//=================end================
 //--x is workdays list counter-----
   int _x = 6;
   @override
@@ -331,8 +346,11 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                         ? AppLocalizations.of(context)
                                             .translate('address_validator')
                                         : null,
-                                    onChanged: (val) =>
-                                        setState(() => address = val),
+                                    onChanged: (val) async {
+                                      setState(() => address = val);
+                                      latlng = await getCoordinatesFromAddress(
+                                          address);
+                                    },
                                     decoration: textInputdecoration.copyWith(
                                       hintText:
                                           'مثال: شارع المغرب مجاور صيدليه الشفاء',
@@ -858,7 +876,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                               borderRadius: BorderRadius.circular(80.0)),
                           onPressed: () {
                             if (_formkey.currentState.validate()) {
-                              print(mainWorkingHours);
                               setState(() {
                                 if (e1.isNotEmpty && t1.isNotEmpty) {
                                   if (workDays0.isEmpty) {
@@ -887,10 +904,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                   //show snackbar
                                 }
                               });
-                              //main from time='' snackbar
-                              //main to time='' snackbar
-                              //main days =[] snackbar
-                              //reselct main days snackbar
                               if (address != '' &&
                                   currentVacationDays != '' &&
                                   mainFromTimeString != '' &&
@@ -928,47 +941,48 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                   DataFromProfiletoUpdate.workDays03 =
                                       List<String>.from(workDays03);
                                 });
-                                print(workDays01);
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                    builder: (context) => MainUpdateMap(),
+                                    builder: (context) => MainUpdateMap(
+                                      latlng: latlng,
+                                    ),
                                   ),
                                 );
                                 mainfrom = false;
                                 mainto = false;
-                              }
-                            } else if (currentVacationDays == '') {
-                              _error = AppLocalizations.of(context)
-                                  .translate('selectmaindays');
-                              _showSnackBar();
-                            } else if (mainFromTimeString == '' ||
-                                mainToTimeString == '' ||
-                                !mainfrom ||
-                                !mainto) {
-                              _error = AppLocalizations.of(context)
-                                  .translate('Select time');
-                              _showSnackBar();
-                            } else if (!((e1.isNotEmpty && t1.isNotEmpty) ||
-                                (e1.isEmpty && t1.isEmpty))) {
-                              if (e1.isEmpty) {
+                              } else if (currentVacationDays == '') {
                                 _error = AppLocalizations.of(context)
-                                    .translate('choose 1st exceprion day');
+                                    .translate('selectmaindays');
                                 _showSnackBar();
-                              } else {
+                              } else if (mainFromTimeString == '' ||
+                                  mainToTimeString == '' ||
+                                  !mainfrom ||
+                                  !mainto) {
                                 _error = AppLocalizations.of(context)
-                                    .translate('choose 1st exception time');
+                                    .translate('Select time');
                                 _showSnackBar();
-                              }
-                            } else if (!((e2.isNotEmpty && t2.isNotEmpty) ||
-                                (e2.isEmpty && t2.isEmpty))) {
-                              if (e2.isEmpty) {
-                                _error = AppLocalizations.of(context)
-                                    .translate('choose 2nd exception day');
-                                _showSnackBar();
-                              } else {
-                                _error = AppLocalizations.of(context)
-                                    .translate('choose 2nd exception time');
-                                _showSnackBar();
+                              } else if (!((e1.isNotEmpty && t1.isNotEmpty) ||
+                                  (e1.isEmpty && t1.isEmpty))) {
+                                if (e1.isEmpty) {
+                                  _error = AppLocalizations.of(context)
+                                      .translate('choose 1st exceprion day');
+                                  _showSnackBar();
+                                } else {
+                                  _error = AppLocalizations.of(context)
+                                      .translate('choose 1st exception time');
+                                  _showSnackBar();
+                                }
+                              } else if (!((e2.isNotEmpty && t2.isNotEmpty) ||
+                                  (e2.isEmpty && t2.isEmpty))) {
+                                if (e2.isEmpty) {
+                                  _error = AppLocalizations.of(context)
+                                      .translate('choose 2nd exception day');
+                                  _showSnackBar();
+                                } else {
+                                  _error = AppLocalizations.of(context)
+                                      .translate('choose 2nd exception time');
+                                  _showSnackBar();
+                                }
                               }
                             }
                           },

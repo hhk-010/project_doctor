@@ -121,10 +121,7 @@ class _SignInState extends State<SignIn> {
       }
       var lang = Localizations.localeOf(context).languageCode;
 
-      return /*loading
-          ? Loading()
-          :*/
-          Scaffold(
+      return Scaffold(
         key: _scaffoldkey,
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey[200],
@@ -250,9 +247,6 @@ class _SignInState extends State<SignIn> {
                                     dynamic authResult =
                                         await _auth.signInWithEmailAndPassword(
                                             email, password);
-                                    //if the credentials are in valid or internet connection is interrupted
-                                    //after entering this page and pressing sign in the loading is activated
-                                    // so it was better by this following if condition
                                     if (authResult != null) {
                                       setState(() => loading = false);
                                     } else {
