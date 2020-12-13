@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:project_doctor/constants/theme.dart';
@@ -151,11 +153,28 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
   }
 
 //=================end================
+//-------------------checking internet connection
+  bool _isInternet = true;
+  checkInternet() async {
+    try {
+      final response = await InternetAddress.lookup('google.com');
+      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
+        _isInternet = true; // internet
+        setState(() {});
+      }
+    } on SocketException catch (_) {
+      _isInternet = false; // no internet
+      setState(() {});
+    }
+  }
+
+  //------------the end --------------------
 //--x is workdays list counter-----
   int _x = 6;
   @override
   void initState() {
     super.initState();
+    checkInternet();
     _mainFromTime = TimeOfDay.now();
     _secondaryFromTime = TimeOfDay.now();
     _mainToTime = TimeOfDay(hour: 12, minute: 0);
@@ -346,10 +365,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                         ? AppLocalizations.of(context)
                                             .translate('address_validator')
                                         : null,
-                                    onChanged: (val) async {
+                                    onChanged: (val) {
                                       setState(() => address = val);
-                                      latlng = await getCoordinatesFromAddress(
-                                          address);
                                     },
                                     decoration: textInputdecoration.copyWith(
                                       hintText:
@@ -874,116 +891,126 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                           ),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(80.0)),
-                          onPressed: () {
-                            if (_formkey.currentState.validate()) {
-                              setState(() {
-                                if (e1.isNotEmpty && t1.isNotEmpty) {
-                                  if (workDays0.isEmpty) {
-                                    workDays0.add(e1[0]);
-                                    workDays0.add(t1[0]);
-                                  } else {
-                                    workDays0 = [];
-                                    workDays0.add(e1[0]);
-                                    workDays0.add(t1[0]);
-                                  }
-                                } else if ((e1.isNotEmpty && t1.isEmpty) ||
-                                    (e1.isEmpty && t1.isNotEmpty)) {
-                                  //show snackbar
-                                }
-                                if (e2.isNotEmpty && t2.isNotEmpty) {
-                                  if (workDays03.isEmpty) {
-                                    workDays03.add(e2[0]);
-                                    workDays03.add(t2[0]);
-                                  } else {
-                                    workDays03 = [];
-                                    workDays03.add(e2[0]);
-                                    workDays03.add(t2[0]);
-                                  }
-                                } else if ((e2.isNotEmpty && t2.isEmpty) ||
-                                    (e2.isEmpty && t2.isNotEmpty)) {
-                                  //show snackbar
-                                }
-                              });
-                              if (address != '' &&
-                                  currentVacationDays != '' &&
-                                  mainFromTimeString != '' &&
-                                  mainToTimeString != '' &&
-                                  makeMePass &&
-                                  mainfrom &&
-                                  mainto &&
-                                  ((e1.isNotEmpty && t1.isNotEmpty) ||
-                                      (e1.isEmpty && t1.isEmpty)) &&
-                                  ((e2.isNotEmpty && t2.isNotEmpty) ||
-                                      (e2.isEmpty && t2.isEmpty))) {
+                          onPressed: () async {
+                            checkInternet();
+                            if (_isInternet) {
+                              if (_formkey.currentState.validate()) {
                                 setState(() {
-                                  if (workDays01[workDays01.length - 1].length <
-                                      11) {
-                                    workDays01.add(mainWorkingHours);
-                                  } else {
-                                    workDays01.remove(
-                                        workDays01[workDays01.length - 1]);
-                                    workDays01.add(mainWorkingHours);
+                                  if (e1.isNotEmpty && t1.isNotEmpty) {
+                                    if (workDays0.isEmpty) {
+                                      workDays0.add(e1[0]);
+                                      workDays0.add(t1[0]);
+                                    } else {
+                                      workDays0 = [];
+                                      workDays0.add(e1[0]);
+                                      workDays0.add(t1[0]);
+                                    }
+                                  } else if ((e1.isNotEmpty && t1.isEmpty) ||
+                                      (e1.isEmpty && t1.isNotEmpty)) {
+                                    //show snackbar
                                   }
-                                  makeMePass = false;
+                                  if (e2.isNotEmpty && t2.isNotEmpty) {
+                                    if (workDays03.isEmpty) {
+                                      workDays03.add(e2[0]);
+                                      workDays03.add(t2[0]);
+                                    } else {
+                                      workDays03 = [];
+                                      workDays03.add(e2[0]);
+                                      workDays03.add(t2[0]);
+                                    }
+                                  } else if ((e2.isNotEmpty && t2.isEmpty) ||
+                                      (e2.isEmpty && t2.isNotEmpty)) {
+                                    //show snackbar
+                                  }
                                 });
-                                setState(() {
-                                  DataFromProfiletoUpdate.name = name;
-                                  DataFromProfiletoUpdate.speciality =
-                                      speciality;
-                                  DataFromProfiletoUpdate.phoneNumber =
-                                      phoneNumber;
-                                  DataFromProfiletoUpdate.province = province;
-                                  DataFromProfiletoUpdate.address = address;
-                                  DataFromProfiletoUpdate.workDays01 =
-                                      List<String>.from(workDays01);
-                                  DataFromProfiletoUpdate.workDays02 =
-                                      List<String>.from(workDays0);
-                                  DataFromProfiletoUpdate.workDays03 =
-                                      List<String>.from(workDays03);
-                                });
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => MainUpdateMap(
-                                      latlng: latlng,
+                                if (address != '' &&
+                                    currentVacationDays != '' &&
+                                    mainFromTimeString != '' &&
+                                    mainToTimeString != '' &&
+                                    makeMePass &&
+                                    mainfrom &&
+                                    mainto &&
+                                    ((e1.isNotEmpty && t1.isNotEmpty) ||
+                                        (e1.isEmpty && t1.isEmpty)) &&
+                                    ((e2.isNotEmpty && t2.isNotEmpty) ||
+                                        (e2.isEmpty && t2.isEmpty))) {
+                                  latlng =
+                                      await getCoordinatesFromAddress(address);
+                                  setState(() {
+                                    if (workDays01[workDays01.length - 1]
+                                            .length <
+                                        11) {
+                                      workDays01.add(mainWorkingHours);
+                                    } else {
+                                      workDays01.remove(
+                                          workDays01[workDays01.length - 1]);
+                                      workDays01.add(mainWorkingHours);
+                                    }
+                                    makeMePass = false;
+                                  });
+                                  setState(() {
+                                    DataFromProfiletoUpdate.name = name;
+                                    DataFromProfiletoUpdate.speciality =
+                                        speciality;
+                                    DataFromProfiletoUpdate.phoneNumber =
+                                        phoneNumber;
+                                    DataFromProfiletoUpdate.province = province;
+                                    DataFromProfiletoUpdate.address = address;
+                                    DataFromProfiletoUpdate.workDays01 =
+                                        List<String>.from(workDays01);
+                                    DataFromProfiletoUpdate.workDays02 =
+                                        List<String>.from(workDays0);
+                                    DataFromProfiletoUpdate.workDays03 =
+                                        List<String>.from(workDays03);
+                                  });
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => MainUpdateMap(
+                                        latlng: latlng,
+                                      ),
                                     ),
-                                  ),
-                                );
-                                mainfrom = false;
-                                mainto = false;
-                              } else if (currentVacationDays == '') {
-                                _error = AppLocalizations.of(context)
-                                    .translate('selectmaindays');
-                                _showSnackBar();
-                              } else if (mainFromTimeString == '' ||
-                                  mainToTimeString == '' ||
-                                  !mainfrom ||
-                                  !mainto) {
-                                _error = AppLocalizations.of(context)
-                                    .translate('Select time');
-                                _showSnackBar();
-                              } else if (!((e1.isNotEmpty && t1.isNotEmpty) ||
-                                  (e1.isEmpty && t1.isEmpty))) {
-                                if (e1.isEmpty) {
+                                  );
+                                  mainfrom = false;
+                                  mainto = false;
+                                } else if (currentVacationDays == '') {
                                   _error = AppLocalizations.of(context)
-                                      .translate('choose 1st exceprion day');
+                                      .translate('selectmaindays');
                                   _showSnackBar();
-                                } else {
+                                } else if (mainFromTimeString == '' ||
+                                    mainToTimeString == '' ||
+                                    !mainfrom ||
+                                    !mainto) {
                                   _error = AppLocalizations.of(context)
-                                      .translate('choose 1st exception time');
+                                      .translate('Select time');
                                   _showSnackBar();
-                                }
-                              } else if (!((e2.isNotEmpty && t2.isNotEmpty) ||
-                                  (e2.isEmpty && t2.isEmpty))) {
-                                if (e2.isEmpty) {
-                                  _error = AppLocalizations.of(context)
-                                      .translate('choose 2nd exception day');
-                                  _showSnackBar();
-                                } else {
-                                  _error = AppLocalizations.of(context)
-                                      .translate('choose 2nd exception time');
-                                  _showSnackBar();
+                                } else if (!((e1.isNotEmpty && t1.isNotEmpty) ||
+                                    (e1.isEmpty && t1.isEmpty))) {
+                                  if (e1.isEmpty) {
+                                    _error = AppLocalizations.of(context)
+                                        .translate('choose 1st exceprion day');
+                                    _showSnackBar();
+                                  } else {
+                                    _error = AppLocalizations.of(context)
+                                        .translate('choose 1st exception time');
+                                    _showSnackBar();
+                                  }
+                                } else if (!((e2.isNotEmpty && t2.isNotEmpty) ||
+                                    (e2.isEmpty && t2.isEmpty))) {
+                                  if (e2.isEmpty) {
+                                    _error = AppLocalizations.of(context)
+                                        .translate('choose 2nd exception day');
+                                    _showSnackBar();
+                                  } else {
+                                    _error = AppLocalizations.of(context)
+                                        .translate('choose 2nd exception time');
+                                    _showSnackBar();
+                                  }
                                 }
                               }
+                            } else {
+                              _error = AppLocalizations.of(context)
+                                  .translate("snack_connectivity");
+                              _showSnackBar();
                             }
                           },
                           label: Text(

@@ -355,7 +355,6 @@ class _FinalMapState extends State<FinalMap> {
                     } else {
                       await geolocate(latlng: latlng);
                       if (lattt != null && lnggg != null) {
-                        print(addressLatlng);
                         double resultedAddress =
                             await analyzeAddress(lattt, lnggg);
                         print(resultedAddress);
