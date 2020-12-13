@@ -17,8 +17,7 @@ class AuthService {
 
   Future signInWithEmailAndPassword(String email, String password) async {
     try {
-      UserCredential authResult = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential authResult = await _auth.signInWithEmailAndPassword(email: email, password: password);
       User user = authResult.user;
       if (authResult.user != null) {
         _status = AuthResultStatus.successful;
@@ -40,8 +39,7 @@ class AuthService {
     String password,
   ) async {
     try {
-      UserCredential authResult = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential authResult = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User user = authResult.user;
       // create a new document for the user with the id
       await user.sendEmailVerification();
@@ -85,11 +83,9 @@ class AuthService {
 
   Future<bool> validatepass(String pass) async {
     User user = _auth.currentUser;
-    AuthCredential credentials =
-        EmailAuthProvider.credential(email: user.email, password: pass);
+    AuthCredential credentials = EmailAuthProvider.credential(email: user.email, password: pass);
     try {
-      UserCredential cred =
-          await user.reauthenticateWithCredential(credentials);
+      UserCredential cred = await user.reauthenticateWithCredential(credentials);
       return cred.user != null;
     } catch (e) {
       print(e);
@@ -109,10 +105,8 @@ class AuthService {
       AuthCredential credentials =
           EmailAuthProvider.credential(email: email, password: password);
       print(user);
-      UserCredential result =
-          await user.reauthenticateWithCredential(credentials);
-      await DatabaseService(uid: result.user.uid)
-          .deleteuser(); // called from database class
+      UserCredential result = await user.reauthenticateWithCredential(credentials);
+      await DatabaseService(uid: result.user.uid).deleteuser(); // called from database class
       await result.user.delete();
       return true;
     } catch (e) {
