@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
@@ -233,6 +235,20 @@ class _ClinicFormState extends State<ClinicForm> {
   }
 
 //=================end================
+  bool _isInternet = true;
+  checkInternet() async {
+    try {
+      final response = await InternetAddress.lookup('google.com');
+      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
+        _isInternet = true; // internet
+        setState(() {});
+      }
+    } on SocketException catch (_) {
+      _isInternet = false; // no internet
+      setState(() {});
+    }
+  }
+
   //---this variable is assigned to make workdays element false---
   int _x = 6;
   //=======bool value to inspect wether the doctor is registered===
@@ -240,6 +256,7 @@ class _ClinicFormState extends State<ClinicForm> {
   @override
   void initState() {
     super.initState();
+    checkInternet();
     _mainFromTime = TimeOfDay.now();
     _secondaryFromTime = TimeOfDay.now();
     _mainToTime = TimeOfDay(hour: 12, minute: 0);
@@ -437,10 +454,8 @@ class _ClinicFormState extends State<ClinicForm> {
                                       ? AppLocalizations.of(context)
                                           .translate('address_validator')
                                       : null,
-                                  onChanged: (val) async {
+                                  onChanged: (val) {
                                     setState(() => currentaddress = val);
-                                    latlng = await getCoordinatesFromAddress(
-                                        currentaddress);
                                   },
                                   decoration: textInputdecoration.copyWith(
                                     hintText:
@@ -697,9 +712,6 @@ class _ClinicFormState extends State<ClinicForm> {
                                       ClinicDay.day1 = weekday01;
                                     });
                                     makeException2();
-                                    print(weekday01);
-                                    print(e1);
-                                    print(ClinicDay.day1);
                                   },
                                   value: weekday01,
                                   dropdownColor: Colors.white,
@@ -854,8 +866,6 @@ class _ClinicFormState extends State<ClinicForm> {
                                       ClinicDay.day2 = weekday02;
                                     });
                                     makeException1();
-                                    print(weekday02);
-                                    print(e2);
                                   },
                                   value: weekday02,
                                   dropdownColor: Colors.white,
@@ -980,142 +990,158 @@ class _ClinicFormState extends State<ClinicForm> {
                                       borderRadius:
                                           BorderRadius.circular(80.0)),
                                   onPressed: () async {
-                                    if (_formKey.currentState.validate()) {
-                                      if (e1.isNotEmpty && t1.isNotEmpty) {
-                                        if (workDays02.isEmpty) {
-                                          workDays02.add(e1[0]);
-                                          workDays02.add(t1[0]);
-                                        } else {
-                                          workDays02 = [];
-                                          workDays02.add(e1[0]);
-                                          workDays02.add(t1[0]);
+                                    checkInternet();
+                                    if (_isInternet) {
+                                      if (_formKey.currentState.validate()) {
+                                        if (e1.isNotEmpty && t1.isNotEmpty) {
+                                          if (workDays02.isEmpty) {
+                                            workDays02.add(e1[0]);
+                                            workDays02.add(t1[0]);
+                                          } else {
+                                            workDays02 = [];
+                                            workDays02.add(e1[0]);
+                                            workDays02.add(t1[0]);
+                                          }
+                                        } else if ((e1.isEmpty &&
+                                                t1.isNotEmpty) ||
+                                            (e1.isNotEmpty && t1.isEmpty)) {
+                                          //snackbar
                                         }
-                                      } else if ((e1.isEmpty &&
-                                              t1.isNotEmpty) ||
-                                          (e1.isNotEmpty && t1.isEmpty)) {
-                                        //snackbar
-                                      }
-                                      if (e2.isNotEmpty && t2.isNotEmpty) {
-                                        if (workDays03.isEmpty) {
-                                          workDays03.add(e2[0]);
-                                          workDays03.add(t2[0]);
-                                        } else {
-                                          workDays03 = [];
-                                          workDays03.add(e2[0]);
-                                          workDays03.add(t2[0]);
+                                        if (e2.isNotEmpty && t2.isNotEmpty) {
+                                          if (workDays03.isEmpty) {
+                                            workDays03.add(e2[0]);
+                                            workDays03.add(t2[0]);
+                                          } else {
+                                            workDays03 = [];
+                                            workDays03.add(e2[0]);
+                                            workDays03.add(t2[0]);
+                                          }
+                                        } else if ((e2.isNotEmpty &&
+                                                t2.isEmpty) ||
+                                            (e2.isEmpty && t2.isNotEmpty)) {
+                                          //snackbar
                                         }
-                                      } else if ((e2.isNotEmpty &&
-                                              t2.isEmpty) ||
-                                          (e2.isEmpty && t2.isNotEmpty)) {
-                                        //snackbar
-                                      }
-                                      if (currentaddress != '' &&
-                                          currentWorkDays != '' &&
-                                          mainFromTimeString != '' &&
-                                          mainToTimeString != '' &&
-                                          makeMePass &&
-                                          mainfrom &&
-                                          mainto &&
-                                          ((e1.isNotEmpty && t1.isNotEmpty) ||
-                                              (e1.isEmpty && t1.isEmpty)) &&
-                                          ((e2.isNotEmpty && t2.isNotEmpty) ||
-                                              (e2.isEmpty && t2.isEmpty))) {
-                                        if (!registered) {
-                                          setState(() {
-                                            if (workDays01[
-                                                        workDays01.length - 1]
-                                                    .length <
-                                                11) {
-                                              workDays01.add(mainWorkingHours);
-                                            } else {
-                                              workDays01.remove(workDays01[
-                                                  workDays01.length - 1]);
-                                              workDays01.add(mainWorkingHours);
-                                            }
+                                        if (currentaddress != '' &&
+                                            currentWorkDays != '' &&
+                                            mainFromTimeString != '' &&
+                                            mainToTimeString != '' &&
+                                            makeMePass &&
+                                            mainfrom &&
+                                            mainto &&
+                                            ((e1.isNotEmpty && t1.isNotEmpty) ||
+                                                (e1.isEmpty && t1.isEmpty)) &&
+                                            ((e2.isNotEmpty && t2.isNotEmpty) ||
+                                                (e2.isEmpty && t2.isEmpty))) {
+                                          latlng =
+                                              await getCoordinatesFromAddress(
+                                                  currentaddress);
+                                          if (!registered) {
+                                            setState(() {
+                                              if (workDays01[
+                                                          workDays01.length - 1]
+                                                      .length <
+                                                  11) {
+                                                workDays01
+                                                    .add(mainWorkingHours);
+                                              } else {
+                                                workDays01.remove(workDays01[
+                                                    workDays01.length - 1]);
+                                                workDays01
+                                                    .add(mainWorkingHours);
+                                              }
 
-                                            makeMePass = false;
-                                            print(workDays01);
-                                          });
-                                          mainfrom = false;
-                                          mainto = false;
-                                          setState(() {
-                                            DataFromMaptoVerify.email = email;
-                                            DataFromMaptoVerify.password =
-                                                password;
-                                            DataFromMaptoVerify.name = name;
-                                            DataFromMaptoVerify.speciality =
-                                                speciality;
-                                            DataFromMaptoVerify.phoneNumber =
-                                                phoneNumber;
-                                            DataFromMaptoVerify.province =
-                                                province;
-                                            DataFromMaptoVerify.address =
-                                                currentaddress;
-                                            DataFromMaptoVerify.workDays01 =
-                                                List<String>.from(workDays01);
-                                            DataFromMaptoVerify.workDays02 =
-                                                List<String>.from(workDays02);
-                                            DataFromMaptoVerify.workDays03 =
-                                                List<String>.from(workDays03);
-                                          });
-                                          print(latlng);
-                                          await Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (context) => DocMap(
-                                                addresslatlng:
-                                                    latlng.toString(),
+                                              makeMePass = false;
+                                              print(workDays01);
+                                            });
+                                            mainfrom = false;
+                                            mainto = false;
+                                            setState(() {
+                                              DataFromMaptoVerify.email = email;
+                                              DataFromMaptoVerify.password =
+                                                  password;
+                                              DataFromMaptoVerify.name = name;
+                                              DataFromMaptoVerify.speciality =
+                                                  speciality;
+                                              DataFromMaptoVerify.phoneNumber =
+                                                  phoneNumber;
+                                              DataFromMaptoVerify.province =
+                                                  province;
+                                              DataFromMaptoVerify.address =
+                                                  currentaddress;
+                                              DataFromMaptoVerify.workDays01 =
+                                                  List<String>.from(workDays01);
+                                              DataFromMaptoVerify.workDays02 =
+                                                  List<String>.from(workDays02);
+                                              DataFromMaptoVerify.workDays03 =
+                                                  List<String>.from(workDays03);
+                                            });
+                                            print(latlng);
+                                            await Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (context) => DocMap(
+                                                  addresslatlng:
+                                                      latlng.toString(),
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        } else if (registered) {
-                                          setState(() {
-                                            _error =
-                                                AppLocalizations.of(context)
-                                                    .translate(
-                                                        'already_registered');
-                                          });
-                                          _showSnackBar();
-                                        }
-                                      } else if (currentWorkDays == '') {
-                                        _error = AppLocalizations.of(context)
-                                            .translate('selectmaindays');
-                                        _showSnackBar();
-                                      } else if (mainFromTimeString == '' ||
-                                          mainToTimeString == '' ||
-                                          !mainfrom ||
-                                          !mainto) {
-                                        _error = AppLocalizations.of(context)
-                                            .translate('Select time');
-                                        _showSnackBar();
-                                      } else if (!((e1.isNotEmpty &&
-                                              t1.isNotEmpty) ||
-                                          (e1.isEmpty && t1.isEmpty))) {
-                                        if (e1.isEmpty) {
+                                            );
+                                          } else if (registered) {
+                                            setState(() {
+                                              _error =
+                                                  AppLocalizations.of(context)
+                                                      .translate(
+                                                          'already_registered');
+                                            });
+                                            _showSnackBar();
+                                          }
+                                        } else if (currentWorkDays == '') {
                                           _error = AppLocalizations.of(context)
-                                              .translate(
-                                                  'choose 1st exceprion day');
+                                              .translate('selectmaindays');
                                           _showSnackBar();
-                                        } else {
+                                        } else if (mainFromTimeString == '' ||
+                                            mainToTimeString == '' ||
+                                            !mainfrom ||
+                                            !mainto) {
                                           _error = AppLocalizations.of(context)
-                                              .translate(
-                                                  'choose 1st exception time');
+                                              .translate('Select time');
                                           _showSnackBar();
-                                        }
-                                      } else if (!((e2.isNotEmpty &&
-                                              t2.isNotEmpty) ||
-                                          (e2.isEmpty && t2.isEmpty))) {
-                                        if (e2.isEmpty) {
-                                          _error = AppLocalizations.of(context)
-                                              .translate(
-                                                  'choose 2nd exception day');
-                                          _showSnackBar();
-                                        } else {
-                                          _error = AppLocalizations.of(context)
-                                              .translate(
-                                                  'choose 2nd exception time');
-                                          _showSnackBar();
+                                        } else if (!((e1.isNotEmpty &&
+                                                t1.isNotEmpty) ||
+                                            (e1.isEmpty && t1.isEmpty))) {
+                                          if (e1.isEmpty) {
+                                            _error = AppLocalizations.of(
+                                                    context)
+                                                .translate(
+                                                    'choose 1st exceprion day');
+                                            _showSnackBar();
+                                          } else {
+                                            _error = AppLocalizations.of(
+                                                    context)
+                                                .translate(
+                                                    'choose 1st exception time');
+                                            _showSnackBar();
+                                          }
+                                        } else if (!((e2.isNotEmpty &&
+                                                t2.isNotEmpty) ||
+                                            (e2.isEmpty && t2.isEmpty))) {
+                                          if (e2.isEmpty) {
+                                            _error = AppLocalizations.of(
+                                                    context)
+                                                .translate(
+                                                    'choose 2nd exception day');
+                                            _showSnackBar();
+                                          } else {
+                                            _error = AppLocalizations.of(
+                                                    context)
+                                                .translate(
+                                                    'choose 2nd exception time');
+                                            _showSnackBar();
+                                          }
                                         }
                                       }
+                                    } else {
+                                      _error = AppLocalizations.of(context)
+                                          .translate("snack_connectivity");
+                                      _showSnackBar();
                                     }
                                   },
                                   label: Text(
