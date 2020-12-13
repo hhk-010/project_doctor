@@ -10,11 +10,18 @@ import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
 
 class Updateinfo extends StatefulWidget {
+  final String profileName;
+  final String profileSpeciality;
+  Updateinfo({this.profileName, this.profileSpeciality});
   @override
-  _UpdateinfoState createState() => _UpdateinfoState();
+  _UpdateinfoState createState() => _UpdateinfoState(
+      profileName: profileName, profileSpeciality: profileSpeciality);
 }
 
 class _UpdateinfoState extends State<Updateinfo> {
+  final String profileName;
+  final String profileSpeciality;
+  _UpdateinfoState({this.profileName, this.profileSpeciality});
   String name = '';
   String speciality = '';
   String phonenumber = '';
@@ -22,6 +29,25 @@ class _UpdateinfoState extends State<Updateinfo> {
   String address = '';
 
   final _formkey = GlobalKey<FormState>();
+  String _error = '';
+  //==============snackbar for empty latlng============
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  _showSnackBar() {
+    var lang = Localizations.localeOf(context).languageCode;
+
+    final snackBar = new SnackBar(
+      content: new Text(
+        _error,
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+      ),
+
+      //duration: new Duration(seconds: 3),
+      backgroundColor: Colors.deepOrange,
+    );
+    _scaffoldkey.currentState.showSnackBar(snackBar);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -218,6 +244,7 @@ class _UpdateinfoState extends State<Updateinfo> {
         buttomInset = 80;
       }
       return Scaffold(
+        key: _scaffoldkey,
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey[200],
         appBar: PreferredSize(
@@ -512,16 +539,26 @@ class _UpdateinfoState extends State<Updateinfo> {
                             borderRadius: BorderRadius.circular(80.0)),
                         onPressed: () {
                           if (_formkey.currentState.validate()) {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => GrandUpdateInfo2(
-                                  name: name,
-                                  speciality: speciality,
-                                  phoneNumber: phonenumber,
-                                  province: _province,
+                            if ((profileName == name || profileName == '') &&
+                                (profileSpeciality == speciality ||
+                                    profileSpeciality == '')) {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => UpdateInfo2(
+                                    name: name,
+                                    speciality: speciality,
+                                    phoneNumber: phonenumber,
+                                    province: _province,
+                                  ),
                                 ),
-                              ),
-                            );
+                              );
+                            } else {
+                              setState(() {
+                                _error = AppLocalizations.of(context)
+                                    .translate('snack_update');
+                              });
+                              _showSnackBar();
+                            }
                           }
                         },
                         label: Text(

@@ -194,7 +194,8 @@ class _DeleteUserState extends State<DeleteUser> {
                               } else {
                                 setState(() {
                                   isloading = false;
-                                  error = 'can_not_delete';
+                                  error = AppLocalizations.of(context)
+                                      .translate('can_not_delete');
                                 });
                                 _showSnackBar();
                               }

@@ -113,6 +113,7 @@ class _PreDeleteUserState extends State<PreDeleteUser> {
                 ),
               ),
             ),
+            centerTitle: true,
           ),
         ),
         body: Center(

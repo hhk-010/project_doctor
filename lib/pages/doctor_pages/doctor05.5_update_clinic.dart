@@ -1,10 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor06_update_map.dart';
 import 'package:project_doctor/services/app_localizations.dart';
-import 'package:project_doctor/services/database.dart';
-import 'package:provider/provider.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
@@ -13,42 +11,6 @@ import 'package:project_doctor/ui/sizing_information.dart';
 class ClinicDay {
   static String day1;
   static String day2;
-}
-
-class GrandUpdateInfo2 extends StatefulWidget {
-  final String name;
-  final String speciality;
-  final String phoneNumber;
-  final String province;
-  GrandUpdateInfo2(
-      {this.name, this.speciality, this.phoneNumber, this.province});
-  @override
-  _GrandUpdateInfo2State createState() => _GrandUpdateInfo2State(
-      name: name,
-      speciality: speciality,
-      phoneNumber: phoneNumber,
-      province: province);
-}
-
-class _GrandUpdateInfo2State extends State<GrandUpdateInfo2> {
-  final String name;
-  final String speciality;
-  final String phoneNumber;
-  final String province;
-  _GrandUpdateInfo2State(
-      {this.name, this.speciality, this.phoneNumber, this.province});
-  @override
-  Widget build(BuildContext context) {
-    return StreamProvider<QuerySnapshot>.value(
-      value: DatabaseService().doctorDataProfileStream,
-      child: UpdateInfo2(
-        name: name,
-        speciality: speciality,
-        phoneNumber: phoneNumber,
-        province: province,
-      ),
-    );
-  }
 }
 
 class UpdateInfo2 extends StatefulWidget {
@@ -172,10 +134,25 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
     _scaffoldkey.currentState.showSnackBar(snackBar);
   }
 
+  String latlng = '';
+//===========geo encode address=======
+  getCoordinatesFromAddress(String address) async {
+    try {
+      final query = address;
+      var addresses = await Geocoder.local.findAddressesFromQuery(query);
+      var first = addresses.first;
+      print("${first.featureName} : ${first.coordinates}");
+      latlng = "${first.coordinates}";
+      return latlng;
+    } catch (e) {
+      print(e);
+      return '';
+    }
+  }
+
+//=================end================
 //--x is workdays list counter-----
   int _x = 6;
-//===bool to check wether the doctor is registered or not==
-  bool registered = false;
   @override
   void initState() {
     super.initState();
@@ -199,7 +176,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       });
       _x -= 1;
     }
-    registered = false;
   }
 
   final _formkey = GlobalKey<FormState>();
@@ -269,19 +245,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
 
     final locale = Localizations.localeOf(context);
     final textDirection = getTextDirection(locale);
-//====to check wether te doctor is alrady registered or not===
-    final doctorDoc = Provider.of<QuerySnapshot>(context);
-    if (doctorDoc != null) {
-      for (var x in doctorDoc.docs) {
-        if (name == x.data()['name'] &&
-            speciality == x.data()['speciality'] &&
-            province == x.data()['province']) {
-          setState(() {
-            registered = true;
-          });
-        }
-      }
-    }
+
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       double appBarTitle;
       double appBarHeight;
@@ -382,8 +346,11 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                         ? AppLocalizations.of(context)
                                             .translate('address_validator')
                                         : null,
-                                    onChanged: (val) =>
-                                        setState(() => address = val),
+                                    onChanged: (val) async {
+                                      setState(() => address = val);
+                                      latlng = await getCoordinatesFromAddress(
+                                          address);
+                                    },
                                     decoration: textInputdecoration.copyWith(
                                       hintText:
                                           'مثال: شارع المغرب مجاور صيدليه الشفاء',
@@ -909,7 +876,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                               borderRadius: BorderRadius.circular(80.0)),
                           onPressed: () {
                             if (_formkey.currentState.validate()) {
-                              print(mainWorkingHours);
                               setState(() {
                                 if (e1.isNotEmpty && t1.isNotEmpty) {
                                   if (workDays0.isEmpty) {
@@ -938,10 +904,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                   //show snackbar
                                 }
                               });
-                              //main from time='' snackbar
-                              //main to time='' snackbar
-                              //main days =[] snackbar
-                              //reselct main days snackbar
                               if (address != '' &&
                                   currentVacationDays != '' &&
                                   mainFromTimeString != '' &&
@@ -953,49 +915,41 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                       (e1.isEmpty && t1.isEmpty)) &&
                                   ((e2.isNotEmpty && t2.isNotEmpty) ||
                                       (e2.isEmpty && t2.isEmpty))) {
-                                if (!registered) {
-                                  setState(() {
-                                    if (workDays01[workDays01.length - 1]
-                                            .length <
-                                        11) {
-                                      workDays01.add(mainWorkingHours);
-                                    } else {
-                                      workDays01.remove(
-                                          workDays01[workDays01.length - 1]);
-                                      workDays01.add(mainWorkingHours);
-                                    }
-                                    makeMePass = false;
-                                  });
-                                  setState(() {
-                                    DataFromProfiletoUpdate.name = name;
-                                    DataFromProfiletoUpdate.speciality =
-                                        speciality;
-                                    DataFromProfiletoUpdate.phoneNumber =
-                                        phoneNumber;
-                                    DataFromProfiletoUpdate.province = province;
-                                    DataFromProfiletoUpdate.address = address;
-                                    DataFromProfiletoUpdate.workDays01 =
-                                        List<String>.from(workDays01);
-                                    DataFromProfiletoUpdate.workDays02 =
-                                        List<String>.from(workDays0);
-                                    DataFromProfiletoUpdate.workDays03 =
-                                        List<String>.from(workDays03);
-                                  });
-                                  print(workDays01);
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => MainUpdateMap(),
+                                setState(() {
+                                  if (workDays01[workDays01.length - 1].length <
+                                      11) {
+                                    workDays01.add(mainWorkingHours);
+                                  } else {
+                                    workDays01.remove(
+                                        workDays01[workDays01.length - 1]);
+                                    workDays01.add(mainWorkingHours);
+                                  }
+                                  makeMePass = false;
+                                });
+                                setState(() {
+                                  DataFromProfiletoUpdate.name = name;
+                                  DataFromProfiletoUpdate.speciality =
+                                      speciality;
+                                  DataFromProfiletoUpdate.phoneNumber =
+                                      phoneNumber;
+                                  DataFromProfiletoUpdate.province = province;
+                                  DataFromProfiletoUpdate.address = address;
+                                  DataFromProfiletoUpdate.workDays01 =
+                                      List<String>.from(workDays01);
+                                  DataFromProfiletoUpdate.workDays02 =
+                                      List<String>.from(workDays0);
+                                  DataFromProfiletoUpdate.workDays03 =
+                                      List<String>.from(workDays03);
+                                });
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => MainUpdateMap(
+                                      latlng: latlng,
                                     ),
-                                  );
-                                  mainfrom = false;
-                                  mainto = false;
-                                } else if (registered) {
-                                  setState(() {
-                                    _error = AppLocalizations.of(context)
-                                        .translate('already_registered');
-                                  });
-                                  _showSnackBar();
-                                }
+                                  ),
+                                );
+                                mainfrom = false;
+                                mainto = false;
                               } else if (currentVacationDays == '') {
                                 _error = AppLocalizations.of(context)
                                     .translate('selectmaindays');

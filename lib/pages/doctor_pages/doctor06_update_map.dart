@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_launcher_icons/utils.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/services/app_localizations.dart';
@@ -19,26 +20,55 @@ class SnackBarError {
 }
 
 class MainUpdateMap extends StatefulWidget {
+  final String latlng;
+  MainUpdateMap({this.latlng});
   @override
-  _MainUpdateMapState createState() => _MainUpdateMapState();
+  _MainUpdateMapState createState() => _MainUpdateMapState(latlng: latlng);
 }
 
 class _MainUpdateMapState extends State<MainUpdateMap> {
+  final String latlng;
+  _MainUpdateMapState({this.latlng});
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
       value: DatabaseService().basicData,
-      child: UpdateMap(),
+      child: UpdateMap(latlng: latlng),
     );
   }
 }
 
 class UpdateMap extends StatefulWidget {
+  final String latlng;
+  UpdateMap({this.latlng});
   @override
-  _UpdateMapState createState() => _UpdateMapState();
+  _UpdateMapState createState() => _UpdateMapState(addressLatlng: latlng);
 }
 
 class _UpdateMapState extends State<UpdateMap> {
+  final String addressLatlng;
+  _UpdateMapState({this.addressLatlng});
+  //function to get and analyze latlng from address
+  String addressLat = '';
+  String addressLng = '';
+  double addressesLat = 0.0;
+  double addressesLng = 0.0;
+  double sum = 0.0;
+  double result = 0.0;
+  analyzeAddress(double lat, double lng) {
+    if (addressLatlng != null || addressLatlng != '') {
+      addressLat = addressLatlng.substring(1, addressLatlng.indexOf(','));
+      addressLng = addressLatlng.substring(
+          addressLatlng.indexOf(',') + 1, addressLatlng.length - 1);
+      addressesLat = double.parse(addressLat);
+      addressesLng = double.parse(addressLng);
+      sum = (pow(addressesLat - lat, 2)) + pow(addressesLng - lng, 2);
+      result = sqrt(sum) * 100;
+      return result;
+    }
+  }
+
+  //======================================
   var latlng;
   List<Marker> mymarker = [];
 
@@ -216,43 +246,54 @@ class _UpdateMapState extends State<UpdateMap> {
                       } else {
                         await geolocate(latlng: latlng);
                         if (lattt != null && lnggg != null) {
-                          setState(() {
-                            isloading = true;
-                            _result =
-                                pow((lattt - _lt), 2) + pow((lnggg - _lg), 2);
-                            _finalDistance = sqrt(_result);
-                            _kmDistance = _finalDistance * 100;
-                          });
-                          print(_kmDistance);
-                          if (_kmDistance < 100) {
+                          double addressResult =
+                              await analyzeAddress(lattt, lnggg);
+                          if (addressResult < 2) {
                             setState(() {
-                              Empty.isEmpty = false;
+                              isloading = true;
+                              _result =
+                                  pow((lattt - _lt), 2) + pow((lnggg - _lg), 2);
+                              _finalDistance = sqrt(_result);
+                              _kmDistance = _finalDistance * 100;
                             });
-                            await DatabaseService(
-                                    uid: FirebaseAuth.instance.currentUser.uid)
-                                .updateUserData(
-                                    DataFromProfiletoUpdate.name,
-                                    DataFromProfiletoUpdate.speciality,
-                                    DataFromProfiletoUpdate.phoneNumber,
-                                    DataFromProfiletoUpdate.province,
-                                    lattt,
-                                    lnggg,
-                                    DataFromProfiletoUpdate.address,
-                                    DataFromProfiletoUpdate.workDays01,
-                                    DataFromProfiletoUpdate.workDays02,
-                                    DataFromProfiletoUpdate.workDays03);
-                            setState(() {
-                              isloading = false;
-                            });
-                            int count = 0;
-                            Navigator.popUntil(context, (route) {
-                              return count++ == 3;
-                            });
+                            if (_kmDistance < 3) {
+                              setState(() {
+                                Empty.isEmpty = false;
+                              });
+                              await DatabaseService(
+                                      uid:
+                                          FirebaseAuth.instance.currentUser.uid)
+                                  .updateUserData(
+                                      DataFromProfiletoUpdate.name,
+                                      DataFromProfiletoUpdate.speciality,
+                                      DataFromProfiletoUpdate.phoneNumber,
+                                      DataFromProfiletoUpdate.province,
+                                      lattt,
+                                      lnggg,
+                                      DataFromProfiletoUpdate.address,
+                                      DataFromProfiletoUpdate.workDays01,
+                                      DataFromProfiletoUpdate.workDays02,
+                                      DataFromProfiletoUpdate.workDays03);
+                              setState(() {
+                                isloading = false;
+                              });
+                              int count = 0;
+                              Navigator.popUntil(context, (route) {
+                                return count++ == 3;
+                              });
+                            } else {
+                              setState(() {
+                                isloading = false;
+                                SnackBarError.error =
+                                    AppLocalizations.of(context)
+                                        .translate('snack_update');
+                              });
+                              _showSnackBar();
+                            }
                           } else {
                             setState(() {
-                              isloading = false;
                               SnackBarError.error = AppLocalizations.of(context)
-                                  .translate('snack_update');
+                                  .translate('invalid_address');
                             });
                             _showSnackBar();
                           }

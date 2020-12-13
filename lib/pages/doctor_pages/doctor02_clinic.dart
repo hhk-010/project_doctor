@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/database.dart';
@@ -215,6 +216,23 @@ class _ClinicFormState extends State<ClinicForm> {
     _scaffoldkey.currentState.showSnackBar(snackBar);
   }
 
+  String latlng = '';
+//===========geo encode address=======
+  getCoordinatesFromAddress(String address) async {
+    try {
+      final query = address;
+      var addresses = await Geocoder.local.findAddressesFromQuery(query);
+      var first = addresses.first;
+      print("${first.featureName} : ${first.coordinates}");
+      latlng = "${first.coordinates}";
+      return latlng;
+    } catch (e) {
+      print(e);
+      return '';
+    }
+  }
+
+//=================end================
   //---this variable is assigned to make workdays element false---
   int _x = 6;
   //=======bool value to inspect wether the doctor is registered===
@@ -419,8 +437,11 @@ class _ClinicFormState extends State<ClinicForm> {
                                       ? AppLocalizations.of(context)
                                           .translate('address_validator')
                                       : null,
-                                  onChanged: (val) =>
-                                      setState(() => currentaddress = val),
+                                  onChanged: (val) async {
+                                    setState(() => currentaddress = val);
+                                    latlng = await getCoordinatesFromAddress(
+                                        currentaddress);
+                                  },
                                   decoration: textInputdecoration.copyWith(
                                     hintText:
                                         'مثال: شارع المغرب مجاور صيدليه الشفاء',
@@ -1037,9 +1058,13 @@ class _ClinicFormState extends State<ClinicForm> {
                                             DataFromMaptoVerify.workDays03 =
                                                 List<String>.from(workDays03);
                                           });
+                                          print(latlng);
                                           await Navigator.of(context).push(
                                             MaterialPageRoute(
-                                              builder: (context) => DocMap(),
+                                              builder: (context) => DocMap(
+                                                addresslatlng:
+                                                    latlng.toString(),
+                                              ),
                                             ),
                                           );
                                         } else if (registered) {

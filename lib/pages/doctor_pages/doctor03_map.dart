@@ -33,35 +33,61 @@ class DataFromMaptoVerify {
 
 //-------------------------------------
 class DocMap extends StatefulWidget {
+  final String addresslatlng;
+  DocMap({this.addresslatlng});
   @override
-  _DocMapState createState() => _DocMapState();
+  _DocMapState createState() => _DocMapState(addressLatlng: addresslatlng);
 }
 
 class _DocMapState extends State<DocMap> {
+  final String addressLatlng;
+  _DocMapState({this.addressLatlng});
+
   bool loading = false;
   @override
   Widget build(BuildContext context) {
-    return /*loading
-        ? Loading()
-        :*/
-        StreamProvider<QuerySnapshot>.value(
+    return StreamProvider<QuerySnapshot>.value(
       value: DatabaseService().basicData,
-      child: FinalMap(),
+      child: FinalMap(addressLatlng: addressLatlng),
     );
   }
 }
 
 //===============================================
 class FinalMap extends StatefulWidget {
+  final String addressLatlng;
+  FinalMap({this.addressLatlng});
   final Storage dataStorage = Storage();
 
   @override
-  _FinalMapState createState() => _FinalMapState();
+  _FinalMapState createState() => _FinalMapState(addressLatlng: addressLatlng);
 }
 
 class _FinalMapState extends State<FinalMap> {
   final AuthService _auth = AuthService();
+//==========================================
+  final String addressLatlng;
+  _FinalMapState({this.addressLatlng});
+  String addressLat = '';
+  String addressLng = '';
+  double addressesLat = 0.0;
+  double addressesLng = 0.0;
+  double sum = 0.0;
+  double result = 0.0;
+  analyzeAddress(double lat, double lng) {
+    if (addressLatlng != null || addressLatlng != '') {
+      addressLat = addressLatlng.substring(1, addressLatlng.indexOf(','));
+      addressLng = addressLatlng.substring(
+          addressLatlng.indexOf(',') + 1, addressLatlng.length - 1);
+      addressesLat = double.parse(addressLat);
+      addressesLng = double.parse(addressLng);
+      sum = (pow(addressesLat - lat, 2)) + pow(addressesLng - lng, 2);
+      result = sqrt(sum) * 100;
+      return result;
+    }
+  }
 
+//==========================================
   var latlng;
 
   List<Marker> mymarker = [];
@@ -328,44 +354,51 @@ class _FinalMapState extends State<FinalMap> {
                       _showSnackBar();
                     } else {
                       await geolocate(latlng: latlng);
-                      setState(() => isloading = true);
                       if (lattt != null && lnggg != null) {
-                        setState(() {
-                          finalResult =
-                              pow((lattt - lt), 2) + pow((lnggg - lg), 2);
-                          finalDistance = sqrt(finalResult);
-                          kmDistance = finalDistance * 100;
-                        });
-                        //========Navigation to EmailVerification without the following
-                        // condition is a bug(emails Already in use can navigate)
-                        //------ direct navigation to the emailverfied widget will
-                        // give a fake page (when pressing continue) it will not respond)
-                        // I found put wrapper and transferred email by another method
-                        //--------------at least 10 km away from bashar abbas---------------
-                        if (kmDistance < 100.0) {
-                          _writeName(DataFromMaptoVerify.name);
-                          _writeSpeciality(DataFromMaptoVerify.speciality);
-                          _writeNumber(DataFromMaptoVerify.phoneNumber);
-                          _writeProvince(DataFromMaptoVerify.province);
-                          _writeAddress(DataFromMaptoVerify.address);
-                          _writelat(lattt.toString());
-                          _writelng(lnggg.toString());
-                          _writeWorkDays01(
-                              json.encode(DataFromMaptoVerify.workDays01));
-                          _writeWorkDays02(
-                              json.encode(DataFromMaptoVerify.workDays02));
-                          _writeWorkDays03(
-                              json.encode(DataFromMaptoVerify.workDays03));
-                          final authResult =
-                              await _auth.registerWithEmailAndPassword(
-                                  DataFromMaptoVerify.email,
-                                  DataFromMaptoVerify.password);
-                          if (authResult != null) {
-                            setState(() => isloading = false);
-                            int count = 0;
-                            Navigator.popUntil(context, (route) {
-                              return count++ == 4;
-                            });
+                        print(addressLatlng);
+                        double resultedAddress =
+                            await analyzeAddress(lattt, lnggg);
+                        print(resultedAddress);
+                        if (resultedAddress < 2) {
+                          setState(() => isloading = true);
+                          setState(() {
+                            finalResult =
+                                pow((lattt - lt), 2) + pow((lnggg - lg), 2);
+                            finalDistance = sqrt(finalResult);
+                            kmDistance = finalDistance * 100;
+                          });
+                          if (kmDistance < 3.0) {
+                            _writeName(DataFromMaptoVerify.name);
+                            _writeSpeciality(DataFromMaptoVerify.speciality);
+                            _writeNumber(DataFromMaptoVerify.phoneNumber);
+                            _writeProvince(DataFromMaptoVerify.province);
+                            _writeAddress(DataFromMaptoVerify.address);
+                            _writelat(lattt.toString());
+                            _writelng(lnggg.toString());
+                            _writeWorkDays01(
+                                json.encode(DataFromMaptoVerify.workDays01));
+                            _writeWorkDays02(
+                                json.encode(DataFromMaptoVerify.workDays02));
+                            _writeWorkDays03(
+                                json.encode(DataFromMaptoVerify.workDays03));
+                            final authResult =
+                                await _auth.registerWithEmailAndPassword(
+                                    DataFromMaptoVerify.email,
+                                    DataFromMaptoVerify.password);
+                            if (authResult != null) {
+                              setState(() => isloading = false);
+                              int count = 0;
+                              Navigator.popUntil(context, (route) {
+                                return count++ == 4;
+                              });
+                            } else {
+                              setState(() {
+                                isloading = false;
+                                error = AppLocalizations.of(context)
+                                    .translate('snack_register');
+                              });
+                              _showSnackBar();
+                            }
                           } else {
                             setState(() {
                               isloading = false;
@@ -375,11 +408,8 @@ class _FinalMapState extends State<FinalMap> {
                             _showSnackBar();
                           }
                         } else {
-                          setState(() {
-                            isloading = false;
-                            error = AppLocalizations.of(context)
-                                .translate('snack_register');
-                          });
+                          error = AppLocalizations.of(context)
+                              .translate('invalid_address');
                           _showSnackBar();
                         }
                       }

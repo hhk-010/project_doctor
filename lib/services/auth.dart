@@ -102,7 +102,8 @@ class AuthService {
   Future deleteUser(String email, String password) async {
     try {
       User user = _auth.currentUser;
-      AuthCredential credentials = EmailAuthProvider.credential(email: email, password: password);
+      AuthCredential credentials =
+          EmailAuthProvider.credential(email: email, password: password);
       print(user);
       UserCredential result = await user.reauthenticateWithCredential(credentials);
       await DatabaseService(uid: result.user.uid).deleteuser(); // called from database class
