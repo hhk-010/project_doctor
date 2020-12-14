@@ -276,7 +276,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             _writeWorkDays03(json.encode(_workDays03));
             _y = _workDays01.length - 1;
             //for (String x in _workDays01)
-            while (_y > 0) {
+            while (_y >= 0) {
               x = _workDays01[_z];
               if (x.length < 11) {
                 _mainDaysTranslation =
@@ -604,7 +604,6 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                             ),
                       Text(
                         AppLocalizations.of(context).translate("distances"),
-                        //'Distance to the Doctor is about ',
                         style: TextStyle(
                             fontSize: footer,
                             color: Colors.indigo,
@@ -635,15 +634,17 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(80.0)),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
                         builder: (context) => PatientResultMap(
-                              lat: _lat,
-                              lng: _lng,
-                            )));
+                          lat: _lat,
+                          lng: _lng,
+                        ),
+                      ),
+                    );
                   },
                   label: Text(
                     AppLocalizations.of(context).translate("doctor_locat"),
-                    //'View Doctor Location',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: subTitle,
