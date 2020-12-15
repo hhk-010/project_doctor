@@ -99,7 +99,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                   onPressed: () {
                     Navigator.pushNamed(context, '/pre_delete');
                   },
-                  color: Colors.blueAccent,
+                  color: Colors.redAccent,
                 ),
                 IconButton(
                   icon: Icon(

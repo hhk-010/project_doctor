@@ -17,7 +17,7 @@
     "last_searched_doctor" : "Last Searched Doctor",
 
 "regions":"---------------------------------",
-    "Baghdad":"Baghdad, Iraq",
+    "Baghdad":"Baghdad",
     "Northern Region":"Northern Region of Iraq",
     "Southern Region":"Southern Region of Iraq",
     "Western Region":"Western Region of Iraq",
@@ -113,7 +113,7 @@
     "home_patient_subtitle" :"I want to search",
     "home_doctor_title" : "I'm a Doctor\n",
     "home_doctor_subtitle" : "I want to register",
-    "about_us" : "About Us",
+    "support" : "Support",
     "sign_in": "Sign In",
     "register" : "Register",
     "email": "Email",

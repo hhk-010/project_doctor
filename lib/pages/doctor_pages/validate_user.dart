@@ -21,6 +21,7 @@ class _PreDeleteUserState extends State<PreDeleteUser> {
   //String _newPassword;
   bool passwordvalid;
   String error = '';
+  // ignore: unused_field
   bool _passwordVisible;
   final _formkey = GlobalKey<FormState>();
 
