@@ -54,9 +54,7 @@ class _SignInState extends State<SignIn> {
     final _snackbar = new SnackBar(
       content: Text(
         SnackText.errorMsg,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -131,9 +129,7 @@ class _SignInState extends State<SignIn> {
             backgroundColor: Colors.deepOrange,
             title: FittedBox(
               fit: BoxFit.fitWidth,
-              child: Text(AppLocalizations.of(context).translate('sign_in'),
-                  style: TextStyle(
-                      fontSize: appBarTitle, fontWeight: FontWeight.bold)),
+              child: Text(AppLocalizations.of(context).translate('sign_in'), style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold)),
             ),
             centerTitle: true,
             elevation: 0.0,
@@ -162,8 +158,7 @@ class _SignInState extends State<SignIn> {
                             child: CircleAvatar(
                               backgroundColor: Colors.deepOrangeAccent,
                               radius: avatar,
-                              backgroundImage:
-                                  AssetImage('assets/images/sign_in.png'),
+                              backgroundImage: AssetImage('assets/images/sign_in.png'),
                             ),
                           ),
                           SizedBox(
@@ -172,20 +167,15 @@ class _SignInState extends State<SignIn> {
                           SizedBox(
                             width: textFieldWidth,
                             child: TextFormField(
-                              validator: (val) => val.isEmpty
-                                  ? AppLocalizations.of(context)
-                                      .translate('enter_your_email')
-                                  : null,
+                              validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('enter_your_email') : null,
                               onChanged: (val) {
                                 setState(() => email = val);
                               },
                               cursorColor: Colors.black,
                               keyboardType: TextInputType.emailAddress,
                               decoration: textInputdecoration.copyWith(
-                                hintText: AppLocalizations.of(context)
-                                    .translate('enter_your_email'),
-                                labelText: AppLocalizations.of(context)
-                                    .translate('email'),
+                                hintText: AppLocalizations.of(context).translate('enter_your_email'),
+                                labelText: AppLocalizations.of(context).translate('email'),
                               ),
                             ),
                           ),
@@ -195,10 +185,7 @@ class _SignInState extends State<SignIn> {
                           SizedBox(
                             width: textFieldWidth,
                             child: TextFormField(
-                              validator: (val) => val.length < 8
-                                  ? AppLocalizations.of(context)
-                                      .translate('password_validator')
-                                  : null,
+                              validator: (val) => val.length < 8 ? AppLocalizations.of(context).translate('password_validator') : null,
                               obscureText: !_passwordVisible,
                               onChanged: (val) {
                                 setState(() => password = val);
@@ -206,16 +193,12 @@ class _SignInState extends State<SignIn> {
                               cursorColor: Colors.black,
                               keyboardType: TextInputType.text,
                               decoration: textInputdecoration.copyWith(
-                                hintText: AppLocalizations.of(context)
-                                    .translate('enter_your_password'),
-                                labelText: AppLocalizations.of(context)
-                                    .translate('password'),
+                                hintText: AppLocalizations.of(context).translate('enter_your_password'),
+                                labelText: AppLocalizations.of(context).translate('password'),
                                 suffixIcon: IconButton(
                                   icon: Icon(
                                     // Based on passwordVisible state choose the icon
-                                    _passwordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
+                                    _passwordVisible ? Icons.visibility : Icons.visibility_off,
                                     color: Colors.deepOrange,
                                   ),
                                   onPressed: () {
@@ -244,52 +227,39 @@ class _SignInState extends State<SignIn> {
                                 if (_isInternet) {
                                   if (_formKey.currentState.validate()) {
                                     setState(() => loading = true);
-                                    dynamic authResult =
-                                        await _auth.signInWithEmailAndPassword(
-                                            email, password);
+                                    dynamic authResult = await _auth.signInWithEmailAndPassword(email, password);
                                     if (authResult != null) {
                                       setState(() => loading = false);
                                     } else {
                                       setState(() {
                                         setState(() => loading = false);
-                                        SnackText.errorMsg =
-                                            AppLocalizations.of(context)
-                                                .translate('snack_sign_in');
+                                        SnackText.errorMsg = AppLocalizations.of(context).translate('snack_sign_in');
                                       });
                                       _showSnackBar();
                                     }
                                   }
                                 } else {
                                   setState(() {
-                                    SnackText.errorMsg =
-                                        AppLocalizations.of(context)
-                                            .translate('snack_connectivity');
+                                    SnackText.errorMsg = AppLocalizations.of(context).translate('snack_connectivity');
                                   });
                                   _showSnackBar();
                                 }
                               },
                               backgroundcolor: Colors.deepOrange,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(80.0)),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                               child: Text(
-                                AppLocalizations.of(context)
-                                    .translate('sign_in'),
-                                style: TextStyle(
-                                    fontSize: title,
-                                    color: Colors
-                                        .white), //_textStyle.copyWith(color: Colors.white),
+                                AppLocalizations.of(context).translate('sign_in'),
+                                style: TextStyle(fontSize: title, color: Colors.white, fontWeight: FontWeight.bold), //_textStyle.copyWith(color: Colors.white),
                               ),
                             ),
                           ),
                           FlatButton.icon(
                             icon: Icon(Icons.arrow_forward),
                             onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => ForgetPassword()));
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForgetPassword()));
                             },
                             label: Text(
-                              AppLocalizations.of(context)
-                                  .translate('forget_password'),
+                              AppLocalizations.of(context).translate('forget_password'),
                               style: TextStyle(
                                 fontSize: subTitle,
                                 fontWeight: FontWeight.bold,
@@ -316,22 +286,12 @@ class _SignInState extends State<SignIn> {
                           },
                           child: RichText(
                             text: TextSpan(
-                              style: TextStyle(
-                                  fontSize: footer,
-                                  color: Colors.black,
-                                  fontFamily: lang == 'ar'
-                                      ? 'noto_arabic'
-                                      : 'Helvetica'),
+                              style: TextStyle(fontSize: footer, color: Colors.black, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
                               children: <TextSpan>[
+                                TextSpan(text: AppLocalizations.of(context).translate('does_not_have_account')),
                                 TextSpan(
-                                    text: AppLocalizations.of(context)
-                                        .translate('does_not_have_account')),
-                                TextSpan(
-                                    text: AppLocalizations.of(context)
-                                        .translate('register'),
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.redAccent)),
+                                    text: AppLocalizations.of(context).translate('register'),
+                                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.redAccent)),
                               ],
                             ),
                           ),

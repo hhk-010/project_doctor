@@ -100,6 +100,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
           preferredSize: Size.fromHeight(appBarHeight),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
+            centerTitle: true,
             title: FittedBox(
               fit: BoxFit.fitWidth,
               child: Text(

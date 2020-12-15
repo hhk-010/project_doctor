@@ -230,7 +230,7 @@ class _ClinicFormState extends State<ClinicForm> {
       return latlng;
     } catch (e) {
       print(e);
-      return '';
+      return '{0.0,0.0}';
     }
   }
 
@@ -459,7 +459,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                   },
                                   decoration: textInputdecoration.copyWith(
                                     hintText:
-                                        'مثال: شارع المغرب مجاور صيدليه الشفاء',
+                                        'الكاظميه شارع المغرب',
                                     hintStyle: TextStyle(
                                         fontSize: footer,
                                         color: Colors.deepOrange,

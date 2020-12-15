@@ -127,7 +127,7 @@ class _DeleteUserState extends State<DeleteUser> {
                             height: imageHeight,
                             child: Image(
                               image: AssetImage(
-                                'assets/images/reset_password.png',
+                                'assets/images/delete.png',
                               ),
                             ),
                           ),
