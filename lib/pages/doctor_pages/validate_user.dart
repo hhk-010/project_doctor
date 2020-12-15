@@ -133,7 +133,7 @@ class _PreDeleteUserState extends State<PreDeleteUser> {
                         height: imageHeight,
                         child: Image(
                           image: AssetImage(
-                            'assets/images/update_password.png',
+                            'assets/images/pre_delete.png',
                           ),
                         ),
                       ),
