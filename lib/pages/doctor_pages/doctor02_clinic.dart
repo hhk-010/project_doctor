@@ -459,7 +459,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                   },
                                   decoration: textInputdecoration.copyWith(
                                     hintText:
-                                        'مثال: شارع المغرب مجاور صيدليه الشفاء',
+                                        'الكاظميه شارع المغرب',
                                     hintStyle: TextStyle(
                                         fontSize: footer,
                                         color: Colors.deepOrange,
