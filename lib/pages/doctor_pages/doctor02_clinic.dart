@@ -230,7 +230,7 @@ class _ClinicFormState extends State<ClinicForm> {
       return latlng;
     } catch (e) {
       print(e);
-      return '';
+      return '{0.0,0.0}';
     }
   }
 
