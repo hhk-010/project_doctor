@@ -148,7 +148,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       return latlng;
     } catch (e) {
       print(e);
-      return '';
+      return '{0.0,0.0}';
     }
   }
 
