@@ -3,7 +3,7 @@ import 'package:project_doctor/authorization/04_mcqs_new.dart';
 import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/loading.dart';
-import 'package:project_doctor/pages/about_us.dart';
+import 'package:project_doctor/pages/Support.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor07_update_password.dart';

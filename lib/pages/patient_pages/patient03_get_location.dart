@@ -70,12 +70,57 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
 
   @override
   Widget build(BuildContext context) {
-    final iraqRegions = {
-      "1": [AppLocalizations.of(context).translate('Baghdad'), "Baghdad"],
-      "2": [AppLocalizations.of(context).translate('northen_region'), "Northern Region"],
-      "3": [AppLocalizations.of(context).translate('southern_region'), "Southern Region"],
-      "4": [AppLocalizations.of(context).translate('western_region'), "Eastern Region"],
-      "5": [AppLocalizations.of(context).translate('Middle Region'), "Middle Region"],
+    // final iraqRegions = {
+    //   "1": [AppLocalizations.of(context).translate('Baghdad'), "Baghdad"],
+    //   "2": [AppLocalizations.of(context).translate('northen_region'), "Northern Region"],
+    //   "3": [AppLocalizations.of(context).translate('southern_region'), "Southern Region"],
+    //   "4": [AppLocalizations.of(context).translate('western_region'), "Eastern Region"],
+    //   "5": [AppLocalizations.of(context).translate('Middle Region'), "Middle Region"],
+    // };
+    final province = {
+
+      "1": [
+        "Erbil",
+        AppLocalizations.of(context).translate("Erbil"),
+      ],
+      "2": [
+        "Al Anbar",
+        AppLocalizations.of(context).translate("Al Anbar"),
+      ],
+      "3": [
+        "Basra",
+        AppLocalizations.of(context).translate("Basra"),
+      ],
+      "4": [
+        "Al Qadisiyyah",
+        AppLocalizations.of(context).translate("Al Qadisiyyah"),
+      ],
+      "5": [
+        "Muthanna",
+        AppLocalizations.of(context).translate("Muthanna"),
+      ],
+      "6": [
+        "Najaf",
+        AppLocalizations.of(context).translate("Najaf"),
+      ],
+      "7": [
+        "Babil",
+        AppLocalizations.of(context).translate("Babil"),
+      ],
+      "8": [
+        'Baghdad',
+        AppLocalizations.of(context).translate('Baghdad'),
+      ],
+      "9": ["Duhok", AppLocalizations.of(context).translate("Duhok")],
+      "10": ["Diyala", AppLocalizations.of(context).translate("Diyala")],
+      "11": ["Dhi Qar", AppLocalizations.of(context).translate("Dhi Qar")],
+      "12": ["Sulaymaniyah", AppLocalizations.of(context).translate("Sulaymaniyah")],
+      "13": ["Saladin", AppLocalizations.of(context).translate("Saladin")],
+      "14": ["Karbala", AppLocalizations.of(context).translate("Karbala")],
+      "15": ["Kirkuk", AppLocalizations.of(context).translate("Kirkuk")],
+      "16": ["Maysan", AppLocalizations.of(context).translate("Maysan")],
+      "17": ["Nineveh", AppLocalizations.of(context).translate("Nineveh")],
+      "18": ["Wasit", AppLocalizations.of(context).translate("Wasit")],
     };
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       double appBarTitle;
@@ -87,7 +132,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
       double title;
 
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle =  25;
+        appBarTitle = 25;
         appBarHeight = 50;
         containerHeight = displayHeight(context) * 0.75;
         containerWidth = displayWidth(context) * 0.85;
@@ -150,28 +195,80 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                             AppLocalizations.of(context).translate('select_region'),
                           ),
                           isExpanded: true,
-                          items: [
-                            DropdownMenuItem(
-                              value: iraqRegions["1"][1],
-                              child: Text(iraqRegions["1"][0]),
-                            ),
-                            DropdownMenuItem(
-                              value: iraqRegions["2"][1],
-                              child: Text(iraqRegions["2"][0]),
-                            ),
-                            DropdownMenuItem(
-                              value: iraqRegions["3"][1],
-                              child: Text(iraqRegions["3"][0]),
-                            ),
-                            DropdownMenuItem(
-                              value: iraqRegions["4"][1],
-                              child: Text(iraqRegions["4"][0]),
-                            ),
-                            DropdownMenuItem(
-                              value: iraqRegions["5"][1],
-                              child: Text(iraqRegions["5"][0]),
-                            ),
-                          ],
+                         items: [
+                        DropdownMenuItem(
+                          value: province["1"][0],
+                          child: Text(province["1"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["2"][0],
+                          child: Text(province["2"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["3"][0],
+                          child: Text(province["3"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["4"][0],
+                          child: Text(province["4"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["5"][0],
+                          child: Text(province["5"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["6"][0],
+                          child: Text(province["6"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["7"][0],
+                          child: Text(province["7"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["8"][0],
+                          child: Text(province["8"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["9"][0],
+                          child: Text(province["9"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["10"][0],
+                          child: Text(province["10"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["11"][0],
+                          child: Text(province["11"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["12"][0],
+                          child: Text(province["12"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["13"][0],
+                          child: Text(province["13"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["14"][0],
+                          child: Text(province["14"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["15"][0],
+                          child: Text(province["15"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["16"][0],
+                          child: Text(province["16"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["17"][0],
+                          child: Text(province["17"][1]),
+                        ),
+                        DropdownMenuItem(
+                          value: province["18"][0],
+                          child: Text(province["18"][1]),
+                        ),
+                      ],
                           onChanged: (value) {
                             setState(() {
                               region = value;
