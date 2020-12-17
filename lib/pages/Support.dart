@@ -7,12 +7,12 @@ import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AboutUS extends StatefulWidget {
+class Support extends StatefulWidget {
   @override
-  _AboutUSState createState() => _AboutUSState();
+  _SupportState createState() => _SupportState();
 }
 
-class _AboutUSState extends State<AboutUS> {
+class _SupportState extends State<Support> {
   Future<void> _launchEmail(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -82,233 +82,233 @@ class _AboutUSState extends State<AboutUS> {
           fontSize: subTitle,
         );
 
-        return Directionality(
-          textDirection: TextDirection.ltr,
-          child: Scaffold(
-            backgroundColor: Colors.grey[200],
-            appBar: PreferredSize(
-              preferredSize: Size.fromHeight(appBarHeight),
-              child: AppBar(
-                backgroundColor: Colors.deepOrange,
-                title: FittedBox(
-                  fit: BoxFit.fitWidth,
-                  child: Text(
-                    AppLocalizations.of(context).translate('support'),
-                    style: TextStyle(fontSize: appBar, fontWeight: FontWeight.bold),
-                  ),
+        return Scaffold(
+          backgroundColor: Colors.grey[200],
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(appBarHeight),
+            child: AppBar(
+              backgroundColor: Colors.deepOrange,
+              title: FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                  AppLocalizations.of(context).translate('support'),
+                  style: TextStyle(fontSize: appBar, fontWeight: FontWeight.bold),
                 ),
-                centerTitle: true,
-                elevation: 0,
               ),
+              centerTitle: true,
+              elevation: 0,
             ),
-            body: Center(
-              child: Container(
-                height: containerHeight,
-                width: containerWidth,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: imageHeight,
-                            child: Image(
-                              image: AssetImage('assets/images/about_us.png'),
-                            ),
+          ),
+          body: Center(
+            child: Container(
+              height: containerHeight,
+              width: containerWidth,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: imageHeight,
+                          child: Image(
+                            image: AssetImage('assets/images/about_us.png'),
                           ),
-                          SizedBox(
-                            height: 50,
-                          ),
-                          Container(
-                            height: buttonHeight,
-                            width: buttonWidth,
-                            child: FlatButton(
-                              onPressed: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                                      title: Text(
-                                        'About us',
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      content: Text(
-                                        aboutUs,
-                                        style: dialoge,
-                                        textAlign: TextAlign.justify,
-                                        textDirection: TextDirection.ltr,
-                                      ),
-                                      actions: <Widget>[
-                                        FlatButton(
-                                          child: Text('OK'),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        )
-                                      ],
-                                    );
-                                  },
-                                );
-                              },
-                              child: Text(
-                                'About us',
-                                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
-                              ),
-                              color: Colors.deepOrange,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 25,
-                          ),
-                          Container(
-                            height: buttonHeight,
-                            width: buttonWidth,
-                            child: FlatButton(
-                              onPressed: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                                      title: Text(
-                                        'Privacy Policy',
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      content: SingleChildScrollView(
-                                          child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                                        children: [
-                                          Text(
-                                            privacyPolicy1,
-                                            style: dialoge,
-                                            textDirection: TextDirection.ltr,
-                                            textAlign: TextAlign.justify,
-                                          ),
-                                          Text(
-                                            privacyPolicy2,
-                                            style: dialoge,
-                                            textDirection: TextDirection.ltr,
-                                            textAlign: TextAlign.justify,
-                                          ),
-                                        ],
-                                      )),
-                                      actions: <Widget>[
-                                        FlatButton(
-                                          child: Text('OK'),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        )
-                                      ],
-                                    );
-                                  },
-                                );
-                              },
-                              child: Text(
-                                'Privacy Policy',
-                                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
-                              ),
-                              color: Colors.deepOrange,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                            ),
-                          ),
-
-                          SizedBox(
-                            height: 25,
-                          ),
-                          Container(
-                            height: buttonHeight,
-                            width: buttonWidth,
-                            child: FlatButton(
-                              onPressed: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                                      title: Text(
-                                        'Terms & Conditions',
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      content: SingleChildScrollView(
-                                          child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                                        children: [
-                                          Text(
-                                            termsConditions1,
-                                            style: dialoge,
-                                            textDirection: TextDirection.ltr,
-                                            textAlign: TextAlign.justify,
-                                          ),
-                                          Text(
-                                            termsConditions2,
-                                            style: dialoge,
-                                            textDirection: TextDirection.ltr,
-                                            textAlign: TextAlign.justify,
-                                          ),
-                                        ],
-                                      )),
-                                      actions: <Widget>[
-                                        FlatButton(
-                                          child: Text('OK'),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        )
-                                      ],
-                                    );
-                                  },
-                                );
-                              },
-                              child: Text(
-                                'Terms & Conditions',
-                                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
-                              ),
-                              color: Colors.deepOrange,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 25,
-                          ),
-                          Container(
-                            height: buttonHeight,
-                            width: buttonWidth,
-                            child: FlatButton(
-                              onPressed: () async {
-                                const url = 'https://sites.google.com/view/cura-mobile/home';
-                                if (await canLaunch(url)) {
-                                  await launch(url);
-                                } else {
-                                  throw 'Could Not Launch $url';
-                                }
-                              },
-                              child: Text(
-                                'Website',
-                                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
-                              ),
-                              color: Colors.deepOrange,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 25,
-                          ),
-                          Center(
+                        ),
+                        SizedBox(
+                          height: 50,
+                        ),
+                        Container(
+                          height: buttonHeight,
+                          width: buttonWidth,
+                          child: FlatButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                                    title: Text(
+                                      AppLocalizations.of(context).translate('about_us'),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    content: Text(
+                                      aboutUs,
+                                      style: dialoge,
+                                      textAlign: TextAlign.justify,
+                                      textDirection: TextDirection.ltr,
+                                    ),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        child: Text('OK'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      )
+                                    ],
+                                  );
+                                },
+                              );
+                            },
                             child: Text(
-                              'Contact us',
-                              style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                              AppLocalizations.of(context).translate('about_us'),
+                              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
                             ),
+                            color: Colors.deepOrange,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                           ),
-                          SizedBox(
-                            height: 15,
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Container(
+                          height: buttonHeight,
+                          width: buttonWidth,
+                          child: FlatButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                                    title: Text(
+                                      AppLocalizations.of(context).translate('privacy_policy'),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    content: SingleChildScrollView(
+                                        child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                                      children: [
+                                        Text(
+                                          privacyPolicy1,
+                                          style: dialoge,
+                                          textDirection: TextDirection.ltr,
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                        Text(
+                                          privacyPolicy2,
+                                          style: dialoge,
+                                          textDirection: TextDirection.ltr,
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                      ],
+                                    )),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        child: Text('OK'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      )
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: Text(
+                              AppLocalizations.of(context).translate('privacy_policy'),
+                              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
+                            ),
+                            color: Colors.deepOrange,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                           ),
+                        ),
 
-                          Container(
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Container(
+                          height: buttonHeight,
+                          width: buttonWidth,
+                          child: FlatButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                                    title: Text(
+                                      AppLocalizations.of(context).translate('terms_conditions'),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    content: SingleChildScrollView(
+                                        child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                                      children: [
+                                        Text(
+                                          termsConditions1,
+                                          style: dialoge,
+                                          textDirection: TextDirection.ltr,
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                        Text(
+                                          termsConditions2,
+                                          style: dialoge,
+                                          textDirection: TextDirection.ltr,
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                      ],
+                                    )),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        child: Text('OK'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      )
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: Text(
+                              AppLocalizations.of(context).translate('terms_conditions'),
+                              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
+                            ),
+                            color: Colors.deepOrange,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Container(
+                          height: buttonHeight,
+                          width: buttonWidth,
+                          child: FlatButton(
+                            onPressed: () async {
+                              const url = 'https://sites.google.com/view/cura-mobile/home';
+                              if (await canLaunch(url)) {
+                                await launch(url);
+                              } else {
+                                throw 'Could Not Launch $url';
+                              }
+                            },
+                            child: Text(
+                              AppLocalizations.of(context).translate('website'),
+                              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
+                            ),
+                            color: Colors.deepOrange,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Center(
+                          child: Text(
+                            AppLocalizations.of(context).translate('contact_us'),
+                            style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+
+                        Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Container(
                             decoration: boxDecoration,
                             child: Padding(
                               padding: const EdgeInsets.all(16.0),
@@ -368,186 +368,189 @@ class _AboutUSState extends State<AboutUS> {
                               ),
                             ),
                           ),
-                          // Center(
-                          //   child: Text(
-                          //     'Developers',
-                          //     style: TextStyle(
-                          //         fontSize: title, fontWeight: FontWeight.bold),
-                          //   ),
-                          // ),
-                          // SizedBox(
-                          //   height: 10,
-                          // ),
-                          // Container(
-                          //   decoration: boxDecoration,
-                          //   child: Padding(
-                          //     padding: const EdgeInsets.all(8.0),
-                          //     child: Column(
-                          //       children: [
-                          //         ListTile(
-                          //           leading: CircleAvatar(
-                          //             backgroundColor: Colors.grey[200],
-                          //             radius: avatarRadius,
-                          //             backgroundImage:
-                          //                 AssetImage('assets/images/ahmed.png'),
-                          //           ),
-                          //           title: Text(
-                          //             'A K',
-                          //             style: TextStyle(
-                          //                 fontWeight: FontWeight.bold,
-                          //                 fontSize: title),
-                          //           ),
-                          //           subtitle: RichText(
-                          //             text: TextSpan(
-                          //               style: TextStyle(
-                          //                   fontSize: subTitle,
-                          //                   fontWeight: FontWeight.bold,
-                          //                   color: Colors.indigoAccent,
-                          //                   fontFamily: lang == 'ar'
-                          //                       ? 'noto_arabic'
-                          //                       : 'Helvetica'),
-                          //               children: <TextSpan>[
-                          //                 TextSpan(
-                          //                     text: 'M.B.CH.B\n',
-                          //                     style: TextStyle(
-                          //                         color: Colors.redAccent)),
-                          //                 TextSpan(
-                          //                     text: 'Programmer',
-                          //                     style: TextStyle()),
-                          //               ],
-                          //             ),
-                          //           ),
-                          //         ),
-                          //         Divider(
-                          //           color: Colors.grey,
-                          //           thickness: 2,
-                          //           indent: 0,
-                          //           endIndent: 0,
-                          //         ),
-                          //         ListTile(
-                          //           leading: CircleAvatar(
-                          //             backgroundColor: Colors.grey[200],
-                          //             radius: avatarRadius,
-                          //             backgroundImage:
-                          //                 AssetImage('assets/images/hhk.png'),
-                          //           ),
-                          //           title: Text(
-                          //             'H H K',
-                          //             style: TextStyle(
-                          //                 fontWeight: FontWeight.bold,
-                          //                 fontSize: title),
-                          //           ),
-                          //           subtitle: RichText(
-                          //             text: TextSpan(
-                          //               style: TextStyle(
-                          //                   fontSize: subTitle,
-                          //                   fontWeight: FontWeight.bold,
-                          //                   color: Colors.indigoAccent,
-                          //                   fontFamily: lang == 'ar'
-                          //                       ? 'noto_arabic'
-                          //                       : 'Helvetica'),
-                          //               children: <TextSpan>[
-                          //                 TextSpan(
-                          //                     text: 'M.B.CH.B\n',
-                          //                     style: TextStyle(
-                          //                         color: Colors.redAccent)),
-                          //                 TextSpan(
-                          //                     text: 'Programmer',
-                          //                     style: TextStyle()),
-                          //               ],
-                          //             ),
-                          //           ),
-                          //         ),
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
-                          // SizedBox(
-                          //   height: 15,
-                          // ),
-                          // Center(
-                          //   child: Text(
-                          //     'This app is developed using the following technologies:',
-                          //     textAlign: TextAlign.center,
-                          //     style: TextStyle(
-                          //         fontSize: subTitle,
-                          //         fontWeight: FontWeight.bold),
-                          //   ),
-                          // ),
-                          // SizedBox(
-                          //   height: 10,
-                          // ),
-                          // Container(
-                          //   decoration: boxDecoration,
-                          //   child: Padding(
-                          //     padding: const EdgeInsets.all(8.0),
-                          //     child: Row(
-                          //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          //       crossAxisAlignment: CrossAxisAlignment.start,
-                          //       children: [
-                          //         SizedBox(
-                          //           height: techIconSize,
-                          //           width: techIconSize,
-                          //           child: Image(
-                          //             image:
-                          //                 AssetImage('assets/images/windows.png'),
-                          //           ),
-                          //         ),
-                          //         SizedBox(
-                          //           height: techIconSize,
-                          //           width: techIconSize,
-                          //           child: Image(
-                          //             image:
-                          //                 AssetImage('assets/images/apple.png'),
-                          //           ),
-                          //         ),
-                          //         SizedBox(
-                          //           height: techIconSize,
-                          //           width: techIconSize,
-                          //           child: Image(
-                          //             image:
-                          //                 AssetImage('assets/images/flutter.png'),
-                          //           ),
-                          //         ),
-                          //         SizedBox(
-                          //           height: techIconSize,
-                          //           width: techIconSize,
-                          //           child: Image(
-                          //             image: AssetImage('assets/images/dart.png'),
-                          //           ),
-                          //         ),
-                          //         SizedBox(
-                          //           height: techIconSize,
-                          //           width: techIconSize,
-                          //           child: Image(
-                          //             image:
-                          //                 AssetImage('assets/images/VScode.png'),
-                          //           ),
-                          //         ),
-                          //         SizedBox(
-                          //           height: techIconSize,
-                          //           width: techIconSize,
-                          //           child: Image(
-                          //             image: AssetImage(
-                          //                 'assets/images/firebase.png'),
-                          //           ),
-                          //         ),
-                          //         SizedBox(
-                          //           height: techIconSize,
-                          //           width: techIconSize,
-                          //           child: Image(
-                          //             image: AssetImage(
-                          //                 'assets/images/google_map.png'),
-                          //           ),
-                          //         ),
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
-                        ],
-                      ),
+                        ),
+                        // Center(
+                        //   child: Text(
+                        //     'Developers',
+                        //     style: TextStyle(
+                        //         fontSize: title, fontWeight: FontWeight.bold),
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   height: 10,
+                        // ),
+                        // Container(
+                        //   decoration: boxDecoration,
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.all(8.0),
+                        //     child: Column(
+                        //       children: [
+                        //         ListTile(
+                        //           leading: CircleAvatar(
+                        //             backgroundColor: Colors.grey[200],
+                        //             radius: avatarRadius,
+                        //             backgroundImage:
+                        //                 AssetImage('assets/images/ahmed.png'),
+                        //           ),
+                        //           title: Text(
+                        //             'A K',
+                        //             style: TextStyle(
+                        //                 fontWeight: FontWeight.bold,
+                        //                 fontSize: title),
+                        //           ),
+                        //           subtitle: RichText(
+                        //             text: TextSpan(
+                        //               style: TextStyle(
+                        //                   fontSize: subTitle,
+                        //                   fontWeight: FontWeight.bold,
+                        //                   color: Colors.indigoAccent,
+                        //                   fontFamily: lang == 'ar'
+                        //                       ? 'noto_arabic'
+                        //                       : 'Helvetica'),
+                        //               children: <TextSpan>[
+                        //                 TextSpan(
+                        //                     text: 'M.B.CH.B\n',
+                        //                     style: TextStyle(
+                        //                         color: Colors.redAccent)),
+                        //                 TextSpan(
+                        //                     text: 'Programmer',
+                        //                     style: TextStyle()),
+                        //               ],
+                        //             ),
+                        //           ),
+                        //         ),
+                        //         Divider(
+                        //           color: Colors.grey,
+                        //           thickness: 2,
+                        //           indent: 0,
+                        //           endIndent: 0,
+                        //         ),
+                        //         ListTile(
+                        //           leading: CircleAvatar(
+                        //             backgroundColor: Colors.grey[200],
+                        //             radius: avatarRadius,
+                        //             backgroundImage:
+                        //                 AssetImage('assets/images/hhk.png'),
+                        //           ),
+                        //           title: Text(
+                        //             'H H K',
+                        //             style: TextStyle(
+                        //                 fontWeight: FontWeight.bold,
+                        //                 fontSize: title),
+                        //           ),
+                        //           subtitle: RichText(
+                        //             text: TextSpan(
+                        //               style: TextStyle(
+                        //                   fontSize: subTitle,
+                        //                   fontWeight: FontWeight.bold,
+                        //                   color: Colors.indigoAccent,
+                        //                   fontFamily: lang == 'ar'
+                        //                       ? 'noto_arabic'
+                        //                       : 'Helvetica'),
+                        //               children: <TextSpan>[
+                        //                 TextSpan(
+                        //                     text: 'M.B.CH.B\n',
+                        //                     style: TextStyle(
+                        //                         color: Colors.redAccent)),
+                        //                 TextSpan(
+                        //                     text: 'Programmer',
+                        //                     style: TextStyle()),
+                        //               ],
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   height: 15,
+                        // ),
+                        // Center(
+                        //   child: Text(
+                        //     'This app is developed using the following technologies:',
+                        //     textAlign: TextAlign.center,
+                        //     style: TextStyle(
+                        //         fontSize: subTitle,
+                        //         fontWeight: FontWeight.bold),
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   height: 10,
+                        // ),
+                        // Container(
+                        //   decoration: boxDecoration,
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.all(8.0),
+                        //     child: Row(
+                        //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //       crossAxisAlignment: CrossAxisAlignment.start,
+                        //       children: [
+                        //         SizedBox(
+                        //           height: techIconSize,
+                        //           width: techIconSize,
+                        //           child: Image(
+                        //             image:
+                        //                 AssetImage('assets/images/windows.png'),
+                        //           ),
+                        //         ),
+                        //         SizedBox(
+                        //           height: techIconSize,
+                        //           width: techIconSize,
+                        //           child: Image(
+                        //             image:
+                        //                 AssetImage('assets/images/apple.png'),
+                        //           ),
+                        //         ),
+                        //         SizedBox(
+                        //           height: techIconSize,
+                        //           width: techIconSize,
+                        //           child: Image(
+                        //             image:
+                        //                 AssetImage('assets/images/flutter.png'),
+                        //           ),
+                        //         ),
+                        //         SizedBox(
+                        //           height: techIconSize,
+                        //           width: techIconSize,
+                        //           child: Image(
+                        //             image: AssetImage('assets/images/dart.png'),
+                        //           ),
+                        //         ),
+                        //         SizedBox(
+                        //           height: techIconSize,
+                        //           width: techIconSize,
+                        //           child: Image(
+                        //             image:
+                        //                 AssetImage('assets/images/VScode.png'),
+                        //           ),
+                        //         ),
+                        //         SizedBox(
+                        //           height: techIconSize,
+                        //           width: techIconSize,
+                        //           child: Image(
+                        //             image: AssetImage(
+                        //                 'assets/images/firebase.png'),
+                        //           ),
+                        //         ),
+                        //         SizedBox(
+                        //           height: techIconSize,
+                        //           width: techIconSize,
+                        //           child: Image(
+                        //             image: AssetImage(
+                        //                 'assets/images/google_map.png'),
+                        //           ),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
+                      ],
                     ),
-                    Column(
+                  ),
+                  Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Column(
                       children: [
                         Divider(
                           thickness: 2,
@@ -558,9 +561,9 @@ class _AboutUSState extends State<AboutUS> {
                           style: TextStyle(fontSize: footer, fontFamily: 'HelveticaNow-Regular'),
                         ),
                       ],
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
             ),
           ),

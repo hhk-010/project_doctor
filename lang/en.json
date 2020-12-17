@@ -79,13 +79,24 @@
     "age_gender" : "Age & Gender",
 
 
+"support page" : "===============================",
+    "privacy_policy" : "Privacy Policy",
+    "about_us" : "About us", 
+    "terms_conditions" : "Terms & Conditions",
+    "website" : "Website",
+    "contact_us" : "Constact us",
+    "footer" : "Footer",
+ 
+
+
+
 
 
 "Snacks" : "=======================================",
-    "snack_sign_in" : "Error Signing in",
+    "snack_sign_in" : "Please, Enter valid email & passwords",
     "snack_connectivity" : "No Internet Connection",
     "snack_register" : "Registeration Error, Please enter valid credentials",
-    "snack_update" : "Please enter valid credentials",
+    "snack_update" : "Please, Enter valid credentials",
     "snack_map" : "Tap on your clinic location first",
     "snack_map_patient" : "Please add your current location",
     "snack_verification" : "Verify your email first",
@@ -97,14 +108,14 @@
     "dayselected":"This day is selected",
     "selectmaindays":"Please , select working days",
     "Select time":"Please , select working hours",
-    "choose 1st exceprion day":"Please , choose the first exceprion day",
-    "choose 1st exception time":"Please , choose the time of first excepted day ",
-    "choose 2nd exception day":"Please , choose the second exceprion day",
-    "choose 2nd exception time":"Please , choose the time of second excepted day ",
+    "choose 1st exceprion day":"Please , choose the first exception day",
+    "choose 1st exception time":"Please , choose the time of first exception day ",
+    "choose 2nd exception day":"Please , choose the second exception day",
+    "choose 2nd exception time":"Please , choose the time of second exception day ",
     "reasign_days":"Reasign work days",
     "already_registered":"Sorry , You are registered already",
     "can_not_delete":"Sorry , the user can't be deleted",
-    "invalid_address":"Please , Enter a valid address",
+    "invalid_address":"Please, Return to the previous page and enter a valid address as indicated in the example",
 
 
 "doctor_page" : "=======================================",

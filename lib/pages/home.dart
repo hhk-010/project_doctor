@@ -27,6 +27,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     var lang = Localizations.localeOf(context).languageCode;
+    double leftEdge;
+    double rightEdge;
+    lang == 'en' ? leftEdge = 0 : leftEdge = 16;
+    lang == 'en' ? rightEdge = 16 : rightEdge = 0;
+
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       double appBarTitle;
       double appBarIcon;
@@ -74,10 +79,10 @@ class _HomeState extends State<Home> {
           child: AppBar(
             leading: IconButton(
               icon: Icon(Icons.info),
-              tooltip: AppLocalizations.of(context).translate('about_us'),
+              tooltip: AppLocalizations.of(context).translate('support'),
               iconSize: appBarIcon,
               onPressed: () {
-                Navigator.pushNamed(context, '/about_us');
+                Navigator.pushNamed(context, '/support');
               },
             ),
             title: FittedBox(
@@ -93,7 +98,7 @@ class _HomeState extends State<Home> {
             actions: [
               SafeArea(
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(16, 16, 16, 14),
+                  padding: EdgeInsets.fromLTRB(leftEdge, 16, rightEdge, 14),
                   child: Tooltip(
                     message: AppLocalizations.of(context).translate('language'),
                     child: DropdownButton(
