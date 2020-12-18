@@ -164,7 +164,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           if (_isInternet) {
                             if (_formkey.currentState.validate()) {
                               setState(() => isloading = true);
-                              await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+                             await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
                               setState(() => isloading = false);
                               await Navigator.of(context).push(MaterialPageRoute(builder: (context) => PasswordResetContinue(email: email)));
                             }
