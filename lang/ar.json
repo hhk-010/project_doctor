@@ -318,7 +318,7 @@
     "other git problems":"مشاكل هضمية اخرى",
     "abdominal distension":"انتفاخ البطن",
     "bleeding per rectum":"نزف من المقعد|المخرج",
-    "nausea":"غثيان|لعبان نفس",
+    "nausea":"غثيان",
     "hematemesis":"تقيؤ دموي",
     "malena":"خروج اسود اللون",
 
@@ -331,7 +331,7 @@
 
 "Neuro" : "=========================================",
     "coma":"غيبوبة",
-    "tremer":"ارتجاف|رعشة",
+    "tremer":"ارتجاف|ارتعاش",
     "fit":"نوبة الصرع",
     "abnormal movement":"حركات غريبة",
     "spasm":"تشنجات",
@@ -367,7 +367,7 @@
     "joint pain":"الم المفاصل غير المسبوق باصابة",
     "deformity":"تشوهات العظام والمفاصل",
     "joint swelling":"تورم المفصل",
-    "limitation of movement":"تيبس المفصل",
+    "limitation of movement":"تصلب المفصل",
     "fracture":"كسر",
     "limb pain":"الم في الاطراف",
     "dislocation":"خلع المفاصل",
@@ -399,7 +399,7 @@
     "hand deformity":"تشوهات اليد",
     "other hand problems":"مشاكل اخرى في اليد",
     "hand swelling":"تورم اليد",
-    "hand lump":"النتفاخ|ورمة|في اليد",
+    "hand lump":"انتفاخ|زائدة لحمية في اليد",
 
 "lowerlimb" : "=========================================",
     "bilateral leg edema":" تورم كلا القدمين والساقين",
@@ -412,7 +412,7 @@
 
 "others" : "=========================================",
     "sweating":"التعرق الزائد",
-    "fever":"الحمى|السخونة",
+    "fever":"الحمى",
     "heat sensation":"الشعور بحرارة الجو اثناء البرد",
     "ulcer":"تقرحات ",
     "insomnia":"ارق|عدم القدرة على النوم",
@@ -513,7 +513,7 @@
     "pain during cycle":"الم اثناء الحيض",
     "postmenopausal bleeding":"النزف بعد انقطاع الحيض",
     "other gynecological and obstetrical problems":"مشاكل نسائية اخرى",
-    "miscarriage":"اسقاط الحمل",
+    "miscarriage":"الاجهاض",
 
 "uro/kidney" : "=========================================",
     "incontinence":"السلس|عدم السيطرة على الادرار",
