@@ -31,8 +31,8 @@ dependencies:
   flutter_google_places: ^0.2.6
   # location: ^3.0.2
   rxdart: ^0.24.1
-  firebase_auth: ^0.18.0+1
-  cloud_firestore: ^0.14.0+2
+  firebase_auth: ^0.18.4+1
+  cloud_firestore: ^0.14.4
   firebase_core:
   firebase_crashlytics: ^0.2.4
   firebase_analytics: ^6.3.0
