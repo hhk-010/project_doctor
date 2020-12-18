@@ -121,7 +121,7 @@ class _MyAppState extends State<MyApp> {
           initialRoute: '/home',
           routes: {
             '/home': (context) => Home(),
-            '/about_us': (context) => AboutUS(),
+            '/support': (context) => Support(),
             '/loading': (context) => Loading(),
             '/intermediate': (context) => Intermediate(),
             '/patient_complain': (context) => PatientComplain(),
