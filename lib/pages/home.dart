@@ -117,6 +117,7 @@ class _HomeState extends State<Home> {
                                 value: lang,
                                 child: Text(
                                   lang.name,
+                                  style: TextStyle(fontFamily: 'noto_arabic'),
                                 )),
                           )
                           .toList(),

@@ -1,3 +1,7 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/04_mcqs_new.dart';
 import 'package:project_doctor/authorization/05_register.dart';
@@ -28,9 +32,14 @@ import 'package:project_doctor/services/app_localizations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Colors.deepOrange,
-  ));
+  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.deepOrange,
+    ),
+  );
+
   runApp(MyApp());
 
   // runApp(
@@ -66,6 +75,8 @@ class _MyAppState extends State<MyApp> {
     super.didChangeDependencies();
   }
 
+  FirebaseAnalytics analytics = FirebaseAnalytics();
+
   @override
   Widget build(BuildContext context) {
     if (_locale == null) {
@@ -78,20 +89,22 @@ class _MyAppState extends State<MyApp> {
       return GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus &&
-              currentFocus.focusedChild != null) {
+          if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
             FocusManager.instance.primaryFocus.unfocus();
           }
         },
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
+          navigatorObservers: [
+            FirebaseAnalyticsObserver(analytics: analytics),
+          ],
+
           title: 'Cura',
           // builder: DevicePreview.appBuilder,
           builder: (context, navigator) {
             var lang = Localizations.localeOf(context).languageCode;
             return Theme(
-              data: ThemeData(
-                  fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+              data: ThemeData(fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
               child: navigator,
             );
           },
@@ -111,8 +124,7 @@ class _MyAppState extends State<MyApp> {
           ],
           localeResolutionCallback: (deviceLocale, supportedLocales) {
             for (var locale in supportedLocales) {
-              if (locale.languageCode == deviceLocale.languageCode &&
-                  locale.countryCode == deviceLocale.countryCode) {
+              if (locale.languageCode == deviceLocale.languageCode && locale.countryCode == deviceLocale.countryCode) {
                 return deviceLocale;
               }
             }
