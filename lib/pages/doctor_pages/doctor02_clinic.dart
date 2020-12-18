@@ -458,8 +458,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                     setState(() => currentaddress = val);
                                   },
                                   decoration: textInputdecoration.copyWith(
-                                    hintText:
-                                        'الكاظميه شارع المغرب',
+                                    hintText: 'الكاظميه شارع 60',
                                     hintStyle: TextStyle(
                                         fontSize: footer,
                                         color: Colors.deepOrange,

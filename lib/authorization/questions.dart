@@ -14,7 +14,7 @@ class QuestionsShuffle {
   static final List questions = [
     '60 years old male with +ve PMH for HTN and DM presented to the ER complaining of central suffocating chest pain, dyspnea and vomiting OE conscious ,alert ,oriented ,looks ill ,BP 190/100,ecg shows St segment elevation in L1,avL,V5,V6 with reciprocal changes and elevated troponin,what is the most likely dx?',
     '65 years old male with +ve PMH for HTN,ischemic heart disease with previous CCU admissions,presented with dyspnea ,cough and white colored sputum ,OE he was dyspneic ,BP 100/60 ,chest auscultation reveals bilateral basal crepitations he brought his previous investigations with him and his echocardiogram shows EF=30%, and his current ecg shows old ischemic changes and his current WBC count is normal but his PCV is relatively low ,what is the most likely dx?',
-    '15 years old female pt known case of type 1 DM developed ,flu like illness and fever followed by polyuria , polydipsia,abdominal pain and vomiting , associated with fruity odor breathing ,presented to the ER , her pulse rate is 120 bpm,temp is 38 C axillary corrected, she looks tachypneic, her RBS is about 500 mg/dl and her ABG shows elevated pH,what is the most likely dx?',
+    '15 years old female pt known case of type 1 DM developed ,flu like illness and fever followed by polyuria , polydipsia,abdominal pain and vomiting , associated with fruity odor breathing ,presented to the ER , her pulse rate is 120 bpm,temp is 38 C axillary corrected, she looks tachypneic, her RBS is about 500 mg/dl and her ABG shows diminished pH,what is the most likely dx?',
     '6 years old girl with -v PMH presented to the ER with moderate to severe abdominal pain (started few hours before presentation) in the umbilical area and shifted to the Rt iliac fossa , associated with nausea, vomiting , anorexia, fever, OE she looks ill with tachycardia , her abdominal examination shows Rt iliac fossa tenderness and positive rebound tenderness, her WBC count was > 13000,what is the most likely dx?',
     '70 years old male patient with +ve PMH for DM,chronic renal failure on insulin and scheduled hemodialysis presented to the ER with coma which he developed right before presentation his BP was 140/90, PR was normal ,neurological examination shows no focal neurological deficit as a matter of urgency he was given hypertonic solution with rapid regaining of his consciousness level his brain imaging was normal and his biochemistry (apart from low RBS) was acceptable, what is the most likely dx?',
     '65 years old male heavy smoker (5 packs/day) with -ve PMH presented to the clinic with dyspnea,cough ,sputum,general examination reveals generalized muscle wasting ,chest auscultation reveals decrease air entry , normal vesicular breathing ,wheeze all over the chest,his chest X-ray reveals mediastinal narrowing and flattened diaphragm, what is the most likely dx?',
@@ -35,7 +35,7 @@ class QuestionsShuffle {
     '70 years old male smoker (5 packs/day) known case of COPD presented with recently developed continuous dyspnea , copious sputum and hemoptysis associated with hoarseness of the voice with no pyrexia , OE he was cachaxic with central cyanosis and finger clubbing , chest auscultation reveals diminished air entry , his CXR reveals upper mediastinal widening with no other significant abnormality his ESR was elevated , what is the most likely dx ?',
     '20 years old pregnant female with -ve PMH developed abdominal trauma that caused her massive vaginal hemorrhage , she was brought to the ER , her pulse was low volume with elevated rate and she had cold extremities , with low BP , what is the most likely dx ?',
     '60 years old male with +ve PMH of untreated benign prostatic hyperplasia that made him having repeated UTI , he developed , bilateral flank pain with nausea , vomiting , fever and rigor , he rejected medical advice until his condition had deteriorated , he was brought to the ER and OE he was unconscious , his PR was elevated with low volume , BP was unmeasurable , and he had cold peripheries , his WBC was 20,000 and CRP was elevated , what is the most likely dx?',
-    '60 years old female with +ve PMH for HTN and DM presented to the ER complaining of chest pain , stabbing in nature associated with shortness of breath , her BP was 200/100 and her chest examination was near near normal , her ecg shows ST segment depression in Leads II,III,aVF , her cardiac troponins was elevated , what is the most likely dx ?',
+    '60 years old female with +ve PMH for HTN and DM presented to the ER complaining of chest pain , stabbing in nature associated with shortness of breath , her BP was 200/100 and her chest examination was near normal , her ecg shows ST segment depression in Leads II,III,aVF , her cardiac troponins was elevated , what is the most likely dx ?',
     '23 years old female with -ve PMH developed RTA and trauma to her neck , she was admitted to the ER and her airway was patent , her breathing was near normal , her BP was very low and she had bradycardia chest examination was near normal and her abdominal US reveals no obvious abnormality , she was given 2 pints of N/S with no response , what is the most likely dx ?',
     '25 years old pregnant female with with -ve PMH developed left leg pain and swelling associated with redness of the leg after few days she developed chest pain and shortness of breath , on examination her leg was warm and her chest was clear , her ecg show sinus tachycardia and her D-dimer level was elevated , what is the most likely dx ?',
     '27 years old pregnant female developed vaginal bleeding , she was admitted to the ER , her pulse rate was elevated , BP was low , with cold peripheries her B.urea was 120 mg/dl and her serum creatinine was 2.2 mg/dl , what is the most likely cause of her elevated renal indices ?',
@@ -49,7 +49,7 @@ class QuestionsShuffle {
       'Pulseless electrical activity',
       'Ventricular fibrillation',
       'Acute MI',
-      'Pectoralis spasm'
+      'Pectoralis muscle spasm'
     ],
     '65 years old male with +ve PMH for HTN,ischemic heart disease with previous CCU admissions,presented with dyspnea ,cough and white colored sputum ,OE he was dyspneic ,BP 100/60 ,chest auscultation reveals bilateral basal crepitations he brought his previous investigations with him and his echocardiogram shows EF=30%, and his current ecg shows old ischemic changes and his current WBC count is normal but his PCV is relatively low ,what is the most likely dx?':
         [
@@ -60,7 +60,7 @@ class QuestionsShuffle {
       'Pulmonary embolism',
       'Heart failure exacerbation'
     ],
-    '15 years old female pt known case of type 1 DM developed ,flu like illness and fever followed by polyuria , polydipsia,abdominal pain and vomiting , associated with fruity odor breathing ,presented to the ER , her pulse rate is 120 bpm,temp is 38 C axillary corrected, she looks tachypneic, her RBS is about 500 mg/dl and her ABG shows elevated pH,what is the most likely dx?':
+    '15 years old female pt known case of type 1 DM developed ,flu like illness and fever followed by polyuria , polydipsia,abdominal pain and vomiting , associated with fruity odor breathing ,presented to the ER , her pulse rate is 120 bpm,temp is 38 C axillary corrected, she looks tachypneic, her RBS is about 500 mg/dl and her ABG shows diminished pH,what is the most likely dx?':
         [
       'Tonsillitis',
       'Gastroenteritis',
@@ -103,7 +103,7 @@ class QuestionsShuffle {
       'Tension pneumothorax',
       'Cardiac tamponade',
       'Asthma exacerbation',
-      'HYS'
+      'Conversion disorder'
     ],
     '6 years old girl with -ve PMH , healthy wealthy was eating peanut for the first time, she suddenly developed generalized skin redness her parents brought her to the ER on there way her condition had been deteriorated, in the ER  BP was very low ,her PR was elevated and she developed cold extremities , she was given IM adrenaline with good response, what is the most likely dx?':
         [
@@ -163,7 +163,7 @@ class QuestionsShuffle {
         [
       'Lumber disc prolapse',
       'B12 deficiency',
-      'Cervical spine prolapse',
+      'Cervical disc prolapse',
       'Renal stone disease',
       'Diabetic neuropathy',
       'B6 deficiency',
@@ -172,7 +172,7 @@ class QuestionsShuffle {
         [
       'Hemolytic anemia',
       'Thalassemia',
-      'Acquired bleeding tendency disorder',
+      'Acquired bleeding tendency',
       'Hemophilia',
       'DVT',
       'Septic arthritis'
@@ -240,7 +240,7 @@ class QuestionsShuffle {
       'Massive pulmonary embolism',
       'Pneumothorax',
     ],
-    '60 years old female with +ve PMH for HTN and DM presented to the ER complaining of chest pain , stabbing in nature associated with shortness of breath , her BP was 200/100 and her chest examination was near near normal , her ecg shows ST segment depression in Leads II,III,aVF , her cardiac troponins was elevated , what is the most likely dx ?':
+    '60 years old female with +ve PMH for HTN and DM presented to the ER complaining of chest pain , stabbing in nature associated with shortness of breath , her BP was 200/100 and her chest examination was near normal , her ecg shows ST segment depression in Leads II,III,aVF , her cardiac troponins was elevated , what is the most likely dx ?':
         [
       'Musculoskeletal chest pain',
       'Non ST segment elevation MI',
@@ -300,7 +300,7 @@ class QuestionsShuffle {
         'Acute MI',
     '65 years old male with +ve PMH for HTN,ischemic heart disease with previous CCU admissions,presented with dyspnea ,cough and white colored sputum ,OE he was dyspneic ,BP 100/60 ,chest auscultation reveals bilateral basal crepitations he brought his previous investigations with him and his echocardiogram shows EF=30%, and his current ecg shows old ischemic changes and his current WBC count is normal but his PCV is relatively low ,what is the most likely dx?':
         'Heart failure exacerbation',
-    '15 years old female pt known case of type 1 DM developed ,flu like illness and fever followed by polyuria , polydipsia,abdominal pain and vomiting , associated with fruity odor breathing ,presented to the ER , her pulse rate is 120 bpm,temp is 38 C axillary corrected, she looks tachypneic, her RBS is about 500 mg/dl and her ABG shows elevated pH,what is the most likely dx?':
+    '15 years old female pt known case of type 1 DM developed ,flu like illness and fever followed by polyuria , polydipsia,abdominal pain and vomiting , associated with fruity odor breathing ,presented to the ER , her pulse rate is 120 bpm,temp is 38 C axillary corrected, she looks tachypneic, her RBS is about 500 mg/dl and her ABG shows diminished pH,what is the most likely dx?':
         'DKA with intercurrent infection',
     '6 years old girl with -v PMH presented to the ER with moderate to severe abdominal pain (started few hours before presentation) in the umbilical area and shifted to the Rt iliac fossa , associated with nausea, vomiting , anorexia, fever, OE she looks ill with tachycardia , her abdominal examination shows Rt iliac fossa tenderness and positive rebound tenderness, her WBC count was > 13000,what is the most likely dx?':
         'Acute appendicitis',
@@ -340,7 +340,7 @@ class QuestionsShuffle {
         'Hypovolemia',
     '60 years old male with +ve PMH of untreated benign prostatic hyperplasia that made him having repeated UTI , he developed , bilateral flank pain with nausea , vomiting , fever and rigor , he rejected medical advice until his condition had deteriorated , he was brought to the ER and OE he was unconscious , his PR was elevated with low volume , BP was unmeasurable , and he had cold peripheries , his WBC was 20,000 and CRP was elevated , what is the most likely dx?':
         'Septic shock',
-    '60 years old female with +ve PMH for HTN and DM presented to the ER complaining of chest pain , stabbing in nature associated with shortness of breath , her BP was 200/100 and her chest examination was near near normal , her ecg shows ST segment depression in Leads II,III,aVF , her cardiac troponins was elevated , what is the most likely dx ?':
+    '60 years old female with +ve PMH for HTN and DM presented to the ER complaining of chest pain , stabbing in nature associated with shortness of breath , her BP was 200/100 and her chest examination was near normal , her ecg shows ST segment depression in Leads II,III,aVF , her cardiac troponins was elevated , what is the most likely dx ?':
         'Non ST segment elevation MI',
     '23 years old female with -ve PMH developed RTA and trauma to her neck , she was admitted to the ER and her airway was patent , her breathing was near normal , her BP was very low and she had bradycardia chest examination was near normal and her abdominal US reveals no obvious abnormality , she was given 2 pints of N/S with no response , what is the most likely dx ?':
         'Neurogenic shock',
