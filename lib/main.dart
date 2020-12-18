@@ -30,12 +30,15 @@ import 'package:project_doctor/services/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
   await Firebase.initializeApp();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Colors.deepOrange,
-  ));
+  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.deepOrange,
+    ),
+  );
+
   runApp(MyApp());
 
   // runApp(
@@ -71,9 +74,10 @@ class _MyAppState extends State<MyApp> {
     super.didChangeDependencies();
   }
 
+  FirebaseAnalytics analytics = FirebaseAnalytics();
+
   @override
   Widget build(BuildContext context) {
-    FirebaseAnalytics analytics = FirebaseAnalytics();
     if (_locale == null) {
       return Container(
         child: Center(
