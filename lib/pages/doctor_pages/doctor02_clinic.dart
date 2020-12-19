@@ -235,6 +235,28 @@ class _ClinicFormState extends State<ClinicForm> {
   }
 
 //=================end================
+//===========province translation=====
+  Map provinces = {
+    'Baghdad': 'بغداد',
+    'Erbil': 'اربيل',
+    'Al Anbar': 'الانبار',
+    'Basra': 'البصره',
+    'Al Qadisiyyah': 'القادسية',
+    'Muthanna': 'المثنى',
+    'Najaf': 'النجف',
+    'Babil': 'بابل',
+    'Duhok': 'دهوك',
+    'Diyala': 'ديالى',
+    'Dhi Qar': 'ذي قار',
+    'Sulaymaniyah': 'السليمانية',
+    'Saladin': 'صلاح الدين',
+    'Karbala': 'كربلاء',
+    'Kirkuk': 'كركوك',
+    'Maysan': 'ميسان',
+    'Nineveh': 'نينوى',
+    'Wasit': 'واسط'
+  };
+//===============end==================
   bool _isInternet = true;
   checkInternet() async {
     try {
@@ -1033,7 +1055,9 @@ class _ClinicFormState extends State<ClinicForm> {
                                                 (e2.isEmpty && t2.isEmpty))) {
                                           latlng =
                                               await getCoordinatesFromAddress(
-                                                  currentaddress);
+                                                  provinces[province][0] +
+                                                      ' ' +
+                                                      currentaddress);
                                           if (!registered) {
                                             setState(() {
                                               if (workDays01[
