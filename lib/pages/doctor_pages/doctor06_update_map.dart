@@ -246,7 +246,7 @@ class _UpdateMapState extends State<UpdateMap> {
                       if (lattt != null && lnggg != null) {
                         double addressResult =
                             await analyzeAddress(lattt, lnggg);
-                        if (addressResult < 2) {
+                        if (addressResult < 3) {
                           setState(() {
                             isloading = true;
                             _result =

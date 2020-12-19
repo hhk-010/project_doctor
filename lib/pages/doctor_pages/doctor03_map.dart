@@ -77,7 +77,8 @@ class _FinalMapState extends State<FinalMap> {
   analyzeAddress(double lat, double lng) {
     if (addressLatlng != null || addressLatlng != '') {
       addressLat = addressLatlng.substring(1, addressLatlng.indexOf(','));
-      addressLng = addressLatlng.substring(addressLatlng.indexOf(',') + 1, addressLatlng.length - 1);
+      addressLng = addressLatlng.substring(
+          addressLatlng.indexOf(',') + 1, addressLatlng.length - 1);
       addressesLat = double.parse(addressLat);
       addressesLng = double.parse(addressLng);
       sum = (pow(addressesLat - lat, 2)) + pow(addressesLng - lng, 2);
@@ -127,7 +128,9 @@ class _FinalMapState extends State<FinalMap> {
     final _snackBar = new SnackBar(
       content: Text(
         error,
-        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -286,7 +289,8 @@ class _FinalMapState extends State<FinalMap> {
               fit: BoxFit.fitWidth,
               child: Text(
                 AppLocalizations.of(context).translate('add_location'),
-                style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: appBarTitle, fontWeight: FontWeight.bold),
               ),
             ),
             centerTitle: true,
@@ -295,7 +299,8 @@ class _FinalMapState extends State<FinalMap> {
         body: Stack(
           children: [
             GoogleMap(
-              initialCameraPosition: CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 10),
+              initialCameraPosition: CameraPosition(
+                  target: LatLng(33.312805, 44.361488), zoom: 10),
               markers: Set.from(mymarker),
               onTap: handletap,
             ),
@@ -337,23 +342,27 @@ class _FinalMapState extends State<FinalMap> {
                 backgroundcolor: Colors.deepOrange,
                 child: Text(
                   AppLocalizations.of(context).translate('ok'),
-                  style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: title, fontWeight: FontWeight.bold),
                 ),
                 onPressed: () async {
                   checkInternet();
                   if (_isInternet) {
                     if (latlng == null) {
-                      error = AppLocalizations.of(context).translate('snack_map');
+                      error =
+                          AppLocalizations.of(context).translate('snack_map');
                       _showSnackBar();
                     } else {
                       await geolocate(latlng: latlng);
                       if (lattt != null && lnggg != null) {
-                        double resultedAddress = await analyzeAddress(lattt, lnggg);
+                        double resultedAddress =
+                            await analyzeAddress(lattt, lnggg);
                         print(resultedAddress);
-                        if (resultedAddress < 2) {
+                        if (resultedAddress < 3) {
                           setState(() => isloading = true);
                           setState(() {
-                            finalResult = pow((lattt - lt), 2) + pow((lnggg - lg), 2);
+                            finalResult =
+                                pow((lattt - lt), 2) + pow((lnggg - lg), 2);
                             finalDistance = sqrt(finalResult);
                             kmDistance = finalDistance * 100;
                           });
@@ -365,10 +374,16 @@ class _FinalMapState extends State<FinalMap> {
                             _writeAddress(DataFromMaptoVerify.address);
                             _writelat(lattt.toString());
                             _writelng(lnggg.toString());
-                            _writeWorkDays01(json.encode(DataFromMaptoVerify.workDays01));
-                            _writeWorkDays02(json.encode(DataFromMaptoVerify.workDays02));
-                            _writeWorkDays03(json.encode(DataFromMaptoVerify.workDays03));
-                            final authResult = await _auth.registerWithEmailAndPassword(DataFromMaptoVerify.email, DataFromMaptoVerify.password);
+                            _writeWorkDays01(
+                                json.encode(DataFromMaptoVerify.workDays01));
+                            _writeWorkDays02(
+                                json.encode(DataFromMaptoVerify.workDays02));
+                            _writeWorkDays03(
+                                json.encode(DataFromMaptoVerify.workDays03));
+                            final authResult =
+                                await _auth.registerWithEmailAndPassword(
+                                    DataFromMaptoVerify.email,
+                                    DataFromMaptoVerify.password);
                             if (authResult != null) {
                               setState(() => isloading = false);
                               int count = 0;
@@ -378,26 +393,30 @@ class _FinalMapState extends State<FinalMap> {
                             } else {
                               setState(() {
                                 isloading = false;
-                                error = AppLocalizations.of(context).translate('snack_register');
+                                error = AppLocalizations.of(context)
+                                    .translate('snack_register');
                               });
                               _showSnackBar();
                             }
                           } else {
                             setState(() {
                               isloading = false;
-                              error = AppLocalizations.of(context).translate('snack_register');
+                              error = AppLocalizations.of(context)
+                                  .translate('snack_register');
                             });
                             _showSnackBar();
                           }
                         } else {
-                          error = AppLocalizations.of(context).translate('invalid_address');
+                          error = AppLocalizations.of(context)
+                              .translate('invalid_address');
                           _showSnackBar();
                         }
                       }
                     }
                   } else {
                     setState(() {
-                      error = AppLocalizations.of(context).translate('snack_connectivity');
+                      error = AppLocalizations.of(context)
+                          .translate('snack_connectivity');
                     });
                   }
                   _showSnackBar();
