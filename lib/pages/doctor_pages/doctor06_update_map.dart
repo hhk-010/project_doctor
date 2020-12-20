@@ -216,7 +216,7 @@ class _UpdateMapState extends State<UpdateMap> {
                       if (lattt != null && lnggg != null) {
                         double addressResult =
                             await analyzeAddress(lattt, lnggg);
-                        if (addressResult < 2) {
+                        if (addressResult < 6) {
                           setState(() {
                             isloading = true;
                             _result =
@@ -225,7 +225,7 @@ class _UpdateMapState extends State<UpdateMap> {
                             _kmDistance = _finalDistance * 100;
                           });
                           if (_kmDistance < 3) {
-                            setState(() await {
+                            setState(() {
                               Empty.isEmpty = false;
                             });
                             await DatabaseService(

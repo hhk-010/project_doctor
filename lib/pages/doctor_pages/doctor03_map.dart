@@ -358,7 +358,7 @@ class _FinalMapState extends State<FinalMap> {
                         double resultedAddress =
                             await analyzeAddress(lattt, lnggg);
                         print(resultedAddress);
-                        if (resultedAddress < 2) {
+                        if (resultedAddress < 6) {
                           setState(() => isloading = true);
                           setState(() {
                             finalResult =

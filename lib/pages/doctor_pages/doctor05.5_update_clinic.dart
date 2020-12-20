@@ -153,6 +153,27 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
   }
 
 //=================end================
+//===========province translation=====
+  Map provinces = {
+    'Baghdad': 'بغداد',
+    'Erbil': 'اربيل',
+    'Al Anbar': 'الانبار',
+    'Basra': 'البصره',
+    'Al Qadisiyyah': 'القادسية',
+    'Muthanna': 'المثنى',
+    'Najaf': 'النجف',
+    'Babil': 'بابل',
+    'Duhok': 'دهوك',
+    'Diyala': 'ديالى',
+    'Dhi Qar': 'ذي قار',
+    'Sulaymaniyah': 'السليمانية',
+    'Saladin': 'صلاح الدين',
+    'Karbala': 'كربلاء',
+    'Kirkuk': 'كركوك',
+    'Maysan': 'ميسان',
+    'Nineveh': 'نينوى',
+    'Wasit': 'واسط'
+  };
 //-------------------checking internet connection
   bool _isInternet = true;
   checkInternet() async {
@@ -933,8 +954,8 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                         (e1.isEmpty && t1.isEmpty)) &&
                                     ((e2.isNotEmpty && t2.isNotEmpty) ||
                                         (e2.isEmpty && t2.isEmpty))) {
-                                  latlng =
-                                      await getCoordinatesFromAddress(address);
+                                  latlng = await getCoordinatesFromAddress(
+                                      provinces[province]+ ' ' + address);
                                   setState(() {
                                     if (workDays01[workDays01.length - 1]
                                             .length <
