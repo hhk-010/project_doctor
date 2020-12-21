@@ -25,8 +25,15 @@ class _PatientComplainState extends State<PatientComplain> {
   final ageController = TextEditingController();
   String _age = '';
   String _error = '';
-  getage() {
-    FinalScore.age = int.parse(_age);
+  //======finding decimal age====
+  int decimalAge = 0;
+  getage(String _age) {
+    try {
+      decimalAge = int.parse(_age);
+      return decimalAge;
+    } catch (e) {
+      return null;
+    }
   }
 
   //-------------snackbar for age==null---------
@@ -1670,22 +1677,28 @@ class _PatientComplainState extends State<PatientComplain> {
               backgroundColor: Colors.deepOrange,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(80.0)),
-              onPressed: () {
-                //print(_age);
+              onPressed: () async {
+                FinalScore.age = await getage(_age);
+                print(FinalScore.age);
                 if (_age == '') {
                   setState(() {
                     _error = AppLocalizations.of(context)
                         .translate("age_message"); //'Please , enter your age';
                   });
                   _showSnackBar();
-                } else if (int.parse(_age) > 130) {
+                } else if (FinalScore.age == null) {
                   setState(() {
                     _error = AppLocalizations.of(context).translate(
-                        "age_message_error"); //'Age should be from 0 to 130';
+                        'age_format'); //'Age should be from 0 to 130';
+                  });
+                  _showSnackBar();
+                } else if (FinalScore.age > 130) {
+                  setState(() {
+                    _error = AppLocalizations.of(context)
+                        .translate("age_message_error");
                   });
                   _showSnackBar();
                 } else {
-                  getage();
                   if (radioSelect == '') {
                     setState(() {
                       _error = AppLocalizations.of(context).translate(
@@ -1769,10 +1782,10 @@ class _PatientComplainState extends State<PatientComplain> {
                                       keyboardType:
                                           TextInputType.numberWithOptions(
                                               decimal: true),
-                                      inputFormatters: [
+                                      /*inputFormatters: [
                                         FilteringTextInputFormatter.allow(
                                             RegExp('[0-9.,]')),
-                                      ],
+                                      ],*/
                                       controller: ageController,
                                       onChanged: (ageController) {
                                         if (ageController.isEmpty) {
