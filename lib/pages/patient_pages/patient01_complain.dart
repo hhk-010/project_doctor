@@ -789,7 +789,7 @@ class _PatientComplainState extends State<PatientComplain> {
       ],
       "82": [
         AppLocalizations.of(context).translate('other breast problems'),
-        'other breast  problems'
+        'other breast problems'
       ],
     };
 

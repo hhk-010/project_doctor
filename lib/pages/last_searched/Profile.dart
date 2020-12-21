@@ -69,6 +69,8 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
   }
 
   List translatedDays = [];
+  //===========bool to see wether there is a search or not==
+  bool searched = false;
   @override
   void initState() {
     super.initState();
@@ -81,6 +83,9 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
     widget.readFromStorage.readSpeciality().then((String value) {
       setState(() {
         _speciality = value;
+        if (!(_name == '' && _speciality == '')) {
+          searched = true;
+        }
       });
     });
 
@@ -255,205 +260,216 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                   decoration: boxDecoration,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Center(
-                          child: CircleAvatar(
-                            backgroundColor: Colors.deepOrange,
-                            radius: avatarSize,
-                            backgroundImage: AssetImage('assets/images/doctor.png'),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Center(
-                          child: Text(
-                            _name,
-                            style: _textStyle.copyWith(fontSize: title, fontFamily: 'noto_arabic'),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Center(
-                          child: Text(
-                            // _doctorAddress,
-                            AppLocalizations.of(context).translate(_province),
-                            style: _textStyle.copyWith(fontSize: footer),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Divider(
-                          color: Colors.grey[600],
-                          thickness: 3,
-                          indent: 25,
-                          endIndent: 25,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate('speciality'),
-                          style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate(_speciality),
-                          style: _textStyle,
-                        ),
-                        Divider(
-                          color: Colors.grey,
-                          thickness: 1,
-                          indent: 0,
-                          endIndent: 0,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate('phoneNumber'),
-                          style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        GestureDetector(
-                          onTap: () => setState(() {
-                            _makePhoneCall('tel:$_phone');
-                          }),
-                          child: Row(
+                    child: !searched
+                        ? Column(
                             children: [
-                              Icon(
-                                Icons.arrow_forward,
-                                color: Colors.indigo,
+                              Text(
+                                AppLocalizations.of(context).translate('search_warning'),
+                                style: TextStyle(fontSize: title, color: Colors.deepOrange),
                               ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.phone,
-                                color: Colors.deepOrange,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              FittedBox(
-                                fit: BoxFit.fitWidth,
-                                child: Text(
-                                  _phone,
-                                  style: _textStyle,
+                              Text(
+                                AppLocalizations.of(context).translate('search_error'),
+                                style: TextStyle(fontSize: subTitle),
+                              )
+                            ],
+                          )
+                        : Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Center(
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.deepOrange,
+                                  radius: avatarSize,
+                                  backgroundImage: AssetImage('assets/images/doctor.png'),
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                        Divider(
-                          color: Colors.grey,
-                          thickness: 1,
-                          indent: 0,
-                          endIndent: 0,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate('clinic_address'),
-                          style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          _address,
-                          style: _textStyle.copyWith(fontFamily: 'noto_arabic'),
-                        ),
-                        Divider(
-                          color: Colors.grey,
-                          thickness: 1,
-                          indent: 0,
-                          endIndent: 0,
-                        ),
-                        Text(
-                          AppLocalizations.of(context).translate('clinic_work'),
-                          style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          finalMainDays + '\n' + mainTime,
-                          style: _textStyle,
-                        ),
-                        Divider(
-                          color: Colors.grey,
-                          thickness: 1,
-                          indent: 0,
-                          endIndent: 0,
-                        ),
-                        _workDays02.isEmpty
-                            ? SizedBox(
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Center(
+                                child: Text(
+                                  _name,
+                                  style: _textStyle.copyWith(fontSize: title, fontFamily: 'noto_arabic'),
+                                ),
+                              ),
+                              SizedBox(
                                 height: 5,
-                              )
-                            : Container(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                              ),
+                              Center(
+                                child: Text(
+                                  // _doctorAddress,
+                                  AppLocalizations.of(context).translate(_province),
+                                  style: _textStyle.copyWith(fontSize: footer),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Divider(
+                                color: Colors.grey[600],
+                                thickness: 3,
+                                indent: 25,
+                                endIndent: 25,
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                AppLocalizations.of(context).translate('speciality'),
+                                style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 2,
+                              ),
+                              Text(
+                                AppLocalizations.of(context).translate(_speciality),
+                                style: _textStyle,
+                              ),
+                              Divider(
+                                color: Colors.grey,
+                                thickness: 1,
+                                indent: 0,
+                                endIndent: 0,
+                              ),
+                              Text(
+                                AppLocalizations.of(context).translate('phoneNumber'),
+                                style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 2,
+                              ),
+                              GestureDetector(
+                                onTap: () => setState(() {
+                                  _makePhoneCall('tel:$_phone');
+                                }),
+                                child: Row(
                                   children: [
-                                    Text(
-                                      AppLocalizations.of(context).translate('another_clinic_work'),
-                                      style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Icon(
+                                      Icons.phone,
+                                      color: Colors.deepOrange,
                                     ),
                                     SizedBox(
-                                      height: 2,
+                                      width: 10,
                                     ),
                                     FittedBox(
                                       fit: BoxFit.fitWidth,
                                       child: Text(
-                                        _firstEDay + " " + _firstTime + '\n' + _secondEDay + " " + _secondTime,
+                                        _phone,
                                         style: _textStyle,
                                       ),
-                                    ),
-                                    Divider(
-                                      color: Colors.grey,
-                                      thickness: 1,
-                                      indent: 0,
-                                      endIndent: 0,
                                     ),
                                   ],
                                 ),
                               ),
-                      ],
-                    ),
+                              Divider(
+                                color: Colors.grey,
+                                thickness: 1,
+                                indent: 0,
+                                endIndent: 0,
+                              ),
+                              Text(
+                                AppLocalizations.of(context).translate('clinic_address'),
+                                style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 2,
+                              ),
+                              Text(
+                                _address,
+                                style: _textStyle.copyWith(fontFamily: 'noto_arabic'),
+                              ),
+                              Divider(
+                                color: Colors.grey,
+                                thickness: 1,
+                                indent: 0,
+                                endIndent: 0,
+                              ),
+                              Text(
+                                AppLocalizations.of(context).translate('clinic_work'),
+                                style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 2,
+                              ),
+                              Text(
+                                finalMainDays + '\n' + mainTime,
+                                style: _textStyle,
+                              ),
+                              Divider(
+                                color: Colors.grey,
+                                thickness: 1,
+                                indent: 0,
+                                endIndent: 0,
+                              ),
+                              _workDays02.isEmpty
+                                  ? SizedBox(
+                                      height: 5,
+                                    )
+                                  : Container(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            AppLocalizations.of(context).translate('another_clinic_work'),
+                                            style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                                          ),
+                                          SizedBox(
+                                            height: 2,
+                                          ),
+                                          FittedBox(
+                                            fit: BoxFit.fitWidth,
+                                            child: Text(
+                                              _firstEDay + " " + _firstTime + '\n' + _secondEDay + " " + _secondTime,
+                                              style: _textStyle,
+                                            ),
+                                          ),
+                                          Divider(
+                                            color: Colors.grey,
+                                            thickness: 1,
+                                            indent: 0,
+                                            endIndent: 0,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                            ],
+                          ),
                   ),
                 ),
                 SizedBox(
                   height: 25,
                 ),
-                Container(
-                  height: buttonHeight,
-                  width: buttonWidth,
-                  child: RaisedButton.icon(
-                    color: Colors.deepOrange,
-                    icon: Icon(
-                      Icons.arrow_forward,
-                      color: Colors.white,
-                    ),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                    onPressed: () async {
-                      print(_workDays01);
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => LastSearchedLocation(
-                                lat: _lat,
-                                lng: _lng,
-                              )));
-                    },
-                    label: Text(
-                      AppLocalizations.of(context).translate("doctor_locat"),
-                      //'View Doctor Location',
-                      style: TextStyle(color: Colors.white, fontSize: subTitle, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
+                searched
+                    ? Container(
+                        height: buttonHeight,
+                        width: buttonWidth,
+                        child: RaisedButton.icon(
+                          color: Colors.deepOrange,
+                          icon: Icon(
+                            Icons.arrow_forward,
+                            color: Colors.white,
+                          ),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                          onPressed: () async {
+                            print(_workDays01);
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => LastSearchedLocation(
+                                      lat: _lat,
+                                      lng: _lng,
+                                    )));
+                          },
+                          label: Text(
+                            AppLocalizations.of(context).translate("doctor_locat"),
+                            //'View Doctor Location',
+                            style: TextStyle(color: Colors.white, fontSize: subTitle, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      )
+                    : Text('   '),
               ],
             ),
           ),

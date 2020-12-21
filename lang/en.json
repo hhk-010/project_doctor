@@ -241,7 +241,8 @@
     "zoom_in_out":"Zoom in/out with your 2 fingers",
     "zoom_in":"Zoom in by ++ the distance between them",
     "zoom_out":"Zoom out by - - the distance between them",
-    
+    "search_warning":"Sorry !",
+    "search_error":"There is no previous search trial",
 
 
 
