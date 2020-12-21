@@ -358,7 +358,7 @@ class _FinalMapState extends State<FinalMap> {
                         double resultedAddress =
                             await analyzeAddress(lattt, lnggg);
                         print(resultedAddress);
-                        if (resultedAddress < 3) {
+                        if (resultedAddress < 6) {
                           setState(() => isloading = true);
                           setState(() {
                             finalResult =
@@ -408,7 +408,7 @@ class _FinalMapState extends State<FinalMap> {
                           }
                         } else {
                           error = AppLocalizations.of(context)
-                              .translate('invalid_address');
+                              .translate("invalid_address");
                           _showSnackBar();
                         }
                       }

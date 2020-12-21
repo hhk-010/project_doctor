@@ -284,7 +284,7 @@ class _SupportState extends State<Support> {
                         SizedBox(
                           height: 25,
                         ),
-                        Center(
+                        /*Center(
                           child: Text(
                             AppLocalizations.of(context).translate('contact_us'),
                             style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
@@ -292,9 +292,9 @@ class _SupportState extends State<Support> {
                         ),
                         SizedBox(
                           height: 15,
-                        ),
+                        ),*/
 
-                        Directionality(
+                        /*Directionality(
                           textDirection: TextDirection.ltr,
                           child: Container(
                             decoration: boxDecoration,
@@ -314,10 +314,10 @@ class _SupportState extends State<Support> {
                                       ),
                                       GestureDetector(
                                         onTap: () => setState(() {
-                                          _launchEmail('mailto:ahmedkhagani93@gmail.com?subject=News&body=New%20plugin');
+                                          _launchEmail('mailto:ahmedkhaganikhagani@gmail.com?subject=News&body=New%20plugin');
                                         }),
                                         child: Text(
-                                          'ahmedkhagani93@gmail.com',
+                                          'ahmedkhaganikhagani@gmail.com',
                                           textAlign: TextAlign.justify,
                                           style: TextStyle(fontSize: subTitle, fontWeight: FontWeight.normal, fontFamily: 'Helvatica'),
                                         ),
@@ -356,7 +356,7 @@ class _SupportState extends State<Support> {
                               ),
                             ),
                           ),
-                        ),
+                        ),*/
                         // Center(
                         //   child: Text(
                         //     'Developers',

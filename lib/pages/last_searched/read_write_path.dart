@@ -99,7 +99,7 @@ class LastSearchedStorage {
       return number;
     } catch (e) {
       // If encountering an error, return 0.
-      return '';
+      return '0';
     }
   }
 

@@ -194,35 +194,6 @@ class _UpdateMapState extends State<UpdateMap> {
               markers: Set.from(mymarker),
               onTap: handletap,
             ),
-            // Container(
-            //   padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
-            //   alignment: Alignment.topCenter,
-            //   child: Column(
-            //     children: [
-            //       Text(
-            //         AppLocalizations.of(context).translate("zoom_in_out"),
-            //         style: TextStyle(
-            //           fontSize: 13,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //       Text(
-            //         AppLocalizations.of(context).translate("zoom_in"),
-            //         style: TextStyle(
-            //           fontSize: 13,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //       Text(
-            //         AppLocalizations.of(context).translate("zoom_out"),
-            //         style: TextStyle(
-            //           fontSize: 13,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
             Container(
               alignment: Alignment.bottomCenter,
               padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
@@ -242,11 +213,10 @@ class _UpdateMapState extends State<UpdateMap> {
                       _showSnackBar();
                     } else {
                       await geolocate(latlng: latlng);
-                      print(lattt);
                       if (lattt != null && lnggg != null) {
                         double addressResult =
                             await analyzeAddress(lattt, lnggg);
-                        if (addressResult < 3) {
+                        if (addressResult < 6) {
                           setState(() {
                             isloading = true;
                             _result =
@@ -288,7 +258,7 @@ class _UpdateMapState extends State<UpdateMap> {
                           }
                         } else {
                           SnackBarError.error = AppLocalizations.of(context)
-                              .translate('invalid_address');
+                              .translate("invalid_address");
                           _showSnackBar();
                         }
                       }
