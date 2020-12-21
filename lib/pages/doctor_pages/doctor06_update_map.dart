@@ -64,7 +64,7 @@ class _UpdateMapState extends State<UpdateMap> {
       sum = (pow(addressesLat - lat, 2)) + pow(addressesLng - lng, 2);
       result = sqrt(sum) * 100;
       return result;
-    } 
+    }
   }
 
   //======================================

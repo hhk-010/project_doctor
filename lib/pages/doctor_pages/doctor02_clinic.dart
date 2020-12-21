@@ -1055,7 +1055,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                                 (e2.isEmpty && t2.isEmpty))) {
                                           latlng =
                                               await getCoordinatesFromAddress(
-                                                  provinces[province]+
+                                                  provinces[province] +
                                                       ' ' +
                                                       currentaddress);
                                           if (!registered) {

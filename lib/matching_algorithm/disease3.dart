@@ -114,7 +114,7 @@ maindisease3(
       'suicide', 'suicide', 'suicide', 'null', 'null', 'null');
 
   var trauma = Disease3('trauma', 'FFH', 'RTA', 'stab', 'shot',
-      'other injuries', 'null', 'null', 'null');
+      'other injuries', 'burn', 'burn', 'burn');
   var uro = Disease3('urological ER', 'scrotal pain', 'scrotal pain',
       'priapism', 'praipism', 'scrotal pain', 'null', 'null', 'null');
 
