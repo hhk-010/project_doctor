@@ -375,10 +375,6 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                                 }),
                                 child: Row(
                                   children: [
-                                    Icon(
-                                      Icons.arrow_forward,
-                                      color: Colors.indigo,
-                                    ),
                                     SizedBox(
                                       width: 10,
                                     ),
