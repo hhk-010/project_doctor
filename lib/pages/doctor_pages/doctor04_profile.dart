@@ -374,7 +374,8 @@ class _DoctorListState extends State<DoctorList> {
                               AppLocalizations.of(context)
                                   .translate('data_error'),
                               style: TextStyle(fontSize: subTitle),
-                            )
+                            ),
+                            //Text(AppLocalizations.of(context).translate('re_sign'),style: TextStyle(fontSize: subTitle),),
                           ],
                         )
                       : Column(
