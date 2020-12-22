@@ -79,8 +79,11 @@ class _PatientComplainState extends State<PatientComplain> {
   var regionSelected = TextEditingController();
   List radioGender = ["Male", "Female"];
   String radioSelect = '';
+<<<<<<< HEAD
   //======bool to show and hide male/ female complaints
   bool isMale = false;
+=======
+>>>>>>> bdf3bf2115d4a1c1080b73112def4be69101dc1c
   @override
   Widget build(BuildContext context) {
     //snackbar for
@@ -629,6 +632,10 @@ class _PatientComplainState extends State<PatientComplain> {
       "5": [
         AppLocalizations.of(context).translate('female infertility'),
         'female infertility'
+      ],
+      "22": [
+        AppLocalizations.of(context).translate('delayed puberty'),
+        'delayed puberty'
       ],
       "6": [
         AppLocalizations.of(context).translate('female hirsutism'),
@@ -1708,6 +1715,7 @@ class _PatientComplainState extends State<PatientComplain> {
                             sym5: complainSelected05,
                             sym6: complainSelected06,
                             sym7: complainSelected07,
+                            gender: radioSelect,
                           ),
                         ),
                       );
@@ -1814,6 +1822,20 @@ class _PatientComplainState extends State<PatientComplain> {
                                         groupValue: radioSelect,
                                         onChanged: (value) {
                                           setState(() {
+                                            regionSelected01 = null;
+                                            regionSelected02 = null;
+                                            regionSelected03 = null;
+                                            regionSelected04 = null;
+                                            regionSelected05 = null;
+                                            regionSelected06 = null;
+                                            regionSelected07 = null;
+                                            complainSelected01 = null;
+                                            complainSelected02 = null;
+                                            complainSelected03 = null;
+                                            complainSelected04 = null;
+                                            complainSelected05 = null;
+                                            complainSelected06 = null;
+                                            complainSelected07 = null;
                                             radioSelect = value;
                                             if (radioSelect == 'Male') {
                                               isMale = true;
@@ -1838,6 +1860,20 @@ class _PatientComplainState extends State<PatientComplain> {
                                           groupValue: radioSelect,
                                           onChanged: (value) {
                                             setState(() {
+                                              regionSelected01 = null;
+                                              regionSelected02 = null;
+                                              regionSelected03 = null;
+                                              regionSelected04 = null;
+                                              regionSelected05 = null;
+                                              regionSelected06 = null;
+                                              regionSelected07 = null;
+                                              complainSelected01 = null;
+                                              complainSelected02 = null;
+                                              complainSelected03 = null;
+                                              complainSelected04 = null;
+                                              complainSelected05 = null;
+                                              complainSelected06 = null;
+                                              complainSelected07 = null;
                                               radioSelect = value;
                                             });
                                           },
@@ -1963,16 +1999,19 @@ class _PatientComplainState extends State<PatientComplain> {
                                       child: Text(AppLocalizations.of(context)
                                           .translate('uro')),
                                     ),
-                                    DropdownMenuItem<String>(
-                                      value: "maleGenital",
-                                      child: Text(AppLocalizations.of(context)
-                                          .translate('male_genital')),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: "gynecology",
-                                      child: Text(AppLocalizations.of(context)
-                                          .translate('gynecology')),
-                                    ),
+                                    radioSelect == 'Male'
+                                        ? DropdownMenuItem<String>(
+                                            value: "maleGenital",
+                                            child: Text(
+                                                AppLocalizations.of(context)
+                                                    .translate('male_genital')),
+                                          )
+                                        : DropdownMenuItem<String>(
+                                            value: "gynecology",
+                                            child: Text(
+                                                AppLocalizations.of(context)
+                                                    .translate('gynecology')),
+                                          ),
                                     DropdownMenuItem<String>(
                                       value: "breast",
                                       child: Text(AppLocalizations.of(context)
@@ -2160,16 +2199,19 @@ class _PatientComplainState extends State<PatientComplain> {
                                         child: Text(AppLocalizations.of(context)
                                             .translate('uro')),
                                       ),
-                                      DropdownMenuItem<String>(
-                                        value: "maleGenital",
-                                        child: Text(AppLocalizations.of(context)
-                                            .translate('male_genital')),
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        value: "gynecology",
-                                        child: Text(AppLocalizations.of(context)
-                                            .translate('gynecology')),
-                                      ),
+                                      radioSelect == 'Male'
+                                          ? DropdownMenuItem<String>(
+                                              value: "maleGenital",
+                                              child: Text(AppLocalizations.of(
+                                                      context)
+                                                  .translate('male_genital')),
+                                            )
+                                          : DropdownMenuItem<String>(
+                                              value: "gynecology",
+                                              child: Text(
+                                                  AppLocalizations.of(context)
+                                                      .translate('gynecology')),
+                                            ),
                                       DropdownMenuItem<String>(
                                         value: "breast",
                                         child: Text(AppLocalizations.of(context)
@@ -2359,16 +2401,19 @@ class _PatientComplainState extends State<PatientComplain> {
                                         child: Text(AppLocalizations.of(context)
                                             .translate('uro')),
                                       ),
-                                      DropdownMenuItem<String>(
-                                        value: "maleGenital",
-                                        child: Text(AppLocalizations.of(context)
-                                            .translate('male_genital')),
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        value: "gynecology",
-                                        child: Text(AppLocalizations.of(context)
-                                            .translate('gynecology')),
-                                      ),
+                                      radioSelect == 'Male'
+                                          ? DropdownMenuItem<String>(
+                                              value: "maleGenital",
+                                              child: Text(AppLocalizations.of(
+                                                      context)
+                                                  .translate('male_genital')),
+                                            )
+                                          : DropdownMenuItem<String>(
+                                              value: "gynecology",
+                                              child: Text(
+                                                  AppLocalizations.of(context)
+                                                      .translate('gynecology')),
+                                            ),
                                       DropdownMenuItem<String>(
                                         value: "breast",
                                         child: Text(AppLocalizations.of(context)
@@ -2558,16 +2603,19 @@ class _PatientComplainState extends State<PatientComplain> {
                                         child: Text(AppLocalizations.of(context)
                                             .translate('uro')),
                                       ),
-                                      DropdownMenuItem<String>(
-                                        value: "maleGenital",
-                                        child: Text(AppLocalizations.of(context)
-                                            .translate('male_genital')),
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        value: "gynecology",
-                                        child: Text(AppLocalizations.of(context)
-                                            .translate('gynecology')),
-                                      ),
+                                      radioSelect == 'Male'
+                                          ? DropdownMenuItem<String>(
+                                              value: "maleGenital",
+                                              child: Text(AppLocalizations.of(
+                                                      context)
+                                                  .translate('male_genital')),
+                                            )
+                                          : DropdownMenuItem<String>(
+                                              value: "gynecology",
+                                              child: Text(
+                                                  AppLocalizations.of(context)
+                                                      .translate('gynecology')),
+                                            ),
                                       DropdownMenuItem<String>(
                                         value: "breast",
                                         child: Text(AppLocalizations.of(context)
@@ -2757,16 +2805,19 @@ class _PatientComplainState extends State<PatientComplain> {
                                         child: Text(AppLocalizations.of(context)
                                             .translate('uro')),
                                       ),
-                                      DropdownMenuItem<String>(
-                                        value: "maleGenital",
-                                        child: Text(AppLocalizations.of(context)
-                                            .translate('male_genital')),
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        value: "gynecology",
-                                        child: Text(AppLocalizations.of(context)
-                                            .translate('gynecology')),
-                                      ),
+                                      radioSelect == 'Male'
+                                          ? DropdownMenuItem<String>(
+                                              value: "maleGenital",
+                                              child: Text(AppLocalizations.of(
+                                                      context)
+                                                  .translate('male_genital')),
+                                            )
+                                          : DropdownMenuItem<String>(
+                                              value: "gynecology",
+                                              child: Text(
+                                                  AppLocalizations.of(context)
+                                                      .translate('gynecology')),
+                                            ),
                                       DropdownMenuItem<String>(
                                         value: "breast",
                                         child: Text(AppLocalizations.of(context)
@@ -2956,16 +3007,19 @@ class _PatientComplainState extends State<PatientComplain> {
                                         child: Text(AppLocalizations.of(context)
                                             .translate('uro')),
                                       ),
-                                      DropdownMenuItem<String>(
-                                        value: "maleGenital",
-                                        child: Text(AppLocalizations.of(context)
-                                            .translate('male_genital')),
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        value: "gynecology",
-                                        child: Text(AppLocalizations.of(context)
-                                            .translate('gynecology')),
-                                      ),
+                                      radioSelect == 'Male'
+                                          ? DropdownMenuItem<String>(
+                                              value: "maleGenital",
+                                              child: Text(AppLocalizations.of(
+                                                      context)
+                                                  .translate('male_genital')),
+                                            )
+                                          : DropdownMenuItem<String>(
+                                              value: "gynecology",
+                                              child: Text(
+                                                  AppLocalizations.of(context)
+                                                      .translate('gynecology')),
+                                            ),
                                       DropdownMenuItem<String>(
                                         value: "breast",
                                         child: Text(AppLocalizations.of(context)
@@ -3155,16 +3209,19 @@ class _PatientComplainState extends State<PatientComplain> {
                                         child: Text(AppLocalizations.of(context)
                                             .translate('uro')),
                                       ),
-                                      DropdownMenuItem<String>(
-                                        value: "maleGenital",
-                                        child: Text(AppLocalizations.of(context)
-                                            .translate('male_genital')),
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        value: "gynecology",
-                                        child: Text(AppLocalizations.of(context)
-                                            .translate('gynecology')),
-                                      ),
+                                      radioSelect == 'Male'
+                                          ? DropdownMenuItem<String>(
+                                              value: "maleGenital",
+                                              child: Text(AppLocalizations.of(
+                                                      context)
+                                                  .translate('male_genital')),
+                                            )
+                                          : DropdownMenuItem<String>(
+                                              value: "gynecology",
+                                              child: Text(
+                                                  AppLocalizations.of(context)
+                                                      .translate('gynecology')),
+                                            ),
                                       DropdownMenuItem<String>(
                                         value: "breast",
                                         child: Text(AppLocalizations.of(context)

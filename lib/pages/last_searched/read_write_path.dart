@@ -85,7 +85,7 @@ class LastSearchedStorage {
       return speciality;
     } catch (e) {
       // If encountering an error, return 0.
-      return '';
+      return ' ';
     }
   }
 
