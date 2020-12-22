@@ -12,7 +12,7 @@
     "google_map" : "Google Map",
     "Or": " Or ",
     "":"",
-    "data_error":"An error had occurred , please update your information",
+    "data_error":"An error had occurred , please update your information and sign in again",
     "prof_error":"Error !!",
     "last_searched_doctor" : "Last Searched Doctor",
 
@@ -178,7 +178,7 @@
     "predelete_password":"Enter password",
     "delete":"delete",
     "delete_user":"Delete account",
-    
+    "re_sign":"And sign in again",
 
     
 
@@ -243,7 +243,7 @@
     "zoom_out":"Zoom out by - - the distance between them",
     "search_warning":"Sorry !",
     "search_error":"There is no previous search trial",
-
+    "age_format":"Selected numbers should be from 0 to 9",
 
 
 "body_regions" : "=======================================",

@@ -25,8 +25,15 @@ class _PatientComplainState extends State<PatientComplain> {
   final ageController = TextEditingController();
   String _age = '';
   String _error = '';
-  getage() {
-    FinalScore.age = int.parse(_age);
+  //======finding decimal age====
+  int decimalAge = 0;
+  getage(String _age) {
+    try {
+      decimalAge = int.parse(_age);
+      return decimalAge;
+    } catch (e) {
+      return null;
+    }
   }
 
   //-------------snackbar for age==null---------
@@ -72,6 +79,11 @@ class _PatientComplainState extends State<PatientComplain> {
   var regionSelected = TextEditingController();
   List radioGender = ["Male", "Female"];
   String radioSelect = '';
+<<<<<<< HEAD
+  //======bool to show and hide male/ female complaints
+  bool isMale = false;
+=======
+>>>>>>> bdf3bf2115d4a1c1080b73112def4be69101dc1c
   @override
   Widget build(BuildContext context) {
     //snackbar for
@@ -305,10 +317,6 @@ class _PatientComplainState extends State<PatientComplain> {
         AppLocalizations.of(context).translate('left arm pain'),
         'left arm pain'
       ],
-      "3": [
-        AppLocalizations.of(context).translate('generalized bone pain'),
-        'generalized bone pain'
-      ],
       "2": [
         AppLocalizations.of(context).translate('left shoulder pain'),
         'left shoulder pain'
@@ -407,10 +415,6 @@ class _PatientComplainState extends State<PatientComplain> {
         AppLocalizations.of(context).translate('limitation of movement'),
         'limitation of movement'
       ],
-      /*"3": [
-        AppLocalizations.of(context).translate('generalized bone pain'),
-        'generalized bone pain'
-      ],*/
       "14": [
         AppLocalizations.of(context).translate('dislocation'),
         'dislocation'
@@ -621,7 +625,6 @@ class _PatientComplainState extends State<PatientComplain> {
         AppLocalizations.of(context).translate('oligomenorrhea'),
         'oligomenorrhea'
       ],
-      //"3": [AppLocalizations.of(context).translate('decrease libido'), 'decrease libido'],
       "4": [
         AppLocalizations.of(context).translate('menorrhagia'),
         'menorrhagia'
@@ -668,7 +671,6 @@ class _PatientComplainState extends State<PatientComplain> {
         AppLocalizations.of(context).translate('incontinence'),
         'incontinence'
       ],
-      //"3": [AppLocalizations.of(context).translate('abnormal urethral opening site'), 'abnormal urethral opening site'],
       "5": [AppLocalizations.of(context).translate('frequency'), 'frequency'],
       "2": [AppLocalizations.of(context).translate('polyuria'), 'polyuria'],
       "11": [
@@ -695,7 +697,6 @@ class _PatientComplainState extends State<PatientComplain> {
         AppLocalizations.of(context).translate('delayed puberty'),
         'delayed puberty'
       ],
-      // "1": [AppLocalizations.of(context).translate('decrease libido'), 'decrease libido'],
       "7": [
         AppLocalizations.of(context).translate('penile mass'),
         'penile mass'
@@ -755,10 +756,6 @@ class _PatientComplainState extends State<PatientComplain> {
       ],
       "1": [AppLocalizations.of(context).translate('open eye'), 'open eye'],
       "5": [AppLocalizations.of(context).translate('lid drop'), 'lid drop'],
-      /*"11": [
-        AppLocalizations.of(context).translate('eye itching'),
-        'eye itching'
-      ],*/
       "17": [
         AppLocalizations.of(context)
             .translate('other ophthalmological problems'),
@@ -1673,22 +1670,27 @@ class _PatientComplainState extends State<PatientComplain> {
               backgroundColor: Colors.deepOrange,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(80.0)),
-              onPressed: () {
-                //print(_age);
+              onPressed: () async {
+                FinalScore.age = await getage(_age);
                 if (_age == '') {
                   setState(() {
                     _error = AppLocalizations.of(context)
                         .translate("age_message"); //'Please , enter your age';
                   });
                   _showSnackBar();
-                } else if (int.parse(_age) > 130) {
+                } else if (FinalScore.age == null) {
                   setState(() {
-                    _error = AppLocalizations.of(context).translate(
-                        "age_message_error"); //'Age should be from 0 to 130';
+                    _error =
+                        AppLocalizations.of(context).translate('age_format');
+                  });
+                  _showSnackBar();
+                } else if (FinalScore.age > 130) {
+                  setState(() {
+                    _error = AppLocalizations.of(context)
+                        .translate("age_message_error");
                   });
                   _showSnackBar();
                 } else {
-                  getage();
                   if (radioSelect == '') {
                     setState(() {
                       _error = AppLocalizations.of(context).translate(
@@ -1835,6 +1837,11 @@ class _PatientComplainState extends State<PatientComplain> {
                                             complainSelected06 = null;
                                             complainSelected07 = null;
                                             radioSelect = value;
+                                            if (radioSelect == 'Male') {
+                                              isMale = true;
+                                            } else {
+                                              isMale = false;
+                                            }
                                           });
                                         },
                                       ),
