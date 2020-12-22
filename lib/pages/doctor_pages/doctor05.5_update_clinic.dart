@@ -955,7 +955,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                     ((e2.isNotEmpty && t2.isNotEmpty) ||
                                         (e2.isEmpty && t2.isEmpty))) {
                                   latlng = await getCoordinatesFromAddress(
-                                      provinces[province] + ' ' + address);
+                                      provinces[province]+ ' ' + address);
                                   setState(() {
                                     if (workDays01[workDays01.length - 1]
                                             .length <
