@@ -110,7 +110,7 @@ maindisease4(
       'prolong pregnancy',
       'abdominal pain',
       'vaginal discharge',
-      'miscarriage',
+      'null',
       'menorrhagia',
       'null',
       'pregnancy');
