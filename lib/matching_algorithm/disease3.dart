@@ -115,8 +115,16 @@ maindisease3(
 
   var trauma = Disease3('trauma', 'FFH', 'RTA', 'stab', 'shot',
       'other injuries', 'burn', 'burn', 'burn');
-  var uro = Disease3('urological ER', 'scrotal pain', 'scrotal pain',
-      'priapism', 'praipism', 'scrotal pain', 'null', 'null', 'null');
+  var uro = Disease3(
+      'urological ER',
+      'scrotal pain',
+      'scrotal pain',
+      'priapism',
+      'praipism',
+      'scrotal pain',
+      'miscarriage',
+      'miscarriage',
+      'miscarriage');
 
   var internist = Disease3('internist', 'fever', 'fatigue', 'weight loss',
       'anorexia', 'insomnia', 'weight gain', 'somnolence', 'malaise');

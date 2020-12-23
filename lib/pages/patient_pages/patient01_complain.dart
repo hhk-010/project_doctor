@@ -79,8 +79,7 @@ class _PatientComplainState extends State<PatientComplain> {
   var regionSelected = TextEditingController();
   List radioGender = ["Male", "Female"];
   String radioSelect = '';
-  //======bool to show and hide male/ female complaints
-  bool isMale = false;
+
   @override
   Widget build(BuildContext context) {
     //snackbar for
@@ -1834,11 +1833,6 @@ class _PatientComplainState extends State<PatientComplain> {
                                             complainSelected06 = null;
                                             complainSelected07 = null;
                                             radioSelect = value;
-                                            if (radioSelect == 'Male') {
-                                              isMale = true;
-                                            } else {
-                                              isMale = false;
-                                            }
                                           });
                                         },
                                       ),

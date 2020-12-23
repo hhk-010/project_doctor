@@ -176,7 +176,6 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(80.0)),
               onPressed: () async {
-                print(gender);
                 maindisease1(
                     cc,
                     s2,
