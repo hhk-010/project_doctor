@@ -114,6 +114,8 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   String _secondTo = '';
   String _secondToTime = '';
   String _secondToAmPm = '';
+  //=======to write main workdays===
+  List writtenWorkDays = [];
   // ignore: unused_field
   String _mainTime = '';
   String _secondTime = '';
@@ -266,16 +268,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             realdist = realdistance.toString();
             dotindex = realdist.indexOf('.') + 3;
             realnearby = realdist.substring(0, dotindex);
-            _writeName(_name);
-            _writeSpeciality(_speciality);
-            _writeNumber(_phone);
-            _writeProvince(_province);
-            _writeAddress(_address);
-            _writelat(_lat.toString());
-            _writelng(_lng.toString());
-            _writeWorkDays01(json.encode(_workDays01));
-            _writeWorkDays02(json.encode(_workDays02));
-            _writeWorkDays03(json.encode(_workDays03));
+
             _y = _workDays01.length - 1;
             //for (String x in _workDays01)
             while (_y >= 0) {
@@ -314,6 +307,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             }
             _y = 0;
             _z = 0;
+            writtenWorkDays = _workDays01;
             _workDays01 = [];
             _mainDays = '';
             if (_workDays02.isNotEmpty && _workDays02.length == 2) {
@@ -379,8 +373,17 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
           });
         }
       }
-
       // _getAddressFromLatLng();
+      _writeName(_name);
+      _writeSpeciality(_speciality);
+      _writeNumber(_phone);
+      _writeProvince(_province);
+      _writeAddress(_address);
+      _writelat(_lat.toString());
+      _writelng(_lng.toString());
+      _writeWorkDays01(json.encode(writtenWorkDays));
+      _writeWorkDays02(json.encode(_workDays02));
+      _writeWorkDays03(json.encode(_workDays03));
     }
 
     return ResponsiveBuilder(builder: (context, sizingInformation) {
