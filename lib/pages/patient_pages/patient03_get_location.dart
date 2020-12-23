@@ -16,6 +16,7 @@ class MyVariables {
   static String province = '';
   static double lat = 0.0;
   static double lng = 0.0;
+  static bool usingMap = false;
 }
 
 class PatientGetLocation extends StatefulWidget {
@@ -40,7 +41,9 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
     final _snackBar = new SnackBar(
       content: Text(
         _error,
-        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -66,6 +69,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
   void initState() {
     checkInternet();
     super.initState();
+    MyVariables.usingMap = false;
   }
 
   @override
@@ -78,7 +82,6 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
     //   "5": [AppLocalizations.of(context).translate('Middle Region'), "Middle Region"],
     // };
     final province = {
-
       "1": [
         "Erbil",
         AppLocalizations.of(context).translate("Erbil"),
@@ -114,7 +117,10 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
       "9": ["Duhok", AppLocalizations.of(context).translate("Duhok")],
       "10": ["Diyala", AppLocalizations.of(context).translate("Diyala")],
       "11": ["Dhi Qar", AppLocalizations.of(context).translate("Dhi Qar")],
-      "12": ["Sulaymaniyah", AppLocalizations.of(context).translate("Sulaymaniyah")],
+      "12": [
+        "Sulaymaniyah",
+        AppLocalizations.of(context).translate("Sulaymaniyah")
+      ],
       "13": ["Saladin", AppLocalizations.of(context).translate("Saladin")],
       "14": ["Karbala", AppLocalizations.of(context).translate("Karbala")],
       "15": ["Kirkuk", AppLocalizations.of(context).translate("Kirkuk")],
@@ -159,7 +165,8 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
               fit: BoxFit.fitWidth,
               child: Text(
                 AppLocalizations.of(context).translate('region'),
-                style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: appBarTitle, fontWeight: FontWeight.bold),
               ),
             ),
             centerTitle: true,
@@ -180,7 +187,8 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                     children: [
                       Text(
                         AppLocalizations.of(context).translate('province'),
-                        style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: title, fontWeight: FontWeight.bold),
                       ),
                       Divider(
                         color: Colors.grey,
@@ -189,86 +197,88 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                         endIndent: 30,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 2),
                         child: DropdownButton(
                           hint: Text(
-                            AppLocalizations.of(context).translate('select_region'),
+                            AppLocalizations.of(context)
+                                .translate('select_region'),
                           ),
                           isExpanded: true,
-                         items: [
-                        DropdownMenuItem(
-                          value: province["1"][0],
-                          child: Text(province["1"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["2"][0],
-                          child: Text(province["2"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["3"][0],
-                          child: Text(province["3"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["4"][0],
-                          child: Text(province["4"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["5"][0],
-                          child: Text(province["5"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["6"][0],
-                          child: Text(province["6"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["7"][0],
-                          child: Text(province["7"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["8"][0],
-                          child: Text(province["8"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["9"][0],
-                          child: Text(province["9"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["10"][0],
-                          child: Text(province["10"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["11"][0],
-                          child: Text(province["11"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["12"][0],
-                          child: Text(province["12"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["13"][0],
-                          child: Text(province["13"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["14"][0],
-                          child: Text(province["14"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["15"][0],
-                          child: Text(province["15"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["16"][0],
-                          child: Text(province["16"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["17"][0],
-                          child: Text(province["17"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["18"][0],
-                          child: Text(province["18"][1]),
-                        ),
-                      ],
+                          items: [
+                            DropdownMenuItem(
+                              value: province["1"][0],
+                              child: Text(province["1"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["2"][0],
+                              child: Text(province["2"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["3"][0],
+                              child: Text(province["3"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["4"][0],
+                              child: Text(province["4"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["5"][0],
+                              child: Text(province["5"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["6"][0],
+                              child: Text(province["6"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["7"][0],
+                              child: Text(province["7"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["8"][0],
+                              child: Text(province["8"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["9"][0],
+                              child: Text(province["9"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["10"][0],
+                              child: Text(province["10"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["11"][0],
+                              child: Text(province["11"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["12"][0],
+                              child: Text(province["12"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["13"][0],
+                              child: Text(province["13"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["14"][0],
+                              child: Text(province["14"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["15"][0],
+                              child: Text(province["15"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["16"][0],
+                              child: Text(province["16"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["17"][0],
+                              child: Text(province["17"][1]),
+                            ),
+                            DropdownMenuItem(
+                              value: province["18"][0],
+                              child: Text(province["18"][1]),
+                            ),
+                          ],
                           onChanged: (value) {
                             setState(() {
                               region = value;
@@ -290,8 +300,10 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                     children: [
                       Center(
                         child: AutoSizeText(
-                          AppLocalizations.of(context).translate('get_location'),
-                          style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                          AppLocalizations.of(context)
+                              .translate('get_location'),
+                          style: TextStyle(
+                              fontSize: title, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                           maxLines: 2,
                         ),
@@ -313,30 +325,35 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                         width: buttonWidth,
                         child: RaisedButton(
                           color: Colors.deepOrange,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80.0)),
                           onPressed: () {
                             checkInternet();
                             if (_isInternet) {
                               _getCurrentLocation();
                               if (_currentPosition == null) {
                                 setState(() {
-                                  _error = AppLocalizations.of(context).translate("geolocator_message");
+                                  _error = AppLocalizations.of(context)
+                                      .translate("geolocator_message");
                                 });
                                 _showSnackBar();
                               } else {
                                 setState(() {
-                                  MyVariables.speciality = FinalScore.speciality;
+                                  MyVariables.speciality =
+                                      FinalScore.speciality;
                                   MyVariables.province = region;
                                   //MyVariables.lat = double.parse(_currentPosition.latitude.toString() );
                                   //MyVariables.long = double.parse(_currentPosition.longitude.toString() );
                                   MyVariables.lat = _currentPosition.latitude;
                                   MyVariables.lng = _currentPosition.longitude;
+                                  MyVariables.usingMap = false;
                                 });
                                 Navigator.pushNamed(context, '/patient_result');
                               }
                             } else {
                               setState(() {
-                                _error = AppLocalizations.of(context).translate('snack_connectivity');
+                                _error = AppLocalizations.of(context)
+                                    .translate('snack_connectivity');
                               });
                               _showSnackBar();
                             }
@@ -344,8 +361,12 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                           child: FittedBox(
                             fit: BoxFit.fitWidth,
                             child: Text(
-                              AppLocalizations.of(context).translate('auto_location'),
-                              style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
+                              AppLocalizations.of(context)
+                                  .translate('auto_location'),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: title,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -354,7 +375,8 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
                           AppLocalizations.of(context).translate('Or'),
-                          style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: title, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
@@ -366,8 +388,12 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                             Icons.arrow_forward,
                             color: Colors.white,
                           ),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80.0)),
                           onPressed: () async {
+                            setState(() {
+                              MyVariables.usingMap = true;
+                            });
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => PatientMap(
                                       speciality: FinalScore.speciality,
@@ -375,8 +401,12 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                                     )));
                           },
                           label: Text(
-                            AppLocalizations.of(context).translate('google_map'),
-                            style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
+                            AppLocalizations.of(context)
+                                .translate('google_map'),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: title,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -392,7 +422,9 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
   }
 
   _getCurrentLocation() {
-    geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best).then((Position position) {
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
       setState(() {
         _currentPosition = position;
       });
@@ -405,10 +437,12 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
 
   _getAddressFromLatLng() async {
     try {
-      List<Placemark> p = await geolocator.placemarkFromCoordinates(_currentPosition.latitude, _currentPosition.longitude);
+      List<Placemark> p = await geolocator.placemarkFromCoordinates(
+          _currentPosition.latitude, _currentPosition.longitude);
       Placemark place = p[0];
       setState(() {
-        _currentAddress = "${place.locality}, ${place.postalCode}, ${place.country}";
+        _currentAddress =
+            "${place.locality}, ${place.postalCode}, ${place.country}";
       });
     } catch (e) {
       print(e);

@@ -83,7 +83,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
     widget.readFromStorage.readSpeciality().then((String value) {
       setState(() {
         _speciality = value;
-        if (!(_name == '' && _speciality == '')) {
+        if (!(_name == '' || _speciality == '')) {
           searched = true;
         }
       });
