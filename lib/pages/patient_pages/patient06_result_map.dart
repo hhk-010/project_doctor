@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
@@ -14,7 +15,8 @@ class PatientResultMap extends StatefulWidget {
   final double lng;
   PatientResultMap({this.lat, this.lng});
   @override
-  _PatientResultMapState createState() => _PatientResultMapState(lat: lat, lng: lng);
+  _PatientResultMapState createState() =>
+      _PatientResultMapState(lat: lat, lng: lng);
 }
 
 class _PatientResultMapState extends State<PatientResultMap> {
@@ -39,7 +41,7 @@ class _PatientResultMapState extends State<PatientResultMap> {
       double title;
 
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle =  25;
+        appBarTitle = 25;
         appBarHeight = 50;
         title = displayWidth(context) * 0.05;
       } else {
@@ -57,7 +59,8 @@ class _PatientResultMapState extends State<PatientResultMap> {
                 fit: BoxFit.fitWidth,
                 child: Text(
                   AppLocalizations.of(context).translate('doctor_location'),
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: appBarTitle),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: appBarTitle),
                 )),
             centerTitle: true,
             elevation: 0,
@@ -67,38 +70,10 @@ class _PatientResultMapState extends State<PatientResultMap> {
           children: [
             GoogleMap(
               onMapCreated: _onmapcreated,
-              initialCameraPosition: CameraPosition(target: LatLng(lat, lng), zoom: 10),
+              initialCameraPosition:
+                  CameraPosition(target: LatLng(lat, lng), zoom: 10),
               markers: _marker,
             ),
-            // Container(
-            //   padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
-            //   alignment: Alignment.topCenter,
-            //   child: Column(
-            //     children: [
-            //       Text(
-            //         AppLocalizations.of(context).translate("zoom_in_out"),
-            //         style: TextStyle(
-            //           fontSize: 13,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //       Text(
-            //         AppLocalizations.of(context).translate("zoom_in"),
-            //         style: TextStyle(
-            //           fontSize: 13,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //       Text(
-            //         AppLocalizations.of(context).translate("zoom_out"),
-            //         style: TextStyle(
-            //           fontSize: 13,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
             Container(
               padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 25.0),
               alignment: Alignment.bottomCenter,
@@ -106,10 +81,15 @@ class _PatientResultMapState extends State<PatientResultMap> {
                 backgroundColor: Colors.deepOrange,
                 child: Text(
                   AppLocalizations.of(context).translate('ok'),
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: title),
+                  style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: title),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/home');
+                  int count = 0;
+                  Navigator.popUntil(
+                      context,
+                      (route) =>
+                          MyVariables.usingMap ? count++ == 7 : count++ == 6);
                 },
               ),
             ),
