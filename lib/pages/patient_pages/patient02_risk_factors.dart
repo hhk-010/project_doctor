@@ -738,23 +738,6 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                               CheckboxListTile(
                                   title: Text(
                                       AppLocalizations.of(context)
-                                          .translate('pregnancy'),
-                                      style: _textStyle),
-                                  value: pregnancySelected,
-                                  onChanged: (val) {
-                                    setState(() {
-                                      pregnancySelected = val;
-                                      if (pregnancySelected) {
-                                        pregnancy = 'pregnancy';
-                                      } else {
-                                        pregnancy = '';
-                                      }
-                                      print(pregnancy);
-                                    });
-                                  }),
-                              CheckboxListTile(
-                                  title: Text(
-                                      AppLocalizations.of(context)
                                           .translate('alcohol'),
                                       style: _textStyle),
                                   value: alcoholismSelected,
@@ -803,6 +786,25 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                       print(familyHistory);
                                     });
                                   }),
+                              gender == "Female"
+                                  ? CheckboxListTile(
+                                      title: Text(
+                                          AppLocalizations.of(context)
+                                              .translate('pregnancy'),
+                                          style: _textStyle),
+                                      value: pregnancySelected,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          pregnancySelected = val;
+                                          if (pregnancySelected) {
+                                            pregnancy = 'pregnancy';
+                                          } else {
+                                            pregnancy = '';
+                                          }
+                                          print(pregnancy);
+                                        });
+                                      })
+                                  : Text(' '),
                             ],
                           ),
                         ),
