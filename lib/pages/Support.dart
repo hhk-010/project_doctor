@@ -120,6 +120,7 @@ class _SupportState extends State<Support> {
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
                                       title: Text(
                                         AppLocalizations.of(context).translate('about_us'),
+                                        style: TextStyle(fontSize: title),
                                         textAlign: TextAlign.center,
                                       ),
                                       content: Text(
@@ -131,6 +132,7 @@ class _SupportState extends State<Support> {
                                         FlatButton(
                                           child: Text(
                                             AppLocalizations.of(context).translate('ok'),
+                                            style: TextStyle(fontSize: subTitle),
                                           ),
                                           onPressed: () {
                                             Navigator.of(context).pop();
@@ -141,9 +143,12 @@ class _SupportState extends State<Support> {
                                   },
                                 );
                               },
-                              child: Text(
-                                AppLocalizations.of(context).translate('about_us'),
-                                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
+                              child: FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  AppLocalizations.of(context).translate('about_us'),
+                                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
+                                ),
                               ),
                               color: Colors.deepOrange,
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
@@ -166,6 +171,7 @@ class _SupportState extends State<Support> {
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
                                       title: Text(
                                         AppLocalizations.of(context).translate('privacy_policy'),
+                                        style: TextStyle(fontSize: title),
                                         textAlign: TextAlign.center,
                                       ),
                                       content: SingleChildScrollView(
@@ -183,6 +189,7 @@ class _SupportState extends State<Support> {
                                         FlatButton(
                                           child: Text(
                                             AppLocalizations.of(context).translate('ok'),
+                                            style: TextStyle(fontSize: subTitle),
                                           ),
                                           onPressed: () {
                                             Navigator.of(context).pop();
@@ -193,9 +200,12 @@ class _SupportState extends State<Support> {
                                   },
                                 );
                               },
-                              child: Text(
-                                AppLocalizations.of(context).translate('privacy_policy'),
-                                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
+                              child: FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  AppLocalizations.of(context).translate('privacy_policy'),
+                                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
+                                ),
                               ),
                               color: Colors.deepOrange,
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
@@ -217,12 +227,10 @@ class _SupportState extends State<Support> {
                                   builder: (BuildContext context) {
                                     return AlertDialog(
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                                      title: FittedBox(
-                                        fit: BoxFit.fitWidth,
-                                        child: Text(
-                                          AppLocalizations.of(context).translate('terms_conditions'),
-                                          textAlign: TextAlign.center,
-                                        ),
+                                      title: Text(
+                                        AppLocalizations.of(context).translate('terms_conditions'),
+                                        style: TextStyle(fontSize: title),
+                                        textAlign: TextAlign.center,
                                       ),
                                       content: SingleChildScrollView(
                                         child: Column(
@@ -239,6 +247,7 @@ class _SupportState extends State<Support> {
                                         FlatButton(
                                           child: Text(
                                             AppLocalizations.of(context).translate('ok'),
+                                            style: TextStyle(fontSize: subTitle),
                                           ),
                                           onPressed: () {
                                             Navigator.of(context).pop();
@@ -249,9 +258,12 @@ class _SupportState extends State<Support> {
                                   },
                                 );
                               },
-                              child: Text(
-                                AppLocalizations.of(context).translate('terms_conditions'),
-                                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
+                              child: FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  AppLocalizations.of(context).translate('terms_conditions'),
+                                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
+                                ),
                               ),
                               color: Colors.deepOrange,
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
@@ -274,9 +286,12 @@ class _SupportState extends State<Support> {
                                   throw 'Could Not Launch $url';
                                 }
                               },
-                              child: Text(
-                                AppLocalizations.of(context).translate('website'),
-                                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
+                              child: FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  AppLocalizations.of(context).translate('website'),
+                                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
+                                ),
                               ),
                               color: Colors.deepOrange,
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
