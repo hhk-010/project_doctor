@@ -21,7 +21,7 @@ class SpecialityResult extends StatelessWidget {
       double subTitle;
       double imageHeight;
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle =  25;
+        appBarTitle = 25;
         appBarHeight = 50;
         containerHeight = displayHeight(context) * 0.75;
         containerWidth = displayWidth(context) * 0.85;
@@ -31,7 +31,7 @@ class SpecialityResult extends StatelessWidget {
         buttonWidth = displayWidth(context) * 0.7;
         imageHeight = displayHeight(context) * 0.2;
       } else {
-        appBarTitle = displayHeight(context) * 0.045;
+        appBarTitle = displayHeight(context) * 0.04;
         appBarHeight = 75;
         containerHeight = displayHeight(context) * 0.7;
         containerWidth = displayWidth(context) * 0.5;

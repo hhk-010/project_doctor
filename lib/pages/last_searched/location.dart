@@ -43,7 +43,7 @@ class _LastSearchedLocationState extends State<LastSearchedLocation> {
         appBarHeight = 50;
         title = displayWidth(context) * 0.05;
       } else {
-        appBarTitle = displayHeight(context) * 0.045;
+        appBarTitle = displayHeight(context) * 0.04;
         appBarHeight = 75;
         title = displayWidth(context) * 0.035;
       }

@@ -41,9 +41,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
     final _snackBar = new SnackBar(
       content: Text(
         _error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -117,10 +115,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
       "9": ["Duhok", AppLocalizations.of(context).translate("Duhok")],
       "10": ["Diyala", AppLocalizations.of(context).translate("Diyala")],
       "11": ["Dhi Qar", AppLocalizations.of(context).translate("Dhi Qar")],
-      "12": [
-        "Sulaymaniyah",
-        AppLocalizations.of(context).translate("Sulaymaniyah")
-      ],
+      "12": ["Sulaymaniyah", AppLocalizations.of(context).translate("Sulaymaniyah")],
       "13": ["Saladin", AppLocalizations.of(context).translate("Saladin")],
       "14": ["Karbala", AppLocalizations.of(context).translate("Karbala")],
       "15": ["Kirkuk", AppLocalizations.of(context).translate("Kirkuk")],
@@ -146,7 +141,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
         buttonHeight = displayHeight(context) * 0.05;
         buttonWidth = displayWidth(context) * 0.7;
       } else {
-        appBarTitle = displayHeight(context) * 0.045;
+        appBarTitle = displayHeight(context) * 0.04;
         appBarHeight = 75;
         containerHeight = displayHeight(context) * 0.7;
         containerWidth = displayWidth(context) * 0.5;
@@ -165,8 +160,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
               fit: BoxFit.fitWidth,
               child: Text(
                 AppLocalizations.of(context).translate('region'),
-                style: TextStyle(
-                    fontSize: appBarTitle, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
               ),
             ),
             centerTitle: true,
@@ -187,8 +181,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                     children: [
                       Text(
                         AppLocalizations.of(context).translate('province'),
-                        style: TextStyle(
-                            fontSize: title, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
                       ),
                       Divider(
                         color: Colors.grey,
@@ -197,12 +190,10 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                         endIndent: 30,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 2),
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                         child: DropdownButton(
                           hint: Text(
-                            AppLocalizations.of(context)
-                                .translate('select_region'),
+                            AppLocalizations.of(context).translate('select_region'),
                           ),
                           isExpanded: true,
                           items: [
@@ -300,10 +291,8 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                     children: [
                       Center(
                         child: AutoSizeText(
-                          AppLocalizations.of(context)
-                              .translate('get_location'),
-                          style: TextStyle(
-                              fontSize: title, fontWeight: FontWeight.bold),
+                          AppLocalizations.of(context).translate('get_location'),
+                          style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                           maxLines: 2,
                         ),
@@ -325,22 +314,19 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                         width: buttonWidth,
                         child: RaisedButton(
                           color: Colors.deepOrange,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80.0)),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                           onPressed: () {
                             checkInternet();
                             if (_isInternet) {
                               _getCurrentLocation();
                               if (_currentPosition == null) {
                                 setState(() {
-                                  _error = AppLocalizations.of(context)
-                                      .translate("geolocator_message");
+                                  _error = AppLocalizations.of(context).translate("geolocator_message");
                                 });
                                 _showSnackBar();
                               } else {
                                 setState(() {
-                                  MyVariables.speciality =
-                                      FinalScore.speciality;
+                                  MyVariables.speciality = FinalScore.speciality;
                                   MyVariables.province = region;
                                   //MyVariables.lat = double.parse(_currentPosition.latitude.toString() );
                                   //MyVariables.long = double.parse(_currentPosition.longitude.toString() );
@@ -352,8 +338,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                               }
                             } else {
                               setState(() {
-                                _error = AppLocalizations.of(context)
-                                    .translate('snack_connectivity');
+                                _error = AppLocalizations.of(context).translate('snack_connectivity');
                               });
                               _showSnackBar();
                             }
@@ -361,12 +346,8 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                           child: FittedBox(
                             fit: BoxFit.fitWidth,
                             child: Text(
-                              AppLocalizations.of(context)
-                                  .translate('auto_location'),
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: title,
-                                  fontWeight: FontWeight.bold),
+                              AppLocalizations.of(context).translate('auto_location'),
+                              style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -375,8 +356,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
                           AppLocalizations.of(context).translate('Or'),
-                          style: TextStyle(
-                              fontSize: title, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
@@ -388,8 +368,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                             Icons.arrow_forward,
                             color: Colors.white,
                           ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80.0)),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                           onPressed: () async {
                             setState(() {
                               MyVariables.usingMap = true;
@@ -401,12 +380,8 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                                     )));
                           },
                           label: Text(
-                            AppLocalizations.of(context)
-                                .translate('google_map'),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: title,
-                                fontWeight: FontWeight.bold),
+                            AppLocalizations.of(context).translate('google_map'),
+                            style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -422,9 +397,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
   }
 
   _getCurrentLocation() {
-    geolocator
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
-        .then((Position position) {
+    geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best).then((Position position) {
       setState(() {
         _currentPosition = position;
       });
@@ -437,12 +410,10 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
 
   _getAddressFromLatLng() async {
     try {
-      List<Placemark> p = await geolocator.placemarkFromCoordinates(
-          _currentPosition.latitude, _currentPosition.longitude);
+      List<Placemark> p = await geolocator.placemarkFromCoordinates(_currentPosition.latitude, _currentPosition.longitude);
       Placemark place = p[0];
       setState(() {
-        _currentAddress =
-            "${place.locality}, ${place.postalCode}, ${place.country}";
+        _currentAddress = "${place.locality}, ${place.postalCode}, ${place.country}";
       });
     } catch (e) {
       print(e);

@@ -102,7 +102,7 @@ class _SignInState extends State<SignIn> {
         spacerMedium = displayHeight(context) * 0.09;
         spacerLarge = displayHeight(context) * 0.1;
       } else {
-        appBarTitle = displayHeight(context) * 0.045;
+        appBarTitle = displayHeight(context) * 0.04;
         appBarHeight = 75;
         containerHeight = displayHeight(context) * 0.7;
         containerWidth = displayWidth(context) * 0.5;
@@ -249,7 +249,8 @@ class _SignInState extends State<SignIn> {
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                               child: Text(
                                 AppLocalizations.of(context).translate('sign_in'),
-                                style: TextStyle(fontSize: title, color: Colors.white, fontWeight: FontWeight.bold), //_textStyle.copyWith(color: Colors.white),
+                                style: TextStyle(
+                                    fontSize: title, color: Colors.white, fontWeight: FontWeight.bold), //_textStyle.copyWith(color: Colors.white),
                               ),
                             ),
                           ),

@@ -56,9 +56,7 @@ class _EmailVerificationState extends State<EmailVerification> {
     final _snackBar = new SnackBar(
       content: Text(
         error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -173,7 +171,7 @@ class _EmailVerificationState extends State<EmailVerification> {
         imageHeight = 150;
         textWidth = displayWidth(context) * 0.7;
       } else {
-        appBarTitle = displayHeight(context) * 0.045;
+        appBarTitle = displayHeight(context) * 0.04;
         appBarHeight = 75;
         containerWidth = displayWidth(context) * 0.5;
         containerHeight = displayHeight(context) * 0.6;
@@ -203,17 +201,15 @@ class _EmailVerificationState extends State<EmailVerification> {
             actions: [
               IconButton(
                 icon: Icon(
-                  //========changed beacause it is not defined on my device
-                  Icons.logout
-                ),
+                    //========changed beacause it is not defined on my device
+                    Icons.logout),
                 onPressed: () async {
                   if (_isInternet) {
                     await _auth.signOut();
                     Navigator.pop(context);
                   } else {
                     setState(() {
-                      error = AppLocalizations.of(context)
-                          .translate('snack_connectivity');
+                      error = AppLocalizations.of(context).translate('snack_connectivity');
                     });
                     _showSnackBar();
                   }
@@ -240,8 +236,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                 Text(
                   AppLocalizations.of(context).translate('email_sent'),
                   //'We Sent an Email to: ',
-                  style:
-                      TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
                 ),
                 Divider(
                   color: Colors.grey,
@@ -258,8 +253,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       _email,
-                      style: TextStyle(
-                          fontSize: subTitle, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: subTitle, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -277,8 +271,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                   child: Text(
                     AppLocalizations.of(context).translate("confirm"),
                     //'Check your email and click on the confirmation link then',
-                    style: TextStyle(
-                        fontSize: subTitle, fontWeight: FontWeight.normal),
+                    style: TextStyle(fontSize: subTitle, fontWeight: FontWeight.normal),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -295,48 +288,29 @@ class _EmailVerificationState extends State<EmailVerification> {
                       Icons.arrow_forward,
                       color: Colors.white,
                     ),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80.0)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                     backgroundcolor: Colors.deepOrange,
-                    label: Text(
-                        AppLocalizations.of(context)
-                            .translate("continue"), //'Continue',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: title,
-                            fontWeight: FontWeight.bold)),
+                    label: Text(AppLocalizations.of(context).translate("continue"), //'Continue',
+                        style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold)),
                     onpressed: () async {
                       checkInternet();
                       if (_isInternet) {
                         setState(() => isLoading = true);
                         if (FirebaseAuth.instance.currentUser.emailVerified) {
-                          await DatabaseService(
-                                  uid: FirebaseAuth.instance.currentUser.uid)
-                              .updateUserData(
-                                  _name,
-                                  _speciality,
-                                  _phoneNumber,
-                                  _province,
-                                  _lat,
-                                  _lng,
-                                  _address,
-                                  _workDays01,
-                                  _workDays02,
-                                  _workDays03);
+                          await DatabaseService(uid: FirebaseAuth.instance.currentUser.uid).updateUserData(
+                              _name, _speciality, _phoneNumber, _province, _lat, _lng, _address, _workDays01, _workDays02, _workDays03);
                           setState(() => isLoading = false);
                           await Navigator.pushNamed(context, '/intermediate');
                         } else {
                           setState(() {
                             isLoading = false;
-                            error = AppLocalizations.of(context)
-                                .translate('snack_verification');
+                            error = AppLocalizations.of(context).translate('snack_verification');
                           });
                           _showSnackBar();
                         }
                       } else {
                         setState(() {
-                          error = AppLocalizations.of(context)
-                              .translate('snack_connectivity');
+                          error = AppLocalizations.of(context).translate('snack_connectivity');
                         });
                         _showSnackBar();
                       }
@@ -354,22 +328,15 @@ class _EmailVerificationState extends State<EmailVerification> {
                     textAlign: TextAlign.center,
                     text: new TextSpan(
                       style: new TextStyle(
-                          fontSize: footer,
-                          color: Colors.black,
-                          fontFamily:
-                              lang == 'ar' ? 'noto_arabic' : 'Helvetica',
-                          fontWeight: FontWeight.bold),
+                          fontSize: footer, color: Colors.black, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica', fontWeight: FontWeight.bold),
                       children: <TextSpan>[
                         //----text has been changed because if the client clicked resend
                         // for two time with less than one to twe minutes in between
                         // firebase will consider it as unusual activity -----
-                        new TextSpan(
-                            text: AppLocalizations.of(context)
-                                .translate("didnot receive")),
+                        new TextSpan(text: AppLocalizations.of(context).translate("didnot receive")),
                         //" Didn't receive email ? Please wait for few minutes then "),
                         new TextSpan(
-                            text: AppLocalizations.of(context)
-                                .translate("resend"),
+                            text: AppLocalizations.of(context).translate("resend"),
                             //text: 'Resent Email',
                             style: new TextStyle(color: Colors.deepOrange)),
                       ],
