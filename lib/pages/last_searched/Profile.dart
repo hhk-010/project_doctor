@@ -224,7 +224,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
       } else {
         containerWidth = displayWidth(context) * 0.6;
         appBarHeight = 75;
-        appBarTitle = displayHeight(context) * 0.045;
+        appBarTitle = displayHeight(context) * 0.04;
         title = displayWidth(context) * 0.045;
         subTitle = displayWidth(context) * 0.03;
         buttonHeight = displayHeight(context) * 0.04;
@@ -266,7 +266,9 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                                 AppLocalizations.of(context).translate('search_warning'),
                                 style: TextStyle(fontSize: title, color: Colors.deepOrange),
                               ),
-                              SizedBox(height: 15,),
+                              SizedBox(
+                                height: 15,
+                              ),
                               Text(
                                 AppLocalizations.of(context).translate('search_error'),
                                 style: TextStyle(fontSize: subTitle),

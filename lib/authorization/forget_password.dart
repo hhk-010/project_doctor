@@ -41,9 +41,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     final _snackbar = new SnackBar(
       content: Text(
         error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -81,7 +79,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         buttonWidth = displayWidth(context) * 0.7;
         imageHeight = 150;
       } else {
-        appBarTitle = displayHeight(context) * 0.045;
+        appBarTitle = displayHeight(context) * 0.04;
         appBarHeight = 75;
         containerWidth = displayWidth(context) * 0.5;
         containerHeight = displayHeight(context) * 0.6;
@@ -98,10 +96,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: Text(
-              AppLocalizations.of(context)
-                  .translate("passWord_reset"), //'Password Reset',
-              style:
-                  TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+              AppLocalizations.of(context).translate("passWord_reset"), //'Password Reset',
+              style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
             ),
             centerTitle: true,
           ),
@@ -132,20 +128,15 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           ),
                           TextFormField(
                             decoration: textInputdecoration.copyWith(
-                              hintText: AppLocalizations.of(context).translate(
-                                  'enter_your_email'), //'Enter Your Current Email',
-                              labelText: AppLocalizations.of(context)
-                                  .translate('email'), //'Email',
+                              hintText: AppLocalizations.of(context).translate('enter_your_email'), //'Enter Your Current Email',
+                              labelText: AppLocalizations.of(context).translate('email'), //'Email',
                             ),
                             cursorColor: Colors.black,
                             keyboardType: TextInputType.emailAddress,
                             onChanged: (val) {
                               email = val;
                             },
-                            validator: (val) => val.isEmpty
-                                ? AppLocalizations.of(context)
-                                    .translate('enter_your_email')
-                                : null,
+                            validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('enter_your_email') : null,
                           ),
                           SizedBox(
                             height: 150,
@@ -159,18 +150,13 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       child: LoadingButton(
                         isloading: isloading,
                         loadercolor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                         backgroundcolor: Colors.deepOrange,
                         child: FittedBox(
                           fit: BoxFit.fitWidth,
                           child: Text(
-                            AppLocalizations.of(context)
-                                .translate('password_reset_email'),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: title,
-                                fontWeight: FontWeight.bold),
+                            AppLocalizations.of(context).translate('password_reset_email'),
+                            style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
                           ),
                         ),
                         onpressed: () async {
@@ -178,18 +164,13 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           if (_isInternet) {
                             if (_formkey.currentState.validate()) {
                               setState(() => isloading = true);
-                              await FirebaseAuth.instance
-                                  .sendPasswordResetEmail(email: email);
+                              await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
                               setState(() => isloading = false);
-                              await Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          PasswordResetContinue(email: email)));
+                              await Navigator.of(context).push(MaterialPageRoute(builder: (context) => PasswordResetContinue(email: email)));
                             }
                           } else {
                             setState(() {
-                              error = AppLocalizations.of(context)
-                                  .translate('snack_connectivity');
+                              error = AppLocalizations.of(context).translate('snack_connectivity');
                             });
                             _showSnackBar();
                           }
@@ -234,7 +215,7 @@ class PasswordResetContinue extends StatelessWidget {
         imageHeight = 150;
         textWidth = displayWidth(context) * 0.7;
       } else {
-        appBarTitle = displayHeight(context) * 0.045;
+        appBarTitle = displayHeight(context) * 0.04;
         appBarHeight = 75;
         containerWidth = displayWidth(context) * 0.5;
         containerHeight = displayHeight(context) * 0.6;
@@ -253,8 +234,7 @@ class PasswordResetContinue extends StatelessWidget {
             backgroundColor: Colors.deepOrange,
             title: Text(
               AppLocalizations.of(context).translate('passWord_reset'),
-              style:
-                  TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
             ),
             centerTitle: true,
           ),
@@ -294,8 +274,7 @@ class PasswordResetContinue extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     '$email',
-                    style: TextStyle(
-                        fontSize: subTitle, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: subTitle, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -312,8 +291,7 @@ class PasswordResetContinue extends StatelessWidget {
                 width: textWidth,
                 child: Text(
                   AppLocalizations.of(context).translate("check_reset_email"),
-                  style: TextStyle(
-                      fontSize: subTitle, fontWeight: FontWeight.normal),
+                  style: TextStyle(fontSize: subTitle, fontWeight: FontWeight.normal),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -328,15 +306,10 @@ class PasswordResetContinue extends StatelessWidget {
                       Icons.arrow_forward,
                       color: Colors.white,
                     ),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80.0)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                     color: Colors.deepOrange,
-                    label: Text(
-                        AppLocalizations.of(context).translate('continue'),
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: title,
-                            fontWeight: FontWeight.bold)),
+                    label: Text(AppLocalizations.of(context).translate('continue'),
+                        style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold)),
                     onPressed: () {
                       int count = 0;
                       Navigator.popUntil(context, (route) => count++ == 2);

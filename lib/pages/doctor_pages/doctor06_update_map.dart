@@ -57,14 +57,13 @@ class _UpdateMapState extends State<UpdateMap> {
   analyzeAddress(double lat, double lng) {
     if (addressLatlng != null || addressLatlng != '') {
       addressLat = addressLatlng.substring(1, addressLatlng.indexOf(','));
-      addressLng = addressLatlng.substring(
-          addressLatlng.indexOf(',') + 1, addressLatlng.length - 1);
+      addressLng = addressLatlng.substring(addressLatlng.indexOf(',') + 1, addressLatlng.length - 1);
       addressesLat = double.parse(addressLat);
       addressesLng = double.parse(addressLng);
       sum = (pow(addressesLat - lat, 2)) + pow(addressesLng - lng, 2);
       result = sqrt(sum) * 100;
       return result;
-    } 
+    }
   }
 
   //======================================
@@ -104,9 +103,7 @@ class _UpdateMapState extends State<UpdateMap> {
     final snackBar = new SnackBar(
       content: new Text(
         SnackBarError.error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
 
       //duration: new Duration(seconds: 3),
@@ -166,7 +163,7 @@ class _UpdateMapState extends State<UpdateMap> {
         appBarHeight = 50;
         title = displayWidth(context) * 0.05;
       } else {
-        appBarTitle = displayHeight(context) * 0.045;
+        appBarTitle = displayHeight(context) * 0.04;
         appBarHeight = 75;
         title = displayWidth(context) * 0.035;
       }
@@ -178,8 +175,7 @@ class _UpdateMapState extends State<UpdateMap> {
             backgroundColor: Colors.deepOrange,
             title: Text(
               AppLocalizations.of(context).translate("update_location"),
-              style:
-                  TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
             ),
             centerTitle: true,
           ),
@@ -201,26 +197,21 @@ class _UpdateMapState extends State<UpdateMap> {
                 isloading: isloading,
                 loadercolor: Colors.white,
                 backgroundcolor: Colors.deepOrange,
-                child: Text(AppLocalizations.of(context).translate('ok'),
-                    style: TextStyle(
-                        fontSize: title, fontWeight: FontWeight.bold)),
+                child: Text(AppLocalizations.of(context).translate('ok'), style: TextStyle(fontSize: title, fontWeight: FontWeight.bold)),
                 onPressed: () async {
                   checkInternet();
                   if (_isInternet) {
                     if (latlng == null) {
-                      SnackBarError.error =
-                          AppLocalizations.of(context).translate('snack_map');
+                      SnackBarError.error = AppLocalizations.of(context).translate('snack_map');
                       _showSnackBar();
                     } else {
                       await geolocate(latlng: latlng);
                       if (lattt != null && lnggg != null) {
-                        double addressResult =
-                            await analyzeAddress(lattt, lnggg);
+                        double addressResult = await analyzeAddress(lattt, lnggg);
                         if (addressResult < 6) {
                           setState(() {
                             isloading = true;
-                            _result =
-                                pow((lattt - _lt), 2) + pow((lnggg - _lg), 2);
+                            _result = pow((lattt - _lt), 2) + pow((lnggg - _lg), 2);
                             _finalDistance = sqrt(_result);
                             _kmDistance = _finalDistance * 100;
                           });
@@ -228,19 +219,17 @@ class _UpdateMapState extends State<UpdateMap> {
                             setState(() {
                               Empty.isEmpty = false;
                             });
-                            await DatabaseService(
-                                    uid: FirebaseAuth.instance.currentUser.uid)
-                                .updateUserData(
-                                    DataFromProfiletoUpdate.name,
-                                    DataFromProfiletoUpdate.speciality,
-                                    DataFromProfiletoUpdate.phoneNumber,
-                                    DataFromProfiletoUpdate.province,
-                                    lattt,
-                                    lnggg,
-                                    DataFromProfiletoUpdate.address,
-                                    DataFromProfiletoUpdate.workDays01,
-                                    DataFromProfiletoUpdate.workDays02,
-                                    DataFromProfiletoUpdate.workDays03);
+                            await DatabaseService(uid: FirebaseAuth.instance.currentUser.uid).updateUserData(
+                                DataFromProfiletoUpdate.name,
+                                DataFromProfiletoUpdate.speciality,
+                                DataFromProfiletoUpdate.phoneNumber,
+                                DataFromProfiletoUpdate.province,
+                                lattt,
+                                lnggg,
+                                DataFromProfiletoUpdate.address,
+                                DataFromProfiletoUpdate.workDays01,
+                                DataFromProfiletoUpdate.workDays02,
+                                DataFromProfiletoUpdate.workDays03);
                             setState(() {
                               isloading = false;
                             });
@@ -251,22 +240,19 @@ class _UpdateMapState extends State<UpdateMap> {
                           } else {
                             setState(() {
                               isloading = false;
-                              SnackBarError.error = AppLocalizations.of(context)
-                                  .translate('snack_update');
+                              SnackBarError.error = AppLocalizations.of(context).translate('snack_update');
                             });
                             _showSnackBar();
                           }
                         } else {
-                          SnackBarError.error = AppLocalizations.of(context)
-                              .translate("invalid_address");
+                          SnackBarError.error = AppLocalizations.of(context).translate("invalid_address");
                           _showSnackBar();
                         }
                       }
                     }
                   } else {
                     setState(() {
-                      SnackBarError.error = AppLocalizations.of(context)
-                          .translate('snack_connectivity');
+                      SnackBarError.error = AppLocalizations.of(context).translate('snack_connectivity');
                     });
                     _showSnackBar();
                   }

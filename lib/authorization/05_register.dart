@@ -81,7 +81,7 @@ class _RegisterState extends State<Register> {
         spacerMedium = displayHeight(context) * 0.09;
         spacerLarge = displayHeight(context) * 0.1;
       } else {
-        appBarTitle = displayHeight(context) * 0.045;
+        appBarTitle = displayHeight(context) * 0.04;
         appBarHeight = 75;
         containerHeight = displayHeight(context) * 0.7;
         containerWidth = displayWidth(context) * 0.5;
@@ -106,9 +106,8 @@ class _RegisterState extends State<Register> {
             backgroundColor: Colors.deepOrange,
             title: FittedBox(
                 fit: BoxFit.fitWidth,
-                child: Text(AppLocalizations.of(context).translate('register'),
-                    style: TextStyle(
-                        fontSize: appBarTitle, fontWeight: FontWeight.bold))),
+                child:
+                    Text(AppLocalizations.of(context).translate('register'), style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold))),
             centerTitle: true,
             elevation: 0.0,
           ),
@@ -136,8 +135,7 @@ class _RegisterState extends State<Register> {
                             child: CircleAvatar(
                               backgroundColor: Colors.deepOrangeAccent,
                               radius: avatar,
-                              backgroundImage:
-                                  AssetImage('assets/images/register.png'),
+                              backgroundImage: AssetImage('assets/images/register.png'),
                             ),
                           ),
                           SizedBox(
@@ -146,20 +144,15 @@ class _RegisterState extends State<Register> {
                           SizedBox(
                             width: textFieldWidth,
                             child: TextFormField(
-                              validator: (val) => val.isEmpty
-                                  ? AppLocalizations.of(context)
-                                      .translate('enter_your_email')
-                                  : null,
+                              validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('enter_your_email') : null,
                               onChanged: (val) {
                                 setState(() => email = val);
                               },
                               cursorColor: Colors.black,
                               keyboardType: TextInputType.emailAddress,
                               decoration: textInputdecoration.copyWith(
-                                hintText: AppLocalizations.of(context)
-                                    .translate('enter_your_email'),
-                                labelText: AppLocalizations.of(context)
-                                    .translate('email'),
+                                hintText: AppLocalizations.of(context).translate('enter_your_email'),
+                                labelText: AppLocalizations.of(context).translate('email'),
                               ),
                             ),
                           ),
@@ -169,10 +162,7 @@ class _RegisterState extends State<Register> {
                           SizedBox(
                             width: textFieldWidth,
                             child: TextFormField(
-                              validator: (val) => val.length < 8
-                                  ? AppLocalizations.of(context)
-                                      .translate('password_validator')
-                                  : null,
+                              validator: (val) => val.length < 8 ? AppLocalizations.of(context).translate('password_validator') : null,
                               //? 'Enter a password 8 or long'
                               obscureText: !_passwordVisible,
                               onChanged: (val) {
@@ -181,16 +171,12 @@ class _RegisterState extends State<Register> {
                               cursorColor: Colors.black,
                               keyboardType: TextInputType.text,
                               decoration: textInputdecoration.copyWith(
-                                hintText: AppLocalizations.of(context)
-                                    .translate('enter_your_password'),
-                                labelText: AppLocalizations.of(context)
-                                    .translate('password'),
+                                hintText: AppLocalizations.of(context).translate('enter_your_password'),
+                                labelText: AppLocalizations.of(context).translate('password'),
                                 suffixIcon: IconButton(
                                   icon: Icon(
                                     // Based on passwordVisible state choose the icon
-                                    _passwordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
+                                    _passwordVisible ? Icons.visibility : Icons.visibility_off,
                                     color: Colors.deepOrange,
                                   ),
                                   onPressed: () {
@@ -251,16 +237,10 @@ class _RegisterState extends State<Register> {
                                           .showSnackBar(errorSnackBar);
                                     }*/
                               ,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(80.0)),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                               color: Colors.deepOrange,
-                              child: Text(
-                                  AppLocalizations.of(context)
-                                      .translate('register'),
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: title)),
+                              child: Text(AppLocalizations.of(context).translate('register'),
+                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: title)),
                             ),
                           ),
                         ],
@@ -285,23 +265,14 @@ class _RegisterState extends State<Register> {
                           },
                           child: RichText(
                             text: new TextSpan(
-                              style: new TextStyle(
-                                  fontSize: footer,
-                                  color: Colors.black,
-                                  fontFamily: lang == 'ar'
-                                      ? 'noto_arabic'
-                                      : 'Helvetica'),
+                              style: new TextStyle(fontSize: footer, color: Colors.black, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: AppLocalizations.of(context)
-                                      .translate('does_have_account'),
+                                  text: AppLocalizations.of(context).translate('does_have_account'),
                                 ),
                                 TextSpan(
-                                    text: AppLocalizations.of(context)
-                                        .translate('sign_in'),
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.redAccent)),
+                                    text: AppLocalizations.of(context).translate('sign_in'),
+                                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.redAccent)),
                               ],
                             ),
                           ),
