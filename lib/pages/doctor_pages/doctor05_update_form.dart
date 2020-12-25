@@ -166,7 +166,7 @@ class _UpdateinfoState extends State<Updateinfo> {
         containerWidth = displayWidth(context) * 0.5;
         title = displayWidth(context) * 0.035;
         footer = displayWidth(context) * 0.025;
-        buttonHeight = displayHeight(context) * 0.04;
+        buttonHeight = displayHeight(context) * 0.045;
         buttonWidth = displayWidth(context) * 0.4;
         topInset = 200;
         buttomInset = 80;

@@ -84,7 +84,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         containerWidth = displayWidth(context) * 0.5;
         containerHeight = displayHeight(context) * 0.6;
         title = displayWidth(context) * 0.035;
-        buttonHeight = displayHeight(context) * 0.04;
+        buttonHeight = displayHeight(context) * 0.045;
         buttonWidth = displayWidth(context) * 0.4;
         imageHeight = 200;
       }
@@ -221,7 +221,7 @@ class PasswordResetContinue extends StatelessWidget {
         containerHeight = displayHeight(context) * 0.6;
         title = displayWidth(context) * 0.035;
         subTitle = displayWidth(context) * 0.028;
-        buttonHeight = displayHeight(context) * 0.04;
+        buttonHeight = displayHeight(context) * 0.045;
         buttonWidth = displayWidth(context) * 0.4;
         imageHeight = 200;
         textWidth = displayWidth(context) * 0.7;

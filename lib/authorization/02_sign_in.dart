@@ -109,7 +109,7 @@ class _SignInState extends State<SignIn> {
         footer = displayWidth(context) * 0.025;
         title = displayWidth(context) * 0.035;
         subTitle = displayWidth(context) * 0.025;
-        buttonHeight = displayHeight(context) * 0.04;
+        buttonHeight = displayHeight(context) * 0.045;
         buttonWidth = displayWidth(context) * 0.4;
         avatar = 100;
         textFieldWidth = displayWidth(context) * 0.4;

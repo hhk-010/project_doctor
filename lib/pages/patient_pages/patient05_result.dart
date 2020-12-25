@@ -381,7 +381,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
         containerWidth = displayWidth(context) * 0.6;
         title = displayWidth(context) * 0.045;
         subTitle = displayWidth(context) * 0.03;
-        buttonHeight = displayHeight(context) * 0.04;
+        buttonHeight = displayHeight(context) * 0.045;
         buttonWidth = displayWidth(context) * 0.4;
         footer = displayWidth(context) * 0.02;
         avatarSize = 70;
