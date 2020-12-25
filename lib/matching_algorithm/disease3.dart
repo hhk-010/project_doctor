@@ -44,11 +44,11 @@ maindisease3(
     String alcohol,
     String smok,
     String gender) {
-  var acs = Disease3('ACS', 'chest pain', 'left arm pain', 'jaw pain',
+  var acs = Disease3('ACS', 'chest pain', 'left arm pains', 'jaw pain',
       'abdominal pain', 'smoking', 'alcoholism', 'DM', 'HTN');
   var acs2 = Disease3('ACS', 'dyspnea', 'vomiting', 'sweating', 'palpitation',
       'syncope', 'family history', 'obesity', 'physical inactivity');
-  var acs3 = Disease3('ACS', 'neck pain', 'left shoulder pain', 'hiccough',
+  var acs3 = Disease3('ACS', 'neck pain', 'left shoulder pains', 'hiccough',
       'null', 'male', 'null', 'null', 'null');
   var hf = Disease3(
     'pulmonary edema',
@@ -246,6 +246,13 @@ maindisease3(
       while (rr > 0) {
         if (riskf[r] == emsym[emkey]) {
           emscore += 1;
+          if ((riskf[r] == 'DM' || riskf[r] == 'HTN') &&
+              (chiefcom == 'left arm pain' ||
+                  chiefcom == 'left shoulder pain' ||
+                  chiefcom == 'jaw pain' ||
+                  chiefcom == 'neck pain')) {
+            emscore += 30;
+          }
         }
         r += 1;
         rr -= 1;

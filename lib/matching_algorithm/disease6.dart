@@ -114,8 +114,16 @@ maindisease6(
       'foot ulcer', 'null', 'null', 'null', 'null');
   var shinst = Disease6('shoulder instability', 'dislocation', 'dislocation',
       'deformity', 'null', 'null', 'null', 'null', 'null');
-  var elbdef = Disease6('elbow deformity', 'deformity', 'deformity',
-      'deformity', 'null', 'null', 'null', 'null', 'other msk problems');
+  var elbdef = Disease6(
+      'elbow deformity',
+      'deformity',
+      'deformity',
+      'deformity',
+      'null',
+      'left arm pain',
+      'left shoulder pain',
+      'null',
+      'other msk problems');
   //hand should be transferred to the plastic surgery
   //var hadef=disease('hand deformity','deformity','deformity','deformity','skin appendage','extra digit','joined digit','loss digit','lump');
   var hipdef = Disease6('hip deformity', 'deformity', 'deformity', 'null',

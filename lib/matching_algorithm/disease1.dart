@@ -58,10 +58,10 @@ maindisease1(
       'smoking', 'family history', 'DM', 'HTN');
   var acs2 = Disease1(
       'acs',
-      'left shoulder pain',
-      'jaw pain',
-      'left arm pain',
-      'neck pain',
+      'left shoulder pains',
+      'jaw pains',
+      'left arm pains',
+      'neck pains',
       'abdominal pain',
       'obesity',
       'physical inactivity',
