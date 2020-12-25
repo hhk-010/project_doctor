@@ -143,9 +143,12 @@ class _SupportState extends State<Support> {
                                   },
                                 );
                               },
-                              child: Text(
-                                AppLocalizations.of(context).translate('about_us'),
-                                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
+                              child: FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  AppLocalizations.of(context).translate('about_us'),
+                                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
+                                ),
                               ),
                               color: Colors.deepOrange,
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
@@ -283,9 +286,12 @@ class _SupportState extends State<Support> {
                                   throw 'Could Not Launch $url';
                                 }
                               },
-                              child: Text(
-                                AppLocalizations.of(context).translate('website'),
-                                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
+                              child: FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  AppLocalizations.of(context).translate('website'),
+                                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
+                                ),
                               ),
                               color: Colors.deepOrange,
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
