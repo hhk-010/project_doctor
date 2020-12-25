@@ -176,7 +176,7 @@
     "select_days" : "Select the day",
     "time_availability" : "Time Availability",
     "predelete_password":"Enter password",
-    "delete":"delete",
+    "delete":"Delete",
     "delete_user":"Delete account",
     "re_sign":"And sign in again",
 
@@ -242,7 +242,7 @@
     "zoom_in":"Zoom in by ++ the distance between them",
     "zoom_out":"Zoom out by - - the distance between them",
     "search_warning":"Sorry !",
-    "search_error":"Search history is empty",
+    "search_error":"Your search history is empty",
     "age_format":"Selected numbers should be from 0 to 9",
 
 
