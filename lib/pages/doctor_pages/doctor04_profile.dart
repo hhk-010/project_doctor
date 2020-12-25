@@ -104,7 +104,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                   },
                   color: Colors.white,
                 ),
-                SizedBox(width: 5,),
+                SizedBox(
+                  width: 5,
+                ),
                 IconButton(
                   icon: Icon(
                     //i changed it because it is not defined on my device
@@ -376,9 +378,13 @@ class _DoctorListState extends State<DoctorList> {
                               height: 20,
                             ),
                             Center(
-                              child: Text(
-                                name,
-                                style: _textStyle.copyWith(fontSize: title, fontFamily: 'noto_arabic'),
+                              child: FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  name,
+                                  style: _textStyle.copyWith(fontSize: title, fontFamily: 'noto_arabic'),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                             ),
                             SizedBox(

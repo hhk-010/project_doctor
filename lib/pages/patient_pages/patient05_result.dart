@@ -415,9 +415,13 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                               height: 20,
                             ),
                             Center(
-                              child: Text(
-                                _name,
-                                style: _textStyle.copyWith(fontSize: title, fontFamily: 'noto_arabic'),
+                              child: FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  _name,
+                                  style: _textStyle.copyWith(fontSize: title, fontFamily: 'noto_arabic'),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                             ),
                             SizedBox(
