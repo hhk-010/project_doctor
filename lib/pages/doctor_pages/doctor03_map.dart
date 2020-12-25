@@ -254,11 +254,11 @@ class _FinalMapState extends State<FinalMap> {
     final basicData = Provider.of<QuerySnapshot>(context);
     if (basicData != null) {
       for (var x in basicData.docs) {
-        if (DataFromMaptoVerify.name == x.data()['n'] &&
-            DataFromMaptoVerify.speciality == x.data()['s'] &&
-            DataFromMaptoVerify.province == x.data()['c']) {
-          lt = x.data()['lt'];
-          lg = x.data()['lg'];
+        if (DataFromMaptoVerify.name == x.data()['name'] &&
+            DataFromMaptoVerify.speciality == x.data()['speciality'] &&
+            DataFromMaptoVerify.province == x.data()['city']) {
+          lt = x.data()['lat'];
+          lg = x.data()['lng'];
         }
       }
     }

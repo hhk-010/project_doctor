@@ -145,11 +145,11 @@ class _UpdateMapState extends State<UpdateMap> {
     final basicDatabase = Provider.of<QuerySnapshot>(context);
     if (basicDatabase != null) {
       for (var x in basicDatabase.docs) {
-        if (DataFromProfiletoUpdate.name == x.data()['n'] &&
-            DataFromProfiletoUpdate.speciality == x.data()['s'] &&
-            DataFromProfiletoUpdate.province == x.data()['c']) {
-          _lt = x.data()['lt'];
-          _lg = x.data()['lg'];
+        if (DataFromProfiletoUpdate.name == x.data()['name'] &&
+            DataFromProfiletoUpdate.speciality == x.data()['speciality'] &&
+            DataFromProfiletoUpdate.province == x.data()['city']) {
+          _lt = x.data()['lat'];
+          _lg = x.data()['lng'];
         }
       }
     }

@@ -58,9 +58,9 @@ class _SupportState extends State<Support> {
           containerWidth = displayWidth(context) * 0.65;
           title = displayWidth(context) * 0.04;
           subTitle = displayWidth(context) * 0.03;
-          footer = displayWidth(context) * 0.03;
+          footer = displayWidth(context) * 0.025;
           imageHeight = 300;
-          buttonHeight = displayHeight(context) * 0.04;
+          buttonHeight = displayHeight(context) * 0.045;
           buttonWidth = displayWidth(context) * 0.4;
           // avatarRadius = 50;
           // techIconSize = 50;

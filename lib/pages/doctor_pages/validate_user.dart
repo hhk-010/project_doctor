@@ -91,7 +91,7 @@ class _PreDeleteUserState extends State<PreDeleteUser> {
         containerWidth = displayWidth(context) * 0.5;
         containerHeight = displayHeight(context) * 0.6;
         title = displayWidth(context) * 0.035;
-        buttonHeight = displayHeight(context) * 0.04;
+        buttonHeight = displayHeight(context) * 0.045;
         buttonWidth = displayWidth(context) * 0.4;
         imageHeight = 200;
       }

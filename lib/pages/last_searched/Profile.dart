@@ -227,7 +227,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
         appBarTitle = displayHeight(context) * 0.04;
         title = displayWidth(context) * 0.045;
         subTitle = displayWidth(context) * 0.03;
-        buttonHeight = displayHeight(context) * 0.04;
+        buttonHeight = displayHeight(context) * 0.045;
         buttonWidth = displayWidth(context) * 0.4;
         footer = displayWidth(context) * 0.02;
         avatarSize = 70;
@@ -290,9 +290,13 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                                 height: 20,
                               ),
                               Center(
-                                child: Text(
-                                  _name,
-                                  style: _textStyle.copyWith(fontSize: title, fontFamily: 'noto_arabic'),
+                                child: FittedBox(
+                                  fit: BoxFit.fitWidth,
+                                  child: Text(
+                                    _name,
+                                    style: _textStyle.copyWith(fontSize: title, fontFamily: 'noto_arabic'),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ),
                               SizedBox(

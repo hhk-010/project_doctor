@@ -37,7 +37,7 @@ class SpecialityResult extends StatelessWidget {
         containerWidth = displayWidth(context) * 0.5;
         title = displayWidth(context) * 0.04;
         subTitle = displayWidth(context) * 0.03;
-        buttonHeight = displayHeight(context) * 0.04;
+        buttonHeight = displayHeight(context) * 0.045;
         buttonWidth = displayWidth(context) * 0.4;
         imageHeight = displayHeight(context) * 0.2;
       }

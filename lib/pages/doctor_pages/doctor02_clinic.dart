@@ -344,7 +344,7 @@ class _ClinicFormState extends State<ClinicForm> {
         title = displayWidth(context) * 0.035;
         subTitle = displayWidth(context) * 0.028;
         footer = displayWidth(context) * 0.025;
-        buttonHeight = displayHeight(context) * 0.04;
+        buttonHeight = displayHeight(context) * 0.045;
         buttonWidth = displayWidth(context) * 0.4;
       }
       return Scaffold(
@@ -417,7 +417,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                     setState(() => currentaddress = val);
                                   },
                                   decoration: textInputdecoration.copyWith(
-                                    hintText: 'الكاظميه شارع 60',
+                                    hintText: 'مثال: الحارثيه شارع الكندي',
                                     hintStyle: TextStyle(fontSize: footer, color: Colors.deepOrange, fontFamily: 'noto_arabic'),
                                     labelText: 'عنوان العياده',
                                     labelStyle: TextStyle(color: Colors.grey[750], fontFamily: 'noto_arabic'),
