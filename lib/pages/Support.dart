@@ -56,7 +56,7 @@ class _SupportState extends State<Support> {
           appBarHeight = 75;
           containerHeight = displayHeight(context) * 0.85;
           containerWidth = displayWidth(context) * 0.65;
-          title = displayWidth(context) * 0.045;
+          title = displayWidth(context) * 0.04;
           subTitle = displayWidth(context) * 0.03;
           footer = displayWidth(context) * 0.03;
           imageHeight = 300;
@@ -217,9 +217,12 @@ class _SupportState extends State<Support> {
                                   builder: (BuildContext context) {
                                     return AlertDialog(
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                                      title: Text(
-                                        AppLocalizations.of(context).translate('terms_conditions'),
-                                        textAlign: TextAlign.center,
+                                      title: FittedBox(
+                                        fit: BoxFit.fitWidth,
+                                        child: Text(
+                                          AppLocalizations.of(context).translate('terms_conditions'),
+                                          textAlign: TextAlign.center,
+                                        ),
                                       ),
                                       content: SingleChildScrollView(
                                         child: Column(

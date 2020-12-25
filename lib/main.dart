@@ -1,4 +1,4 @@
-// import 'package:device_preview/device_preview.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -41,14 +41,15 @@ void main() async {
     ),
   );
 
-  runApp(MyApp());
+  // runApp(MyApp());
 
-  // runApp(
-  //   DevicePreview(enabled: !kReleaseMode, builder: (context) => MyApp()),
-  // );
+  runApp(
+    DevicePreview(enabled: !kReleaseMode, builder: (context) => MyApp()),
+  );
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key key}) : super(key: key);
   static void setLocale(BuildContext context, Locale locale) {
     _MyAppState state = context.findAncestorStateOfType<_MyAppState>();
     state.setLocale(locale);
@@ -80,7 +81,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    if (_locale == null) {
+    if (this._locale == null) {
       return Container(
         child: Center(
           child: CircularProgressIndicator(),
@@ -96,23 +97,33 @@ class _MyAppState extends State<MyApp> {
         },
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
+          localeResolutionCallback: (deviceLocale, supportedLocales) {
+            print(deviceLocale.toLanguageTag());
+            print(_locale.toLanguageTag());
+            for (var locale in supportedLocales) {
+              if (locale.languageCode == deviceLocale.languageCode) {
+                return deviceLocale;
+              }
+            }
+            return supportedLocales.first;
+          },
+          locale: _locale,
           navigatorObservers: [
             FirebaseAnalyticsObserver(analytics: analytics),
           ],
 
           title: 'Cura',
-          // builder: DevicePreview.appBuilder,
-          builder: (context, navigator) {
-            var lang = Localizations.localeOf(context).languageCode;
-            return Theme(
-              data: ThemeData(fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
-              child: navigator,
-            );
-          },
+          builder: DevicePreview.appBuilder,
+          // builder: (context, navigator) {
+          //   var lang = Localizations.localeOf(context).languageCode;
+          //   return Theme(
+          //     data: ThemeData(fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+          //     child: navigator,
+          //   );
+          // },
           theme: ThemeData(
             primaryColor: Colors.deepOrange,
           ),
-          locale: _locale,
           supportedLocales: [
             Locale('en', 'US'),
             Locale("ar", "IQ"),
@@ -123,14 +134,7 @@ class _MyAppState extends State<MyApp> {
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
           ],
-          localeResolutionCallback: (deviceLocale, supportedLocales) {
-            for (var locale in supportedLocales) {
-              if (locale.languageCode == deviceLocale.languageCode && locale.countryCode == deviceLocale.countryCode) {
-                return deviceLocale;
-              }
-            }
-            return supportedLocales.first;
-          },
+
           initialRoute: '/home',
           routes: {
             '/home': (context) => Home(),
