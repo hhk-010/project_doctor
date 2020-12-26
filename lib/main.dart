@@ -1,4 +1,4 @@
-// import 'package:device_preview/device_preview.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -41,11 +41,11 @@ void main() async {
     ),
   );
 
-  runApp(MyApp());
+  // runApp(MyApp());
 
-  // runApp(
-  //   DevicePreview(enabled: !kReleaseMode, builder: (context) => MyApp()),
-  // );
+  runApp(
+    DevicePreview(enabled: !kReleaseMode, builder: (context) => MyApp()),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -113,14 +113,14 @@ class _MyAppState extends State<MyApp> {
           ],
 
           title: 'Cura',
-          // builder: DevicePreview.appBuilder,
-          builder: (context, navigator) {
-            var lang = Localizations.localeOf(context).languageCode;
-            return Theme(
-              data: ThemeData(fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
-              child: navigator,
-            );
-          },
+          builder: DevicePreview.appBuilder,
+          // builder: (context, navigator) {
+          //   var lang = Localizations.localeOf(context).languageCode;
+          //   return Theme(
+          //     data: ThemeData(fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+          //     child: navigator,
+          //   );
+          // },
           theme: ThemeData(
             primaryColor: Colors.deepOrange,
           ),
