@@ -52,8 +52,8 @@ class _SupportState extends State<Support> {
           // avatarRadius = 25;
           // techIconSize = 30;
         } else {
-          appBar = displayHeight(context) * 0.045;
-          appBarHeight = 75;
+          appBar = displayHeight(context) * 0.035;
+          appBarHeight = 80;
           containerHeight = displayHeight(context) * 0.85;
           containerWidth = displayWidth(context) * 0.65;
           title = displayWidth(context) * 0.04;

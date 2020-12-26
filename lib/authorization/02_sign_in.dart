@@ -102,8 +102,8 @@ class _SignInState extends State<SignIn> {
         spacerMedium = displayHeight(context) * 0.09;
         spacerLarge = displayHeight(context) * 0.1;
       } else {
-        appBarTitle = displayHeight(context) * 0.04;
-        appBarHeight = 75;
+        appBarTitle = displayHeight(context) * 0.035;
+        appBarHeight = 80;
         containerHeight = displayHeight(context) * 0.7;
         containerWidth = displayWidth(context) * 0.5;
         footer = displayWidth(context) * 0.025;

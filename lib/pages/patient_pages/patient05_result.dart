@@ -34,8 +34,8 @@ class _PatientResultState extends State<PatientResult> {
         appBarTitle = 25;
         appBarHeight = 50;
       } else {
-        appBarTitle = displayHeight(context) * 0.04;
-        appBarHeight = 75;
+        appBarTitle = displayHeight(context) * 0.035;
+        appBarHeight = 80;
       }
 
       return StreamProvider<QuerySnapshot>.value(

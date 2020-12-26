@@ -223,8 +223,8 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
         containerInset = 25;
       } else {
         containerWidth = displayWidth(context) * 0.6;
-        appBarHeight = 75;
-        appBarTitle = displayHeight(context) * 0.04;
+        appBarHeight = 80;
+        appBarTitle = displayHeight(context) * 0.035;
         title = displayWidth(context) * 0.045;
         subTitle = displayWidth(context) * 0.03;
         buttonHeight = displayHeight(context) * 0.045;

@@ -44,8 +44,8 @@ class _PatientResultMapState extends State<PatientResultMap> {
         appBarHeight = 50;
         title = displayWidth(context) * 0.05;
       } else {
-        appBarTitle = displayHeight(context) * 0.04;
-        appBarHeight = 75;
+        appBarTitle = displayHeight(context) * 0.035;
+        appBarHeight = 80;
         title = displayWidth(context) * 0.035;
       }
 
