@@ -45,7 +45,7 @@ class _LastSearchedLocationState extends State<LastSearchedLocation> {
       } else {
         appBarTitle = displayHeight(context) * 0.035;
         appBarHeight = 80;
-        title = displayWidth(context) * 0.035;
+        title = displayWidth(context) * 0.025;
       }
 
       return Scaffold(

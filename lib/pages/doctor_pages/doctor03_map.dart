@@ -274,7 +274,7 @@ class _FinalMapState extends State<FinalMap> {
       } else {
         appBarTitle = displayHeight(context) * 0.035;
         appBarHeight = 80;
-        title = displayWidth(context) * 0.035;
+        title = displayWidth(context) * 0.025;
       }
       return Scaffold(
         key: _scaffoldkey,
@@ -335,9 +335,12 @@ class _FinalMapState extends State<FinalMap> {
                 loadercolor: Colors.white,
                 isloading: isloading,
                 backgroundcolor: Colors.deepOrange,
-                child: Text(
-                  AppLocalizations.of(context).translate('ok'),
-                  style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    AppLocalizations.of(context).translate('ok'),
+                    style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                  ),
                 ),
                 onPressed: () async {
                   checkInternet();

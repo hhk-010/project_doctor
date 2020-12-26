@@ -5,6 +5,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/show_floating_button.dart';
+import 'package:project_doctor/ui/device_screen_type.dart';
+import 'package:project_doctor/ui/responsive_builder.dart';
+import 'package:project_doctor/ui/sizing_information.dart';
 
 class PatientMap extends StatefulWidget {
   final String speciality;
@@ -91,96 +94,117 @@ class _PatientMapState extends State<PatientMap> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldkey,
-      appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
-        title: FittedBox(
-          fit: BoxFit.fitWidth,
-          child: Text(
-            AppLocalizations.of(context).translate('patient_map_title'),
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+    return ResponsiveBuilder(builder: (context, sizingInformation) {
+      double appBarTitle;
+      double appBarHeight;
+      double title;
+      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
+        appBarTitle = 25;
+        appBarHeight = 50;
+        title = displayWidth(context) * 0.05;
+      } else {
+        appBarTitle = displayHeight(context) * 0.035;
+        appBarHeight = 80;
+        title = displayWidth(context) * 0.03;
+      }
+
+      return Scaffold(
+        key: _scaffoldkey,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(appBarHeight),
+          child: AppBar(
+            backgroundColor: Colors.deepOrange,
+            title: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(
+                AppLocalizations.of(context).translate('patient_map_title'),
+                style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+              ),
+            ),
+            elevation: 0,
+            centerTitle: true,
           ),
         ),
-        elevation: 0,
-        centerTitle: true,
-      ),
-      body: Stack(
-        children: [
-          GoogleMap(
-            initialCameraPosition: CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 8),
-            markers: Set.from(_mymarker),
-            onTap: handletap,
-          ),
-          // Container(
-          //   padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
-          //   alignment: Alignment.topCenter,
-          //   child: Column(
-          //     children: [
-          //       Text(
-          //         AppLocalizations.of(context).translate("zoom_in_out"),
-          //         style: TextStyle(
-          //           fontSize: 13,
-          //           fontWeight: FontWeight.bold,
-          //         ),
-          //       ),
-          //       Text(
-          //         AppLocalizations.of(context).translate("zoom_in"),
-          //         style: TextStyle(
-          //           fontSize: 13,
-          //           fontWeight: FontWeight.bold,
-          //         ),
-          //       ),
-          //       Text(
-          //         AppLocalizations.of(context).translate("zoom_out"),
-          //         style: TextStyle(
-          //           fontSize: 13,
-          //           fontWeight: FontWeight.bold,
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          Container(
-            alignment: Alignment.bottomCenter,
-            padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 25.0),
-            child: FloatingActionButton(
-              backgroundColor: Colors.deepOrange,
-              child: Text(
-                AppLocalizations.of(context).translate('ok'),
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-              ),
-              onPressed: () async {
-                // there is a bug in this snackbar => to be seen-----
-                await checkInternet();
-                if (_isInternet) {
-                  if (patientlatlng == null) {
+        body: Stack(
+          children: [
+            GoogleMap(
+              initialCameraPosition: CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 8),
+              markers: Set.from(_mymarker),
+              onTap: handletap,
+            ),
+            // Container(
+            //   padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
+            //   alignment: Alignment.topCenter,
+            //   child: Column(
+            //     children: [
+            //       Text(
+            //         AppLocalizations.of(context).translate("zoom_in_out"),
+            //         style: TextStyle(
+            //           fontSize: 13,
+            //           fontWeight: FontWeight.bold,
+            //         ),
+            //       ),
+            //       Text(
+            //         AppLocalizations.of(context).translate("zoom_in"),
+            //         style: TextStyle(
+            //           fontSize: 13,
+            //           fontWeight: FontWeight.bold,
+            //         ),
+            //       ),
+            //       Text(
+            //         AppLocalizations.of(context).translate("zoom_out"),
+            //         style: TextStyle(
+            //           fontSize: 13,
+            //           fontWeight: FontWeight.bold,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            Container(
+              alignment: Alignment.bottomCenter,
+              padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 25.0),
+              child: FloatingActionButton(
+                backgroundColor: Colors.deepOrange,
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    AppLocalizations.of(context).translate('ok'),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: title),
+                  ),
+                ),
+                onPressed: () async {
+                  // there is a bug in this snackbar => to be seen-----
+                  await checkInternet();
+                  if (_isInternet) {
+                    if (patientlatlng == null) {
+                      setState(() {
+                        _error = AppLocalizations.of(context).translate('snack_map_patient');
+                      });
+                      _showSnackBar();
+                    } else {
+                      geolocate(patientlatlng);
+                      setState(() {
+                        MyVariables.speciality = speciality;
+                        MyVariables.province = province;
+                        MyVariables.lat = patlatt;
+                        MyVariables.lng = patlngg;
+                        ShowFloatingActionButton.show = true;
+                        Navigator.pushNamed(context, '/patient_result');
+                      });
+                    }
+                  } else {
                     setState(() {
-                      _error = AppLocalizations.of(context).translate('snack_map_patient');
+                      _error = AppLocalizations.of(context).translate('snack_connectivity');
                     });
                     _showSnackBar();
-                  } else {
-                    geolocate(patientlatlng);
-                    setState(() {
-                      MyVariables.speciality = speciality;
-                      MyVariables.province = province;
-                      MyVariables.lat = patlatt;
-                      MyVariables.lng = patlngg;
-                      ShowFloatingActionButton.show = true;
-                      Navigator.pushNamed(context, '/patient_result');
-                    });
                   }
-                } else {
-                  setState(() {
-                    _error = AppLocalizations.of(context).translate('snack_connectivity');
-                  });
-                  _showSnackBar();
-                }
-              },
+                },
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    });
   }
 }

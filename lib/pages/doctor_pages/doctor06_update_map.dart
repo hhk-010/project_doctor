@@ -165,7 +165,7 @@ class _UpdateMapState extends State<UpdateMap> {
       } else {
         appBarTitle = displayHeight(context) * 0.035;
         appBarHeight = 80;
-        title = displayWidth(context) * 0.035;
+        title = displayWidth(context) * 0.025;
       }
       return Scaffold(
         key: _scaffoldkey,
