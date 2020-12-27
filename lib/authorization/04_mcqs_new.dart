@@ -108,7 +108,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
         buttonWidth = displayWidth(context) * 0.7;
       } else {
         appBarHeight = 80;
-        appBarTitle = displayHeight(context) * 0.035;
+        appBarTitle = displayHeight(context) * 0.03;
         containerHeight = 50;
         containerWidth = displayWidth(context) * 0.65;
         title = displayWidth(context) * 0.035;

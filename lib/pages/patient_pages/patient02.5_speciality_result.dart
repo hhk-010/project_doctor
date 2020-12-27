@@ -31,7 +31,7 @@ class SpecialityResult extends StatelessWidget {
         buttonWidth = displayWidth(context) * 0.7;
         imageHeight = displayHeight(context) * 0.2;
       } else {
-        appBarTitle = displayHeight(context) * 0.035;
+        appBarTitle = displayHeight(context) * 0.03;
         appBarHeight = 80;
         containerHeight = displayHeight(context) * 0.7;
         containerWidth = displayWidth(context) * 0.5;

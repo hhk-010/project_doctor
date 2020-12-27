@@ -34,7 +34,7 @@ class _PatientResultState extends State<PatientResult> {
         appBarTitle = 25;
         appBarHeight = 50;
       } else {
-        appBarTitle = displayHeight(context) * 0.035;
+        appBarTitle = displayHeight(context) * 0.03;
         appBarHeight = 80;
       }
 
