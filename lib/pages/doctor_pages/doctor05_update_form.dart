@@ -30,6 +30,19 @@ class _UpdateinfoState extends State<Updateinfo> {
 
   final _formkey = GlobalKey<FormState>();
   String _error = '';
+  //-----------validate phonenumber------------
+  int _number = 0;
+  int finalNumber = 0;
+  String error;
+  validateNumber(String number) {
+    try {
+      _number = int.parse(number);
+      return _number;
+    } catch (e) {
+      return null;
+    }
+  }
+
   //==============snackbar for empty latlng============
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
@@ -404,9 +417,6 @@ class _UpdateinfoState extends State<Updateinfo> {
                     TextFormField(
                         onChanged: (val) => setState(() => phonenumber = val),
                         keyboardType: TextInputType.phone,
-                        /*inputFormatters: [
-                          FilteringTextInputFormatter.allow(RegExp('[0-9.,]')),
-                        ],*/
                         decoration: textInputdecoration.copyWith(
                           hintText: AppLocalizations.of(context)
                               .translate('phoneNumber'),
@@ -537,26 +547,33 @@ class _UpdateinfoState extends State<Updateinfo> {
                         ),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formkey.currentState.validate()) {
-                            if ((profileName == name || profileName == '') &&
-                                (profileSpeciality == speciality ||
-                                    profileSpeciality == '')) {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => UpdateInfo2(
-                                    name: name,
-                                    speciality: speciality,
-                                    phoneNumber: phonenumber,
-                                    province: _province,
+                            finalNumber = await validateNumber(phonenumber);
+                            if (finalNumber != null) {
+                              if ((profileName == name || profileName == '') &&
+                                  (profileSpeciality == speciality ||
+                                      profileSpeciality == '')) {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => UpdateInfo2(
+                                      name: name,
+                                      speciality: speciality,
+                                      phoneNumber: finalNumber.toString(),
+                                      province: _province,
+                                    ),
                                   ),
-                                ),
-                              );
+                                );
+                              } else {
+                                setState(() {
+                                  _error = AppLocalizations.of(context)
+                                      .translate('snack_update');
+                                });
+                                _showSnackBar();
+                              }
                             } else {
-                              setState(() {
-                                _error = AppLocalizations.of(context)
-                                    .translate('snack_update');
-                              });
+                              _error = AppLocalizations.of(context)
+                                  .translate('age_format');
                               _showSnackBar();
                             }
                           }

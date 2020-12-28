@@ -29,6 +29,36 @@ class _DoctorFormState extends State<DoctorForm> {
   String email;
   String password;
   _DoctorFormState({this.email, this.password});
+  //-----------validate phonenumber------------
+  int _number = 0;
+  int finalNumber = 0;
+  String error;
+  validateNumber(String number) {
+    try {
+      _number = int.parse(number);
+      return _number;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  _showSnackBar() {
+    var lang = Localizations.localeOf(context).languageCode;
+
+    final snackBar = new SnackBar(
+      content: new Text(
+        error,
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+      ),
+
+      //duration: new Duration(seconds: 3),
+      backgroundColor: Colors.deepOrange,
+    );
+    _scaffoldkey.currentState.showSnackBar(snackBar);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -215,6 +245,7 @@ class _DoctorFormState extends State<DoctorForm> {
         buttonWidth = displayWidth(context) * 0.4;
       }
       return Scaffold(
+        key: _scaffoldkey,
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey[200],
         appBar: PreferredSize(
@@ -375,9 +406,6 @@ class _DoctorFormState extends State<DoctorForm> {
                     Spacer(),
                     TextFormField(
                       keyboardType: TextInputType.phone,
-                      /*inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp('[0-9.,]')),
-                      ],*/
                       decoration: textInputdecoration.copyWith(
                         hintText: AppLocalizations.of(context)
                             .translate('phoneNumber'),
@@ -505,25 +533,31 @@ class _DoctorFormState extends State<DoctorForm> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(80.0)),
                           onPressed: () async {
-                            print(currentSpeciality);
-                            print(currentProvince);
                             if (_formKey.currentState.validate()) {
-                              if (currentName != null &&
-                                  currentSpeciality != null &&
-                                  currentPhoneNumber != null &&
-                                  currentProvince != null) {
-                                await Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => GrandClinicForm(
-                                      email: email,
-                                      password: password,
-                                      name: currentName,
-                                      speciality: currentSpeciality,
-                                      phoneNumber: currentPhoneNumber,
-                                      province: currentProvince,
+                              finalNumber =
+                                  await validateNumber(currentPhoneNumber);
+                              if (finalNumber != null) {
+                                if (currentName != null &&
+                                    currentSpeciality != null &&
+                                    currentPhoneNumber != null &&
+                                    currentProvince != null) {
+                                  await Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => GrandClinicForm(
+                                        email: email,
+                                        password: password,
+                                        name: currentName,
+                                        speciality: currentSpeciality,
+                                        phoneNumber: finalNumber.toString(),
+                                        province: currentProvince,
+                                      ),
                                     ),
-                                  ),
-                                );
+                                  );
+                                }
+                              } else {
+                                error = AppLocalizations.of(context)
+                                    .translate('age_format');
+                                _showSnackBar();
                               }
                             }
                           },
