@@ -171,7 +171,7 @@ class _EmailVerificationState extends State<EmailVerification> {
         imageHeight = 150;
         textWidth = displayWidth(context) * 0.7;
       } else {
-        appBarTitle = displayHeight(context) * 0.035;
+        appBarTitle = displayHeight(context) * 0.03;
         appBarHeight = 80;
         containerWidth = displayWidth(context) * 0.5;
         containerHeight = displayHeight(context) * 0.6;

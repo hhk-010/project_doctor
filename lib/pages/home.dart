@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
         floatingButtonWidth = displayWidth(context) * 0.55;
         floatingButtonTitle = displayHeight(context) * 0.015;
       } else {
-        appBarTitle = displayHeight(context) * 0.035;
+        appBarTitle = displayHeight(context) * 0.03;
         appBarIcon = 30;
         appBarHeight = 80;
         buttonHeight = displayHeight(context) * 0.15;

@@ -163,7 +163,7 @@ class _UpdateMapState extends State<UpdateMap> {
         appBarHeight = 50;
         title = displayWidth(context) * 0.05;
       } else {
-        appBarTitle = displayHeight(context) * 0.035;
+        appBarTitle = displayHeight(context) * 0.03;
         appBarHeight = 80;
         title = displayWidth(context) * 0.025;
       }

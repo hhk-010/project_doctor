@@ -338,7 +338,7 @@ class _ClinicFormState extends State<ClinicForm> {
         buttonHeight = displayHeight(context) * 0.05;
         buttonWidth = displayWidth(context) * 0.7;
       } else {
-        appBarTitle = displayHeight(context) * 0.035;
+        appBarTitle = displayHeight(context) * 0.03;
         appBarHeight = 80;
         containerWidth = displayWidth(context) * 0.5;
         title = displayWidth(context) * 0.035;
