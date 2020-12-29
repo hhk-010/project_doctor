@@ -73,9 +73,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
         appBarHeight = 50;
         appBarIcon = 25;
       } else {
-        appBarTitle = displayHeight(context) * 0.04;
-        appBarHeight = 75;
-        appBarIcon = 40;
+        appBarTitle = displayHeight(context) * 0.03;
+        appBarHeight = 80;
+        appBarIcon = 30;
       }
       return StreamProvider<QuerySnapshot>.value(
         value: DatabaseService().doctorDataProfileStream,

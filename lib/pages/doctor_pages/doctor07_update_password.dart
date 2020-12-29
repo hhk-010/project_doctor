@@ -84,8 +84,8 @@ class _UpdatePasswordState extends State<UpdatePassword> {
         buttonWidth = displayWidth(context) * 0.7;
         imageHeight = 150;
       } else {
-        appBarTitle = displayHeight(context) * 0.04;
-        appBarHeight = 75;
+        appBarTitle = displayHeight(context) * 0.03;
+        appBarHeight = 80;
         containerWidth = displayWidth(context) * 0.5;
         containerHeight = displayHeight(context) * 0.6;
         title = displayWidth(context) * 0.035;

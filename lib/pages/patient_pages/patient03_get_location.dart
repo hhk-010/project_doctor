@@ -141,11 +141,11 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
         buttonHeight = displayHeight(context) * 0.05;
         buttonWidth = displayWidth(context) * 0.7;
       } else {
-        appBarTitle = displayHeight(context) * 0.04;
-        appBarHeight = 75;
+        appBarTitle = displayHeight(context) * 0.03;
+        appBarHeight = 80;
         containerHeight = displayHeight(context) * 0.7;
         containerWidth = displayWidth(context) * 0.5;
-        title = displayWidth(context) * 0.035;
+        title = displayWidth(context) * 0.03;
         buttonHeight = displayHeight(context) * 0.045;
         buttonWidth = displayWidth(context) * 0.4;
       }
@@ -379,9 +379,12 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                                       province: region,
                                     )));
                           },
-                          label: Text(
-                            AppLocalizations.of(context).translate('google_map'),
-                            style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
+                          label: FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              AppLocalizations.of(context).translate('google_map'),
+                              style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
                       ),
