@@ -25,6 +25,7 @@ class _UpdateinfoState extends State<Updateinfo> {
   String name = '';
   String speciality = '';
   String phonenumber = '';
+  String finalTextNumber = '';
   String _province;
   String address = '';
 
@@ -550,16 +551,24 @@ class _UpdateinfoState extends State<Updateinfo> {
                         onPressed: () async {
                           if (_formkey.currentState.validate()) {
                             finalNumber = await validateNumber(phonenumber);
+                            finalTextNumber = finalNumber.toString();
                             if (finalNumber != null) {
                               if ((profileName == name || profileName == '') &&
                                   (profileSpeciality == speciality ||
                                       profileSpeciality == '')) {
+                                if (finalTextNumber.substring(0, 1) == '7') {
+                                  finalTextNumber = '0' + finalTextNumber;
+                                } else if (finalTextNumber.substring(0, 1) ==
+                                    '9') {
+                                  finalTextNumber = '00' + finalTextNumber;
+                                }
+                                print(finalTextNumber);
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) => UpdateInfo2(
                                       name: name,
                                       speciality: speciality,
-                                      phoneNumber: finalNumber.toString(),
+                                      phoneNumber: finalTextNumber,
                                       province: _province,
                                     ),
                                   ),

@@ -32,6 +32,7 @@ class _DoctorFormState extends State<DoctorForm> {
   //-----------validate phonenumber------------
   int _number = 0;
   int finalNumber = 0;
+  String finalTextNumber = '';
   String error;
   validateNumber(String number) {
     try {
@@ -536,11 +537,19 @@ class _DoctorFormState extends State<DoctorForm> {
                             if (_formKey.currentState.validate()) {
                               finalNumber =
                                   await validateNumber(currentPhoneNumber);
+                              finalTextNumber = finalNumber.toString();
                               if (finalNumber != null) {
                                 if (currentName != null &&
                                     currentSpeciality != null &&
                                     currentPhoneNumber != null &&
                                     currentProvince != null) {
+                                  if (finalTextNumber.substring(0, 1) == '7') {
+                                    finalTextNumber = '0' + finalTextNumber;
+                                  } else if (finalTextNumber.substring(0, 1) ==
+                                      '9') {
+                                    finalTextNumber = '00' + finalTextNumber;
+                                  }
+                                  print(finalTextNumber);
                                   await Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) => GrandClinicForm(
@@ -548,7 +557,7 @@ class _DoctorFormState extends State<DoctorForm> {
                                         password: password,
                                         name: currentName,
                                         speciality: currentSpeciality,
-                                        phoneNumber: finalNumber.toString(),
+                                        phoneNumber: finalTextNumber,
                                         province: currentProvince,
                                       ),
                                     ),
