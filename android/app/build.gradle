@@ -34,7 +34,7 @@ if (keystorePropertiesFile.exists()) {
 }
 android {
     compileSdkVersion 29
-    ndkVersion "21.1.6352462"
+    ndkVersion "22.0.7026061"
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
@@ -50,9 +50,24 @@ android {
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
         ndk {
             debugSymbolLevel 'SYMBOL_TABLE'
         }
+
+        Properties properties = new Properties()
+        if (rootProject.file("local.properties").exists()) {
+            properties.load(rootProject.file("local.properties").newDataInputStream())
+        }
+
+        // Inject the Maps API key into the manifest
+        manifestPlaceholders = [ mapsApiKey : properties.getProperty("MAPS_API_KEY", "") ]
+
+
+
+
+
+
     }
 
        signingConfigs {
@@ -66,8 +81,6 @@ android {
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.release
         }
     }

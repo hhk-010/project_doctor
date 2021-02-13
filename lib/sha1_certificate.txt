@@ -1,0 +1,4 @@
+do not use powershell
+Java binary at: C:\Program Files\Android\Android Studio\jre\bin\java
+keytool -list -v -keystore C:\\hhk.projects\\Project_doctor\\key.jks -alias key
+SHA1: 1A:23:DB:37:70:D9:38:75:5E:34:79:C3:E0:20:6D:41:44:8D:1A:66

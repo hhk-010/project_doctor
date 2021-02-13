@@ -91,7 +91,8 @@ class _MyAppState extends State<MyApp> {
       return GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+          if (!currentFocus.hasPrimaryFocus &&
+              currentFocus.focusedChild != null) {
             FocusManager.instance.primaryFocus.unfocus();
           }
         },
@@ -117,7 +118,8 @@ class _MyAppState extends State<MyApp> {
           builder: (context, navigator) {
             var lang = Localizations.localeOf(context).languageCode;
             return Theme(
-              data: ThemeData(fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+              data: ThemeData(
+                  fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
               child: navigator,
             );
           },
