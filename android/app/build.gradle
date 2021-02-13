@@ -51,23 +51,13 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
-        ndk {
-            debugSymbolLevel 'SYMBOL_TABLE'
-        }
-
+     
         Properties properties = new Properties()
         if (rootProject.file("local.properties").exists()) {
             properties.load(rootProject.file("local.properties").newDataInputStream())
         }
-
         // Inject the Maps API key into the manifest
         manifestPlaceholders = [ mapsApiKey : properties.getProperty("MAPS_API_KEY", "") ]
-
-
-
-
-
-
     }
 
        signingConfigs {
@@ -82,6 +72,9 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
+        //     ndk {
+        //     debugSymbolLevel 'SYMBOL_TABLE'
+        //  }
         }
     }
 }
