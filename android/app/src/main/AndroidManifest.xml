@@ -13,7 +13,8 @@
         android:label="Cura"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="${mapsApiKey}"/>
+            android:value="AIzaSyC4OJisUtg-D0KpJ5ZxTyU2sXoJKYiorZw"
+        />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
