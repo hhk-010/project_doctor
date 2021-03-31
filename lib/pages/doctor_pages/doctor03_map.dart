@@ -47,6 +47,7 @@ class _DocMapState extends State<DocMap> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
+      initialData: null,
       value: DatabaseService().basicData,
       child: FinalMap(addressLatlng: addressLatlng),
     );
@@ -244,6 +245,43 @@ class _FinalMapState extends State<FinalMap> {
     return widget.dataStorage.writeWork03(_workDays03s);
   }
 
+  double nameScoreResult = 0;
+  getNameScore(String name1) {
+    String name2 = DataFromMaptoVerify.name;
+    List name1list = [];
+    List name2list = [];
+
+    int name1l = name1.length;
+    int name2l = name2.length;
+    int name1c = 0;
+    int name2c = 0;
+    while (name1l > 0) {
+      name1list.add(name1.substring(name1c, name1c + 1));
+      name1c++;
+      name1l--;
+    }
+    while (name2l > 0) {
+      name2list.add(name2.substring(name2c, name2c + 1));
+      name2c++;
+      name2l--;
+    }
+    int list1l = name1list.length;
+    int list2l = name2list.length;
+    int denom = list1l;
+    int list1c = 0;
+    int score = 0;
+    while (list1l > 0 && list2l > 0) {
+      if (name1list[list1c] == name2list[list1c]) {
+        score++;
+      }
+      list1c++;
+      list1l--;
+      list2l--;
+    }
+    nameScoreResult = score / denom;
+    nameScoreResult = nameScoreResult * 100;
+  }
+
   //=================vars For testing=========
   String n = '';
   String s = '';
@@ -257,7 +295,10 @@ class _FinalMapState extends State<FinalMap> {
     final basicData = Provider.of<QuerySnapshot>(context);
     if (basicData != null) {
       for (var x in basicData.docs) {
-        if (DataFromMaptoVerify.name == x.data()['name'] &&
+        if (x.data()['name'] != null) {
+          getNameScore(x.data()['name']);
+        }
+        if (nameScoreResult > 40 &&
             DataFromMaptoVerify.speciality == x.data()['speciality'] &&
             DataFromMaptoVerify.province == x.data()['city']) {
           lt = x.data()['lat'];
@@ -304,35 +345,6 @@ class _FinalMapState extends State<FinalMap> {
               markers: Set.from(mymarker),
               onTap: handletap,
             ),
-            // Container(
-            //   padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
-            //   alignment: Alignment.topCenter,
-            //   child: Column(
-            //     children: [
-            //       Text(
-            //         AppLocalizations.of(context).translate("zoom_in_out"),
-            //         style: TextStyle(
-            //           fontSize: 13,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //       Text(
-            //         AppLocalizations.of(context).translate("zoom_in"),
-            //         style: TextStyle(
-            //           fontSize: 13,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //       Text(
-            //         AppLocalizations.of(context).translate("zoom_out"),
-            //         style: TextStyle(
-            //           fontSize: 13,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
             Container(
               alignment: Alignment.bottomCenter,
               padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),

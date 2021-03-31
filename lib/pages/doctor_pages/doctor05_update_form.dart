@@ -553,9 +553,8 @@ class _UpdateinfoState extends State<Updateinfo> {
                             finalNumber = await validateNumber(phonenumber);
                             finalTextNumber = finalNumber.toString();
                             if (finalNumber != null) {
-                              if ((profileName == name || profileName == '') &&
-                                  (profileSpeciality == speciality ||
-                                      profileSpeciality == '')) {
+                              if ((profileSpeciality == speciality ||
+                                  profileSpeciality == '')) {
                                 if (finalTextNumber.substring(0, 1) == '7') {
                                   finalTextNumber = '0' + finalTextNumber;
                                 } else if (finalTextNumber.substring(0, 1) ==

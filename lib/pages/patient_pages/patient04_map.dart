@@ -14,7 +14,8 @@ class PatientMap extends StatefulWidget {
   final String province;
   PatientMap({this.speciality, this.province});
   @override
-  _PatientMapState createState() => _PatientMapState(speciality: speciality, province: province);
+  _PatientMapState createState() =>
+      _PatientMapState(speciality: speciality, province: province);
 }
 
 class _PatientMapState extends State<PatientMap> {
@@ -62,7 +63,9 @@ class _PatientMapState extends State<PatientMap> {
     final _snackBar = new SnackBar(
       content: Text(
         _error,
-        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -118,7 +121,8 @@ class _PatientMapState extends State<PatientMap> {
               fit: BoxFit.fitWidth,
               child: Text(
                 AppLocalizations.of(context).translate('patient_map_title'),
-                style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: appBarTitle, fontWeight: FontWeight.bold),
               ),
             ),
             elevation: 0,
@@ -128,39 +132,12 @@ class _PatientMapState extends State<PatientMap> {
         body: Stack(
           children: [
             GoogleMap(
-              initialCameraPosition: CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 8),
+              initialCameraPosition:
+                  CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 8),
               markers: Set.from(_mymarker),
               onTap: handletap,
+              zoomControlsEnabled: false,
             ),
-            // Container(
-            //   padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
-            //   alignment: Alignment.topCenter,
-            //   child: Column(
-            //     children: [
-            //       Text(
-            //         AppLocalizations.of(context).translate("zoom_in_out"),
-            //         style: TextStyle(
-            //           fontSize: 13,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //       Text(
-            //         AppLocalizations.of(context).translate("zoom_in"),
-            //         style: TextStyle(
-            //           fontSize: 13,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //       Text(
-            //         AppLocalizations.of(context).translate("zoom_out"),
-            //         style: TextStyle(
-            //           fontSize: 13,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
             Container(
               alignment: Alignment.bottomCenter,
               padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 25.0),
@@ -170,7 +147,8 @@ class _PatientMapState extends State<PatientMap> {
                   fit: BoxFit.fitWidth,
                   child: Text(
                     AppLocalizations.of(context).translate('ok'),
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: title),
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: title),
                   ),
                 ),
                 onPressed: () async {
@@ -179,7 +157,8 @@ class _PatientMapState extends State<PatientMap> {
                   if (_isInternet) {
                     if (patientlatlng == null) {
                       setState(() {
-                        _error = AppLocalizations.of(context).translate('snack_map_patient');
+                        _error = AppLocalizations.of(context)
+                            .translate('snack_map_patient');
                       });
                       _showSnackBar();
                     } else {
@@ -195,7 +174,8 @@ class _PatientMapState extends State<PatientMap> {
                     }
                   } else {
                     setState(() {
-                      _error = AppLocalizations.of(context).translate('snack_connectivity');
+                      _error = AppLocalizations.of(context)
+                          .translate('snack_connectivity');
                     });
                     _showSnackBar();
                   }

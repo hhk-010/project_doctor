@@ -16,6 +16,7 @@ import 'package:project_doctor/ui/sizing_information.dart';
 // class for getting the data from map to firebase through verfication.
 class EmailVerification extends StatefulWidget {
   final Storage dataReadStorage = Storage();
+  static String province = '';
   @override
   _EmailVerificationState createState() => _EmailVerificationState();
 }
@@ -104,6 +105,7 @@ class _EmailVerificationState extends State<EmailVerification> {
     widget.dataReadStorage.readProvince().then((String value) {
       setState(() {
         _province = value;
+        EmailVerification.province = value;
       });
     });
 

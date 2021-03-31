@@ -22,7 +22,7 @@ class _PreDeleteUserState extends State<PreDeleteUser> {
   bool passwordvalid;
   String error = '';
   // ignore: unused_field
-  bool _passwordVisible;
+  bool _passwordVisible = true;
   final _formkey = GlobalKey<FormState>();
 
   //--------------checking internet connection
@@ -48,7 +48,9 @@ class _PreDeleteUserState extends State<PreDeleteUser> {
     final _snackbar = new SnackBar(
       content: Text(
         error,
-        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -139,14 +141,30 @@ class _PreDeleteUserState extends State<PreDeleteUser> {
                         height: 25,
                       ),
                       TextFormField(
+                        obscureText: !_passwordVisible,
                         decoration: textInputdecoration.copyWith(
-                          hintText: AppLocalizations.of(context).translate('current_password'),
-                          labelText: AppLocalizations.of(context).translate('current_password'),
+                          hintText: AppLocalizations.of(context)
+                              .translate('current_password'),
+                          labelText: AppLocalizations.of(context)
+                              .translate('current_password'),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _passwordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Colors.deepOrange,
+                            ),
+                            onPressed: () => setState(
+                                () => _passwordVisible = !_passwordVisible),
+                          ),
                         ),
                         onChanged: (val) {
                           _oldPassword = val;
                         },
-                        validator: (val) => val.length < 8 ? AppLocalizations.of(context).translate('valid_password') : null,
+                        validator: (val) => val.length < 8
+                            ? AppLocalizations.of(context)
+                                .translate('valid_password')
+                            : null,
                       ),
                       SizedBox(
                         height: 25,
@@ -186,18 +204,22 @@ class _PreDeleteUserState extends State<PreDeleteUser> {
                         Icons.arrow_forward,
                         color: Colors.white,
                       ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80.0)),
                       onpressed: () async {
                         checkInternet();
                         if (_isInternet) {
                           if (_formkey.currentState.validate()) {
                             setState(() => isloading = true);
                             AuthService().passwordisvalid(_oldPassword);
-                            passwordvalid = await AuthService().validatepass(_oldPassword);
+                            passwordvalid =
+                                await AuthService().validatepass(_oldPassword);
                             if (passwordvalid) {
                               //AuthService().updatepass(_newPassword);
                               setState(() => isloading = false);
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => DeleteUser(oldPassword: _oldPassword)));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      DeleteUser(oldPassword: _oldPassword)));
                               /*int count = 0;
                               Navigator.popUntil(context, (route) {
                                 return count++ == 2;
@@ -205,7 +227,8 @@ class _PreDeleteUserState extends State<PreDeleteUser> {
                             } else {
                               setState(() {
                                 isloading = false;
-                                error = AppLocalizations.of(context).translate('invalid_password');
+                                error = AppLocalizations.of(context)
+                                    .translate('invalid_password');
                               });
                               //--------snackbar problem
                               _showSnackBar();
@@ -213,14 +236,18 @@ class _PreDeleteUserState extends State<PreDeleteUser> {
                           }
                         } else {
                           setState(() {
-                            error = AppLocalizations.of(context).translate('snack_connectivity');
+                            error = AppLocalizations.of(context)
+                                .translate('snack_connectivity');
                           });
                           _showSnackBar();
                         }
                       },
                       label: Text(
                         AppLocalizations.of(context).translate('delete'),
-                        style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: title,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),

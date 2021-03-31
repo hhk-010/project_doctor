@@ -6,6 +6,7 @@ import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/services/app_localizations.dart';
+import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
@@ -27,13 +28,11 @@ class PatientGetLocation extends StatefulWidget {
 class _PatientGetLocationState extends State<PatientGetLocation> {
   String region;
   String _error = '';
-  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  //final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
   Position _currentPosition;
-  // ignore: unused_field
-  String _currentAddress;
+  //ignore unused feild
+  //String _currentAddress;
 
-  //function to show snackbar if the patient didn't
-  // tap on the location
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
     var lang = Localizations.localeOf(context).languageCode;
@@ -41,7 +40,9 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
     final _snackBar = new SnackBar(
       content: Text(
         _error,
-        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -55,11 +56,9 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
       final response = await InternetAddress.lookup('google.com');
       if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
         _isInternet = true; // internet
-        setState(() {});
       }
     } on SocketException catch (_) {
       _isInternet = false; // no internet
-      setState(() {});
     }
   }
 
@@ -72,13 +71,6 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
 
   @override
   Widget build(BuildContext context) {
-    // final iraqRegions = {
-    //   "1": [AppLocalizations.of(context).translate('Baghdad'), "Baghdad"],
-    //   "2": [AppLocalizations.of(context).translate('northen_region'), "Northern Region"],
-    //   "3": [AppLocalizations.of(context).translate('southern_region'), "Southern Region"],
-    //   "4": [AppLocalizations.of(context).translate('western_region'), "Eastern Region"],
-    //   "5": [AppLocalizations.of(context).translate('Middle Region'), "Middle Region"],
-    // };
     final province = {
       "1": [
         "Erbil",
@@ -115,7 +107,10 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
       "9": ["Duhok", AppLocalizations.of(context).translate("Duhok")],
       "10": ["Diyala", AppLocalizations.of(context).translate("Diyala")],
       "11": ["Dhi Qar", AppLocalizations.of(context).translate("Dhi Qar")],
-      "12": ["Sulaymaniyah", AppLocalizations.of(context).translate("Sulaymaniyah")],
+      "12": [
+        "Sulaymaniyah",
+        AppLocalizations.of(context).translate("Sulaymaniyah")
+      ],
       "13": ["Saladin", AppLocalizations.of(context).translate("Saladin")],
       "14": ["Karbala", AppLocalizations.of(context).translate("Karbala")],
       "15": ["Kirkuk", AppLocalizations.of(context).translate("Kirkuk")],
@@ -160,7 +155,8 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
               fit: BoxFit.fitWidth,
               child: Text(
                 AppLocalizations.of(context).translate('region'),
-                style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: appBarTitle, fontWeight: FontWeight.bold),
               ),
             ),
             centerTitle: true,
@@ -181,7 +177,8 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                     children: [
                       Text(
                         AppLocalizations.of(context).translate('province'),
-                        style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: title, fontWeight: FontWeight.bold),
                       ),
                       Divider(
                         color: Colors.grey,
@@ -190,10 +187,12 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                         endIndent: 30,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                        child: DropdownButton(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 2),
+                        child: DropdownButtonFormField(
                           hint: Text(
-                            AppLocalizations.of(context).translate('select_region'),
+                            AppLocalizations.of(context)
+                                .translate('select_region'),
                           ),
                           isExpanded: true,
                           items: [
@@ -271,10 +270,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                             ),
                           ],
                           onChanged: (value) {
-                            setState(() {
-                              region = value;
-                            });
-                            print(region);
+                            setState(() => region = value);
                           },
                           value: region,
                           dropdownColor: Colors.grey[300],
@@ -291,8 +287,10 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                     children: [
                       Center(
                         child: AutoSizeText(
-                          AppLocalizations.of(context).translate('get_location'),
-                          style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                          AppLocalizations.of(context)
+                              .translate('get_location'),
+                          style: TextStyle(
+                              fontSize: title, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                           maxLines: 2,
                         ),
@@ -314,40 +312,58 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                         width: buttonWidth,
                         child: RaisedButton(
                           color: Colors.deepOrange,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80.0)),
                           onPressed: () {
                             checkInternet();
-                            if (_isInternet) {
-                              _getCurrentLocation();
-                              if (_currentPosition == null) {
-                                setState(() {
-                                  _error = AppLocalizations.of(context).translate("geolocator_message");
-                                });
-                                _showSnackBar();
+                            if (!(region == null || region == '')) {
+                              if (_isInternet) {
+                                _getCurrentLocation();
+                                if (_currentPosition == null) {
+                                  setState(() {
+                                    _error = AppLocalizations.of(context)
+                                        .translate("geolocator_message");
+                                  });
+                                  _showSnackBar();
+                                } else {
+                                  setState(() {
+                                    MyVariables.speciality =
+                                        FinalScore.speciality;
+                                    MyVariables.province = region;
+                                    DatabaseService.province = region;
+                                    MyVariables.lat = _currentPosition.latitude;
+                                    MyVariables.lng =
+                                        _currentPosition.longitude;
+                                    MyVariables.usingMap = false;
+                                  });
+
+                                  Navigator.pushNamed(
+                                      context, '/patient_result');
+                                }
                               } else {
                                 setState(() {
-                                  MyVariables.speciality = FinalScore.speciality;
-                                  MyVariables.province = region;
-                                  //MyVariables.lat = double.parse(_currentPosition.latitude.toString() );
-                                  //MyVariables.long = double.parse(_currentPosition.longitude.toString() );
-                                  MyVariables.lat = _currentPosition.latitude;
-                                  MyVariables.lng = _currentPosition.longitude;
-                                  MyVariables.usingMap = false;
+                                  _error = AppLocalizations.of(context)
+                                      .translate('snack_connectivity');
                                 });
-                                Navigator.pushNamed(context, '/patient_result');
+
+                                _showSnackBar();
                               }
                             } else {
-                              setState(() {
-                                _error = AppLocalizations.of(context).translate('snack_connectivity');
-                              });
+                              setState(() => _error =
+                                  AppLocalizations.of(context)
+                                      .translate('province_validator'));
                               _showSnackBar();
                             }
                           },
                           child: FittedBox(
                             fit: BoxFit.fitWidth,
                             child: Text(
-                              AppLocalizations.of(context).translate('auto_location'),
-                              style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
+                              AppLocalizations.of(context)
+                                  .translate('auto_location'),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: title,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -356,7 +372,8 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
                           AppLocalizations.of(context).translate('Or'),
-                          style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: title, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
@@ -368,22 +385,35 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                             Icons.arrow_forward,
                             color: Colors.white,
                           ),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80.0)),
                           onPressed: () async {
-                            setState(() {
-                              MyVariables.usingMap = true;
-                            });
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => PatientMap(
-                                      speciality: FinalScore.speciality,
-                                      province: region,
-                                    )));
+                            if (!(region == null || region == '')) {
+                              setState(() {
+                                MyVariables.usingMap = true;
+                                DatabaseService.province = region;
+                              });
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => PatientMap(
+                                        speciality: FinalScore.speciality,
+                                        province: region,
+                                      )));
+                            } else {
+                              setState(() => _error =
+                                  AppLocalizations.of(context)
+                                      .translate('province_validator'));
+                              _showSnackBar();
+                            }
                           },
                           label: FittedBox(
                             fit: BoxFit.fitWidth,
                             child: Text(
-                              AppLocalizations.of(context).translate('google_map'),
-                              style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
+                              AppLocalizations.of(context)
+                                  .translate('google_map'),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: title,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -400,20 +430,21 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
   }
 
   _getCurrentLocation() {
-    geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best).then((Position position) {
+    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
       setState(() {
         _currentPosition = position;
       });
 
-      _getAddressFromLatLng();
+      //_getAddressFromLatLng();
     }).catchError((e) {
       print(e);
     });
   }
 
-  _getAddressFromLatLng() async {
+  /*_getAddressFromLatLng() async {
     try {
-      List<Placemark> p = await geolocator.placemarkFromCoordinates(_currentPosition.latitude, _currentPosition.longitude);
+      List<PlaceMark> p = await geolocator.placemarkFromCoordinates(_currentPosition.latitude, _currentPosition.longitude);
       Placemark place = p[0];
       setState(() {
         _currentAddress = "${place.locality}, ${place.postalCode}, ${place.country}";
@@ -421,5 +452,5 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
     } catch (e) {
       print(e);
     }
-  }
+  }*/
 }

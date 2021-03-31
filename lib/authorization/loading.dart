@@ -35,7 +35,13 @@ class LoadingButton extends StatelessWidget {
   final Color backgroundcolor;
   final Color loadercolor;
   final ShapeBorder shape;
-  LoadingButton({@required this.isloading, @required this.child, @required this.onpressed, this.backgroundcolor, this.loadercolor, this.shape});
+  LoadingButton(
+      {@required this.isloading,
+      @required this.child,
+      @required this.onpressed,
+      this.backgroundcolor,
+      this.loadercolor,
+      this.shape});
   @override
   Widget build(BuildContext context) {
     return isloading
@@ -64,7 +70,12 @@ class FloatingLoadingButton extends StatelessWidget {
   final Color loadercolor;
   final ShapeBorder shape;
   FloatingLoadingButton(
-      {@required this.isloading, @required this.child, @required this.onPressed, this.backgroundcolor, this.loadercolor, this.shape});
+      {@required this.isloading,
+      @required this.child,
+      @required this.onPressed,
+      this.backgroundcolor,
+      this.loadercolor,
+      this.shape});
   @override
   Widget build(BuildContext context) {
     return isloading

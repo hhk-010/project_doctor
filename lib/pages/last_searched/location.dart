@@ -13,7 +13,8 @@ class LastSearchedLocation extends StatefulWidget {
 
   const LastSearchedLocation({Key key, this.lat, this.lng}) : super(key: key);
   @override
-  _LastSearchedLocationState createState() => _LastSearchedLocationState(lat: lat, lng: lng);
+  _LastSearchedLocationState createState() =>
+      _LastSearchedLocationState(lat: lat, lng: lng);
 }
 
 class _LastSearchedLocationState extends State<LastSearchedLocation> {
@@ -57,7 +58,8 @@ class _LastSearchedLocationState extends State<LastSearchedLocation> {
                 fit: BoxFit.fitWidth,
                 child: Text(
                   AppLocalizations.of(context).translate('doctor_location'),
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: appBarTitle),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: appBarTitle),
                 )),
             centerTitle: true,
             elevation: 0,
@@ -67,38 +69,11 @@ class _LastSearchedLocationState extends State<LastSearchedLocation> {
           children: [
             GoogleMap(
               onMapCreated: _onmapcreated,
-              initialCameraPosition: CameraPosition(target: LatLng(lat, lng), zoom: 10),
+              initialCameraPosition:
+                  CameraPosition(target: LatLng(lat, lng), zoom: 10),
               markers: _marker,
+              zoomControlsEnabled: false,
             ),
-            // Container(
-            //   padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
-            //   alignment: Alignment.topCenter,
-            //   child: Column(
-            //     children: [
-            //       Text(
-            //         AppLocalizations.of(context).translate("zoom_in_out"),
-            //         style: TextStyle(
-            //           fontSize: 13,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //       Text(
-            //         AppLocalizations.of(context).translate("zoom_in"),
-            //         style: TextStyle(
-            //           fontSize: 13,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //       Text(
-            //         AppLocalizations.of(context).translate("zoom_out"),
-            //         style: TextStyle(
-            //           fontSize: 13,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
             Container(
               padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 25.0),
               alignment: Alignment.bottomCenter,
@@ -106,7 +81,8 @@ class _LastSearchedLocationState extends State<LastSearchedLocation> {
                 backgroundColor: Colors.deepOrange,
                 child: Text(
                   AppLocalizations.of(context).translate('ok'),
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: title),
+                  style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: title),
                 ),
                 onPressed: () {
                   int count = 0;

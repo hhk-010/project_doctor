@@ -45,7 +45,9 @@ class _DeleteUserState extends State<DeleteUser> {
     final _snackbar = new SnackBar(
       content: Text(
         error,
-        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(
+            fontSize: 15,
+            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -100,8 +102,10 @@ class _DeleteUserState extends State<DeleteUser> {
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: Text(
-              AppLocalizations.of(context).translate("delete_user"), //'Password Reset',
-              style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+              AppLocalizations.of(context)
+                  .translate("delete_user"), //'Password Reset',
+              style:
+                  TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
             ),
             centerTitle: true,
           ),
@@ -132,15 +136,20 @@ class _DeleteUserState extends State<DeleteUser> {
                           ),
                           TextFormField(
                             decoration: textInputdecoration.copyWith(
-                              hintText: AppLocalizations.of(context).translate('enter_your_email'), //'Enter Your Current Email',
-                              labelText: AppLocalizations.of(context).translate('email'), //'Email',
+                              hintText: AppLocalizations.of(context).translate(
+                                  'enter_your_email'), //'Enter Your Current Email',
+                              labelText: AppLocalizations.of(context)
+                                  .translate('email'), //'Email',
                             ),
                             cursorColor: Colors.black,
                             keyboardType: TextInputType.emailAddress,
                             onChanged: (val) {
                               email = val;
                             },
-                            validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('enter_your_email') : null,
+                            validator: (val) => val.isEmpty
+                                ? AppLocalizations.of(context)
+                                    .translate('enter_your_email')
+                                : null,
                           ),
                           SizedBox(
                             height: 150,
@@ -154,23 +163,26 @@ class _DeleteUserState extends State<DeleteUser> {
                       child: LoadingButton(
                         isloading: isloading,
                         loadercolor: Colors.white,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80.0)),
                         backgroundcolor: Colors.deepOrange,
                         child: FittedBox(
                           fit: BoxFit.fitWidth,
                           child: Text(
                             AppLocalizations.of(context).translate('delete'),
-                            style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: title,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                         onpressed: () async {
                           checkInternet();
                           if (_isInternet) {
                             if (_formkey.currentState.validate()) {
-                              print(email);
-                              print(oldPassword);
                               setState(() => isloading = true);
-                              dynamic authResult = await AuthService().deleteUser(email, oldPassword);
+                              dynamic authResult = await AuthService()
+                                  .deleteUser(email, oldPassword);
                               if (authResult != null) {
                                 setState(() => isloading = false);
                                 int count = 0;
@@ -180,14 +192,16 @@ class _DeleteUserState extends State<DeleteUser> {
                               } else {
                                 setState(() {
                                   isloading = false;
-                                  error = AppLocalizations.of(context).translate('can_not_delete');
+                                  error = AppLocalizations.of(context)
+                                      .translate('can_not_delete');
                                 });
                                 _showSnackBar();
                               }
                             }
                           } else {
                             setState(() {
-                              error = AppLocalizations.of(context).translate('snack_connectivity');
+                              error = AppLocalizations.of(context)
+                                  .translate('snack_connectivity');
                             });
                             _showSnackBar();
                           }

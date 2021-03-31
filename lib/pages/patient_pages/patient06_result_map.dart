@@ -15,7 +15,8 @@ class PatientResultMap extends StatefulWidget {
   final double lng;
   PatientResultMap({this.lat, this.lng});
   @override
-  _PatientResultMapState createState() => _PatientResultMapState(lat: lat, lng: lng);
+  _PatientResultMapState createState() =>
+      _PatientResultMapState(lat: lat, lng: lng);
 }
 
 class _PatientResultMapState extends State<PatientResultMap> {
@@ -58,7 +59,8 @@ class _PatientResultMapState extends State<PatientResultMap> {
                 fit: BoxFit.fitWidth,
                 child: Text(
                   AppLocalizations.of(context).translate('doctor_location'),
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: appBarTitle),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: appBarTitle),
                 )),
             centerTitle: true,
             elevation: 0,
@@ -68,8 +70,10 @@ class _PatientResultMapState extends State<PatientResultMap> {
           children: [
             GoogleMap(
               onMapCreated: _onmapcreated,
-              initialCameraPosition: CameraPosition(target: LatLng(lat, lng), zoom: 10),
+              initialCameraPosition:
+                  CameraPosition(target: LatLng(lat, lng), zoom: 10),
               markers: _marker,
+              zoomControlsEnabled: false,
             ),
             Container(
               padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 25.0),
@@ -78,11 +82,15 @@ class _PatientResultMapState extends State<PatientResultMap> {
                 backgroundColor: Colors.deepOrange,
                 child: Text(
                   AppLocalizations.of(context).translate('ok'),
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: title),
+                  style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: title),
                 ),
                 onPressed: () {
                   int count = 0;
-                  Navigator.popUntil(context, (route) => MyVariables.usingMap ? count++ == 7 : count++ == 6);
+                  Navigator.popUntil(
+                      context,
+                      (route) =>
+                          MyVariables.usingMap ? count++ == 7 : count++ == 6);
                 },
               ),
             ),

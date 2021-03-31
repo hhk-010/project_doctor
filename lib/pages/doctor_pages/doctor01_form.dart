@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
+import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
@@ -401,8 +402,10 @@ class _DoctorFormState extends State<DoctorForm> {
                           ? AppLocalizations.of(context)
                               .translate('speciality_validator')
                           : null,
-                      onChanged: (val) =>
-                          setState(() => currentSpeciality = val),
+                      onChanged: (val) => setState(() {
+                        currentSpeciality = val;
+                        DatabaseService.province = val;
+                      }),
                     ),
                     Spacer(),
                     TextFormField(
@@ -516,7 +519,10 @@ class _DoctorFormState extends State<DoctorForm> {
                           ? AppLocalizations.of(context)
                               .translate('province_validator')
                           : null,
-                      onChanged: (val) => setState(() => currentProvince = val),
+                      onChanged: (val) => setState(() {
+                        currentProvince = val;
+                        DatabaseService.validationProvince = val;
+                      }),
                     ),
                     Spacer(
                       flex: 5,
