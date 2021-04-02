@@ -133,6 +133,45 @@ class _UpdateMapState extends State<UpdateMap> {
   }
 
   //------------the end --------------------
+  //========================================
+  double nameScoreResult = 0;
+  getNameScore(String name1) {
+    String name2 = DataFromProfiletoUpdate.name;
+    List name1list = [];
+    List name2list = [];
+
+    int name1l = name1.length;
+    int name2l = name2.length;
+    int name1c = 0;
+    int name2c = 0;
+    while (name1l > 0) {
+      name1list.add(name1.substring(name1c, name1c + 1));
+      name1c++;
+      name1l--;
+    }
+    while (name2l > 0) {
+      name2list.add(name2.substring(name2c, name2c + 1));
+      name2c++;
+      name2l--;
+    }
+    int list1l = name1list.length;
+    int list2l = name2list.length;
+    int denom = list1l;
+    int list1c = 0;
+    int score = 0;
+    while (list1l > 0 && list2l > 0) {
+      if (name1list[list1c] == name2list[list1c]) {
+        score++;
+      }
+      list1c++;
+      list1l--;
+      list2l--;
+    }
+    nameScoreResult = score / denom;
+    nameScoreResult = nameScoreResult * 100;
+  }
+
+  //===================================
   double _lt = 0.0;
   double _lg = 0.0;
   double _result = 0.0;
@@ -150,7 +189,10 @@ class _UpdateMapState extends State<UpdateMap> {
     final basicDatabase = Provider.of<QuerySnapshot>(context);
     if (basicDatabase != null) {
       for (var x in basicDatabase.docs) {
-        if (DataFromProfiletoUpdate.name == x.data()['name'] &&
+        if (x.data()['name'] != null) {
+          getNameScore(x.data()['name']);
+        }
+        if (nameScoreResult > 40 &&
             DataFromProfiletoUpdate.speciality == x.data()['speciality'] &&
             DataFromProfiletoUpdate.province == x.data()['city']) {
           _lt = x.data()['lat'];

@@ -344,6 +344,7 @@ class _FinalMapState extends State<FinalMap> {
                   target: LatLng(33.312805, 44.361488), zoom: 10),
               markers: Set.from(mymarker),
               onTap: handletap,
+              zoomControlsEnabled: false,
             ),
             Container(
               alignment: Alignment.bottomCenter,

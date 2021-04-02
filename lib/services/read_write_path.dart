@@ -113,7 +113,7 @@ class Storage {
       return province;
     } catch (e) {
       // If encountering an error, return 0.
-      return 'Babil';
+      return 'Baghdad';
     }
   }
 

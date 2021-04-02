@@ -1024,10 +1024,6 @@ class _ClinicFormState extends State<ClinicForm> {
                                             workDays02.add(e1[0]);
                                             workDays02.add(t1[0]);
                                           }
-                                        } else if ((e1.isEmpty &&
-                                                t1.isNotEmpty) ||
-                                            (e1.isNotEmpty && t1.isEmpty)) {
-                                          //snackbar
                                         }
                                         if (e2.isNotEmpty && t2.isNotEmpty) {
                                           if (workDays03.isEmpty) {
@@ -1038,10 +1034,6 @@ class _ClinicFormState extends State<ClinicForm> {
                                             workDays03.add(e2[0]);
                                             workDays03.add(t2[0]);
                                           }
-                                        } else if ((e2.isNotEmpty &&
-                                                t2.isEmpty) ||
-                                            (e2.isEmpty && t2.isNotEmpty)) {
-                                          //snackbar
                                         }
                                         if (currentaddress != '' &&
                                             currentWorkDays != '' &&

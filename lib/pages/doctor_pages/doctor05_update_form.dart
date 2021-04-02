@@ -5,6 +5,7 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor07_update_password.dart';
+import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
@@ -159,26 +160,6 @@ class _UpdateinfoState extends State<Updateinfo> {
       ],
     };
     final province = {
-      /*"1": [
-        'Baghdad',
-        AppLocalizations.of(context).translate('Baghdad'),
-      ],
-      "2": [
-        'Northern Region',
-        AppLocalizations.of(context).translate("Northern Region"),
-      ],
-      "3": [
-        'Southern Region',
-        AppLocalizations.of(context).translate("Southern Region"),
-      ],
-      "4": [
-        'Western Region',
-        AppLocalizations.of(context).translate("Western Region"),
-      ],
-      "5": [
-        'Middle Region',
-        AppLocalizations.of(context).translate("Middle Region"),
-      ],*/
       "1": [
         "Erbil",
         AppLocalizations.of(context).translate("Erbil"),
@@ -515,7 +496,10 @@ class _UpdateinfoState extends State<Updateinfo> {
                       ],
                       validator: (value) =>
                           value == null ? 'Select your province' : null,
-                      onChanged: (val) => setState(() => _province = val),
+                      onChanged: (val) => setState(() {
+                        DatabaseService.validationProvince = val;
+                        _province = val;
+                      }),
                     ),
                     Spacer(
                       flex: 3,
@@ -561,7 +545,6 @@ class _UpdateinfoState extends State<Updateinfo> {
                                     '9') {
                                   finalTextNumber = '00' + finalTextNumber;
                                 }
-                                print(finalTextNumber);
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) => UpdateInfo2(
@@ -604,8 +587,6 @@ class _UpdateinfoState extends State<Updateinfo> {
                     ),
                     InkWell(
                       onTap: () {
-                        print(speciality);
-                        print(_province);
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => UpdatePassword()));
                       },
