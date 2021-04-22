@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -91,7 +92,7 @@ class _PatientMapState extends State<PatientMap> {
   //------------the end --------------------
   @override
   void initState() {
-    checkInternet();
+    //checkInternet();
     super.initState();
   }
 
@@ -156,10 +157,8 @@ class _PatientMapState extends State<PatientMap> {
                   await checkInternet();
                   if (_isInternet) {
                     if (patientlatlng == null) {
-                      setState(() {
-                        _error = AppLocalizations.of(context)
-                            .translate('snack_map_patient');
-                      });
+                      _error = AppLocalizations.of(context)
+                          .translate('snack_map_patient');
                       _showSnackBar();
                     } else {
                       geolocate(patientlatlng);
@@ -168,15 +167,23 @@ class _PatientMapState extends State<PatientMap> {
                         MyVariables.province = province;
                         MyVariables.lat = patlatt;
                         MyVariables.lng = patlngg;
-                        ShowFloatingActionButton.show = true;
-                        Navigator.pushNamed(context, '/patient_result');
                       });
+                      double sum =
+                          pow(MyVariables.geolat - MyVariables.lat, 2) +
+                              pow(MyVariables.geolng - MyVariables.lng, 2);
+                      double result = sqrt(sum);
+                      if (result * 100 < 100) {
+                        setState(() => ShowFloatingActionButton.show = true);
+                        Navigator.pushNamed(context, '/patient_result');
+                      } else {
+                        _error = AppLocalizations.of(context)
+                            .translate('invalid location');
+                        _showSnackBar();
+                      }
                     }
                   } else {
-                    setState(() {
-                      _error = AppLocalizations.of(context)
-                          .translate('snack_connectivity');
-                    });
+                    _error = AppLocalizations.of(context)
+                        .translate('snack_connectivity');
                     _showSnackBar();
                   }
                 },

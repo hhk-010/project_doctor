@@ -1,6 +1,9 @@
 import 'dart:io';
+import 'dart:math';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoder/geocoder.dart';
+import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
@@ -18,6 +21,9 @@ class MyVariables {
   static double lat = 0.0;
   static double lng = 0.0;
   static bool usingMap = false;
+  static String geoLatlng = '';
+  static double geolat = 0.0;
+  static double geolng = 0.0;
 }
 
 class PatientGetLocation extends StatefulWidget {
@@ -62,11 +68,29 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
     }
   }
 
+  getCoordinatesFromAddress(String address) async {
+    try {
+      String latlng;
+      final query = address;
+      var addresses = await Geocoder.local.findAddressesFromQuery(query);
+      var first = addresses.first;
+      latlng = "${first.coordinates}";
+      return latlng;
+    } catch (e) {
+      print(e);
+      return '{0.0,0.0}';
+    }
+  }
+
+  bool isLoading01 = false;
+  bool isLoading02 = false;
   @override
   void initState() {
     checkInternet();
     super.initState();
     MyVariables.usingMap = false;
+    isLoading01 = false;
+    isLoading02 = false;
   }
 
   @override
@@ -309,16 +333,28 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                       ),
                       Container(
                         height: buttonHeight,
-                        width: buttonWidth,
-                        child: RaisedButton(
-                          color: Colors.deepOrange,
+                        width: isLoading01 ? buttonHeight : buttonWidth,
+                        child: LoadingButton(
+                          isloading: isLoading01,
+                          backgroundcolor: Colors.deepOrange,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(80.0)),
-                          onPressed: () {
+                          onpressed: () async {
+                            setState(() => isLoading01 = true);
                             checkInternet();
                             if (!(region == null || region == '')) {
                               if (_isInternet) {
-                                _getCurrentLocation();
+                                MyVariables.geoLatlng =
+                                    await getCoordinatesFromAddress(region);
+                                MyVariables.geolat = double.parse(
+                                    MyVariables.geoLatlng.substring(
+                                        MyVariables.geoLatlng.indexOf('{') + 1,
+                                        MyVariables.geoLatlng.indexOf(',')));
+                                MyVariables.geolng = double.parse(
+                                    MyVariables.geoLatlng.substring(
+                                        MyVariables.geoLatlng.indexOf(',') + 1,
+                                        MyVariables.geoLatlng.indexOf('}')));
+                                await _getCurrentLocation();
                                 if (_currentPosition == null) {
                                   setState(() {
                                     _error = AppLocalizations.of(context)
@@ -334,18 +370,29 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                                     MyVariables.lat = _currentPosition.latitude;
                                     MyVariables.lng =
                                         _currentPosition.longitude;
-                                    MyVariables.usingMap = false;
                                   });
-
-                                  Navigator.pushNamed(
-                                      context, '/patient_result');
+                                  double sum = pow(
+                                          MyVariables.geolat - MyVariables.lat,
+                                          2) +
+                                      pow(MyVariables.geolng - MyVariables.lng,
+                                          2);
+                                  double result = sqrt(sum);
+                                  if (result * 100 < 100) {
+                                    setState(
+                                        () => MyVariables.usingMap = false);
+                                    Navigator.pushNamed(
+                                        context, '/patient_result');
+                                  } else {
+                                    _error = AppLocalizations.of(context)
+                                        .translate('invalid device location');
+                                    _showSnackBar();
+                                  }
                                 }
                               } else {
                                 setState(() {
                                   _error = AppLocalizations.of(context)
                                       .translate('snack_connectivity');
                                 });
-
                                 _showSnackBar();
                               }
                             } else {
@@ -354,6 +401,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                                       .translate('province_validator'));
                               _showSnackBar();
                             }
+                            setState(() => isLoading01 = false);
                           },
                           child: FittedBox(
                             fit: BoxFit.fitWidth,
@@ -378,21 +426,33 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                       ),
                       Container(
                         height: buttonHeight,
-                        width: buttonWidth,
-                        child: RaisedButton.icon(
-                          color: Colors.deepOrange,
+                        width: isLoading02 ? buttonHeight : buttonWidth,
+                        child: LoadingButtonIcon(
+                          isloading: isLoading02,
+                          backgroundcolor: Colors.deepOrange,
                           icon: Icon(
                             Icons.arrow_forward,
                             color: Colors.white,
                           ),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(80.0)),
-                          onPressed: () async {
+                          onpressed: () async {
+                            setState(() => isLoading02 = true);
                             if (!(region == null || region == '')) {
                               setState(() {
                                 MyVariables.usingMap = true;
                                 DatabaseService.province = region;
                               });
+                              MyVariables.geoLatlng =
+                                  await getCoordinatesFromAddress(region);
+                              MyVariables.geolat = double.parse(
+                                  MyVariables.geoLatlng.substring(
+                                      MyVariables.geoLatlng.indexOf('{') + 1,
+                                      MyVariables.geoLatlng.indexOf(',')));
+                              MyVariables.geolng = double.parse(
+                                  MyVariables.geoLatlng.substring(
+                                      MyVariables.geoLatlng.indexOf(',') + 1,
+                                      MyVariables.geoLatlng.indexOf('}')));
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => PatientMap(
                                         speciality: FinalScore.speciality,
@@ -404,6 +464,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                                       .translate('province_validator'));
                               _showSnackBar();
                             }
+                            setState(() => isLoading02 = false);
                           },
                           label: FittedBox(
                             fit: BoxFit.fitWidth,

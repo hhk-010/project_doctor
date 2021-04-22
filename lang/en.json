@@ -237,7 +237,7 @@
     "centeral_region" : "Central Region of Iraq",
     "western_region" : "Western Region of Iraq",
     "correction":"     its tap not tab",
-    "patient_map_title" : "Tap on you location",
+    "patient_map_title" : "Tap on your location",
     "doctor_location" : "Doctor Location on Map",
     "zoom_in_out":"Zoom in/out with your 2 fingers",
     "zoom_in":"Zoom in by ++ the distance between them",
@@ -245,6 +245,8 @@
     "search_warning":"Sorry !",
     "search_error":"Your search history is empty",
     "age_format":"Selected numbers should be from 0 to 9",
+    "invalid location":"Selected province isn't correlated with tapped location",
+    "invalid device location":"Selected province isn't correlated with device location",
 
 
 "body_regions" : "=======================================",
