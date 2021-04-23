@@ -1,4 +1,5 @@
 // import 'package:device_preview/device_preview.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -8,6 +9,7 @@ import 'package:project_doctor/authorization/04_mcqs_new.dart';
 import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/loading.dart';
+import 'package:project_doctor/favorite_list/favorite_list.dart';
 import 'package:project_doctor/pages/Support.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_clinic.dart';
@@ -41,7 +43,7 @@ void main() async {
     ),
   );
 
-  runApp(MyApp());
+  runApp(DevicePreview(builder: (context) => MyApp()));
 
   // runApp(
   //   DevicePreview(enabled: !kReleaseMode, builder: (context) => MyApp()),
@@ -160,6 +162,7 @@ class _MyAppState extends State<MyApp> {
             '/last_searched_profile': (context) => LastSearchedDoctor(),
             '/questions': (context) => QuestionsWidget(),
             '/pre_delete': (context) => PreDeleteUser(),
+            '/favorite list': (context) => FavoriteListView()
           },
         ),
       );

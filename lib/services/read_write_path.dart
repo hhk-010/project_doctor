@@ -60,6 +60,56 @@ class Storage {
     return File('$path/work03.txt');
   }
 
+  Future<File> get _favoriteFile01 async {
+    final path = await _localPath;
+    return File('$path/fav01.txt');
+  }
+
+  Future<File> get _favoriteFile02 async {
+    final path = await _localPath;
+    return File('$path/fav02.txt');
+  }
+
+  Future<File> get _favoriteFile03 async {
+    final path = await _localPath;
+    return File('$path/fav03.txt');
+  }
+
+  Future<File> get _favoriteFile04 async {
+    final path = await _localPath;
+    return File('$path/fav04.txt');
+  }
+
+  Future<File> get _favoriteFile05 async {
+    final path = await _localPath;
+    return File('$path/fav05.txt');
+  }
+
+  Future<File> get _favoriteFile06 async {
+    final path = await _localPath;
+    return File('$path/fav06.txt');
+  }
+
+  Future<File> get _favoriteFile07 async {
+    final path = await _localPath;
+    return File('$path/fav07.txt');
+  }
+
+  Future<File> get _favoriteFile08 async {
+    final path = await _localPath;
+    return File('$path/fav08.txt');
+  }
+
+  Future<File> get _favoriteFile09 async {
+    final path = await _localPath;
+    return File('$path/fav09.txt');
+  }
+
+  Future<File> get _favoriteFile10 async {
+    final path = await _localPath;
+    return File('$path/fav10.txt');
+  }
+
   //-----------read functions------------
   Future<String> readName() async {
     try {
@@ -202,6 +252,146 @@ class Storage {
     }
   }
 
+  Future<String> readFavorite01() async {
+    try {
+      final file = await _favoriteFile01;
+
+      // Read the file.
+      String value = await file.readAsString();
+
+      return value;
+    } catch (e) {
+      // If encountering an error, return 0.
+      return '';
+    }
+  }
+
+  Future<String> readFavorite02() async {
+    try {
+      final file = await _favoriteFile02;
+
+      // Read the file.
+      String value = await file.readAsString();
+
+      return value;
+    } catch (e) {
+      // If encountering an error, return 0.
+      return '';
+    }
+  }
+
+  Future<String> readFavorite03() async {
+    try {
+      final file = await _favoriteFile03;
+
+      // Read the file.
+      String value = await file.readAsString();
+
+      return value;
+    } catch (e) {
+      // If encountering an error, return 0.
+      return '';
+    }
+  }
+
+  Future<String> readFavorite04() async {
+    try {
+      final file = await _favoriteFile04;
+
+      // Read the file.
+      String value = await file.readAsString();
+
+      return value;
+    } catch (e) {
+      // If encountering an error, return 0.
+      return '';
+    }
+  }
+
+  Future<String> readFavorite05() async {
+    try {
+      final file = await _favoriteFile05;
+
+      // Read the file.
+      String value = await file.readAsString();
+
+      return value;
+    } catch (e) {
+      // If encountering an error, return 0.
+      return '';
+    }
+  }
+
+  Future<String> readFavorite06() async {
+    try {
+      final file = await _favoriteFile06;
+
+      // Read the file.
+      String value = await file.readAsString();
+
+      return value;
+    } catch (e) {
+      // If encountering an error, return 0.
+      return '';
+    }
+  }
+
+  Future<String> readFavorite07() async {
+    try {
+      final file = await _favoriteFile07;
+
+      // Read the file.
+      String value = await file.readAsString();
+
+      return value;
+    } catch (e) {
+      // If encountering an error, return 0.
+      return '';
+    }
+  }
+
+  Future<String> readFavorite08() async {
+    try {
+      final file = await _favoriteFile08;
+
+      // Read the file.
+      String value = await file.readAsString();
+
+      return value;
+    } catch (e) {
+      // If encountering an error, return 0.
+      return '';
+    }
+  }
+
+  Future<String> readFavorite09() async {
+    try {
+      final file = await _favoriteFile09;
+
+      // Read the file.
+      String value = await file.readAsString();
+
+      return value;
+    } catch (e) {
+      // If encountering an error, return 0.
+      return '';
+    }
+  }
+
+  Future<String> readFavorite10() async {
+    try {
+      final file = await _favoriteFile10;
+
+      // Read the file.
+      String value = await file.readAsString();
+
+      return value;
+    } catch (e) {
+      // If encountering an error, return 0.
+      return '';
+    }
+  }
+
   //------------writing the data----------
   Future<File> writeName(String name) async {
     final file = await _nameFile;
@@ -276,4 +466,73 @@ class Storage {
 
   ///-------------------------------------
 
+  Future<File> writeFavorite01(String value) async {
+    final file = await _favoriteFile01;
+
+    // Write the file.
+    return file.writeAsString(value);
+  }
+
+  Future<File> writeFavorite02(String value) async {
+    final file = await _favoriteFile02;
+
+    // Write the file.
+    return file.writeAsString(value);
+  }
+
+  Future<File> writeFavorite03(String value) async {
+    final file = await _favoriteFile03;
+
+    // Write the file.
+    return file.writeAsString(value);
+  }
+
+  Future<File> writeFavorite04(String value) async {
+    final file = await _favoriteFile04;
+
+    // Write the file.
+    return file.writeAsString(value);
+  }
+
+  Future<File> writeFavorite05(String value) async {
+    final file = await _favoriteFile05;
+
+    // Write the file.
+    return file.writeAsString(value);
+  }
+
+  Future<File> writeFavorite06(String value) async {
+    final file = await _favoriteFile06;
+
+    // Write the file.
+    return file.writeAsString(value);
+  }
+
+  Future<File> writeFavorite07(String value) async {
+    final file = await _favoriteFile07;
+
+    // Write the file.
+    return file.writeAsString(value);
+  }
+
+  Future<File> writeFavorite08(String value) async {
+    final file = await _favoriteFile08;
+
+    // Write the file.
+    return file.writeAsString(value);
+  }
+
+  Future<File> writeFavorite09(String value) async {
+    final file = await _favoriteFile09;
+
+    // Write the file.
+    return file.writeAsString(value);
+  }
+
+  Future<File> writeFavorite10(String value) async {
+    final file = await _favoriteFile10;
+
+    // Write the file.
+    return file.writeAsString(value);
+  }
 }

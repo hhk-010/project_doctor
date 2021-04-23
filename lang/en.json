@@ -247,6 +247,8 @@
     "age_format":"Selected numbers should be from 0 to 9",
     "invalid location":"Selected province isn't correlated with tapped location",
     "invalid device location":"Selected province isn't correlated with device location",
+    "added previously":"This doctor's been added to favorite list previously",
+    "added successfully":"This doctor's added to the favorite list successfully",
 
 
 "body_regions" : "=======================================",
@@ -588,6 +590,11 @@
     "breast discharge":"Breast discharge",
     "breast lump":"Breast lump",
     "breast skin lesion":"Breast skin lesion",
-    "other breast problems":"Other breast problems"
+    "other breast problems":"Other breast problems",
+
+
+    "favorite list page":"===========================",
+    "preferred":"Favorite List",
+    "empty list":"Sorry , search list is empty ..."
 
 }
