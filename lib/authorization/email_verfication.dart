@@ -316,7 +316,6 @@ class _EmailVerificationState extends State<EmailVerification> {
                       if (_isInternet) {
                         setState(() => isLoading = true);
                         if (FirebaseAuth.instance.currentUser.emailVerified) {
-                          print(_province);
                           await DatabaseService(
                                   uid: FirebaseAuth.instance.currentUser.uid)
                               .updateUserData(

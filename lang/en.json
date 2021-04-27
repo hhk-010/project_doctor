@@ -595,6 +595,26 @@
 
     "favorite list page":"===========================",
     "preferred":"Favorite List",
-    "empty list":"Sorry , search list is empty ..."
+    "empty list":"Sorry , search list is empty ...",
 
+    "new search page":"===========================",
+    "new search":"New Search",
+    "governorate":"Province",
+    "name search":"Search by name",
+    "speciality search":"Search by speciality",
+    "enter name":"Enter doctor's name",
+    "enter speciality":"Enter doctor's speciality",
+    "name validator":"Please , enter doctor's name",
+    "speciality validator":"Please , enter doctor's speciality",
+    "select province":"Please , select a province",
+    "enter a name or speciality":"Please , enter doctor's name or a medical specialization",
+
+
+
+    "search result list page":"==================================",
+    "search result":"Search Result",
+
+
+    "search result page":"===============================",
+    "doctor info":"Doctor's Information"
 }

@@ -156,22 +156,6 @@ class _DoctorFormState extends State<DoctorForm> {
       ],
     };
     final province = {
-      /*"2": [
-        'Northern Region',
-        AppLocalizations.of(context).translate("Northern Region"),
-      ],
-      "3": [
-        'Southern Region',
-        AppLocalizations.of(context).translate("Southern Region"),
-      ],
-      "4": [
-        'Western Region',
-        AppLocalizations.of(context).translate("Western Region"),
-      ],
-      "5": [
-        'Middle Region',
-        AppLocalizations.of(context).translate("Middle Region"),
-      ],*/
       "1": [
         "Erbil",
         AppLocalizations.of(context).translate("Erbil"),
@@ -404,7 +388,6 @@ class _DoctorFormState extends State<DoctorForm> {
                           : null,
                       onChanged: (val) => setState(() {
                         currentSpeciality = val;
-                        DatabaseService.province = val;
                       }),
                     ),
                     Spacer(),
@@ -522,6 +505,7 @@ class _DoctorFormState extends State<DoctorForm> {
                       onChanged: (val) => setState(() {
                         currentProvince = val;
                         DatabaseService.validationProvince = val;
+                        DatabaseService.province = val;
                       }),
                     ),
                     Spacer(

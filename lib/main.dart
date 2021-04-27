@@ -10,6 +10,9 @@ import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/favorite_list/favorite_list.dart';
+import 'package:project_doctor/favorite_list/result_view.dart';
+import 'package:project_doctor/new_search/new_search.dart';
+import 'package:project_doctor/new_search/search_list.dart';
 import 'package:project_doctor/pages/Support.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_clinic.dart';
@@ -162,7 +165,10 @@ class _MyAppState extends State<MyApp> {
             '/last_searched_profile': (context) => LastSearchedDoctor(),
             '/questions': (context) => QuestionsWidget(),
             '/pre_delete': (context) => PreDeleteUser(),
-            '/favorite list': (context) => FavoriteListView()
+            '/favorite list': (context) => FavoriteListView(),
+            '/new search': (context) => NewSearch(),
+            '/search listview': (context) => SearchListView(),
+            '/search resultview': (context) => SearchResultView(),
           },
         ),
       );

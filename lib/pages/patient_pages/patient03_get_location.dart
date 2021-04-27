@@ -453,7 +453,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                                   MyVariables.geoLatlng.substring(
                                       MyVariables.geoLatlng.indexOf(',') + 1,
                                       MyVariables.geoLatlng.indexOf('}')));
-                              print(MyVariables.geoLatlng);
+
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => PatientMap(
                                         speciality: FinalScore.speciality,

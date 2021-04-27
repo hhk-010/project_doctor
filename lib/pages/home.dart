@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:project_doctor/favorite_list/favorite_list.dart';
 import 'package:project_doctor/main.dart';
+import 'package:project_doctor/new_search/new_search.dart';
 import 'package:project_doctor/pages/last_searched/Profile.dart';
 import 'package:project_doctor/pages/last_searched/read_write_path.dart';
 import 'package:project_doctor/services/app_localizations.dart';
@@ -160,7 +161,7 @@ class _HomeState extends State<Home> {
               //Navigator.pushNamed(context, '/phone');
               //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LastSearchedDoctor()));
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => FavoriteListView()));
+                  MaterialPageRoute(builder: (context) => NewSearch()));
             },
             label: Text(
                 AppLocalizations.of(context).translate('last_searched_doctor'),

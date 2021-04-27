@@ -729,91 +729,66 @@ class FavoriteTile extends StatefulWidget {
 }
 
 class _FavoriteTileState extends State<FavoriteTile> {
+  String name = '';
+  String speciality = '';
   String province = '';
   String district = '';
   String phoneNumber = '';
   String lat = '';
   String lng = '';
+  String workDays01 = '';
+  String workDays02 = '';
+  String workDays03 = '';
 
-  /* Future<File> _writeLastEstate(value) {
-    setState(() => estate = value);
-    return widget.storage.writeLastEstate(estate);
+  Future<File> _writeName(value) {
+    setState(() => name = value);
+    return widget.storage.writeName(name);
   }
 
-  Future<File> _writeLastOffer(value) {
-    setState(() => offer = value);
-    return widget.storage.writeLastOffer(offer);
+  Future<File> _writeSpeciality(value) {
+    setState(() => speciality = value);
+    return widget.storage.writeSpeciality(speciality);
   }
 
-  Future<File> _writeLastArea(value) {
-    setState(() => area = value);
-    return widget.storage.writeLastArea(area);
-  }
-
-  Future<File> _writeLastLength(value) {
-    setState(() => length = value);
-    return widget.storage.writeLastLength(length);
-  }
-
-  Future<File> _writeLastWidth(value) {
-    setState(() => width = value);
-    return widget.storage.writeLastWidth(width);
-  }
-
-  Future<File> _writeLastProvince(value) {
-    setState(() => province = value);
-    return widget.storage.writeLastProvince(province);
-  }
-
-  Future<File> _writeLastDistrict(value) {
+  Future<File> _writeAddress(value) {
     setState(() => district = value);
-    return widget.storage.writeLastDistrict(district);
+    return widget.storage.writeAddress(district);
   }
 
-  Future<File> _writeLastPhoneNumber(value) {
+  Future<File> _writeProvince(value) {
+    setState(() => province = value);
+    return widget.storage.writeProvince(province);
+  }
+
+  Future<File> _writePhoneNumber(value) {
     setState(() => phoneNumber = value);
-    return widget.storage.writeLastPhoneNumber(phoneNumber);
+    return widget.storage.writeNumber(phoneNumber);
   }
 
-  Future<File> _writeLastLat(value) {
+  Future<File> _writeLat(value) {
     setState(() => lat = value);
-    return widget.storage.writeLastLat(lat);
+    return widget.storage.writeLat(lat);
   }
 
-  Future<File> _writeLastLng(value) {
+  Future<File> _writeLng(value) {
     setState(() => lng = value);
-    return widget.storage.writeLastLng(lng);
+    return widget.storage.writeLng(lng);
   }
 
-  Future<File> _writeLastRoom(value) {
-    setState(() => room = value);
-    return widget.storage.writeLastRoom(room);
+  Future<File> _writeworkDays01(value) {
+    setState(() => workDays01 = value);
+    return widget.storage.writeWork01(workDays01);
   }
 
-  Future<File> _writeLastFloor(value) {
-    setState(() => floor = value);
-    return widget.storage.writeLastFloor(floor);
+  Future<File> _writeWorkDays02(value) {
+    setState(() => workDays02 = value);
+    return widget.storage.writeWork02(workDays02);
   }
 
-  Future<File> _writeLastApartment(value) {
-    setState(() => apartment = value);
-    return widget.storage.writeLastApartment(apartment);
+  Future<File> _writeWorkDays03(value) {
+    setState(() => workDays03 = value);
+    return widget.storage.writeWork03(workDays03);
   }
-
-  Future<File> _writeLastDate(value) {
-    setState(() => date = value);
-    return widget.storage.writeLastDate(date);
-  }
-
-  Future<File> _writeLastPrice(value) {
-    setState(() => price = value);
-    return widget.storage.writeLastPrice(price);
-  }
-
-  Future<File> _writeLastUrls(value) {
-    setState(() => urls = value);
-    return widget.storage.writeLastUrls(urls);
-  } */
 
   @override
   Widget build(BuildContext context) {
@@ -878,7 +853,9 @@ class _FavoriteTileState extends State<FavoriteTile> {
                       .translate(widget.favoriteList.speciality),
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, '/search resultview');
+                },
               ),
             ),
     );

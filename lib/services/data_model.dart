@@ -93,3 +93,50 @@ class FavoriteListData {
       this.lat,
       this.lng});
 }
+
+class NewSearchData {
+  static String province = '';
+  static String Name = '';
+  static String speciality = '';
+  static bool nameSelected = false;
+  static bool specialitySelected = false;
+}
+
+class NewSearchListData {
+  var id;
+  final String name;
+  final String address;
+  final String speciality;
+  final String province;
+  final String phoneNumber;
+  final List workDays01;
+  final List workDays02;
+  final List workDays03;
+  final double lat;
+  final double lng;
+  NewSearchListData(
+      {this.id,
+      this.name,
+      this.address,
+      this.speciality,
+      this.province,
+      this.phoneNumber,
+      this.workDays01,
+      this.workDays02,
+      this.workDays03,
+      this.lat,
+      this.lng});
+}
+
+class SearchResultData {
+  static String name = '';
+  static String speciality = '';
+  static String address = '';
+  static String province = '';
+  static String phoneNumber = '';
+  static double lat = 0.0;
+  static double lng = 0.0;
+  static List workDays01 = [];
+  static List workDays02 = [];
+  static List workDays03 = [];
+}

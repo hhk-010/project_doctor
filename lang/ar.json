@@ -592,6 +592,27 @@
 
     "favorite list page":"===========================",
     "preferred":"المفضلة",
-    "empty list":"عذرا , القائمة المفضلة خالية ..."
+    "empty list":"عذرا , القائمة المفضلة خالية ...",
+
+    "new search page":"===========================",
+    "new search":"بحث جديد",
+    "governorate":"المحافظة",
+    "name search":"البحث حسب الاسم",
+    "speciality search":"البحث حسب الاختصاص",
+    "enter name":"ادخل اسم الطبيب",
+    "enter speciality":"ادخل الاختصاص الطبي" , 
+    "name validator":"ادخل اسم الطبيب لطفا",
+    "speciality validator":"ادخل الاختصاص الطبي لطفا",
+    "select province":"حدد المحافظة لطفا",
+    "enter a name or speciality":"ادخل اسم الطبيب او الاختصاص الطبي لطفا",
+
+
+
+    "search result list page":"==================================",
+    "search result":"نتيجة البحث",
+
+
+    "search result page":"===============================",
+    "doctor info":"معلومات الطبيب"
 
 }
