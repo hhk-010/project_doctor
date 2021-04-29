@@ -9,7 +9,10 @@ import 'package:project_doctor/authorization/04_mcqs_new.dart';
 import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/loading.dart';
+import 'package:project_doctor/favorite_list/doctor_location_map.dart';
 import 'package:project_doctor/favorite_list/favorite_list.dart';
+import 'package:project_doctor/favorite_list/patient_location.dart';
+import 'package:project_doctor/favorite_list/patient_map.dart';
 import 'package:project_doctor/favorite_list/result_view.dart';
 import 'package:project_doctor/new_search/new_search.dart';
 import 'package:project_doctor/new_search/search_list.dart';
@@ -169,6 +172,9 @@ class _MyAppState extends State<MyApp> {
             '/new search': (context) => NewSearch(),
             '/search listview': (context) => SearchListView(),
             '/search resultview': (context) => SearchResultView(),
+            '/patient searchmap': (context) => PatientSearchmap(),
+            '/patient location': (context) => PatientLocation(),
+            '/doctor location map': (context) => DoctorLocationmap(),
           },
         ),
       );

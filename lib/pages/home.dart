@@ -5,10 +5,10 @@ import 'package:flutter/rendering.dart';
 import 'package:project_doctor/favorite_list/favorite_list.dart';
 import 'package:project_doctor/main.dart';
 import 'package:project_doctor/new_search/new_search.dart';
-import 'package:project_doctor/pages/last_searched/Profile.dart';
 import 'package:project_doctor/pages/last_searched/read_write_path.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/language.dart';
+import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
@@ -161,7 +161,7 @@ class _HomeState extends State<Home> {
               //Navigator.pushNamed(context, '/phone');
               //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LastSearchedDoctor()));
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => NewSearch()));
+                  MaterialPageRoute(builder: (context) => FavoriteListView()));
             },
             label: Text(
                 AppLocalizations.of(context).translate('last_searched_doctor'),

@@ -616,5 +616,11 @@
 
 
     "search result page":"===============================",
-    "doctor info":"Doctor's Information"
+    "doctor info":"Doctor's Information",
+    "removed successfully":"Doctor's been removed from favorite list successfully",
+
+
+    "patient location page":"===========================",
+    "your location":"Your Location"
+    
 }

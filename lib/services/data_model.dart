@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class UserID {
   final String uid;
 
@@ -129,6 +131,7 @@ class NewSearchListData {
 }
 
 class SearchResultData {
+  static var id;
   static String name = '';
   static String speciality = '';
   static String address = '';
@@ -137,6 +140,22 @@ class SearchResultData {
   static double lat = 0.0;
   static double lng = 0.0;
   static List workDays01 = [];
-  static List workDays02 = [];
-  static List workDays03 = [];
+  static String firstDay = '';
+  static String firstTime = '';
+  static String secondDay = '';
+  static String secondTime = '';
+  static String patientProvince;
+  static double patientLat = 0.0;
+  static double patientLng = 0.0;
+  static String geoLatlng = '';
+  static double geoLat = 0.0;
+  static double geoLng = 0.0;
+  static double distance = 0.0;
+  getDistance(
+      double patientLat, double patientLng, double drLat, double drLng) {
+    double sum = pow(patientLat - drLat, 2) + pow(patientLng - drLng, 2);
+    double result = sqrt(sum);
+    result = result * 100;
+    return result;
+  }
 }

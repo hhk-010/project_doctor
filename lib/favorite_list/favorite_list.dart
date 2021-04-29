@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -722,6 +723,7 @@ class _FavoriteListTileState extends State<FavoriteListTile> {
 class FavoriteTile extends StatefulWidget {
   final Storage storage = Storage();
   final FavoriteListData favoriteList;
+  static bool favoriteListSelected = false;
   FavoriteTile({this.favoriteList});
   //static bool isSelected = false;
   @override
@@ -739,6 +741,32 @@ class _FavoriteTileState extends State<FavoriteTile> {
   String workDays01 = '';
   String workDays02 = '';
   String workDays03 = '';
+
+  List workDays1 = [];
+  List workDays2 = [];
+  List workDays3 = [];
+
+  String _mainfrom = '';
+  String _mainTo = '';
+  String _mainfromTime = '';
+  String _mainfromAmPm = '';
+  String _mainToTime = '';
+  String _mainToAmPm = '';
+  String _mainTime = '';
+
+  String _firstfrom = '';
+  String _firstTo = '';
+  String _firstfromTime = '';
+  String _firstToTime = '';
+  String _firstfromAmPm = '';
+  String _firstToAmPm = '';
+
+  String _secondfrom = '';
+  String _secondTo = '';
+  String _secondfromTime = '';
+  String _secondToTime = '';
+  String _secondfromAmPm = '';
+  String _secondToAmPm = '';
 
   Future<File> _writeName(value) {
     setState(() => name = value);
@@ -854,7 +882,122 @@ class _FavoriteTileState extends State<FavoriteTile> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
-                  Navigator.pushNamed(context, '/search resultview');
+                  setState(() => FavoriteTile.favoriteListSelected = true);
+                  _writeName(widget.favoriteList.name);
+                  _writeAddress(widget.favoriteList.address);
+                  _writeSpeciality(widget.favoriteList.speciality);
+                  _writeProvince(widget.favoriteList.province);
+                  _writePhoneNumber(widget.favoriteList.phoneNumber);
+                  _writeLat(widget.favoriteList.lat.toString());
+                  _writeLng(widget.favoriteList.lng.toString());
+                  _writeworkDays01(json.encode(widget.favoriteList.workDays01));
+                  _writeWorkDays02(json.encode(widget.favoriteList.workDays02));
+                  _writeWorkDays03(json.encode(widget.favoriteList.workDays03));
+                  SearchResultData.id = widget.favoriteList.id;
+                  SearchResultData.name = widget.favoriteList.name;
+                  SearchResultData.speciality = widget.favoriteList.speciality;
+                  SearchResultData.address = widget.favoriteList.address;
+                  SearchResultData.province = widget.favoriteList.province;
+                  SearchResultData.phoneNumber =
+                      widget.favoriteList.phoneNumber;
+                  SearchResultData.lat = widget.favoriteList.lat;
+                  SearchResultData.lng = widget.favoriteList.lng;
+                  workDays1 = widget.favoriteList.workDays01;
+                  workDays2 = widget.favoriteList.workDays02;
+                  workDays3 = widget.favoriteList.workDays03;
+                  SearchResultData.workDays01 = [];
+                  for (String day in workDays1) {
+                    if (day != null) {
+                      if (day.length < 12) {
+                        SearchResultData.workDays01
+                            .add(AppLocalizations.of(context).translate(day));
+                      } else {
+                        _mainfrom = day.substring(
+                            day.indexOf('m') + 2, day.indexOf('t') - 1);
+                        _mainTo =
+                            day.substring(day.indexOf('t') + 3, day.length);
+                        _mainfromTime =
+                            _mainfrom.substring(0, _mainfrom.indexOf(' '));
+                        _mainfromAmPm = AppLocalizations.of(context).translate(
+                            _mainfrom.substring(_mainfrom.indexOf(' ') + 1,
+                                _mainfrom.indexOf('M') + 1));
+                        _mainToTime =
+                            _mainTo.substring(0, _mainTo.indexOf(' '));
+                        _mainToAmPm = AppLocalizations.of(context).translate(
+                            _mainTo.substring(
+                                _mainTo.indexOf(' ') + 1, _mainTo.length));
+                        _mainTime =
+                            AppLocalizations.of(context).translate('from') +
+                                _mainfromTime +
+                                ' ' +
+                                _mainfromAmPm +
+                                ' ' +
+                                AppLocalizations.of(context).translate('to') +
+                                _mainToTime +
+                                ' ' +
+                                _mainToAmPm;
+                        SearchResultData.workDays01.add(_mainTime);
+                      }
+                    }
+                  }
+                  if (workDays2.isNotEmpty && workDays2.length == 2) {
+                    SearchResultData.firstDay =
+                        AppLocalizations.of(context).translate(workDays2[0]);
+                    _firstfrom = workDays2[1].substring(
+                        workDays2[1].indexOf('m') + 2,
+                        workDays2[1].indexOf('t') - 1);
+                    _firstTo = workDays2[1].substring(
+                        workDays2[1].indexOf('t') + 3, workDays2[1].length);
+                    _firstfromTime =
+                        _firstfrom.substring(0, _firstfrom.indexOf(' '));
+                    _firstfromAmPm = AppLocalizations.of(context).translate(
+                        _firstfrom.substring(
+                            _firstfrom.indexOf(' ') + 1, _firstfrom.length));
+                    _firstToTime = _firstTo.substring(0, _firstTo.indexOf(' '));
+                    _firstToAmPm = AppLocalizations.of(context).translate(
+                        _firstTo.substring(
+                            _firstTo.indexOf(' ') + 1, _firstTo.length));
+                    SearchResultData.firstTime =
+                        AppLocalizations.of(context).translate('from') +
+                            _firstfromTime +
+                            ' ' +
+                            _firstfromAmPm +
+                            ' ' +
+                            AppLocalizations.of(context).translate('to') +
+                            _firstToTime +
+                            ' ' +
+                            _firstToAmPm;
+                  }
+                  if (workDays3.isNotEmpty && workDays3.length == 2) {
+                    SearchResultData.secondDay =
+                        AppLocalizations.of(context).translate(workDays3[0]);
+                    _secondfrom = workDays3[1].substring(
+                        workDays3[1].indexOf('m') + 2,
+                        workDays3[1].indexOf('t') - 1);
+                    _secondTo = workDays3[1].substring(
+                        workDays3[1].indexOf('t') + 3, workDays3[1].length);
+                    _secondfromTime =
+                        _secondfrom.substring(0, _secondfrom.indexOf(' '));
+                    _secondfromAmPm = AppLocalizations.of(context).translate(
+                        _secondfrom.substring(
+                            _firstfrom.indexOf(' ') + 1, _firstfrom.length));
+                    _secondToTime =
+                        _secondTo.substring(0, _secondTo.indexOf(' '));
+                    _secondToAmPm = AppLocalizations.of(context).translate(
+                        _secondTo.substring(
+                            _secondTo.indexOf(' ') + 1, _secondTo.length));
+                    SearchResultData.secondTime =
+                        AppLocalizations.of(context).translate('from') +
+                            _secondfromTime +
+                            ' ' +
+                            _secondfromAmPm +
+                            ' ' +
+                            AppLocalizations.of(context).translate('to') +
+                            _secondToTime +
+                            ' ' +
+                            _secondToAmPm;
+                  }
+                  Navigator.pushNamed(context, '/patient location');
                 },
               ),
             ),

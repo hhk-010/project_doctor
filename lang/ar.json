@@ -613,6 +613,10 @@
 
 
     "search result page":"===============================",
-    "doctor info":"معلومات الطبيب"
+    "doctor info":"معلومات الطبيب",
+    "removed successfully":"تمت الازالة من المفضلة بنجاح",
+
+    "patient location page":"===========================",
+    "your location":"تحديد الموقع"
 
 }

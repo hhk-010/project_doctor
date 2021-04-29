@@ -28,18 +28,6 @@ class PatientResult extends StatefulWidget {
 }
 
 class _PatientResultState extends State<PatientResult> {
-  /* String favorite01 = '';
-  String favorite02 = '';
-  String favorite03 = '';
-  String favorite04 = '';
-  String favorite05 = '';
-  String favorite06 = '';
-  String favorite07 = '';
-  String favorite08 = '';
-  String favorite09 = '';
-  String favorite10 = '';
-  List favoriteIDs = [];*/
-
   String _error = '';
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {

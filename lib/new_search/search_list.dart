@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:project_doctor/constants/device_size.dart';
+import 'package:project_doctor/favorite_list/favorite_list.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
@@ -329,6 +329,7 @@ class _SearchListTileState extends State<SearchListTile> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
+                  setState(() => FavoriteTile.favoriteListSelected = false);
                   _writeName(widget.searchResultList.name);
                   _writeAddress(widget.searchResultList.address);
                   _writeSpeciality(widget.searchResultList.speciality);
@@ -342,6 +343,7 @@ class _SearchListTileState extends State<SearchListTile> {
                       json.encode(widget.searchResultList.workDays02));
                   _writeWorkDays03(
                       json.encode(widget.searchResultList.workDays03));
+                  SearchResultData.id = widget.searchResultList.id;
                   SearchResultData.name = widget.searchResultList.name;
                   SearchResultData.speciality =
                       widget.searchResultList.speciality;
@@ -447,7 +449,7 @@ class _SearchListTileState extends State<SearchListTile> {
                             ' ' +
                             _secondToAmPm;
                   }
-                  Navigator.pushNamed(context, '/search resultview');
+                  Navigator.pushNamed(context, '/patient location');
                 },
               ),
             ),
