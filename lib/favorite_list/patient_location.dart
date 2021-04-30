@@ -367,6 +367,8 @@ class _PatientLocationState extends State<PatientLocation> {
                                           SearchResultData.patientLng,
                                           SearchResultData.lat,
                                           SearchResultData.lng);
+                                  setState(() =>
+                                      SearchResultData.mapSelected = false);
                                   Navigator.pushNamed(
                                       context, '/search resultview');
                                 } else {
@@ -441,7 +443,7 @@ class _PatientLocationState extends State<PatientLocation> {
                                 SearchResultData.geoLatlng.substring(
                                     SearchResultData.geoLatlng.indexOf(',') + 1,
                                     SearchResultData.geoLatlng.indexOf('}')));
-
+                            setState(() => SearchResultData.mapSelected = true);
                             Navigator.pushNamed(context, '/patient searchmap');
                           } else {
                             setState(() => _error = AppLocalizations.of(context)

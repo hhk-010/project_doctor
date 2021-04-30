@@ -2,10 +2,13 @@ import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:project_doctor/constants/device_size.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
+import 'package:project_doctor/pages/patient_pages/patient_sidebar.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/pages/patient_pages/patient02_risk_factors.dart';
+import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
@@ -79,6 +82,15 @@ class _PatientComplainState extends State<PatientComplain> {
   var regionSelected = TextEditingController();
   List radioGender = ["Male", "Female"];
   String radioSelect = '';
+
+  @override
+  void initState() {
+    super.initState();
+    SelectedPage.complaintSelected = true;
+    SelectedPage.favoriteSelected = false;
+    SelectedPage.lastSearchSelected = false;
+    SelectedPage.newSearchSelected = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -1651,6 +1663,10 @@ class _PatientComplainState extends State<PatientComplain> {
             centerTitle: true,
             elevation: 0,
           ),
+        ),
+        drawer: Container(
+          width: getDeviceTypeI(context, 180, 290, 520, 600),
+          child: PatientSidebar(),
         ),
         floatingActionButton: Padding(
           padding: EdgeInsets.only(bottom: floatingActionHeight),

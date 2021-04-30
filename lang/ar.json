@@ -617,6 +617,12 @@
     "removed successfully":"تمت الازالة من المفضلة بنجاح",
 
     "patient location page":"===========================",
-    "your location":"تحديد الموقع"
+    "your location":"تحديد الموقع",
+
+
+    "last search page":"===============================",
+    "last search":"اخر بحث",
+    "name/speciality search":"بحث عن اسم او اختصاص",
+    "back":"رجوع"
 
 }

@@ -158,4 +158,13 @@ class SearchResultData {
     result = result * 100;
     return result;
   }
+
+  static bool mapSelected;
+}
+
+class SelectedPage {
+  static bool complaintSelected = false;
+  static bool lastSearchSelected = false;
+  static bool favoriteSelected = false;
+  static bool newSearchSelected = false;
 }

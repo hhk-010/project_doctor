@@ -621,6 +621,12 @@
 
 
     "patient location page":"===========================",
-    "your location":"Your Location"
+    "your location":"Your Location",
+
+
+    "last search page":"===============================",
+    "last search":"Last Search",
+    "name/speciality search":"Name/Speciality Search",
+    "back":"Back"
     
 }

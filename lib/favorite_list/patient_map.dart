@@ -145,7 +145,7 @@ class _PatientSearchmapState extends State<PatientSearchmap> {
                                 SearchResultData.patientLng,
                             2);
                     double result = sqrt(sum);
-                    if (result * 100 < 150) {
+                    if (result * 100 < 150000) {
                       SearchResultData.distance = await SearchResultData()
                           .getDistance(
                               SearchResultData.patientLat,

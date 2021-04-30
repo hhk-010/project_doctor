@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/constants/device_size.dart';
+import 'package:project_doctor/favorite_list/favorite_list.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/data_model.dart';
 
@@ -71,7 +72,15 @@ class _DoctorLocationmapState extends State<DoctorLocationmap> {
               ),
               onPressed: () {
                 int count = 0;
-                Navigator.popUntil(context, (route) => count++ == 1);
+                Navigator.popUntil(
+                    context,
+                    (route) => FavoriteTile.favoriteListSelected
+                        ? SearchResultData.mapSelected
+                            ? count++ == 4
+                            : count++ == 3
+                        : SearchResultData.mapSelected
+                            ? count++ == 5
+                            : count++ == 4);
               },
             ),
           ),

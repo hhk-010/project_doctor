@@ -142,6 +142,26 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
       "17": ["Nineveh", AppLocalizations.of(context).translate("Nineveh")],
       "18": ["Wasit", AppLocalizations.of(context).translate("Wasit")],
     };
+    final district = {
+      "Erbil": "ازادي",
+      "Al Anbar": "الرمادي",
+      "Basra": "الزبير",
+      "Al Qadisiyyah": "",
+      "Muthanna": "",
+      "Najaf": "حي السلام",
+      "Babil": "الحلة",
+      "Baghdad": "الحارثية",
+      "Duhok": "زاخو",
+      "Diyala": "بعقوبة",
+      "Dhi Qar": "الشطرة",
+      "Sulaymaniyah": "",
+      "Saladin": "سامراء",
+      "Karbala": "",
+      "Kirkuk": "بنجة علي",
+      "Maysan": "العمارة",
+      "Nineveh": "الموصل",
+      "Wasit": "الكوت"
+    };
     return ResponsiveBuilder(builder: (context, sizingInformation) {
       double appBarTitle;
       double appBarHeight;
@@ -345,7 +365,8 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                             if (!(region == null || region == '')) {
                               if (_isInternet) {
                                 MyVariables.geoLatlng =
-                                    await getCoordinatesFromAddress(region);
+                                    await getCoordinatesFromAddress(
+                                        region + ',' + district[region]);
                                 MyVariables.geolat = double.parse(
                                     MyVariables.geoLatlng.substring(
                                         MyVariables.geoLatlng.indexOf('{') + 1,

@@ -5,6 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:project_doctor/constants/device_size.dart';
+import 'package:project_doctor/pages/last_searched/read_write_path.dart';
+import 'package:project_doctor/pages/patient_pages/patient_sidebar.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
@@ -21,6 +23,10 @@ class _FavoriteListViewState extends State<FavoriteListView> {
   @override
   void initState() {
     super.initState();
+    SelectedPage.complaintSelected = false;
+    SelectedPage.favoriteSelected = true;
+    SelectedPage.lastSearchSelected = false;
+    SelectedPage.newSearchSelected = false;
     widget.storage
         .readFavorite01()
         .then((value) => setState(() => Favorite.favorite01 = value));
@@ -91,6 +97,10 @@ class _FavoriteListViewState extends State<FavoriteListView> {
               color: Colors.white,
             ),
           ),
+        ),
+        drawer: Container(
+          width: getDeviceTypeI(context, 180, 290, 520, 600),
+          child: PatientSidebar(),
         ),
         body: Favorite01(),
       ),
@@ -721,7 +731,7 @@ class _FavoriteListTileState extends State<FavoriteListTile> {
 }
 
 class FavoriteTile extends StatefulWidget {
-  final Storage storage = Storage();
+  final LastSearchedStorage storage = LastSearchedStorage();
   final FavoriteListData favoriteList;
   static bool favoriteListSelected = false;
   FavoriteTile({this.favoriteList});

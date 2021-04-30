@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:project_doctor/favorite_list/favorite_list.dart';
 import 'package:project_doctor/main.dart';
 import 'package:project_doctor/new_search/new_search.dart';
+import 'package:project_doctor/pages/last_searched/Profile.dart';
 import 'package:project_doctor/pages/last_searched/read_write_path.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/language.dart';
@@ -131,7 +132,7 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        floatingActionButton:
+        /*floatingActionButton:
             // ShowFloatingActionButton.show
             //     ?
             Container(
@@ -160,8 +161,10 @@ class _HomeState extends State<Home> {
             onPressed: () {
               //Navigator.pushNamed(context, '/phone');
               //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LastSearchedDoctor()));
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => FavoriteListView()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => LastSearchedDoctor()));
             },
             label: Text(
                 AppLocalizations.of(context).translate('last_searched_doctor'),
@@ -170,7 +173,7 @@ class _HomeState extends State<Home> {
                     fontSize: floatingButtonTitle,
                     fontWeight: FontWeight.bold)),
           ),
-        ),
+        ),*/
         // : null,
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: SafeArea(

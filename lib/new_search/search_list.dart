@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:project_doctor/constants/device_size.dart';
 import 'package:project_doctor/favorite_list/favorite_list.dart';
+import 'package:project_doctor/pages/last_searched/read_write_path.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
@@ -172,7 +173,7 @@ class _ResultListState extends State<ResultList> {
 class SearchListTile extends StatefulWidget {
   final NewSearchListData searchResultList;
   SearchListTile({this.searchResultList});
-  final Storage storage = Storage();
+  final LastSearchedStorage storage = LastSearchedStorage();
   @override
   _SearchListTileState createState() => _SearchListTileState();
 }

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/constants/device_size.dart';
 import 'package:project_doctor/constants/theme.dart';
+import 'package:project_doctor/pages/patient_pages/patient01_complain.dart';
+import 'package:project_doctor/pages/patient_pages/patient_sidebar.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
@@ -55,6 +57,10 @@ class _NewSearchState extends State<NewSearch> {
     NewSearchData.Name = '';
     NewSearchData.speciality = '';
     isLoading = false;
+    SelectedPage.complaintSelected = false;
+    SelectedPage.favoriteSelected = false;
+    SelectedPage.lastSearchSelected = false;
+    SelectedPage.newSearchSelected = true;
   }
 
   @override
@@ -219,6 +225,10 @@ class _NewSearchState extends State<NewSearch> {
             color: Colors.white,
           ),
         ),
+      ),
+      drawer: Container(
+        width: getDeviceTypeI(context, 180, 290, 520, 600),
+        child: PatientSidebar(),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(
