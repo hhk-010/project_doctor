@@ -683,7 +683,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                           ),
                         ),
                       )
-                    : Text('   '),
+                    : Container(),
               ],
             ),
           ),

@@ -172,8 +172,8 @@ class _PatientMapState extends State<PatientMap> {
                           pow(MyVariables.geolat - MyVariables.lat, 2) +
                               pow(MyVariables.geolng - MyVariables.lng, 2);
                       double result = sqrt(sum);
-                      if (result * 100 < 100) {
-                        setState(() => ShowFloatingActionButton.show = true);
+                      if (result * 100 < 150) {
+                        //setState(() => ShowFloatingActionButton.show = true);
                         Navigator.pushNamed(context, '/patient_result');
                       } else {
                         _error = AppLocalizations.of(context)

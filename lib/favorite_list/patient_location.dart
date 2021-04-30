@@ -135,6 +135,26 @@ class _PatientLocationState extends State<PatientLocation> {
       "17": ["Nineveh", AppLocalizations.of(context).translate("Nineveh")],
       "18": ["Wasit", AppLocalizations.of(context).translate("Wasit")],
     };
+    final district = {
+      "Erbil": "ازادي",
+      "Al Anbar": "الرمادي",
+      "Basra": "الزبير",
+      "Al Qadisiyyah": "الديوانية",
+      "Muthanna": "السماوة",
+      "Najaf": "حي السلام",
+      "Babil": "الحلة",
+      "Baghdad": "الحارثية",
+      "Duhok": "زاخو",
+      "Diyala": "بعقوبة",
+      "Dhi Qar": "الشطرة",
+      "Sulaymaniyah": "شورش",
+      "Saladin": "سامراء",
+      "Karbala": "التحدي",
+      "Kirkuk": "بنجة علي",
+      "Maysan": "العمارة",
+      "Nineveh": "الموصل",
+      "Wasit": "الكوت"
+    };
     return Scaffold(
       key: _scaffoldkey,
       backgroundColor: Colors.grey[200],
@@ -325,7 +345,10 @@ class _PatientLocationState extends State<PatientLocation> {
                             if (_isInternet) {
                               SearchResultData.geoLatlng =
                                   await getCoordinatesFromAddress(
-                                      SearchResultData.patientProvince);
+                                      SearchResultData.patientProvince +
+                                          ' , ' +
+                                          district[SearchResultData
+                                              .patientProvince]);
                               SearchResultData.geoLat = double.parse(
                                   SearchResultData.geoLatlng.substring(
                                       SearchResultData.geoLatlng.indexOf('{') +
@@ -433,8 +456,10 @@ class _PatientLocationState extends State<PatientLocation> {
                           if (!(SearchResultData.patientProvince == null ||
                               SearchResultData.patientProvince == '')) {
                             SearchResultData.geoLatlng =
-                                await getCoordinatesFromAddress(
-                                    SearchResultData.patientProvince);
+                                await getCoordinatesFromAddress(SearchResultData
+                                        .patientProvince +
+                                    ' , ' +
+                                    district[SearchResultData.patientProvince]);
                             SearchResultData.geoLat = double.parse(
                                 SearchResultData.geoLatlng.substring(
                                     SearchResultData.geoLatlng.indexOf('{') + 1,
@@ -444,6 +469,7 @@ class _PatientLocationState extends State<PatientLocation> {
                                     SearchResultData.geoLatlng.indexOf(',') + 1,
                                     SearchResultData.geoLatlng.indexOf('}')));
                             setState(() => SearchResultData.mapSelected = true);
+                            print(SearchResultData.geoLatlng);
                             Navigator.pushNamed(context, '/patient searchmap');
                           } else {
                             setState(() => _error = AppLocalizations.of(context)

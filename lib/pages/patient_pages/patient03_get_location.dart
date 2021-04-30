@@ -146,17 +146,17 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
       "Erbil": "ازادي",
       "Al Anbar": "الرمادي",
       "Basra": "الزبير",
-      "Al Qadisiyyah": "",
-      "Muthanna": "",
+      "Al Qadisiyyah": "الديوانية",
+      "Muthanna": "السماوة",
       "Najaf": "حي السلام",
       "Babil": "الحلة",
       "Baghdad": "الحارثية",
       "Duhok": "زاخو",
       "Diyala": "بعقوبة",
       "Dhi Qar": "الشطرة",
-      "Sulaymaniyah": "",
+      "Sulaymaniyah": "شورش",
       "Saladin": "سامراء",
-      "Karbala": "",
+      "Karbala": "التحدي",
       "Kirkuk": "بنجة علي",
       "Maysan": "العمارة",
       "Nineveh": "الموصل",
@@ -465,7 +465,8 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                                 DatabaseService.province = region;
                               });
                               MyVariables.geoLatlng =
-                                  await getCoordinatesFromAddress(region);
+                                  await getCoordinatesFromAddress(
+                                      region + ',' + district[region]);
                               MyVariables.geolat = double.parse(
                                   MyVariables.geoLatlng.substring(
                                       MyVariables.geoLatlng.indexOf('{') + 1,
@@ -474,7 +475,6 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                                   MyVariables.geoLatlng.substring(
                                       MyVariables.geoLatlng.indexOf(',') + 1,
                                       MyVariables.geoLatlng.indexOf('}')));
-
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) => PatientMap(
