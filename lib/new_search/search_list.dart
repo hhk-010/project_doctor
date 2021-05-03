@@ -28,7 +28,7 @@ class _SearchListViewState extends State<SearchListView> {
         backgroundColor: Colors.grey[200],
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(
-            getDeviceType(context, 36, 56, 56, 56),
+            getDeviceTypeI(context, 36, 56, 56, 56),
           ),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
@@ -37,7 +37,7 @@ class _SearchListViewState extends State<SearchListView> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
-                fontSize: getDeviceType(context, 16, 25, 35, 45),
+                fontSize: getDeviceTypeI(context, 16, 25, 35, 45),
               ),
             ),
             centerTitle: true,
@@ -61,7 +61,7 @@ class _ResultListState extends State<ResultList> {
   List newList = [];
   double nameScoreResult = 0;
   getNameScore(String name1) {
-    String name2 = NewSearchData.name;
+    String name2 = NewSearchData.Name;
     List name1list = [];
     List name2list = [];
 
@@ -270,26 +270,26 @@ class _SearchListTileState extends State<SearchListTile> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: getDeviceType(context, 5, 10, 15, 20),
-        vertical: getDeviceType(context, 10, 20, 15, 20),
+        horizontal: getDeviceTypeI(context, 5, 10, 15, 20),
+        vertical: getDeviceTypeI(context, 10, 20, 15, 20),
       ),
       child: widget.searchResultList.name == 'Estate'
           ? widget.searchResultList.speciality == 'O'
               ? Column(
                   children: [
                     SizedBox(
-                      height: getDeviceType(context, 20, 40, 60, 80),
+                      height: getDeviceTypeI(context, 20, 40, 60, 80),
                     ),
                     Center(
                       child: Text(
                         AppLocalizations.of(context).translate('empty list'),
                         style: TextStyle(
-                          fontSize: getDeviceType(context, 12, 15, 30, 30),
+                          fontSize: getDeviceTypeI(context, 12, 15, 30, 30),
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: getDeviceType(context, 20, 40, 60, 80),
+                      height: getDeviceTypeI(context, 20, 40, 60, 80),
                     ),
                     IconButton(
                       onPressed: () {
@@ -310,14 +310,14 @@ class _SearchListTileState extends State<SearchListTile> {
                 )
           : Card(
               margin: EdgeInsets.fromLTRB(
-                getDeviceType(context, 1, 2, 8, 10),
-                getDeviceType(context, 1, 2, 8, 10),
-                getDeviceType(context, 1, 2, 8, 10),
-                getDeviceType(context, 1, 2, 8, 10),
+                getDeviceTypeI(context, 1, 2, 8, 10),
+                getDeviceTypeI(context, 1, 2, 8, 10),
+                getDeviceTypeI(context, 1, 2, 8, 10),
+                getDeviceTypeI(context, 1, 2, 8, 10),
               ),
               child: ListTile(
                 leading: CircleAvatar(
-                  radius: getDeviceType(context, 20, 25, 30, 35),
+                  radius: getDeviceTypeI(context, 20, 25, 30, 35),
                   backgroundColor: Colors.deepOrange,
                 ),
                 title: Text(

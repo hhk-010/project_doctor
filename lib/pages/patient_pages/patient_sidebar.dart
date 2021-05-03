@@ -10,13 +10,13 @@ class PatientSidebar extends StatelessWidget {
       backgroundColor: Colors.grey[300],
       body: Container(
         padding: EdgeInsets.symmetric(
-            vertical: getDeviceType(context, 10, 20, 30, 40),
-            horizontal: getDeviceType(context, 10, 20, 30, 40)),
+            vertical: getDeviceTypeI(context, 10, 20, 30, 40),
+            horizontal: getDeviceTypeI(context, 10, 20, 30, 40)),
         child: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(
-                height: getDeviceType(context, 60, 70, 80, 90),
+                height: getDeviceTypeI(context, 60, 70, 80, 90),
               ),
               TextButton.icon(
                 onPressed: () {
@@ -36,7 +36,7 @@ class PatientSidebar extends StatelessWidget {
                     color: SelectedPage.complaintSelected
                         ? Colors.deepOrange
                         : Colors.black,
-                    fontSize: getDeviceType(context, 12, 16, 23, 25),
+                    fontSize: getDeviceTypeI(context, 12, 16, 23, 25),
                   ),
                 ),
               ),
@@ -62,7 +62,7 @@ class PatientSidebar extends StatelessWidget {
                     color: SelectedPage.newSearchSelected
                         ? Colors.deepOrange
                         : Colors.black,
-                    fontSize: getDeviceType(context, 12, 16, 23, 25),
+                    fontSize: getDeviceTypeI(context, 12, 16, 23, 25),
                   ),
                 ),
               ),
@@ -87,7 +87,7 @@ class PatientSidebar extends StatelessWidget {
                     color: SelectedPage.lastSearchSelected
                         ? Colors.deepOrange
                         : Colors.black,
-                    fontSize: getDeviceType(context, 12, 16, 23, 25),
+                    fontSize: getDeviceTypeI(context, 12, 16, 23, 25),
                   ),
                 ),
               ),
@@ -112,7 +112,7 @@ class PatientSidebar extends StatelessWidget {
                     color: SelectedPage.favoriteSelected
                         ? Colors.deepOrange
                         : Colors.black,
-                    fontSize: getDeviceType(context, 12, 16, 23, 25),
+                    fontSize: getDeviceTypeI(context, 12, 16, 23, 25),
                   ),
                 ),
               ),
@@ -132,7 +132,7 @@ class PatientSidebar extends StatelessWidget {
                   AppLocalizations.of(context).translate('back'),
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: getDeviceType(context, 12, 16, 23, 25),
+                    fontSize: getDeviceTypeI(context, 12, 16, 23, 25),
                   ),
                 ),
               ),

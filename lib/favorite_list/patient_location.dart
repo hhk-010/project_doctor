@@ -160,7 +160,7 @@ class _PatientLocationState extends State<PatientLocation> {
       backgroundColor: Colors.grey[200],
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(
-          getDeviceType(context, 36, 56, 56, 56),
+          getDeviceTypeI(context, 36, 56, 56, 56),
         ),
         child: AppBar(
           backgroundColor: Colors.deepOrange,
@@ -169,7 +169,7 @@ class _PatientLocationState extends State<PatientLocation> {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
-              fontSize: getDeviceType(context, 1, 23, 35, 45),
+              fontSize: getDeviceTypeI(context, 1, 23, 35, 45),
             ),
           ),
           centerTitle: true,
@@ -180,23 +180,23 @@ class _PatientLocationState extends State<PatientLocation> {
       ),
       body: Center(
         child: Container(
-          height: getDeviceType(context, 500, 620, 800, 800),
-          width: getDeviceType(context, 200, 340, 600, 600),
+          height: getDeviceTypeI(context, 500, 620, 800, 800),
+          width: getDeviceTypeI(context, 200, 340, 600, 600),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
                 decoration: boxDecoration,
                 padding: EdgeInsets.symmetric(
-                  vertical: getDeviceType(context, 4, 8, 12, 16),
-                  horizontal: getDeviceType(context, 12, 16, 20, 24),
+                  vertical: getDeviceTypeI(context, 4, 8, 12, 16),
+                  horizontal: getDeviceTypeI(context, 12, 16, 20, 24),
                 ),
                 child: Column(
                   children: [
                     Text(
                       AppLocalizations.of(context).translate('province'),
                       style: TextStyle(
-                          fontSize: getDeviceType(context, 15, 18, 21, 24),
+                          fontSize: getDeviceTypeI(context, 15, 18, 21, 24),
                           fontWeight: FontWeight.bold),
                     ),
                     Divider(
@@ -309,7 +309,7 @@ class _PatientLocationState extends State<PatientLocation> {
                       child: AutoSizeText(
                         AppLocalizations.of(context).translate('get_location'),
                         style: TextStyle(
-                            fontSize: getDeviceType(context, 15, 18, 21, 24),
+                            fontSize: getDeviceTypeI(context, 15, 18, 21, 24),
                             fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                         maxLines: 2,
@@ -328,10 +328,10 @@ class _PatientLocationState extends State<PatientLocation> {
                       height: 10,
                     ),
                     Container(
-                      height: getDeviceType(context, 30, 40, 50, 60),
+                      height: getDeviceTypeI(context, 30, 40, 50, 60),
                       width: isLoading01
-                          ? getDeviceType(context, 30, 40, 50, 60)
-                          : getDeviceType(context, 130, 260, 150, 160),
+                          ? getDeviceTypeI(context, 30, 40, 50, 60)
+                          : getDeviceTypeI(context, 130, 260, 150, 160),
                       child: LoadingButton(
                         isloading: isLoading01,
                         backgroundcolor: Colors.deepOrange,
@@ -422,7 +422,7 @@ class _PatientLocationState extends State<PatientLocation> {
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize:
-                                    getDeviceType(context, 15, 18, 21, 24),
+                                    getDeviceTypeI(context, 15, 18, 21, 24),
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -433,15 +433,15 @@ class _PatientLocationState extends State<PatientLocation> {
                       child: Text(
                         AppLocalizations.of(context).translate('Or'),
                         style: TextStyle(
-                            fontSize: getDeviceType(context, 15, 18, 21, 24),
+                            fontSize: getDeviceTypeI(context, 15, 18, 21, 24),
                             fontWeight: FontWeight.bold),
                       ),
                     ),
                     Container(
-                      height: getDeviceType(context, 30, 40, 50, 60),
+                      height: getDeviceTypeI(context, 30, 40, 50, 60),
                       width: isLoading02
-                          ? getDeviceType(context, 30, 40, 50, 60)
-                          : getDeviceType(context, 130, 260, 150, 160),
+                          ? getDeviceTypeI(context, 30, 40, 50, 60)
+                          : getDeviceTypeI(context, 130, 260, 150, 160),
                       child: LoadingButtonIcon(
                         isloading: isLoading02,
                         backgroundcolor: Colors.deepOrange,
@@ -486,7 +486,7 @@ class _PatientLocationState extends State<PatientLocation> {
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize:
-                                    getDeviceType(context, 15, 18, 21, 24),
+                                    getDeviceTypeI(context, 15, 18, 21, 24),
                                 fontWeight: FontWeight.bold),
                           ),
                         ),

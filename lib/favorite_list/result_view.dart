@@ -111,7 +111,7 @@ class _SearchResultViewState extends State<SearchResultView> {
       backgroundColor: Colors.grey[200],
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(
-          getDeviceType(context, 36, 56, 56, 56),
+          getDeviceTypeI(context, 36, 56, 56, 56),
         ),
         child: AppBar(
           backgroundColor: Colors.deepOrange,
@@ -120,7 +120,7 @@ class _SearchResultViewState extends State<SearchResultView> {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
-              fontSize: getDeviceType(context, 16, 25, 35, 45),
+              fontSize: getDeviceTypeI(context, 16, 25, 35, 45),
             ),
           ),
           centerTitle: true,
@@ -228,18 +228,18 @@ class _SearchResultViewState extends State<SearchResultView> {
       ),
       body: Center(
         child: Container(
-          width: getDeviceType(context, 260, 340, 100, 500),
+          width: getDeviceTypeI(context, 260, 340, 100, 500),
           padding: EdgeInsets.symmetric(
-              vertical: getDeviceType(context, 20, 25, 30, 35),
-              horizontal: getDeviceType(context, 20, 2, 3, 3)),
+              vertical: getDeviceTypeI(context, 20, 25, 30, 35),
+              horizontal: getDeviceTypeI(context, 20, 2, 3, 3)),
           child: ListView(
             children: [
               Container(
                 decoration: boxDecoration,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: getDeviceType(context, 20, 32, 45, 60),
-                    vertical: getDeviceType(context, 10, 16, 20, 24),
+                    horizontal: getDeviceTypeI(context, 20, 32, 45, 60),
+                    vertical: getDeviceTypeI(context, 10, 16, 20, 24),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -248,13 +248,13 @@ class _SearchResultViewState extends State<SearchResultView> {
                       Center(
                         child: CircleAvatar(
                           backgroundColor: Colors.deepOrange,
-                          radius: getDeviceType(context, 40, 50, 60, 75),
+                          radius: getDeviceTypeI(context, 40, 50, 60, 75),
                           backgroundImage:
                               AssetImage('assets/images/doctor.png'),
                         ),
                       ),
                       SizedBox(
-                        height: getDeviceType(context, 10, 20, 30, 40),
+                        height: getDeviceTypeI(context, 10, 20, 30, 40),
                       ),
                       Center(
                         child: FittedBox(
@@ -263,7 +263,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                             SearchResultData.name,
                             style: TextStyle(
                                 fontSize:
-                                    getDeviceType(context, 15, 18, 21, 24),
+                                    getDeviceTypeI(context, 15, 18, 21, 24),
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'noto_arabic'),
                             textAlign: TextAlign.center,
@@ -271,7 +271,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                         ),
                       ),
                       SizedBox(
-                        height: getDeviceType(context, 5, 5, 10, 15),
+                        height: getDeviceTypeI(context, 5, 5, 10, 15),
                       ),
                       Center(
                         child: Text(
@@ -280,13 +280,13 @@ class _SearchResultViewState extends State<SearchResultView> {
                               .translate(SearchResultData.province),
                           //style: _textStyle.copyWith(fontSize: footer),
                           style: TextStyle(
-                              fontSize: getDeviceType(context, 12, 15, 18, 21),
+                              fontSize: getDeviceTypeI(context, 12, 15, 18, 21),
                               fontWeight: FontWeight.bold,
                               fontFamily: 'noto_arabic'),
                         ),
                       ),
                       SizedBox(
-                        height: getDeviceType(context, 5, 5, 10, 15),
+                        height: getDeviceTypeI(context, 5, 5, 10, 15),
                       ),
                       Divider(
                         color: Colors.grey[600],
@@ -295,7 +295,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                         endIndent: 25,
                       ),
                       SizedBox(
-                        height: getDeviceType(context, 5, 5, 10, 15),
+                        height: getDeviceTypeI(context, 5, 5, 10, 15),
                       ),
                       Text(
                         AppLocalizations.of(context).translate('speciality'),
@@ -303,18 +303,18 @@ class _SearchResultViewState extends State<SearchResultView> {
                           //fontSize: footer,
                           color: Colors.indigo,
                           fontWeight: FontWeight.bold,
-                          fontSize: getDeviceType(context, 12, 15, 18, 21),
+                          fontSize: getDeviceTypeI(context, 12, 15, 18, 21),
                           fontFamily: 'noto_arabic',
                         ),
                       ),
                       SizedBox(
-                        height: getDeviceType(context, 2, 2, 10, 10),
+                        height: getDeviceTypeI(context, 2, 2, 10, 10),
                       ),
                       Text(
                         AppLocalizations.of(context)
                             .translate(SearchResultData.speciality),
                         style: TextStyle(
-                          fontSize: getDeviceType(context, 12, 15, 18, 21),
+                          fontSize: getDeviceTypeI(context, 12, 15, 18, 21),
                           fontWeight: FontWeight.bold,
                           fontFamily: 'noto_arabic',
                         ),
@@ -331,12 +331,12 @@ class _SearchResultViewState extends State<SearchResultView> {
                           // fontSize: footer,
                           color: Colors.indigo,
                           fontWeight: FontWeight.bold,
-                          fontSize: getDeviceType(context, 12, 15, 18, 21),
+                          fontSize: getDeviceTypeI(context, 12, 15, 18, 21),
                           fontFamily: 'noto_arabic',
                         ),
                       ),
                       SizedBox(
-                        height: getDeviceType(context, 2, 2, 10, 10),
+                        height: getDeviceTypeI(context, 2, 2, 10, 10),
                       ),
                       GestureDetector(
                         onTap: () => setState(() {
@@ -355,7 +355,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                               SearchResultData.phoneNumber,
                               style: TextStyle(
                                 fontSize:
-                                    getDeviceType(context, 12, 15, 18, 21),
+                                    getDeviceTypeI(context, 12, 15, 18, 21),
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'noto_arabic',
                               ),
@@ -376,17 +376,17 @@ class _SearchResultViewState extends State<SearchResultView> {
                           //fontSize: footer,
                           color: Colors.indigo,
                           fontWeight: FontWeight.bold,
-                          fontSize: getDeviceType(context, 12, 15, 18, 21),
+                          fontSize: getDeviceTypeI(context, 12, 15, 18, 21),
                           fontFamily: 'noto_arabic',
                         ),
                       ),
                       SizedBox(
-                        height: getDeviceType(context, 2, 2, 10, 10),
+                        height: getDeviceTypeI(context, 2, 2, 10, 10),
                       ),
                       Text(
                         SearchResultData.address,
                         style: TextStyle(
-                          fontSize: getDeviceType(context, 12, 15, 18, 21),
+                          fontSize: getDeviceTypeI(context, 12, 15, 18, 21),
                           fontWeight: FontWeight.bold,
                           fontFamily: 'noto_arabic',
                         ),
@@ -403,18 +403,18 @@ class _SearchResultViewState extends State<SearchResultView> {
                           // fontSize: footer,
                           color: Colors.indigo,
                           fontWeight: FontWeight.bold,
-                          fontSize: getDeviceType(context, 12, 15, 18, 21),
+                          fontSize: getDeviceTypeI(context, 12, 15, 18, 21),
                           fontFamily: 'noto_arabic',
                         ),
                       ),
                       SizedBox(
-                        height: getDeviceType(context, 2, 2, 10, 10),
+                        height: getDeviceTypeI(context, 2, 2, 10, 10),
                       ),
                       Text(
                         SearchResultData.workDays01.toString(),
                         //_finalMainDays + '\n' + _mainTime,
                         style: TextStyle(
-                          fontSize: getDeviceType(context, 12, 15, 18, 21),
+                          fontSize: getDeviceTypeI(context, 12, 15, 18, 21),
                           fontWeight: FontWeight.bold,
                           fontFamily: 'noto_arabic',
                         ),
@@ -438,14 +438,14 @@ class _SearchResultViewState extends State<SearchResultView> {
                                       // fontSize: footer,
                                       color: Colors.indigo,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: getDeviceType(
+                                      fontSize: getDeviceTypeI(
                                           context, 12, 15, 18, 21),
                                       fontFamily: 'noto_arabic',
                                     ),
                                   ),
                                   SizedBox(
                                     height:
-                                        getDeviceType(context, 2, 2, 10, 10),
+                                        getDeviceTypeI(context, 2, 2, 10, 10),
                                   ),
                                   FittedBox(
                                     fit: BoxFit.fitWidth,
@@ -458,7 +458,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                                           " " +
                                           SearchResultData.secondTime,
                                       style: TextStyle(
-                                        fontSize: getDeviceType(
+                                        fontSize: getDeviceTypeI(
                                             context, 12, 15, 18, 21),
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'noto_arabic',
@@ -487,7 +487,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                             AppLocalizations.of(context)
                                 .translate("km"), //' Km away',
                         style: TextStyle(
-                          fontSize: getDeviceType(context, 12, 15, 18, 21),
+                          fontSize: getDeviceTypeI(context, 12, 15, 18, 21),
                           fontWeight: FontWeight.bold,
                           fontFamily: 'noto_arabic',
                         ),
@@ -497,7 +497,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                 ),
               ),
               SizedBox(
-                height: getDeviceType(context, 20, 25, 30, 35),
+                height: getDeviceTypeI(context, 20, 25, 30, 35),
               ),
               Container(
                 // height: buttonHeight,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-double getDeviceType(
+double getDeviceTypeI(
     context, double small, double mobile, double tablet, double desktop) {
   var deviceWidth = MediaQuery.of(context).size.shortestSide;
   if (deviceWidth < 350) return small;
