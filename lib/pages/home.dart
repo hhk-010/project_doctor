@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:project_doctor/main.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/language.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
@@ -15,10 +14,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  void _changeLanguage(Language language) async {
-    Locale _temp = await setLocale(language.languageCode);
-    MyApp.setLocale(context, _temp);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,9 +93,6 @@ class _HomeState extends State<Home> {
                   child: Tooltip(
                     message: AppLocalizations.of(context).translate('language'),
                     child: DropdownButton(
-                      onChanged: (Language language) {
-                        _changeLanguage(language);
-                      },
                       underline: SizedBox(),
                       icon: Icon(
                         Icons.language,

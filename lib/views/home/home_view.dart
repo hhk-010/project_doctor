@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/device_size.dart';
+import 'package:project_doctor/translations/locale_keys.g.dart';
 import 'package:project_doctor/views/home/components.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -97,7 +99,7 @@ class _HomeViewState extends State<HomeView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     HomeButtonComponent(
-                      title: "Search for a Doctor",
+                      title: LocaleKeys.home_search_button.tr(),
                       icon: 'assets/images/home/male_doctor.png',
                       color: Colors.deepOrange,
                       onPressed: () => Navigator.pushNamed(context, '/patient_complain'),
