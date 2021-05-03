@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:project_doctor/constants/device_size.dart';
+import 'package:project_doctor/constants.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:project_doctor/pages/patient_pages/patient_sidebar.dart';
 import 'package:project_doctor/services/app_localizations.dart';
@@ -58,7 +58,7 @@ class _PatientComplainState extends State<PatientComplain> {
   String complainSelected05;
   String complainSelected06;
   String complainSelected07;
-  List<DropdownMenuItem<String>> menuitems = List();
+  List<DropdownMenuItem<String>> menuitems = [];
   bool disabledropdown01 = true;
   bool disabledropdown02 = true;
   bool disabledropdown03 = true;
@@ -106,7 +106,7 @@ class _PatientComplainState extends State<PatientComplain> {
         ),
         backgroundColor: Colors.deepOrange,
       );
-      _scaffoldkey.currentState.showSnackBar(_snackBar);
+      ScaffoldMessenger.of(context).showSnackBar(_snackBar);
     }
 
     final cardioRespiratory = {

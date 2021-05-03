@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
 import 'package:project_doctor/services/app_localizations.dart';
-import 'package:project_doctor/services/show_floating_button.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
@@ -70,7 +69,7 @@ class _PatientMapState extends State<PatientMap> {
       ),
       backgroundColor: Colors.deepOrange,
     );
-    _scaffoldkey.currentState.showSnackBar(_snackBar);
+   ScaffoldMessenger.of(context).showSnackBar(_snackBar);
   }
 
   //---------------------the end ----------------------

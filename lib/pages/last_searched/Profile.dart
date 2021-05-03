@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/constants/device_size.dart';
+import 'package:project_doctor/constants.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/pages/last_searched/location.dart';
 import 'package:project_doctor/pages/last_searched/read_write_path.dart';
@@ -145,13 +145,11 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
     final _snackBar = new SnackBar(
       content: Text(
         _error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
-    _scaffoldkey.currentState.showSnackBar(_snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(_snackBar);
   }
 
   //===========bool to see wether there is a search or not==
@@ -219,12 +217,9 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
             mainfrom = x.substring(x.indexOf('m') + 2, x.indexOf('t') - 1);
             mainTo = x.substring(x.indexOf('t') + 3, x.length);
             mainfromTime = mainfrom.substring(0, mainfrom.indexOf(' '));
-            mainfromAmPm = AppLocalizations.of(context).translate(
-                mainfrom.substring(
-                    mainfrom.indexOf(' ') + 1, mainfrom.indexOf('M') + 1));
+            mainfromAmPm = AppLocalizations.of(context).translate(mainfrom.substring(mainfrom.indexOf(' ') + 1, mainfrom.indexOf('M') + 1));
             mainToTime = mainTo.substring(0, mainTo.indexOf(' '));
-            mainToAmPm = AppLocalizations.of(context).translate(
-                mainTo.substring(mainTo.indexOf(' ') + 1, mainTo.length));
+            mainToAmPm = AppLocalizations.of(context).translate(mainTo.substring(mainTo.indexOf(' ') + 1, mainTo.length));
             mainTime = AppLocalizations.of(context).translate('from') +
                 mainfromTime +
                 ' ' +
@@ -244,16 +239,12 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
         _workDays02 = value;
         if (_workDays02.isNotEmpty && _workDays02.length == 2) {
           _firstEDay = AppLocalizations.of(context).translate(_workDays02[0]);
-          _firstfrom = _workDays02[1].substring(
-              _workDays02[1].indexOf('m') + 2, _workDays02[1].indexOf('t') - 1);
-          _firstTo = _workDays02[1].substring(
-              _workDays02[1].indexOf('t') + 3, _workDays02[1].length);
+          _firstfrom = _workDays02[1].substring(_workDays02[1].indexOf('m') + 2, _workDays02[1].indexOf('t') - 1);
+          _firstTo = _workDays02[1].substring(_workDays02[1].indexOf('t') + 3, _workDays02[1].length);
           _firstfromTime = _firstfrom.substring(0, _firstfrom.indexOf(' '));
-          _firstfromAmPm = AppLocalizations.of(context).translate(_firstfrom
-              .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
+          _firstfromAmPm = AppLocalizations.of(context).translate(_firstfrom.substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
           _firstToTime = _firstTo.substring(0, _firstTo.indexOf(' '));
-          _firstToAmPm = AppLocalizations.of(context).translate(
-              _firstTo.substring(_firstTo.indexOf(' ') + 1, _firstTo.length));
+          _firstToAmPm = AppLocalizations.of(context).translate(_firstTo.substring(_firstTo.indexOf(' ') + 1, _firstTo.length));
           _firstTime = AppLocalizations.of(context).translate('from') +
               _firstfromTime +
               ' ' +
@@ -272,16 +263,12 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
         _workDays03 = value;
         if (_workDays03.isNotEmpty && _workDays03.length == 2) {
           _secondEDay = AppLocalizations.of(context).translate(_workDays03[0]);
-          _secondfrom = _workDays03[1].substring(
-              _workDays03[1].indexOf('m') + 2, _workDays03[1].indexOf('t') - 1);
-          _secondTo = _workDays03[1].substring(
-              _workDays03[1].indexOf('t') + 3, _workDays03[1].length);
+          _secondfrom = _workDays03[1].substring(_workDays03[1].indexOf('m') + 2, _workDays03[1].indexOf('t') - 1);
+          _secondTo = _workDays03[1].substring(_workDays03[1].indexOf('t') + 3, _workDays03[1].length);
           _secondfromTime = _secondfrom.substring(0, _secondfrom.indexOf(' '));
-          _secondfromAmPm = AppLocalizations.of(context).translate(_secondfrom
-              .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
+          _secondfromAmPm = AppLocalizations.of(context).translate(_secondfrom.substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
           _secondToTime = _secondTo.substring(0, _secondTo.indexOf(' '));
-          _secondToAmPm = AppLocalizations.of(context).translate(_secondTo
-              .substring(_secondTo.indexOf(' ') + 1, _secondTo.length));
+          _secondToAmPm = AppLocalizations.of(context).translate(_secondTo.substring(_secondTo.indexOf(' ') + 1, _secondTo.length));
           _secondTime = AppLocalizations.of(context).translate('from') +
               _secondfromTime +
               ' ' +
@@ -333,8 +320,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
         avatarSize = 70;
         containerInset = 50;
       }
-      TextStyle _textStyle = TextStyle(
-          fontSize: subTitle, color: Colors.black, fontWeight: FontWeight.bold);
+      TextStyle _textStyle = TextStyle(fontSize: subTitle, color: Colors.black, fontWeight: FontWeight.bold);
       return Scaffold(
         key: _scaffoldkey,
         backgroundColor: Colors.grey[200],
@@ -345,34 +331,23 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
             title: Text(
               AppLocalizations.of(context).translate("resulted"),
               //'Search Result',
-              style:
-                  TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
             ),
             centerTitle: true,
             elevation: 0,
             actions: [
               IconButton(
                   onPressed: () async {
-                    await widget.storage.readFavorite01().then(
-                        (value) => setState(() => Favorite.favorite01 = value));
-                    await widget.storage.readFavorite02().then(
-                        (value) => setState(() => Favorite.favorite02 = value));
-                    await widget.storage.readFavorite03().then(
-                        (value) => setState(() => Favorite.favorite03 = value));
-                    await widget.storage.readFavorite04().then(
-                        (value) => setState(() => Favorite.favorite04 = value));
-                    await widget.storage.readFavorite05().then(
-                        (value) => setState(() => Favorite.favorite05 = value));
-                    await widget.storage.readFavorite06().then(
-                        (value) => setState(() => Favorite.favorite06 = value));
-                    await widget.storage.readFavorite07().then(
-                        (value) => setState(() => Favorite.favorite07 = value));
-                    await widget.storage.readFavorite08().then(
-                        (value) => setState(() => Favorite.favorite08 = value));
-                    await widget.storage.readFavorite09().then(
-                        (value) => setState(() => Favorite.favorite09 = value));
-                    await widget.storage.readFavorite10().then(
-                        (value) => setState(() => Favorite.favorite10 = value));
+                    await widget.storage.readFavorite01().then((value) => setState(() => Favorite.favorite01 = value));
+                    await widget.storage.readFavorite02().then((value) => setState(() => Favorite.favorite02 = value));
+                    await widget.storage.readFavorite03().then((value) => setState(() => Favorite.favorite03 = value));
+                    await widget.storage.readFavorite04().then((value) => setState(() => Favorite.favorite04 = value));
+                    await widget.storage.readFavorite05().then((value) => setState(() => Favorite.favorite05 = value));
+                    await widget.storage.readFavorite06().then((value) => setState(() => Favorite.favorite06 = value));
+                    await widget.storage.readFavorite07().then((value) => setState(() => Favorite.favorite07 = value));
+                    await widget.storage.readFavorite08().then((value) => setState(() => Favorite.favorite08 = value));
+                    await widget.storage.readFavorite09().then((value) => setState(() => Favorite.favorite09 = value));
+                    await widget.storage.readFavorite10().then((value) => setState(() => Favorite.favorite10 = value));
                     setState(() => Favorite.favoriteIdlist = [
                           Favorite.favorite01,
                           Favorite.favorite02,
@@ -385,10 +360,8 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                           Favorite.favorite09,
                           Favorite.favorite10
                         ]);
-                    if (Favorite.favoriteIdlist
-                        .contains(SearchResultData.id.toString())) {
-                      _error = AppLocalizations.of(context)
-                          .translate('added previously');
+                    if (Favorite.favoriteIdlist.contains(SearchResultData.id.toString())) {
+                      _error = AppLocalizations.of(context).translate('added previously');
                       _showSnackBar();
                     } else {
                       await _writeFavorite01(SearchResultData.id.toString());
@@ -401,8 +374,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                       await _writeFavorite08(Favorite.favorite07);
                       await _writeFavorite09(Favorite.favorite08);
                       await _writeFavorite10(Favorite.favorite09);
-                      _error = AppLocalizations.of(context)
-                          .translate('added successfully');
+                      _error = AppLocalizations.of(context).translate('added successfully');
                       _showSnackBar();
                     }
                   },
@@ -423,23 +395,19 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                 Container(
                   decoration: boxDecoration,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 32, vertical: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                     child: !searched
                         ? Column(
                             children: [
                               Text(
-                                AppLocalizations.of(context)
-                                    .translate('search_warning'),
-                                style: TextStyle(
-                                    fontSize: title, color: Colors.deepOrange),
+                                AppLocalizations.of(context).translate('search_warning'),
+                                style: TextStyle(fontSize: title, color: Colors.deepOrange),
                               ),
                               SizedBox(
                                 height: 15,
                               ),
                               Text(
-                                AppLocalizations.of(context)
-                                    .translate('search_error'),
+                                AppLocalizations.of(context).translate('search_error'),
                                 style: TextStyle(fontSize: subTitle),
                               )
                             ],
@@ -452,8 +420,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                                 child: CircleAvatar(
                                   backgroundColor: Colors.deepOrange,
                                   radius: avatarSize,
-                                  backgroundImage:
-                                      AssetImage('assets/images/doctor.png'),
+                                  backgroundImage: AssetImage('assets/images/doctor.png'),
                                 ),
                               ),
                               SizedBox(
@@ -464,9 +431,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                                   fit: BoxFit.fitWidth,
                                   child: Text(
                                     _name,
-                                    style: _textStyle.copyWith(
-                                        fontSize: title,
-                                        fontFamily: 'noto_arabic'),
+                                    style: _textStyle.copyWith(fontSize: title, fontFamily: 'noto_arabic'),
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
@@ -477,8 +442,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                               Center(
                                 child: Text(
                                   // _doctorAddress,
-                                  AppLocalizations.of(context)
-                                      .translate(_province),
+                                  AppLocalizations.of(context).translate(_province),
                                   style: _textStyle.copyWith(fontSize: footer),
                                 ),
                               ),
@@ -495,19 +459,14 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                                 height: 5,
                               ),
                               Text(
-                                AppLocalizations.of(context)
-                                    .translate('speciality'),
-                                style: TextStyle(
-                                    fontSize: footer,
-                                    color: Colors.indigo,
-                                    fontWeight: FontWeight.bold),
+                                AppLocalizations.of(context).translate('speciality'),
+                                style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(
                                 height: 2,
                               ),
                               Text(
-                                AppLocalizations.of(context)
-                                    .translate(_speciality),
+                                AppLocalizations.of(context).translate(_speciality),
                                 style: _textStyle,
                               ),
                               Divider(
@@ -517,12 +476,8 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                                 endIndent: 0,
                               ),
                               Text(
-                                AppLocalizations.of(context)
-                                    .translate('phoneNumber'),
-                                style: TextStyle(
-                                    fontSize: footer,
-                                    color: Colors.indigo,
-                                    fontWeight: FontWeight.bold),
+                                AppLocalizations.of(context).translate('phoneNumber'),
+                                style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(
                                 height: 2,
@@ -560,20 +515,15 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                                 endIndent: 0,
                               ),
                               Text(
-                                AppLocalizations.of(context)
-                                    .translate('clinic_address'),
-                                style: TextStyle(
-                                    fontSize: footer,
-                                    color: Colors.indigo,
-                                    fontWeight: FontWeight.bold),
+                                AppLocalizations.of(context).translate('clinic_address'),
+                                style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(
                                 height: 2,
                               ),
                               Text(
                                 _address,
-                                style: _textStyle.copyWith(
-                                    fontFamily: 'noto_arabic'),
+                                style: _textStyle.copyWith(fontFamily: 'noto_arabic'),
                               ),
                               Divider(
                                 color: Colors.grey,
@@ -582,12 +532,8 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                                 endIndent: 0,
                               ),
                               Text(
-                                AppLocalizations.of(context)
-                                    .translate('clinic_work'),
-                                style: TextStyle(
-                                    fontSize: footer,
-                                    color: Colors.indigo,
-                                    fontWeight: FontWeight.bold),
+                                AppLocalizations.of(context).translate('clinic_work'),
+                                style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(
                                 height: 2,
@@ -608,17 +554,11 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                                     )
                                   : Container(
                                       child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            AppLocalizations.of(context)
-                                                .translate(
-                                                    'another_clinic_work'),
-                                            style: TextStyle(
-                                                fontSize: footer,
-                                                color: Colors.indigo,
-                                                fontWeight: FontWeight.bold),
+                                            AppLocalizations.of(context).translate('another_clinic_work'),
+                                            style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
                                           ),
                                           SizedBox(
                                             height: 2,
@@ -626,13 +566,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                                           FittedBox(
                                             fit: BoxFit.fitWidth,
                                             child: Text(
-                                              _firstEDay +
-                                                  " " +
-                                                  _firstTime +
-                                                  '\n' +
-                                                  _secondEDay +
-                                                  " " +
-                                                  _secondTime,
+                                              _firstEDay + " " + _firstTime + '\n' + _secondEDay + " " + _secondTime,
                                               style: _textStyle,
                                             ),
                                           ),
@@ -656,14 +590,15 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                     ? Container(
                         height: buttonHeight,
                         width: buttonWidth,
-                        child: RaisedButton.icon(
-                          color: Colors.deepOrange,
+                        child: TextButton.icon(
+                          style: TextButton.styleFrom(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                            backgroundColor: Colors.deepOrange,
+                          ),
                           icon: Icon(
                             Icons.arrow_forward,
                             color: Colors.white,
                           ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80.0)),
                           onPressed: () async {
                             print(_workDays01);
                             Navigator.of(context).push(MaterialPageRoute(
@@ -673,13 +608,9 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                                     )));
                           },
                           label: Text(
-                            AppLocalizations.of(context)
-                                .translate("doctor_locat"),
+                            AppLocalizations.of(context).translate("doctor_locat"),
                             //'View Doctor Location',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: subTitle,
-                                fontWeight: FontWeight.bold),
+                            style: TextStyle(color: Colors.white, fontSize: subTitle, fontWeight: FontWeight.bold),
                           ),
                         ),
                       )

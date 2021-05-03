@@ -30,7 +30,7 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
       ),
       backgroundColor: Colors.deepOrange,
     );
-    _scaffoldkey.currentState.showSnackBar(_snackbar);
+    ScaffoldMessenger.of(context).showSnackBar(_snackbar);
   }
 
   @override
@@ -437,13 +437,15 @@ class _QuestionsWidgetState extends State<QuestionsWidget> {
                       Container(
                         height: buttonHeight,
                         width: buttonWidth,
-                        child: RaisedButton.icon(
-                          color: Colors.deepOrange,
+                        child: TextButton.icon(
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.deepOrange,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                          ),
                           icon: Icon(
                             Icons.arrow_forward,
                             color: Colors.white,
                           ),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                           onPressed: () {
                             getscore1b();
                             getscore2b();

@@ -4,13 +4,12 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:project_doctor/constants/device_size.dart';
+import 'package:project_doctor/constants.dart';
 import 'package:project_doctor/favorite_list/favorite_list.dart';
 import 'package:project_doctor/pages/last_searched/read_write_path.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/services/read_write_path.dart';
 import 'package:provider/provider.dart';
 
 class SearchListView extends StatefulWidget {

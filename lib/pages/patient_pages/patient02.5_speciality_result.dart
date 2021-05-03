@@ -123,13 +123,15 @@ class SpecialityResult extends StatelessWidget {
                 Container(
                   height: buttonHeight,
                   width: buttonWidth,
-                  child: RaisedButton.icon(
-                    color: Colors.deepOrange,
+                  child: TextButton.icon(
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                      backgroundColor: Colors.deepOrange,
+                    ),
                     icon: Icon(
                       Icons.arrow_forward,
                       color: Colors.white,
                     ),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                     onPressed: () {
                       Navigator.pushNamed(context, '/patient_get_location');
                     },

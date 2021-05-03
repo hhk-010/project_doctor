@@ -195,7 +195,11 @@ class _RegisterState extends State<Register> {
                           Container(
                             height: buttonHeight,
                             width: buttonWidth,
-                            child: RaisedButton(
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                                backgroundColor: Colors.deepOrange,
+                              ),
                               onPressed:
                                   /*_isInternet
                                   ?*/
@@ -237,8 +241,6 @@ class _RegisterState extends State<Register> {
                                           .showSnackBar(errorSnackBar);
                                     }*/
                               ,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                              color: Colors.deepOrange,
                               child: Text(AppLocalizations.of(context).translate('register'),
                                   style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: title)),
                             ),

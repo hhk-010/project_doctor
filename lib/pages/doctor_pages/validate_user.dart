@@ -54,7 +54,7 @@ class _PreDeleteUserState extends State<PreDeleteUser> {
       ),
       backgroundColor: Colors.deepOrange,
     );
-    _scaffoldkey.currentState.showSnackBar(_snackbar);
+   ScaffoldMessenger.of(context).showSnackBar(_snackbar);
   }
 
   //-------------------the end ----------------------

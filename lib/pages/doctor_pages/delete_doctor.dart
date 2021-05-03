@@ -51,7 +51,7 @@ class _DeleteUserState extends State<DeleteUser> {
       ),
       backgroundColor: Colors.deepOrange,
     );
-    _scaffoldkey.currentState.showSnackBar(_snackbar);
+    ScaffoldMessenger.of(context).showSnackBar(_snackbar);
   }
 
   //-------------------the end ----------------------

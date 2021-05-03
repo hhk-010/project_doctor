@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/authorization/loading.dart';
-import 'package:project_doctor/constants/device_size.dart';
+import 'package:project_doctor/constants.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/data_model.dart';
 
@@ -29,7 +29,7 @@ class _PatientSearchmapState extends State<PatientSearchmap> {
       ),
       backgroundColor: Colors.deepOrange,
     );
-    _scaffoldkey.currentState.showSnackBar(_snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(_snackBar);
   }
 
   //-------------------checking internet connection

@@ -92,7 +92,7 @@ Locale _locale(String languageCode) {
   return _temp;
 }
 
-Future<Locale> getLocale() async {
+Future<Locale> getLocaleI() async {
   SharedPreferences _pref = await SharedPreferences.getInstance();
   String languageCode = _pref.getString(LANGUAGE_CODE) ?? 'en';
   return _locale(languageCode);

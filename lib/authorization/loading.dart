@@ -35,13 +35,7 @@ class LoadingButton extends StatelessWidget {
   final Color backgroundcolor;
   final Color loadercolor;
   final ShapeBorder shape;
-  LoadingButton(
-      {@required this.isloading,
-      @required this.child,
-      @required this.onpressed,
-      this.backgroundcolor,
-      this.loadercolor,
-      this.shape});
+  LoadingButton({@required this.isloading, @required this.child, @required this.onpressed, this.backgroundcolor, this.loadercolor, this.shape});
   @override
   Widget build(BuildContext context) {
     return isloading
@@ -53,11 +47,13 @@ class LoadingButton extends StatelessWidget {
               backgroundColor: Colors.deepOrange,
               valueColor: AlwaysStoppedAnimation(this.loadercolor),
             ))
-        : RaisedButton(
+        : TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: backgroundcolor,
+              shape: shape,
+            ),
             child: child,
             onPressed: onpressed,
-            color: backgroundcolor,
-            shape: shape,
           );
   }
 }
@@ -70,12 +66,7 @@ class FloatingLoadingButton extends StatelessWidget {
   final Color loadercolor;
   final ShapeBorder shape;
   FloatingLoadingButton(
-      {@required this.isloading,
-      @required this.child,
-      @required this.onPressed,
-      this.backgroundcolor,
-      this.loadercolor,
-      this.shape});
+      {@required this.isloading, @required this.child, @required this.onPressed, this.backgroundcolor, this.loadercolor, this.shape});
   @override
   Widget build(BuildContext context) {
     return isloading
@@ -129,11 +120,13 @@ class LoadingButtonIcon extends StatelessWidget {
                 valueColor: AlwaysStoppedAnimation(this.loadercolor),
               ),
             ))
-        : RaisedButton.icon(
+        : TextButton.icon(
+            style: TextButton.styleFrom(
+              backgroundColor: backgroundcolor,
+              shape: shape,
+            ),
             label: label,
             onPressed: onpressed,
-            color: backgroundcolor,
-            shape: shape,
             icon: icon,
           );
   }

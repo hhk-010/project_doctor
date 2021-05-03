@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/authorization/loading.dart';
-import 'package:project_doctor/constants/device_size.dart';
+import 'package:project_doctor/constants.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/data_model.dart';
@@ -42,7 +42,7 @@ class _PatientLocationState extends State<PatientLocation> {
       ),
       backgroundColor: Colors.deepOrange,
     );
-    _scaffoldkey.currentState.showSnackBar(_snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(_snackBar);
   }
 
   //-------------------checking internet connection

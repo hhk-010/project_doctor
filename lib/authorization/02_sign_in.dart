@@ -58,7 +58,7 @@ class _SignInState extends State<SignIn> {
       ),
       backgroundColor: Colors.deepOrange,
     );
-    _scaffoldkey.currentState.showSnackBar(_snackbar);
+    ScaffoldMessenger.of(context)..showSnackBar(_snackbar);
   }
 
   @override
@@ -254,7 +254,7 @@ class _SignInState extends State<SignIn> {
                               ),
                             ),
                           ),
-                          FlatButton.icon(
+                          TextButton.icon(
                             icon: Icon(Icons.arrow_forward),
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForgetPassword()));

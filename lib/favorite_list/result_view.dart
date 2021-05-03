@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:project_doctor/constants/device_size.dart';
+import 'package:project_doctor/constants.dart';
 import 'package:project_doctor/constants/theme.dart';
 import 'package:project_doctor/favorite_list/favorite_list.dart';
 import 'package:project_doctor/services/app_localizations.dart';
@@ -94,13 +94,11 @@ class _SearchResultViewState extends State<SearchResultView> {
     final _snackBar = new SnackBar(
       content: Text(
         _error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
-    _scaffoldkey.currentState.showSnackBar(_snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(_snackBar);
   }
 
   @override
@@ -130,26 +128,16 @@ class _SearchResultViewState extends State<SearchResultView> {
           actions: [
             IconButton(
               onPressed: () async {
-                await widget.storage.readFavorite01().then(
-                    (value) => setState(() => Favorite.favorite01 = value));
-                await widget.storage.readFavorite02().then(
-                    (value) => setState(() => Favorite.favorite02 = value));
-                await widget.storage.readFavorite03().then(
-                    (value) => setState(() => Favorite.favorite03 = value));
-                await widget.storage.readFavorite04().then(
-                    (value) => setState(() => Favorite.favorite04 = value));
-                await widget.storage.readFavorite05().then(
-                    (value) => setState(() => Favorite.favorite05 = value));
-                await widget.storage.readFavorite06().then(
-                    (value) => setState(() => Favorite.favorite06 = value));
-                await widget.storage.readFavorite07().then(
-                    (value) => setState(() => Favorite.favorite07 = value));
-                await widget.storage.readFavorite08().then(
-                    (value) => setState(() => Favorite.favorite08 = value));
-                await widget.storage.readFavorite09().then(
-                    (value) => setState(() => Favorite.favorite09 = value));
-                await widget.storage.readFavorite10().then(
-                    (value) => setState(() => Favorite.favorite10 = value));
+                await widget.storage.readFavorite01().then((value) => setState(() => Favorite.favorite01 = value));
+                await widget.storage.readFavorite02().then((value) => setState(() => Favorite.favorite02 = value));
+                await widget.storage.readFavorite03().then((value) => setState(() => Favorite.favorite03 = value));
+                await widget.storage.readFavorite04().then((value) => setState(() => Favorite.favorite04 = value));
+                await widget.storage.readFavorite05().then((value) => setState(() => Favorite.favorite05 = value));
+                await widget.storage.readFavorite06().then((value) => setState(() => Favorite.favorite06 = value));
+                await widget.storage.readFavorite07().then((value) => setState(() => Favorite.favorite07 = value));
+                await widget.storage.readFavorite08().then((value) => setState(() => Favorite.favorite08 = value));
+                await widget.storage.readFavorite09().then((value) => setState(() => Favorite.favorite09 = value));
+                await widget.storage.readFavorite10().then((value) => setState(() => Favorite.favorite10 = value));
                 setState(() => Favorite.favoriteIdlist = [
                       Favorite.favorite01,
                       Favorite.favorite02,
@@ -163,10 +151,8 @@ class _SearchResultViewState extends State<SearchResultView> {
                       Favorite.favorite10
                     ]);
                 if (!FavoriteTile.favoriteListSelected) {
-                  if (Favorite.favoriteIdlist
-                      .contains(SearchResultData.id.toString())) {
-                    _error = AppLocalizations.of(context)
-                        .translate('added previously');
+                  if (Favorite.favoriteIdlist.contains(SearchResultData.id.toString())) {
+                    _error = AppLocalizations.of(context).translate('added previously');
                     _showSnackBar();
                   } else {
                     await _writeFavorite01(SearchResultData.id.toString());
@@ -179,8 +165,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                     await _writeFavorite08(Favorite.favorite07);
                     await _writeFavorite09(Favorite.favorite08);
                     await _writeFavorite10(Favorite.favorite09);
-                    _error = AppLocalizations.of(context)
-                        .translate('added successfully');
+                    _error = AppLocalizations.of(context).translate('added successfully');
                     _showSnackBar();
                   }
                 } else {
@@ -211,15 +196,12 @@ class _SearchResultViewState extends State<SearchResultView> {
                     }
                     count++;
                   }
-                  _error = AppLocalizations.of(context)
-                      .translate('removed successfully');
+                  _error = AppLocalizations.of(context).translate('removed successfully');
                   _showSnackBar();
                 }
               },
               icon: Icon(
-                FavoriteTile.favoriteListSelected
-                    ? Icons.star_border
-                    : Icons.star,
+                FavoriteTile.favoriteListSelected ? Icons.star_border : Icons.star,
                 color: Colors.white,
               ),
             ),
@@ -229,9 +211,7 @@ class _SearchResultViewState extends State<SearchResultView> {
       body: Center(
         child: Container(
           width: getDeviceType(context, 260, 340, 100, 500),
-          padding: EdgeInsets.symmetric(
-              vertical: getDeviceType(context, 20, 25, 30, 35),
-              horizontal: getDeviceType(context, 20, 2, 3, 3)),
+          padding: EdgeInsets.symmetric(vertical: getDeviceType(context, 20, 25, 30, 35), horizontal: getDeviceType(context, 20, 2, 3, 3)),
           child: ListView(
             children: [
               Container(
@@ -249,8 +229,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                         child: CircleAvatar(
                           backgroundColor: Colors.deepOrange,
                           radius: getDeviceType(context, 40, 50, 60, 75),
-                          backgroundImage:
-                              AssetImage('assets/images/doctor.png'),
+                          backgroundImage: AssetImage('assets/images/doctor.png'),
                         ),
                       ),
                       SizedBox(
@@ -261,11 +240,8 @@ class _SearchResultViewState extends State<SearchResultView> {
                           fit: BoxFit.fitWidth,
                           child: Text(
                             SearchResultData.name,
-                            style: TextStyle(
-                                fontSize:
-                                    getDeviceType(context, 15, 18, 21, 24),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'noto_arabic'),
+                            style:
+                                TextStyle(fontSize: getDeviceType(context, 15, 18, 21, 24), fontWeight: FontWeight.bold, fontFamily: 'noto_arabic'),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -276,13 +252,9 @@ class _SearchResultViewState extends State<SearchResultView> {
                       Center(
                         child: Text(
                           // _doctorAddress,
-                          AppLocalizations.of(context)
-                              .translate(SearchResultData.province),
+                          AppLocalizations.of(context).translate(SearchResultData.province),
                           //style: _textStyle.copyWith(fontSize: footer),
-                          style: TextStyle(
-                              fontSize: getDeviceType(context, 12, 15, 18, 21),
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'noto_arabic'),
+                          style: TextStyle(fontSize: getDeviceType(context, 12, 15, 18, 21), fontWeight: FontWeight.bold, fontFamily: 'noto_arabic'),
                         ),
                       ),
                       SizedBox(
@@ -311,8 +283,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                         height: getDeviceType(context, 2, 2, 10, 10),
                       ),
                       Text(
-                        AppLocalizations.of(context)
-                            .translate(SearchResultData.speciality),
+                        AppLocalizations.of(context).translate(SearchResultData.speciality),
                         style: TextStyle(
                           fontSize: getDeviceType(context, 12, 15, 18, 21),
                           fontWeight: FontWeight.bold,
@@ -354,8 +325,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                             Text(
                               SearchResultData.phoneNumber,
                               style: TextStyle(
-                                fontSize:
-                                    getDeviceType(context, 12, 15, 18, 21),
+                                fontSize: getDeviceType(context, 12, 15, 18, 21),
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'noto_arabic',
                               ),
@@ -370,8 +340,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                         endIndent: 0,
                       ),
                       Text(
-                        AppLocalizations.of(context)
-                            .translate('clinic_address'),
+                        AppLocalizations.of(context).translate('clinic_address'),
                         style: TextStyle(
                           //fontSize: footer,
                           color: Colors.indigo,
@@ -432,20 +401,17 @@ class _SearchResultViewState extends State<SearchResultView> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    AppLocalizations.of(context)
-                                        .translate('another_clinic_work'),
+                                    AppLocalizations.of(context).translate('another_clinic_work'),
                                     style: TextStyle(
                                       // fontSize: footer,
                                       color: Colors.indigo,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: getDeviceType(
-                                          context, 12, 15, 18, 21),
+                                      fontSize: getDeviceType(context, 12, 15, 18, 21),
                                       fontFamily: 'noto_arabic',
                                     ),
                                   ),
                                   SizedBox(
-                                    height:
-                                        getDeviceType(context, 2, 2, 10, 10),
+                                    height: getDeviceType(context, 2, 2, 10, 10),
                                   ),
                                   FittedBox(
                                     fit: BoxFit.fitWidth,
@@ -458,8 +424,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                                           " " +
                                           SearchResultData.secondTime,
                                       style: TextStyle(
-                                        fontSize: getDeviceType(
-                                            context, 12, 15, 18, 21),
+                                        fontSize: getDeviceType(context, 12, 15, 18, 21),
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'noto_arabic',
                                       ),
@@ -482,10 +447,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        SearchResultData.distance.toString() +
-                            " " +
-                            AppLocalizations.of(context)
-                                .translate("km"), //' Km away',
+                        SearchResultData.distance.toString() + " " + AppLocalizations.of(context).translate("km"), //' Km away',
                         style: TextStyle(
                           fontSize: getDeviceType(context, 12, 15, 18, 21),
                           fontWeight: FontWeight.bold,
@@ -502,16 +464,16 @@ class _SearchResultViewState extends State<SearchResultView> {
               Container(
                 // height: buttonHeight,
                 // width: buttonWidth,
-                child: RaisedButton.icon(
-                  color: Colors.deepOrange,
+                child: TextButton.icon(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.deepOrange,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                  ),
                   icon: Icon(
                     Icons.arrow_forward,
                     color: Colors.white,
                   ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0)),
-                  onPressed: () =>
-                      Navigator.pushNamed(context, '/doctor location map'),
+                  onPressed: () => Navigator.pushNamed(context, '/doctor location map'),
                   label: Text(
                     AppLocalizations.of(context).translate("doctor_locat"),
                     style: TextStyle(

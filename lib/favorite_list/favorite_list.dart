@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:project_doctor/constants/device_size.dart';
+import 'package:project_doctor/constants.dart';
 import 'package:project_doctor/pages/last_searched/read_write_path.dart';
 import 'package:project_doctor/pages/patient_pages/patient_sidebar.dart';
 import 'package:project_doctor/services/app_localizations.dart';

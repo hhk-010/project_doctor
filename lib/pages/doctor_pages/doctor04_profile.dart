@@ -40,19 +40,16 @@ class _DoctorProfileState extends State<DoctorProfile> {
   }
 
   //================================================
-  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
     var lang = Localizations.localeOf(context).languageCode;
     final _snackBar = new SnackBar(
       content: Text(
         _error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
-    _scaffoldkey.currentState.showSnackBar(_snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(_snackBar);
   }
 
 //=================================================
@@ -93,16 +90,14 @@ class _DoctorProfileState extends State<DoctorProfile> {
                 fit: BoxFit.fitWidth,
                 child: Text(
                   AppLocalizations.of(context).translate('profile'),
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: appBarTitle),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: appBarTitle),
                 ),
               ),
               elevation: 0,
               actions: [
                 IconButton(
                   icon: Icon(Icons.person_remove),
-                  tooltip:
-                      AppLocalizations.of(context).translate('delete_user'),
+                  tooltip: AppLocalizations.of(context).translate('delete_user'),
                   iconSize: appBarIcon,
                   onPressed: () {
                     Navigator.pushNamed(context, '/pre_delete');
@@ -125,8 +120,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       Navigator.pop(context);
                     } else {
                       setState(() {
-                        _error = AppLocalizations.of(context)
-                            .translate('snack_connectivity');
+                        _error = AppLocalizations.of(context).translate('snack_connectivity');
                       });
                       _showSnackBar();
                     }
@@ -246,12 +240,9 @@ class _DoctorListState extends State<DoctorList> {
               _mainfrom = x.substring(x.indexOf('m') + 2, x.indexOf('t') - 1);
               _mainTo = x.substring(x.indexOf('t') + 3, x.length);
               _mainfromTime = _mainfrom.substring(0, _mainfrom.indexOf(' '));
-              _mainfromAmPm = AppLocalizations.of(context).translate(
-                  _mainfrom.substring(
-                      _mainfrom.indexOf(' ') + 1, _mainfrom.indexOf('M') + 1));
+              _mainfromAmPm = AppLocalizations.of(context).translate(_mainfrom.substring(_mainfrom.indexOf(' ') + 1, _mainfrom.indexOf('M') + 1));
               _mainToTime = _mainTo.substring(0, _mainTo.indexOf(' '));
-              _mainToAmPm = AppLocalizations.of(context).translate(
-                  _mainTo.substring(_mainTo.indexOf(' ') + 1, _mainTo.length));
+              _mainToAmPm = AppLocalizations.of(context).translate(_mainTo.substring(_mainTo.indexOf(' ') + 1, _mainTo.length));
               _mainTime = AppLocalizations.of(context).translate('from') +
                   _mainfromTime +
                   ' ' +
@@ -271,17 +262,12 @@ class _DoctorListState extends State<DoctorList> {
           _mainDays = '';
           if (_workDays02.isNotEmpty && _workDays02.length == 2) {
             _firstEDay = AppLocalizations.of(context).translate(_workDays02[0]);
-            _firstfrom = _workDays02[1].substring(
-                _workDays02[1].indexOf('m') + 2,
-                _workDays02[1].indexOf('t') - 1);
-            _firstTo = _workDays02[1].substring(
-                _workDays02[1].indexOf('t') + 3, _workDays02[1].length);
+            _firstfrom = _workDays02[1].substring(_workDays02[1].indexOf('m') + 2, _workDays02[1].indexOf('t') - 1);
+            _firstTo = _workDays02[1].substring(_workDays02[1].indexOf('t') + 3, _workDays02[1].length);
             _firstfromTime = _firstfrom.substring(0, _firstfrom.indexOf(' '));
-            _firstfromAmPm = AppLocalizations.of(context).translate(_firstfrom
-                .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
+            _firstfromAmPm = AppLocalizations.of(context).translate(_firstfrom.substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
             _firstToTime = _firstTo.substring(0, _firstTo.indexOf(' '));
-            _firstToAmPm = AppLocalizations.of(context).translate(
-                _firstTo.substring(_firstTo.indexOf(' ') + 1, _firstTo.length));
+            _firstToAmPm = AppLocalizations.of(context).translate(_firstTo.substring(_firstTo.indexOf(' ') + 1, _firstTo.length));
             _firstTime = AppLocalizations.of(context).translate('from') +
                 _firstfromTime +
                 ' ' +
@@ -293,20 +279,13 @@ class _DoctorListState extends State<DoctorList> {
                 _firstToAmPm;
           }
           if (_workDays03.isNotEmpty && _workDays03.length == 2) {
-            _secondEDay =
-                AppLocalizations.of(context).translate(_workDays03[0]);
-            _secondfrom = _workDays03[1].substring(
-                _workDays03[1].indexOf('m') + 2,
-                _workDays03[1].indexOf('t') - 1);
-            _secondTo = _workDays03[1].substring(
-                _workDays03[1].indexOf('t') + 3, _workDays03[1].length);
-            _secondfromTime =
-                _secondfrom.substring(0, _secondfrom.indexOf(' '));
-            _secondfromAmPm = AppLocalizations.of(context).translate(_secondfrom
-                .substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
+            _secondEDay = AppLocalizations.of(context).translate(_workDays03[0]);
+            _secondfrom = _workDays03[1].substring(_workDays03[1].indexOf('m') + 2, _workDays03[1].indexOf('t') - 1);
+            _secondTo = _workDays03[1].substring(_workDays03[1].indexOf('t') + 3, _workDays03[1].length);
+            _secondfromTime = _secondfrom.substring(0, _secondfrom.indexOf(' '));
+            _secondfromAmPm = AppLocalizations.of(context).translate(_secondfrom.substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length));
             _secondToTime = _secondTo.substring(0, _secondTo.indexOf(' '));
-            _secondToAmPm = AppLocalizations.of(context).translate(_secondTo
-                .substring(_secondTo.indexOf(' ') + 1, _secondTo.length));
+            _secondToAmPm = AppLocalizations.of(context).translate(_secondTo.substring(_secondTo.indexOf(' ') + 1, _secondTo.length));
             _secondTime = AppLocalizations.of(context).translate('from') +
                 _secondfromTime +
                 ' ' +
@@ -318,10 +297,8 @@ class _DoctorListState extends State<DoctorList> {
                 _secondToAmPm;
           }
           if ((doc.data()['name'] == '' || doc.data()['name'] == null) &&
-              (doc.data()['speciality'] == '' ||
-                  doc.data()['speciality'] == null) &&
-              (doc.data()['phoneNumber'] == '' ||
-                  doc.data()['phoneNumber'] == null) &&
+              (doc.data()['speciality'] == '' || doc.data()['speciality'] == null) &&
+              (doc.data()['phoneNumber'] == '' || doc.data()['phoneNumber'] == null) &&
               (doc.data()['address'] == '' || doc.data()['address'] == null)) {
             setState(() {
               Empty.isEmpty = true;
@@ -361,8 +338,7 @@ class _DoctorListState extends State<DoctorList> {
         avatarSize = 70;
         containerInset = 50;
       }
-      TextStyle _textStyle = TextStyle(
-          fontSize: subTitle, color: Colors.black, fontWeight: FontWeight.bold);
+      TextStyle _textStyle = TextStyle(fontSize: subTitle, color: Colors.black, fontWeight: FontWeight.bold);
 
       return Center(
         child: Container(
@@ -373,20 +349,16 @@ class _DoctorListState extends State<DoctorList> {
               Container(
                 decoration: boxDecoration,
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                   child: Empty.isEmpty
                       ? Column(
                           children: [
                             Text(
-                              AppLocalizations.of(context)
-                                  .translate('prof_error'),
-                              style: TextStyle(
-                                  fontSize: title, color: Colors.deepOrange),
+                              AppLocalizations.of(context).translate('prof_error'),
+                              style: TextStyle(fontSize: title, color: Colors.deepOrange),
                             ),
                             Text(
-                              AppLocalizations.of(context)
-                                  .translate('data_error'),
+                              AppLocalizations.of(context).translate('data_error'),
                               style: TextStyle(fontSize: subTitle),
                             ),
                             //Text(AppLocalizations.of(context).translate('re_sign'),style: TextStyle(fontSize: subTitle),),
@@ -400,8 +372,7 @@ class _DoctorListState extends State<DoctorList> {
                               child: CircleAvatar(
                                 backgroundColor: Colors.deepOrange,
                                 radius: avatarSize,
-                                backgroundImage:
-                                    AssetImage('assets/images/doctor.png'),
+                                backgroundImage: AssetImage('assets/images/doctor.png'),
                               ),
                             ),
                             SizedBox(
@@ -412,9 +383,7 @@ class _DoctorListState extends State<DoctorList> {
                                 fit: BoxFit.fitWidth,
                                 child: Text(
                                   name,
-                                  style: _textStyle.copyWith(
-                                      fontSize: title,
-                                      fontFamily: 'noto_arabic'),
+                                  style: _textStyle.copyWith(fontSize: title, fontFamily: 'noto_arabic'),
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -425,8 +394,7 @@ class _DoctorListState extends State<DoctorList> {
                             Center(
                               child: Text(
                                 // _doctorAddress,
-                                AppLocalizations.of(context)
-                                    .translate(province),
+                                AppLocalizations.of(context).translate(province),
                                 style: _textStyle.copyWith(fontSize: footer),
                               ),
                             ),
@@ -443,19 +411,14 @@ class _DoctorListState extends State<DoctorList> {
                               height: 5,
                             ),
                             Text(
-                              AppLocalizations.of(context)
-                                  .translate('speciality'),
-                              style: TextStyle(
-                                  fontSize: footer,
-                                  color: Colors.indigo,
-                                  fontWeight: FontWeight.bold),
+                              AppLocalizations.of(context).translate('speciality'),
+                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
                               height: 2,
                             ),
                             Text(
-                              AppLocalizations.of(context)
-                                  .translate(speciality),
+                              AppLocalizations.of(context).translate(speciality),
                               style: _textStyle,
                             ),
                             Divider(
@@ -465,12 +428,8 @@ class _DoctorListState extends State<DoctorList> {
                               endIndent: 0,
                             ),
                             Text(
-                              AppLocalizations.of(context)
-                                  .translate('phoneNumber'),
-                              style: TextStyle(
-                                  fontSize: footer,
-                                  color: Colors.indigo,
-                                  fontWeight: FontWeight.bold),
+                              AppLocalizations.of(context).translate('phoneNumber'),
+                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
                               height: 2,
@@ -486,20 +445,15 @@ class _DoctorListState extends State<DoctorList> {
                               endIndent: 0,
                             ),
                             Text(
-                              AppLocalizations.of(context)
-                                  .translate('clinic_address'),
-                              style: TextStyle(
-                                  fontSize: footer,
-                                  color: Colors.indigo,
-                                  fontWeight: FontWeight.bold),
+                              AppLocalizations.of(context).translate('clinic_address'),
+                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
                               height: 2,
                             ),
                             Text(
                               _address,
-                              style: _textStyle.copyWith(
-                                  fontFamily: 'noto_arabic'),
+                              style: _textStyle.copyWith(fontFamily: 'noto_arabic'),
                             ),
                             Divider(
                               color: Colors.grey,
@@ -508,12 +462,8 @@ class _DoctorListState extends State<DoctorList> {
                               endIndent: 0,
                             ),
                             Text(
-                              AppLocalizations.of(context)
-                                  .translate('clinic_work'),
-                              style: TextStyle(
-                                  fontSize: footer,
-                                  color: Colors.indigo,
-                                  fontWeight: FontWeight.bold),
+                              AppLocalizations.of(context).translate('clinic_work'),
+                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
                               height: 2,
@@ -537,16 +487,11 @@ class _DoctorListState extends State<DoctorList> {
                                   )
                                 : Container(
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          AppLocalizations.of(context)
-                                              .translate('another_clinic_work'),
-                                          style: TextStyle(
-                                              fontSize: footer,
-                                              color: Colors.indigo,
-                                              fontWeight: FontWeight.bold),
+                                          AppLocalizations.of(context).translate('another_clinic_work'),
+                                          style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
                                         ),
                                         SizedBox(
                                           height: 2,
@@ -554,13 +499,7 @@ class _DoctorListState extends State<DoctorList> {
                                         FittedBox(
                                           fit: BoxFit.fitWidth,
                                           child: Text(
-                                            _firstEDay +
-                                                " " +
-                                                _firstTime +
-                                                '\n' +
-                                                _secondEDay +
-                                                " " +
-                                                _secondTime,
+                                            _firstEDay + " " + _firstTime + '\n' + _secondEDay + " " + _secondTime,
                                             style: _textStyle,
                                           ),
                                         ),
@@ -583,17 +522,15 @@ class _DoctorListState extends State<DoctorList> {
               Container(
                 height: buttonHeight,
                 width: buttonWidth,
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0)),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                    backgroundColor: Colors.deepOrange,
+                  ),
                   child: Text(
                     AppLocalizations.of(context).translate('update_info'),
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: subTitle),
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: subTitle),
                   ),
-                  color: Colors.deepOrange,
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => Updateinfo(

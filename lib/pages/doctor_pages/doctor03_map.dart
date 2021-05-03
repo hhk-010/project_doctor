@@ -135,7 +135,7 @@ class _FinalMapState extends State<FinalMap> {
       ),
       backgroundColor: Colors.deepOrange,
     );
-    _scaffoldkey.currentState.showSnackBar(_snackBar);
+   ScaffoldMessenger.of(context).showSnackBar(_snackBar);
   }
 
   //==========================checking internet connection

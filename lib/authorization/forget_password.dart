@@ -45,7 +45,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       ),
       backgroundColor: Colors.deepOrange,
     );
-    _scaffoldkey.currentState.showSnackBar(_snackbar);
+    ScaffoldMessenger.of(context).showSnackBar(_snackbar);
   }
 
   //-------------------the end ----------------------
@@ -301,13 +301,15 @@ class PasswordResetContinue extends StatelessWidget {
               Container(
                 height: buttonHeight,
                 width: buttonWidth,
-                child: RaisedButton.icon(
+                child: TextButton.icon(
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                      backgroundColor: Colors.deepOrange,
+                    ),
                     icon: Icon(
                       Icons.arrow_forward,
                       color: Colors.white,
                     ),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                    color: Colors.deepOrange,
                     label: Text(AppLocalizations.of(context).translate('continue'),
                         style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold)),
                     onPressed: () {

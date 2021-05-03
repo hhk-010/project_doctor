@@ -20,8 +20,7 @@ dependencies:
     sdk: flutter
   intl: ^0.17.0
   google_maps_flutter: ^2.0.1
-  flutter_google_places: ^0.2.8
-  rxdart: 
+  flutter_google_places: ^0.3.0
   firebase_auth: ^1.0.1
   cloud_firestore: ^1.0.2
   firebase_core: ^1.0.2
@@ -40,6 +39,8 @@ dependencies:
   flutter_launcher_icons: ^0.9.0
   change_app_package_name: ^0.1.2
   easy_localization: ^3.0.0
+  stacked_themes: ^0.3.2
+
 
 dev_dependencies:
   flutter_test:
@@ -66,3 +67,6 @@ flutter:
     - family: Helvetica
       fonts:
         - asset: assets/fonts/HelveticaNow-Regular.ttf
+    - family: Nova
+      fonts:
+        - asset: assets/fonts/Proxima-Nova-Regular.otf

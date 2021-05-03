@@ -111,7 +111,11 @@ class _SupportState extends State<Support> {
                           child: Container(
                             height: buttonHeight,
                             width: buttonWidth,
-                            child: FlatButton(
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.deepOrange,
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                              ),
                               onPressed: () {
                                 showDialog(
                                   context: context,
@@ -129,7 +133,7 @@ class _SupportState extends State<Support> {
                                         textAlign: TextAlign.justify,
                                       ),
                                       actions: <Widget>[
-                                        FlatButton(
+                                        TextButton(
                                           child: Text(
                                             AppLocalizations.of(context).translate('ok'),
                                             style: TextStyle(fontSize: subTitle),
@@ -150,8 +154,6 @@ class _SupportState extends State<Support> {
                                   style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
                                 ),
                               ),
-                              color: Colors.deepOrange,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                             ),
                           ),
                         ),
@@ -162,7 +164,13 @@ class _SupportState extends State<Support> {
                           child: Container(
                             height: buttonHeight,
                             width: buttonWidth,
-                            child: FlatButton(
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.deepOrange,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(80.0),
+                                ),
+                              ),
                               onPressed: () {
                                 showDialog(
                                   context: context,
@@ -186,7 +194,7 @@ class _SupportState extends State<Support> {
                                         ],
                                       )),
                                       actions: <Widget>[
-                                        FlatButton(
+                                        TextButton(
                                           child: Text(
                                             AppLocalizations.of(context).translate('ok'),
                                             style: TextStyle(fontSize: subTitle),
@@ -207,8 +215,6 @@ class _SupportState extends State<Support> {
                                   style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
                                 ),
                               ),
-                              color: Colors.deepOrange,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                             ),
                           ),
                         ),
@@ -220,7 +226,11 @@ class _SupportState extends State<Support> {
                           child: Container(
                             height: buttonHeight,
                             width: buttonWidth,
-                            child: FlatButton(
+                            child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                                    backgroundColor: Colors.deepOrange,
+                                  ),
                               onPressed: () {
                                 showDialog(
                                   context: context,
@@ -244,7 +254,11 @@ class _SupportState extends State<Support> {
                                         ),
                                       ),
                                       actions: <Widget>[
-                                        FlatButton(
+                                        TextButton(
+                                  style: TextButton.styleFrom(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                                    backgroundColor: Colors.deepOrange,
+                                  ),
                                           child: Text(
                                             AppLocalizations.of(context).translate('ok'),
                                             style: TextStyle(fontSize: subTitle),
@@ -265,8 +279,6 @@ class _SupportState extends State<Support> {
                                   style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
                                 ),
                               ),
-                              color: Colors.deepOrange,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                             ),
                           ),
                         ),
@@ -277,7 +289,11 @@ class _SupportState extends State<Support> {
                           child: Container(
                             height: buttonHeight,
                             width: buttonWidth,
-                            child: FlatButton(
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.deepOrange,
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                              ),
                               onPressed: () async {
                                 const url = 'https://sites.google.com/view/cura-mobile/home';
                                 if (await canLaunch(url)) {
@@ -293,8 +309,6 @@ class _SupportState extends State<Support> {
                                   style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: title),
                                 ),
                               ),
-                              color: Colors.deepOrange,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                             ),
                           ),
                         ),

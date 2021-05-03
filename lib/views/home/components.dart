@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_doctor/constants/device_size.dart';
+import 'package:project_doctor/constants.dart';
 
 class HomeButtonComponent extends StatelessWidget {
   final Function onPressed;
@@ -49,6 +49,43 @@ class HomeButtonComponent extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class HomeAlignComponent extends StatelessWidget {
+  final AlignmentGeometry alignment;
+  final EdgeInsets padding;
+  final Function onTap;
+  final bool isIcon;
+  final double width;
+  final double height;
+  final String asset;
+  final double iconSize;
+  final Widget icon;
+
+  const HomeAlignComponent({Key key, this.alignment, this.padding, this.onTap, this.width, this.height, this.icon, this.asset, this.iconSize, this.isIcon})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: alignment,
+      child: Padding(
+        padding: padding,
+        child: isIcon
+            ? IconButton(
+                onPressed: onTap,
+                icon: icon,
+                iconSize: iconSize,
+              )
+            : Container(
+                width: width,
+                height: height,
+                decoration: BoxDecoration(
+                  image: DecorationImage(image: AssetImage(asset), fit: BoxFit.fill),
+                ),
+              ),
       ),
     );
   }

@@ -114,7 +114,7 @@ class _UpdateMapState extends State<UpdateMap> {
       //duration: new Duration(seconds: 3),
       backgroundColor: Colors.deepOrange,
     );
-    _scaffoldkey.currentState.showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   //-------------------checking internet connection

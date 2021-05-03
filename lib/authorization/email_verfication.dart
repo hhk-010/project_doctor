@@ -63,7 +63,7 @@ class _EmailVerificationState extends State<EmailVerification> {
       ),
       backgroundColor: Colors.deepOrange,
     );
-    _scaffoldkey.currentState.showSnackBar(_snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(_snackBar);
   }
 
   final AuthService _auth = AuthService();

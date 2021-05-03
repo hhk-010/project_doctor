@@ -14,7 +14,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   @override
   Widget build(BuildContext context) {
     var lang = Localizations.localeOf(context).languageCode;
@@ -32,9 +31,6 @@ class _HomeState extends State<Home> {
       double buttonTitle;
       double buttonSubTitle;
       double buttonIconSize;
-      double floatingButtonHeight;
-      double floatingButtonWidth;
-      double floatingButtonTitle;
 
       if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
         appBarTitle = 25;
@@ -45,9 +41,6 @@ class _HomeState extends State<Home> {
         buttonTitle = displayHeight(context) * 0.035;
         buttonSubTitle = displayHeight(context) * 0.022;
         buttonIconSize = 70;
-        floatingButtonHeight = displayHeight(context) * 0.05;
-        floatingButtonWidth = displayWidth(context) * 0.55;
-        floatingButtonTitle = displayHeight(context) * 0.015;
       } else {
         appBarTitle = displayHeight(context) * 0.03;
         appBarIcon = 30;
@@ -57,9 +50,6 @@ class _HomeState extends State<Home> {
         buttonTitle = displayHeight(context) * 0.045;
         buttonSubTitle = displayHeight(context) * 0.028;
         buttonIconSize = 100;
-        floatingButtonHeight = displayHeight(context) * 0.05;
-        floatingButtonWidth = displayWidth(context) * 0.5;
-        floatingButtonTitle = displayHeight(context) * 0.025;
       }
 
       return Scaffold(
@@ -130,7 +120,11 @@ class _HomeState extends State<Home> {
                   Container(
                     height: buttonHeight,
                     width: buttonWidth,
-                    child: RaisedButton.icon(
+                    child: TextButton.icon(
+                      style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                        backgroundColor: Colors.deepOrange,
+                      ),
                       onPressed: () => Navigator.pushNamed(context, '/patient_complain'),
                       icon: Icon(
                         Icons.search,
@@ -159,14 +153,16 @@ class _HomeState extends State<Home> {
                           maxLines: 2,
                         ),
                       ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                      color: Colors.deepOrange,
                     ),
                   ),
                   Container(
                     height: buttonHeight,
                     width: buttonWidth,
-                    child: RaisedButton.icon(
+                    child: TextButton.icon(
+                      style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                        backgroundColor: Colors.deepOrange,
+                      ),
                       onPressed: () => Navigator.pushNamed(context, '/intermediate'),
                       icon: Icon(
                         Icons.people,
@@ -194,8 +190,6 @@ class _HomeState extends State<Home> {
                               ]),
                         ),
                       ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                      color: Colors.deepOrange,
                     ),
                   ),
                 ],
