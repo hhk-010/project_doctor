@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/device_size.dart';
 
-class HomeButton extends StatelessWidget {
-  final Function onpressed;
+class HomeButtonComponent extends StatelessWidget {
+  final Function onPressed;
   final String title;
   final String icon;
   final Color color;
 
-  const HomeButton({
+  const HomeButtonComponent({
     Key key,
-    this.onpressed,
+    this.onPressed,
     this.title,
     this.icon,
     this.color,
@@ -28,7 +28,7 @@ class HomeButton extends StatelessWidget {
           primary: color, // background
           onPrimary: Colors.white, // foreground
         ),
-        onPressed: onpressed,
+        onPressed: onPressed,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -42,11 +42,14 @@ class _HomeViewState extends State<HomeView> {
             alignment: Alignment.topLeft,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage('assets/images/home/ar.png'), fit: BoxFit.fill),
+              child: GestureDetector(
+                onTap: () => null,
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(image: AssetImage('assets/images/home/ar.png'), fit: BoxFit.fill),
+                  ),
                 ),
               ),
             ),
@@ -55,11 +58,14 @@ class _HomeViewState extends State<HomeView> {
             alignment: Alignment.topRight,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage('assets/images/home/moon.png'), fit: BoxFit.fill),
+              child: GestureDetector(
+                onTap: () => null,
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(image: AssetImage('assets/images/home/moon.png'), fit: BoxFit.fill),
+                  ),
                 ),
               ),
             ),
@@ -68,11 +74,14 @@ class _HomeViewState extends State<HomeView> {
             alignment: Alignment.bottomLeft,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: 30,
-                height: 30,
-                decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage('assets/images/home/info.png'), fit: BoxFit.fill),
+              child: GestureDetector(
+                onTap: () => Navigator.pushNamed(context, '/support'),
+                child: Container(
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(image: AssetImage('assets/images/home/info.png'), fit: BoxFit.fill),
+                  ),
                 ),
               ),
             ),
@@ -87,20 +96,20 @@ class _HomeViewState extends State<HomeView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    HomeButton(
+                    HomeButtonComponent(
                       title: "Search for a Doctor",
                       icon: 'assets/images/home/male_doctor.png',
                       color: Colors.deepOrange,
-                      onpressed: () => null,
+                      onPressed: () => Navigator.pushNamed(context, '/patient_complain'),
                     ),
                     SizedBox(
                       height: getDeviceType(context, 35, 45, 55, 65),
                     ),
-                    HomeButton(
+                    HomeButtonComponent(
                       title: "Create an Account",
                       icon: 'assets/images/home/stethoscope.png',
                       color: Colors.orange,
-                      onpressed: () => null,
+                      onPressed: () => Navigator.pushNamed(context, '/intermediate'),
                     ),
                   ],
                 ),
