@@ -30,7 +30,7 @@ class _DoctorLocationmapState extends State<DoctorLocationmap> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(
-          getDeviceTypeI(context, 36, 56, 56, 56),
+          getDeviceType(context, 36, 56, 56, 56),
         ),
         child: AppBar(
           backgroundColor: Colors.deepOrange,
@@ -39,7 +39,7 @@ class _DoctorLocationmapState extends State<DoctorLocationmap> {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
-              fontSize: getDeviceTypeI(context, 1, 23, 35, 45),
+              fontSize: getDeviceType(context, 1, 23, 35, 45),
             ),
           ),
           centerTitle: true,
@@ -67,7 +67,7 @@ class _DoctorLocationmapState extends State<DoctorLocationmap> {
                 AppLocalizations.of(context).translate('ok'),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: getDeviceTypeI(context, 12, 15, 18, 21),
+                  fontSize: getDeviceType(context, 12, 15, 18, 21),
                 ),
               ),
               onPressed: () {

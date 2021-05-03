@@ -80,7 +80,7 @@ class _FavoriteListViewState extends State<FavoriteListView> {
         backgroundColor: Colors.grey[200],
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(
-            getDeviceTypeI(context, 36, 56, 56, 56),
+            getDeviceType(context, 36, 56, 56, 56),
           ),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
@@ -89,7 +89,7 @@ class _FavoriteListViewState extends State<FavoriteListView> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
-                fontSize: getDeviceTypeI(context, 16, 25, 35, 45),
+                fontSize: getDeviceType(context, 16, 25, 35, 45),
               ),
             ),
             centerTitle: true,
@@ -99,7 +99,7 @@ class _FavoriteListViewState extends State<FavoriteListView> {
           ),
         ),
         drawer: Container(
-          width: getDeviceTypeI(context, 180, 290, 520, 600),
+          width: getDeviceType(context, 180, 290, 520, 600),
           child: PatientSidebar(),
         ),
         body: Favorite01(),
@@ -832,26 +832,26 @@ class _FavoriteTileState extends State<FavoriteTile> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: getDeviceTypeI(context, 5, 10, 15, 20),
-        vertical: getDeviceTypeI(context, 10, 20, 15, 20),
+        horizontal: getDeviceType(context, 5, 10, 15, 20),
+        vertical: getDeviceType(context, 10, 20, 15, 20),
       ),
       child: widget.favoriteList.name == 'Estate'
           ? widget.favoriteList.speciality == 'O'
               ? Column(
                   children: [
                     SizedBox(
-                      height: getDeviceTypeI(context, 20, 40, 60, 80),
+                      height: getDeviceType(context, 20, 40, 60, 80),
                     ),
                     Center(
                       child: Text(
                         AppLocalizations.of(context).translate('empty list'),
                         style: TextStyle(
-                          fontSize: getDeviceTypeI(context, 12, 15, 30, 30),
+                          fontSize: getDeviceType(context, 12, 15, 30, 30),
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: getDeviceTypeI(context, 20, 40, 60, 80),
+                      height: getDeviceType(context, 20, 40, 60, 80),
                     ),
                     IconButton(
                       onPressed: () {
@@ -872,14 +872,14 @@ class _FavoriteTileState extends State<FavoriteTile> {
                 )
           : Card(
               margin: EdgeInsets.fromLTRB(
-                getDeviceTypeI(context, 1, 2, 8, 10),
-                getDeviceTypeI(context, 1, 2, 8, 10),
-                getDeviceTypeI(context, 1, 2, 8, 10),
-                getDeviceTypeI(context, 1, 2, 8, 10),
+                getDeviceType(context, 1, 2, 8, 10),
+                getDeviceType(context, 1, 2, 8, 10),
+                getDeviceType(context, 1, 2, 8, 10),
+                getDeviceType(context, 1, 2, 8, 10),
               ),
               child: ListTile(
                 leading: CircleAvatar(
-                  radius: getDeviceTypeI(context, 20, 25, 30, 35),
+                  radius: getDeviceType(context, 20, 25, 30, 35),
                   backgroundColor: Colors.deepOrange,
                 ),
                 title: Text(

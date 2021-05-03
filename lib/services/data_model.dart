@@ -98,7 +98,7 @@ class FavoriteListData {
 
 class NewSearchData {
   static String province = '';
-  static String Name = '';
+  static String name = '';
   static String speciality = '';
   static bool nameSelected = false;
   static bool specialitySelected = false;

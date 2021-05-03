@@ -1665,7 +1665,7 @@ class _PatientComplainState extends State<PatientComplain> {
           ),
         ),
         drawer: Container(
-          width: getDeviceTypeI(context, 180, 290, 520, 600),
+          width: getDeviceType(context, 180, 290, 520, 600),
           child: PatientSidebar(),
         ),
         floatingActionButton: Padding(

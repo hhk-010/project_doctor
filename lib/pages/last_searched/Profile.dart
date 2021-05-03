@@ -411,7 +411,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
           ),
         ),
         drawer: Container(
-          width: getDeviceTypeI(context, 180, 290, 520, 600),
+          width: getDeviceType(context, 180, 290, 520, 600),
           child: PatientSidebar(),
         ),
         body: Center(
