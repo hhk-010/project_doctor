@@ -3,7 +3,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:project_doctor/main.dart';
-import 'package:project_doctor/pages/last_searched/read_write_path.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/constants/language.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
@@ -11,7 +10,6 @@ import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
 
 class Home extends StatefulWidget {
-  final LastSearchedStorage readFromStorage = LastSearchedStorage();
 
   @override
   _HomeState createState() => _HomeState();
@@ -128,49 +126,6 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        /*floatingActionButton:
-            // ShowFloatingActionButton.show
-            //     ?
-            Container(
-          height: floatingButtonHeight,
-          width: floatingButtonWidth,
-          child: FloatingActionButton.extended(
-            icon: Icon(
-              Icons.arrow_forward,
-              color: Colors.white,
-            ),
-            elevation: 0.0,
-            backgroundColor: Colors.deepOrange,
-            shape: RoundedRectangleBorder(
-              borderRadius: lang == 'en'
-                  ? BorderRadius.only(
-                      topLeft: Radius.circular(20.0),
-                      topRight: Radius.zero,
-                      bottomLeft: Radius.circular(20.0),
-                      bottomRight: Radius.zero)
-                  : BorderRadius.only(
-                      topLeft: Radius.zero,
-                      topRight: Radius.circular(20.0),
-                      bottomLeft: Radius.zero,
-                      bottomRight: Radius.circular(20.0)),
-            ),
-            onPressed: () {
-              //Navigator.pushNamed(context, '/phone');
-              //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LastSearchedDoctor()));
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => LastSearchedDoctor()));
-            },
-            label: Text(
-                AppLocalizations.of(context).translate('last_searched_doctor'),
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: floatingButtonTitle,
-                    fontWeight: FontWeight.bold)),
-          ),
-        ),*/
-        // : null,
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: SafeArea(
           child: Container(

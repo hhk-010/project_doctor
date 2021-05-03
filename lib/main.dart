@@ -1,4 +1,3 @@
-// import 'package:device_preview/device_preview.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
@@ -37,6 +36,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor04_profile.dart';
 import 'package:project_doctor/pages/patient_pages/patient05_result.dart';
 import 'package:project_doctor/services/app_localizations.dart';
+import 'package:project_doctor/views/home/home_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -99,8 +99,7 @@ class _MyAppState extends State<MyApp> {
       return GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus &&
-              currentFocus.focusedChild != null) {
+          if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
             FocusManager.instance.primaryFocus.unfocus();
           }
         },
@@ -126,8 +125,7 @@ class _MyAppState extends State<MyApp> {
           builder: (context, navigator) {
             var lang = Localizations.localeOf(context).languageCode;
             return Theme(
-              data: ThemeData(
-                  fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+              data: ThemeData(fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
               child: navigator,
             );
           },
@@ -145,8 +143,9 @@ class _MyAppState extends State<MyApp> {
             GlobalWidgetsLocalizations.delegate,
           ],
 
-          initialRoute: '/home',
+          initialRoute: '/home_view',
           routes: {
+            '/home_view': (context) => HomeView(),
             '/home': (context) => Home(),
             '/support': (context) => Support(),
             '/loading': (context) => Loading(),

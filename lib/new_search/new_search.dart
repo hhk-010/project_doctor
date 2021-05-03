@@ -54,7 +54,7 @@ class _NewSearchState extends State<NewSearch> {
   void initState() {
     super.initState();
     NewSearchData.province = null;
-    NewSearchData.Name = '';
+    NewSearchData.name = '';
     NewSearchData.speciality = '';
     isLoading = false;
     SelectedPage.complaintSelected = false;
@@ -208,7 +208,7 @@ class _NewSearchState extends State<NewSearch> {
       backgroundColor: Colors.grey[200],
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(
-          getDeviceTypeI(context, 36, 56, 56, 56),
+          getDeviceType(context, 36, 56, 56, 56),
         ),
         child: AppBar(
           backgroundColor: Colors.deepOrange,
@@ -217,7 +217,7 @@ class _NewSearchState extends State<NewSearch> {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
-              fontSize: getDeviceTypeI(context, 16, 25, 35, 45),
+              fontSize: getDeviceType(context, 16, 25, 35, 45),
             ),
           ),
           centerTitle: true,
@@ -227,13 +227,13 @@ class _NewSearchState extends State<NewSearch> {
         ),
       ),
       drawer: Container(
-        width: getDeviceTypeI(context, 180, 290, 520, 600),
+        width: getDeviceType(context, 180, 290, 520, 600),
         child: PatientSidebar(),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(
-          vertical: getDeviceTypeI(context, 10, 20, 30, 40),
-          horizontal: getDeviceTypeI(context, 10, 20, 30, 40),
+          vertical: getDeviceType(context, 10, 20, 30, 40),
+          horizontal: getDeviceType(context, 10, 20, 30, 40),
         ),
         child: Form(
           key: _formKey,
@@ -241,22 +241,22 @@ class _NewSearchState extends State<NewSearch> {
             child: Column(
               children: [
                 SizedBox(
-                  height: getDeviceTypeI(context, 20, 30, 40, 50),
+                  height: getDeviceType(context, 20, 30, 40, 50),
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(
-                    vertical: getDeviceTypeI(context, 10, 20, 30, 40),
-                    horizontal: getDeviceTypeI(context, 10, 20, 30, 40),
+                    vertical: getDeviceType(context, 10, 20, 30, 40),
+                    horizontal: getDeviceType(context, 10, 20, 30, 40),
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(
                       Radius.circular(
-                        getDeviceTypeI(context, 10, 20, 30, 40),
+                        getDeviceType(context, 10, 20, 30, 40),
                       ),
                     ),
                     border: Border.all(
                       color: Colors.deepOrange,
-                      width: getDeviceTypeI(context, 2, 2, 3, 3),
+                      width: getDeviceType(context, 2, 2, 3, 3),
                     ),
                   ),
                   child: Column(
@@ -265,7 +265,7 @@ class _NewSearchState extends State<NewSearch> {
                         AppLocalizations.of(context).translate('province'),
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: getDeviceTypeI(context, 12, 15, 18, 20)),
+                            fontSize: getDeviceType(context, 12, 15, 18, 20)),
                       ),
                       Divider(
                         color: Colors.grey,
@@ -371,22 +371,22 @@ class _NewSearchState extends State<NewSearch> {
                   ),
                 ),
                 SizedBox(
-                  height: getDeviceTypeI(context, 20, 30, 40, 50),
+                  height: getDeviceType(context, 20, 30, 40, 50),
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(
-                    vertical: getDeviceTypeI(context, 10, 20, 30, 40),
-                    horizontal: getDeviceTypeI(context, 10, 20, 30, 40),
+                    vertical: getDeviceType(context, 10, 20, 30, 40),
+                    horizontal: getDeviceType(context, 10, 20, 30, 40),
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(
                       Radius.circular(
-                        getDeviceTypeI(context, 10, 20, 30, 40),
+                        getDeviceType(context, 10, 20, 30, 40),
                       ),
                     ),
                     border: Border.all(
                       color: Colors.deepOrange,
-                      width: getDeviceTypeI(context, 2, 2, 3, 3),
+                      width: getDeviceType(context, 2, 2, 3, 3),
                     ),
                   ),
                   child: Column(
@@ -414,7 +414,7 @@ class _NewSearchState extends State<NewSearch> {
                               _specialitySelected;
                           if (_nameSelected) {
                             _nameSelected = !_nameSelected;
-                            NewSearchData.Name = '';
+                            NewSearchData.name = '';
                           }
                         }),
                       ),
@@ -425,7 +425,7 @@ class _NewSearchState extends State<NewSearch> {
                                       .translate('name validator')
                                   : null,
                               onChanged: (val) {
-                                setState(() => NewSearchData.Name = val);
+                                setState(() => NewSearchData.name = val);
                               },
                               cursorColor: Colors.black,
                               keyboardType: TextInputType.emailAddress,
@@ -589,13 +589,13 @@ class _NewSearchState extends State<NewSearch> {
                   ),
                 ),
                 SizedBox(
-                  height: getDeviceTypeI(context, 40, 160, 400, 400),
+                  height: getDeviceType(context, 40, 160, 400, 400),
                 ),
                 Container(
-                  height: getDeviceTypeI(context, 20, 40, 70, 50),
+                  height: getDeviceType(context, 20, 40, 70, 50),
                   width: isLoading
-                      ? getDeviceTypeI(context, 20, 40, 50, 50)
-                      : getDeviceTypeI(context, 200, 220, 400, 400),
+                      ? getDeviceType(context, 20, 40, 50, 50)
+                      : getDeviceType(context, 200, 220, 400, 400),
                   child: LoadingButton(
                     isloading: isLoading,
                     backgroundcolor: Colors.deepOrange,

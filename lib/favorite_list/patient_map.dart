@@ -84,7 +84,7 @@ class _PatientSearchmapState extends State<PatientSearchmap> {
       key: _scaffoldkey,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(
-          getDeviceTypeI(context, 36, 56, 56, 56),
+          getDeviceType(context, 36, 56, 56, 56),
         ),
         child: AppBar(
           backgroundColor: Colors.deepOrange,
@@ -93,7 +93,7 @@ class _PatientSearchmapState extends State<PatientSearchmap> {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
-              fontSize: getDeviceTypeI(context, 1, 23, 35, 45),
+              fontSize: getDeviceType(context, 1, 23, 35, 45),
             ),
           ),
           centerTitle: true,
@@ -123,7 +123,7 @@ class _PatientSearchmapState extends State<PatientSearchmap> {
                   AppLocalizations.of(context).translate('ok'),
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: getDeviceTypeI(context, 15, 18, 21, 24)),
+                      fontSize: getDeviceType(context, 15, 18, 21, 24)),
                 ),
               ),
               onPressed: () async {
