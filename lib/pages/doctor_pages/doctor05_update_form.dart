@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_clinic.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/constants/theme.dart';
+import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor07_update_password.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';

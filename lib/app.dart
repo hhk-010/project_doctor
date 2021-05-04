@@ -5,7 +5,7 @@ import 'package:project_doctor/authorization/04_mcqs_new.dart';
 import 'package:project_doctor/authorization/05_register.dart';
 import 'package:project_doctor/authorization/email_verfication.dart';
 import 'package:project_doctor/authorization/loading.dart';
-import 'package:project_doctor/constants.dart';
+import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/favorite_list/doctor_location_map.dart';
 import 'package:project_doctor/favorite_list/favorite_list.dart';
 import 'package:project_doctor/favorite_list/patient_location.dart';
@@ -13,7 +13,6 @@ import 'package:project_doctor/favorite_list/patient_map.dart';
 import 'package:project_doctor/favorite_list/result_view.dart';
 import 'package:project_doctor/new_search/new_search.dart';
 import 'package:project_doctor/new_search/search_list.dart';
-import 'package:project_doctor/pages/Support.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor05.5_update_clinic.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor07_update_password.dart';
@@ -23,7 +22,6 @@ import 'package:project_doctor/pages/patient_pages/patient02.5_speciality_result
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
 import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
 import 'package:project_doctor/pages/patient_pages/patient06_result_map.dart';
-import 'package:project_doctor/pages/home.dart';
 import 'package:project_doctor/authorization/01_wrapper.dart';
 import 'package:project_doctor/pages/patient_pages/patient01_complain.dart';
 import 'package:project_doctor/pages/patient_pages/patient02_risk_factors.dart';
@@ -45,22 +43,20 @@ class MyApp extends StatelessWidget {
       lightTheme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
         brightness: Brightness.light,
-        backgroundColor: Colors.grey[200],
-        primaryColor: const Color(0xFFFD6836),
-        fontFamily: getLocale(context) == "en" ? 'Nova' : 'noto_arabic',
+        primaryColor: LightPalette.homeButton1,
+        fontFamily: getLocale(context) ? 'Montserrat' : 'noto_arabic',
+        scaffoldBackgroundColor: Colors.transparent,
         textTheme: TextTheme(
           headline1: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold, color: Colors.white),
+          button: TextStyle(fontSize: getDeviceType(context, 14, 16, 24, 32), fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
       darkTheme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
         brightness: Brightness.dark,
-        backgroundColor: const Color(0xFF1A253D),
-        primaryColor: const Color(0xFF0D142D),
-        fontFamily: getLocale(context) == "en" ? 'Nova' : 'noto_arabic',
-        textTheme: TextTheme(
-          headline1: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
+        primaryColor: DarkPalette.backgroundB,
+        fontFamily: getLocale(context) ? 'Montserrat' : 'noto_arabic',
+        scaffoldBackgroundColor: Colors.transparent,
       ),
       builder: (context, lightTheme, darkTheme, themeMode) => GestureDetector(
         onTap: () {
@@ -84,8 +80,6 @@ class MyApp extends StatelessWidget {
           initialRoute: '/home_view',
           routes: {
             '/home_view': (context) => HomeView(),
-            '/home': (context) => Home(),
-            '/support': (context) => Support(),
             '/loading': (context) => Loading(),
             '/intermediate': (context) => Intermediate(),
             '/patient_complain': (context) => PatientComplain(),

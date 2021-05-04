@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/constants/theme.dart';
+import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';

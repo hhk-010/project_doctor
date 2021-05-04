@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:project_doctor/constants.dart';
-import 'package:project_doctor/constants/theme.dart';
+import 'package:project_doctor/constants/color_style_size.dart';
+import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/favorite_list/favorite_list.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/data_model.dart';

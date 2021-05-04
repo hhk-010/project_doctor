@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_doctor/constants/theme.dart';
+import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/matching_algorithm/disease1.dart';
 import 'package:project_doctor/matching_algorithm/disease2.dart';
 import 'package:project_doctor/matching_algorithm/disease3.dart';

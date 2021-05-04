@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/authorization/loading.dart';
-import 'package:project_doctor/constants/theme.dart';
+import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/ui/sizing_information.dart';

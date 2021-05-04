@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/services/app_localizations.dart';
-import 'package:project_doctor/constants/theme.dart';
+import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';

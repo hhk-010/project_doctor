@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/constants.dart';
-import 'package:project_doctor/constants/theme.dart';
+import 'package:project_doctor/constants/color_style_size.dart';
+import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/pages/last_searched/location.dart';
 import 'package:project_doctor/pages/last_searched/read_write_path.dart';
 import 'package:project_doctor/pages/patient_pages/patient_sidebar.dart';

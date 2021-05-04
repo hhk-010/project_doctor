@@ -37,7 +37,7 @@ packages:
     source: hosted
     version: "2.1.0"
   change_app_package_name:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: change_app_package_name
       url: "https://pub.dartlang.org"
@@ -113,13 +113,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.1"
-  dropdownfield:
-    dependency: "direct main"
-    description:
-      name: dropdownfield
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3"
   easy_localization:
     dependency: "direct main"
     description:
@@ -252,7 +245,7 @@ packages:
     source: hosted
     version: "0.3.0"
   flutter_launcher_icons:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: flutter_launcher_icons
       url: "https://pub.dartlang.org"
@@ -264,7 +257,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_native_splash:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: flutter_native_splash
       url: "https://pub.dartlang.org"
@@ -386,7 +379,7 @@ packages:
     source: hosted
     version: "0.0.20-nullsafety.5"
   http:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -407,7 +400,7 @@ packages:
     source: hosted
     version: "3.0.2"
   intl:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: intl
       url: "https://pub.dartlang.org"
