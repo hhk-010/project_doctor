@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/custom_widges/c_base.dart';
-import 'package:project_doctor/pages/patient_pages/patient01_complain.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:project_doctor/custom_widges/c_home.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:project_doctor/views/authorization/sign_in.dart';
+import 'package:project_doctor/views/authorization/sign_wrapper.dart';
 import 'package:project_doctor/views/home/support_view.dart';
-import 'package:project_doctor/views/profile/authorization/sign_in.dart';
-import 'package:project_doctor/views/profile/authorization/sign_wrapper.dart';
+import 'package:project_doctor/views/patient_pages/patient01_complain.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
 class HomeView extends StatefulWidget {
