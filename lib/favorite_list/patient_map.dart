@@ -1,12 +1,11 @@
 import 'dart:io';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/data_model.dart';
+import 'package:project_doctor/views/profile/authorization/loading.dart';
 
 class PatientSearchmap extends StatefulWidget {
   @override

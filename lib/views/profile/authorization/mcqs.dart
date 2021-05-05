@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/authorization/05_register.dart';
-import 'package:project_doctor/authorization/questions.dart';
+import 'package:project_doctor/views/profile/authorization/sign_up.dart';
+import 'package:project_doctor/views/profile/authorization/questions.dart';
 import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';

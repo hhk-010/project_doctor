@@ -1,18 +1,41 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/authorization/forget_password.dart';
-import 'package:project_doctor/authorization/loading.dart';
+import 'package:project_doctor/constants/custom_widgets.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/theme.dart';
+import 'package:project_doctor/translations/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'dart:io';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
+import 'package:project_doctor/views/profile/authorization/custom_widgets.dart';
+import 'package:project_doctor/views/profile/authorization/forget_password.dart';
+import 'package:project_doctor/views/profile/authorization/loading.dart';
 
-//------this class is for the snackbar text
-class SnackText {
-  static String errorMsg = '';
+class SignInView extends StatefulWidget {
+
+
+// refactor
+    final Function questionsToogleView;
+  SignInView({this.questionsToogleView});
+
+
+
+  @override
+  _SignInViewState createState() => _SignInViewState();
+}
+
+class _SignInViewState extends State<SignInView> {
+  @override
+  Widget build(BuildContext context) {
+    return BaseStack(
+      isAppbar: true,
+      title: LocaleKeys.doctor_view_sign_in.tr(),
+      children: [],
+    );
+  }
 }
 
 class SignIn extends StatefulWidget {

@@ -14,12 +14,12 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/services/read_write_path.dart';
+import 'package:project_doctor/views/profile/authorization/loading.dart';
 import 'package:provider/provider.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:project_doctor/authorization/loading.dart';
 
 class PatientResult extends StatefulWidget {
   final Storage storage = Storage();

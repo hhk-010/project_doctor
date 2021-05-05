@@ -1,10 +1,4 @@
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/authorization/04_mcqs_new.dart';
-import 'package:project_doctor/authorization/05_register.dart';
-import 'package:project_doctor/authorization/email_verfication.dart';
-import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/favorite_list/doctor_location_map.dart';
 import 'package:project_doctor/favorite_list/favorite_list.dart';
@@ -22,7 +16,6 @@ import 'package:project_doctor/pages/patient_pages/patient02.5_speciality_result
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
 import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
 import 'package:project_doctor/pages/patient_pages/patient06_result_map.dart';
-import 'package:project_doctor/authorization/01_wrapper.dart';
 import 'package:project_doctor/pages/patient_pages/patient01_complain.dart';
 import 'package:project_doctor/pages/patient_pages/patient02_risk_factors.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor01_form.dart';
@@ -30,11 +23,15 @@ import 'package:project_doctor/pages/doctor_pages/doctor04_profile.dart';
 import 'package:project_doctor/pages/patient_pages/patient05_result.dart';
 import 'package:project_doctor/views/home/home_view.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:project_doctor/views/profile/authorization/sign_wrapper.dart';
+import 'package:project_doctor/views/profile/authorization/mcqs.dart';
+import 'package:project_doctor/views/profile/authorization/sign_up.dart';
+import 'package:project_doctor/views/profile/authorization/email_verfication.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
-class MyApp extends StatelessWidget {
-  final FirebaseAnalytics analytics = FirebaseAnalytics();
+import 'views/profile/authorization/loading.dart';
 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ThemeBuilder(
@@ -46,15 +43,11 @@ class MyApp extends StatelessWidget {
         primaryColor: LightPalette.homeButton1,
         fontFamily: getLocale(context) ? 'Montserrat' : 'noto_arabic',
         scaffoldBackgroundColor: Colors.transparent,
-        textTheme: TextTheme(
-          headline1: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold, color: Colors.white),
-          button: TextStyle(fontSize: getDeviceType(context, 14, 16, 24, 32), fontWeight: FontWeight.bold, color: Colors.white),
-        ),
       ),
       darkTheme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
         brightness: Brightness.dark,
-        primaryColor: DarkPalette.backgroundB,
+        primaryColor: DarkPalette.background1,
         fontFamily: getLocale(context) ? 'Montserrat' : 'noto_arabic',
         scaffoldBackgroundColor: Colors.transparent,
       ),
@@ -67,9 +60,6 @@ class MyApp extends StatelessWidget {
         },
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          navigatorObservers: [
-            FirebaseAnalyticsObserver(analytics: analytics),
-          ],
           title: 'Cura Mobile',
           theme: lightTheme,
           darkTheme: darkTheme,
@@ -77,9 +67,8 @@ class MyApp extends StatelessWidget {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          initialRoute: '/home_view',
+          home: HomeView(),
           routes: {
-            '/home_view': (context) => HomeView(),
             '/loading': (context) => Loading(),
             '/intermediate': (context) => Intermediate(),
             '/patient_complain': (context) => PatientComplain(),

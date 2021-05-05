@@ -1,16 +1,13 @@
 // use commmand promot to navigate to the following directory 
 Java binary at: C:\Program Files\Android\Android Studio\jre\bin\java
 
-
 // Release certificate fingerprint
 keytool -list -v -keystore C:\\hhk.projects\\Project_doctor\\key.jks -alias key
 SHA1: 1A:23:DB:37:70:D9:38:75:5E:34:79:C3:E0:20:6D:41:44:8D:1A:66
 
-
 // Debugging certificate fingerprint
 keytool -list -v -keystore "C:\Users\Sora8\\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
 SHA1: 1B:23:96:9B:C7:57:E4:45:3E:A7:31:52:3C:5A:C6:D3:39:EA:D2:26
-
 
 // App signing key certificate
 SHA1: 2B:16:5B:86:EB:3B:A7:B7:DD:A1:46:46:C5:DF:55:40:E6:60:37:47
@@ -18,10 +15,21 @@ SHA1: 2B:16:5B:86:EB:3B:A7:B7:DD:A1:46:46:C5:DF:55:40:E6:60:37:47
 // package name
 hhk.projectdoctor.beta.ak
 
-
 // flutter build commmand =>
 flutter build apk --split-per-abi
 flutter build appbundle
 
 // easy_localization locale_keys geneeration commmand =>
 flutter pub run easy_localization:generate -S "assets/translations" -O "lib/translations" -o "locale_keys.g.dart" -f keys
+
+// template for stack children 
+ return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: GradientBackground(
+          child: Stack(
+            children: [],
+          ),
+        ),
+      ),
+    );

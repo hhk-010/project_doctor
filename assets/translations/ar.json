@@ -1,7 +1,8 @@
 {
   "home_view": {
     "search_button": "ابحث عن طبيب",
-    "profile_button": "إنشاء حساب"
+    "profile_button": "إنشاء حساب",
+    "cura_rights": "2020 فريق كيورا - جميع الحقوق محفوظة"
   },
   "Iraq_regions": {
     "Baghdad": "بغداد",

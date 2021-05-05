@@ -3,6 +3,8 @@
 abstract class  LocaleKeys {
   static const home_view_search_button = 'home_view.search_button';
   static const home_view_profile_button = 'home_view.profile_button';
+  static const home_view_cura_rights = 'home_view.cura_rights';
+  static const home_view_experiment = 'home_view.experiment';
   static const home_view = 'home_view';
   static const Iraq_regions_Baghdad = 'Iraq_regions.Baghdad';
   static const Iraq_regions_Babil = 'Iraq_regions.Babil';

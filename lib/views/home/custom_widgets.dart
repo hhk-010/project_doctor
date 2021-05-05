@@ -30,7 +30,6 @@ class HomeButtonComponent extends StatelessWidget {
           ),
           primary: Colors.white,
           backgroundColor: color,
-          textStyle: Style.homeButtonText,
         ),
         onPressed: onPressed,
         child: Row(
@@ -38,6 +37,7 @@ class HomeButtonComponent extends StatelessWidget {
           children: [
             Text(
               title.toUpperCase(),
+              style: CStyle.buttonText,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -104,12 +104,15 @@ class SupportButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 50,
       width: 200,
       child: TextButton(
         style: TextButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          primary: Colors.white,
           backgroundColor: Colors.deepOrange,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
         ),
         onPressed: () {
           showDialog(
@@ -123,19 +126,20 @@ class SupportButtons extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 content: SingleChildScrollView(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      dialogContext,
-                      style: TextStyle(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 14,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        dialogContext,
+                        style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 14,
+                        ),
+                        textAlign: TextAlign.justify,
                       ),
-                      textAlign: TextAlign.justify,
-                    ),
-                  ],
-                )),
+                    ],
+                  ),
+                ),
                 actions: <Widget>[
                   TextButton(
                     child: Text(
@@ -153,7 +157,6 @@ class SupportButtons extends StatelessWidget {
         },
         child: Text(
           title,
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16),
         ),
       ),
     );

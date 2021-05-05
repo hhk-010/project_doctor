@@ -1,15 +1,14 @@
 import 'dart:io';
 import 'dart:math';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/data_model.dart';
+import 'package:project_doctor/views/profile/authorization/loading.dart';
 
 class PatientLocation extends StatefulWidget {
   @override

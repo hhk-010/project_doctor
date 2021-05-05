@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
-import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/pages/patient_pages/patient04_map.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
@@ -13,6 +12,7 @@ import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
+import 'package:project_doctor/views/profile/authorization/loading.dart';
 
 class MyVariables {
   static String speciality = '';

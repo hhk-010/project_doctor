@@ -1,7 +1,8 @@
 {
   "home_view": {
     "search_button": "Search for a Doctor",
-    "profile_button": "Create an Account"
+    "profile_button": "Create an Account",
+    "cura_rights" : "© 2020 Cura Team. All Rights Reserved"
   },
   "Iraq_regions": {
     "Baghdad": "Baghdad",

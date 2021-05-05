@@ -1,12 +1,12 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/authorization/loading.dart';
 import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/pages/doctor_pages/delete_doctor.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/ui/sizing_information.dart';
+import 'package:project_doctor/views/profile/authorization/loading.dart';
 import '../../services/auth.dart';
 import 'package:project_doctor/ui/responsive_builder.dart';
 import 'package:project_doctor/ui/device_screen_type.dart';

@@ -34,6 +34,8 @@ dependencies:
   url_launcher: ^6.0.2
   easy_localization: ^3.0.0
   stacked_themes: ^0.3.2
+  another_flushbar: ^1.10.20
+
 
 
 dev_dependencies:
@@ -41,7 +43,7 @@ dev_dependencies:
     sdk: flutter
   change_app_package_name: ^0.1.2
   flutter_launcher_icons: ^0.9.0
-  flutter_native_splash: ^1.1.5+1
+  flutter_native_splash: ^1.1.8+4
 
 flutter_icons:
   android: true
@@ -51,10 +53,9 @@ flutter_icons:
 flutter_native_splash:
   android : true
   ios: true
-  image: assets/splash/splash.png
-  image_dart: assets/splash/splash.png
-  color: "#FFFFFF"
-  color_dark: "#1D3557"
+  web: true
+  background_image: "assets/images/splash/light.png"
+  fullscreen: true
 
 flutter:
   uses-material-design: true
