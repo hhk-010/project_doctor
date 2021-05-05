@@ -5,9 +5,7 @@ import 'dart:io';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-
-
-import 'package:project_doctor/views/doctor_pages/doctor01_form.dart';
+import 'package:project_doctor/views/profile/doctor01_form.dart';
 
 class Register extends StatefulWidget {
   final Function registerToggleView;
@@ -61,8 +59,7 @@ class _RegisterState extends State<Register> {
         child: AppBar(
           backgroundColor: Colors.deepOrange,
           title: FittedBox(
-              fit: BoxFit.fitWidth,
-              child: Text(LocaleKeys.view_doctor_register.tr(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold))),
+              fit: BoxFit.fitWidth, child: Text(LocaleKeys.view_doctor_register.tr(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold))),
           centerTitle: true,
           elevation: 0.0,
         ),
@@ -227,8 +224,7 @@ class _RegisterState extends State<Register> {
                                 text: LocaleKeys.view_doctor_does_have_account.tr(),
                               ),
                               TextSpan(
-                                  text: LocaleKeys.view_doctor_sign_in.tr(),
-                                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.redAccent)),
+                                  text: LocaleKeys.view_doctor_sign_in.tr(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.redAccent)),
                             ],
                           ),
                         ),

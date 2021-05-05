@@ -2,8 +2,9 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/services/theme.dart';
-import 'package:project_doctor/views/authorization/loading.dart';
+import 'package:project_doctor/views/auth/loading.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -204,7 +205,7 @@ class PasswordResetContinue extends StatelessWidget {
               flex: 1,
             ),
             Container(
-              decoration: boxDecoration,
+              decoration: CStyle.box,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(

@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/data_model.dart';
-import 'package:project_doctor/views/authorization/loading.dart';
+import 'package:project_doctor/views/auth/loading.dart';
 
 class PatientLocation extends StatefulWidget {
   @override
@@ -210,7 +209,7 @@ class _PatientLocationState extends State<PatientLocation> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                decoration: boxDecoration,
+                decoration: CStyle.box,
                 padding: EdgeInsets.symmetric(
                   vertical: getDeviceType(context, 4, 8, 12, 16),
                   horizontal: getDeviceType(context, 12, 16, 20, 24),
@@ -320,7 +319,7 @@ class _PatientLocationState extends State<PatientLocation> {
                 ),
               ),
               Container(
-                decoration: boxDecoration,
+                decoration: CStyle.box,
                 padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
                 child: Column(
                   children: [

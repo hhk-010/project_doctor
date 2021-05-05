@@ -1,10 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
+import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:project_doctor/views/doctor_pages/doctor06_update_map.dart';
+import 'package:project_doctor/views/profile/doctor06_update_map.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import 'dart:ui' as ui;
 
@@ -210,8 +211,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
   final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-
-        final otherweekDaysList = {
+    final otherweekDaysList = {
       0: [worksDays[0], LocaleKeys.view_time_day_sunday.tr(), "sunday"],
       1: [worksDays[1], LocaleKeys.view_time_day_monday.tr(), "monday"],
       2: [worksDays[2], LocaleKeys.view_time_day_tuesday.tr(), "tuesday"],
@@ -252,7 +252,6 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
             title: FittedBox(
               fit: BoxFit.fitWidth,
               child: Text(
-
                 LocaleKeys.view_doctor_update_info.tr(),
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
@@ -273,7 +272,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                     // _buildLocation(bloc),
 
                     Container(
-                      decoration: boxDecoration,
+                      decoration: CStyle.box,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
                         child: Column(
@@ -281,7 +280,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                           children: [
                             Center(
                               child: Text(
-                               LocaleKeys.view_doctor_detailed_address.tr(),
+                                LocaleKeys.view_doctor_detailed_address.tr(),
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
                                   fontSize: 16,
@@ -323,7 +322,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                             ),
                             Center(
                               child: Text(
-                               LocaleKeys.view_doctor_work_days.tr(),
+                                LocaleKeys.view_doctor_work_days.tr(),
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
                                   fontSize: 16,
@@ -368,21 +367,21 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                 firstDayOfWeek: DateTime.sunday,
                                 shortWeekdays: [
                                   LocaleKeys.view_time_day_sun.tr(),
-                                LocaleKeys.view_time_day_mon.tr(),
-                                LocaleKeys.view_time_day_tue.tr(),
-                                LocaleKeys.view_time_day_wed.tr(),
-                                LocaleKeys.view_time_day_thu.tr(),
-                                LocaleKeys.view_time_day_fri.tr(),
-                                LocaleKeys.view_time_day_sat.tr(),
+                                  LocaleKeys.view_time_day_mon.tr(),
+                                  LocaleKeys.view_time_day_tue.tr(),
+                                  LocaleKeys.view_time_day_wed.tr(),
+                                  LocaleKeys.view_time_day_thu.tr(),
+                                  LocaleKeys.view_time_day_fri.tr(),
+                                  LocaleKeys.view_time_day_sat.tr(),
                                 ],
                                 weekdays: [
-                                 LocaleKeys.view_time_day_sunday.tr(),
-                                LocaleKeys.view_time_day_monday.tr(),
-                                LocaleKeys.view_time_day_tuesday.tr(),
-                                LocaleKeys.view_time_day_wednesday.tr(),
-                                LocaleKeys.view_time_day_thursday.tr(),
-                                LocaleKeys.view_time_day_friday.tr(),
-                                LocaleKeys.view_time_day_saturday.tr(),
+                                  LocaleKeys.view_time_day_sunday.tr(),
+                                  LocaleKeys.view_time_day_monday.tr(),
+                                  LocaleKeys.view_time_day_tuesday.tr(),
+                                  LocaleKeys.view_time_day_wednesday.tr(),
+                                  LocaleKeys.view_time_day_thursday.tr(),
+                                  LocaleKeys.view_time_day_friday.tr(),
+                                  LocaleKeys.view_time_day_saturday.tr(),
                                 ],
                                 // textDirection: textDirection,
                                 fillColor: Colors.white,
@@ -487,7 +486,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                     Visibility(
                       visible: _visibile01,
                       child: Container(
-                        decoration: boxDecoration,
+                        decoration: CStyle.box,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
                           child: Column(
@@ -628,7 +627,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                     Visibility(
                       visible: _visibile02,
                       child: Container(
-                        decoration: boxDecoration,
+                        decoration: CStyle.box,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
                           child: Column(
@@ -825,25 +824,25 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                 mainfrom = false;
                                 mainto = false;
                               } else if (currentVacationDays == '') {
-                               _error = LocaleKeys.view_snack_error_selectmaindays.tr();
-                                        _showSnackBar();
-                                      } else if (mainFromTimeString == '' || mainToTimeString == '' || !mainfrom || !mainto) {
-                                        _error = LocaleKeys.view_snack_error_Select_time.tr();
-                                        _showSnackBar();
-                                      } else if (!((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty))) {
-                                        if (e1.isEmpty) {
-                                          _error = LocaleKeys.view_snack_error_choose_1st_exception_day.tr();
-                                          _showSnackBar();
-                                        } else {
-                                          _error = LocaleKeys.view_snack_error_choose_1st_exception_time.tr();
-                                          _showSnackBar();
-                                        }
-                                      } else if (!((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
-                                        if (e2.isEmpty) {
-                                          _error = LocaleKeys.view_snack_error_choose_2nd_exception_day.tr();
-                                          _showSnackBar();
-                                        } else {
-                                          _error = LocaleKeys.view_snack_error_choose_2nd_exception_time.tr();
+                                _error = LocaleKeys.view_snack_error_selectmaindays.tr();
+                                _showSnackBar();
+                              } else if (mainFromTimeString == '' || mainToTimeString == '' || !mainfrom || !mainto) {
+                                _error = LocaleKeys.view_snack_error_Select_time.tr();
+                                _showSnackBar();
+                              } else if (!((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty))) {
+                                if (e1.isEmpty) {
+                                  _error = LocaleKeys.view_snack_error_choose_1st_exception_day.tr();
+                                  _showSnackBar();
+                                } else {
+                                  _error = LocaleKeys.view_snack_error_choose_1st_exception_time.tr();
+                                  _showSnackBar();
+                                }
+                              } else if (!((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
+                                if (e2.isEmpty) {
+                                  _error = LocaleKeys.view_snack_error_choose_2nd_exception_day.tr();
+                                  _showSnackBar();
+                                } else {
+                                  _error = LocaleKeys.view_snack_error_choose_2nd_exception_time.tr();
                                   _showSnackBar();
                                 }
                               }

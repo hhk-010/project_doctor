@@ -5,7 +5,7 @@ import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/views/authorization/loading.dart';
+import 'package:project_doctor/views/auth/loading.dart';
 import 'package:project_doctor/views/patient_pages/patient_sidebar.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -63,7 +63,7 @@ class _NewSearchState extends State<NewSearch> {
   @override
   Widget build(BuildContext context) {
     final province = {
-     "1": [
+      "1": [
         "Erbil",
         LocaleKeys.iraq_provinces_Erbil.tr(),
       ],
@@ -346,7 +346,9 @@ class _NewSearchState extends State<NewSearch> {
                   child: Column(
                     children: [
                       CheckboxListTile(
-                        title: Text( LocaleKeys.view_new_search_name_search.tr(),),
+                        title: Text(
+                          LocaleKeys.view_new_search_name_search.tr(),
+                        ),
                         value: _nameSelected,
                         onChanged: (val) => setState(() {
                           _nameSelected = !_nameSelected;
@@ -358,7 +360,9 @@ class _NewSearchState extends State<NewSearch> {
                         }),
                       ),
                       CheckboxListTile(
-                        title: Text( LocaleKeys.view_new_search_speciality_search.tr(),),
+                        title: Text(
+                          LocaleKeys.view_new_search_speciality_search.tr(),
+                        ),
                         value: _specialitySelected,
                         onChanged: (val) => setState(() {
                           _specialitySelected = !_specialitySelected;
@@ -371,14 +375,14 @@ class _NewSearchState extends State<NewSearch> {
                       ),
                       _nameSelected
                           ? TextFormField(
-                              validator: (val) => val.isEmpty ?  LocaleKeys.view_new_search_name_validator.tr(): null,
+                              validator: (val) => val.isEmpty ? LocaleKeys.view_new_search_name_validator.tr() : null,
                               onChanged: (val) {
                                 setState(() => NewSearchData.name = val);
                               },
                               cursorColor: Colors.black,
                               keyboardType: TextInputType.emailAddress,
                               decoration: textInputdecoration.copyWith(
-                                hintText:  LocaleKeys.view_new_search_enter_name.tr(),
+                                hintText: LocaleKeys.view_new_search_enter_name.tr(),
                                 labelText: LocaleKeys.view_new_search_enter_name.tr(),
                                 suffixIcon: Icon(
                                   Icons.search,
@@ -522,7 +526,7 @@ class _NewSearchState extends State<NewSearch> {
                                   child: Text(specialities["23"][0]),
                                 )
                               ],
-                              validator: (value) => value == null ? LocaleKeys.view_new_search_speciality_validator.tr(): null,
+                              validator: (value) => value == null ? LocaleKeys.view_new_search_speciality_validator.tr() : null,
                               onChanged: (val) => setState(() => NewSearchData.speciality = val),
                             )
                           : Container()
@@ -565,7 +569,7 @@ class _NewSearchState extends State<NewSearch> {
                     child: FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Text(
-                        LocaleKeys.view_home_search_button.tr(),
+                        LocaleKeys.view_new_search_new_search.tr(),
                         style: TextStyle(
                             color: Colors.white,
                             // fontSize: 16,

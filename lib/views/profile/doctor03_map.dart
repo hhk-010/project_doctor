@@ -11,7 +11,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/services/read_write_path.dart';
-import 'package:project_doctor/views/authorization/loading.dart';
+import 'package:project_doctor/views/auth/loading.dart';
 import 'package:provider/provider.dart';
 import '../../services/auth.dart';
 

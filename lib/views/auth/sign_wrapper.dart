@@ -3,9 +3,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/views/authorization/email_verfication.dart';
-import 'package:project_doctor/views/authorization/mcqs.dart';
-import 'package:project_doctor/views/authorization/sign_in.dart';
+import 'package:project_doctor/views/auth/email_verfication.dart';
+import 'package:project_doctor/views/auth/mcqs.dart';
+import 'package:project_doctor/views/auth/sign_in.dart';
+import 'package:project_doctor/views/profile/doctor04_profile.dart';
 import 'package:provider/provider.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/auth.dart';
@@ -438,7 +439,7 @@ class _WrapperState extends State<Wrapper> {
       if (!FirebaseAuth.instance.currentUser.emailVerified || Wrapper.docId == null) {
         return EmailVerification();
       } else {
-        // return DoctorProfile();
+        return Profile();
       }
     }
   }

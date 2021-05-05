@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/custom_widges/c_base.dart';
+import 'package:project_doctor/custom_widges/custom_base.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:project_doctor/custom_widges/c_home.dart';
+import 'package:project_doctor/custom_widges/custom_home.dart';
 
 import 'dart:math' as math;
 
@@ -14,7 +14,6 @@ class SupportView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: false,
-      extendbody: false,
       child: Stack(
         children: [
           Align(
@@ -94,33 +93,19 @@ class SupportView extends StatelessWidget {
                               throw 'Could Not Launch $url';
                             }
                           },
-                          child: Text(LocaleKeys.view_support_website.tr(), style: CStyle.buttonText)),
+                          child: Text(LocaleKeys.view_support_website.tr(), style: CStyle.getTitle(context))),
                     ),
                   ],
                 ),
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width / 1.5,
-              height: 30,
-              child: Column(
-                children: [
-                  Divider(
-                    color: Colors.grey,
-                    thickness: 2,
-                    height: 2,
-                  ),
-                  Text(
-                    LocaleKeys.view_support_cura_rights.tr(),
-                    style: TextStyle(fontSize: 12),
-                  ),
-                ],
-              ),
+          CustomFooter(
+            child: Text(
+              LocaleKeys.view_support_cura_rights.tr(),
+              style: CStyle.getFooter(context),
             ),
-          ),
+          )
         ],
       ),
     );

@@ -5,8 +5,8 @@ import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/auth.dart';
-import 'package:project_doctor/views/authorization/loading.dart';
-import 'package:project_doctor/views/doctor_pages/delete_doctor.dart';
+import 'package:project_doctor/views/auth/loading.dart';
+import 'package:project_doctor/views/profile/delete_doctor.dart';
 import '../../services/auth.dart';
 
 class PreDeleteUser extends StatefulWidget {
@@ -196,7 +196,7 @@ class _PreDeleteUserState extends State<PreDeleteUser> {
                       }
                     },
                     label: Text(
-                       LocaleKeys.view_doctor_delete.tr(),
+                      LocaleKeys.view_doctor_delete.tr(),
                       style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ),

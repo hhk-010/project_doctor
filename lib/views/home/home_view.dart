@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/custom_widges/c_base.dart';
-import 'package:project_doctor/custom_widges/c_home.dart';
+import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:project_doctor/custom_widges/custom_base.dart';
+import 'package:project_doctor/custom_widges/custom_home.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:project_doctor/views/home/support_view.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
 class HomeView extends StatefulWidget {
@@ -15,11 +15,10 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
-      extendbody: true,
       isAppbar: false,
       child: Stack(
         children: [
-          HomeAlignComponent(
+          HomeAlignWidgets(
             alignment: Alignment.topCenter,
             padding: EdgeInsets.all(0.0),
             isIcon: false,
@@ -27,7 +26,7 @@ class _HomeViewState extends State<HomeView> {
             height: 350,
             asset: getTheme(context) ? 'assets/images/home/header_light.png' : 'assets/images/home/header_dark.png',
           ),
-          HomeAlignComponent(
+          HomeAlignWidgets(
             alignment: Alignment.topCenter,
             padding: const EdgeInsets.only(top: 75),
             isIcon: false,
@@ -35,7 +34,7 @@ class _HomeViewState extends State<HomeView> {
             height: 140,
             asset: 'assets/images/home/logo.png',
           ),
-          HomeAlignComponent(
+          HomeAlignWidgets(
             alignment: Alignment.topLeft,
             padding: const EdgeInsets.all(8.0),
             isIcon: true,
@@ -49,7 +48,7 @@ class _HomeViewState extends State<HomeView> {
             icon: getLocale(context) ? Image.asset('assets/images/home/ar.png') : Image.asset('assets/images/home/en.png'),
             iconSize: 40,
           ),
-          HomeAlignComponent(
+          HomeAlignWidgets(
             alignment: Alignment.topRight,
             padding: const EdgeInsets.all(8.0),
             isIcon: true,
@@ -59,14 +58,45 @@ class _HomeViewState extends State<HomeView> {
             icon: getTheme(context) ? Image.asset('assets/images/home/moon.png') : Image.asset('assets/images/home/sun.png'),
             iconSize: 40,
           ),
-          HomeAlignComponent(
-            alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.all(8.0),
-            isIcon: true,
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => SupportView())),
-            icon: Image.asset('assets/images/home/info.png'),
-            iconSize: 30,
-          ),
+          Align(
+            alignment: Alignment.center,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 210),
+              child: Container(
+                width: 350,
+                height: 250,
+                padding: const EdgeInsets.all(16.0),
+                decoration: CStyle.box,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Center(
+                      child: Text(
+                        LocaleKeys.view_home_title.tr(),
+                        style: CStyle.getHeading(context).copyWith(color: getColor(context, Colors.black87, Colors.white)),
+                      ),
+                    ),
+                    Text(
+                      LocaleKeys.view_home_search_complain.tr(),
+                      textAlign: TextAlign.justify,
+                      style: CStyle.getSubtitle(context),
+                    ),
+                    Text(
+                      LocaleKeys.view_home_search_name.tr(),
+                      textAlign: TextAlign.justify,
+                      style: CStyle.getSubtitle(context),
+                    ),
+                    Text(
+                      LocaleKeys.view_home_register_doctor.tr(),
+                      textAlign: TextAlign.justify,
+                      style: CStyle.getSubtitle(context),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );

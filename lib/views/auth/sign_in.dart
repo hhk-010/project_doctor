@@ -1,16 +1,15 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/custom_widges/c_base.dart';
+import 'package:project_doctor/constants/color_style_size.dart';
+import 'package:project_doctor/custom_widges/custom_base.dart';
+import 'package:project_doctor/custom_widges/custom_home.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:project_doctor/views/authorization/custom_widgets.dart';
-import 'package:project_doctor/views/authorization/forget_password.dart';
+import 'package:project_doctor/views/auth/forget_password.dart';
 import 'dart:io';
-
-import 'package:project_doctor/views/authorization/loading.dart';
-
+import 'package:project_doctor/views/auth/loading.dart';
 
 class SignModel {
   bool loading;
@@ -82,21 +81,22 @@ class _SignInViewState extends State<SignInView> {
       title: LocaleKeys.view_doctor_sign_in.tr(),
       child: Form(
         key: _formKey,
-        child: Stack(children: [
-          Align(
-            alignment: Alignment.topCenter,
+        child: Stack(alignment: Alignment.topCenter, children: [
+          Positioned(
+            top: 50,
             child: CircleAvatar(
               backgroundColor: Colors.deepOrangeAccent,
-              radius: 50,
+              radius: 75,
               backgroundImage: AssetImage('assets/images/sign_in.png'),
             ),
           ),
-          Align(
-            alignment: Alignment.center,
+          Positioned(
+            top: 250,
             child: Container(
-              height: 250,
+              height: 150,
+              width: 300,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextFormField(
                     validator: (val) => val.isEmpty ? LocaleKeys.view_doctor_enter_your_email.tr() : null,
@@ -142,90 +142,94 @@ class _SignInViewState extends State<SignInView> {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  height: loading ? 40.0 : 100,
-                  width: loading ? 40.0 : 100,
-                  child: LoadingButton(
-                    isloading: loading,
-                    loadercolor: Colors.white,
-                    onpressed: () async {
-                      checkInternet();
-                      if (_isInternet) {
-                        if (_formKey.currentState.validate()) {
-                          setState(() => loading = true);
-                          dynamic authResult = await _auth.signInWithEmailAndPassword(email, password);
-                          if (authResult != null) {
-                            setState(() => loading = false);
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 50),
+              child: Container(
+                width: 300,
+                height: 100,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      height: loading ? 40.0 : 40,
+                      width: loading ? 40.0 : 150,
+                      child: LoadingButton(
+                        isloading: loading,
+                        loadercolor: Colors.white,
+                        onpressed: () async {
+                          checkInternet();
+                          if (_isInternet) {
+                            if (_formKey.currentState.validate()) {
+                              setState(() => loading = true);
+                              dynamic authResult = await _auth.signInWithEmailAndPassword(email, password);
+                              if (authResult != null) {
+                                setState(() => loading = false);
+                              } else {
+                                setState(() {
+                                  setState(() => loading = false);
+                                  SnackText.errorMsg = LocaleKeys.view_snack_error_snack_sign_in.tr();
+                                });
+                                _showSnackBar();
+                              }
+                            }
                           } else {
                             setState(() {
-                              setState(() => loading = false);
-                              SnackText.errorMsg = LocaleKeys.view_snack_error_snack_sign_in.tr();
+                              SnackText.errorMsg = LocaleKeys.view_snack_error_snack_connectivity.tr();
                             });
                             _showSnackBar();
                           }
-                        }
-                      } else {
-                        setState(() {
-                          SnackText.errorMsg = LocaleKeys.view_snack_error_snack_connectivity.tr();
-                        });
-                        _showSnackBar();
-                      }
-                    },
-                    backgroundcolor: Colors.deepOrange,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                    child: Text(
-                      LocaleKeys.view_doctor_sign_in.tr(),
-                      style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold), //_textStyle.copyWith(color: Colors.white),
+                        },
+                        backgroundcolor: Colors.deepOrange,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                        child: Text(
+                          LocaleKeys.view_doctor_sign_in.tr(),
+                          style: CStyle.getTitle(context),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                TextButton.icon(
-                  icon: Icon(Icons.arrow_forward),
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForgetPassword()));
-                  },
-                  label: Text(
-                    LocaleKeys.view_doctor_forget_password.tr(),
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
+                    TextButton.icon(
+                      icon: Icon(Icons.arrow_forward),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForgetPassword()));
+                      },
+                      label: Text(
+                        LocaleKeys.view_doctor_forget_password.tr(),
+                        style: CStyle.getSubtitle(context),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Column(
-              children: [
-                Divider(
-                  color: Colors.black,
-                  thickness: 1,
-                ),
-                InkWell(
-                  onTap: () {
-                    widget.questionsToogleView();
-                  },
-                  child: RichText(
-                    text: TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: LocaleKeys.view_doctor_does_not_have_account.tr(),
-                        ),
-                        TextSpan(text: LocaleKeys.view_doctor_register.tr(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.redAccent)),
-                      ],
-                    ),
+          CustomFooter(
+            child: InkWell(
+              onTap: () {
+                widget.questionsToogleView();
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    LocaleKeys.view_doctor_does_not_have_account.tr(),
+                    style: CStyle.getFooter(context),
                   ),
-                ),
-              ],
+                  Text('  '),
+                  Text(
+                    LocaleKeys.view_doctor_register.tr(),
+                    style: CStyle.getFooter(context).copyWith(color: Colors.red[600], fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
             ),
-          )
+          ),
         ]),
       ),
     );
   }
+}
+
+//------this class is for the snackbar text
+class SnackText {
+  static String errorMsg = '';
 }

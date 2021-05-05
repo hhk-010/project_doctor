@@ -424,8 +424,10 @@ abstract class  LocaleKeys {
   static const view_patient_result_doctor_locat = 'view_patient_result.doctor_locat';
   static const view_patient_result_age_gender = 'view_patient_result.age_gender';
   static const view_patient_result = 'view_patient_result';
-  static const view_home_search_button = 'view_home.search_button';
-  static const view_home_profile_button = 'view_home.profile_button';
+  static const view_home_title = 'view_home.title';
+  static const view_home_search_name = 'view_home.search_name';
+  static const view_home_search_complain = 'view_home.search_complain';
+  static const view_home_register_doctor = 'view_home.register_doctor';
   static const view_home = 'view_home';
   static const view_favorite_list_preferred = 'view_favorite_list.preferred';
   static const view_favorite_list_empty_list = 'view_favorite_list.empty_list';

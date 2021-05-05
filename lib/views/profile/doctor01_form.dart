@@ -1,38 +1,37 @@
 import 'dart:ui';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
 import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/views/doctor_pages/doctor05.5_update_clinic.dart';
-import 'package:project_doctor/views/doctor_pages/doctor07_update_password.dart';
+import 'package:project_doctor/views/profile/doctor02_clinic.dart';
 import 'dart:ui' as ui;
 
-class Updateinfo extends StatefulWidget {
-  final String profileName;
-  final String profileSpeciality;
-  Updateinfo({this.profileName, this.profileSpeciality});
+class DoctorForm extends StatefulWidget {
+  final String email;
+  final String password;
+
+  DoctorForm({this.email, this.password});
   @override
-  _UpdateinfoState createState() => _UpdateinfoState(profileName: profileName, profileSpeciality: profileSpeciality);
+  _DoctorFormState createState() => _DoctorFormState(email: email, password: password);
 }
 
-class _UpdateinfoState extends State<Updateinfo> {
-  final String profileName;
-  final String profileSpeciality;
-  _UpdateinfoState({this.profileName, this.profileSpeciality});
-  String name = '';
-  String speciality = '';
-  String phonenumber = '';
-  String finalTextNumber = '';
-  String _province;
-  String address = '';
+final _formKey = GlobalKey<FormState>();
 
-  final _formkey = GlobalKey<FormState>();
-  String _error = '';
+String currentName = '';
+String currentSpeciality;
+String currentPhoneNumber = '';
+String currentProvince;
+
+class _DoctorFormState extends State<DoctorForm> {
+  String email;
+  String password;
+  _DoctorFormState({this.email, this.password});
   //-----------validate phonenumber------------
   int _number = 0;
   int finalNumber = 0;
+  String finalTextNumber = '';
   String error;
   validateNumber(String number) {
     try {
@@ -43,14 +42,13 @@ class _UpdateinfoState extends State<Updateinfo> {
     }
   }
 
-  //==============snackbar for empty latlng============
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
     var lang = Localizations.localeOf(context).languageCode;
 
     final snackBar = new SnackBar(
       content: new Text(
-        _error,
+        error,
         style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
 
@@ -62,10 +60,8 @@ class _UpdateinfoState extends State<Updateinfo> {
 
   @override
   Widget build(BuildContext context) {
-    var lang = Localizations.localeOf(context).languageCode;
-
-    final specialities = {
-         "1": [LocaleKeys.medical_specialty_Internist.tr(), 'Internist'],
+    final Map specialities = {
+      "1": [LocaleKeys.medical_specialty_Internist.tr(), 'Internist'],
       "2": [LocaleKeys.medical_specialty_Pediatrician.tr(), 'Pediatrician'],
       "3": [LocaleKeys.medical_specialty_Cardiologist.tr(), 'Cardiologist'],
       "4": [LocaleKeys.medical_specialty_Pulmonologist.tr(), 'Pulmonologist'],
@@ -90,7 +86,7 @@ class _UpdateinfoState extends State<Updateinfo> {
       "23": [LocaleKeys.medical_specialty_Laryngologist.tr(), 'Laryngologist'],
     };
     final province = {
-          "1": [
+      "1": [
         "Erbil",
         LocaleKeys.iraq_provinces_Erbil.tr(),
       ],
@@ -172,22 +168,20 @@ class _UpdateinfoState extends State<Updateinfo> {
         preferredSize: Size.fromHeight(50),
         child: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: FittedBox(
-            fit: BoxFit.fitWidth,
-            child: Text(
-              LocaleKeys.view_doctor_update_info.tr(),
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
+          title: Text(
+            LocaleKeys.view_doctor_doctor_form.tr(),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
           centerTitle: true,
+          elevation: 0,
         ),
       ),
       body: Center(
         child: Container(
+          height: 100,
           width: 100,
-          padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
           child: Form(
-            key: _formkey,
+            key: _formKey,
             child: Container(
               height: double.maxFinite,
               child: Column(
@@ -195,20 +189,24 @@ class _UpdateinfoState extends State<Updateinfo> {
                   Directionality(
                     textDirection: ui.TextDirection.rtl,
                     child: TextFormField(
-                      decoration:
-                          textInputdecoration.copyWith(hintText: LocaleKeys.view_doctor_name.tr(), labelText: LocaleKeys.view_doctor_name.tr()),
-                      onChanged: (val) {
-                        name = val;
-                      },
+                      decoration: textInputdecoration.copyWith(
+                        hintText: LocaleKeys.view_doctor_name.tr(),
+                        labelText: LocaleKeys.view_doctor_name.tr(),
+                      ),
                       validator: (val) => val.isEmpty ? LocaleKeys.view_doctor_name_validator.tr() : null,
+                      onChanged: (val) => setState(() => currentName = val),
                     ),
                   ),
                   Spacer(),
                   DropdownButtonFormField<String>(
-                    decoration: textInputdecoration,
+                    value: currentSpeciality,
                     isDense: false,
+                    decoration: textInputdecoration,
                     hint: Text(
                       LocaleKeys.view_doctor_speciality.tr(),
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
                     ),
                     dropdownColor: Colors.grey[200],
                     elevation: 5,
@@ -309,20 +307,24 @@ class _UpdateinfoState extends State<Updateinfo> {
                       )
                     ],
                     validator: (value) => value == null ? LocaleKeys.view_doctor_speciality_validator.tr() : null,
-                    onChanged: (val) => setState(() => speciality = val),
+                    onChanged: (val) => setState(() {
+                      currentSpeciality = val;
+                    }),
                   ),
                   Spacer(),
                   TextFormField(
-                      onChanged: (val) => setState(() => phonenumber = val),
-                      keyboardType: TextInputType.phone,
-                      decoration: textInputdecoration.copyWith(
-                        hintText: LocaleKeys.view_doctor_phoneNumber.tr(),
-                        labelText: LocaleKeys.view_doctor_phoneNumber.tr(),
-                      ),
-                      validator: (val) => val.length < 11 && val.length > 11 ? LocaleKeys.view_doctor_phoneNumber_validator.tr() : null),
+                    keyboardType: TextInputType.phone,
+                    decoration: textInputdecoration.copyWith(
+                      hintText: LocaleKeys.view_doctor_phoneNumber.tr(),
+                      labelText: LocaleKeys.view_doctor_phoneNumber.tr(),
+                    ),
+                    validator: (val) => val.length < 11 ? LocaleKeys.view_doctor_phoneNumber_validator.tr() : null,
+                    onChanged: (val) => setState(() => currentPhoneNumber = val),
+                  ),
                   Spacer(),
                   DropdownButtonFormField<String>(
                     isDense: false,
+                    value: currentProvince,
                     decoration: textInputdecoration,
                     hint: Text(
                       LocaleKeys.view_doctor_province.tr(),
@@ -405,106 +407,70 @@ class _UpdateinfoState extends State<Updateinfo> {
                         child: Text(province["18"][1]),
                       ),
                     ],
-                    validator: (value) => value == null ? 'Select your province' : null,
+                    /*items: province.map((province) {
+                      return DropdownMenuItem(
+                        value: province,
+                        child: Text('$province'),
+                      );
+                    }).toList(),*/
+                    validator: (val) => val == null ? LocaleKeys.view_doctor_province_validator.tr() : null,
                     onChanged: (val) => setState(() {
+                      currentProvince = val;
                       DatabaseService.validationProvince = val;
-                      _province = val;
+                      DatabaseService.province = val;
                     }),
                   ),
                   Spacer(
-                    flex: 3,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        LocaleKeys.view_doctor_finish_update.tr(),
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
-                      ),
-                      Icon(
-                        Icons.arrow_downward,
-                        size: 20,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
+                    flex: 5,
                   ),
                   Container(
                     height: 50,
                     width: 150,
-                    child: TextButton.icon(
-                      style: TextButton.styleFrom(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                        backgroundColor: Colors.deepOrange,
-                      ),
-                      icon: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
-                      ),
-                      onPressed: () async {
-                        if (_formkey.currentState.validate()) {
-                          finalNumber = await validateNumber(phonenumber);
-                          finalTextNumber = finalNumber.toString();
-                          if (finalNumber != null) {
-                            if ((profileSpeciality == speciality || profileSpeciality == '')) {
-                              if (finalTextNumber.substring(0, 1) == '7') {
-                                finalTextNumber = '0' + finalTextNumber;
-                              } else if (finalTextNumber.substring(0, 1) == '9') {
-                                finalTextNumber = '00' + finalTextNumber;
-                              }
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => UpdateInfo2(
-                                    name: name,
-                                    speciality: speciality,
-                                    phoneNumber: finalTextNumber,
-                                    province: _province,
+                    child: ButtonTheme(
+                      child: TextButton.icon(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.deepOrange,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                        ),
+                        icon: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                        ),
+                        onPressed: () async {
+                          if (_formKey.currentState.validate()) {
+                            finalNumber = await validateNumber(currentPhoneNumber);
+                            finalTextNumber = finalNumber.toString();
+                            if (finalNumber != null) {
+                              if (currentName != null && currentSpeciality != null && currentPhoneNumber != null && currentProvince != null) {
+                                if (finalTextNumber.substring(0, 1) == '7') {
+                                  finalTextNumber = '0' + finalTextNumber;
+                                } else if (finalTextNumber.substring(0, 1) == '9') {
+                                  finalTextNumber = '00' + finalTextNumber;
+                                }
+                                print(finalTextNumber);
+                                await Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => GrandClinicForm(
+                                      email: email,
+                                      password: password,
+                                      name: currentName,
+                                      speciality: currentSpeciality,
+                                      phoneNumber: finalTextNumber,
+                                      province: currentProvince,
+                                    ),
                                   ),
-                                ),
-                              );
+                                );
+                              }
                             } else {
-                              setState(() {
-                                _error = LocaleKeys.view_snack_error_snack_update.tr();
-                              });
+                              error = LocaleKeys.view_patient_age_format.tr();
                               _showSnackBar();
                             }
-                          } else {
-                            _error = LocaleKeys.view_patient_age_format.tr();
-                            _showSnackBar();
                           }
-                        }
-                      },
-                      label: Text(
-                        LocaleKeys.view_buttons_next.tr(),
-                        style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                  Spacer(
-                    flex: 3,
-                  ),
-                  Divider(
-                    color: Colors.black,
-                    thickness: 1,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => UpdatePassword()));
-                    },
-                    child: RichText(
-                      text: TextSpan(
-                        text: '',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.black,
-                          fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
+                        },
+                        label: Text(
+                          LocaleKeys.view_buttons_next.tr(),
+                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                         ),
-                        children: <TextSpan>[
-                          TextSpan(text: LocaleKeys.view_doctor_change_password.tr(),),
-                          TextSpan(
-                              text: " " + LocaleKeys.view_doctor_change.tr(),
-                              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
-                        ],
                       ),
                     ),
                   )

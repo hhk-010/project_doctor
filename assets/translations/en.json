@@ -455,8 +455,10 @@
     "age_gender": "Age & Gender"
   },
   "view_home": {
-    "search_button": "Search for a Doctor",
-    "profile_button": "Create an Account"
+    "title": "Welcome to Cura",
+    "search_name": "- You can also search for a doctor by name or speciality according to your geographical area",
+    "search_complain" : "- If you have complains, you can search for a doctor appropriate for your condition",
+    "register_doctor" : "- If you are a doctor, you can create a profile where people can search for your services"
   },
   "view_favorite_list": {
     "preferred": "Favorite List",

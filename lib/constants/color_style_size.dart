@@ -22,8 +22,30 @@ class DarkPalette {
 }
 
 class CStyle {
-  static const TextStyle buttonText = TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
-  static const TextStyle appbarTitle = TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+  static TextStyle getHeading(context) {
+    return TextStyle(fontSize: getDeviceType(context, 18, 20, 24, 30), fontWeight: FontWeight.bold, color: Colors.white);
+  }
+
+  static TextStyle getTitle(context) {
+    return TextStyle(fontSize: getDeviceType(context, 14, 16, 20, 24), fontWeight: FontWeight.bold, color: Colors.white);
+  }
+
+  static TextStyle getSubtitle(context) {
+    return TextStyle(
+        fontSize: getDeviceType(context, 12, 14, 18, 20), fontWeight: FontWeight.bold, fontFamily: getLocale(context) ? 'OpenSans' : 'noto_arabic');
+  }
+
+  static TextStyle getFooter(context) {
+    return TextStyle(
+        fontSize: getDeviceType(context, 10, 12, 16, 18), fontWeight: FontWeight.bold, fontFamily: getLocale(context) ? 'OpenSans' : 'noto_arabic');
+  }
+
+  static BoxDecoration box = BoxDecoration(
+      borderRadius: BorderRadius.all(Radius.circular(16.0)),
+      border: Border.all(
+        color: Colors.deepOrange,
+        width: 2.0,
+      ));
 }
 
 // get currentTheme

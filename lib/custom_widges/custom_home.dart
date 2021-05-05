@@ -4,57 +4,7 @@ import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class HomeButtonComponent extends StatelessWidget {
-  final Function onPressed;
-  final String title;
-  final String icon;
-  final Color color;
-
-  const HomeButtonComponent({
-    Key key,
-    this.onPressed,
-    this.title,
-    this.icon,
-    this.color,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: getDeviceType(context, 50, 70, 90, 120),
-      width: getDeviceType(context, 250, 300, 400, 500),
-      child: TextButton(
-        style: TextButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          primary: Colors.white,
-          backgroundColor: color,
-        ),
-        onPressed: onPressed,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              title.toUpperCase(),
-              style: CStyle.buttonText,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image(
-                image: AssetImage(
-                  (icon),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class HomeAlignComponent extends StatelessWidget {
+class HomeAlignWidgets extends StatelessWidget {
   final AlignmentGeometry alignment;
   final EdgeInsets padding;
   final Function onTap;
@@ -65,7 +15,7 @@ class HomeAlignComponent extends StatelessWidget {
   final double iconSize;
   final Widget icon;
 
-  const HomeAlignComponent(
+  const HomeAlignWidgets(
       {Key key, this.alignment, this.padding, this.onTap, this.width, this.height, this.icon, this.asset, this.iconSize, this.isIcon})
       : super(key: key);
   @override
@@ -155,8 +105,35 @@ class SupportButtons extends StatelessWidget {
             },
           );
         },
-        child: Text(
-          title,
+        child: Text(title, style: CStyle.getTitle(context)),
+      ),
+    );
+  }
+}
+
+class CustomFooter extends StatelessWidget {
+  final Widget child;
+
+  const CustomFooter({Key key, this.child}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: SizedBox(
+        width: getDeviceType(context, 150, 250, 300, 350),
+        height: getDeviceType(context, 30, 40, 75, 75),
+        child: Column(
+          children: [
+            Divider(
+              color: Colors.grey,
+              thickness: 2,
+              height: 2,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 2.5),
+              child: child,
+            ),
+          ],
         ),
       ),
     );

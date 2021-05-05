@@ -23,9 +23,3 @@ const textInputdecoration = InputDecoration(
   contentPadding: EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
 );
 
-var boxDecoration = BoxDecoration(
-    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-    border: Border.all(
-      color: Colors.deepOrange,
-      width: 2,
-    ));
