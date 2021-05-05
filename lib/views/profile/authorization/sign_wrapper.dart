@@ -436,8 +436,7 @@ class _WrapperState extends State<Wrapper> {
     if (user == null) {
       return Authenticate();
     } else {
-      if (!FirebaseAuth.instance.currentUser.emailVerified ||
-          Wrapper.docId == null) {
+      if (!FirebaseAuth.instance.currentUser.emailVerified || Wrapper.docId == null) {
         return EmailVerification();
       } else {
         return DoctorProfile();
@@ -482,7 +481,7 @@ class _AuthenticateState extends State<Authenticate> {
         registerToggleView: registerToggleView,
       );
     } else {
-      return SignIn(questionsToogleView: questionsToogleView);
+      return SignInView(questionsToogleView: questionsToogleView);
     }
     /*if (showRegister) {
       return Register(

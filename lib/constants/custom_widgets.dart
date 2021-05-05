@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
 
-class BaseStack extends StatelessWidget {
-  final List<Widget> children;
+class BaseScaffold extends StatelessWidget {
+  final Widget child;
   final String title;
   final List<Widget> actions;
   final bool isAppbar;
 
-  const BaseStack({Key key, this.children, this.title, this.actions, this.isAppbar}) : super(key: key);
+  const BaseScaffold({Key key, this.child, this.title, this.actions, this.isAppbar}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -48,9 +48,7 @@ class BaseStack extends StatelessWidget {
                 ],
               ),
             ),
-            child: Stack(
-              children: children,
-            )),
+            child: child),
       ),
     );
   }

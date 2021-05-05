@@ -1,0 +1,17 @@
+{
+    "files.exclude": {
+        "**/*.freezed.dart": true,
+        "**/*.g.dart": true,
+        "**/.git": true,
+        "**/.gitignore": true,
+        "**/.dart_tool": true,
+        "**/.idea": true,
+        "**/build/": true,
+        "**/gen": true,
+        "**/.flutter-plugins": true,
+        "**/.flutter-plugins-dependencies": true,
+        "**/.metadata": true,
+        "**/.packages": true,
+
+    },
+}

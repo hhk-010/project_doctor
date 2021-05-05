@@ -1,52 +1,35 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/custom_widgets.dart';
-import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'dart:io';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
 import 'package:project_doctor/views/profile/authorization/custom_widgets.dart';
 import 'package:project_doctor/views/profile/authorization/forget_password.dart';
 import 'package:project_doctor/views/profile/authorization/loading.dart';
 
+class SignModel {
+  bool loading;
+  String email;
+  String password;
+  String error;
+  bool passwordVisible;
+  bool isInternet = true;
+}
+
 class SignInView extends StatefulWidget {
-
-
 // refactor
-    final Function questionsToogleView;
+  final Function questionsToogleView;
   SignInView({this.questionsToogleView});
-
-
 
   @override
   _SignInViewState createState() => _SignInViewState();
 }
 
 class _SignInViewState extends State<SignInView> {
-  @override
-  Widget build(BuildContext context) {
-    return BaseStack(
-      isAppbar: true,
-      title: LocaleKeys.doctor_view_sign_in.tr(),
-      children: [],
-    );
-  }
-}
-
-class SignIn extends StatefulWidget {
-  final Function questionsToogleView;
-  SignIn({this.questionsToogleView});
-
-  @override
-  _SignInState createState() => _SignInState();
-}
-
-class _SignInState extends State<SignIn> {
+  // objects used for sign in
   final _formKey = GlobalKey<FormState>();
   final AuthService _auth = AuthService();
   bool loading = false;
@@ -70,7 +53,6 @@ class _SignInState extends State<SignIn> {
   }
 
 // snackbar functions
-  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   _showSnackBar() {
     var lang = Localizations.localeOf(context).languageCode;
 
@@ -81,7 +63,7 @@ class _SignInState extends State<SignIn> {
       ),
       backgroundColor: Colors.deepOrange,
     );
-    ScaffoldMessenger.of(context)..showSnackBar(_snackbar);
+    ScaffoldMessenger.of(context).showSnackBar(_snackbar);
   }
 
   @override
@@ -93,242 +75,155 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      double containerHeight;
-      double containerWidth;
-      double buttonHeight;
-      double buttonWidth;
-      double title;
-      double subTitle;
-      double footer;
-      double avatar;
-      double textFieldWidth;
-      double spacerSmall;
-      double spacerLarge;
-      double spacerMedium;
-
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-        containerHeight = displayHeight(context) * 0.8;
-        containerWidth = displayWidth(context) * 0.85;
-        title = displayWidth(context) * 0.045;
-        subTitle = displayWidth(context) * 0.035;
-        footer = displayWidth(context) * 0.035;
-        buttonHeight = displayHeight(context) * 0.05;
-        buttonWidth = displayWidth(context) * 0.7;
-        avatar = 70;
-        textFieldWidth = displayWidth(context) * 0.7;
-        spacerSmall = displayHeight(context) * 0.03;
-        spacerMedium = displayHeight(context) * 0.09;
-        spacerLarge = displayHeight(context) * 0.1;
-      } else {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 80;
-        containerHeight = displayHeight(context) * 0.7;
-        containerWidth = displayWidth(context) * 0.5;
-        footer = displayWidth(context) * 0.025;
-        title = displayWidth(context) * 0.035;
-        subTitle = displayWidth(context) * 0.025;
-        buttonHeight = displayHeight(context) * 0.045;
-        buttonWidth = displayWidth(context) * 0.4;
-        avatar = 100;
-        textFieldWidth = displayWidth(context) * 0.4;
-        spacerSmall = displayHeight(context) * 0.03;
-        spacerMedium = displayHeight(context) * 0.05;
-        spacerLarge = displayHeight(context) * 0.1;
-      }
-      var lang = Localizations.localeOf(context).languageCode;
-
-      return Scaffold(
-        key: _scaffoldkey,
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.grey[200],
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight),
-          child: AppBar(
-            backgroundColor: Colors.deepOrange,
-            title: FittedBox(
-              fit: BoxFit.fitWidth,
-              child: Text(AppLocalizations.of(context).translate('sign_in'), style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold)),
+    return BaseScaffold(
+      isAppbar: true,
+      title: LocaleKeys.doctor_view_sign_in.tr(),
+      child: Form(
+        key: _formKey,
+        child: Stack(children: [
+          Align(
+            alignment: Alignment.topCenter,
+            child: CircleAvatar(
+              backgroundColor: Colors.deepOrangeAccent,
+              radius: 50,
+              backgroundImage: AssetImage('assets/images/sign_in.png'),
             ),
-            centerTitle: true,
-            elevation: 0.0,
           ),
-        ),
-        body: Center(
-          child: Container(
-            height: containerHeight,
-            width: containerWidth,
-            child: Form(
-              key: _formKey,
-              child: Stack(
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              height: 250,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    child: Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 15),
-                            child: CircleAvatar(
-                              backgroundColor: Colors.deepOrangeAccent,
-                              radius: avatar,
-                              backgroundImage: AssetImage('assets/images/sign_in.png'),
-                            ),
-                          ),
-                          SizedBox(
-                            height: spacerMedium,
-                          ),
-                          SizedBox(
-                            width: textFieldWidth,
-                            child: TextFormField(
-                              validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('enter_your_email') : null,
-                              onChanged: (val) {
-                                setState(() => email = val);
-                              },
-                              cursorColor: Colors.black,
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: textInputdecoration.copyWith(
-                                hintText: AppLocalizations.of(context).translate('enter_your_email'),
-                                labelText: AppLocalizations.of(context).translate('email'),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: spacerSmall,
-                          ),
-                          SizedBox(
-                            width: textFieldWidth,
-                            child: TextFormField(
-                              validator: (val) => val.length < 8 ? AppLocalizations.of(context).translate('password_validator') : null,
-                              obscureText: !_passwordVisible,
-                              onChanged: (val) {
-                                setState(() => password = val);
-                              },
-                              cursorColor: Colors.black,
-                              keyboardType: TextInputType.text,
-                              decoration: textInputdecoration.copyWith(
-                                hintText: AppLocalizations.of(context).translate('enter_your_password'),
-                                labelText: AppLocalizations.of(context).translate('password'),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    // Based on passwordVisible state choose the icon
-                                    _passwordVisible ? Icons.visibility : Icons.visibility_off,
-                                    color: Colors.deepOrange,
-                                  ),
-                                  onPressed: () {
-                                    // Update the state i.e. toogle the state of passwordVisible variable
-                                    setState(() {
-                                      _passwordVisible = !_passwordVisible;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: spacerLarge,
-                          ),
-                          Container(
-                            height: loading ? 40.0 : buttonHeight,
-                            width: loading ? 40.0 : buttonWidth,
-                            child: LoadingButton(
-                              isloading: loading,
-                              loadercolor: Colors.white,
-                              onpressed: () async {
-                                //conection will be checked after pressing not only in the begining
-                                // so the error message will be changed
-                                checkInternet();
-                                if (_isInternet) {
-                                  if (_formKey.currentState.validate()) {
-                                    setState(() => loading = true);
-                                    dynamic authResult = await _auth.signInWithEmailAndPassword(email, password);
-                                    if (authResult != null) {
-                                      setState(() => loading = false);
-                                    } else {
-                                      setState(() {
-                                        setState(() => loading = false);
-                                        SnackText.errorMsg = AppLocalizations.of(context).translate('snack_sign_in');
-                                      });
-                                      _showSnackBar();
-                                    }
-                                  }
-                                } else {
-                                  setState(() {
-                                    SnackText.errorMsg = AppLocalizations.of(context).translate('snack_connectivity');
-                                  });
-                                  _showSnackBar();
-                                }
-                              },
-                              backgroundcolor: Colors.deepOrange,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                              child: Text(
-                                AppLocalizations.of(context).translate('sign_in'),
-                                style: TextStyle(
-                                    fontSize: title, color: Colors.white, fontWeight: FontWeight.bold), //_textStyle.copyWith(color: Colors.white),
-                              ),
-                            ),
-                          ),
-                          TextButton.icon(
-                            icon: Icon(Icons.arrow_forward),
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForgetPassword()));
-                            },
-                            label: Text(
-                              AppLocalizations.of(context).translate('forget_password'),
-                              style: TextStyle(
-                                fontSize: subTitle,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
+                  TextFormField(
+                    validator: (val) => val.isEmpty ? LocaleKeys.doctor_view_enter_your_email.tr() : null,
+                    onChanged: (val) {
+                      setState(() => email = val);
+                    },
+                    cursorColor: Colors.black,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: textInputdecoration.copyWith(
+                      hintText: LocaleKeys.doctor_view_enter_your_email.tr(),
+                      labelText: LocaleKeys.doctor_view_email.tr(),
+                    ),
+                  ),
+                  TextFormField(
+                    validator: (val) => val.length < 8 ? LocaleKeys.doctor_view_password_validator.tr() : null,
+                    obscureText: !_passwordVisible,
+                    onChanged: (val) {
+                      setState(() => password = val);
+                    },
+                    cursorColor: Colors.black,
+                    keyboardType: TextInputType.text,
+                    decoration: textInputdecoration.copyWith(
+                      hintText: LocaleKeys.doctor_view_enter_your_password.tr(),
+                      labelText: LocaleKeys.doctor_view_password.tr(),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          // Based on passwordVisible state choose the icon
+                          _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                          color: Colors.deepOrange,
+                        ),
+                        onPressed: () {
+                          // Update the state i.e. toogle the state of passwordVisible variable
+                          setState(() {
+                            _passwordVisible = !_passwordVisible;
+                          });
+                        },
                       ),
                     ),
                   ),
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Column(
-                      children: [
-                        Divider(
-                          color: Colors.black,
-                          thickness: 1,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            widget.questionsToogleView();
-                          },
-                          child: RichText(
-                            text: TextSpan(
-                              style: TextStyle(fontSize: footer, color: Colors.black, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
-                              children: <TextSpan>[
-                                TextSpan(text: AppLocalizations.of(context).translate('does_not_have_account')),
-                                TextSpan(
-                                    text: AppLocalizations.of(context).translate('register'),
-                                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.redAccent)),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
                 ],
               ),
             ),
           ),
-        ),
-      );
-    });
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  height: loading ? 40.0 : 100,
+                  width: loading ? 40.0 : 100,
+                  child: LoadingButton(
+                    isloading: loading,
+                    loadercolor: Colors.white,
+                    onpressed: () async {
+                      checkInternet();
+                      if (_isInternet) {
+                        if (_formKey.currentState.validate()) {
+                          setState(() => loading = true);
+                          dynamic authResult = await _auth.signInWithEmailAndPassword(email, password);
+                          if (authResult != null) {
+                            setState(() => loading = false);
+                          } else {
+                            setState(() {
+                              setState(() => loading = false);
+                              SnackText.errorMsg = LocaleKeys.snack_error_snack_sign_in.tr();
+                            });
+                            _showSnackBar();
+                          }
+                        }
+                      } else {
+                        setState(() {
+                          SnackText.errorMsg = LocaleKeys.snack_error_snack_connectivity.tr();
+                        });
+                        _showSnackBar();
+                      }
+                    },
+                    backgroundcolor: Colors.deepOrange,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                    child: Text(
+                      LocaleKeys.doctor_view_sign_in.tr(),
+                      style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold), //_textStyle.copyWith(color: Colors.white),
+                    ),
+                  ),
+                ),
+                TextButton.icon(
+                  icon: Icon(Icons.arrow_forward),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForgetPassword()));
+                  },
+                  label: Text(
+                    LocaleKeys.doctor_view_forget_password.tr(),
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Column(
+              children: [
+                Divider(
+                  color: Colors.black,
+                  thickness: 1,
+                ),
+                InkWell(
+                  onTap: () {
+                    widget.questionsToogleView();
+                  },
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: LocaleKeys.doctor_view_does_not_have_account.tr(),
+                        ),
+                        TextSpan(text: LocaleKeys.doctor_view_register.tr(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.redAccent)),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ]),
+      ),
+    );
   }
 }
