@@ -10,9 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import 'dart:ui';
 import 'doctor03_map.dart';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
+
 
 class ClinicDay {
   static String day1;
@@ -319,48 +317,19 @@ class _ClinicFormState extends State<ClinicForm> {
       }
     }
 
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      double containerWidth;
-      double buttonHeight;
-      double buttonWidth;
-      double title;
-      double subTitle;
-      double footer;
-
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-        containerWidth = displayWidth(context) * 0.8;
-        title = displayWidth(context) * 0.045;
-        subTitle = displayWidth(context) * 0.04;
-        footer = displayWidth(context) * 0.035;
-        buttonHeight = displayHeight(context) * 0.05;
-        buttonWidth = displayWidth(context) * 0.7;
-      } else {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 80;
-        containerWidth = displayWidth(context) * 0.5;
-        title = displayWidth(context) * 0.035;
-        subTitle = displayWidth(context) * 0.028;
-        footer = displayWidth(context) * 0.025;
-        buttonHeight = displayHeight(context) * 0.045;
-        buttonWidth = displayWidth(context) * 0.4;
-      }
       return Scaffold(
         key: _scaffoldkey,
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey[200],
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight),
+          preferredSize: Size.fromHeight(50),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: FittedBox(
               fit: BoxFit.fitWidth,
               child: Text(
                 AppLocalizations.of(context).translate('doctor_form'),
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: appBarTitle),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
             ),
             centerTitle: true,
@@ -369,7 +338,7 @@ class _ClinicFormState extends State<ClinicForm> {
         ),
         body: Center(
           child: Container(
-            width: containerWidth,
+            width: 100,
             padding: EdgeInsets.fromLTRB(0, 50, 0, 15),
             child: Form(
               key: _formKey,
@@ -392,7 +361,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                 ),
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
-                                  fontSize: title,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -419,7 +388,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                   },
                                   decoration: textInputdecoration.copyWith(
                                     hintText: 'مثال: الحارثيه شارع الكندي',
-                                    hintStyle: TextStyle(fontSize: footer, color: Colors.deepOrange, fontFamily: 'noto_arabic'),
+                                    hintStyle: TextStyle(fontSize: 12, color: Colors.deepOrange, fontFamily: 'noto_arabic'),
                                     labelText: 'عنوان العياده',
                                     labelStyle: TextStyle(color: Colors.grey[750], fontFamily: 'noto_arabic'),
                                   ),
@@ -436,7 +405,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                 ),
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
-                                  fontSize: title,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -521,14 +490,14 @@ class _ClinicFormState extends State<ClinicForm> {
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
-                                            fontSize: subTitle,
+                                            fontSize: 12,
                                           ),
                                           children: [
                                             TextSpan(
                                               text: '${_mainFromTime.format(context)}',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: subTitle,
+                                                fontSize: 12,
                                                 color: mainfrom ? Colors.deepOrange : Colors.black,
                                               ),
                                             ),
@@ -550,14 +519,14 @@ class _ClinicFormState extends State<ClinicForm> {
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
-                                            fontSize: subTitle,
+                                            fontSize: 12,
                                           ),
                                           children: [
                                             TextSpan(
                                               text: '${_mainToTime.format(context)}',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: subTitle,
+                                                fontSize: 12,
                                                 color: mainto ? Colors.deepOrange : Colors.black,
                                               ),
                                             ),
@@ -576,7 +545,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                 dense: true,
                                 title: Text(
                                   AppLocalizations.of(context).translate('expcetion_days'),
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: footer),
+                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                                 ),
                                 value: _daySwitch01,
                                 onChanged: (bool s) {
@@ -604,7 +573,7 @@ class _ClinicFormState extends State<ClinicForm> {
                               Center(
                                 child: Text(
                                   AppLocalizations.of(context).translate('expcetion_days'),
-                                  style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
                               ),
                               Divider(
@@ -659,14 +628,14 @@ class _ClinicFormState extends State<ClinicForm> {
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black,
-                                              fontSize: subTitle,
+                                              fontSize: 12,
                                             ),
                                             children: [
                                               TextSpan(
                                                 text: '${_secondaryFromTime.format(context)}',
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: subTitle,
+                                                  fontSize: 12,
                                                   color: secfrom ? Colors.deepOrange : Colors.black,
                                                 ),
                                               ),
@@ -688,14 +657,14 @@ class _ClinicFormState extends State<ClinicForm> {
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black,
-                                              fontSize: subTitle,
+                                              fontSize: 12,
                                             ),
                                             children: [
                                               TextSpan(
                                                 text: '${_secondaryToTime.format(context)}',
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: subTitle,
+                                                  fontSize: 12,
                                                   color: secto ? Colors.deepOrange : Colors.black,
                                                 ),
                                               ),
@@ -714,7 +683,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                   dense: true,
                                   title: Text(
                                     AppLocalizations.of(context).translate('expcetion_days'),
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: footer),
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                                   ),
                                   value: _daySwitch02,
                                   onChanged: (bool s) {
@@ -742,7 +711,7 @@ class _ClinicFormState extends State<ClinicForm> {
                               Center(
                                 child: Text(
                                   AppLocalizations.of(context).translate('expcetion_days'),
-                                  style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
                               ),
                               Divider(
@@ -797,14 +766,14 @@ class _ClinicFormState extends State<ClinicForm> {
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black,
-                                              fontSize: subTitle,
+                                              fontSize: 12,
                                             ),
                                             children: [
                                               TextSpan(
                                                 text: '${_ternaryFromTime.format(context)}',
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: subTitle,
+                                                  fontSize: 12,
                                                   color: thirdfrom ? Colors.deepOrange : Colors.black,
                                                 ),
                                               ),
@@ -826,14 +795,14 @@ class _ClinicFormState extends State<ClinicForm> {
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black,
-                                              fontSize: subTitle,
+                                              fontSize: 12,
                                             ),
                                             children: [
                                               TextSpan(
                                                 text: '${_ternaryToTime.format(context)}',
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: subTitle,
+                                                  fontSize: 12,
                                                   color: thirdto ? Colors.deepOrange : Colors.black,
                                                 ),
                                               ),
@@ -861,7 +830,7 @@ class _ClinicFormState extends State<ClinicForm> {
                               children: [
                                 Text(
                                   AppLocalizations.of(context).translate('location_setup'),
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: footer),
+                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                                 ),
                                 Icon(
                                   Icons.arrow_downward,
@@ -873,8 +842,8 @@ class _ClinicFormState extends State<ClinicForm> {
                               height: 10,
                             ),
                             Container(
-                              height: buttonHeight,
-                              width: buttonWidth,
+                              height: 50,
+                              width: 150,
                               child: ButtonTheme(
                                 child: TextButton.icon(
                                   style: TextButton.styleFrom(
@@ -990,7 +959,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                   },
                                   label: Text(
                                     AppLocalizations.of(context).translate('google_map'),
-                                    style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
+                                    style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
@@ -1006,7 +975,7 @@ class _ClinicFormState extends State<ClinicForm> {
           ),
         ),
       );
-    });
+   
   }
 
   _pickMainFromTime() async {

@@ -631,7 +631,7 @@ class _NewSearchState extends State<NewSearch> {
                         AppLocalizations.of(context).translate('search'),
                         style: TextStyle(
                             color: Colors.white,
-                            // fontSize: title,
+                            // fontSize: 16,
                             fontWeight: FontWeight.bold),
                       ),
                     ),

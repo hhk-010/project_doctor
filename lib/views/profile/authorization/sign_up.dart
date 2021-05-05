@@ -4,9 +4,6 @@ import 'package:project_doctor/pages/doctor_pages/doctor01_form.dart';
 import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'dart:io';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
 
 class Register extends StatefulWidget {
   final Function registerToggleView;
@@ -51,71 +48,26 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      double containerHeight;
-      double containerWidth;
-      double buttonHeight;
-      double buttonWidth;
-      double title;
-      double footer;
-      double avatar;
-      double textFieldWidth;
-      double spacerSmall;
-      double spacerLarge;
-      double spacerMedium;
-
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-        containerHeight = displayHeight(context) * 0.8;
-        containerWidth = displayWidth(context) * 0.85;
-        title = displayWidth(context) * 0.045;
-        footer = displayWidth(context) * 0.035;
-        buttonHeight = displayHeight(context) * 0.05;
-        buttonWidth = displayWidth(context) * 0.7;
-        avatar = 70;
-        textFieldWidth = displayWidth(context) * 0.7;
-        spacerSmall = displayHeight(context) * 0.03;
-        spacerMedium = displayHeight(context) * 0.09;
-        spacerLarge = displayHeight(context) * 0.1;
-      } else {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 80;
-        containerHeight = displayHeight(context) * 0.7;
-        containerWidth = displayWidth(context) * 0.5;
-        footer = displayWidth(context) * 0.025;
-        title = displayWidth(context) * 0.035;
-        buttonHeight = displayHeight(context) * 0.045;
-        buttonWidth = displayWidth(context) * 0.4;
-        avatar = 100;
-        textFieldWidth = displayWidth(context) * 0.4;
-        spacerSmall = displayHeight(context) * 0.03;
-        spacerMedium = displayHeight(context) * 0.05;
-        spacerLarge = displayHeight(context) * 0.1;
-      }
-      var lang = Localizations.localeOf(context).languageCode;
       return Scaffold(
         key: _scaffoldkey,
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey[200],
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight),
+          preferredSize: Size.fromHeight(50),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: FittedBox(
                 fit: BoxFit.fitWidth,
                 child:
-                    Text(AppLocalizations.of(context).translate('register'), style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold))),
+                    Text(AppLocalizations.of(context).translate('register'), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold))),
             centerTitle: true,
             elevation: 0.0,
           ),
         ),
         body: Center(
           child: Container(
-            height: containerHeight,
-            width: containerWidth,
+            height: 200,
+            width: 200,
             child: Form(
               key: _formKey,
               child: Stack(
@@ -134,15 +86,15 @@ class _RegisterState extends State<Register> {
                             padding: const EdgeInsets.only(top: 15),
                             child: CircleAvatar(
                               backgroundColor: Colors.deepOrangeAccent,
-                              radius: avatar,
+                              radius: 50,
                               backgroundImage: AssetImage('assets/images/register.png'),
                             ),
                           ),
                           SizedBox(
-                            height: spacerMedium,
+                            height: 25,
                           ),
                           SizedBox(
-                            width: textFieldWidth,
+                            width: 25,
                             child: TextFormField(
                               validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('enter_your_email') : null,
                               onChanged: (val) {
@@ -157,10 +109,10 @@ class _RegisterState extends State<Register> {
                             ),
                           ),
                           SizedBox(
-                            height: spacerSmall,
+                            height: 25,
                           ),
                           SizedBox(
-                            width: textFieldWidth,
+                            width: 25,
                             child: TextFormField(
                               validator: (val) => val.length < 8 ? AppLocalizations.of(context).translate('password_validator') : null,
                               //? 'Enter a password 8 or long'
@@ -190,11 +142,11 @@ class _RegisterState extends State<Register> {
                             ),
                           ),
                           SizedBox(
-                            height: spacerLarge,
+                            height: 25,
                           ),
                           Container(
-                            height: buttonHeight,
-                            width: buttonWidth,
+                            height: 50,
+                            width: 100,
                             child: TextButton(
                               style: TextButton.styleFrom(
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
@@ -242,7 +194,7 @@ class _RegisterState extends State<Register> {
                                     }*/
                               ,
                               child: Text(AppLocalizations.of(context).translate('register'),
-                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: title)),
+                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15)),
                             ),
                           ),
                         ],
@@ -267,7 +219,6 @@ class _RegisterState extends State<Register> {
                           },
                           child: RichText(
                             text: new TextSpan(
-                              style: new TextStyle(fontSize: footer, color: Colors.black, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
                               children: <TextSpan>[
                                 TextSpan(
                                   text: AppLocalizations.of(context).translate('does_have_account'),
@@ -288,6 +239,6 @@ class _RegisterState extends State<Register> {
           ),
         ),
       );
-    });
+   
   }
 }

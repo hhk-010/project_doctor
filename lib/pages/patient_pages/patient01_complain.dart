@@ -9,9 +9,6 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/pages/patient_pages/patient02_risk_factors.dart';
 import 'package:project_doctor/services/data_model.dart';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
 
 class PatientComplain extends StatefulWidget {
   @override
@@ -1616,49 +1613,17 @@ class _PatientComplainState extends State<PatientComplain> {
       });
     }
 
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBar;
-      double appBarHeight;
-      double containerWidth;
-      double buttonHeight;
-      double buttonWidth;
-      double title;
-      double subTitle;
-      double floatingActionHeight;
-      double upperInset;
-
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBar = 25;
-        appBarHeight = 50;
-        containerWidth = displayWidth(context) * 0.85;
-        title = displayWidth(context) * 0.045;
-        subTitle = displayWidth(context) * 0.04;
-        buttonHeight = displayHeight(context) * 0.05;
-        buttonWidth = displayWidth(context) * 0.7;
-        floatingActionHeight = 10;
-        upperInset = 25;
-      } else {
-        appBar = displayHeight(context) * 0.035;
-        appBarHeight = 80;
-        containerWidth = displayWidth(context) * 0.5;
-        title = displayWidth(context) * 0.035;
-        subTitle = displayWidth(context) * 0.025;
-        buttonHeight = displayHeight(context) * 0.045;
-        buttonWidth = displayWidth(context) * 0.4;
-        floatingActionHeight = 50.0;
-        upperInset = 50;
-      }
       return Scaffold(
         resizeToAvoidBottomInset: false,
         key: _scaffoldkey,
         backgroundColor: Colors.grey[200],
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight),
+          preferredSize: Size.fromHeight(50),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: Text(
               AppLocalizations.of(context).translate('patient_complain'),
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: appBar),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
             centerTitle: true,
             elevation: 0,
@@ -1669,10 +1634,10 @@ class _PatientComplainState extends State<PatientComplain> {
           child: PatientSidebar(),
         ),
         floatingActionButton: Padding(
-          padding: EdgeInsets.only(bottom: floatingActionHeight),
+          padding: EdgeInsets.only(bottom: 20),
           child: Container(
-            height: buttonHeight,
-            width: buttonWidth,
+            height: 50,
+            width: 150,
             child: FloatingActionButton.extended(
               icon: Icon(
                 Icons.arrow_forward,
@@ -1738,7 +1703,7 @@ class _PatientComplainState extends State<PatientComplain> {
               label: Text(AppLocalizations.of(context).translate('next'),
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: title,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold)),
             ),
           ),
@@ -1746,9 +1711,9 @@ class _PatientComplainState extends State<PatientComplain> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: Center(
           child: Padding(
-            padding: EdgeInsets.only(top: upperInset),
+            padding: EdgeInsets.only(top: 20),
             child: Container(
-              width: containerWidth,
+              width: 100,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -1769,7 +1734,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                       'age_gender',
                                     ),
                                     style: TextStyle(
-                                      fontSize: title,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -1808,7 +1773,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                           'age',
                                         ),
                                         hintStyle:
-                                            TextStyle(fontSize: subTitle),
+                                            TextStyle(fontSize: 12),
                                         prefixIcon: Icon(
                                           Icons.person_search,
                                           color: Colors.deepOrange,
@@ -1827,7 +1792,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                           AppLocalizations.of(context)
                                               .translate('male'),
                                           style: _textStylePatient.copyWith(
-                                              fontSize: subTitle),
+                                              fontSize: 12),
                                         ),
                                         activeColor: Colors.deepOrange,
                                         value: radioGender[0],
@@ -1860,7 +1825,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                             AppLocalizations.of(context)
                                                 .translate('female'),
                                             style: _textStylePatient.copyWith(
-                                                fontSize: subTitle),
+                                                fontSize: 12),
                                           ),
                                           activeColor: Colors.deepOrange,
                                           value: radioGender[1],
@@ -1906,7 +1871,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                         AppLocalizations.of(context)
                                             .translate('main_complain'),
                                         style: TextStyle(
-                                            fontSize: title,
+                                            fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
@@ -2078,7 +2043,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                           .translate('other_complain'),
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: subTitle),
+                                          fontSize: 12),
                                       maxLines: 1,
                                     ),
                                     value: _switch01,
@@ -2107,7 +2072,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                         AppLocalizations.of(context)
                                             .translate('add_complains'),
                                         style: TextStyle(
-                                            fontSize: title,
+                                            fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
@@ -2279,7 +2244,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                             .translate('other_complain'),
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: subTitle),
+                                            fontSize: 12),
                                         maxLines: 1,
                                       ),
                                       value: _switch02,
@@ -2309,7 +2274,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                         AppLocalizations.of(context)
                                             .translate('add_complains'),
                                         style: TextStyle(
-                                            fontSize: title,
+                                            fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
@@ -2481,7 +2446,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                             .translate('other_complain'),
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: subTitle),
+                                            fontSize: 12),
                                         maxLines: 1,
                                       ),
                                       value: _switch03,
@@ -2511,7 +2476,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                         AppLocalizations.of(context)
                                             .translate('add_complains'),
                                         style: TextStyle(
-                                            fontSize: title,
+                                            fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
@@ -2683,7 +2648,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                             .translate('other_complain'),
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: subTitle),
+                                            fontSize: 12),
                                         maxLines: 1,
                                       ),
                                       value: _switch04,
@@ -2713,7 +2678,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                         AppLocalizations.of(context)
                                             .translate('add_complains'),
                                         style: TextStyle(
-                                            fontSize: title,
+                                            fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
@@ -2885,7 +2850,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                             .translate('other_complain'),
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: subTitle),
+                                            fontSize: 12),
                                         maxLines: 1,
                                       ),
                                       value: _switch05,
@@ -2915,7 +2880,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                         AppLocalizations.of(context)
                                             .translate('add_complains'),
                                         style: TextStyle(
-                                            fontSize: title,
+                                            fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
@@ -3087,7 +3052,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                             .translate('other_complain'),
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: subTitle),
+                                            fontSize: 12),
                                         maxLines: 1,
                                       ),
                                       value: _switch06,
@@ -3117,7 +3082,7 @@ class _PatientComplainState extends State<PatientComplain> {
                                         AppLocalizations.of(context)
                                             .translate('add_complains'),
                                         style: TextStyle(
-                                            fontSize: title,
+                                            fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
@@ -3298,6 +3263,6 @@ class _PatientComplainState extends State<PatientComplain> {
           ),
         ),
       );
-    });
+  
   }
 }

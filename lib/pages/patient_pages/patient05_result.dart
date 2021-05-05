@@ -16,9 +16,6 @@ import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/services/read_write_path.dart';
 import 'package:project_doctor/views/profile/authorization/loading.dart';
 import 'package:provider/provider.dart';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PatientResult extends StatefulWidget {
@@ -106,31 +103,20 @@ class _PatientResultState extends State<PatientResult> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-      } else {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 80;
-      }
-
-      return StreamProvider<QuerySnapshot>.value(
+         return StreamProvider<QuerySnapshot>.value(
         initialData: null,
         value: DatabaseService().usersDataStream,
         child: Scaffold(
           key: _scaffoldkey,
           backgroundColor: Colors.grey[200],
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(appBarHeight),
+            preferredSize: Size.fromHeight(50),
             child: AppBar(
               backgroundColor: Colors.deepOrange,
               title: Text(
                 AppLocalizations.of(context).translate("resulted"),
                 //'Search Result',
-                style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               centerTitle: true,
               elevation: 0,
@@ -186,7 +172,7 @@ class _PatientResultState extends State<PatientResult> {
           body: ResultDoctorProfile(),
         ),
       );
-    });
+  
   }
 }
 
@@ -485,42 +471,13 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
       _writeWorkDays03(json.encode(_workDays03));
     }
 
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double containerWidth;
-      double buttonHeight;
-      double buttonWidth;
-      double title;
-      double subTitle;
-      double footer;
-      double avatarSize;
-      double containerInset;
-
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        containerWidth = displayWidth(context) * 0.85;
-        title = displayWidth(context) * 0.05;
-        subTitle = displayWidth(context) * 0.04;
-        buttonHeight = displayHeight(context) * 0.05;
-        buttonWidth = displayWidth(context) * 0.7;
-        footer = displayWidth(context) * 0.025;
-        avatarSize = 50;
-        containerInset = 25;
-      } else {
-        containerWidth = displayWidth(context) * 0.6;
-        title = displayWidth(context) * 0.045;
-        subTitle = displayWidth(context) * 0.03;
-        buttonHeight = displayHeight(context) * 0.045;
-        buttonWidth = displayWidth(context) * 0.4;
-        footer = displayWidth(context) * 0.02;
-        avatarSize = 70;
-        containerInset = 50;
-      }
-      TextStyle _textStyle = TextStyle(fontSize: subTitle, color: Colors.black, fontWeight: FontWeight.bold);
+      TextStyle _textStyle = TextStyle(fontSize: 12, color: Colors.black, fontWeight: FontWeight.bold);
       return isLoading
           ? Loading()
           : Center(
               child: Container(
-                width: containerWidth,
-                padding: EdgeInsets.only(top: containerInset),
+                width: 100,
+                padding: EdgeInsets.only(top: 50),
                 child: ListView(
                   children: [
                     Container(
@@ -534,7 +491,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                             Center(
                               child: CircleAvatar(
                                 backgroundColor: Colors.deepOrange,
-                                radius: avatarSize,
+                                radius: 50,
                                 backgroundImage: AssetImage('assets/images/doctor.png'),
                               ),
                             ),
@@ -546,7 +503,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                                 fit: BoxFit.fitWidth,
                                 child: Text(
                                   _name,
-                                  style: _textStyle.copyWith(fontSize: title, fontFamily: 'noto_arabic'),
+                                  style: _textStyle.copyWith(fontSize: 16, fontFamily: 'noto_arabic'),
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -558,7 +515,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                               child: Text(
                                 // _doctorAddress,
                                 AppLocalizations.of(context).translate(_province),
-                                style: _textStyle.copyWith(fontSize: footer),
+                                style: _textStyle.copyWith(fontSize: 12),
                               ),
                             ),
                             SizedBox(
@@ -575,7 +532,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                             ),
                             Text(
                               AppLocalizations.of(context).translate('speciality'),
-                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
                               height: 2,
@@ -592,7 +549,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                             ),
                             Text(
                               AppLocalizations.of(context).translate('phoneNumber'),
-                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
                               height: 2,
@@ -625,7 +582,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                             ),
                             Text(
                               AppLocalizations.of(context).translate('clinic_address'),
-                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
                               height: 2,
@@ -642,7 +599,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                             ),
                             Text(
                               AppLocalizations.of(context).translate('clinic_work'),
-                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
                               height: 2,
@@ -667,7 +624,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                                       children: [
                                         Text(
                                           AppLocalizations.of(context).translate('another_clinic_work'),
-                                          style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                                          style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
                                         ),
                                         SizedBox(
                                           height: 2,
@@ -690,7 +647,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                                   ),
                             Text(
                               AppLocalizations.of(context).translate("distances"),
-                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
                             ),
                             Text(
                               realnearby + AppLocalizations.of(context).translate("km"), //' Km away',
@@ -704,8 +661,8 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                       height: 25,
                     ),
                     Container(
-                      height: buttonHeight,
-                      width: buttonWidth,
+                      height: 50,
+                      width: 150,
                       child: TextButton.icon(
                         style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
@@ -727,7 +684,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                         },
                         label: Text(
                           AppLocalizations.of(context).translate("doctor_locat"),
-                          style: TextStyle(color: Colors.white, fontSize: subTitle, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -735,6 +692,6 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                 ),
               ),
             );
-    });
+ 
   }
 }

@@ -5,9 +5,7 @@ import 'package:project_doctor/pages/doctor_pages/doctor02_clinic.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
+
 
 class DoctorForm extends StatefulWidget {
   final String email;
@@ -130,45 +128,18 @@ class _DoctorFormState extends State<DoctorForm> {
       "17": ["Nineveh", AppLocalizations.of(context).translate("Nineveh")],
       "18": ["Wasit", AppLocalizations.of(context).translate("Wasit")],
     };
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      double containerWidth;
-      double containerHeight;
-      double buttonHeight;
-      double buttonWidth;
-      double title;
-
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-        containerWidth = displayWidth(context) * 0.75;
-        containerHeight = displayHeight(context) * 0.6;
-        title = displayWidth(context) * 0.05;
-
-        buttonHeight = displayHeight(context) * 0.05;
-        buttonWidth = displayWidth(context) * 0.7;
-      } else {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 80;
-        containerWidth = displayWidth(context) * 0.5;
-        containerHeight = displayHeight(context) * 0.5;
-        title = displayWidth(context) * 0.035;
-
-        buttonHeight = displayHeight(context) * 0.045;
-        buttonWidth = displayWidth(context) * 0.4;
-      }
+   
       return Scaffold(
         key: _scaffoldkey,
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey[200],
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight),
+          preferredSize: Size.fromHeight(50),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: Text(
               AppLocalizations.of(context).translate('doctor_form'),
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: appBarTitle),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
             centerTitle: true,
             elevation: 0,
@@ -176,8 +147,8 @@ class _DoctorFormState extends State<DoctorForm> {
         ),
         body: Center(
           child: Container(
-            height: containerHeight,
-            width: containerWidth,
+            height: 100,
+            width: 100,
             child: Form(
               key: _formKey,
               child: Container(
@@ -422,8 +393,8 @@ class _DoctorFormState extends State<DoctorForm> {
                       flex: 5,
                     ),
                     Container(
-                      height: buttonHeight,
-                      width: buttonWidth,
+                      height: 50,
+                      width: 150,
                       child: ButtonTheme(
                         child: TextButton.icon(
                           style: TextButton.styleFrom(
@@ -467,7 +438,7 @@ class _DoctorFormState extends State<DoctorForm> {
                           },
                           label: Text(
                             AppLocalizations.of(context).translate('next'),
-                            style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -479,6 +450,6 @@ class _DoctorFormState extends State<DoctorForm> {
           ),
         ),
       );
-    });
+  
   }
 }

@@ -13,7 +13,7 @@
     - flutter build apk --split-per-abi
     - flutter build appbundle
 - easy_localization key generation 
-    - flutter pub run easy_localization:generate -S "assets/translations" -O "lib/translations" -o "locale_keys.g.dart" -f keys
+    - flutter pub run easy_localization:generate -S "assets/translations" -O "lib/constants" -o "locale_keys.g.dart" -f keys
     - set a string : *LocaleKeys.app_buttons_ok.tr()*
 - flutter_native_splash
     - flutter pub run flutter_native_splash:create

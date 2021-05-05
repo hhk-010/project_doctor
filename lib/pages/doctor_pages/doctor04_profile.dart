@@ -9,9 +9,6 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
 
 class DoctorProfile extends StatefulWidget {
   @override
@@ -62,27 +59,14 @@ class _DoctorProfileState extends State<DoctorProfile> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      double appBarIcon;
-
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-        appBarIcon = 25;
-      } else {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 80;
-        appBarIcon = 30;
-      }
+  
       return StreamProvider<QuerySnapshot>.value(
         initialData: null,
         value: DatabaseService().usersDataStream,
         child: Scaffold(
           backgroundColor: Colors.grey[200],
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(appBarHeight),
+            preferredSize: Size.fromHeight(50),
             child: AppBar(
               centerTitle: true,
               backgroundColor: Colors.deepOrange,
@@ -90,7 +74,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                 fit: BoxFit.fitWidth,
                 child: Text(
                   AppLocalizations.of(context).translate('profile'),
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: appBarTitle),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
               elevation: 0,
@@ -98,7 +82,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                 IconButton(
                   icon: Icon(Icons.person_remove),
                   tooltip: AppLocalizations.of(context).translate('delete_user'),
-                  iconSize: appBarIcon,
+                  iconSize: 15,
                   onPressed: () {
                     Navigator.pushNamed(context, '/pre_delete');
                   },
@@ -113,7 +97,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                     Icons.logout,
                   ),
                   tooltip: AppLocalizations.of(context).translate('log_out'),
-                  iconSize: appBarIcon,
+                  iconSize: 15,
                   onPressed: () async {
                     if (_isInternet) {
                       await _auth.signOut();
@@ -132,7 +116,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
           body: DoctorList(),
         ),
       );
-    });
+  
   }
 }
 
@@ -309,41 +293,13 @@ class _DoctorListState extends State<DoctorList> {
       // _getAddressFromLatLng();
     }
 
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double containerWidth;
-      double buttonHeight;
-      double buttonWidth;
-      double title;
-      double subTitle;
-      double footer;
-      double avatarSize;
-      double containerInset;
 
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        containerWidth = displayWidth(context) * 0.85;
-        title = displayWidth(context) * 0.05;
-        subTitle = displayWidth(context) * 0.04;
-        buttonHeight = displayHeight(context) * 0.05;
-        buttonWidth = displayWidth(context) * 0.7;
-        footer = displayWidth(context) * 0.025;
-        avatarSize = 50;
-        containerInset = 25;
-      } else {
-        containerWidth = displayWidth(context) * 0.6;
-        title = displayWidth(context) * 0.045;
-        subTitle = displayWidth(context) * 0.03;
-        buttonHeight = displayHeight(context) * 0.045;
-        buttonWidth = displayWidth(context) * 0.4;
-        footer = displayWidth(context) * 0.02;
-        avatarSize = 70;
-        containerInset = 50;
-      }
-      TextStyle _textStyle = TextStyle(fontSize: subTitle, color: Colors.black, fontWeight: FontWeight.bold);
+      TextStyle _textStyle = TextStyle(fontSize: 12, color: Colors.black, fontWeight: FontWeight.bold);
 
       return Center(
         child: Container(
-          width: containerWidth,
-          padding: EdgeInsets.only(top: containerInset),
+          width: 100,
+          padding: EdgeInsets.only(top: 50),
           child: ListView(
             children: [
               Container(
@@ -355,13 +311,13 @@ class _DoctorListState extends State<DoctorList> {
                           children: [
                             Text(
                               AppLocalizations.of(context).translate('prof_error'),
-                              style: TextStyle(fontSize: title, color: Colors.deepOrange),
+                              style: TextStyle(fontSize: 16, color: Colors.deepOrange),
                             ),
                             Text(
                               AppLocalizations.of(context).translate('data_error'),
-                              style: TextStyle(fontSize: subTitle),
+                              style: TextStyle(fontSize: 12),
                             ),
-                            //Text(AppLocalizations.of(context).translate('re_sign'),style: TextStyle(fontSize: subTitle),),
+                            //Text(AppLocalizations.of(context).translate('re_sign'),style: TextStyle(fontSize: 12),),
                           ],
                         )
                       : Column(
@@ -371,7 +327,7 @@ class _DoctorListState extends State<DoctorList> {
                             Center(
                               child: CircleAvatar(
                                 backgroundColor: Colors.deepOrange,
-                                radius: avatarSize,
+                                radius: 50,
                                 backgroundImage: AssetImage('assets/images/doctor.png'),
                               ),
                             ),
@@ -383,7 +339,7 @@ class _DoctorListState extends State<DoctorList> {
                                 fit: BoxFit.fitWidth,
                                 child: Text(
                                   name,
-                                  style: _textStyle.copyWith(fontSize: title, fontFamily: 'noto_arabic'),
+                                  style: _textStyle.copyWith(fontSize: 16, fontFamily: 'noto_arabic'),
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -395,7 +351,7 @@ class _DoctorListState extends State<DoctorList> {
                               child: Text(
                                 // _doctorAddress,
                                 AppLocalizations.of(context).translate(province),
-                                style: _textStyle.copyWith(fontSize: footer),
+                                style: _textStyle.copyWith(fontSize: 12),
                               ),
                             ),
                             SizedBox(
@@ -412,7 +368,7 @@ class _DoctorListState extends State<DoctorList> {
                             ),
                             Text(
                               AppLocalizations.of(context).translate('speciality'),
-                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
                               height: 2,
@@ -429,7 +385,7 @@ class _DoctorListState extends State<DoctorList> {
                             ),
                             Text(
                               AppLocalizations.of(context).translate('phoneNumber'),
-                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
                               height: 2,
@@ -446,7 +402,7 @@ class _DoctorListState extends State<DoctorList> {
                             ),
                             Text(
                               AppLocalizations.of(context).translate('clinic_address'),
-                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
                               height: 2,
@@ -463,7 +419,7 @@ class _DoctorListState extends State<DoctorList> {
                             ),
                             Text(
                               AppLocalizations.of(context).translate('clinic_work'),
-                              style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
                               height: 2,
@@ -491,7 +447,7 @@ class _DoctorListState extends State<DoctorList> {
                                       children: [
                                         Text(
                                           AppLocalizations.of(context).translate('another_clinic_work'),
-                                          style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                                          style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
                                         ),
                                         SizedBox(
                                           height: 2,
@@ -520,8 +476,8 @@ class _DoctorListState extends State<DoctorList> {
                 height: 25,
               ),
               Container(
-                height: buttonHeight,
-                width: buttonWidth,
+                height: 50,
+                width: 150,
                 child: TextButton(
                   style: TextButton.styleFrom(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
@@ -529,7 +485,7 @@ class _DoctorListState extends State<DoctorList> {
                   ),
                   child: Text(
                     AppLocalizations.of(context).translate('update_info'),
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: subTitle),
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12),
                   ),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -544,7 +500,7 @@ class _DoctorListState extends State<DoctorList> {
           ),
         ),
       );
-    });
+  
   }
 }
 

@@ -253,7 +253,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                         child: Text(
                           // _doctorAddress,
                           AppLocalizations.of(context).translate(SearchResultData.province),
-                          //style: _textStyle.copyWith(fontSize: footer),
+                          //style: _textStyle.copyWith(fontSize: 12),
                           style: TextStyle(fontSize: getDeviceType(context, 12, 15, 18, 21), fontWeight: FontWeight.bold, fontFamily: 'noto_arabic'),
                         ),
                       ),
@@ -272,7 +272,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                       Text(
                         AppLocalizations.of(context).translate('speciality'),
                         style: TextStyle(
-                          //fontSize: footer,
+                          //fontSize: 12,
                           color: Colors.indigo,
                           fontWeight: FontWeight.bold,
                           fontSize: getDeviceType(context, 12, 15, 18, 21),
@@ -299,7 +299,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                       Text(
                         AppLocalizations.of(context).translate('phoneNumber'),
                         style: TextStyle(
-                          // fontSize: footer,
+                          // fontSize: 12,
                           color: Colors.indigo,
                           fontWeight: FontWeight.bold,
                           fontSize: getDeviceType(context, 12, 15, 18, 21),
@@ -342,7 +342,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                       Text(
                         AppLocalizations.of(context).translate('clinic_address'),
                         style: TextStyle(
-                          //fontSize: footer,
+                          //fontSize: 12,
                           color: Colors.indigo,
                           fontWeight: FontWeight.bold,
                           fontSize: getDeviceType(context, 12, 15, 18, 21),
@@ -369,7 +369,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                       Text(
                         AppLocalizations.of(context).translate('clinic_work'),
                         style: TextStyle(
-                          // fontSize: footer,
+                          // fontSize: 12,
                           color: Colors.indigo,
                           fontWeight: FontWeight.bold,
                           fontSize: getDeviceType(context, 12, 15, 18, 21),
@@ -403,7 +403,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                                   Text(
                                     AppLocalizations.of(context).translate('another_clinic_work'),
                                     style: TextStyle(
-                                      // fontSize: footer,
+                                      // fontSize: 12,
                                       color: Colors.indigo,
                                       fontWeight: FontWeight.bold,
                                       fontSize: getDeviceType(context, 12, 15, 18, 21),
@@ -442,7 +442,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                       Text(
                         AppLocalizations.of(context).translate("distances"),
                         style: TextStyle(
-                            // fontSize: footer,
+                            // fontSize: 12,
                             color: Colors.indigo,
                             fontWeight: FontWeight.bold),
                       ),
@@ -462,8 +462,8 @@ class _SearchResultViewState extends State<SearchResultView> {
                 height: getDeviceType(context, 20, 25, 30, 35),
               ),
               Container(
-                // height: buttonHeight,
-                // width: buttonWidth,
+                // height: 50,
+                // width: 150,
                 child: TextButton.icon(
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.deepOrange,
@@ -478,7 +478,7 @@ class _SearchResultViewState extends State<SearchResultView> {
                     AppLocalizations.of(context).translate("doctor_locat"),
                     style: TextStyle(
                         color: Colors.white,
-                        // fontSize: subTitle,
+                        // fontSize: 12,
                         fontWeight: FontWeight.bold),
                   ),
                 ),

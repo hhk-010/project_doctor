@@ -12,9 +12,7 @@ import 'package:project_doctor/services/read_write_path.dart';
 import 'package:project_doctor/views/profile/authorization/loading.dart';
 import 'package:provider/provider.dart';
 import '../../services/auth.dart';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
+
 
 class DataFromMaptoVerify {
   static String email = '';
@@ -306,24 +304,10 @@ class _FinalMapState extends State<FinalMap> {
         }
       }
     }
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      double title;
-
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-        title = displayWidth(context) * 0.05;
-      } else {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 80;
-        title = displayWidth(context) * 0.025;
-      }
       return Scaffold(
         key: _scaffoldkey,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight),
+          preferredSize: Size.fromHeight(50),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: FittedBox(
@@ -331,7 +315,7 @@ class _FinalMapState extends State<FinalMap> {
               child: Text(
                 AppLocalizations.of(context).translate('add_location'),
                 style: TextStyle(
-                    fontSize: appBarTitle, fontWeight: FontWeight.bold),
+                    fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             centerTitle: true,
@@ -358,7 +342,7 @@ class _FinalMapState extends State<FinalMap> {
                   child: Text(
                     AppLocalizations.of(context).translate('ok'),
                     style:
-                        TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),
                 onPressed: () async {
@@ -442,6 +426,6 @@ class _FinalMapState extends State<FinalMap> {
           ],
         ),
       );
-    });
+
   }
 }

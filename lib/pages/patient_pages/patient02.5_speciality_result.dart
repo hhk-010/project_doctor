@@ -3,55 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:project_doctor/services/app_localizations.dart';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
+
 
 class SpecialityResult extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      double containerHeight;
-      double containerWidth;
-      double buttonHeight;
-      double buttonWidth;
-      double title;
-      double subTitle;
-      double imageHeight;
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-        containerHeight = displayHeight(context) * 0.75;
-        containerWidth = displayWidth(context) * 0.85;
-        title = displayWidth(context) * 0.055;
-        subTitle = displayWidth(context) * 0.045;
-        buttonHeight = displayHeight(context) * 0.05;
-        buttonWidth = displayWidth(context) * 0.7;
-        imageHeight = displayHeight(context) * 0.2;
-      } else {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 80;
-        containerHeight = displayHeight(context) * 0.7;
-        containerWidth = displayWidth(context) * 0.5;
-        title = displayWidth(context) * 0.04;
-        subTitle = displayWidth(context) * 0.03;
-        buttonHeight = displayHeight(context) * 0.045;
-        buttonWidth = displayWidth(context) * 0.4;
-        imageHeight = displayHeight(context) * 0.2;
-      }
+   
       return Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight),
+          preferredSize: Size.fromHeight(50),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: FittedBox(
               fit: BoxFit.fitWidth,
               child: Text(
                 AppLocalizations.of(context).translate('speciality_result'),
-                style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             centerTitle: true,
@@ -60,8 +28,8 @@ class SpecialityResult extends StatelessWidget {
         ),
         body: Center(
           child: Container(
-            height: containerHeight,
-            width: containerWidth,
+            height: 100,
+            width: 100,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -72,7 +40,7 @@ class SpecialityResult extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: imageHeight,
+                        height: 100,
                         child: Image(
                           image: AssetImage('assets/images/speciality.png'),
                         ),
@@ -83,7 +51,7 @@ class SpecialityResult extends StatelessWidget {
                       AutoSizeText(
                         AppLocalizations.of(context).translate('result_speciality'),
                         maxLines: 2,
-                        style: TextStyle(fontSize: subTitle, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(
@@ -112,7 +80,7 @@ class SpecialityResult extends StatelessWidget {
                               AppLocalizations.of(context).translate(FinalScore.speciality) +
                                   AppLocalizations.of(context).translate(FinalScore.or) +
                                   AppLocalizations.of(context).translate(FinalScore.speciality2),
-                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: title),
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                             ),
                           ),
                         ),
@@ -121,8 +89,8 @@ class SpecialityResult extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  height: buttonHeight,
-                  width: buttonWidth,
+                  height: 50,
+                  width: 150,
                   child: TextButton.icon(
                     style: TextButton.styleFrom(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
@@ -137,7 +105,7 @@ class SpecialityResult extends StatelessWidget {
                     },
                     label: Text(
                       AppLocalizations.of(context).translate('next'),
-                      style: TextStyle(color: Colors.white, fontSize: subTitle, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -146,6 +114,6 @@ class SpecialityResult extends StatelessWidget {
           ),
         ),
       );
-    });
+   
   }
 }

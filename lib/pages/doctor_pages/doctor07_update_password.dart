@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
 import 'package:project_doctor/views/profile/authorization/loading.dart';
 import '../../services/auth.dart';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
+
 
 class UpdatePassword extends StatefulWidget {
   @override
@@ -64,40 +62,12 @@ class _UpdatePasswordState extends State<UpdatePassword> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      double containerWidth;
-      double containerHeight;
-      double buttonHeight;
-      double buttonWidth;
-      double title;
-      double imageHeight;
 
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-        containerWidth = displayWidth(context) * 0.75;
-        containerHeight = displayHeight(context) * 0.7;
-        title = displayWidth(context) * 0.05;
-        buttonHeight = displayHeight(context) * 0.05;
-        buttonWidth = displayWidth(context) * 0.7;
-        imageHeight = 150;
-      } else {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 80;
-        containerWidth = displayWidth(context) * 0.5;
-        containerHeight = displayHeight(context) * 0.6;
-        title = displayWidth(context) * 0.035;
-        buttonHeight = displayHeight(context) * 0.045;
-        buttonWidth = displayWidth(context) * 0.4;
-        imageHeight = 200;
-      }
       return Scaffold(
         key: _scaffoldkey,
         backgroundColor: Colors.grey[200],
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight),
+          preferredSize: Size.fromHeight(50),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             centerTitle: true,
@@ -107,7 +77,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                 AppLocalizations.of(context).translate('update_password'),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: appBarTitle,
+                  fontSize: 20,
                 ),
               ),
             ),
@@ -115,8 +85,8 @@ class _UpdatePasswordState extends State<UpdatePassword> {
         ),
         body: Center(
           child: Container(
-            height: containerHeight,
-            width: containerWidth,
+            height: 100,
+            width: 100,
             child: Form(
               key: _formkey,
               child: Column(
@@ -126,7 +96,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                     shrinkWrap: true,
                     children: [
                       SizedBox(
-                        height: imageHeight,
+                        height: 100,
                         child: Image(
                           image: AssetImage(
                             'assets/images/update_password.png',
@@ -174,8 +144,8 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                     ],
                   ),
                   Container(
-                    height: buttonHeight,
-                    width: !isloading ? buttonWidth : buttonHeight,
+                    height: 50,
+                    width: !isloading ? 150 : 50,
                     child: LoadingButtonIcon(
                       isloading: isloading,
                       loadercolor: Colors.white,
@@ -217,7 +187,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                       },
                       label: Text(
                         AppLocalizations.of(context).translate('update'),
-                        style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -227,6 +197,6 @@ class _UpdatePasswordState extends State<UpdatePassword> {
           ),
         ),
       );
-    });
+  
   }
 }

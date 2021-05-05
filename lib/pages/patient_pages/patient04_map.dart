@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/pages/patient_pages/patient03_get_location.dart';
 import 'package:project_doctor/services/app_localizations.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
+
 
 class PatientMap extends StatefulWidget {
   final String speciality;
@@ -97,24 +95,11 @@ class _PatientMapState extends State<PatientMap> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      double title;
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-        title = displayWidth(context) * 0.05;
-      } else {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 80;
-        title = displayWidth(context) * 0.03;
-      }
 
       return Scaffold(
         key: _scaffoldkey,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight),
+          preferredSize: Size.fromHeight(50),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: FittedBox(
@@ -122,7 +107,7 @@ class _PatientMapState extends State<PatientMap> {
               child: Text(
                 AppLocalizations.of(context).translate('patient_map_title'),
                 style: TextStyle(
-                    fontSize: appBarTitle, fontWeight: FontWeight.bold),
+                    fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             elevation: 0,
@@ -148,7 +133,7 @@ class _PatientMapState extends State<PatientMap> {
                   child: Text(
                     AppLocalizations.of(context).translate('ok'),
                     style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: title),
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ),
                 onPressed: () async {
@@ -191,6 +176,6 @@ class _PatientMapState extends State<PatientMap> {
           ],
         ),
       );
-    });
+   
   }
 }

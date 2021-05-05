@@ -8,9 +8,7 @@ import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/services/read_write_path.dart';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
+
 import 'package:project_doctor/views/profile/authorization/loading.dart';
 
 // class for getting the data from map to firebase through verfication.
@@ -148,49 +146,11 @@ class _EmailVerificationState extends State<EmailVerification> {
 
   @override
   Widget build(BuildContext context) {
-    var lang = Localizations.localeOf(context).languageCode;
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      double containerWidth;
-      double containerHeight;
-      double buttonHeight;
-      double buttonWidth;
-      double title;
-      double footer;
-      double subTitle;
-      double imageHeight;
-      double textWidth;
-
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-        containerWidth = displayWidth(context) * 0.85;
-        containerHeight = displayHeight(context) * 0.75;
-        title = displayWidth(context) * 0.045;
-        subTitle = displayWidth(context) * 0.04;
-        footer = displayWidth(context) * 0.035;
-        buttonHeight = displayHeight(context) * 0.05;
-        buttonWidth = displayWidth(context) * 0.5;
-        imageHeight = 150;
-        textWidth = displayWidth(context) * 0.7;
-      } else {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 80;
-        containerWidth = displayWidth(context) * 0.5;
-        containerHeight = displayHeight(context) * 0.6;
-        title = displayWidth(context) * 0.035;
-        subTitle = displayWidth(context) * 0.028;
-        footer = displayWidth(context) * 0.025;
-        buttonHeight = displayHeight(context) * 0.045;
-        buttonWidth = displayWidth(context) * 0.4;
-        imageHeight = 200;
-        textWidth = displayWidth(context) * 0.7;
-      }
+  
       return Scaffold(
         key: _scaffoldkey,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight),
+          preferredSize: Size.fromHeight(50),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: Text(
@@ -198,7 +158,7 @@ class _EmailVerificationState extends State<EmailVerification> {
               //'Email Confirmation',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: appBarTitle,
+                fontSize: 20,
               ),
             ),
             centerTitle: true,
@@ -230,12 +190,12 @@ class _EmailVerificationState extends State<EmailVerification> {
         ),
         body: Center(
           child: Container(
-            height: containerHeight,
-            width: containerWidth,
+            height: 100,
+            width: 100,
             child: Column(
               children: [
                 SizedBox(
-                  height: imageHeight,
+                  height: 100,
                   child: Image(
                     image: AssetImage('assets/images/email.png'),
                   ),
@@ -247,7 +207,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                   AppLocalizations.of(context).translate('email_sent'),
                   //'We Sent an Email to: ',
                   style:
-                      TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                      TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 Divider(
                   color: Colors.grey,
@@ -265,7 +225,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                     child: Text(
                       _email,
                       style: TextStyle(
-                          fontSize: subTitle, fontWeight: FontWeight.bold),
+                          fontSize: 12, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -279,12 +239,12 @@ class _EmailVerificationState extends State<EmailVerification> {
                   endIndent: 40,
                 ),
                 SizedBox(
-                  width: textWidth,
+                  width: 20,
                   child: Text(
                     AppLocalizations.of(context).translate("confirm"),
                     //'Check your email and click on the confirmation link then',
                     style: TextStyle(
-                        fontSize: subTitle, fontWeight: FontWeight.normal),
+                        fontSize: 12, fontWeight: FontWeight.normal),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -292,8 +252,8 @@ class _EmailVerificationState extends State<EmailVerification> {
                   flex: 3,
                 ),
                 Container(
-                  height: buttonHeight,
-                  width: isLoading ? buttonHeight : buttonWidth,
+                  height: 50,
+                  width: isLoading ? 50 : 150,
                   child: LoadingButtonIcon(
                     isloading: isLoading,
                     loadercolor: Colors.white,
@@ -309,7 +269,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                             .translate("continue"), //'Continue',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: title,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold)),
                     onpressed: () async {
                       checkInternet();
@@ -360,10 +320,8 @@ class _EmailVerificationState extends State<EmailVerification> {
                     textAlign: TextAlign.center,
                     text: new TextSpan(
                       style: new TextStyle(
-                          fontSize: footer,
+                          fontSize: 12,
                           color: Colors.black,
-                          fontFamily:
-                              lang == 'ar' ? 'noto_arabic' : 'Helvetica',
                           fontWeight: FontWeight.bold),
                       children: <TextSpan>[
                         //----text has been changed because if the client clicked resend
@@ -387,7 +345,7 @@ class _EmailVerificationState extends State<EmailVerification> {
           ),
         ),
       );
-    });
+  
   }
 
   @override

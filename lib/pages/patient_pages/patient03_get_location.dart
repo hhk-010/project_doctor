@@ -9,9 +9,7 @@ import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
+
 import 'package:project_doctor/views/profile/authorization/loading.dart';
 
 class MyVariables {
@@ -162,37 +160,11 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
       "Nineveh": "الموصل",
       "Wasit": "الكوت"
     };
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      double containerHeight;
-      double containerWidth;
-      double buttonHeight;
-      double buttonWidth;
-      double title;
-
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-        containerHeight = displayHeight(context) * 0.75;
-        containerWidth = displayWidth(context) * 0.85;
-        title = displayWidth(context) * 0.045;
-        buttonHeight = displayHeight(context) * 0.05;
-        buttonWidth = displayWidth(context) * 0.7;
-      } else {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 80;
-        containerHeight = displayHeight(context) * 0.7;
-        containerWidth = displayWidth(context) * 0.5;
-        title = displayWidth(context) * 0.03;
-        buttonHeight = displayHeight(context) * 0.045;
-        buttonWidth = displayWidth(context) * 0.4;
-      }
       return Scaffold(
         key: _scaffoldkey,
         backgroundColor: Colors.grey[200],
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight),
+          preferredSize: Size.fromHeight(50),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: FittedBox(
@@ -200,7 +172,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
               child: Text(
                 AppLocalizations.of(context).translate('region'),
                 style: TextStyle(
-                    fontSize: appBarTitle, fontWeight: FontWeight.bold),
+                    fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             centerTitle: true,
@@ -209,8 +181,8 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
         ),
         body: Center(
           child: Container(
-            height: containerHeight,
-            width: containerWidth,
+            height: 100,
+            width: 100,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -222,7 +194,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                       Text(
                         AppLocalizations.of(context).translate('province'),
                         style: TextStyle(
-                            fontSize: title, fontWeight: FontWeight.bold),
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       Divider(
                         color: Colors.grey,
@@ -334,7 +306,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                           AppLocalizations.of(context)
                               .translate('get_location'),
                           style: TextStyle(
-                              fontSize: title, fontWeight: FontWeight.bold),
+                              fontSize: 16, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                           maxLines: 2,
                         ),
@@ -352,8 +324,8 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                         height: 10,
                       ),
                       Container(
-                        height: buttonHeight,
-                        width: isLoading01 ? buttonHeight : buttonWidth,
+                        height: 50,
+                        width: isLoading01 ? 50 : 150,
                         child: LoadingButton(
                           isloading: isLoading01,
                           backgroundcolor: Colors.deepOrange,
@@ -431,7 +403,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                                   .translate('auto_location'),
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: title,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -442,12 +414,12 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                         child: Text(
                           AppLocalizations.of(context).translate('Or'),
                           style: TextStyle(
-                              fontSize: title, fontWeight: FontWeight.bold),
+                              fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
-                        height: buttonHeight,
-                        width: isLoading02 ? buttonHeight : buttonWidth,
+                        height: 50,
+                        width: isLoading02 ? 50 : 150,
                         child: LoadingButtonIcon(
                           isloading: isLoading02,
                           backgroundcolor: Colors.deepOrange,
@@ -498,7 +470,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
                                   .translate('google_map'),
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: title,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -512,7 +484,7 @@ class _PatientGetLocationState extends State<PatientGetLocation> {
           ),
         ),
       );
-    });
+   
   }
 
   _getCurrentLocation() {

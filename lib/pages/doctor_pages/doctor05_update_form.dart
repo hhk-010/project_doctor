@@ -6,9 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/pages/doctor_pages/doctor07_update_password.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
 
 class Updateinfo extends StatefulWidget {
   final String profileName;
@@ -135,50 +132,20 @@ class _UpdateinfoState extends State<Updateinfo> {
       "18": ["Wasit", AppLocalizations.of(context).translate("Wasit")],
     };
 
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      double containerWidth;
-      double buttonHeight;
-      double buttonWidth;
-      double title;
-      double footer;
-      double topInset;
-      double buttomInset;
-
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-        containerWidth = displayWidth(context) * 0.75;
-        title = displayWidth(context) * 0.05;
-        footer = displayWidth(context) * 0.035;
-        buttonWidth = displayWidth(context) * 0.7;
-        topInset = 50;
-        buttomInset = 15;
-      } else {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 80;
-        containerWidth = displayWidth(context) * 0.5;
-        title = displayWidth(context) * 0.035;
-        footer = displayWidth(context) * 0.025;
-        buttonHeight = displayHeight(context) * 0.045;
-        buttonWidth = displayWidth(context) * 0.4;
-        topInset = 200;
-        buttomInset = 80;
-      }
+ 
       return Scaffold(
         key: _scaffoldkey,
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey[200],
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight),
+          preferredSize: Size.fromHeight(50),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: FittedBox(
               fit: BoxFit.fitWidth,
               child: Text(
                 AppLocalizations.of(context).translate('update_info'),
-                style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             centerTitle: true,
@@ -186,8 +153,8 @@ class _UpdateinfoState extends State<Updateinfo> {
         ),
         body: Center(
           child: Container(
-            width: containerWidth,
-            padding: EdgeInsets.fromLTRB(0, topInset, 0, buttomInset),
+            width: 100,
+            padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
             child: Form(
               key: _formkey,
               child: Container(
@@ -421,7 +388,7 @@ class _UpdateinfoState extends State<Updateinfo> {
                       children: [
                         Text(
                           AppLocalizations.of(context).translate('finish_update'),
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: footer),
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                         ),
                         Icon(
                           Icons.arrow_downward,
@@ -433,8 +400,8 @@ class _UpdateinfoState extends State<Updateinfo> {
                       height: 10,
                     ),
                     Container(
-                      height: buttonHeight,
-                      width: buttonWidth,
+                      height: 50,
+                      width: 150,
                       child: TextButton.icon(
                         style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
@@ -479,7 +446,7 @@ class _UpdateinfoState extends State<Updateinfo> {
                         },
                         label: Text(
                           AppLocalizations.of(context).translate('next'),
-                          style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -498,7 +465,7 @@ class _UpdateinfoState extends State<Updateinfo> {
                         text: TextSpan(
                           text: '',
                           style: TextStyle(
-                            fontSize: footer,
+                            fontSize: 12,
                             color: Colors.black,
                             fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica',
                           ),
@@ -518,6 +485,6 @@ class _UpdateinfoState extends State<Updateinfo> {
           ),
         ),
       );
-    });
+  
   }
 }

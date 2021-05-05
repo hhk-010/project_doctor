@@ -8,9 +8,7 @@ import 'package:project_doctor/matching_algorithm/disease5.dart';
 import 'package:project_doctor/matching_algorithm/disease6.dart';
 import 'package:project_doctor/matching_algorithm/disease7.dart';
 import 'package:project_doctor/services/app_localizations.dart';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
+
 
 class PatientRiskFactors extends StatefulWidget {
   final String chiefcomplaint;
@@ -86,51 +84,17 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      double containerWidth;
-      double buttonHeight;
-      double buttonWidth;
-      double title;
-      double subTitle;
-      double floatingActionHeight;
-
-      TextStyle _textStyle = TextStyle(
-        fontSize: subTitle,
-        fontWeight: FontWeight.bold,
-        color: Colors.black,
-      );
-
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-        containerWidth = displayWidth(context) * 0.85;
-        title = displayWidth(context) * 0.045;
-        subTitle = displayWidth(context) * 0.035;
-        buttonHeight = displayHeight(context) * 0.05;
-        buttonWidth = displayWidth(context) * 0.7;
-        floatingActionHeight = 10;
-      } else {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 80;
-        containerWidth = displayWidth(context) * 0.5;
-        title = displayWidth(context) * 0.035;
-        subTitle = displayWidth(context) * 0.025;
-        buttonHeight = displayHeight(context) * 0.045;
-        buttonWidth = displayWidth(context) * 0.4;
-        floatingActionHeight = 50.0;
-      }
+   
       return Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight),
+          preferredSize: Size.fromHeight(50),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: FittedBox(
               fit: BoxFit.fitWidth,
               child: Text(
                 AppLocalizations.of(context).translate('choose_one_more'),
-                style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             centerTitle: true,
@@ -138,10 +102,10 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
           ),
         ),
         floatingActionButton: Padding(
-          padding: EdgeInsets.only(bottom: floatingActionHeight),
+          padding: EdgeInsets.only(bottom: 20),
           child: Container(
-            height: buttonHeight,
-            width: buttonWidth,
+            height: 50,
+            width: 150,
             child: FloatingActionButton.extended(
               icon: Icon(
                 Icons.arrow_forward,
@@ -168,7 +132,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                 Navigator.pushNamed(context, '/patient_speciality_result');
               },
               label: Text(AppLocalizations.of(context).translate('next'),
-                  style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold)),
+                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
             ),
           ),
         ),
@@ -177,7 +141,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
           child: Padding(
             padding: const EdgeInsets.only(top: 25),
             child: Container(
-              width: containerWidth,
+              width: 100,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -196,7 +160,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                   fit: BoxFit.fitWidth,
                                   child: Text(
                                     AppLocalizations.of(context).translate('chronic_disease'),
-                                    style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
@@ -209,7 +173,6 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                               CheckboxListTile(
                                   title: Text(
                                     AppLocalizations.of(context).translate('cd_HTN'),
-                                    style: _textStyle,
                                   ),
                                   value: htnSelected,
                                   onChanged: (val) {
@@ -223,7 +186,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('cd_DM'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('cd_DM'), ),
                                   value: dmSelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -237,7 +200,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('cd_heart'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('cd_heart'), ),
                                   value: chdSelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -251,7 +214,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('cd_heartFailure'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('cd_heartFailure'), ),
                                   value: hfSelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -265,7 +228,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('cd_ctd'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('cd_ctd'), ),
                                   value: ctdSelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -279,7 +242,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('cd_ckd'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('cd_ckd'), ),
                                   value: ckdSelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -293,7 +256,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('cd_liver'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('cd_liver'), ),
                                   value: ldSelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -307,7 +270,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('cd_lung'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('cd_lung'), ),
                                   value: copdSelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -321,7 +284,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('cd_ashma'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('cd_ashma'), ),
                                   value: ashmaSelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -335,7 +298,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('cd_thyroid'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('cd_thyroid'), ),
                                   value: goitreSelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -349,7 +312,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('cd_epilepsy'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('cd_epilepsy'), ),
                                   value: epilepsySelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -363,7 +326,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('cd_intestine'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('cd_intestine'), ),
                                   value: cidSelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -377,7 +340,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('cd_cva'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('cd_cva'), ),
                                   value: cvaSelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -391,7 +354,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('cd_tumor'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('cd_tumor'), ),
                                   value: malignancySelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -421,7 +384,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                   fit: BoxFit.fitWidth,
                                   child: Text(
                                     AppLocalizations.of(context).translate('life_style'),
-                                    style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
@@ -434,7 +397,6 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                               CheckboxListTile(
                                   title: Text(
                                     AppLocalizations.of(context).translate('obesity'),
-                                    style: _textStyle,
                                   ),
                                   value: obesitySelected,
                                   onChanged: (val) {
@@ -448,7 +410,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('physical_inactive'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('physical_inactive'), ),
                                   value: physicalinactiveSelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -462,7 +424,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('alcohol'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('alcohol'),),
                                   value: alcoholismSelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -476,7 +438,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('smoking'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('smoking'),),
                                   value: smokingSelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -490,7 +452,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                     });
                                   }),
                               CheckboxListTile(
-                                  title: Text(AppLocalizations.of(context).translate('family'), style: _textStyle),
+                                  title: Text(AppLocalizations.of(context).translate('family'),  ),
                                   value: familyhistorySelected,
                                   onChanged: (val) {
                                     setState(() {
@@ -505,7 +467,7 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
                                   }),
                               gender == "Female"
                                   ? CheckboxListTile(
-                                      title: Text(AppLocalizations.of(context).translate('pregnancy'), style: _textStyle),
+                                      title: Text(AppLocalizations.of(context).translate('pregnancy'),),
                                       value: pregnancySelected,
                                       onChanged: (val) {
                                         setState(() {
@@ -534,6 +496,6 @@ class _PatientRiskFactorsState extends State<PatientRiskFactors> {
           ),
         ),
       );
-    });
+   
   }
 }

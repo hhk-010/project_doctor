@@ -9,9 +9,7 @@ import 'package:project_doctor/pages/patient_pages/patient_sidebar.dart';
 import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/read_write_path.dart';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 class LastSearchedDoctor extends StatefulWidget {
@@ -285,53 +283,18 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      double containerWidth;
-      double buttonHeight;
-      double buttonWidth;
-      double title;
-      double subTitle;
-      double footer;
-      double avatarSize;
-      double containerInset;
-
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-        containerWidth = displayWidth(context) * 0.85;
-        title = displayWidth(context) * 0.05;
-        subTitle = displayWidth(context) * 0.04;
-        buttonHeight = displayHeight(context) * 0.05;
-        buttonWidth = displayWidth(context) * 0.7;
-        footer = displayWidth(context) * 0.025;
-        avatarSize = 50;
-        containerInset = 25;
-      } else {
-        containerWidth = displayWidth(context) * 0.6;
-        appBarHeight = 80;
-        appBarTitle = displayHeight(context) * 0.03;
-        title = displayWidth(context) * 0.045;
-        subTitle = displayWidth(context) * 0.03;
-        buttonHeight = displayHeight(context) * 0.045;
-        buttonWidth = displayWidth(context) * 0.4;
-        footer = displayWidth(context) * 0.02;
-        avatarSize = 70;
-        containerInset = 50;
-      }
-      TextStyle _textStyle = TextStyle(fontSize: subTitle, color: Colors.black, fontWeight: FontWeight.bold);
+      TextStyle _textStyle = TextStyle(fontSize: 12, color: Colors.black, fontWeight: FontWeight.bold);
       return Scaffold(
         key: _scaffoldkey,
         backgroundColor: Colors.grey[200],
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight),
+          preferredSize: Size.fromHeight(50),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: Text(
               AppLocalizations.of(context).translate("resulted"),
               //'Search Result',
-              style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             centerTitle: true,
             elevation: 0,
@@ -388,8 +351,8 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
         ),
         body: Center(
           child: Container(
-            width: containerWidth,
-            padding: EdgeInsets.only(top: containerInset),
+            width: 100,
+            padding: EdgeInsets.only(top: 50),
             child: ListView(
               children: [
                 Container(
@@ -401,14 +364,14 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                             children: [
                               Text(
                                 AppLocalizations.of(context).translate('search_warning'),
-                                style: TextStyle(fontSize: title, color: Colors.deepOrange),
+                                style: TextStyle(fontSize: 16, color: Colors.deepOrange),
                               ),
                               SizedBox(
                                 height: 15,
                               ),
                               Text(
                                 AppLocalizations.of(context).translate('search_error'),
-                                style: TextStyle(fontSize: subTitle),
+                                style: TextStyle(fontSize: 12),
                               )
                             ],
                           )
@@ -419,7 +382,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                               Center(
                                 child: CircleAvatar(
                                   backgroundColor: Colors.deepOrange,
-                                  radius: avatarSize,
+                                  radius: 50,
                                   backgroundImage: AssetImage('assets/images/doctor.png'),
                                 ),
                               ),
@@ -431,7 +394,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                                   fit: BoxFit.fitWidth,
                                   child: Text(
                                     _name,
-                                    style: _textStyle.copyWith(fontSize: title, fontFamily: 'noto_arabic'),
+                                    style: _textStyle.copyWith(fontSize: 16, fontFamily: 'noto_arabic'),
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
@@ -443,7 +406,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                                 child: Text(
                                   // _doctorAddress,
                                   AppLocalizations.of(context).translate(_province),
-                                  style: _textStyle.copyWith(fontSize: footer),
+                                  style: _textStyle.copyWith(fontSize: 12),
                                 ),
                               ),
                               SizedBox(
@@ -460,7 +423,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                               ),
                               Text(
                                 AppLocalizations.of(context).translate('speciality'),
-                                style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                                style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(
                                 height: 2,
@@ -477,7 +440,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                               ),
                               Text(
                                 AppLocalizations.of(context).translate('phoneNumber'),
-                                style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                                style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(
                                 height: 2,
@@ -516,7 +479,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                               ),
                               Text(
                                 AppLocalizations.of(context).translate('clinic_address'),
-                                style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                                style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(
                                 height: 2,
@@ -533,7 +496,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                               ),
                               Text(
                                 AppLocalizations.of(context).translate('clinic_work'),
-                                style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                                style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(
                                 height: 2,
@@ -558,7 +521,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                                         children: [
                                           Text(
                                             AppLocalizations.of(context).translate('another_clinic_work'),
-                                            style: TextStyle(fontSize: footer, color: Colors.indigo, fontWeight: FontWeight.bold),
+                                            style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
                                           ),
                                           SizedBox(
                                             height: 2,
@@ -588,8 +551,8 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                 ),
                 searched
                     ? Container(
-                        height: buttonHeight,
-                        width: buttonWidth,
+                        height: 50,
+                        width: 150,
                         child: TextButton.icon(
                           style: TextButton.styleFrom(
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
@@ -610,7 +573,7 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
                           label: Text(
                             AppLocalizations.of(context).translate("doctor_locat"),
                             //'View Doctor Location',
-                            style: TextStyle(color: Colors.white, fontSize: subTitle, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
                           ),
                         ),
                       )
@@ -620,6 +583,6 @@ class _LastSearchedDoctorState extends State<LastSearchedDoctor> {
           ),
         ),
       );
-    });
+  
   }
 }

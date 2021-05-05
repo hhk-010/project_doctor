@@ -4,9 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/services/app_localizations.dart';
-import 'package:project_doctor/ui/responsive_builder.dart';
-import 'package:project_doctor/ui/device_screen_type.dart';
-import 'package:project_doctor/ui/sizing_information.dart';
+
 import 'package:project_doctor/views/profile/authorization/loading.dart';
 
 class ForgetPassword extends StatefulWidget {
@@ -59,53 +57,25 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   bool isloading = false;
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      double containerWidth;
-      double containerHeight;
-      double buttonHeight;
-      double buttonWidth;
-      double title;
-      double imageHeight;
-
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-        containerWidth = displayWidth(context) * 0.85;
-        containerHeight = displayHeight(context) * 0.75;
-        title = displayWidth(context) * 0.045;
-        buttonHeight = displayHeight(context) * 0.05;
-        buttonWidth = displayWidth(context) * 0.7;
-        imageHeight = 150;
-      } else {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 80;
-        containerWidth = displayWidth(context) * 0.5;
-        containerHeight = displayHeight(context) * 0.6;
-        title = displayWidth(context) * 0.035;
-        buttonHeight = displayHeight(context) * 0.045;
-        buttonWidth = displayWidth(context) * 0.4;
-        imageHeight = 200;
-      }
+   
       return Scaffold(
         key: _scaffoldkey,
         backgroundColor: Colors.grey[200],
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight),
+          preferredSize: Size.fromHeight(50),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: Text(
               AppLocalizations.of(context).translate("passWord_reset"), //'Password Reset',
-              style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             centerTitle: true,
           ),
         ),
         body: Center(
           child: Container(
-            height: containerHeight,
-            width: containerWidth,
+            height: 100,
+            width: 100,
             child: Form(
                 key: _formkey,
                 child: Column(
@@ -116,7 +86,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         shrinkWrap: true,
                         children: [
                           SizedBox(
-                            height: imageHeight,
+                            height: 120,
                             child: Image(
                               image: AssetImage(
                                 'assets/images/reset_password.png',
@@ -145,8 +115,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       ),
                     ),
                     Container(
-                      height: buttonHeight,
-                      width: isloading ? buttonHeight : buttonWidth,
+                      height: 50,
+                      width: isloading ? 50 : 150,
                       child: LoadingButton(
                         isloading: isloading,
                         loadercolor: Colors.white,
@@ -156,7 +126,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           fit: BoxFit.fitWidth,
                           child: Text(
                             AppLocalizations.of(context).translate('password_reset_email'),
-                            style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                         ),
                         onpressed: () async {
@@ -182,7 +152,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
           ),
         ),
       );
-    });
+  
   }
 }
 
@@ -191,61 +161,27 @@ class PasswordResetContinue extends StatelessWidget {
   PasswordResetContinue({this.email});
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      double appBarTitle;
-      double appBarHeight;
-      double containerWidth;
-      double containerHeight;
-      double buttonHeight;
-      double buttonWidth;
-      double title;
-      double subTitle;
-      double imageHeight;
-      double textWidth;
-
-      if (sizingInformation.deviceScreenType == DeviceScreenType.Mobile) {
-        appBarTitle = 25;
-        appBarHeight = 50;
-        containerWidth = displayWidth(context) * 0.85;
-        containerHeight = displayHeight(context) * 0.75;
-        title = displayWidth(context) * 0.045;
-        subTitle = displayWidth(context) * 0.04;
-        buttonHeight = displayHeight(context) * 0.05;
-        buttonWidth = displayWidth(context) * 0.5;
-        imageHeight = 150;
-        textWidth = displayWidth(context) * 0.7;
-      } else {
-        appBarTitle = displayHeight(context) * 0.03;
-        appBarHeight = 80;
-        containerWidth = displayWidth(context) * 0.5;
-        containerHeight = displayHeight(context) * 0.6;
-        title = displayWidth(context) * 0.035;
-        subTitle = displayWidth(context) * 0.028;
-        buttonHeight = displayHeight(context) * 0.045;
-        buttonWidth = displayWidth(context) * 0.4;
-        imageHeight = 200;
-        textWidth = displayWidth(context) * 0.7;
-      }
+   
       return Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(appBarHeight),
+          preferredSize: Size.fromHeight(50),
           child: AppBar(
             backgroundColor: Colors.deepOrange,
             title: Text(
               AppLocalizations.of(context).translate('passWord_reset'),
-              style: TextStyle(fontSize: appBarTitle, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             centerTitle: true,
           ),
         ),
         body: Center(
           child: Container(
-            height: containerHeight,
-            width: containerWidth,
+            height: 100,
+            width: 100,
             child: Column(children: [
               SizedBox(
-                height: imageHeight,
+                height: 120,
                 child: Image(
                   image: AssetImage(
                     'assets/images/password.png',
@@ -257,7 +193,7 @@ class PasswordResetContinue extends StatelessWidget {
               ),
               Text(
                 AppLocalizations.of(context).translate('email_sent'),
-                style: TextStyle(fontSize: title, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               Divider(
                 color: Colors.grey,
@@ -274,7 +210,7 @@ class PasswordResetContinue extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     '$email',
-                    style: TextStyle(fontSize: subTitle, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -288,10 +224,10 @@ class PasswordResetContinue extends StatelessWidget {
                 endIndent: 40,
               ),
               SizedBox(
-                width: textWidth,
+                width: 20,
                 child: Text(
                   AppLocalizations.of(context).translate("check_reset_email"),
-                  style: TextStyle(fontSize: subTitle, fontWeight: FontWeight.normal),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -299,8 +235,8 @@ class PasswordResetContinue extends StatelessWidget {
                 flex: 3,
               ),
               Container(
-                height: buttonHeight,
-                width: buttonWidth,
+                height: 50,
+                width: 150,
                 child: TextButton.icon(
                     style: TextButton.styleFrom(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
@@ -311,7 +247,7 @@ class PasswordResetContinue extends StatelessWidget {
                       color: Colors.white,
                     ),
                     label: Text(AppLocalizations.of(context).translate('continue'),
-                        style: TextStyle(color: Colors.white, fontSize: title, fontWeight: FontWeight.bold)),
+                        style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
                     onPressed: () {
                       int count = 0;
                       Navigator.popUntil(context, (route) => count++ == 2);
@@ -321,6 +257,6 @@ class PasswordResetContinue extends StatelessWidget {
           ),
         ),
       );
-    });
+ 
   }
 }

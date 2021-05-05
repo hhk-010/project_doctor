@@ -1,9 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/constants/custom_widgets.dart';
+import 'package:project_doctor/custom_widges/c_base.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/theme.dart';
-import 'package:project_doctor/translations/locale_keys.g.dart';
+import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'dart:io';
 import 'package:project_doctor/views/profile/authorization/custom_widgets.dart';
