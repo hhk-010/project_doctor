@@ -3,9 +3,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/services/app_localizations.dart';
+import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/views/authorization/loading.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class PatientSearchmap extends StatefulWidget {
   @override
@@ -22,9 +23,7 @@ class _PatientSearchmapState extends State<PatientSearchmap> {
     final _snackBar = new SnackBar(
       content: Text(
         _error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -88,7 +87,7 @@ class _PatientSearchmapState extends State<PatientSearchmap> {
         child: AppBar(
           backgroundColor: Colors.deepOrange,
           title: Text(
-            AppLocalizations.of(context).translate('patient_map_title'),
+            LocaleKeys.view_patient_patient_map_title.tr(),
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -104,8 +103,7 @@ class _PatientSearchmapState extends State<PatientSearchmap> {
       body: Stack(
         children: [
           GoogleMap(
-            initialCameraPosition:
-                CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 8),
+            initialCameraPosition: CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 8),
             markers: Set.from(_mymarker),
             onTap: handletap,
             zoomControlsEnabled: false,
@@ -119,10 +117,8 @@ class _PatientSearchmapState extends State<PatientSearchmap> {
               child: FittedBox(
                 fit: BoxFit.fitWidth,
                 child: Text(
-                  AppLocalizations.of(context).translate('ok'),
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: getDeviceType(context, 15, 18, 21, 24)),
+                  LocaleKeys.view_buttons_ok.tr(),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: getDeviceType(context, 15, 18, 21, 24)),
                 ),
               ),
               onPressed: () async {
@@ -130,37 +126,24 @@ class _PatientSearchmapState extends State<PatientSearchmap> {
                 await checkInternet();
                 if (_isInternet) {
                   if (patientlatlng == null) {
-                    _error = AppLocalizations.of(context)
-                        .translate('snack_map_patient');
+                    _error =  LocaleKeys.view_snack_error_snack_map_patient.tr();
                     _showSnackBar();
                   } else {
                     geolocate(patientlatlng);
-                    double sum = pow(
-                            SearchResultData.geoLat -
-                                SearchResultData.patientLat,
-                            2) +
-                        pow(
-                            SearchResultData.geoLng -
-                                SearchResultData.patientLng,
-                            2);
+                    double sum =
+                        pow(SearchResultData.geoLat - SearchResultData.patientLat, 2) + pow(SearchResultData.geoLng - SearchResultData.patientLng, 2);
                     double result = sqrt(sum);
                     if (result * 100 < 150000) {
                       SearchResultData.distance = await SearchResultData()
-                          .getDistance(
-                              SearchResultData.patientLat,
-                              SearchResultData.patientLng,
-                              SearchResultData.lat,
-                              SearchResultData.lng);
+                          .getDistance(SearchResultData.patientLat, SearchResultData.patientLng, SearchResultData.lat, SearchResultData.lng);
                       Navigator.pushNamed(context, '/search resultview');
                     } else {
-                      _error = AppLocalizations.of(context)
-                          .translate('invalid location');
+                      _error =  LocaleKeys.view_patient_invalid_location.tr();
                       _showSnackBar();
                     }
                   }
                 } else {
-                  _error = AppLocalizations.of(context)
-                      .translate('snack_connectivity');
+                  _error = LocaleKeys.view_snack_error_snack_connectivity.tr();
                   _showSnackBar();
                 }
                 setState(() => isLoading = false);

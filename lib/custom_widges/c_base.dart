@@ -6,12 +6,17 @@ class BaseScaffold extends StatelessWidget {
   final String title;
   final List<Widget> actions;
   final bool isAppbar;
+  final Widget bottomNavigationBar;
+  final bool extendbody;
 
-  const BaseScaffold({Key key, this.child, this.title, this.actions, this.isAppbar}) : super(key: key);
+  const BaseScaffold({Key key, this.child, this.title, this.actions, this.isAppbar, this.bottomNavigationBar, this.extendbody}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      bottom: false,
       child: Scaffold(
+        backgroundColor: Colors.transparent,
+        extendBody: extendbody,
         appBar: isAppbar
             ? PreferredSize(
                 preferredSize: Size.fromHeight(getDeviceType(context, 40, 50, 60, 70)),
@@ -49,6 +54,7 @@ class BaseScaffold extends StatelessWidget {
               ),
             ),
             child: child),
+        bottomNavigationBar: bottomNavigationBar,
       ),
     );
   }

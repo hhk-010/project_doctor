@@ -2,11 +2,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/services/theme.dart';
-import 'package:project_doctor/services/app_localizations.dart';
+import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/views/authorization/loading.dart';
 import 'package:project_doctor/views/patient_pages/patient_sidebar.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class NewSearch extends StatefulWidget {
   @override
@@ -23,9 +24,7 @@ class _NewSearchState extends State<NewSearch> {
     final _snackBar = new SnackBar(
       content: Text(
         _error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -64,142 +63,103 @@ class _NewSearchState extends State<NewSearch> {
   @override
   Widget build(BuildContext context) {
     final province = {
-      "1": [
+     "1": [
         "Erbil",
-        AppLocalizations.of(context).translate("Erbil"),
+        LocaleKeys.iraq_provinces_Erbil.tr(),
       ],
       "2": [
         "Al Anbar",
-        AppLocalizations.of(context).translate("Al Anbar"),
+        LocaleKeys.iraq_provinces_Al_Anbar.tr(),
       ],
       "3": [
         "Basra",
-        AppLocalizations.of(context).translate("Basra"),
+        LocaleKeys.iraq_provinces_Basra.tr(),
       ],
       "4": [
         "Al Qadisiyyah",
-        AppLocalizations.of(context).translate("Al Qadisiyyah"),
+        LocaleKeys.iraq_provinces_Al_Qadisiyyah.tr(),
       ],
       "5": [
         "Muthanna",
-        AppLocalizations.of(context).translate("Muthanna"),
+        LocaleKeys.iraq_provinces_Muthanna.tr(),
       ],
       "6": [
         "Najaf",
-        AppLocalizations.of(context).translate("Najaf"),
+        LocaleKeys.iraq_provinces_Najaf.tr(),
       ],
       "7": [
         "Babil",
-        AppLocalizations.of(context).translate("Babil"),
+        LocaleKeys.iraq_provinces_Babil.tr(),
       ],
       "8": [
         'Baghdad',
-        AppLocalizations.of(context).translate('Baghdad'),
-      ],
-      "9": ["Duhok", AppLocalizations.of(context).translate("Duhok")],
-      "10": ["Diyala", AppLocalizations.of(context).translate("Diyala")],
-      "11": ["Dhi Qar", AppLocalizations.of(context).translate("Dhi Qar")],
-      "12": [
-        "Sulaymaniyah",
-        AppLocalizations.of(context).translate("Sulaymaniyah")
-      ],
-      "13": ["Saladin", AppLocalizations.of(context).translate("Saladin")],
-      "14": ["Karbala", AppLocalizations.of(context).translate("Karbala")],
-      "15": ["Kirkuk", AppLocalizations.of(context).translate("Kirkuk")],
-      "16": ["Maysan", AppLocalizations.of(context).translate("Maysan")],
-      "17": ["Nineveh", AppLocalizations.of(context).translate("Nineveh")],
-      "18": ["Wasit", AppLocalizations.of(context).translate("Wasit")],
-    };
-    final Map specialities = {
-      "1": [AppLocalizations.of(context).translate('Internist'), 'Internist'],
-      "2": [
-        AppLocalizations.of(context).translate('Pediatrician'),
-        'Pediatrician'
-      ],
-      "3": [
-        AppLocalizations.of(context).translate('Cardiologist'),
-        'Cardiologist'
-      ],
-      "4": [
-        AppLocalizations.of(context).translate('Pulmonologist'),
-        'Pulmonologist'
-      ],
-      "5": [
-        AppLocalizations.of(context).translate('Endocrinologist'),
-        'Endocrinologist'
-      ],
-      "6": [
-        AppLocalizations.of(context).translate('Enterologist'),
-        'Enterologist'
-      ],
-      "7": [
-        AppLocalizations.of(context).translate('Neurologist'),
-        'Neurologist'
-      ],
-      "8": [
-        AppLocalizations.of(context).translate('Neurosurgeon'),
-        'Neurosurgeon'
+        LocaleKeys.iraq_provinces_Baghdad.tr(),
       ],
       "9": [
-        AppLocalizations.of(context).translate('Heamatologist'),
-        'Heamatologist'
+        "Duhok",
+        LocaleKeys.iraq_provinces_Duhok.tr(),
       ],
       "10": [
-        AppLocalizations.of(context).translate('Nephrologist'),
-        'Nephrologist'
+        "Diyala",
+        LocaleKeys.iraq_provinces_Diyala.tr(),
       ],
       "11": [
-        AppLocalizations.of(context).translate('Rheumatologist'),
-        'Rheumatologist'
+        "Dhi Qar",
+        LocaleKeys.iraq_provinces_Dhi_Qar.tr(),
       ],
       "12": [
-        AppLocalizations.of(context).translate('Emergency physician'),
-        'Emergency physician'
+        "Sulaymaniyah",
+        LocaleKeys.iraq_provinces_Sulaymaniyah.tr(),
       ],
       "13": [
-        AppLocalizations.of(context).translate('Dermatologist'),
-        'Dermatologist'
+        "Saladin",
+        LocaleKeys.iraq_provinces_Saladin.tr(),
       ],
       "14": [
-        AppLocalizations.of(context).translate('Psychiatrist'),
-        'Psychiatrist'
+        "Karbala",
+        LocaleKeys.iraq_provinces_Karbala.tr(),
       ],
       "15": [
-        AppLocalizations.of(context).translate('Gynecologist'),
-        'Gynecologist'
+        "Kirkuk",
+        LocaleKeys.iraq_provinces_Kirkuk.tr(),
       ],
       "16": [
-        AppLocalizations.of(context).translate('General Surgeon'),
-        'General Surgeon'
+        "Maysan",
+        LocaleKeys.iraq_provinces_Maysan.tr(),
       ],
       "17": [
-        AppLocalizations.of(context).translate('Pediatric Surgeon'),
-        'Pediatric Surgeon'
+        "Nineveh",
+        LocaleKeys.iraq_provinces_Nineveh.tr(),
       ],
       "18": [
-        AppLocalizations.of(context).translate('ThoracoVascular Surgeon'),
-        'ThoracoVascular Surgeon'
+        "Wasit",
+        LocaleKeys.iraq_provinces_Wasit.tr(),
       ],
-      "19": [
-        AppLocalizations.of(context).translate('Orthopaedic Surgeon'),
-        'Orthopaedic Surgeon'
-      ],
-      "20": [
-        AppLocalizations.of(context).translate('Urosurgeon'),
-        'Urosurgeon'
-      ],
-      "21": [
-        AppLocalizations.of(context).translate('Plastic Surgeon'),
-        'Plastic Surgeon'
-      ],
-      "22": [
-        AppLocalizations.of(context).translate('Ophthalmologist'),
-        'Ophthalmologist'
-      ],
-      "23": [
-        AppLocalizations.of(context).translate('Laryngologist'),
-        'Laryngologist'
-      ],
+    };
+    final Map specialities = {
+      "1": [LocaleKeys.medical_specialty_Internist.tr(), 'Internist'],
+      "2": [LocaleKeys.medical_specialty_Pediatrician.tr(), 'Pediatrician'],
+      "3": [LocaleKeys.medical_specialty_Cardiologist.tr(), 'Cardiologist'],
+      "4": [LocaleKeys.medical_specialty_Pulmonologist.tr(), 'Pulmonologist'],
+      "5": [LocaleKeys.medical_specialty_Endocrinologist.tr(), 'Endocrinologist'],
+      "6": [LocaleKeys.medical_specialty_Enterologist.tr(), 'Enterologist'],
+      "7": [LocaleKeys.medical_specialty_Neurologist.tr(), 'Neurologist'],
+      "8": [LocaleKeys.medical_specialty_Neurosurgeon.tr(), 'Neurosurgeon'],
+      "9": [LocaleKeys.medical_specialty_Heamatologist.tr(), 'Heamatologist'],
+      "10": [LocaleKeys.medical_specialty_Nephrologist.tr(), 'Nephrologist'],
+      "11": [LocaleKeys.medical_specialty_Rheumatologist.tr(), 'Rheumatologist'],
+      "12": [LocaleKeys.medical_specialty_Emergency_physician.tr(), 'Emergency physician'],
+      "13": [LocaleKeys.medical_specialty_Dermatologist.tr(), 'Dermatologist'],
+      "14": [LocaleKeys.medical_specialty_Psychiatrist.tr(), 'Psychiatrist'],
+      "15": [LocaleKeys.medical_specialty_Gynecologist.tr(), 'Gynecologist'],
+      "16": [LocaleKeys.medical_specialty_General_Surgeon.tr(), 'General Surgeon'],
+      "17": [LocaleKeys.medical_specialty_Pediatric_Surgeon.tr(), 'Pediatric Surgeon'],
+      "18": [LocaleKeys.medical_specialty_ThoracoVascular_Surgeon.tr(), 'ThoracoVascular Surgeon'],
+      "19": [LocaleKeys.medical_specialty_Orthopaedic_Surgeon.tr(), 'Orthopaedic Surgeon'],
+      "20": [LocaleKeys.medical_specialty_Urosurgeon.tr(), 'Urosurgeon'],
+      "21": [LocaleKeys.medical_specialty_Plastic_Surgeon.tr(), 'Plastic Surgeon'],
+      "22": [LocaleKeys.medical_specialty_Ophthalmologist.tr(), 'Ophthalmologist'],
+      "23": [LocaleKeys.medical_specialty_Laryngologist.tr(), 'Laryngologist'],
     };
     return Scaffold(
       key: _scaffoldkey,
@@ -211,7 +171,7 @@ class _NewSearchState extends State<NewSearch> {
         child: AppBar(
           backgroundColor: Colors.deepOrange,
           title: Text(
-            AppLocalizations.of(context).translate('new search'),
+            LocaleKeys.view_new_search_new_search.tr(),
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -260,10 +220,8 @@ class _NewSearchState extends State<NewSearch> {
                   child: Column(
                     children: [
                       Text(
-                        AppLocalizations.of(context).translate('province'),
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: getDeviceType(context, 12, 15, 18, 20)),
+                        LocaleKeys.view_doctor_province.tr(),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: getDeviceType(context, 12, 15, 18, 20)),
                       ),
                       Divider(
                         color: Colors.grey,
@@ -272,12 +230,10 @@ class _NewSearchState extends State<NewSearch> {
                         endIndent: 30,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 2),
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                         child: DropdownButtonFormField(
                           hint: Text(
-                            AppLocalizations.of(context)
-                                .translate('governorate'),
+                            LocaleKeys.view_new_search_governorate.tr(),
                           ),
                           isExpanded: true,
                           items: [
@@ -390,8 +346,7 @@ class _NewSearchState extends State<NewSearch> {
                   child: Column(
                     children: [
                       CheckboxListTile(
-                        title: Text(AppLocalizations.of(context)
-                            .translate('name search')),
+                        title: Text( LocaleKeys.view_new_search_name_search.tr(),),
                         value: _nameSelected,
                         onChanged: (val) => setState(() {
                           _nameSelected = !_nameSelected;
@@ -403,13 +358,11 @@ class _NewSearchState extends State<NewSearch> {
                         }),
                       ),
                       CheckboxListTile(
-                        title: Text(AppLocalizations.of(context)
-                            .translate('speciality search')),
+                        title: Text( LocaleKeys.view_new_search_speciality_search.tr(),),
                         value: _specialitySelected,
                         onChanged: (val) => setState(() {
                           _specialitySelected = !_specialitySelected;
-                          NewSearchData.specialitySelected =
-                              _specialitySelected;
+                          NewSearchData.specialitySelected = _specialitySelected;
                           if (_nameSelected) {
                             _nameSelected = !_nameSelected;
                             NewSearchData.name = '';
@@ -418,20 +371,15 @@ class _NewSearchState extends State<NewSearch> {
                       ),
                       _nameSelected
                           ? TextFormField(
-                              validator: (val) => val.isEmpty
-                                  ? AppLocalizations.of(context)
-                                      .translate('name validator')
-                                  : null,
+                              validator: (val) => val.isEmpty ?  LocaleKeys.view_new_search_name_validator.tr(): null,
                               onChanged: (val) {
                                 setState(() => NewSearchData.name = val);
                               },
                               cursorColor: Colors.black,
                               keyboardType: TextInputType.emailAddress,
                               decoration: textInputdecoration.copyWith(
-                                hintText: AppLocalizations.of(context)
-                                    .translate('enter name'),
-                                labelText: AppLocalizations.of(context)
-                                    .translate('enter name'),
+                                hintText:  LocaleKeys.view_new_search_enter_name.tr(),
+                                labelText: LocaleKeys.view_new_search_enter_name.tr(),
                                 suffixIcon: Icon(
                                   Icons.search,
                                   color: Colors.deepOrange,
@@ -471,8 +419,7 @@ class _NewSearchState extends State<NewSearch> {
                               isDense: false,
                               decoration: textInputdecoration,
                               hint: Text(
-                                AppLocalizations.of(context)
-                                    .translate('speciality'),
+                                LocaleKeys.view_doctor_speciality.tr(),
                                 style: TextStyle(
                                   fontSize: 18,
                                 ),
@@ -575,12 +522,8 @@ class _NewSearchState extends State<NewSearch> {
                                   child: Text(specialities["23"][0]),
                                 )
                               ],
-                              validator: (value) => value == null
-                                  ? AppLocalizations.of(context)
-                                      .translate('speciality_validator')
-                                  : null,
-                              onChanged: (val) => setState(
-                                  () => NewSearchData.speciality = val),
+                              validator: (value) => value == null ? LocaleKeys.view_new_search_speciality_validator.tr(): null,
+                              onChanged: (val) => setState(() => NewSearchData.speciality = val),
                             )
                           : Container()
                     ],
@@ -591,31 +534,25 @@ class _NewSearchState extends State<NewSearch> {
                 ),
                 Container(
                   height: getDeviceType(context, 20, 40, 70, 50),
-                  width: isLoading
-                      ? getDeviceType(context, 20, 40, 50, 50)
-                      : getDeviceType(context, 200, 220, 400, 400),
+                  width: isLoading ? getDeviceType(context, 20, 40, 50, 50) : getDeviceType(context, 200, 220, 400, 400),
                   child: LoadingButton(
                     isloading: isLoading,
                     backgroundcolor: Colors.deepOrange,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80.0)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                     onpressed: () async {
                       if (_formKey.currentState.validate()) {
                         setState(() => isLoading = true);
                         await checkInternet();
                         if (NewSearchData.province == null) {
-                          _error = AppLocalizations.of(context)
-                              .translate('select province');
+                          _error = LocaleKeys.view_new_search_select_province.tr();
                           _showSnackBar();
                         } else {
                           if (!_nameSelected && !_specialitySelected) {
-                            _error = AppLocalizations.of(context)
-                                .translate('enter a name or speciality');
+                            _error = LocaleKeys.view_new_search_enter_name_speciality.tr();
                             _showSnackBar();
                           } else {
                             if (!_isInternet) {
-                              _error = AppLocalizations.of(context)
-                                  .translate('snack_connectivity');
+                              _error = LocaleKeys.view_snack_error_snack_connectivity.tr();
                               _showSnackBar();
                             } else {
                               Navigator.pushNamed(context, '/search listview');
@@ -628,7 +565,7 @@ class _NewSearchState extends State<NewSearch> {
                     child: FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Text(
-                        AppLocalizations.of(context).translate('search'),
+                        LocaleKeys.view_home_search_button.tr(),
                         style: TextStyle(
                             color: Colors.white,
                             // fontSize: 16,

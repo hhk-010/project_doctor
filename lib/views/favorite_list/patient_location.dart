@@ -6,7 +6,8 @@ import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/services/theme.dart';
-import 'package:project_doctor/services/app_localizations.dart';
+import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/views/authorization/loading.dart';
 
@@ -35,9 +36,7 @@ class _PatientLocationState extends State<PatientLocation> {
     final _snackBar = new SnackBar(
       content: Text(
         _error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
@@ -73,8 +72,7 @@ class _PatientLocationState extends State<PatientLocation> {
 
   Position _currentPosition;
   _getCurrentLocation() {
-    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
-        .then((Position position) {
+    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best).then((Position position) {
       setState(() {
         _currentPosition = position;
       });
@@ -88,51 +86,78 @@ class _PatientLocationState extends State<PatientLocation> {
   @override
   Widget build(BuildContext context) {
     final province = {
-      "1": [
+  "1": [
         "Erbil",
-        AppLocalizations.of(context).translate("Erbil"),
+        LocaleKeys.iraq_provinces_Erbil.tr(),
       ],
       "2": [
         "Al Anbar",
-        AppLocalizations.of(context).translate("Al Anbar"),
+        LocaleKeys.iraq_provinces_Al_Anbar.tr(),
       ],
       "3": [
         "Basra",
-        AppLocalizations.of(context).translate("Basra"),
+        LocaleKeys.iraq_provinces_Basra.tr(),
       ],
       "4": [
         "Al Qadisiyyah",
-        AppLocalizations.of(context).translate("Al Qadisiyyah"),
+        LocaleKeys.iraq_provinces_Al_Qadisiyyah.tr(),
       ],
       "5": [
         "Muthanna",
-        AppLocalizations.of(context).translate("Muthanna"),
+        LocaleKeys.iraq_provinces_Muthanna.tr(),
       ],
       "6": [
         "Najaf",
-        AppLocalizations.of(context).translate("Najaf"),
+        LocaleKeys.iraq_provinces_Najaf.tr(),
       ],
       "7": [
         "Babil",
-        AppLocalizations.of(context).translate("Babil"),
+        LocaleKeys.iraq_provinces_Babil.tr(),
       ],
       "8": [
         'Baghdad',
-        AppLocalizations.of(context).translate('Baghdad'),
+        LocaleKeys.iraq_provinces_Baghdad.tr(),
       ],
-      "9": ["Duhok", AppLocalizations.of(context).translate("Duhok")],
-      "10": ["Diyala", AppLocalizations.of(context).translate("Diyala")],
-      "11": ["Dhi Qar", AppLocalizations.of(context).translate("Dhi Qar")],
+      "9": [
+        "Duhok",
+        LocaleKeys.iraq_provinces_Duhok.tr(),
+      ],
+      "10": [
+        "Diyala",
+        LocaleKeys.iraq_provinces_Diyala.tr(),
+      ],
+      "11": [
+        "Dhi Qar",
+        LocaleKeys.iraq_provinces_Dhi_Qar.tr(),
+      ],
       "12": [
         "Sulaymaniyah",
-        AppLocalizations.of(context).translate("Sulaymaniyah")
+        LocaleKeys.iraq_provinces_Sulaymaniyah.tr(),
       ],
-      "13": ["Saladin", AppLocalizations.of(context).translate("Saladin")],
-      "14": ["Karbala", AppLocalizations.of(context).translate("Karbala")],
-      "15": ["Kirkuk", AppLocalizations.of(context).translate("Kirkuk")],
-      "16": ["Maysan", AppLocalizations.of(context).translate("Maysan")],
-      "17": ["Nineveh", AppLocalizations.of(context).translate("Nineveh")],
-      "18": ["Wasit", AppLocalizations.of(context).translate("Wasit")],
+      "13": [
+        "Saladin",
+        LocaleKeys.iraq_provinces_Saladin.tr(),
+      ],
+      "14": [
+        "Karbala",
+        LocaleKeys.iraq_provinces_Karbala.tr(),
+      ],
+      "15": [
+        "Kirkuk",
+        LocaleKeys.iraq_provinces_Kirkuk.tr(),
+      ],
+      "16": [
+        "Maysan",
+        LocaleKeys.iraq_provinces_Maysan.tr(),
+      ],
+      "17": [
+        "Nineveh",
+        LocaleKeys.iraq_provinces_Nineveh.tr(),
+      ],
+      "18": [
+        "Wasit",
+        LocaleKeys.iraq_provinces_Wasit.tr(),
+      ],
     };
     final district = {
       "Erbil": "ازادي",
@@ -164,7 +189,7 @@ class _PatientLocationState extends State<PatientLocation> {
         child: AppBar(
           backgroundColor: Colors.deepOrange,
           title: Text(
-            AppLocalizations.of(context).translate('your location'),
+            LocaleKeys.view_search_result_list_your_location.tr(),
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -193,10 +218,8 @@ class _PatientLocationState extends State<PatientLocation> {
                 child: Column(
                   children: [
                     Text(
-                      AppLocalizations.of(context).translate('province'),
-                      style: TextStyle(
-                          fontSize: getDeviceType(context, 15, 18, 21, 24),
-                          fontWeight: FontWeight.bold),
+                      LocaleKeys.view_doctor_province.tr(),
+                      style: TextStyle(fontSize: getDeviceType(context, 15, 18, 21, 24), fontWeight: FontWeight.bold),
                     ),
                     Divider(
                       color: Colors.grey,
@@ -205,12 +228,10 @@ class _PatientLocationState extends State<PatientLocation> {
                       endIndent: 30,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 2),
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                       child: DropdownButtonFormField(
                         hint: Text(
-                          AppLocalizations.of(context)
-                              .translate('select_region'),
+                          LocaleKeys.view_patient_select_region.tr(),
                         ),
                         isExpanded: true,
                         items: [
@@ -288,8 +309,7 @@ class _PatientLocationState extends State<PatientLocation> {
                           ),
                         ],
                         onChanged: (value) {
-                          setState(
-                              () => SearchResultData.patientProvince = value);
+                          setState(() => SearchResultData.patientProvince = value);
                         },
                         //value: SearchResultData.patientProvince,
                         dropdownColor: Colors.grey[300],
@@ -306,10 +326,8 @@ class _PatientLocationState extends State<PatientLocation> {
                   children: [
                     Center(
                       child: AutoSizeText(
-                        AppLocalizations.of(context).translate('get_location'),
-                        style: TextStyle(
-                            fontSize: getDeviceType(context, 15, 18, 21, 24),
-                            fontWeight: FontWeight.bold),
+                        LocaleKeys.view_patient_get_location.tr(),
+                        style: TextStyle(fontSize: getDeviceType(context, 15, 18, 21, 24), fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                         maxLines: 2,
                       ),
@@ -328,87 +346,55 @@ class _PatientLocationState extends State<PatientLocation> {
                     ),
                     Container(
                       height: getDeviceType(context, 30, 40, 50, 60),
-                      width: isLoading01
-                          ? getDeviceType(context, 30, 40, 50, 60)
-                          : getDeviceType(context, 130, 260, 150, 160),
+                      width: isLoading01 ? getDeviceType(context, 30, 40, 50, 60) : getDeviceType(context, 130, 260, 150, 160),
                       child: LoadingButton(
                         isloading: isLoading01,
                         backgroundcolor: Colors.deepOrange,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                         onpressed: () async {
                           setState(() => isLoading01 = true);
                           checkInternet();
-                          if (!(SearchResultData.patientProvince == null ||
-                              SearchResultData.patientProvince == '')) {
+                          if (!(SearchResultData.patientProvince == null || SearchResultData.patientProvince == '')) {
                             if (_isInternet) {
-                              SearchResultData.geoLatlng =
-                                  await getCoordinatesFromAddress(
-                                      SearchResultData.patientProvince +
-                                          ' , ' +
-                                          district[SearchResultData
-                                              .patientProvince]);
-                              SearchResultData.geoLat = double.parse(
-                                  SearchResultData.geoLatlng.substring(
-                                      SearchResultData.geoLatlng.indexOf('{') +
-                                          1,
-                                      SearchResultData.geoLatlng.indexOf(',')));
-                              SearchResultData.geoLng = double.parse(
-                                  SearchResultData.geoLatlng.substring(
-                                      SearchResultData.geoLatlng.indexOf(',') +
-                                          1,
-                                      SearchResultData.geoLatlng.indexOf('}')));
+                              SearchResultData.geoLatlng = await getCoordinatesFromAddress(
+                                  SearchResultData.patientProvince + ' , ' + district[SearchResultData.patientProvince]);
+                              SearchResultData.geoLat = double.parse(SearchResultData.geoLatlng
+                                  .substring(SearchResultData.geoLatlng.indexOf('{') + 1, SearchResultData.geoLatlng.indexOf(',')));
+                              SearchResultData.geoLng = double.parse(SearchResultData.geoLatlng
+                                  .substring(SearchResultData.geoLatlng.indexOf(',') + 1, SearchResultData.geoLatlng.indexOf('}')));
                               await _getCurrentLocation();
                               if (_currentPosition == null) {
                                 setState(() {
-                                  _error = AppLocalizations.of(context)
-                                      .translate("geolocator_message");
+                                  _error = LocaleKeys.view_snack_error_geolocator_message.tr();
                                 });
                                 _showSnackBar();
                               } else {
                                 setState(() {
-                                  SearchResultData.patientLat =
-                                      _currentPosition.latitude;
-                                  SearchResultData.patientLng =
-                                      _currentPosition.longitude;
+                                  SearchResultData.patientLat = _currentPosition.latitude;
+                                  SearchResultData.patientLng = _currentPosition.longitude;
                                 });
-                                double sum = pow(
-                                        SearchResultData.geoLat -
-                                            SearchResultData.patientLat,
-                                        2) +
-                                    pow(
-                                        SearchResultData.geoLng -
-                                            SearchResultData.patientLng,
-                                        2);
+                                double sum = pow(SearchResultData.geoLat - SearchResultData.patientLat, 2) +
+                                    pow(SearchResultData.geoLng - SearchResultData.patientLng, 2);
                                 double result = sqrt(sum);
                                 if (result * 100 < 100) {
                                   // setState(() => SearchResultData.usingMap = false);
-                                  SearchResultData.distance =
-                                      await SearchResultData().getDistance(
-                                          SearchResultData.patientLat,
-                                          SearchResultData.patientLng,
-                                          SearchResultData.lat,
-                                          SearchResultData.lng);
-                                  setState(() =>
-                                      SearchResultData.mapSelected = false);
-                                  Navigator.pushNamed(
-                                      context, '/search resultview');
+                                  SearchResultData.distance = await SearchResultData().getDistance(
+                                      SearchResultData.patientLat, SearchResultData.patientLng, SearchResultData.lat, SearchResultData.lng);
+                                  setState(() => SearchResultData.mapSelected = false);
+                                  Navigator.pushNamed(context, '/search resultview');
                                 } else {
-                                  _error = AppLocalizations.of(context)
-                                      .translate('invalid device location');
+                                  _error = LocaleKeys.view_patient_invalid_device_location.tr();
                                   _showSnackBar();
                                 }
                               }
                             } else {
                               setState(() {
-                                _error = AppLocalizations.of(context)
-                                    .translate('snack_connectivity');
+                                _error = LocaleKeys.view_snack_error_snack_connectivity.tr();
                               });
                               _showSnackBar();
                             }
                           } else {
-                            setState(() => _error = AppLocalizations.of(context)
-                                .translate('province_validator'));
+                            setState(() => _error =  LocaleKeys.view_doctor_province_validator.tr(),);
                             _showSnackBar();
                           }
                           setState(() => isLoading01 = false);
@@ -416,13 +402,8 @@ class _PatientLocationState extends State<PatientLocation> {
                         child: FittedBox(
                           fit: BoxFit.fitWidth,
                           child: Text(
-                            AppLocalizations.of(context)
-                                .translate('auto_location'),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize:
-                                    getDeviceType(context, 15, 18, 21, 24),
-                                fontWeight: FontWeight.bold),
+                             LocaleKeys.view_patient_invalid_device_location.tr(),
+                            style: TextStyle(color: Colors.white, fontSize: getDeviceType(context, 15, 18, 21, 24), fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -430,17 +411,13 @@ class _PatientLocationState extends State<PatientLocation> {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Text(
-                        AppLocalizations.of(context).translate('Or'),
-                        style: TextStyle(
-                            fontSize: getDeviceType(context, 15, 18, 21, 24),
-                            fontWeight: FontWeight.bold),
+                         LocaleKeys.view_buttons_Or.tr(),
+                        style: TextStyle(fontSize: getDeviceType(context, 15, 18, 21, 24), fontWeight: FontWeight.bold),
                       ),
                     ),
                     Container(
                       height: getDeviceType(context, 30, 40, 50, 60),
-                      width: isLoading02
-                          ? getDeviceType(context, 30, 40, 50, 60)
-                          : getDeviceType(context, 130, 260, 150, 160),
+                      width: isLoading02 ? getDeviceType(context, 30, 40, 50, 60) : getDeviceType(context, 130, 260, 150, 160),
                       child: LoadingButtonIcon(
                         isloading: isLoading02,
                         backgroundcolor: Colors.deepOrange,
@@ -448,31 +425,21 @@ class _PatientLocationState extends State<PatientLocation> {
                           Icons.arrow_forward,
                           color: Colors.white,
                         ),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                         onpressed: () async {
                           setState(() => isLoading02 = true);
-                          if (!(SearchResultData.patientProvince == null ||
-                              SearchResultData.patientProvince == '')) {
-                            SearchResultData.geoLatlng =
-                                await getCoordinatesFromAddress(SearchResultData
-                                        .patientProvince +
-                                    ' , ' +
-                                    district[SearchResultData.patientProvince]);
-                            SearchResultData.geoLat = double.parse(
-                                SearchResultData.geoLatlng.substring(
-                                    SearchResultData.geoLatlng.indexOf('{') + 1,
-                                    SearchResultData.geoLatlng.indexOf(',')));
-                            SearchResultData.geoLng = double.parse(
-                                SearchResultData.geoLatlng.substring(
-                                    SearchResultData.geoLatlng.indexOf(',') + 1,
-                                    SearchResultData.geoLatlng.indexOf('}')));
+                          if (!(SearchResultData.patientProvince == null || SearchResultData.patientProvince == '')) {
+                            SearchResultData.geoLatlng = await getCoordinatesFromAddress(
+                                SearchResultData.patientProvince + ' , ' + district[SearchResultData.patientProvince]);
+                            SearchResultData.geoLat = double.parse(SearchResultData.geoLatlng
+                                .substring(SearchResultData.geoLatlng.indexOf('{') + 1, SearchResultData.geoLatlng.indexOf(',')));
+                            SearchResultData.geoLng = double.parse(SearchResultData.geoLatlng
+                                .substring(SearchResultData.geoLatlng.indexOf(',') + 1, SearchResultData.geoLatlng.indexOf('}')));
                             setState(() => SearchResultData.mapSelected = true);
                             print(SearchResultData.geoLatlng);
                             Navigator.pushNamed(context, '/patient searchmap');
                           } else {
-                            setState(() => _error = AppLocalizations.of(context)
-                                .translate('province_validator'));
+                            setState(() => _error =  LocaleKeys.view_doctor_province_validator.tr(),);
                             _showSnackBar();
                           }
                           setState(() => isLoading02 = false);
@@ -480,13 +447,8 @@ class _PatientLocationState extends State<PatientLocation> {
                         label: FittedBox(
                           fit: BoxFit.fitWidth,
                           child: Text(
-                            AppLocalizations.of(context)
-                                .translate('google_map'),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize:
-                                    getDeviceType(context, 15, 18, 21, 24),
-                                fontWeight: FontWeight.bold),
+                            LocaleKeys.view_buttons_google_map.tr(),
+                            style: TextStyle(color: Colors.white, fontSize: getDeviceType(context, 15, 18, 21, 24), fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),

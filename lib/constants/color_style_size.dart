@@ -8,6 +8,7 @@ class LightPalette {
   static const Color background = Color(0xFFEEEEEE);
   static const Color appbar1 = Color(0xFFFD6636);
   static const Color appbar2 = Color(0xFFFCB536);
+  static const Color bottomBarBackgroundColor = Color(0xFFFCBE36);
 }
 
 class DarkPalette {

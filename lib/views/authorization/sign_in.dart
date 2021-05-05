@@ -79,7 +79,7 @@ class _SignInViewState extends State<SignInView> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: true,
-      title: LocaleKeys.doctor_view_sign_in.tr(),
+      title: LocaleKeys.view_doctor_sign_in.tr(),
       child: Form(
         key: _formKey,
         child: Stack(children: [
@@ -99,19 +99,19 @@ class _SignInViewState extends State<SignInView> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextFormField(
-                    validator: (val) => val.isEmpty ? LocaleKeys.doctor_view_enter_your_email.tr() : null,
+                    validator: (val) => val.isEmpty ? LocaleKeys.view_doctor_enter_your_email.tr() : null,
                     onChanged: (val) {
                       setState(() => email = val);
                     },
                     cursorColor: Colors.black,
                     keyboardType: TextInputType.emailAddress,
                     decoration: textInputdecoration.copyWith(
-                      hintText: LocaleKeys.doctor_view_enter_your_email.tr(),
-                      labelText: LocaleKeys.doctor_view_email.tr(),
+                      hintText: LocaleKeys.view_doctor_enter_your_email.tr(),
+                      labelText: LocaleKeys.view_doctor_email.tr(),
                     ),
                   ),
                   TextFormField(
-                    validator: (val) => val.length < 8 ? LocaleKeys.doctor_view_password_validator.tr() : null,
+                    validator: (val) => val.length < 8 ? LocaleKeys.view_doctor_password_validator.tr() : null,
                     obscureText: !_passwordVisible,
                     onChanged: (val) {
                       setState(() => password = val);
@@ -119,8 +119,8 @@ class _SignInViewState extends State<SignInView> {
                     cursorColor: Colors.black,
                     keyboardType: TextInputType.text,
                     decoration: textInputdecoration.copyWith(
-                      hintText: LocaleKeys.doctor_view_enter_your_password.tr(),
-                      labelText: LocaleKeys.doctor_view_password.tr(),
+                      hintText: LocaleKeys.view_doctor_enter_your_password.tr(),
+                      labelText: LocaleKeys.view_doctor_password.tr(),
                       suffixIcon: IconButton(
                         icon: Icon(
                           // Based on passwordVisible state choose the icon
@@ -162,14 +162,14 @@ class _SignInViewState extends State<SignInView> {
                           } else {
                             setState(() {
                               setState(() => loading = false);
-                              SnackText.errorMsg = LocaleKeys.snack_error_snack_sign_in.tr();
+                              SnackText.errorMsg = LocaleKeys.view_snack_error_snack_sign_in.tr();
                             });
                             _showSnackBar();
                           }
                         }
                       } else {
                         setState(() {
-                          SnackText.errorMsg = LocaleKeys.snack_error_snack_connectivity.tr();
+                          SnackText.errorMsg = LocaleKeys.view_snack_error_snack_connectivity.tr();
                         });
                         _showSnackBar();
                       }
@@ -177,7 +177,7 @@ class _SignInViewState extends State<SignInView> {
                     backgroundcolor: Colors.deepOrange,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                     child: Text(
-                      LocaleKeys.doctor_view_sign_in.tr(),
+                      LocaleKeys.view_doctor_sign_in.tr(),
                       style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold), //_textStyle.copyWith(color: Colors.white),
                     ),
                   ),
@@ -188,7 +188,7 @@ class _SignInViewState extends State<SignInView> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForgetPassword()));
                   },
                   label: Text(
-                    LocaleKeys.doctor_view_forget_password.tr(),
+                    LocaleKeys.view_doctor_forget_password.tr(),
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -214,9 +214,9 @@ class _SignInViewState extends State<SignInView> {
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: LocaleKeys.doctor_view_does_not_have_account.tr(),
+                          text: LocaleKeys.view_doctor_does_not_have_account.tr(),
                         ),
-                        TextSpan(text: LocaleKeys.doctor_view_register.tr(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.redAccent)),
+                        TextSpan(text: LocaleKeys.view_doctor_register.tr(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.redAccent)),
                       ],
                     ),
                   ),

@@ -143,7 +143,7 @@ class SupportButtons extends StatelessWidget {
                 actions: <Widget>[
                   TextButton(
                     child: Text(
-                      LocaleKeys.app_buttons_ok.tr(),
+                      LocaleKeys.view_buttons_ok.tr(),
                       style: TextStyle(fontSize: 16),
                     ),
                     onPressed: () {

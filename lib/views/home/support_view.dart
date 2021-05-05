@@ -14,6 +14,7 @@ class SupportView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: false,
+      extendbody: false,
       child: Stack(
         children: [
           Align(
@@ -63,16 +64,16 @@ class SupportView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SupportButtons(
-                      title: LocaleKeys.support_view_about_us.tr(),
-                      dialogContext: LocaleKeys.support_view_introduction.tr(),
+                      title: LocaleKeys.view_support_about_us.tr(),
+                      dialogContext: LocaleKeys.view_support_introduction.tr(),
                     ),
                     SupportButtons(
-                      title: LocaleKeys.support_view_privacy_policy.tr(),
-                      dialogContext: LocaleKeys.support_view_privacyPolicy.tr(),
+                      title: LocaleKeys.view_support_privacy_policy.tr(),
+                      dialogContext: LocaleKeys.view_support_privacyPolicy.tr(),
                     ),
                     SupportButtons(
-                      title: LocaleKeys.support_view_terms_conditions.tr(),
-                      dialogContext: LocaleKeys.support_view_terms_conditions_details.tr(),
+                      title: LocaleKeys.view_support_terms_conditions.tr(),
+                      dialogContext: LocaleKeys.view_support_terms_conditions_details.tr(),
                     ),
                     Container(
                       height: 50,
@@ -93,7 +94,7 @@ class SupportView extends StatelessWidget {
                               throw 'Could Not Launch $url';
                             }
                           },
-                          child: Text(LocaleKeys.support_view_website.tr(), style: CStyle.buttonText)),
+                          child: Text(LocaleKeys.view_support_website.tr(), style: CStyle.buttonText)),
                     ),
                   ],
                 ),
@@ -113,7 +114,7 @@ class SupportView extends StatelessWidget {
                     height: 2,
                   ),
                   Text(
-                    LocaleKeys.home_view_cura_rights.tr(),
+                    LocaleKeys.view_support_cura_rights.tr(),
                     style: TextStyle(fontSize: 12),
                   ),
                 ],

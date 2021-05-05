@@ -3,9 +3,9 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/services/theme.dart';
-import 'package:project_doctor/services/app_localizations.dart';
 import 'package:project_doctor/views/authorization/loading.dart';
-
+import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ForgetPassword extends StatefulWidget {
   @override
@@ -57,102 +57,102 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   bool isloading = false;
   @override
   Widget build(BuildContext context) {
-   
-      return Scaffold(
-        key: _scaffoldkey,
-        backgroundColor: Colors.grey[200],
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(50),
-          child: AppBar(
-            backgroundColor: Colors.deepOrange,
-            title: Text(
-              AppLocalizations.of(context).translate("passWord_reset"), //'Password Reset',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            centerTitle: true,
+    return Scaffold(
+      key: _scaffoldkey,
+      backgroundColor: Colors.grey[200],
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: AppBar(
+          backgroundColor: Colors.deepOrange,
+          title: Text(
+            LocaleKeys.view_doctor_passWord_reset.tr(),
+            //'Password Reset',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
+          centerTitle: true,
         ),
-        body: Center(
-          child: Container(
-            height: 100,
-            width: 100,
-            child: Form(
-                key: _formkey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Flexible(
-                      child: ListView(
-                        shrinkWrap: true,
-                        children: [
-                          SizedBox(
-                            height: 120,
-                            child: Image(
-                              image: AssetImage(
-                                'assets/images/reset_password.png',
-                              ),
+      ),
+      body: Center(
+        child: Container(
+          height: 100,
+          width: 100,
+          child: Form(
+              key: _formkey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Flexible(
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: [
+                        SizedBox(
+                          height: 120,
+                          child: Image(
+                            image: AssetImage(
+                              'assets/images/reset_password.png',
                             ),
-                          ),
-                          SizedBox(
-                            height: 25,
-                          ),
-                          TextFormField(
-                            decoration: textInputdecoration.copyWith(
-                              hintText: AppLocalizations.of(context).translate('enter_your_email'), //'Enter Your Current Email',
-                              labelText: AppLocalizations.of(context).translate('email'), //'Email',
-                            ),
-                            cursorColor: Colors.black,
-                            keyboardType: TextInputType.emailAddress,
-                            onChanged: (val) {
-                              email = val;
-                            },
-                            validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('enter_your_email') : null,
-                          ),
-                          SizedBox(
-                            height: 150,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: 50,
-                      width: isloading ? 50 : 150,
-                      child: LoadingButton(
-                        isloading: isloading,
-                        loadercolor: Colors.white,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                        backgroundcolor: Colors.deepOrange,
-                        child: FittedBox(
-                          fit: BoxFit.fitWidth,
-                          child: Text(
-                            AppLocalizations.of(context).translate('password_reset_email'),
-                            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                         ),
-                        onpressed: () async {
-                          checkInternet();
-                          if (_isInternet) {
-                            if (_formkey.currentState.validate()) {
-                              setState(() => isloading = true);
-                              await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-                              setState(() => isloading = false);
-                              await Navigator.of(context).push(MaterialPageRoute(builder: (context) => PasswordResetContinue(email: email)));
-                            }
-                          } else {
-                            setState(() {
-                              error = AppLocalizations.of(context).translate('snack_connectivity');
-                            });
-                            _showSnackBar();
-                          }
-                        },
-                      ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        TextFormField(
+                          decoration: textInputdecoration.copyWith(
+                            hintText: LocaleKeys.view_doctor_enter_your_email.tr(),
+                            //'Enter Your Current Email',
+                            labelText: LocaleKeys.view_doctor_email.tr(),
+                          ),
+                          cursorColor: Colors.black,
+                          keyboardType: TextInputType.emailAddress,
+                          onChanged: (val) {
+                            email = val;
+                          },
+                          validator: (val) => val.isEmpty ? LocaleKeys.view_doctor_enter_your_email.tr() : null,
+                        ),
+                        SizedBox(
+                          height: 150,
+                        ),
+                      ],
                     ),
-                  ],
-                )),
-          ),
+                  ),
+                  Container(
+                    height: 50,
+                    width: isloading ? 50 : 150,
+                    child: LoadingButton(
+                      isloading: isloading,
+                      loadercolor: Colors.white,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                      backgroundcolor: Colors.deepOrange,
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text(
+                          LocaleKeys.view_doctor_password_reset_email.tr(),
+                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      onpressed: () async {
+                        checkInternet();
+                        if (_isInternet) {
+                          if (_formkey.currentState.validate()) {
+                            setState(() => isloading = true);
+                            await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+                            setState(() => isloading = false);
+                            await Navigator.of(context).push(MaterialPageRoute(builder: (context) => PasswordResetContinue(email: email)));
+                          }
+                        } else {
+                          setState(() {
+                            error = LocaleKeys.view_snack_error_snack_connectivity.tr();
+                          });
+                          _showSnackBar();
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              )),
         ),
-      );
-  
+      ),
+    );
   }
 }
 
@@ -161,102 +161,100 @@ class PasswordResetContinue extends StatelessWidget {
   PasswordResetContinue({this.email});
   @override
   Widget build(BuildContext context) {
-   
-      return Scaffold(
-        backgroundColor: Colors.grey[200],
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(50),
-          child: AppBar(
-            backgroundColor: Colors.deepOrange,
-            title: Text(
-              AppLocalizations.of(context).translate('passWord_reset'),
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    return Scaffold(
+      backgroundColor: Colors.grey[200],
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: AppBar(
+          backgroundColor: Colors.deepOrange,
+          title: Text(
+            LocaleKeys.view_doctor_passWord_reset.tr(),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
+        ),
+      ),
+      body: Center(
+        child: Container(
+          height: 100,
+          width: 100,
+          child: Column(children: [
+            SizedBox(
+              height: 120,
+              child: Image(
+                image: AssetImage(
+                  'assets/images/password.png',
+                ),
+              ),
             ),
-            centerTitle: true,
-          ),
-        ),
-        body: Center(
-          child: Container(
-            height: 100,
-            width: 100,
-            child: Column(children: [
-              SizedBox(
-                height: 120,
-                child: Image(
-                  image: AssetImage(
-                    'assets/images/password.png',
-                  ),
-                ),
-              ),
-              Spacer(
-                flex: 3,
-              ),
-              Text(
-                AppLocalizations.of(context).translate('email_sent'),
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              Divider(
-                color: Colors.grey,
-                thickness: 2,
-                indent: 60,
-                endIndent: 60,
-              ),
-              Spacer(
-                flex: 1,
-              ),
-              Container(
-                decoration: boxDecoration,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    '$email',
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              Spacer(
-                flex: 1,
-              ),
-              Divider(
-                color: Colors.grey,
-                thickness: 2,
-                indent: 40,
-                endIndent: 40,
-              ),
-              SizedBox(
-                width: 20,
+            Spacer(
+              flex: 3,
+            ),
+            Text(
+              LocaleKeys.view_email_verification_email_sent.tr(),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            Divider(
+              color: Colors.grey,
+              thickness: 2,
+              indent: 60,
+              endIndent: 60,
+            ),
+            Spacer(
+              flex: 1,
+            ),
+            Container(
+              decoration: boxDecoration,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  AppLocalizations.of(context).translate("check_reset_email"),
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
-                  textAlign: TextAlign.center,
+                  '$email',
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               ),
-              Spacer(
-                flex: 3,
+            ),
+            Spacer(
+              flex: 1,
+            ),
+            Divider(
+              color: Colors.grey,
+              thickness: 2,
+              indent: 40,
+              endIndent: 40,
+            ),
+            SizedBox(
+              width: 20,
+              child: Text(
+                LocaleKeys.view_doctor_check_reset_email.tr(),
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
+                textAlign: TextAlign.center,
               ),
-              Container(
-                height: 50,
-                width: 150,
-                child: TextButton.icon(
-                    style: TextButton.styleFrom(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                      backgroundColor: Colors.deepOrange,
-                    ),
-                    icon: Icon(
-                      Icons.arrow_forward,
-                      color: Colors.white,
-                    ),
-                    label: Text(AppLocalizations.of(context).translate('continue'),
-                        style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
-                    onPressed: () {
-                      int count = 0;
-                      Navigator.popUntil(context, (route) => count++ == 2);
-                    }),
-              ),
-            ]),
-          ),
+            ),
+            Spacer(
+              flex: 3,
+            ),
+            Container(
+              height: 50,
+              width: 150,
+              child: TextButton.icon(
+                  style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                    backgroundColor: Colors.deepOrange,
+                  ),
+                  icon: Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                  ),
+                  label: Text(LocaleKeys.view_email_verification_continue.tr(),
+                      style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+                  onPressed: () {
+                    int count = 0;
+                    Navigator.popUntil(context, (route) => count++ == 2);
+                  }),
+            ),
+          ]),
         ),
-      );
- 
+      ),
+    );
   }
 }

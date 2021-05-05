@@ -1,10 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:project_doctor/services/app_localizations.dart';
+import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/views/doctor_pages/doctor02_clinic.dart';
+import 'dart:ui' as ui;
 
 
 class DoctorForm extends StatefulWidget {
@@ -60,396 +62,425 @@ class _DoctorFormState extends State<DoctorForm> {
   @override
   Widget build(BuildContext context) {
     final Map specialities = {
-      "1": [AppLocalizations.of(context).translate('Internist'), 'Internist'],
-      "2": [AppLocalizations.of(context).translate('Pediatrician'), 'Pediatrician'],
-      "3": [AppLocalizations.of(context).translate('Cardiologist'), 'Cardiologist'],
-      "4": [AppLocalizations.of(context).translate('Pulmonologist'), 'Pulmonologist'],
-      "5": [AppLocalizations.of(context).translate('Endocrinologist'), 'Endocrinologist'],
-      "6": [AppLocalizations.of(context).translate('Enterologist'), 'Enterologist'],
-      "7": [AppLocalizations.of(context).translate('Neurologist'), 'Neurologist'],
-      "8": [AppLocalizations.of(context).translate('Neurosurgeon'), 'Neurosurgeon'],
-      "9": [AppLocalizations.of(context).translate('Heamatologist'), 'Heamatologist'],
-      "10": [AppLocalizations.of(context).translate('Nephrologist'), 'Nephrologist'],
-      "11": [AppLocalizations.of(context).translate('Rheumatologist'), 'Rheumatologist'],
-      "12": [AppLocalizations.of(context).translate('Emergency physician'), 'Emergency physician'],
-      "13": [AppLocalizations.of(context).translate('Dermatologist'), 'Dermatologist'],
-      "14": [AppLocalizations.of(context).translate('Psychiatrist'), 'Psychiatrist'],
-      "15": [AppLocalizations.of(context).translate('Gynecologist'), 'Gynecologist'],
-      "16": [AppLocalizations.of(context).translate('General Surgeon'), 'General Surgeon'],
-      "17": [AppLocalizations.of(context).translate('Pediatric Surgeon'), 'Pediatric Surgeon'],
-      "18": [AppLocalizations.of(context).translate('ThoracoVascular Surgeon'), 'ThoracoVascular Surgeon'],
-      "19": [AppLocalizations.of(context).translate('Orthopaedic Surgeon'), 'Orthopaedic Surgeon'],
-      "20": [AppLocalizations.of(context).translate('Urosurgeon'), 'Urosurgeon'],
-      "21": [AppLocalizations.of(context).translate('Plastic Surgeon'), 'Plastic Surgeon'],
-      "22": [AppLocalizations.of(context).translate('Ophthalmologist'), 'Ophthalmologist'],
-      "23": [AppLocalizations.of(context).translate('Laryngologist'), 'Laryngologist'],
+      "1": [LocaleKeys.medical_specialty_Internist.tr(), 'Internist'],
+      "2": [LocaleKeys.medical_specialty_Pediatrician.tr(), 'Pediatrician'],
+      "3": [LocaleKeys.medical_specialty_Cardiologist.tr(), 'Cardiologist'],
+      "4": [LocaleKeys.medical_specialty_Pulmonologist.tr(), 'Pulmonologist'],
+      "5": [LocaleKeys.medical_specialty_Endocrinologist.tr(), 'Endocrinologist'],
+      "6": [LocaleKeys.medical_specialty_Enterologist.tr(), 'Enterologist'],
+      "7": [LocaleKeys.medical_specialty_Neurologist.tr(), 'Neurologist'],
+      "8": [LocaleKeys.medical_specialty_Neurosurgeon.tr(), 'Neurosurgeon'],
+      "9": [LocaleKeys.medical_specialty_Heamatologist.tr(), 'Heamatologist'],
+      "10": [LocaleKeys.medical_specialty_Nephrologist.tr(), 'Nephrologist'],
+      "11": [LocaleKeys.medical_specialty_Rheumatologist.tr(), 'Rheumatologist'],
+      "12": [LocaleKeys.medical_specialty_Emergency_physician.tr(), 'Emergency physician'],
+      "13": [LocaleKeys.medical_specialty_Dermatologist.tr(), 'Dermatologist'],
+      "14": [LocaleKeys.medical_specialty_Psychiatrist.tr(), 'Psychiatrist'],
+      "15": [LocaleKeys.medical_specialty_Gynecologist.tr(), 'Gynecologist'],
+      "16": [LocaleKeys.medical_specialty_General_Surgeon.tr(), 'General Surgeon'],
+      "17": [LocaleKeys.medical_specialty_Pediatric_Surgeon.tr(), 'Pediatric Surgeon'],
+      "18": [LocaleKeys.medical_specialty_ThoracoVascular_Surgeon.tr(), 'ThoracoVascular Surgeon'],
+      "19": [LocaleKeys.medical_specialty_Orthopaedic_Surgeon.tr(), 'Orthopaedic Surgeon'],
+      "20": [LocaleKeys.medical_specialty_Urosurgeon.tr(), 'Urosurgeon'],
+      "21": [LocaleKeys.medical_specialty_Plastic_Surgeon.tr(), 'Plastic Surgeon'],
+      "22": [LocaleKeys.medical_specialty_Ophthalmologist.tr(), 'Ophthalmologist'],
+      "23": [LocaleKeys.medical_specialty_Laryngologist.tr(), 'Laryngologist'],
     };
     final province = {
       "1": [
         "Erbil",
-        AppLocalizations.of(context).translate("Erbil"),
+        LocaleKeys.iraq_provinces_Erbil.tr(),
       ],
       "2": [
         "Al Anbar",
-        AppLocalizations.of(context).translate("Al Anbar"),
+        LocaleKeys.iraq_provinces_Al_Anbar.tr(),
       ],
       "3": [
         "Basra",
-        AppLocalizations.of(context).translate("Basra"),
+        LocaleKeys.iraq_provinces_Basra.tr(),
       ],
       "4": [
         "Al Qadisiyyah",
-        AppLocalizations.of(context).translate("Al Qadisiyyah"),
+        LocaleKeys.iraq_provinces_Al_Qadisiyyah.tr(),
       ],
       "5": [
         "Muthanna",
-        AppLocalizations.of(context).translate("Muthanna"),
+        LocaleKeys.iraq_provinces_Muthanna.tr(),
       ],
       "6": [
         "Najaf",
-        AppLocalizations.of(context).translate("Najaf"),
+        LocaleKeys.iraq_provinces_Najaf.tr(),
       ],
       "7": [
         "Babil",
-        AppLocalizations.of(context).translate("Babil"),
+        LocaleKeys.iraq_provinces_Babil.tr(),
       ],
       "8": [
         'Baghdad',
-        AppLocalizations.of(context).translate('Baghdad'),
+        LocaleKeys.iraq_provinces_Baghdad.tr(),
       ],
-      "9": ["Duhok", AppLocalizations.of(context).translate("Duhok")],
-      "10": ["Diyala", AppLocalizations.of(context).translate("Diyala")],
-      "11": ["Dhi Qar", AppLocalizations.of(context).translate("Dhi Qar")],
-      "12": ["Sulaymaniyah", AppLocalizations.of(context).translate("Sulaymaniyah")],
-      "13": ["Saladin", AppLocalizations.of(context).translate("Saladin")],
-      "14": ["Karbala", AppLocalizations.of(context).translate("Karbala")],
-      "15": ["Kirkuk", AppLocalizations.of(context).translate("Kirkuk")],
-      "16": ["Maysan", AppLocalizations.of(context).translate("Maysan")],
-      "17": ["Nineveh", AppLocalizations.of(context).translate("Nineveh")],
-      "18": ["Wasit", AppLocalizations.of(context).translate("Wasit")],
+      "9": [
+        "Duhok",
+        LocaleKeys.iraq_provinces_Duhok.tr(),
+      ],
+      "10": [
+        "Diyala",
+        LocaleKeys.iraq_provinces_Diyala.tr(),
+      ],
+      "11": [
+        "Dhi Qar",
+        LocaleKeys.iraq_provinces_Dhi_Qar.tr(),
+      ],
+      "12": [
+        "Sulaymaniyah",
+        LocaleKeys.iraq_provinces_Sulaymaniyah.tr(),
+      ],
+      "13": [
+        "Saladin",
+        LocaleKeys.iraq_provinces_Saladin.tr(),
+      ],
+      "14": [
+        "Karbala",
+        LocaleKeys.iraq_provinces_Karbala.tr(),
+      ],
+      "15": [
+        "Kirkuk",
+        LocaleKeys.iraq_provinces_Kirkuk.tr(),
+      ],
+      "16": [
+        "Maysan",
+        LocaleKeys.iraq_provinces_Maysan.tr(),
+      ],
+      "17": [
+        "Nineveh",
+        LocaleKeys.iraq_provinces_Nineveh.tr(),
+      ],
+      "18": [
+        "Wasit",
+        LocaleKeys.iraq_provinces_Wasit.tr(),
+      ],
     };
-   
-      return Scaffold(
-        key: _scaffoldkey,
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.grey[200],
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(50),
-          child: AppBar(
-            backgroundColor: Colors.deepOrange,
-            title: Text(
-              AppLocalizations.of(context).translate('doctor_form'),
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            centerTitle: true,
-            elevation: 0,
+
+    return Scaffold(
+      key: _scaffoldkey,
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.grey[200],
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: AppBar(
+          backgroundColor: Colors.deepOrange,
+          title: Text(
+            LocaleKeys.view_doctor_doctor_form.tr(),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
+          centerTitle: true,
+          elevation: 0,
         ),
-        body: Center(
-          child: Container(
-            height: 100,
-            width: 100,
-            child: Form(
-              key: _formKey,
-              child: Container(
-                height: double.maxFinite,
-                child: Column(
-                  children: [
-                    Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: TextFormField(
-                        decoration: textInputdecoration.copyWith(
-                          hintText: AppLocalizations.of(context).translate('name'),
-                          labelText: AppLocalizations.of(context).translate('name'),
-                        ),
-                        validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('name_validator') : null,
-                        onChanged: (val) => setState(() => currentName = val),
-                      ),
-                    ),
-                    Spacer(),
-                    DropdownButtonFormField<String>(
-                      value: currentSpeciality,
-                      isDense: false,
-                      decoration: textInputdecoration,
-                      hint: Text(
-                        AppLocalizations.of(context).translate('speciality'),
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
-                      ),
-                      dropdownColor: Colors.grey[200],
-                      elevation: 5,
-                      icon: Icon(Icons.arrow_drop_down),
-                      isExpanded: true,
-                      items: [
-                        DropdownMenuItem(
-                          value: specialities['1'][1],
-                          child: Text(specialities['1'][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["2"][1],
-                          child: Text(specialities["2"][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["3"][1],
-                          child: Text(specialities["3"][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["4"][1],
-                          child: Text(specialities["4"][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["5"][1],
-                          child: Text(specialities["5"][0]),
-                        ), //5
-                        DropdownMenuItem(
-                          value: specialities["6"][1],
-                          child: Text(specialities["6"][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["7"][1],
-                          child: Text(specialities["7"][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["8"][1],
-                          child: Text(specialities["8"][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["9"][1],
-                          child: Text(specialities["9"][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["10"][1],
-                          child: Text(specialities["10"][0]),
-                        ), //10
-                        DropdownMenuItem(
-                          value: specialities["11"][1],
-                          child: Text(specialities["11"][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["12"][1],
-                          child: Text(specialities["12"][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["13"][1],
-                          child: Text(specialities['13'][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["14"][1],
-                          child: Text(specialities["14"][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["15"][1],
-                          child: Text(specialities["15"][0]),
-                        ), //15
-                        DropdownMenuItem(
-                          value: specialities["16"][1],
-                          child: Text(specialities["16"][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["17"][1],
-                          child: Text(specialities["17"][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["18"][1],
-                          child: Text(specialities["18"][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["19"][1],
-                          child: Text(specialities["19"][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["20"][1],
-                          child: Text(specialities["20"][0]),
-                        ), //20
-                        DropdownMenuItem(
-                          value: specialities["21"][1],
-                          child: Text(specialities["21"][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["22"][1],
-                          child: Text(specialities["22"][0]),
-                        ),
-                        DropdownMenuItem(
-                          value: specialities["23"][1],
-                          child: Text(specialities["23"][0]),
-                        )
-                      ],
-                      validator: (value) => value == null ? AppLocalizations.of(context).translate('speciality_validator') : null,
-                      onChanged: (val) => setState(() {
-                        currentSpeciality = val;
-                      }),
-                    ),
-                    Spacer(),
-                    TextFormField(
-                      keyboardType: TextInputType.phone,
+      ),
+      body: Center(
+        child: Container(
+          height: 100,
+          width: 100,
+          child: Form(
+            key: _formKey,
+            child: Container(
+              height: double.maxFinite,
+              child: Column(
+                children: [
+                  Directionality(
+                    textDirection: ui.TextDirection.rtl,
+                    child: TextFormField(
                       decoration: textInputdecoration.copyWith(
-                        hintText: AppLocalizations.of(context).translate('phoneNumber'),
-                        labelText: AppLocalizations.of(context).translate('phoneNumber'),
+                        hintText: LocaleKeys.view_doctor_name.tr(),
+                        labelText: LocaleKeys.view_doctor_name.tr(),
                       ),
-                      validator: (val) => val.length < 11 ? AppLocalizations.of(context).translate('phoneNumber_validator') : null,
-                      onChanged: (val) => setState(() => currentPhoneNumber = val),
+                      validator: (val) => val.isEmpty ? LocaleKeys.view_doctor_name_validator.tr() : null,
+                      onChanged: (val) => setState(() => currentName = val),
                     ),
-                    Spacer(),
-                    DropdownButtonFormField<String>(
-                      isDense: false,
-                      value: currentProvince,
-                      decoration: textInputdecoration,
-                      hint: Text(
-                        AppLocalizations.of(context).translate('province'),
+                  ),
+                  Spacer(),
+                  DropdownButtonFormField<String>(
+                    value: currentSpeciality,
+                    isDense: false,
+                    decoration: textInputdecoration,
+                    hint: Text(
+                      LocaleKeys.view_doctor_speciality.tr(),
+                      style: TextStyle(
+                        fontSize: 18,
                       ),
-                      dropdownColor: Colors.grey[200],
-                      elevation: 5,
-                      icon: Icon(Icons.arrow_drop_down),
-                      isExpanded: true,
-                      items: [
-                        DropdownMenuItem(
-                          value: province["1"][0],
-                          child: Text(province["1"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["2"][0],
-                          child: Text(province["2"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["3"][0],
-                          child: Text(province["3"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["4"][0],
-                          child: Text(province["4"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["5"][0],
-                          child: Text(province["5"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["6"][0],
-                          child: Text(province["6"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["7"][0],
-                          child: Text(province["7"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["8"][0],
-                          child: Text(province["8"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["9"][0],
-                          child: Text(province["9"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["10"][0],
-                          child: Text(province["10"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["11"][0],
-                          child: Text(province["11"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["12"][0],
-                          child: Text(province["12"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["13"][0],
-                          child: Text(province["13"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["14"][0],
-                          child: Text(province["14"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["15"][0],
-                          child: Text(province["15"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["16"][0],
-                          child: Text(province["16"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["17"][0],
-                          child: Text(province["17"][1]),
-                        ),
-                        DropdownMenuItem(
-                          value: province["18"][0],
-                          child: Text(province["18"][1]),
-                        ),
-                      ],
-                      /*items: province.map((province) {
+                    ),
+                    dropdownColor: Colors.grey[200],
+                    elevation: 5,
+                    icon: Icon(Icons.arrow_drop_down),
+                    isExpanded: true,
+                    items: [
+                      DropdownMenuItem(
+                        value: specialities['1'][1],
+                        child: Text(specialities['1'][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["2"][1],
+                        child: Text(specialities["2"][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["3"][1],
+                        child: Text(specialities["3"][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["4"][1],
+                        child: Text(specialities["4"][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["5"][1],
+                        child: Text(specialities["5"][0]),
+                      ), //5
+                      DropdownMenuItem(
+                        value: specialities["6"][1],
+                        child: Text(specialities["6"][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["7"][1],
+                        child: Text(specialities["7"][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["8"][1],
+                        child: Text(specialities["8"][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["9"][1],
+                        child: Text(specialities["9"][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["10"][1],
+                        child: Text(specialities["10"][0]),
+                      ), //10
+                      DropdownMenuItem(
+                        value: specialities["11"][1],
+                        child: Text(specialities["11"][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["12"][1],
+                        child: Text(specialities["12"][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["13"][1],
+                        child: Text(specialities['13'][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["14"][1],
+                        child: Text(specialities["14"][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["15"][1],
+                        child: Text(specialities["15"][0]),
+                      ), //15
+                      DropdownMenuItem(
+                        value: specialities["16"][1],
+                        child: Text(specialities["16"][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["17"][1],
+                        child: Text(specialities["17"][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["18"][1],
+                        child: Text(specialities["18"][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["19"][1],
+                        child: Text(specialities["19"][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["20"][1],
+                        child: Text(specialities["20"][0]),
+                      ), //20
+                      DropdownMenuItem(
+                        value: specialities["21"][1],
+                        child: Text(specialities["21"][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["22"][1],
+                        child: Text(specialities["22"][0]),
+                      ),
+                      DropdownMenuItem(
+                        value: specialities["23"][1],
+                        child: Text(specialities["23"][0]),
+                      )
+                    ],
+                    validator: (value) => value == null ? LocaleKeys.view_doctor_speciality_validator.tr() : null,
+                    onChanged: (val) => setState(() {
+                      currentSpeciality = val;
+                    }),
+                  ),
+                  Spacer(),
+                  TextFormField(
+                    keyboardType: TextInputType.phone,
+                    decoration: textInputdecoration.copyWith(
+                      hintText: LocaleKeys.view_doctor_phoneNumber.tr(),
+                      labelText: LocaleKeys.view_doctor_phoneNumber.tr(),
+                    ),
+                    validator: (val) => val.length < 11 ? LocaleKeys.view_doctor_phoneNumber_validator.tr() : null,
+                    onChanged: (val) => setState(() => currentPhoneNumber = val),
+                  ),
+                  Spacer(),
+                  DropdownButtonFormField<String>(
+                    isDense: false,
+                    value: currentProvince,
+                    decoration: textInputdecoration,
+                    hint: Text(
+                      LocaleKeys.view_doctor_province.tr(),
+                    ),
+                    dropdownColor: Colors.grey[200],
+                    elevation: 5,
+                    icon: Icon(Icons.arrow_drop_down),
+                    isExpanded: true,
+                    items: [
+                      DropdownMenuItem(
+                        value: province["1"][0],
+                        child: Text(province["1"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["2"][0],
+                        child: Text(province["2"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["3"][0],
+                        child: Text(province["3"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["4"][0],
+                        child: Text(province["4"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["5"][0],
+                        child: Text(province["5"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["6"][0],
+                        child: Text(province["6"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["7"][0],
+                        child: Text(province["7"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["8"][0],
+                        child: Text(province["8"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["9"][0],
+                        child: Text(province["9"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["10"][0],
+                        child: Text(province["10"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["11"][0],
+                        child: Text(province["11"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["12"][0],
+                        child: Text(province["12"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["13"][0],
+                        child: Text(province["13"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["14"][0],
+                        child: Text(province["14"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["15"][0],
+                        child: Text(province["15"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["16"][0],
+                        child: Text(province["16"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["17"][0],
+                        child: Text(province["17"][1]),
+                      ),
+                      DropdownMenuItem(
+                        value: province["18"][0],
+                        child: Text(province["18"][1]),
+                      ),
+                    ],
+                    /*items: province.map((province) {
                       return DropdownMenuItem(
                         value: province,
                         child: Text('$province'),
                       );
                     }).toList(),*/
-                      validator: (val) => val == null ? AppLocalizations.of(context).translate('province_validator') : null,
-                      onChanged: (val) => setState(() {
-                        currentProvince = val;
-                        DatabaseService.validationProvince = val;
-                        DatabaseService.province = val;
-                      }),
-                    ),
-                    Spacer(
-                      flex: 5,
-                    ),
-                    Container(
-                      height: 50,
-                      width: 150,
-                      child: ButtonTheme(
-                        child: TextButton.icon(
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.deepOrange,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                          ),
-                          icon: Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                          ),
-                          onPressed: () async {
-                            if (_formKey.currentState.validate()) {
-                              finalNumber = await validateNumber(currentPhoneNumber);
-                              finalTextNumber = finalNumber.toString();
-                              if (finalNumber != null) {
-                                if (currentName != null && currentSpeciality != null && currentPhoneNumber != null && currentProvince != null) {
-                                  if (finalTextNumber.substring(0, 1) == '7') {
-                                    finalTextNumber = '0' + finalTextNumber;
-                                  } else if (finalTextNumber.substring(0, 1) == '9') {
-                                    finalTextNumber = '00' + finalTextNumber;
-                                  }
-                                  print(finalTextNumber);
-                                  await Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => GrandClinicForm(
-                                        email: email,
-                                        password: password,
-                                        name: currentName,
-                                        speciality: currentSpeciality,
-                                        phoneNumber: finalTextNumber,
-                                        province: currentProvince,
-                                      ),
-                                    ),
-                                  );
+                    validator: (val) => val == null ? LocaleKeys.view_doctor_province_validator.tr() : null,
+                    onChanged: (val) => setState(() {
+                      currentProvince = val;
+                      DatabaseService.validationProvince = val;
+                      DatabaseService.province = val;
+                    }),
+                  ),
+                  Spacer(
+                    flex: 5,
+                  ),
+                  Container(
+                    height: 50,
+                    width: 150,
+                    child: ButtonTheme(
+                      child: TextButton.icon(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.deepOrange,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                        ),
+                        icon: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                        ),
+                        onPressed: () async {
+                          if (_formKey.currentState.validate()) {
+                            finalNumber = await validateNumber(currentPhoneNumber);
+                            finalTextNumber = finalNumber.toString();
+                            if (finalNumber != null) {
+                              if (currentName != null && currentSpeciality != null && currentPhoneNumber != null && currentProvince != null) {
+                                if (finalTextNumber.substring(0, 1) == '7') {
+                                  finalTextNumber = '0' + finalTextNumber;
+                                } else if (finalTextNumber.substring(0, 1) == '9') {
+                                  finalTextNumber = '00' + finalTextNumber;
                                 }
-                              } else {
-                                error = AppLocalizations.of(context).translate('age_format');
-                                _showSnackBar();
+                                print(finalTextNumber);
+                                await Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => GrandClinicForm(
+                                      email: email,
+                                      password: password,
+                                      name: currentName,
+                                      speciality: currentSpeciality,
+                                      phoneNumber: finalTextNumber,
+                                      province: currentProvince,
+                                    ),
+                                  ),
+                                );
                               }
+                            } else {
+                              error = LocaleKeys.view_patient_age_format.tr();
+                              _showSnackBar();
                             }
-                          },
-                          label: Text(
-                            AppLocalizations.of(context).translate('next'),
-                            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
+                          }
+                        },
+                        label: Text(
+                          LocaleKeys.view_buttons_next.tr(),
+                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
             ),
           ),
         ),
-      );
-  
+      ),
+    );
   }
 }

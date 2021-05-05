@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/services/app_localizations.dart';
+import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:project_doctor/services/data_model.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class PatientSidebar extends StatelessWidget {
   @override
@@ -9,9 +10,7 @@ class PatientSidebar extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: Container(
-        padding: EdgeInsets.symmetric(
-            vertical: getDeviceType(context, 10, 20, 30, 40),
-            horizontal: getDeviceType(context, 10, 20, 30, 40)),
+        padding: EdgeInsets.symmetric(vertical: getDeviceType(context, 10, 20, 30, 40), horizontal: getDeviceType(context, 10, 20, 30, 40)),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -26,16 +25,12 @@ class PatientSidebar extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.new_releases,
-                  color: SelectedPage.complaintSelected
-                      ? Colors.deepOrange
-                      : Colors.black,
+                  color: SelectedPage.complaintSelected ? Colors.deepOrange : Colors.black,
                 ),
                 label: Text(
-                  AppLocalizations.of(context).translate("new search"),
+                  LocaleKeys.view_new_search_name_search.tr(),
                   style: TextStyle(
-                    color: SelectedPage.complaintSelected
-                        ? Colors.deepOrange
-                        : Colors.black,
+                    color: SelectedPage.complaintSelected ? Colors.deepOrange : Colors.black,
                     fontSize: getDeviceType(context, 12, 16, 23, 25),
                   ),
                 ),
@@ -51,17 +46,12 @@ class PatientSidebar extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.search,
-                  color: SelectedPage.newSearchSelected
-                      ? Colors.deepOrange
-                      : Colors.black,
+                  color: SelectedPage.newSearchSelected ? Colors.deepOrange : Colors.black,
                 ),
                 label: Text(
-                  AppLocalizations.of(context)
-                      .translate('name/speciality search'),
+                  LocaleKeys.view_last_search_name_speciality_search.tr(),
                   style: TextStyle(
-                    color: SelectedPage.newSearchSelected
-                        ? Colors.deepOrange
-                        : Colors.black,
+                    color: SelectedPage.newSearchSelected ? Colors.deepOrange : Colors.black,
                     fontSize: getDeviceType(context, 12, 16, 23, 25),
                   ),
                 ),
@@ -77,16 +67,12 @@ class PatientSidebar extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.last_page,
-                  color: SelectedPage.lastSearchSelected
-                      ? Colors.deepOrange
-                      : Colors.black,
+                  color: SelectedPage.lastSearchSelected ? Colors.deepOrange : Colors.black,
                 ),
                 label: Text(
-                  AppLocalizations.of(context).translate('last search'),
+                  LocaleKeys.view_last_search_last_search.tr(),
                   style: TextStyle(
-                    color: SelectedPage.lastSearchSelected
-                        ? Colors.deepOrange
-                        : Colors.black,
+                    color: SelectedPage.lastSearchSelected ? Colors.deepOrange : Colors.black,
                     fontSize: getDeviceType(context, 12, 16, 23, 25),
                   ),
                 ),
@@ -102,16 +88,12 @@ class PatientSidebar extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.star,
-                  color: SelectedPage.favoriteSelected
-                      ? Colors.deepOrange
-                      : Colors.black,
+                  color: SelectedPage.favoriteSelected ? Colors.deepOrange : Colors.black,
                 ),
                 label: Text(
-                  AppLocalizations.of(context).translate('preferred'),
+                  LocaleKeys.view_favorite_list_preferred.tr(),
                   style: TextStyle(
-                    color: SelectedPage.favoriteSelected
-                        ? Colors.deepOrange
-                        : Colors.black,
+                    color: SelectedPage.favoriteSelected ? Colors.deepOrange : Colors.black,
                     fontSize: getDeviceType(context, 12, 16, 23, 25),
                   ),
                 ),
@@ -129,7 +111,7 @@ class PatientSidebar extends StatelessWidget {
                   color: Colors.black,
                 ),
                 label: Text(
-                  AppLocalizations.of(context).translate('back'),
+                  LocaleKeys.view_last_search_back.tr(),
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: getDeviceType(context, 12, 16, 23, 25),

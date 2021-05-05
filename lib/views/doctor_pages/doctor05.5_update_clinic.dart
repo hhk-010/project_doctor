@@ -1,12 +1,12 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:project_doctor/services/theme.dart';
-import 'package:project_doctor/services/app_localizations.dart';
+import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/views/doctor_pages/doctor06_update_map.dart';
 import 'package:weekday_selector/weekday_selector.dart';
-
+import 'dart:ui' as ui;
 
 class ClinicDay {
   static String day1;
@@ -38,10 +38,10 @@ List boolToStringDays(BuildContext context, List worksDays) {
   ];
 }
 
-TextDirection getTextDirection(Locale locale) {
-  const rtlLanguages = ['ar'];
-  return rtlLanguages.contains(locale.languageCode) ? TextDirection.rtl : TextDirection.ltr;
-}
+// TextDirection getTextDirection(Locale locale) {
+//   const rtlLanguages = ['ar'];
+//   // return rtlLanguages.contains(locale.languageCode) ? ui.TextDirection.rtl : TextDirection.ltr;
+// }
 
 class _UpdateInfo2State extends State<UpdateInfo2> {
   final String name;
@@ -210,14 +210,15 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
   final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final otherweekDaysList = {
-      0: [worksDays[0], AppLocalizations.of(context).translate('sunday'), "sunday"],
-      1: [worksDays[1], AppLocalizations.of(context).translate('monday'), "monday"],
-      2: [worksDays[2], AppLocalizations.of(context).translate('tuesday'), "tuesday"],
-      3: [worksDays[3], AppLocalizations.of(context).translate('wednesday'), "wednesday"],
-      4: [worksDays[4], AppLocalizations.of(context).translate('thursday'), "thursday"],
-      5: [worksDays[5], AppLocalizations.of(context).translate('friday'), "friday"],
-      6: [worksDays[6], AppLocalizations.of(context).translate('saturday'), "saturday"],
+
+        final otherweekDaysList = {
+      0: [worksDays[0], LocaleKeys.view_time_day_sunday.tr(), "sunday"],
+      1: [worksDays[1], LocaleKeys.view_time_day_monday.tr(), "monday"],
+      2: [worksDays[2], LocaleKeys.view_time_day_tuesday.tr(), "tuesday"],
+      3: [worksDays[3], LocaleKeys.view_time_day_wednesday.tr(), "wednesday"],
+      4: [worksDays[4], LocaleKeys.view_time_day_thursday.tr(), "thursday"],
+      5: [worksDays[5], LocaleKeys.view_time_day_friday.tr(), "friday"],
+      6: [worksDays[6], LocaleKeys.view_time_day_saturday.tr(), "saturday"],
     };
 
     void makeExceptions1() {
@@ -238,168 +239,304 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
       }
     }
 
-    final locale = Localizations.localeOf(context);
-    final textDirection = getTextDirection(locale);
+    // final textDirection = getTextDirection(locale);
 
+    return Scaffold(
+        key: _scaffoldkey,
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.grey[200],
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(50),
+          child: AppBar(
+            backgroundColor: Colors.deepOrange,
+            title: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(
 
-      return Scaffold(
-          key: _scaffoldkey,
-          resizeToAvoidBottomInset: false,
-          backgroundColor: Colors.grey[200],
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(50),
-            child: AppBar(
-              backgroundColor: Colors.deepOrange,
-              title: FittedBox(
-                fit: BoxFit.fitWidth,
-                child: Text(
-                  AppLocalizations.of(context).translate('update_info'),
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
+                LocaleKeys.view_doctor_update_info.tr(),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              centerTitle: true,
             ),
+            centerTitle: true,
           ),
-          body: Center(
-            child: Container(
-              width: 100,
-              padding: EdgeInsets.fromLTRB(0, 50, 0, 15),
-              child: Form(
-                key: _formkey,
-                child: Container(
-                  child: ListView(
-                    children: [
-                      // _searchField(context, bloc),
-                      // _buildLocation(bloc),
+        ),
+        body: Center(
+          child: Container(
+            width: 100,
+            padding: EdgeInsets.fromLTRB(0, 50, 0, 15),
+            child: Form(
+              key: _formkey,
+              child: Container(
+                child: ListView(
+                  children: [
+                    // _searchField(context, bloc),
+                    // _buildLocation(bloc),
 
-                      Container(
+                    Container(
+                      decoration: boxDecoration,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Center(
+                              child: Text(
+                               LocaleKeys.view_doctor_detailed_address.tr(),
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            Divider(
+                              color: Colors.grey,
+                              thickness: 2,
+                              indent: 50,
+                              endIndent: 50,
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 15,
+                              ),
+                              child: Directionality(
+                                textDirection: ui.TextDirection.rtl,
+                                child: TextFormField(
+                                  validator: (val) => val.isEmpty ? LocaleKeys.view_doctor_address_validator.tr() : null,
+                                  onChanged: (val) {
+                                    setState(() => address = val);
+                                  },
+                                  decoration: textInputdecoration.copyWith(
+                                    hintText: 'مثال: الحارثيه شارع الكندي',
+                                    hintStyle: TextStyle(fontSize: 12, color: Colors.deepOrange, fontFamily: 'noto_arabic'),
+                                    labelText: 'عنوان العياده',
+                                    labelStyle: TextStyle(color: Colors.grey[750], fontFamily: 'noto_arabic'),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 25,
+                            ),
+                            Center(
+                              child: Text(
+                               LocaleKeys.view_doctor_work_days.tr(),
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            Divider(
+                              color: Colors.grey,
+                              thickness: 2,
+                              indent: 45,
+                              endIndent: 45,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 15,
+                              ),
+                              child: WeekdaySelector(
+                                onChanged: (int day) {
+                                  setState(() {
+                                    final index = day % 7;
+                                    if (ClinicDay.day1 != otherweekDaysList[index][2] && ClinicDay.day2 != otherweekDaysList[index][2]) {
+                                      worksDays[index] = !worksDays[index];
+
+                                      workDays01 = boolToStringDays(context, worksDays);
+                                      workDays01.removeWhere((value) => value == null);
+                                      currentVacationDays = workDays01.join(', ');
+                                      otherweekDaysList[index][0] = !otherweekDaysList[index][0];
+                                      makeExceptions1();
+                                      makeExceptions2();
+                                    } else {
+                                      _error = LocaleKeys.view_snack_error_dayselected.tr();
+                                      _showSnackBar();
+                                    }
+                                  });
+                                  print(workDays01);
+                                },
+                                values: worksDays,
+                                firstDayOfWeek: DateTime.sunday,
+                                shortWeekdays: [
+                                  LocaleKeys.view_time_day_sun.tr(),
+                                LocaleKeys.view_time_day_mon.tr(),
+                                LocaleKeys.view_time_day_tue.tr(),
+                                LocaleKeys.view_time_day_wed.tr(),
+                                LocaleKeys.view_time_day_thu.tr(),
+                                LocaleKeys.view_time_day_fri.tr(),
+                                LocaleKeys.view_time_day_sat.tr(),
+                                ],
+                                weekdays: [
+                                 LocaleKeys.view_time_day_sunday.tr(),
+                                LocaleKeys.view_time_day_monday.tr(),
+                                LocaleKeys.view_time_day_tuesday.tr(),
+                                LocaleKeys.view_time_day_wednesday.tr(),
+                                LocaleKeys.view_time_day_thursday.tr(),
+                                LocaleKeys.view_time_day_friday.tr(),
+                                LocaleKeys.view_time_day_saturday.tr(),
+                                ],
+                                // textDirection: textDirection,
+                                fillColor: Colors.white,
+                                selectedFillColor: Colors.deepOrange,
+                                selectedElevation: 0,
+                                elevation: 5,
+                                selectedShape: CircleBorder(
+                                  side: BorderSide(color: Colors.black, width: 1),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 25,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 15,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  InkWell(
+                                    child: RichText(
+                                      text: TextSpan(
+                                          text: LocaleKeys.view_time_day_from.tr(),
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text: '${_mainFromTime.format(context)}',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12,
+                                                color: mainfrom ? Colors.deepOrange : Colors.black,
+                                              ),
+                                            ),
+                                          ]),
+                                    ),
+                                    onTap: _pickMainFromTime,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Icon(Icons.arrow_forward),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  InkWell(
+                                    child: RichText(
+                                      text: TextSpan(
+                                          text: LocaleKeys.view_time_day_to.tr(),
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text: '${_mainToTime.format(context)}',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12,
+                                                color: mainto ? Colors.deepOrange : Colors.black,
+                                              ),
+                                            ),
+                                          ]),
+                                    ),
+                                    onTap: _pickMainToTime,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            SwitchListTile(
+                                activeColor: Colors.deepOrange,
+                                dense: true,
+                                title: Text(
+                                  LocaleKeys.view_doctor_expcetion_days.tr(),
+                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                                ),
+                                value: _daySwitch01,
+                                onChanged: (bool s) {
+                                  setState(() {
+                                    _daySwitch01 = s;
+                                    _visibile01 = !_visibile01;
+                                  });
+                                }),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+
+                    Visibility(
+                      visible: _visibile01,
+                      child: Container(
                         decoration: boxDecoration,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Center(
                                 child: Text(
-                                  AppLocalizations.of(context).translate(
-                                    'detailed_address',
-                                  ),
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  LocaleKeys.view_doctor_expcetion_days.tr(),
+                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
                               ),
                               Divider(
                                 color: Colors.grey,
                                 thickness: 2,
-                                indent: 50,
-                                endIndent: 50,
+                                indent: 40,
+                                endIndent: 40,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 15,
+                                ),
+                                child: DropdownButton(
+                                  hint: Text(
+                                    LocaleKeys.view_doctor_select_days.tr(),
+                                  ),
+                                  isExpanded: true,
+                                  items: exceptions1,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      weekday01 = value;
+                                      if (e1.isEmpty) {
+                                        e1.add(weekday01);
+                                      } else {
+                                        e1.remove(e1[0]);
+                                        e1.add(weekday01);
+                                      }
+                                      ClinicDay.day1 = weekday01;
+                                    });
+                                    makeExceptions2();
+                                    print(ClinicDay.day1);
+                                    print(weekday01);
+                                    print(e1);
+                                  },
+                                  value: weekday01,
+                                  dropdownColor: Colors.white,
+                                  elevation: 5,
+                                ),
                               ),
                               SizedBox(
                                 height: 15,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 15,
-                                ),
-                                child: Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child: TextFormField(
-                                    validator: (val) => val.isEmpty ? AppLocalizations.of(context).translate('address_validator') : null,
-                                    onChanged: (val) {
-                                      setState(() => address = val);
-                                    },
-                                    decoration: textInputdecoration.copyWith(
-                                      hintText: 'مثال: الحارثيه شارع الكندي',
-                                      hintStyle: TextStyle(fontSize: 12, color: Colors.deepOrange, fontFamily: 'noto_arabic'),
-                                      labelText: 'عنوان العياده',
-                                      labelStyle: TextStyle(color: Colors.grey[750], fontFamily: 'noto_arabic'),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 25,
-                              ),
-                              Center(
-                                child: Text(
-                                  AppLocalizations.of(context).translate(
-                                    'work_days',
-                                  ),
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              Divider(
-                                color: Colors.grey,
-                                thickness: 2,
-                                indent: 45,
-                                endIndent: 45,
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 15,
-                                ),
-                                child: WeekdaySelector(
-                                  onChanged: (int day) {
-                                    setState(() {
-                                      final index = day % 7;
-                                      if (ClinicDay.day1 != otherweekDaysList[index][2] && ClinicDay.day2 != otherweekDaysList[index][2]) {
-                                        worksDays[index] = !worksDays[index];
-
-                                        workDays01 = boolToStringDays(context, worksDays);
-                                        workDays01.removeWhere((value) => value == null);
-                                        currentVacationDays = workDays01.join(', ');
-                                        otherweekDaysList[index][0] = !otherweekDaysList[index][0];
-                                        makeExceptions1();
-                                        makeExceptions2();
-                                      } else {
-                                        _error = AppLocalizations.of(context).translate("dayselected");
-                                        _showSnackBar();
-                                      }
-                                    });
-                                    print(workDays01);
-                                  },
-                                  values: worksDays,
-                                  firstDayOfWeek: DateTime.sunday,
-                                  shortWeekdays: [
-                                    AppLocalizations.of(context).translate('sun'),
-                                    AppLocalizations.of(context).translate('mon'),
-                                    AppLocalizations.of(context).translate('tue'),
-                                    AppLocalizations.of(context).translate('wed'),
-                                    AppLocalizations.of(context).translate('thu'),
-                                    AppLocalizations.of(context).translate('fri'),
-                                    AppLocalizations.of(context).translate('sat'),
-                                  ],
-                                  weekdays: [
-                                    AppLocalizations.of(context).translate('sunday'),
-                                    AppLocalizations.of(context).translate('monday'),
-                                    AppLocalizations.of(context).translate('tuesday'),
-                                    AppLocalizations.of(context).translate('wednesday'),
-                                    AppLocalizations.of(context).translate('thursday'),
-                                    AppLocalizations.of(context).translate('friday'),
-                                    AppLocalizations.of(context).translate('saturday'),
-                                  ],
-                                  textDirection: textDirection,
-                                  fillColor: Colors.white,
-                                  selectedFillColor: Colors.deepOrange,
-                                  selectedElevation: 0,
-                                  elevation: 5,
-                                  selectedShape: CircleBorder(
-                                    side: BorderSide(color: Colors.black, width: 1),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 25,
                               ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -412,7 +549,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                     InkWell(
                                       child: RichText(
                                         text: TextSpan(
-                                            text: AppLocalizations.of(context).translate('from'),
+                                            text: LocaleKeys.view_time_day_from.tr(),
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black,
@@ -420,16 +557,16 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                             ),
                                             children: [
                                               TextSpan(
-                                                text: '${_mainFromTime.format(context)}',
+                                                text: '${_secondaryFromTime.format(context)}',
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 12,
-                                                  color: mainfrom ? Colors.deepOrange : Colors.black,
+                                                  color: secfrom ? Colors.deepOrange : Colors.black,
                                                 ),
                                               ),
                                             ]),
                                       ),
-                                      onTap: _pickMainFromTime,
+                                      onTap: _pickSecondaryFromTime,
                                     ),
                                     SizedBox(
                                       width: 10,
@@ -441,7 +578,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                     InkWell(
                                       child: RichText(
                                         text: TextSpan(
-                                            text: AppLocalizations.of(context).translate('to'),
+                                            text: LocaleKeys.view_time_day_to.tr(),
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black,
@@ -449,16 +586,16 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                             ),
                                             children: [
                                               TextSpan(
-                                                text: '${_mainToTime.format(context)}',
+                                                text: '${_secondaryToTime.format(context)}',
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 12,
-                                                  color: mainto ? Colors.deepOrange : Colors.black,
+                                                  color: secto ? Colors.deepOrange : Colors.black,
                                                 ),
                                               ),
                                             ]),
                                       ),
-                                      onTap: _pickMainToTime,
+                                      onTap: _pickSecondaryToTime,
                                     ),
                                   ],
                                 ),
@@ -470,406 +607,264 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                   activeColor: Colors.deepOrange,
                                   dense: true,
                                   title: Text(
-                                    AppLocalizations.of(context).translate('expcetion_days'),
+                                    LocaleKeys.view_doctor_expcetion_days.tr(),
                                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                                   ),
-                                  value: _daySwitch01,
+                                  value: _daySwitch02,
                                   onChanged: (bool s) {
                                     setState(() {
-                                      _daySwitch01 = s;
-                                      _visibile01 = !_visibile01;
+                                      _daySwitch02 = s;
+                                      _visibile02 = !_visibile02;
                                     });
                                   }),
                             ],
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 15,
-                      ),
-
-                      Visibility(
-                        visible: _visibile01,
-                        child: Container(
-                          decoration: boxDecoration,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
-                            child: Column(
-                              children: [
-                                Center(
-                                  child: Text(
-                                    AppLocalizations.of(context).translate('expcetion_days'),
-                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                                  ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Visibility(
+                      visible: _visibile02,
+                      child: Container(
+                        decoration: boxDecoration,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                          child: Column(
+                            children: [
+                              Center(
+                                child: Text(
+                                  LocaleKeys.view_doctor_expcetion_days.tr(),
+                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
-                                Divider(
-                                  color: Colors.grey,
-                                  thickness: 2,
-                                  indent: 40,
-                                  endIndent: 40,
+                              ),
+                              Divider(
+                                color: Colors.grey,
+                                thickness: 2,
+                                indent: 40,
+                                endIndent: 40,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 15,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 15,
+                                child: DropdownButton(
+                                  hint: Text(
+                                    LocaleKeys.view_doctor_select_days.tr(),
                                   ),
-                                  child: DropdownButton(
-                                    hint: Text(
-                                      AppLocalizations.of(context).translate('select_days'),
-                                    ),
-                                    isExpanded: true,
-                                    items: exceptions1,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        weekday01 = value;
-                                        if (e1.isEmpty) {
-                                          e1.add(weekday01);
-                                        } else {
-                                          e1.remove(e1[0]);
-                                          e1.add(weekday01);
-                                        }
-                                        ClinicDay.day1 = weekday01;
-                                      });
-                                      makeExceptions2();
-                                      print(ClinicDay.day1);
-                                      print(weekday01);
-                                      print(e1);
-                                    },
-                                    value: weekday01,
-                                    dropdownColor: Colors.white,
-                                    elevation: 5,
-                                  ),
+                                  isExpanded: true,
+                                  items: exceptions2,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      weekday02 = value;
+                                      if (e2.isEmpty) {
+                                        e2.add(weekday02);
+                                      } else {
+                                        e2.remove(e2[0]);
+                                        e2.add(weekday02);
+                                      }
+                                      ClinicDay.day2 = weekday02;
+                                    });
+                                    makeExceptions1();
+                                    print(e2);
+                                    print(weekday02);
+                                  },
+                                  value: weekday02,
+                                  dropdownColor: Colors.white,
+                                  elevation: 5,
                                 ),
-                                SizedBox(
-                                  height: 15,
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 15,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 15,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      InkWell(
-                                        child: RichText(
-                                          text: TextSpan(
-                                              text: AppLocalizations.of(context).translate('from'),
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black,
-                                                fontSize: 12,
-                                              ),
-                                              children: [
-                                                TextSpan(
-                                                  text: '${_secondaryFromTime.format(context)}',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 12,
-                                                    color: secfrom ? Colors.deepOrange : Colors.black,
-                                                  ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    InkWell(
+                                      child: RichText(
+                                        text: TextSpan(
+                                            text: LocaleKeys.view_time_day_from.tr(),
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                              fontSize: 12,
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text: '${_ternaryFromTime.format(context)}',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  color: thirdfrom ? Colors.deepOrange : Colors.black,
                                                 ),
-                                              ]),
-                                        ),
-                                        onTap: _pickSecondaryFromTime,
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Icon(Icons.arrow_forward),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      InkWell(
-                                        child: RichText(
-                                          text: TextSpan(
-                                              text: AppLocalizations.of(context).translate('to'),
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black,
-                                                fontSize: 12,
                                               ),
-                                              children: [
-                                                TextSpan(
-                                                  text: '${_secondaryToTime.format(context)}',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 12,
-                                                    color: secto ? Colors.deepOrange : Colors.black,
-                                                  ),
-                                                ),
-                                              ]),
-                                        ),
-                                        onTap: _pickSecondaryToTime,
+                                            ]),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                SwitchListTile(
-                                    activeColor: Colors.deepOrange,
-                                    dense: true,
-                                    title: Text(
-                                      AppLocalizations.of(context).translate('expcetion_days'),
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                                      onTap: _pickTernaryFromTime,
                                     ),
-                                    value: _daySwitch02,
-                                    onChanged: (bool s) {
-                                      setState(() {
-                                        _daySwitch02 = s;
-                                        _visibile02 = !_visibile02;
-                                      });
-                                    }),
-                              ],
-                            ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Icon(Icons.arrow_forward),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    InkWell(
+                                      child: RichText(
+                                        text: TextSpan(
+                                            text: LocaleKeys.view_time_day_to.tr(),
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                              fontSize: 12,
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text: '${_ternaryToTime.format(context)}',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  color: thirdto ? Colors.deepOrange : Colors.black,
+                                                ),
+                                              ),
+                                            ]),
+                                      ),
+                                      onTap: _pickTernaryToTime,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Visibility(
-                        visible: _visibile02,
-                        child: Container(
-                          decoration: boxDecoration,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
-                            child: Column(
-                              children: [
-                                Center(
-                                  child: Text(
-                                    AppLocalizations.of(context).translate('expcetion_days'),
-                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Divider(
-                                  color: Colors.grey,
-                                  thickness: 2,
-                                  indent: 40,
-                                  endIndent: 40,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 15,
-                                  ),
-                                  child: DropdownButton(
-                                    hint: Text(
-                                      AppLocalizations.of(context).translate('select_days'),
-                                    ),
-                                    isExpanded: true,
-                                    items: exceptions2,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        weekday02 = value;
-                                        if (e2.isEmpty) {
-                                          e2.add(weekday02);
-                                        } else {
-                                          e2.remove(e2[0]);
-                                          e2.add(weekday02);
-                                        }
-                                        ClinicDay.day2 = weekday02;
-                                      });
-                                      makeExceptions1();
-                                      print(e2);
-                                      print(weekday02);
-                                    },
-                                    value: weekday02,
-                                    dropdownColor: Colors.white,
-                                    elevation: 5,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 15,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      InkWell(
-                                        child: RichText(
-                                          text: TextSpan(
-                                              text: AppLocalizations.of(context).translate('from'),
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black,
-                                                fontSize: 12,
-                                              ),
-                                              children: [
-                                                TextSpan(
-                                                  text: '${_ternaryFromTime.format(context)}',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 12,
-                                                    color: thirdfrom ? Colors.deepOrange : Colors.black,
-                                                  ),
-                                                ),
-                                              ]),
-                                        ),
-                                        onTap: _pickTernaryFromTime,
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Icon(Icons.arrow_forward),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      InkWell(
-                                        child: RichText(
-                                          text: TextSpan(
-                                              text: AppLocalizations.of(context).translate('to'),
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black,
-                                                fontSize: 12,
-                                              ),
-                                              children: [
-                                                TextSpan(
-                                                  text: '${_ternaryToTime.format(context)}',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 12,
-                                                    color: thirdto ? Colors.deepOrange : Colors.black,
-                                                  ),
-                                                ),
-                                              ]),
-                                        ),
-                                        onTap: _pickTernaryToTime,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    Container(
+                      height: 50,
+                      width: 150,
+                      child: TextButton.icon(
+                        style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                          backgroundColor: Colors.deepOrange,
                         ),
-                      ),
-                      SizedBox(
-                        height: 25,
-                      ),
-                      Container(
-                        height: 50,
-                        width: 150,
-                        child: TextButton.icon(
-                          style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                            backgroundColor: Colors.deepOrange,
-                          ),
-                          icon: Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                          ),
-                          onPressed: () async {
-                            checkInternet();
-                            if (_isInternet) {
-                              if (_formkey.currentState.validate()) {
-                                setState(() {
-                                  if (e1.isNotEmpty && t1.isNotEmpty) {
-                                    if (workDays0.isEmpty) {
-                                      workDays0.add(e1[0]);
-                                      workDays0.add(t1[0]);
-                                    } else {
-                                      workDays0 = [];
-                                      workDays0.add(e1[0]);
-                                      workDays0.add(t1[0]);
-                                    }
-                                  }
-                                  if (e2.isNotEmpty && t2.isNotEmpty) {
-                                    if (workDays03.isEmpty) {
-                                      workDays03.add(e2[0]);
-                                      workDays03.add(t2[0]);
-                                    } else {
-                                      workDays03 = [];
-                                      workDays03.add(e2[0]);
-                                      workDays03.add(t2[0]);
-                                    }
-                                  }
-                                });
-                                if (address != '' &&
-                                    currentVacationDays != '' &&
-                                    mainFromTimeString != '' &&
-                                    mainToTimeString != '' &&
-                                    makeMePass &&
-                                    mainfrom &&
-                                    mainto &&
-                                    ((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty)) &&
-                                    ((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
-                                  latlng = await getCoordinatesFromAddress(provinces[province] + ' ' + address);
-                                  setState(() {
-                                    if (workDays01[workDays01.length - 1].length < 11) {
-                                      workDays01.add(mainWorkingHours);
-                                    } else {
-                                      workDays01.remove(workDays01[workDays01.length - 1]);
-                                      workDays01.add(mainWorkingHours);
-                                    }
-                                    makeMePass = false;
-                                  });
-                                  setState(() {
-                                    DataFromProfiletoUpdate.name = name;
-                                    DataFromProfiletoUpdate.speciality = speciality;
-                                    DataFromProfiletoUpdate.phoneNumber = phoneNumber;
-                                    DataFromProfiletoUpdate.province = province;
-                                    DataFromProfiletoUpdate.address = address;
-                                    DataFromProfiletoUpdate.workDays01 = List<String>.from(workDays01);
-                                    DataFromProfiletoUpdate.workDays02 = List<String>.from(workDays0);
-                                    DataFromProfiletoUpdate.workDays03 = List<String>.from(workDays03);
-                                  });
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => MainUpdateMap(
-                                        latlng: latlng,
-                                      ),
-                                    ),
-                                  );
-                                  mainfrom = false;
-                                  mainto = false;
-                                } else if (currentVacationDays == '') {
-                                  _error = AppLocalizations.of(context).translate('selectmaindays');
-                                  _showSnackBar();
-                                } else if (mainFromTimeString == '' || mainToTimeString == '' || !mainfrom || !mainto) {
-                                  _error = AppLocalizations.of(context).translate('Select time');
-                                  _showSnackBar();
-                                } else if (!((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty))) {
-                                  if (e1.isEmpty) {
-                                    _error = AppLocalizations.of(context).translate('choose 1st exceprion day');
-                                    _showSnackBar();
+                        icon: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                        ),
+                        onPressed: () async {
+                          checkInternet();
+                          if (_isInternet) {
+                            if (_formkey.currentState.validate()) {
+                              setState(() {
+                                if (e1.isNotEmpty && t1.isNotEmpty) {
+                                  if (workDays0.isEmpty) {
+                                    workDays0.add(e1[0]);
+                                    workDays0.add(t1[0]);
                                   } else {
-                                    _error = AppLocalizations.of(context).translate('choose 1st exception time');
-                                    _showSnackBar();
-                                  }
-                                } else if (!((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
-                                  if (e2.isEmpty) {
-                                    _error = AppLocalizations.of(context).translate('choose 2nd exception day');
-                                    _showSnackBar();
-                                  } else {
-                                    _error = AppLocalizations.of(context).translate('choose 2nd exception time');
-                                    _showSnackBar();
+                                    workDays0 = [];
+                                    workDays0.add(e1[0]);
+                                    workDays0.add(t1[0]);
                                   }
                                 }
+                                if (e2.isNotEmpty && t2.isNotEmpty) {
+                                  if (workDays03.isEmpty) {
+                                    workDays03.add(e2[0]);
+                                    workDays03.add(t2[0]);
+                                  } else {
+                                    workDays03 = [];
+                                    workDays03.add(e2[0]);
+                                    workDays03.add(t2[0]);
+                                  }
+                                }
+                              });
+                              if (address != '' &&
+                                  currentVacationDays != '' &&
+                                  mainFromTimeString != '' &&
+                                  mainToTimeString != '' &&
+                                  makeMePass &&
+                                  mainfrom &&
+                                  mainto &&
+                                  ((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty)) &&
+                                  ((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
+                                latlng = await getCoordinatesFromAddress(provinces[province] + ' ' + address);
+                                setState(() {
+                                  if (workDays01[workDays01.length - 1].length < 11) {
+                                    workDays01.add(mainWorkingHours);
+                                  } else {
+                                    workDays01.remove(workDays01[workDays01.length - 1]);
+                                    workDays01.add(mainWorkingHours);
+                                  }
+                                  makeMePass = false;
+                                });
+                                setState(() {
+                                  DataFromProfiletoUpdate.name = name;
+                                  DataFromProfiletoUpdate.speciality = speciality;
+                                  DataFromProfiletoUpdate.phoneNumber = phoneNumber;
+                                  DataFromProfiletoUpdate.province = province;
+                                  DataFromProfiletoUpdate.address = address;
+                                  DataFromProfiletoUpdate.workDays01 = List<String>.from(workDays01);
+                                  DataFromProfiletoUpdate.workDays02 = List<String>.from(workDays0);
+                                  DataFromProfiletoUpdate.workDays03 = List<String>.from(workDays03);
+                                });
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => MainUpdateMap(
+                                      latlng: latlng,
+                                    ),
+                                  ),
+                                );
+                                mainfrom = false;
+                                mainto = false;
+                              } else if (currentVacationDays == '') {
+                               _error = LocaleKeys.view_snack_error_selectmaindays.tr();
+                                        _showSnackBar();
+                                      } else if (mainFromTimeString == '' || mainToTimeString == '' || !mainfrom || !mainto) {
+                                        _error = LocaleKeys.view_snack_error_Select_time.tr();
+                                        _showSnackBar();
+                                      } else if (!((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty))) {
+                                        if (e1.isEmpty) {
+                                          _error = LocaleKeys.view_snack_error_choose_1st_exception_day.tr();
+                                          _showSnackBar();
+                                        } else {
+                                          _error = LocaleKeys.view_snack_error_choose_1st_exception_time.tr();
+                                          _showSnackBar();
+                                        }
+                                      } else if (!((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
+                                        if (e2.isEmpty) {
+                                          _error = LocaleKeys.view_snack_error_choose_2nd_exception_day.tr();
+                                          _showSnackBar();
+                                        } else {
+                                          _error = LocaleKeys.view_snack_error_choose_2nd_exception_time.tr();
+                                  _showSnackBar();
+                                }
                               }
-                            } else {
-                              _error = AppLocalizations.of(context).translate("snack_connectivity");
-                              _showSnackBar();
                             }
-                          },
-                          label: Text(
-                            AppLocalizations.of(context).translate('google_map'),
-                            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
+                          } else {
+                            _error = LocaleKeys.view_snack_error_snack_connectivity.tr();
+                            _showSnackBar();
+                          }
+                        },
+                        label: Text(
+                          LocaleKeys.view_buttons_google_map.tr(),
+                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
-          ));
-  
+          ),
+        ));
   }
 
   _pickMainFromTime() async {

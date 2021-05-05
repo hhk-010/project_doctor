@@ -2,11 +2,11 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/services/theme.dart';
-import 'package:project_doctor/services/app_localizations.dart';
+import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/views/authorization/loading.dart';
 import '../../services/auth.dart';
-
 
 class UpdatePassword extends StatefulWidget {
   @override
@@ -62,141 +62,139 @@ class _UpdatePasswordState extends State<UpdatePassword> {
 
   @override
   Widget build(BuildContext context) {
-
-      return Scaffold(
-        key: _scaffoldkey,
-        backgroundColor: Colors.grey[200],
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(50),
-          child: AppBar(
-            backgroundColor: Colors.deepOrange,
-            centerTitle: true,
-            title: FittedBox(
-              fit: BoxFit.fitWidth,
-              child: Text(
-                AppLocalizations.of(context).translate('update_password'),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
+    return Scaffold(
+      key: _scaffoldkey,
+      backgroundColor: Colors.grey[200],
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: AppBar(
+          backgroundColor: Colors.deepOrange,
+          centerTitle: true,
+          title: FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Text(
+              LocaleKeys.view_doctor_update_password.tr(),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
               ),
             ),
           ),
         ),
-        body: Center(
-          child: Container(
-            height: 100,
-            width: 100,
-            child: Form(
-              key: _formkey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ListView(
-                    shrinkWrap: true,
-                    children: [
-                      SizedBox(
-                        height: 100,
-                        child: Image(
-                          image: AssetImage(
-                            'assets/images/update_password.png',
-                          ),
+      ),
+      body: Center(
+        child: Container(
+          height: 100,
+          width: 100,
+          child: Form(
+            key: _formkey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ListView(
+                  shrinkWrap: true,
+                  children: [
+                    SizedBox(
+                      height: 100,
+                      child: Image(
+                        image: AssetImage(
+                          'assets/images/update_password.png',
                         ),
-                      ),
-                      SizedBox(
-                        height: 25,
-                      ),
-                      TextFormField(
-                        decoration: textInputdecoration.copyWith(
-                          hintText: AppLocalizations.of(context).translate('current_password'),
-                          labelText: AppLocalizations.of(context).translate('old_password'),
-                        ),
-                        onChanged: (val) {
-                          _oldPassword = val;
-                        },
-                        validator: (val) => val.length < 8 ? AppLocalizations.of(context).translate('valid_password') : null,
-                      ),
-                      SizedBox(
-                        height: 25,
-                      ),
-                      TextFormField(
-                        obscureText: !_passwordVisible,
-                        onChanged: (val) {
-                          setState(() => _newPassword = val);
-                        },
-                        decoration: textInputdecoration.copyWith(
-                          hintText: AppLocalizations.of(context).translate('new_password_hint'),
-                          labelText: AppLocalizations.of(context).translate('new_password'),
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              _passwordVisible ? Icons.visibility : Icons.visibility_off,
-                              color: Colors.deepOrange,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                _passwordVisible = !_passwordVisible;
-                              });
-                            },
-                          ),
-                        ),
-                        validator: (val) => val.length < 8 ? AppLocalizations.of(context).translate('password_validator') : null,
-                      ),
-                    ],
-                  ),
-                  Container(
-                    height: 50,
-                    width: !isloading ? 150 : 50,
-                    child: LoadingButtonIcon(
-                      isloading: isloading,
-                      loadercolor: Colors.white,
-                      backgroundcolor: Colors.deepOrange,
-                      icon: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
-                      ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                      onpressed: () async {
-                        checkInternet();
-                        if (_isInternet) {
-                          if (_formkey.currentState.validate()) {
-                            setState(() => isloading = true);
-                            AuthService().passwordisvalid(_oldPassword);
-                            passwordvalid = await AuthService().validatepass(_oldPassword);
-                            if (passwordvalid) {
-                              AuthService().updatepass(_newPassword);
-                              setState(() => isloading = false);
-                              int count = 0;
-                              Navigator.popUntil(context, (route) {
-                                return count++ == 2;
-                              });
-                            } else {
-                              setState(() {
-                                isloading = false;
-                                error = AppLocalizations.of(context).translate('invalid_password');
-                              });
-                              //--------snackbar problem
-                              _showSnackBar();
-                            }
-                          }
-                        } else {
-                          setState(() {
-                            error = AppLocalizations.of(context).translate('snack_connectivity');
-                          });
-                          _showSnackBar();
-                        }
-                      },
-                      label: Text(
-                        AppLocalizations.of(context).translate('update'),
-                        style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                     ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    TextFormField(
+                      decoration: textInputdecoration.copyWith(
+                        hintText: LocaleKeys.view_doctor_current_password.tr(),
+                        labelText: LocaleKeys.view_doctor_old_password.tr(),
+                      ),
+                      onChanged: (val) {
+                        _oldPassword = val;
+                      },
+                      validator: (val) => val.length < 8 ? LocaleKeys.view_doctor_valid_password.tr() : null,
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    TextFormField(
+                      obscureText: !_passwordVisible,
+                      onChanged: (val) {
+                        setState(() => _newPassword = val);
+                      },
+                      decoration: textInputdecoration.copyWith(
+                        hintText: LocaleKeys.view_doctor_new_password_hint.tr(),
+                        labelText: LocaleKeys.view_doctor_new_password.tr(),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                            color: Colors.deepOrange,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _passwordVisible = !_passwordVisible;
+                            });
+                          },
+                        ),
+                      ),
+                      validator: (val) => val.length < 8 ? LocaleKeys.view_doctor_password_validator.tr() : null,
+                    ),
+                  ],
+                ),
+                Container(
+                  height: 50,
+                  width: !isloading ? 150 : 50,
+                  child: LoadingButtonIcon(
+                    isloading: isloading,
+                    loadercolor: Colors.white,
+                    backgroundcolor: Colors.deepOrange,
+                    icon: Icon(
+                      Icons.arrow_forward,
+                      color: Colors.white,
+                    ),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                    onpressed: () async {
+                      checkInternet();
+                      if (_isInternet) {
+                        if (_formkey.currentState.validate()) {
+                          setState(() => isloading = true);
+                          AuthService().passwordisvalid(_oldPassword);
+                          passwordvalid = await AuthService().validatepass(_oldPassword);
+                          if (passwordvalid) {
+                            AuthService().updatepass(_newPassword);
+                            setState(() => isloading = false);
+                            int count = 0;
+                            Navigator.popUntil(context, (route) {
+                              return count++ == 2;
+                            });
+                          } else {
+                            setState(() {
+                              isloading = false;
+                              error = LocaleKeys.view_doctor_invalid_password.tr();
+                            });
+                            //--------snackbar problem
+                            _showSnackBar();
+                          }
+                        }
+                      } else {
+                        setState(() {
+                          error = LocaleKeys.view_snack_error_snack_connectivity.tr();
+                        });
+                        _showSnackBar();
+                      }
+                    },
+                    label: Text(
+                      LocaleKeys.view_buttons_update.tr(),
+                      style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
-      );
-  
+      ),
+    );
   }
 }

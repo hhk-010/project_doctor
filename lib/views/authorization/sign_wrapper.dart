@@ -6,7 +6,6 @@ import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/views/authorization/email_verfication.dart';
 import 'package:project_doctor/views/authorization/mcqs.dart';
 import 'package:project_doctor/views/authorization/sign_in.dart';
-import 'package:project_doctor/views/doctor_pages/doctor04_profile.dart';
 import 'package:provider/provider.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/auth.dart';
@@ -439,7 +438,7 @@ class _WrapperState extends State<Wrapper> {
       if (!FirebaseAuth.instance.currentUser.emailVerified || Wrapper.docId == null) {
         return EmailVerification();
       } else {
-        return DoctorProfile();
+        // return DoctorProfile();
       }
     }
   }

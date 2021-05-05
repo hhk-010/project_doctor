@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/views/home/home_view.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:project_doctor/views/home/main_view.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
 class MyApp extends StatelessWidget {
@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
       statusBarColorBuilder: (theme) => theme.primaryColor,
       defaultThemeMode: ThemeMode.system,
       lightTheme: ThemeData(
+        canvasColor: Colors.transparent,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         brightness: Brightness.light,
         primaryColor: LightPalette.homeButton1,
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       darkTheme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        canvasColor: Colors.transparent,
         brightness: Brightness.dark,
         primaryColor: DarkPalette.background1,
         fontFamily: getLocale(context) ? 'Montserrat' : 'noto_arabic',
@@ -40,7 +42,7 @@ class MyApp extends StatelessWidget {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          home: HomeView(),
+          home: MainView(),
           routes: {
             // '/loading': (context) => Loading(),
             // '/intermediate': (context) => Intermediate(),

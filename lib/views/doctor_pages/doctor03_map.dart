@@ -6,13 +6,14 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:project_doctor/services/app_localizations.dart';
+import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/services/read_write_path.dart';
 import 'package:project_doctor/views/authorization/loading.dart';
 import 'package:provider/provider.dart';
 import '../../services/auth.dart';
-
 
 class DataFromMaptoVerify {
   static String email = '';
@@ -76,8 +77,7 @@ class _FinalMapState extends State<FinalMap> {
   analyzeAddress(double lat, double lng) {
     if (addressLatlng != null || addressLatlng != '') {
       addressLat = addressLatlng.substring(1, addressLatlng.indexOf(','));
-      addressLng = addressLatlng.substring(
-          addressLatlng.indexOf(',') + 1, addressLatlng.length - 1);
+      addressLng = addressLatlng.substring(addressLatlng.indexOf(',') + 1, addressLatlng.length - 1);
       addressesLat = double.parse(addressLat);
       addressesLng = double.parse(addressLng);
       sum = (pow(addressesLat - lat, 2)) + pow(addressesLng - lng, 2);
@@ -127,13 +127,11 @@ class _FinalMapState extends State<FinalMap> {
     final _snackBar = new SnackBar(
       content: Text(
         error,
-        style: TextStyle(
-            fontSize: 15,
-            fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
+        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
       backgroundColor: Colors.deepOrange,
     );
-   ScaffoldMessenger.of(context).showSnackBar(_snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(_snackBar);
   }
 
   //==========================checking internet connection
@@ -296,136 +294,117 @@ class _FinalMapState extends State<FinalMap> {
         if (x.data()['name'] != null) {
           getNameScore(x.data()['name']);
         }
-        if (nameScoreResult > 40 &&
-            DataFromMaptoVerify.speciality == x.data()['speciality'] &&
-            DataFromMaptoVerify.province == x.data()['city']) {
+        if (nameScoreResult > 40 && DataFromMaptoVerify.speciality == x.data()['speciality'] && DataFromMaptoVerify.province == x.data()['city']) {
           lt = x.data()['lat'];
           lg = x.data()['lng'];
         }
       }
     }
-      return Scaffold(
-        key: _scaffoldkey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(50),
-          child: AppBar(
-            backgroundColor: Colors.deepOrange,
-            title: FittedBox(
-              fit: BoxFit.fitWidth,
-              child: Text(
-                AppLocalizations.of(context).translate('add_location'),
-                style: TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.bold),
-              ),
+    return Scaffold(
+      key: _scaffoldkey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: AppBar(
+          backgroundColor: Colors.deepOrange,
+          title: FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Text(
+              LocaleKeys.view_doctor_add_location.tr(),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            centerTitle: true,
           ),
+          centerTitle: true,
         ),
-        body: Stack(
-          children: [
-            GoogleMap(
-              initialCameraPosition: CameraPosition(
-                  target: LatLng(33.312805, 44.361488), zoom: 10),
-              markers: Set.from(mymarker),
-              onTap: handletap,
-              zoomControlsEnabled: false,
-            ),
-            Container(
-              alignment: Alignment.bottomCenter,
-              padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
-              child: FloatingLoadingButton(
-                loadercolor: Colors.white,
-                isloading: isloading,
-                backgroundcolor: Colors.deepOrange,
-                child: FittedBox(
-                  fit: BoxFit.fitWidth,
-                  child: Text(
-                    AppLocalizations.of(context).translate('ok'),
-                    style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+      ),
+      body: Stack(
+        children: [
+          GoogleMap(
+            initialCameraPosition: CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 10),
+            markers: Set.from(mymarker),
+            onTap: handletap,
+            zoomControlsEnabled: false,
+          ),
+          Container(
+            alignment: Alignment.bottomCenter,
+            padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
+            child: FloatingLoadingButton(
+              loadercolor: Colors.white,
+              isloading: isloading,
+              backgroundcolor: Colors.deepOrange,
+              child: FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                  LocaleKeys.view_buttons_ok.tr(),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-                onPressed: () async {
-                  checkInternet();
-                  if (_isInternet) {
-                    if (latlng == null) {
-                      error =
-                          AppLocalizations.of(context).translate('snack_map');
-                      _showSnackBar();
-                    } else {
-                      await geolocate(latlng: latlng);
-                      if (lattt != null && lnggg != null) {
-                        double resultedAddress =
-                            await analyzeAddress(lattt, lnggg);
-                        print(resultedAddress);
-                        if (resultedAddress < 6) {
-                          setState(() => isloading = true);
-                          setState(() {
-                            finalResult =
-                                pow((lattt - lt), 2) + pow((lnggg - lg), 2);
-                            finalDistance = sqrt(finalResult);
-                            kmDistance = finalDistance * 100;
-                          });
-                          if (kmDistance < 3.0) {
-                            _writeName(DataFromMaptoVerify.name);
-                            _writeSpeciality(DataFromMaptoVerify.speciality);
-                            _writeNumber(DataFromMaptoVerify.phoneNumber);
-                            _writeProvince(DataFromMaptoVerify.province);
-                            _writeAddress(DataFromMaptoVerify.address);
-                            _writelat(lattt.toString());
-                            _writelng(lnggg.toString());
-                            _writeWorkDays01(
-                                json.encode(DataFromMaptoVerify.workDays01));
-                            _writeWorkDays02(
-                                json.encode(DataFromMaptoVerify.workDays02));
-                            _writeWorkDays03(
-                                json.encode(DataFromMaptoVerify.workDays03));
-                            final authResult =
-                                await _auth.registerWithEmailAndPassword(
-                                    DataFromMaptoVerify.email,
-                                    DataFromMaptoVerify.password);
-                            if (authResult != null) {
-                              setState(() => isloading = false);
-                              int count = 0;
-                              Navigator.popUntil(context, (route) {
-                                return count++ == 4;
-                              });
-                            } else {
-                              setState(() {
-                                isloading = false;
-                                error = AppLocalizations.of(context)
-                                    .translate('snack_register');
-                              });
-                              _showSnackBar();
-                            }
+              ),
+              onPressed: () async {
+                checkInternet();
+                if (_isInternet) {
+                  if (latlng == null) {
+                    error = LocaleKeys.view_snack_error_snack_map.tr();
+                    _showSnackBar();
+                  } else {
+                    await geolocate(latlng: latlng);
+                    if (lattt != null && lnggg != null) {
+                      double resultedAddress = await analyzeAddress(lattt, lnggg);
+                      print(resultedAddress);
+                      if (resultedAddress < 6) {
+                        setState(() => isloading = true);
+                        setState(() {
+                          finalResult = pow((lattt - lt), 2) + pow((lnggg - lg), 2);
+                          finalDistance = sqrt(finalResult);
+                          kmDistance = finalDistance * 100;
+                        });
+                        if (kmDistance < 3.0) {
+                          _writeName(DataFromMaptoVerify.name);
+                          _writeSpeciality(DataFromMaptoVerify.speciality);
+                          _writeNumber(DataFromMaptoVerify.phoneNumber);
+                          _writeProvince(DataFromMaptoVerify.province);
+                          _writeAddress(DataFromMaptoVerify.address);
+                          _writelat(lattt.toString());
+                          _writelng(lnggg.toString());
+                          _writeWorkDays01(json.encode(DataFromMaptoVerify.workDays01));
+                          _writeWorkDays02(json.encode(DataFromMaptoVerify.workDays02));
+                          _writeWorkDays03(json.encode(DataFromMaptoVerify.workDays03));
+                          final authResult = await _auth.registerWithEmailAndPassword(DataFromMaptoVerify.email, DataFromMaptoVerify.password);
+                          if (authResult != null) {
+                            setState(() => isloading = false);
+                            int count = 0;
+                            Navigator.popUntil(context, (route) {
+                              return count++ == 4;
+                            });
                           } else {
                             setState(() {
                               isloading = false;
-                              error = AppLocalizations.of(context)
-                                  .translate('snack_register');
+                              error = LocaleKeys.view_snack_error_snack_register.tr();
                             });
                             _showSnackBar();
                           }
                         } else {
-                          error = AppLocalizations.of(context)
-                              .translate("invalid_address");
+                          setState(() {
+                            isloading = false;
+                            error = LocaleKeys.view_snack_error_snack_register.tr();
+                          });
                           _showSnackBar();
                         }
+                      } else {
+                        error = LocaleKeys.view_snack_error_invalid_address.tr();
+                        _showSnackBar();
                       }
                     }
-                  } else {
-                    setState(() {
-                      error = AppLocalizations.of(context)
-                          .translate('snack_connectivity');
-                    });
                   }
-                  _showSnackBar();
-                },
-              ),
+                } else {
+                  setState(() {
+                    error = LocaleKeys.view_snack_error_snack_connectivity.tr();
+                  });
+                }
+                _showSnackBar();
+              },
             ),
-          ],
-        ),
-      );
-
+          ),
+        ],
+      ),
+    );
   }
 }

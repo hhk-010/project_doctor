@@ -35,6 +35,8 @@ dependencies:
   easy_localization: ^3.0.0
   stacked_themes: ^0.3.2
   another_flushbar: ^1.10.20
+  curved_navigation_bar: ^0.3.7
+
 
 dev_dependencies:
   flutter_test:
@@ -74,3 +76,6 @@ flutter:
     - family: OpenSans
       fonts:
         - asset: assets/fonts/OpenSans-Regular.ttf
+    - family: CustomIcons
+      fonts:
+      - asset: assets/fonts/CustomIcons.ttf
