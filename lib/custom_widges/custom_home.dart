@@ -42,73 +42,48 @@ class HomeAlignWidgets extends StatelessWidget {
   }
 }
 
-class SupportButtons extends StatelessWidget {
-  final String title;
-  final String dialogContext;
 
-  const SupportButtons({
-    Key key,
-    this.title,
-    this.dialogContext,
-  }) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      width: 200,
-      child: TextButton(
-        style: TextButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          primary: Colors.white,
-          backgroundColor: Colors.deepOrange,
+
+Future getDialog(context, String title, String dialogContext) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+        title: Text(
+          title,
+          style: TextStyle(fontSize: 20),
+          textAlign: TextAlign.center,
         ),
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                title: Text(
-                  title,
-                  style: TextStyle(fontSize: 20),
-                  textAlign: TextAlign.center,
+        content: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                dialogContext,
+                style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                  fontSize: 14,
                 ),
-                content: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        dialogContext,
-                        style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 14,
-                        ),
-                        textAlign: TextAlign.justify,
-                      ),
-                    ],
-                  ),
-                ),
-                actions: <Widget>[
-                  TextButton(
-                    child: Text(
-                      LocaleKeys.view_buttons_ok.tr(),
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  )
-                ],
-              );
+                textAlign: TextAlign.justify,
+              ),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text(
+              LocaleKeys.view_buttons_ok.tr(),
+              style: CStyle.getTitle(context).copyWith(color: LightPalette.gradientTop),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
             },
-          );
-        },
-        child: Text(title, style: CStyle.getTitle(context)),
-      ),
-    );
-  }
+          )
+        ],
+      );
+    },
+  );
 }
 
 class CustomFooter extends StatelessWidget {

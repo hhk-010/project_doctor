@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/custom_widges/custom_base.dart';
+import 'package:project_doctor/custom_widges/custom_button.dart';
+import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/custom_widges/custom_home.dart';
@@ -62,38 +63,40 @@ class SupportView extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    SupportButtons(
+                    BaseButton(
                       title: LocaleKeys.view_support_about_us.tr(),
-                      dialogContext: LocaleKeys.view_support_introduction.tr(),
+                      onPressed: () => getDialog(
+                        context,
+                        LocaleKeys.view_support_about_us.tr(),
+                        LocaleKeys.view_support_introduction.tr(),
+                      ),
                     ),
-                    SupportButtons(
+                    BaseButton(
                       title: LocaleKeys.view_support_privacy_policy.tr(),
-                      dialogContext: LocaleKeys.view_support_privacyPolicy.tr(),
+                      onPressed: () => getDialog(
+                        context,
+                        LocaleKeys.view_support_privacy_policy.tr(),
+                        LocaleKeys.view_support_privacyPolicy.tr(),
+                      ),
                     ),
-                    SupportButtons(
+                    BaseButton(
                       title: LocaleKeys.view_support_terms_conditions.tr(),
-                      dialogContext: LocaleKeys.view_support_terms_conditions_details.tr(),
+                      onPressed: () => getDialog(
+                        context,
+                        LocaleKeys.view_support_terms_conditions.tr(),
+                        LocaleKeys.view_support_terms_conditions_details.tr(),
+                      ),
                     ),
-                    Container(
-                      height: 50,
-                      width: 200,
-                      child: TextButton(
-                          style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            primary: Colors.white,
-                            backgroundColor: Colors.deepOrange,
-                          ),
-                          onPressed: () async {
-                            const url = 'https://sites.google.com/view/cura-mobile/home';
-                            if (await canLaunch(url)) {
-                              await launch(url);
-                            } else {
-                              throw 'Could Not Launch $url';
-                            }
-                          },
-                          child: Text(LocaleKeys.view_support_website.tr(), style: CStyle.getTitle(context))),
+                    BaseButton(
+                      title: LocaleKeys.view_support_website.tr(),
+                      onPressed: () async {
+                        const url = 'https://sites.google.com/view/cura-mobile/home';
+                        if (await canLaunch(url)) {
+                          await launch(url);
+                        } else {
+                          throw 'Could Not Launch $url';
+                        }
+                      },
                     ),
                   ],
                 ),

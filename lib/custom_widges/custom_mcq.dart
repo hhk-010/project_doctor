@@ -17,21 +17,18 @@ class CustomQuestion extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 350,
-      height: 200,
       decoration: CStyle.box,
-      padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
+      padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(QuestionsShuffle.questions[questionIndex], textAlign: TextAlign.justify, style: CStyle.getSubtitle(context)),
           DropdownButton(
             isExpanded: true,
-            hint: Text(
-              answer == null ? 'Choose the Right answer' : answer,
-              style: TextStyle(
-                color: answer == null ? Colors.grey[700] : Colors.black,
-              ),
-            ),
+            hint: Text(answer == null ? 'Choose the Right answer' : answer,
+                style: CStyle.getTitle(context).copyWith(
+                  color: answer == null ? Colors.grey[700] : Colors.black,
+                )),
             items: [
               getMenuItem('0', questionIndex, 0),
               getMenuItem('1', questionIndex, 1),
@@ -48,13 +45,13 @@ class CustomQuestion extends StatelessWidget {
   }
 }
 
-DropdownMenuItem<String> getMenuItem(String value, int question, int index) {
+DropdownMenuItem<String> getMenuItem(String value, int questionIndex, int index) {
   return DropdownMenuItem<String>(
     value: value,
     child: Align(
       alignment: Alignment.centerLeft,
       child: Text(
-        QuestionsShuffle.choices[QuestionsShuffle.questions[question]][index],
+        QuestionsShuffle.choices[QuestionsShuffle.questions[questionIndex]][index],
         textDirection: TextDirection.ltr,
       ),
     ),
