@@ -6,12 +6,12 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/services/read_write_path.dart';
-import 'package:project_doctor/views/auth/loading.dart';
+import 'package:project_doctor/views/auth/loading_delete.dart';
 import 'package:provider/provider.dart';
 import '../../services/auth.dart';
 

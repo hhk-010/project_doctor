@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/app.dart';
+import 'package:project_doctor/generated/codegen_loader.g.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
 Future<void> main() async {
@@ -17,7 +18,8 @@ Future<void> main() async {
       supportedLocales: [Locale('en'), Locale('ar')],
       path: 'assets/translations',
       fallbackLocale: Locale('en'),
-      startLocale: Locale('ar'),
+      assetLoader: CodegenLoader(),
+      startLocale: Locale('en'),
       saveLocale: false,
       useOnlyLangCode: true,
       child: MyApp(),

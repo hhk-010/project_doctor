@@ -4,7 +4,7 @@
 // import 'package:flutter/services.dart';
 // import 'package:project_doctor/constants/color_style_size.dart';
 // import 'package:project_doctor/matching_algorithm/final_score.dart';
-// import 'package:project_doctor/constants/locale_keys.g.dart';
+// import 'package:project_doctor/generated/locale_keys.g.dart';
 // import 'package:project_doctor/services/theme.dart';
 // import 'package:project_doctor/services/data_model.dart';
 // import 'package:project_doctor/views/patient_pages/patient02_risk_factors.dart';

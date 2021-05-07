@@ -8,7 +8,7 @@
 // import 'package:project_doctor/matching_algorithm/disease6.dart';
 // import 'package:project_doctor/matching_algorithm/disease7.dart';
 // import 'package:easy_localization/easy_localization.dart';
-// import 'package:project_doctor/constants/locale_keys.g.dart';
+// import 'package:project_doctor/generated/locale_keys.g.dart';
 
 // class PatientRiskFactors extends StatefulWidget {
 //   final String chiefcomplaint;

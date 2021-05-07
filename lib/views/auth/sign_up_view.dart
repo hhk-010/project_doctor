@@ -2,13 +2,13 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/custom_widges/custom_button.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/data_model/auth_data.dart';
-import 'package:project_doctor/views/profile/doctor01_form.dart';
+import 'package:project_doctor/views/profile/form_view.dart';
 import 'package:project_doctor/custom_widges/custom_home.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
@@ -34,7 +34,7 @@ class _SignUpViewState extends State<SignUpView> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: true,
-      title: LocaleKeys.view_doctor_sign_in.tr(),
+      title: LocaleKeys.view_doctor_register.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
@@ -109,12 +109,10 @@ class _SignUpViewState extends State<SignUpView> {
                       if (ModalRoute.of(context) != null) {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => DoctorForm(
-                              email: RegisterData.email,
-                              password: RegisterData.password,
-                            ),
+                            builder: (context) => ProfileDataView(),
                           ),
                         );
+                        _btnController.reset();
                       }
                     } else {
                       getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr())..show(context);

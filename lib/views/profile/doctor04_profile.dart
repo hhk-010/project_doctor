@@ -4,7 +4,7 @@
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:project_doctor/services/theme.dart';
-// import 'package:project_doctor/constants/locale_keys.g.dart';
+// import 'package:project_doctor/generated/locale_keys.g.dart';
 // import 'package:easy_localization/easy_localization.dart';
 // import 'package:project_doctor/services/auth.dart';
 // import 'package:project_doctor/services/database.dart';
@@ -19,9 +19,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
-    );
+    return Container();
   }
 }
 

@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/data_model.dart';
-import 'package:project_doctor/views/auth/loading.dart';
+import 'package:project_doctor/views/auth/loading_delete.dart';
 
 class PatientLocation extends StatefulWidget {
   @override
@@ -85,7 +85,7 @@ class _PatientLocationState extends State<PatientLocation> {
   @override
   Widget build(BuildContext context) {
     final province = {
-  "1": [
+      "1": [
         "Erbil",
         LocaleKeys.iraq_provinces_Erbil.tr(),
       ],
@@ -393,7 +393,9 @@ class _PatientLocationState extends State<PatientLocation> {
                               _showSnackBar();
                             }
                           } else {
-                            setState(() => _error =  LocaleKeys.view_doctor_province_validator.tr(),);
+                            setState(
+                              () => _error = LocaleKeys.view_doctor_province_validator.tr(),
+                            );
                             _showSnackBar();
                           }
                           setState(() => isLoading01 = false);
@@ -401,7 +403,7 @@ class _PatientLocationState extends State<PatientLocation> {
                         child: FittedBox(
                           fit: BoxFit.fitWidth,
                           child: Text(
-                             LocaleKeys.view_patient_invalid_device_location.tr(),
+                            LocaleKeys.view_patient_invalid_device_location.tr(),
                             style: TextStyle(color: Colors.white, fontSize: getDeviceType(context, 15, 18, 21, 24), fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -410,7 +412,7 @@ class _PatientLocationState extends State<PatientLocation> {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Text(
-                         LocaleKeys.view_buttons_Or.tr(),
+                        LocaleKeys.view_buttons_Or.tr(),
                         style: TextStyle(fontSize: getDeviceType(context, 15, 18, 21, 24), fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -438,7 +440,9 @@ class _PatientLocationState extends State<PatientLocation> {
                             print(SearchResultData.geoLatlng);
                             Navigator.pushNamed(context, '/patient searchmap');
                           } else {
-                            setState(() => _error =  LocaleKeys.view_doctor_province_validator.tr(),);
+                            setState(
+                              () => _error = LocaleKeys.view_doctor_province_validator.tr(),
+                            );
                             _showSnackBar();
                           }
                           setState(() => isLoading02 = false);

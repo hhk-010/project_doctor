@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:project_doctor/services/data_model.dart';
-import 'package:project_doctor/views/auth/loading.dart';
+import 'package:project_doctor/views/auth/loading_delete.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class PatientSearchmap extends StatefulWidget {
@@ -126,7 +126,7 @@ class _PatientSearchmapState extends State<PatientSearchmap> {
                 await checkInternet();
                 if (_isInternet) {
                   if (patientlatlng == null) {
-                    _error =  LocaleKeys.view_snack_error_snack_map_patient.tr();
+                    _error = LocaleKeys.view_snack_error_snack_map_patient.tr();
                     _showSnackBar();
                   } else {
                     geolocate(patientlatlng);
@@ -138,7 +138,7 @@ class _PatientSearchmapState extends State<PatientSearchmap> {
                           .getDistance(SearchResultData.patientLat, SearchResultData.patientLng, SearchResultData.lat, SearchResultData.lng);
                       Navigator.pushNamed(context, '/search resultview');
                     } else {
-                      _error =  LocaleKeys.view_patient_invalid_location.tr();
+                      _error = LocaleKeys.view_patient_invalid_location.tr();
                       _showSnackBar();
                     }
                   }

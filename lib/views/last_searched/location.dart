@@ -3,7 +3,8 @@ import 'dart:collection';
 import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:project_doctor/generated/locale_keys.g.dart';
+
 class LastSearchedLocation extends StatefulWidget {
   final double lat;
   final double lng;

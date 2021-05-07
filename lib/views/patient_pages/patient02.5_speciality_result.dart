@@ -2,7 +2,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:project_doctor/services/theme.dart';
 // import 'package:project_doctor/matching_algorithm/final_score.dart';
-// import 'package:project_doctor/constants/locale_keys.g.dart';
+// import 'package:project_doctor/generated/locale_keys.g.dart';
 // import 'package:easy_localization/easy_localization.dart';
 
 

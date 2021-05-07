@@ -2,13 +2,13 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:ui';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/services/read_write_path.dart';
-import 'package:project_doctor/views/auth/loading.dart';
+import 'package:project_doctor/views/auth/loading_delete.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // class for getting the data from map to firebase through verfication.

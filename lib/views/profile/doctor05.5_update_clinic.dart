@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/views/profile/doctor06_update_map.dart';
 import 'package:weekday_selector/weekday_selector.dart';

@@ -9,7 +9,7 @@ import 'package:project_doctor/custom_widges/custom_home.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/data_model/auth_data.dart';
 import 'package:project_doctor/services/connectivity.dart';
-import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 

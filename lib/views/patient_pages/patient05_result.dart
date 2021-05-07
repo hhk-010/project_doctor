@@ -7,7 +7,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:project_doctor/services/theme.dart';
 // import 'package:project_doctor/matching_algorithm/final_score.dart';
-// import 'package:project_doctor/constants/locale_keys.g.dart';
+// import 'package:project_doctor/generated/locale_keys.g.dart';
 // import 'package:project_doctor/services/data_model.dart';
 // import 'package:project_doctor/services/database.dart';
 // import 'package:project_doctor/services/read_write_path.dart';

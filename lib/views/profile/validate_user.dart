@@ -2,10 +2,10 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/auth.dart';
-import 'package:project_doctor/views/auth/loading.dart';
+import 'package:project_doctor/views/auth/loading_delete.dart';
 import 'package:project_doctor/views/profile/delete_doctor.dart';
 import '../../services/auth.dart';
 
