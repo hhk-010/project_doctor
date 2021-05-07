@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/constants/custom_icons.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
+import 'package:project_doctor/views/auth/sign_up_view.dart';
 import 'package:project_doctor/views/auth/sign_wrapper.dart';
 import 'package:project_doctor/views/home/home_view.dart';
 import 'package:project_doctor/views/home/support_view.dart';
@@ -49,11 +50,11 @@ class _MainViewState extends State<MainView> {
                 showSelectedLabels: false,
                 showUnselectedLabels: false,
                 onTap: (index) {
-                  if (index == 0) getFlushbar(context, "Hey HHK", "This is an Awesome SnackBar")..show(context);
+                  if (index == 0) getFlushbar(context, "This is an Awesome SnackBar")..show(context);
                   // if (index == 0) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SupportView()));
                   if (index == 1) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SupportView()));
                   if (index == 2) Navigator.of(context).push(MaterialPageRoute(builder: (context) => Intermediate()));
-                  if (index == 3) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SupportView()));
+                  if (index == 3) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignUpView()));
                   if (index == 4) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SupportView()));
                 },
                 items: [

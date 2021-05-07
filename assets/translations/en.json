@@ -383,7 +383,7 @@
     "work_validator": "Please enter valid working hours",
     "update_location": "Update Your Location",
     "passWord_reset": "Password Reset",
-    "password_reset_email": "Send Email To Reset Password",
+    "password_reset_email": "Send Email",
     "check_reset_email": "Check your Email and click on the link to Reset your Password",
     "open_time": "Doctor is available",
     "expcetion_days": "Days with other timing",
@@ -457,8 +457,8 @@
   "view_home": {
     "title": "Welcome to Cura",
     "search_name": "- You can also search for a doctor by name or speciality according to your geographical area",
-    "search_complain" : "- If you have complains, you can search for a doctor appropriate for your condition",
-    "register_doctor" : "- If you are a doctor, you can create a profile where people can search for your services"
+    "search_complain": "- If you have complains, you can search for a doctor appropriate for your condition",
+    "register_doctor": "- If you are a doctor, you can create a profile where people can search for your services"
   },
   "view_favorite_list": {
     "preferred": "Favorite List",
@@ -578,7 +578,9 @@
     "choose_2nd_exception_time": "Please , choose the time of second exception day ",
     "choose_2nd_exception_day": "Please , choose the second exception day",
     "Select_time": "Please , select working hours",
-    "choose_1st_exception_day": "Please , choose the first exception day"
+    "choose_1st_exception_day": "Please , choose the first exception day",
+    "error_title": "Hey !",
+    "sign_info": "Fill in the required fields"
   },
   "view_new_search": {
     "governorate": "Province",

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class BaseButton extends StatelessWidget {
   final String title;
@@ -31,41 +32,26 @@ class BaseButton extends StatelessWidget {
   }
 }
 
-class BaseIconButton extends StatelessWidget {
-  final Function onPressed;
+class CustomLoadingButton extends StatelessWidget {
   final String title;
-  final IconData icon;
-  const BaseIconButton({
-    Key key,
-    this.onPressed,
-    this.title,
-    this.icon,
-  }) : super(key: key);
+  final Function onPressed;
+  final RoundedLoadingButtonController controller;
+
+  const CustomLoadingButton({Key key, this.title, this.onPressed, this.controller}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-        height: getDeviceType(context, 30, 50, 50, 60),
-        width: getDeviceType(context, 100, 200, 200, 250),
-        child: TextButton.icon(
-          style: TextButton.styleFrom(
-            primary: Colors.white,
-            backgroundColor: LightPalette.button,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-          ),
-          icon: Icon(
-            icon,
-            color: Colors.white,
-          ),
-          onPressed: onPressed,
-          label: Text(
-            title,
-            style: CStyle.getTitle(context),
-          ),
-        ),
+    return RoundedLoadingButton(
+      elevation: 0,
+      height: 50,
+      width: 200,
+      successColor: Colors.green,
+      color: LightPalette.button,
+      controller: controller,
+      onPressed: onPressed,
+      child: Text(
+        title,
+        style: CStyle.getTitle(context),
       ),
     );
   }

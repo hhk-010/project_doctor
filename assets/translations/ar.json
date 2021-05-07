@@ -383,7 +383,7 @@
     "work_validator": "حدد اوقات عمل العيادة لطفا",
     "update_location": "تحديث موقع عيادتك",
     "passWord_reset": "اعادة تعيين كلمة المرور",
-    "password_reset_email": "ارسال بريد الكتروني لاعادة التعيين",
+    "password_reset_email": "ارسال بريد الكتروني",
     "check_reset_email": "تحقق من بريدك الالكتروني ثم اضغط على الرابط المرسل لاعادة تعيين كلمة المرور",
     "open_time": "وقت تواجد الطبيب ",
     "expcetion_days": "حدد ايام بأوقات اخرى",
@@ -578,7 +578,9 @@
     "choose_2nd_exception_time": "حدد وفت العمل في اليوم المستثنى الثاني",
     "choose_2nd_exception_day": "حدد اليوم المستثنى الثاني",
     "Select_time": "حدد اوقات العمل الرئيسية لطفا",
-    "choose_1st_exception_day": "حدد اليوم المستثنى الاول"
+    "choose_1st_exception_day": "حدد اليوم المستثنى الاول",
+    "error_title": "خطأ !",
+    "sign_info": "املأ الحقول المطلوبة"
   },
   "view_new_search": {
     "governorate": "المحافظة",

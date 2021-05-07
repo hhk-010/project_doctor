@@ -45,7 +45,7 @@ class CStyle {
 
   static TextStyle getFooter(context) {
     return TextStyle(
-        fontSize: getDeviceType(context, 10, 12, 16, 18), fontWeight: FontWeight.bold, fontFamily: getLocale(context) ? 'OpenSans' : 'noto_arabic');
+        fontSize: getDeviceType(context, 10, 12, 16, 18), fontWeight: FontWeight.bold, fontFamily: getLocale(context) ? 'OpenSans' : 'noto_arabic',);
   }
 
   static BoxDecoration box = BoxDecoration(

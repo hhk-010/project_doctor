@@ -7,7 +7,7 @@ import 'package:project_doctor/custom_widges/custom_flushbar.dart';
 import 'package:project_doctor/custom_widges/custom_mcq.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/views/auth/questions.dart';
-import 'package:project_doctor/views/auth/sign_up.dart';
+import 'package:project_doctor/views/auth/sign_up_view.dart';
 
 class QuestionView extends StatefulWidget {
   final Function registerToggleView;
@@ -105,9 +105,9 @@ class _QuestionViewState extends State<QuestionView> {
                   if (QuestionsShuffle.value2 == QuestionsShuffle.answers[QuestionsShuffle.questions[questionIndex2]]) QuestionsShuffle.score += 1;
                   if (QuestionsShuffle.value3 == QuestionsShuffle.answers[QuestionsShuffle.questions[questionIndex3]]) QuestionsShuffle.score += 1;
                   if (QuestionsShuffle.score >= 3)
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Register()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignUpView()));
                   else
-                    getFlushbar(context, 'Hey Ninja', 'Please, Answer the questions correctly')..show(context);
+                    getFlushbar(context,'Please, Answer the questions correctly')..show(context);
 
                   setState(() {
                     QuestionsShuffle.score = 0;

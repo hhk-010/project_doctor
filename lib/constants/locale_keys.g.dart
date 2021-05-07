@@ -540,6 +540,8 @@ abstract class  LocaleKeys {
   static const view_snack_error_choose_2nd_exception_day = 'view_snack_error.choose_2nd_exception_day';
   static const view_snack_error_Select_time = 'view_snack_error.Select_time';
   static const view_snack_error_choose_1st_exception_day = 'view_snack_error.choose_1st_exception_day';
+  static const view_snack_error_error_title = 'view_snack_error.error_title';
+  static const view_snack_error_sign_info = 'view_snack_error.sign_info';
   static const view_snack_error = 'view_snack_error';
   static const view_new_search_governorate = 'view_new_search.governorate';
   static const view_new_search_enter_name_speciality = 'view_new_search.enter_name_speciality';

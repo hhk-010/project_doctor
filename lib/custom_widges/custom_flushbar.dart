@@ -1,10 +1,12 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
+import 'package:project_doctor/constants/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 
-Flushbar getFlushbar(BuildContext context, String title, String message) {
+Flushbar getFlushbar(BuildContext context, String message) {
   return Flushbar(
-    title: title,
+    title: LocaleKeys.view_snack_error_error_title.tr(),
     message: message,
     forwardAnimationCurve: Curves.decelerate,
     reverseAnimationCurve: Curves.easeOut,

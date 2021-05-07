@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/views/auth/email_verfication.dart';
+import 'package:project_doctor/views/auth/email_verify_view.dart';
 import 'package:project_doctor/views/auth/mcq_view.dart';
 import 'package:project_doctor/views/auth/sign_in_view.dart';
 import 'package:project_doctor/views/profile/doctor04_profile.dart';
@@ -481,7 +481,7 @@ class _AuthenticateState extends State<Authenticate> {
         registerToggleView: registerToggleView,
       );
     } else {
-      return SignInViewM(questionsToogleView: questionsToogleView);
+      return SignInView(questionsToogleView: questionsToogleView);
     }
     /*if (showRegister) {
       return Register(
