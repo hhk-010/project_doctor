@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
+import 'package:project_doctor/data_model/auth_data.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'dart:ui' as ui;
@@ -17,65 +18,25 @@ class ClinicDay {
   static String day2;
 }
 
-class GrandClinicForm extends StatefulWidget {
-  final String email;
-  final String password;
-  final String name;
-  final String speciality;
-  final String phoneNumber;
-  final String province;
-  GrandClinicForm({this.email, this.password, this.name, this.phoneNumber, this.speciality, this.province});
+class ClinicStream extends StatefulWidget {
   @override
-  _GrandClinicFormState createState() =>
-      _GrandClinicFormState(email: email, password: password, name: name, speciality: speciality, phoneNumber: phoneNumber, province: province);
+  _ClinicStreamState createState() => _ClinicStreamState();
 }
 
-class _GrandClinicFormState extends State<GrandClinicForm> {
-  String email;
-  String password;
-  String name;
-  String speciality;
-  String phoneNumber;
-  String province;
-  _GrandClinicFormState({
-    this.email,
-    this.password,
-    this.name,
-    this.speciality,
-    this.phoneNumber,
-    this.province,
-  });
-
+class _ClinicStreamState extends State<ClinicStream> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
       initialData: null,
       value: DatabaseService().usersDataStream,
-      child: ClinicForm(
-        email: email,
-        password: password,
-        name: name,
-        speciality: speciality,
-        phoneNumber: phoneNumber,
-        province: province,
-      ),
+      child: ClinicView(),
     );
   }
 }
 
-class ClinicForm extends StatefulWidget {
-  final String email;
-  final String password;
-  final String name;
-  final String speciality;
-  final String phoneNumber;
-  final String province;
-
-  ClinicForm({this.email, this.password, this.name, this.phoneNumber, this.speciality, this.province});
-
+class ClinicView extends StatefulWidget {
   @override
-  _ClinicFormState createState() =>
-      _ClinicFormState(email: email, password: password, name: name, speciality: speciality, phoneNumber: phoneNumber, province: province);
+  _ClinicViewState createState() => _ClinicViewState();
 }
 
 List<DropdownMenuItem<String>> exception1 = [];
@@ -117,14 +78,8 @@ List boolToStringDays(BuildContext context, List workDays) {
 //   return rtlLanguages.contains(locale.languageCode) ? TextDirection.rtl : TextDirection.ltr;
 // }
 
-class _ClinicFormState extends State<ClinicForm> {
+class _ClinicViewState extends State<ClinicView> {
   // final _places = GoogleMapsPlaces(apiKey: apiKey);
-  String email;
-  String password;
-  String name;
-  String speciality;
-  String phoneNumber;
-  String province;
   List workDays01 = [];
   List<String> workDays02 = [];
   List<String> workDays03 = [];
@@ -167,15 +122,7 @@ class _ClinicFormState extends State<ClinicForm> {
   bool thirdfrom = false;
   bool thirdto = false;
   String _error;
-  _ClinicFormState({
-    this.email,
-    this.password,
-    this.name,
-    this.speciality,
-    this.phoneNumber,
-    this.province,
-  });
-  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+
   _showSnackBar() {
     var lang = Localizations.localeOf(context).languageCode;
 
@@ -185,7 +132,7 @@ class _ClinicFormState extends State<ClinicForm> {
         style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
       ),
 
-      //duration: new Duration(seconds: 3),
+      // duration: new Duration(seconds: 3),
       backgroundColor: Colors.deepOrange,
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -309,7 +256,9 @@ class _ClinicFormState extends State<ClinicForm> {
     final doctorDocs = Provider.of<QuerySnapshot>(context);
     if (doctorDocs != null) {
       for (var x in doctorDocs.docs) {
-        if (name == x.data()['name'] && speciality == x.data()['speciality'] && province == x.data()['province']) {
+        if (RegisterData.name == x.data()['name'] &&
+            RegisterData.speciality == x.data()['speciality'] &&
+            RegisterData.province == x.data()['province']) {
           setState(() {
             registered = true;
           });
@@ -318,7 +267,6 @@ class _ClinicFormState extends State<ClinicForm> {
     }
 
     return Scaffold(
-      key: _scaffoldkey,
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       appBar: PreferredSize(
@@ -345,8 +293,6 @@ class _ClinicFormState extends State<ClinicForm> {
             child: Container(
               child: ListView(
                 children: [
-                  // _searchField(context, bloc),
-                  // _buildLocation(bloc),
                   Container(
                     decoration: CStyle.box,
                     child: Padding(
@@ -557,7 +503,6 @@ class _ClinicFormState extends State<ClinicForm> {
                   SizedBox(
                     height: 15,
                   ),
-
                   Visibility(
                     visible: _visibile01,
                     child: Container(
@@ -883,7 +828,7 @@ class _ClinicFormState extends State<ClinicForm> {
                                           mainto &&
                                           ((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty)) &&
                                           ((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
-                                        latlng = await getCoordinatesFromAddress(provinces[province] + ' ' + currentaddress);
+                                        latlng = await getCoordinatesFromAddress(provinces[RegisterData.province] + ' ' + currentaddress);
                                         if (!registered) {
                                           setState(() {
                                             if (workDays01[workDays01.length - 1].length < 11) {
@@ -899,12 +844,12 @@ class _ClinicFormState extends State<ClinicForm> {
                                           mainfrom = false;
                                           mainto = false;
                                           setState(() {
-                                            DataFromMaptoVerify.email = email;
-                                            DataFromMaptoVerify.password = password;
-                                            DataFromMaptoVerify.name = name;
-                                            DataFromMaptoVerify.speciality = speciality;
-                                            DataFromMaptoVerify.phoneNumber = phoneNumber;
-                                            DataFromMaptoVerify.province = province;
+                                            DataFromMaptoVerify.email = RegisterData.email;
+                                            DataFromMaptoVerify.password = RegisterData.password;
+                                            DataFromMaptoVerify.name = RegisterData.name;
+                                            DataFromMaptoVerify.speciality = RegisterData.speciality;
+                                            DataFromMaptoVerify.phoneNumber = RegisterData.phoneNumber;
+                                            DataFromMaptoVerify.province = RegisterData.province;
                                             DataFromMaptoVerify.address = currentaddress;
                                             DataFromMaptoVerify.workDays01 = List<String>.from(workDays01);
                                             DataFromMaptoVerify.workDays02 = List<String>.from(workDays02);
@@ -1219,66 +1164,4 @@ class _ClinicFormState extends State<ClinicForm> {
       });
     print(ternaryWorkingHours);
   }
-
-  // Widget _searchField(BuildContext context, LocationBloc bloc) {
-  //   return LocationProvider(
-  //     child: StreamBuilder(
-  //       stream: bloc.locationString,
-  //       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-  //         var _controller = TextEditingController();
-  //         _controller.text = snapshot.data;
-  //         return TextField(
-  //           controller: _controller,
-  //           decoration: InputDecoration(hintText: "Search"),
-  //           onTap: () async {
-  //             Prediction p = await PlacesAutocomplete.show(
-  //               context: context,
-  //               apiKey: apiKey,
-  //               mode: Mode.overlay,
-  //               language: "en",
-  //             );
-
-  //             PlacesDetailsResponse response =
-  //                 await _places.getDetailsByPlaceId(p.placeId);
-  //             var location = response.result.geometry.location;
-  //             var latLng = LatLng(location.lat, location.lng);
-  //             bloc.changeLocationString(response.result.formattedAddress);
-  //             bloc.changeLocationLatLng(latLng);
-  //           },
-  //         );
-  //       },
-  //     ),
-  //   );
-  // }
-
-  // Widget _buildLocation(LocationBloc bloc) {
-  //   return StreamBuilder(
-  //     stream: bloc.locationLatLng,
-  //     builder: (BuildContext context, AsyncSnapshot<LatLng> snapshot) {
-  //       return Column(
-  //         children: <Widget>[
-  //           Row(
-  //             children: <Widget>[
-  //               Container(
-  //                 width: 80,
-  //                 child: Text('latitude: '),
-  //               ),
-  //               Text('${snapshot.hasData ? snapshot.data.latitude : ''}')
-  //             ],
-  //           ),
-  //           Row(
-  //             children: <Widget>[
-  //               Container(
-  //                 width: 80,
-  //                 child: Text('longitude: '),
-  //               ),
-  //               Text('${snapshot.hasData ? snapshot.data.longitude : ''}')
-  //             ],
-  //           )
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
-
 }

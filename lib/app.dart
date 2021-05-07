@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       ),
       darkTheme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        
         primaryColor: DarkPalette.gradientTop,
         brightness: Brightness.dark,
         fontFamily: getLocale(context) ? 'Montserrat' : 'noto_arabic',

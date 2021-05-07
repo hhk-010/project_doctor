@@ -73,8 +73,8 @@ class BaseScaffold extends StatelessWidget {
                 stops: [0.0, 1.0],
                 tileMode: TileMode.clamp,
                 colors: [
-                  getColor(context, Colors.white, DarkPalette.gradientTop),
                   getColor(context, Colors.white, DarkPalette.gradientBottom),
+                  getColor(context, Colors.white, DarkPalette.gradientTop),
                 ],
               ),
             ),

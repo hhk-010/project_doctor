@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/constants/custom_icons.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
+import 'package:project_doctor/views/auth/sign_up_view.dart';
 import 'package:project_doctor/views/auth/sign_wrapper.dart';
 import 'package:project_doctor/views/home/home_view.dart';
 import 'package:project_doctor/views/home/support_view.dart';
+import 'package:project_doctor/views/profile/clinic_view.dart';
 import 'dart:ui';
-
-import 'package:project_doctor/views/profile/form_view.dart';
 
 class MainView extends StatefulWidget {
   @override
@@ -55,8 +55,8 @@ class _MainViewState extends State<MainView> {
                   // if (index == 0) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SupportView()));
                   if (index == 1) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SupportView()));
                   if (index == 2) Navigator.of(context).push(MaterialPageRoute(builder: (context) => Intermediate()));
-                  if (index == 3) Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileDataView()));
-                  if (index == 4) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SupportView()));
+                  if (index == 3) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignUpView()));
+                  if (index == 4) Navigator.of(context).push(MaterialPageRoute(builder: (context) => ClinicView()));
                 },
                 items: [
                   BottomNavigationBarItem(icon: Icon(CustomIcons.search), label: "Search"),

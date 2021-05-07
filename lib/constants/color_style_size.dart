@@ -45,7 +45,10 @@ class CStyle {
 
   static TextStyle getFooter(context) {
     return TextStyle(
-        fontSize: getDeviceType(context, 10, 12, 16, 18), fontWeight: FontWeight.bold, fontFamily: getLocale(context) ? 'OpenSans' : 'noto_arabic',);
+      fontSize: getDeviceType(context, 10, 12, 16, 18),
+      fontWeight: FontWeight.bold,
+      fontFamily: getLocale(context) ? 'OpenSans' : 'noto_arabic',
+    );
   }
 
   static BoxDecoration box = BoxDecoration(
@@ -56,15 +59,12 @@ class CStyle {
       ));
   static InputDecoration getInputDecoration(BuildContext context) {
     return InputDecoration(
-      labelStyle: getTitle(context),
-      border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12.0)), borderSide: BorderSide(color: Colors.deepOrange, width: 2)),
+      hintStyle: getSubtitle(context),
+      border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(16.0)), borderSide: BorderSide(color: Colors.deepOrange, width: 2)),
       enabledBorder:
-          OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12.0)), borderSide: BorderSide(color: Colors.deepOrange, width: 2)),
+          OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(16.0)), borderSide: BorderSide(color: Colors.deepOrange, width: 2)),
       focusedBorder:
-          OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12.0)), borderSide: BorderSide(color: Colors.orange, width: 4)),
-      focusedErrorBorder:
-          OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12.0)), borderSide: BorderSide(color: Colors.indigo, width: 4)),
-      errorStyle: TextStyle(fontSize: 14, color: Colors.indigo),
+          OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(16.0)), borderSide: BorderSide(color: Colors.indigo, width: 3)),
       contentPadding: EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
     );
   }
