@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/services/theme.dart';
+import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/auth.dart';
@@ -109,7 +109,7 @@ class _PreDeleteUserState extends State<PreDeleteUser> {
                     ),
                     TextFormField(
                       obscureText: !_passwordVisible,
-                      decoration: textInputdecoration.copyWith(
+                      decoration: CStyle.getInputDecoration(context).copyWith(
                         hintText: LocaleKeys.view_doctor_current_password.tr(),
                         labelText: LocaleKeys.view_doctor_current_password.tr(),
                         suffixIcon: IconButton(
@@ -133,7 +133,7 @@ class _PreDeleteUserState extends State<PreDeleteUser> {
                         onChanged: (val) {
                           setState(() => _newPassword = val);
                         },
-                        decoration: textInputdecoration.copyWith(
+                        decoration: CStyle.getInputDecoration(context).copyWith(
                           hintText: AppLocalizations.of(context).translate('new_password_hint'),
                           labelText: AppLocalizations.of(context).translate('new_password'),
                           suffixIcon: IconButton(

@@ -13,13 +13,13 @@ class BaseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
-      width: 200,
+      height: getDeviceType(context, 30, 50, 50, 60),
+      width: getDeviceType(context, 100, 200, 200, 250),
       child: TextButton(
         style: TextButton.styleFrom(
           enableFeedback: true,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(16.0),
           ),
           primary: Colors.white,
           backgroundColor: LightPalette.button,
@@ -45,28 +45,25 @@ class BaseIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 15),
-        child: Container(
-          height: getDeviceType(context, 30, 40, 50, 60),
-          width: getDeviceType(context, 100, 150, 200, 250),
-          child: TextButton.icon(
-            style: TextButton.styleFrom(
-              primary: Colors.white,
-              backgroundColor: Colors.deepOrange,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
+      child: Container(
+        height: getDeviceType(context, 30, 50, 50, 60),
+        width: getDeviceType(context, 100, 200, 200, 250),
+        child: TextButton.icon(
+          style: TextButton.styleFrom(
+            primary: Colors.white,
+            backgroundColor: LightPalette.button,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16.0),
             ),
-            icon: Icon(
-              icon,
-              color: Colors.white,
-            ),
-            onPressed: onPressed,
-            label: Text(
-              title,
-              style: CStyle.getTitle(context),
-            ),
+          ),
+          icon: Icon(
+            icon,
+            color: Colors.white,
+          ),
+          onPressed: onPressed,
+          label: Text(
+            title,
+            style: CStyle.getTitle(context),
           ),
         ),
       ),

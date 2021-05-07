@@ -4,8 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/views/auth/email_verfication.dart';
-import 'package:project_doctor/views/auth/mcqs.dart';
-import 'package:project_doctor/views/auth/sign_in.dart';
+import 'package:project_doctor/views/auth/mcq_view.dart';
+import 'package:project_doctor/views/auth/sign_in_view.dart';
 import 'package:project_doctor/views/profile/doctor04_profile.dart';
 import 'package:provider/provider.dart';
 import 'package:project_doctor/services/data_model.dart';
@@ -476,12 +476,12 @@ class _AuthenticateState extends State<Authenticate> {
   @override
   Widget build(BuildContext context) {
     if (showQuestions) {
-      return QuestionsWidget(
+      return QuestionView(
         questionsToogleView: questionsToogleView,
         registerToggleView: registerToggleView,
       );
     } else {
-      return SignInView(questionsToogleView: questionsToogleView);
+      return SignInViewM(questionsToogleView: questionsToogleView);
     }
     /*if (showRegister) {
       return Register(

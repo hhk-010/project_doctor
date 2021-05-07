@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/services/theme.dart';
+import 'package:project_doctor/constants/color_style_size.dart';
 import 'dart:io';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -102,7 +102,7 @@ class _RegisterState extends State<Register> {
                             },
                             cursorColor: Colors.black,
                             keyboardType: TextInputType.emailAddress,
-                            decoration: textInputdecoration.copyWith(
+                            decoration: CStyle.getInputDecoration(context).copyWith(
                               hintText: LocaleKeys.view_doctor_enter_your_email.tr(),
                               labelText: LocaleKeys.view_doctor_email.tr(),
                             ),
@@ -122,7 +122,7 @@ class _RegisterState extends State<Register> {
                             },
                             cursorColor: Colors.black,
                             keyboardType: TextInputType.text,
-                            decoration: textInputdecoration.copyWith(
+                            decoration: CStyle.getInputDecoration(context).copyWith(
                               hintText: LocaleKeys.view_doctor_enter_your_password.tr(),
                               labelText: LocaleKeys.view_doctor_password.tr(),
                               suffixIcon: IconButton(

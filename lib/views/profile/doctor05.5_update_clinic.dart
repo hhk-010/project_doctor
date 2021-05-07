@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/views/profile/doctor06_update_map.dart';
@@ -308,7 +307,7 @@ class _UpdateInfo2State extends State<UpdateInfo2> {
                                   onChanged: (val) {
                                     setState(() => address = val);
                                   },
-                                  decoration: textInputdecoration.copyWith(
+                                  decoration: CStyle.getInputDecoration(context).copyWith(
                                     hintText: 'مثال: الحارثيه شارع الكندي',
                                     hintStyle: TextStyle(fontSize: 12, color: Colors.deepOrange, fontFamily: 'noto_arabic'),
                                     labelText: 'عنوان العياده',

@@ -24,6 +24,7 @@ class BaseScaffold extends StatelessWidget {
       bottom: false,
       child: Scaffold(
         backgroundColor: Colors.transparent,
+        resizeToAvoidBottomInset: false,
         appBar: isAppbar
             ? PreferredSize(
                 preferredSize: Size.fromHeight(getDeviceType(context, 40, 50, 60, 70)),
@@ -47,11 +48,11 @@ class BaseScaffold extends StatelessWidget {
                   ),
                   actions: [
                     IconButton(
-                      icon: Icon(Icons.language),
+                      icon: Icon(Icons.color_lens),
                       onPressed: () => getThemeManager(context).toggleDarkLightTheme(),
                     ),
                     IconButton(
-                      icon: Icon(Icons.color_lens),
+                      icon: Icon(Icons.language),
                       onPressed: () async {
                         if (getLocale(context)) {
                           await context.setLocale(Locale('ar'));
@@ -64,7 +65,6 @@ class BaseScaffold extends StatelessWidget {
                 ),
               )
             : null,
-        resizeToAvoidBottomInset: false,
         body: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -84,4 +84,3 @@ class BaseScaffold extends StatelessWidget {
     );
   }
 }
-

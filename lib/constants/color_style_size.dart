@@ -54,6 +54,20 @@ class CStyle {
         color: Colors.deepOrange,
         width: 2.0,
       ));
+  static InputDecoration getInputDecoration(BuildContext context) {
+    return InputDecoration(
+      labelStyle: getTitle(context),
+      border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12.0)), borderSide: BorderSide(color: Colors.deepOrange, width: 2)),
+      enabledBorder:
+          OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12.0)), borderSide: BorderSide(color: Colors.deepOrange, width: 2)),
+      focusedBorder:
+          OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12.0)), borderSide: BorderSide(color: Colors.orange, width: 4)),
+      focusedErrorBorder:
+          OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12.0)), borderSide: BorderSide(color: Colors.indigo, width: 4)),
+      errorStyle: TextStyle(fontSize: 14, color: Colors.indigo),
+      contentPadding: EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
+    );
+  }
 }
 
 // get currentTheme

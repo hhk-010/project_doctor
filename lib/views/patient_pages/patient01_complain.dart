@@ -1355,7 +1355,7 @@
 //                                         });
 //                                       }
 //                                     },
-//                                     decoration: textInputdecoration.copyWith(
+//                                     decoration: CStyle.getInputDecoration(context).copyWith(
 //                                       hintText: AppLocalizations.of(context).translate(
 //                                         'age',
 //                                       ),

@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/views/auth/loading.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -98,7 +97,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           height: 25,
                         ),
                         TextFormField(
-                          decoration: textInputdecoration.copyWith(
+                          decoration: CStyle.getInputDecoration(context).copyWith(
                             hintText: LocaleKeys.view_doctor_enter_your_email.tr(),
                             //'Enter Your Current Email',
                             labelText: LocaleKeys.view_doctor_email.tr(),

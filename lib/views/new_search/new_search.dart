@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/services/theme.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
@@ -381,7 +380,7 @@ class _NewSearchState extends State<NewSearch> {
                               },
                               cursorColor: Colors.black,
                               keyboardType: TextInputType.emailAddress,
-                              decoration: textInputdecoration.copyWith(
+                              decoration: CStyle.getInputDecoration(context).copyWith(
                                 hintText: LocaleKeys.view_new_search_enter_name.tr(),
                                 labelText: LocaleKeys.view_new_search_enter_name.tr(),
                                 suffixIcon: Icon(
@@ -405,7 +404,7 @@ class _NewSearchState extends State<NewSearch> {
                               },
                               cursorColor: Colors.black,
                               keyboardType: TextInputType.emailAddress,
-                              decoration: textInputdecoration.copyWith(
+                              decoration: CStyle.getInputDecoration(context).copyWith(
                                 hintText: AppLocalizations.of(context)
                                     .translate('enter speciality'),
                                 labelText: AppLocalizations.of(context)
@@ -421,7 +420,7 @@ class _NewSearchState extends State<NewSearch> {
                           ? DropdownButtonFormField<String>(
                               //value: NewSearchData.speciality,
                               isDense: false,
-                              decoration: textInputdecoration,
+                              decoration: CStyle.getInputDecoration(context),
                               hint: Text(
                                 LocaleKeys.view_doctor_speciality.tr(),
                                 style: TextStyle(

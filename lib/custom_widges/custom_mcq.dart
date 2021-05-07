@@ -27,7 +27,8 @@ class CustomQuestion extends StatelessWidget {
             isExpanded: true,
             hint: Text(answer == null ? 'Choose the Right answer' : answer,
                 style: CStyle.getTitle(context).copyWith(
-                  color: answer == null ? Colors.grey[700] : Colors.black,
+                  color:
+                      answer == null ? getColor(context, Colors.grey[600], Colors.grey[500]) : getColor(context, Colors.grey[900], Colors.grey[100]),
                 )),
             items: [
               getMenuItem('0', questionIndex, 0),

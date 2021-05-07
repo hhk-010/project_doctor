@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/services/theme.dart';
+import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/auth.dart';
@@ -106,7 +106,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                       height: 25,
                     ),
                     TextFormField(
-                      decoration: textInputdecoration.copyWith(
+                      decoration: CStyle.getInputDecoration(context).copyWith(
                         hintText: LocaleKeys.view_doctor_current_password.tr(),
                         labelText: LocaleKeys.view_doctor_old_password.tr(),
                       ),
@@ -123,7 +123,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                       onChanged: (val) {
                         setState(() => _newPassword = val);
                       },
-                      decoration: textInputdecoration.copyWith(
+                      decoration: CStyle.getInputDecoration(context).copyWith(
                         hintText: LocaleKeys.view_doctor_new_password_hint.tr(),
                         labelText: LocaleKeys.view_doctor_new_password.tr(),
                         suffixIcon: IconButton(

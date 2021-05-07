@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/services/theme.dart';
+import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/constants/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/auth.dart';
@@ -69,7 +69,7 @@ class _DeleteUserState extends State<DeleteUser> {
         child: AppBar(
           backgroundColor: Colors.deepOrange,
           title: Text(
-           LocaleKeys.view_doctor_delete_user.tr(), //'Password Reset',
+            LocaleKeys.view_doctor_delete_user.tr(), //'Password Reset',
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
@@ -99,7 +99,7 @@ class _DeleteUserState extends State<DeleteUser> {
                           height: 25,
                         ),
                         TextFormField(
-                          decoration: textInputdecoration.copyWith(
+                          decoration: CStyle.getInputDecoration(context).copyWith(
                             hintText: LocaleKeys.view_doctor_enter_your_email.tr(), //'Enter Your Current Email',
                             labelText: LocaleKeys.view_doctor_email.tr(), //'Email',
                           ),
