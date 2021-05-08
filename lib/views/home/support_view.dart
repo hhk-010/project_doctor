@@ -15,6 +15,7 @@ class SupportView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: false,
+     
       child: Stack(
         children: [
           Align(

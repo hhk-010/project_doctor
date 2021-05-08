@@ -16,6 +16,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: false,
+      
       child: Stack(
         children: [
           HomeAlignWidgets(

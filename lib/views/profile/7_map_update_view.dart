@@ -1,52 +1,52 @@
-import 'dart:io';
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project_doctor/custom_widges/custom_button.dart';
+import 'package:project_doctor/custom_widges/custom_flushbar.dart';
+import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:project_doctor/services/connectivity.dart';
 import 'package:project_doctor/views/auth/email_verify_view.dart';
-import 'package:project_doctor/views/auth/loading_delete.dart';
 import 'package:provider/provider.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../../services/database.dart';
 import '4_profile_view.dart';
 
-// ----------------class for snackbar error
-class SnackBarError {
-  static String error = '';
-}
-
-class MainUpdateMap extends StatefulWidget {
+class UpdateaMapViewStream extends StatefulWidget {
   final String latlng;
-  MainUpdateMap({this.latlng});
+  UpdateaMapViewStream({this.latlng});
   @override
-  _MainUpdateMapState createState() => _MainUpdateMapState(latlng: latlng);
+  _UpdateaMapViewStreamState createState() => _UpdateaMapViewStreamState(latlng: latlng);
 }
 
-class _MainUpdateMapState extends State<MainUpdateMap> {
+class _UpdateaMapViewStreamState extends State<UpdateaMapViewStream> {
   final String latlng;
-  _MainUpdateMapState({this.latlng});
+  _UpdateaMapViewStreamState({this.latlng});
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
       initialData: null,
       value: DatabaseService().basicData,
-      child: UpdateMap(latlng: latlng),
+      child: UpdateMapView(latlng: latlng),
     );
   }
 }
 
-class UpdateMap extends StatefulWidget {
+class UpdateMapView extends StatefulWidget {
   final String latlng;
-  UpdateMap({this.latlng});
+  UpdateMapView({this.latlng});
   @override
-  _UpdateMapState createState() => _UpdateMapState(addressLatlng: latlng);
+  _UpdateMapViewState createState() => _UpdateMapViewState(addressLatlng: latlng);
 }
 
-class _UpdateMapState extends State<UpdateMap> {
+class _UpdateMapViewState extends State<UpdateMapView> {
+  final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
+
   final String addressLatlng;
-  _UpdateMapState({this.addressLatlng});
+  _UpdateMapViewState({this.addressLatlng});
   //function to get and analyze latlng from address
   String addressLat = '';
   String addressLng = '';
@@ -95,39 +95,6 @@ class _UpdateMapState extends State<UpdateMap> {
     lnggg = double.parse(lng);
   }
 
-  //==============snackbar for empty latlng============
-  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
-  _showSnackBar() {
-    var lang = Localizations.localeOf(context).languageCode;
-
-    final snackBar = new SnackBar(
-      content: new Text(
-        SnackBarError.error,
-        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
-      ),
-
-      //duration: new Duration(seconds: 3),
-      backgroundColor: Colors.deepOrange,
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-
-  //-------------------checking internet connection
-  bool _isInternet = true;
-  checkInternet() async {
-    try {
-      final response = await InternetAddress.lookup('google.com');
-      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
-        _isInternet = true; // internet
-        setState(() {});
-      }
-    } on SocketException catch (_) {
-      _isInternet = false; // no internet
-      setState(() {});
-    }
-  }
-
-  //------------the end --------------------
   //========================================
   double nameScoreResult = 0;
   getNameScore(String name1) {
@@ -172,12 +139,6 @@ class _UpdateMapState extends State<UpdateMap> {
   double _result = 0.0;
   double _finalDistance = 0.0;
   double _kmDistance = 0.0;
-  bool isloading = false;
-  @override
-  void initState() {
-    checkInternet();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -195,21 +156,13 @@ class _UpdateMapState extends State<UpdateMap> {
         }
       }
     }
+    return BaseScaffold(
+      isAppbar: true,
+            action: getAppActions(context),
 
-    return Scaffold(
-      key: _scaffoldkey,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50),
-        child: AppBar(
-          backgroundColor: Colors.deepOrange,
-          title: Text(
-            LocaleKeys.view_doctor_update_location.tr(),
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          centerTitle: true,
-        ),
-      ),
-      body: Stack(
+      title: LocaleKeys.view_doctor_update_location.tr(),
+      child: Stack(
+        alignment: Alignment.topCenter,
         children: [
           GoogleMap(
             initialCameraPosition: CameraPosition(
@@ -220,78 +173,65 @@ class _UpdateMapState extends State<UpdateMap> {
             onTap: handletap,
             zoomControlsEnabled: false,
           ),
-          Container(
+          Align(
             alignment: Alignment.bottomCenter,
-            padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
-            child: FloatingLoadingButton(
-              isloading: isloading,
-              loadercolor: Colors.white,
-              backgroundcolor: Colors.deepOrange,
-              child: Text(LocaleKeys.view_buttons_ok.tr(), style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-              onPressed: () async {
-                checkInternet();
-                if (_isInternet) {
-                  if (latlng == null) {
-                    SnackBarError.error = LocaleKeys.view_snack_error_snack_map.tr();
-                    _showSnackBar();
-                  } else {
-                    await geolocate(latlng: latlng);
-                    if (lattt != null && lnggg != null) {
-                      double addressResult = await analyzeAddress(lattt, lnggg);
-                      if (addressResult < 6) {
-                        setState(() {
-                          isloading = true;
-                          _result = pow((lattt - _lt), 2) + pow((lnggg - _lg), 2);
-                          _finalDistance = sqrt(_result);
-                          _kmDistance = _finalDistance * 100;
-                        });
-                        if (_kmDistance < 3) {
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 50),
+              child: CustomLoadingButton(
+                title: LocaleKeys.view_buttons_submit.tr(),
+                controller: _controller,
+                onPressed: () async {
+                  if (await isInternet()) {
+                    if (latlng == null) {
+                      getFlushbar(context, LocaleKeys.error_snack_map.tr(), _controller);
+                    } else {
+                      await geolocate(latlng: latlng);
+                      if (lattt != null && lnggg != null) {
+                        double addressResult = await analyzeAddress(lattt, lnggg);
+                        if (addressResult < 6) {
                           setState(() {
-                            Empty.isEmpty = false;
-                            EmailVerification.province = DataFromProfiletoUpdate.province;
+                            _result = pow((lattt - _lt), 2) + pow((lnggg - _lg), 2);
+                            _finalDistance = sqrt(_result);
+                            _kmDistance = _finalDistance * 100;
                           });
-                          await DatabaseService(uid: FirebaseAuth.instance.currentUser.uid).deleteuser();
-                          await DatabaseService(uid: FirebaseAuth.instance.currentUser.uid).updateUserData(
-                              DataFromProfiletoUpdate.name,
-                              DataFromProfiletoUpdate.speciality,
-                              DataFromProfiletoUpdate.phoneNumber,
-                              DataFromProfiletoUpdate.province,
-                              lattt,
-                              lnggg,
-                              DataFromProfiletoUpdate.address,
-                              DataFromProfiletoUpdate.workDays01,
-                              DataFromProfiletoUpdate.workDays02,
-                              DataFromProfiletoUpdate.workDays03);
-                          setState(() {
-                            isloading = false;
-                          });
-                          DatabaseService.province = DataFromProfiletoUpdate.province;
-                          int count = 0;
-                          Navigator.popUntil(context, (route) {
-                            return count++ == 3;
-                          });
-                        } else {
-                          setState(() {
-                            isloading = false;
-                            SnackBarError.error = LocaleKeys.view_snack_error_snack_update.tr();
-                          });
-                          _showSnackBar();
-                        }
-                      } else {
-                        SnackBarError.error = LocaleKeys.view_snack_error_invalid_address.tr();
-                        _showSnackBar();
-                      }
+                          if (_kmDistance < 3) {
+                            setState(() {
+                              Empty.isEmpty = false;
+                              EmailVeriyView.province = DataFromProfiletoUpdate.province;
+                            });
+                            await DatabaseService(uid: FirebaseAuth.instance.currentUser.uid).deleteuser();
+                            await DatabaseService(uid: FirebaseAuth.instance.currentUser.uid).updateUserData(
+                                DataFromProfiletoUpdate.name,
+                                DataFromProfiletoUpdate.speciality,
+                                DataFromProfiletoUpdate.phoneNumber,
+                                DataFromProfiletoUpdate.province,
+                                lattt,
+                                lnggg,
+                                DataFromProfiletoUpdate.address,
+                                DataFromProfiletoUpdate.workDays01,
+                                DataFromProfiletoUpdate.workDays02,
+                                DataFromProfiletoUpdate.workDays03);
+                            DatabaseService.province = DataFromProfiletoUpdate.province;
+                            int count = 0;
+                            getSuccess(_controller);
+                            Navigator.popUntil(context, (route) {
+                              return count++ == 3;
+                            });
+                          } else 
+                            getFlushbar(context, LocaleKeys.error_snack_update.tr(), _controller);
+                          
+                        } else 
+                          getFlushbar(context, LocaleKeys.error_invalid_address.tr(), _controller);
+                        
+                      }else
+                      getFlushbar(context, LocaleKeys.error_invalid_address.tr(), _controller);
                     }
-                  }
-                } else {
-                  setState(() {
-                    SnackBarError.error = LocaleKeys.view_snack_error_snack_connectivity.tr();
-                  });
-                  _showSnackBar();
-                }
-              },
+                  } else
+                    getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller);
+                },
+              ),
             ),
-          ),
+          )
         ],
       ),
     );

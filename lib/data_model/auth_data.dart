@@ -16,6 +16,15 @@ class RegisterData {
   static String clinicAddress;
 }
 
+class UpdateData {
+  static String name;
+  static String gender;
+  static String speciality;
+  static String phoneNumber;
+  static String province;
+  static String clinicAddress;
+}
+
 class ResetPasswordData {
   static String email;
 }

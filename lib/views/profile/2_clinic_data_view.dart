@@ -32,14 +32,14 @@ class _ClinicStreamState extends State<ClinicStream> {
     return StreamProvider<QuerySnapshot>.value(
       initialData: null,
       value: DatabaseService().usersDataStream,
-      child: ClinicViewExample(),
+      child: ClinicView(),
     );
   }
 }
 
-class ClinicViewExample extends StatefulWidget {
+class ClinicView extends StatefulWidget {
   @override
-  _ClinicViewExampleState createState() => _ClinicViewExampleState();
+  _ClinicViewState createState() => _ClinicViewState();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -75,9 +75,10 @@ List boolToStringDays(BuildContext context, List workDays) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
-class _ClinicViewExampleState extends State<ClinicViewExample> {
+class _ClinicViewState extends State<ClinicView> {
   /////////////////////////////////////////////////////////////////////////////////////////
   final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
+
   List workDays01 = [];
   List<String> workDays02 = [];
   List<String> workDays03 = [];
@@ -160,6 +161,7 @@ class _ClinicViewExampleState extends State<ClinicViewExample> {
   @override
   void initState() {
     super.initState();
+    RegisterData.clinicAddress = '';
     _mainFromTime = TimeOfDay.now();
     _secondaryFromTime = TimeOfDay.now();
     _mainToTime = TimeOfDay(hour: 12, minute: 0);
@@ -435,6 +437,9 @@ class _ClinicViewExampleState extends State<ClinicViewExample> {
 //////////////////////////////////////////////////////////////////////////////////////
     return BaseScaffold(
       isAppbar: true,
+             action: getAppActions(context),
+
+
       title: LocaleKeys.view_doctor_clinic_form.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
@@ -504,7 +509,7 @@ class _ClinicViewExampleState extends State<ClinicViewExample> {
                                       makeException1();
                                       makeException2();
                                     } else {
-                                      getFlushbar(context, LocaleKeys.view_snack_error_dayselected.tr(),_controller);
+                                      getFlushbar(context, LocaleKeys.error_dayselected.tr(), _controller);
                                     }
                                   });
                                 },
@@ -822,7 +827,7 @@ class _ClinicViewExampleState extends State<ClinicViewExample> {
                           title: LocaleKeys.view_buttons_google_map.tr(),
                           onPressed: () async {
                             if (await isInternet()) {
-                              if (RegisterData.clinicAddress != null) {
+                              if (RegisterData.clinicAddress.isNotEmpty) {
                                 if (e1.isNotEmpty && t1.isNotEmpty) {
                                   if (workDays02.isEmpty) {
                                     workDays02.add(e1[0]);
@@ -880,38 +885,39 @@ class _ClinicViewExampleState extends State<ClinicViewExample> {
                                       DataFromMaptoVerify.workDays03 = List<String>.from(workDays03);
                                     });
                                     print(latlng);
+                                   await getSuccess(_controller);
                                     await Navigator.of(context).push(
                                       MaterialPageRoute(
-                                        builder: (context) => DocMap(
+                                        builder: (context) => MapViewStream(
                                           addresslatlng: latlng.toString(),
                                         ),
                                       ),
                                     );
                                   } else if (registered) {
-                                    getFlushbar(context, LocaleKeys.view_snack_error_already_registered.tr(),_controller);
+                                    getFlushbar(context, LocaleKeys.error_already_registered.tr(), _controller);
                                   }
                                 } else if (currentWorkDays == '') {
-                                  getFlushbar(context, LocaleKeys.view_snack_error_selectmaindays.tr(),_controller);
+                                  getFlushbar(context, LocaleKeys.error_selectmaindays.tr(), _controller);
                                 } else if (mainFromTimeString == '' || mainToTimeString == '' || !mainfrom || !mainto) {
-                                  getFlushbar(context, LocaleKeys.view_snack_error_Select_time.tr(),_controller);
+                                  getFlushbar(context, LocaleKeys.error_Select_time.tr(), _controller);
                                 } else if (!((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty))) {
                                   if (e1.isEmpty) {
-                                    getFlushbar(context, LocaleKeys.view_snack_error_choose_1st_exception_day.tr(),_controller);
+                                    getFlushbar(context, LocaleKeys.error_choose_1st_exception_day.tr(), _controller);
                                   } else {
-                                    getFlushbar(context, LocaleKeys.view_snack_error_choose_1st_exception_time.tr(),_controller);
+                                    getFlushbar(context, LocaleKeys.error_choose_1st_exception_time.tr(), _controller);
                                   }
                                 } else if (!((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
                                   if (e2.isEmpty) {
-                                    getFlushbar(context, LocaleKeys.view_snack_error_choose_2nd_exception_day.tr(),_controller);
+                                    getFlushbar(context, LocaleKeys.error_choose_2nd_exception_day.tr(), _controller);
                                   } else {
-                                    getFlushbar(context, LocaleKeys.view_snack_error_choose_2nd_exception_time.tr(),_controller);
+                                    getFlushbar(context, LocaleKeys.error_choose_2nd_exception_time.tr(), _controller);
                                   }
                                 }
                               } else {
-                                getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr(),_controller);
+                                getFlushbar(context, LocaleKeys.error_sign_info.tr(), _controller);
                               }
                             } else {
-                              getFlushbar(context, LocaleKeys.view_snack_error_snack_connectivity.tr(),_controller);
+                              getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller);
                             }
                           },
                         ),
@@ -927,96 +933,3 @@ class _ClinicViewExampleState extends State<ClinicViewExample> {
     );
   }
 }
-
-            // onPressed: () async {
-            //                       if (await isInternet()) {
-            //                         if (_formKey.currentState.validate()) {
-            //                           if (e1.isNotEmpty && t1.isNotEmpty) {
-            //                             if (workDays02.isEmpty) {
-            //                               workDays02.add(e1[0]);
-            //                               workDays02.add(t1[0]);
-            //                             } else {
-            //                               workDays02 = [];
-            //                               workDays02.add(e1[0]);
-            //                               workDays02.add(t1[0]);
-            //                             }
-            //                           }
-            //                           if (e2.isNotEmpty && t2.isNotEmpty) {
-            //                             if (workDays03.isEmpty) {
-            //                               workDays03.add(e2[0]);
-            //                               workDays03.add(t2[0]);
-            //                             } else {
-            //                               workDays03 = [];
-            //                               workDays03.add(e2[0]);
-            //                               workDays03.add(t2[0]);
-            //                             }
-            //                           }
-            //                           if (currentaddress != '' &&
-            //                               currentWorkDays != '' &&
-            //                               mainFromTimeString != '' &&
-            //                               mainToTimeString != '' &&
-            //                               makeMePass &&
-            //                               mainfrom &&
-            //                               mainto &&
-            //                               ((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty)) &&
-            //                               ((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
-            //                             latlng = await getCoordinatesFromAddress(provinces[RegisterData.province] + ' ' + currentaddress);
-            //                             if (!registered) {
-            //                               setState(() {
-            //                                 if (workDays01[workDays01.length - 1].length < 11) {
-            //                                   workDays01.add(mainWorkingHours);
-            //                                 } else {
-            //                                   workDays01.remove(workDays01[workDays01.length - 1]);
-            //                                   workDays01.add(mainWorkingHours);
-            //                                 }
-
-            //                                 makeMePass = false;
-            //                                 print(workDays01);
-            //                               });
-            //                               mainfrom = false;
-            //                               mainto = false;
-            //                               setState(() {
-            //                                 DataFromMaptoVerify.email = RegisterData.email;
-            //                                 DataFromMaptoVerify.password = RegisterData.password;
-            //                                 DataFromMaptoVerify.name = RegisterData.name;
-            //                                 DataFromMaptoVerify.speciality = RegisterData.speciality;
-            //                                 DataFromMaptoVerify.phoneNumber = RegisterData.phoneNumber;
-            //                                 DataFromMaptoVerify.province = RegisterData.province;
-            //                                 DataFromMaptoVerify.address = currentaddress;
-            //                                 DataFromMaptoVerify.workDays01 = List<String>.from(workDays01);
-            //                                 DataFromMaptoVerify.workDays02 = List<String>.from(workDays02);
-            //                                 DataFromMaptoVerify.workDays03 = List<String>.from(workDays03);
-            //                               });
-            //                               print(latlng);
-            //                               await Navigator.of(context).push(
-            //                                 MaterialPageRoute(
-            //                                   builder: (context) => DocMap(
-            //                                     addresslatlng: latlng.toString(),
-            //                                   ),
-            //                                 ),
-            //                               );
-            //                             } else if (registered) {
-            //                               getFlushbar(context, LocaleKeys.view_snack_error_already_registered.tr());
-            //                             }
-            //                           } else if (currentWorkDays == '') {
-            //                             getFlushbar(context, LocaleKeys.view_snack_error_selectmaindays.tr());
-            //                           } else if (mainFromTimeString == '' || mainToTimeString == '' || !mainfrom || !mainto) {
-            //                             getFlushbar(context, LocaleKeys.view_snack_error_Select_time.tr());
-            //                           } else if (!((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty))) {
-            //                             if (e1.isEmpty) {
-            //                               getFlushbar(context, LocaleKeys.view_snack_error_choose_1st_exception_day.tr());
-            //                             } else {
-            //                               getFlushbar(context, LocaleKeys.view_snack_error_choose_1st_exception_time.tr());
-            //                             }
-            //                           } else if (!((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
-            //                             if (e2.isEmpty) {
-            //                               getFlushbar(context, LocaleKeys.view_snack_error_choose_2nd_exception_day.tr());
-            //                             } else {
-            //                               getFlushbar(context, LocaleKeys.view_snack_error_choose_2nd_exception_time.tr());
-            //                             }
-            //                           }
-            //                         }
-            //                       } else {
-            //                         getFlushbar(context, LocaleKeys.view_snack_error_snack_connectivity.tr());
-            //                       }
-        

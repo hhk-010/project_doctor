@@ -145,14 +145,14 @@ class _DeleteUserState extends State<DeleteUser> {
                             } else {
                               setState(() {
                                 isloading = false;
-                                error = LocaleKeys.view_snack_error_can_not_delete.tr();
+                                error = LocaleKeys.error_can_not_delete.tr();
                               });
                               _showSnackBar();
                             }
                           }
                         } else {
                           setState(() {
-                            error = LocaleKeys.view_snack_error_snack_connectivity.tr();
+                            error = LocaleKeys.error_snack_connectivity.tr();
                           });
                           _showSnackBar();
                         }

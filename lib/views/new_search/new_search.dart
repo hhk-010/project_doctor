@@ -555,7 +555,7 @@ class _NewSearchState extends State<NewSearch> {
                             _showSnackBar();
                           } else {
                             if (!_isInternet) {
-                              _error = LocaleKeys.view_snack_error_snack_connectivity.tr();
+                              _error = LocaleKeys.error_snack_connectivity.tr();
                               _showSnackBar();
                             } else {
                               Navigator.pushNamed(context, '/search listview');

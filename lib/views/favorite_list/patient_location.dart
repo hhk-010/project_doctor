@@ -364,7 +364,7 @@ class _PatientLocationState extends State<PatientLocation> {
                               await _getCurrentLocation();
                               if (_currentPosition == null) {
                                 setState(() {
-                                  _error = LocaleKeys.view_snack_error_geolocator_message.tr();
+                                  _error = LocaleKeys.error_geolocator_message.tr();
                                 });
                                 _showSnackBar();
                               } else {
@@ -388,7 +388,7 @@ class _PatientLocationState extends State<PatientLocation> {
                               }
                             } else {
                               setState(() {
-                                _error = LocaleKeys.view_snack_error_snack_connectivity.tr();
+                                _error = LocaleKeys.error_snack_connectivity.tr();
                               });
                               _showSnackBar();
                             }

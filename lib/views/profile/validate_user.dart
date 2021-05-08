@@ -190,7 +190,7 @@ class _PreDeleteUserState extends State<PreDeleteUser> {
                         }
                       } else {
                         setState(() {
-                          error = LocaleKeys.view_snack_error_snack_connectivity.tr();
+                          error = LocaleKeys.error_snack_connectivity.tr();
                         });
                         _showSnackBar();
                       }

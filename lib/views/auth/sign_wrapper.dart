@@ -437,9 +437,9 @@ class _WrapperState extends State<Wrapper> {
       return Authenticate();
     } else {
       if (!FirebaseAuth.instance.currentUser.emailVerified || Wrapper.docId == null) {
-        return EmailVerification();
+        return EmailVeriyView();
       } else {
-        return Profile();
+        return ProfileViewHeader();
       }
     }
   }

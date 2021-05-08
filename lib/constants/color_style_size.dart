@@ -52,20 +52,21 @@ class CStyle {
   }
 
   static BoxDecoration box = BoxDecoration(
-      borderRadius: BorderRadius.all(Radius.circular(16.0)),
-      border: Border.all(
-        color: Colors.deepOrange,
-        width: 2.0,
-      ));
+    borderRadius: BorderRadius.all(Radius.circular(16.0)),
+    border: Border.all(
+      color: Colors.orange,
+      width: 2.0,
+    ),
+  );
   static InputDecoration getInputDecoration(BuildContext context) {
     return InputDecoration(
       hintStyle: getSubtitle(context),
       labelStyle: CStyle.getSubtitle(context),
       border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(16.0)), borderSide: BorderSide(color: Colors.deepOrange, width: 2)),
       enabledBorder:
-          OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(16.0)), borderSide: BorderSide(color: Colors.deepOrange, width: 2)),
+          OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(16.0)), borderSide: BorderSide(color: Colors.orange, width: 2)),
       focusedBorder:
-          OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(16.0)), borderSide: BorderSide(color: Colors.indigo, width: 3)),
+          OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(16.0)), borderSide: BorderSide(color: Colors.deepOrangeAccent, width: 3)),
       contentPadding: EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
     );
   }

@@ -36,6 +36,8 @@ class _ProfileDataViewState extends State<ProfileDataView> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: true,
+           action: getAppActions(context),
+
       title: LocaleKeys.view_doctor_doctor_form.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
@@ -213,6 +215,7 @@ class _ProfileDataViewState extends State<ProfileDataView> {
                               value: "Erbil",
                               child: Text(
                                 LocaleKeys.iraq_provinces_Erbil.tr(),
+                                style: CStyle.getSubtitle(context),
                               ),
                             ),
                             DropdownMenuItem(
@@ -301,13 +304,9 @@ class _ProfileDataViewState extends State<ProfileDataView> {
                 title: LocaleKeys.view_buttons_next.tr(),
                 onPressed: () async {
                   if (RegisterData.name != null &&
-                      RegisterData.name.isNotEmpty &&
                       RegisterData.speciality != null &&
-                      RegisterData.speciality.isNotEmpty &&
                       RegisterData.phoneNumber != null &&
-                      RegisterData.phoneNumber.isNotEmpty &&
-                      RegisterData.province != null &&
-                      RegisterData.province.isNotEmpty) {
+                      RegisterData.province != null) {
                     finalNumber = await validateNumber(RegisterData.phoneNumber);
                     finalTextNumber = finalNumber.toString();
                     if (finalNumber != null) {
@@ -317,21 +316,20 @@ class _ProfileDataViewState extends State<ProfileDataView> {
                         finalTextNumber = '00' + finalTextNumber;
                       }
                       print(finalTextNumber);
+                      await getSuccess(_controller);
                       await Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => ClinicStream(),
                         ),
                       );
                     } else
-                      getFlushbar(context, LocaleKeys.view_patient_age_format.tr(),_controller);
-                  
+                      getFlushbar(context, LocaleKeys.view_patient_age_format.tr(), _controller);
                   } else
-                    getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr(),_controller);
-                 
+                    getFlushbar(context, LocaleKeys.error_sign_info.tr(), _controller);
                 },
               ),
             ),
-          )
+          ),
         ],
       ),
     );

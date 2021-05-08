@@ -126,7 +126,7 @@ class _PatientSearchmapState extends State<PatientSearchmap> {
                 await checkInternet();
                 if (_isInternet) {
                   if (patientlatlng == null) {
-                    _error = LocaleKeys.view_snack_error_snack_map_patient.tr();
+                    _error = LocaleKeys.error_snack_map_patient.tr();
                     _showSnackBar();
                   } else {
                     geolocate(patientlatlng);
@@ -143,7 +143,7 @@ class _PatientSearchmapState extends State<PatientSearchmap> {
                     }
                   }
                 } else {
-                  _error = LocaleKeys.view_snack_error_snack_connectivity.tr();
+                  _error = LocaleKeys.error_snack_connectivity.tr();
                   _showSnackBar();
                 }
                 setState(() => isLoading = false);

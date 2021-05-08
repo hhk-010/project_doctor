@@ -44,6 +44,8 @@ class _QuestionViewState extends State<QuestionView> {
       textDirection: TextDirection.ltr,
       child: BaseScaffold(
         isAppbar: true,
+           action: getAppActions(context),
+
         title: "Questions",
         child: Stack(alignment: Alignment.topCenter, children: [
           Positioned(
@@ -104,12 +106,12 @@ class _QuestionViewState extends State<QuestionView> {
             child: CustomLoadingButton(
                 controller: _controller,
                 title: 'Next',
-                onPressed: () {
+                onPressed: () async {
                   if (QuestionsShuffle.value1 == QuestionsShuffle.answers[QuestionsShuffle.questions[questionIndex1]]) QuestionsShuffle.score += 1;
                   if (QuestionsShuffle.value2 == QuestionsShuffle.answers[QuestionsShuffle.questions[questionIndex2]]) QuestionsShuffle.score += 1;
                   if (QuestionsShuffle.value3 == QuestionsShuffle.answers[QuestionsShuffle.questions[questionIndex3]]) QuestionsShuffle.score += 1;
                   if (QuestionsShuffle.score >= 3) {
-                    getSuccess(_controller);
+                    await getSuccess(_controller);
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignUpView()));
                   } else
                     getFlushbar(context, 'Please, Answer the questions correctly', _controller);

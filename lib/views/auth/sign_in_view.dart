@@ -30,6 +30,8 @@ class _SignInViewState extends State<SignInView> {
   @override
   void initState() {
     SignInData.isPasswordVisible = false;
+    SignInData.email = '';
+    SignInData.password = '';
     super.initState();
   }
 
@@ -37,6 +39,8 @@ class _SignInViewState extends State<SignInView> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: true,
+            action: getAppActions(context),
+
       title: LocaleKeys.view_doctor_sign_in.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
@@ -118,18 +122,18 @@ class _SignInViewState extends State<SignInView> {
                 controller: _controller,
                 onPressed: () async {
                   if (await isInternet()) {
-                    if (SignInData.email != null && SignInData.email.isNotEmpty && SignInData.password != null && SignInData.password.isNotEmpty) {
+                    if (SignInData.email.isNotEmpty && SignInData.password.isNotEmpty) {
                       dynamic authResult = await _auth.signInWithEmailAndPassword(SignInData.email, SignInData.password);
                       if (authResult != null) {
-                        getSuccess(_controller);
+                        await getSuccess(_controller);
                       } else {
-                        getFlushbar(context, LocaleKeys.view_snack_error_snack_sign_in.tr(), _controller);
+                        getFlushbar(context, LocaleKeys.error_snack_sign_in.tr(), _controller);
                       }
                     } else {
-                      getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr(), _controller);
+                      getFlushbar(context, LocaleKeys.error_sign_info.tr(), _controller);
                     }
                   } else {
-                    getFlushbar(context, LocaleKeys.view_snack_error_snack_connectivity.tr(), _controller);
+                    getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller);
                   }
                 },
               ),

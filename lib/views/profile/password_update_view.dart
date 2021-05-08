@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/custom_widges/custom_button.dart';
@@ -34,6 +33,8 @@ class _PasswordUpdateViewState extends State<PasswordUpdateView> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: true,
+           action: getAppActions(context),
+
       title: LocaleKeys.view_doctor_update_password.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
@@ -100,34 +101,19 @@ class _PasswordUpdateViewState extends State<PasswordUpdateView> {
                       _isPasswordValid = await AuthService().validatepass(_oldPassword);
                       if (_isPasswordValid) {
                         AuthService().updatepass(_newPassword);
-                        _controller.success();
-                        Timer(Duration(seconds: 2), () {
-                          _controller.reset();
-                        });
+                        await getSuccess(_controller);
                         int count = 0;
                         Navigator.popUntil(context, (route) {
                           return count++ == 2;
                         });
                       } else {
                         getFlushbar(context, LocaleKeys.view_doctor_invalid_password.tr(), _controller);
-                        _controller.error();
-                        Timer(Duration(seconds: 2), () {
-                          _controller.reset();
-                        });
                       }
                     } else {
-                      getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr(), _controller);
-                      _controller.error();
-                      Timer(Duration(seconds: 2), () {
-                        _controller.reset();
-                      });
+                      getFlushbar(context, LocaleKeys.error_sign_info.tr(), _controller);
                     }
                   } else {
-                    getFlushbar(context, LocaleKeys.view_snack_error_snack_connectivity.tr(), _controller);
-                    _controller.error();
-                    Timer(Duration(seconds: 2), () {
-                      _controller.reset();
-                    });
+                    getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller);
                   }
                 },
               ),
@@ -259,7 +245,7 @@ class _PasswordUpdateViewState extends State<PasswordUpdateView> {
 //                         }
 //                       } else {
 //                         setState(() {
-//                           error = LocaleKeys.view_snack_error_snack_connectivity.tr();
+//                           error = LocaleKeys.error_snack_connectivity.tr();
 //                         });
 //                         _showSnackBar();
 //                       }

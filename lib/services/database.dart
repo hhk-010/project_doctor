@@ -129,7 +129,7 @@ class DatabaseService {
       List workDays01,
       List workDays02,
       List workDays03) async {
-    if (EmailVerification.province == 'Baghdad') {
+    if (EmailVeriyView.province == 'Baghdad') {
       return await baghdadCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -142,7 +142,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Babil') {
+    } else if (EmailVeriyView.province == 'Babil') {
       return await babilCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -155,7 +155,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Basra') {
+    } else if (EmailVeriyView.province == 'Basra') {
       return await basrahCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -168,7 +168,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Erbil') {
+    } else if (EmailVeriyView.province == 'Erbil') {
       return await erbilCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -181,7 +181,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Duhok') {
+    } else if (EmailVeriyView.province == 'Duhok') {
       return await duhokCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -194,7 +194,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Sulaymaniyah') {
+    } else if (EmailVeriyView.province == 'Sulaymaniyah') {
       return await suleymaniahCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -207,7 +207,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Kirkuk') {
+    } else if (EmailVeriyView.province == 'Kirkuk') {
       return await kirkokCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -220,7 +220,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Diyala') {
+    } else if (EmailVeriyView.province == 'Diyala') {
       return await diyalaCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -233,7 +233,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Saladin') {
+    } else if (EmailVeriyView.province == 'Saladin') {
       return await saladinCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -246,7 +246,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Nineveh') {
+    } else if (EmailVeriyView.province == 'Nineveh') {
       return await ninvehCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -259,7 +259,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Al Anbar') {
+    } else if (EmailVeriyView.province == 'Al Anbar') {
       return await anbarCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -272,7 +272,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Karbala') {
+    } else if (EmailVeriyView.province == 'Karbala') {
       return await karbalaCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -285,7 +285,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Wasit') {
+    } else if (EmailVeriyView.province == 'Wasit') {
       return await wasitCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -298,7 +298,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Najaf') {
+    } else if (EmailVeriyView.province == 'Najaf') {
       return await najafCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -311,7 +311,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Dhi Qar') {
+    } else if (EmailVeriyView.province == 'Dhi Qar') {
       return await dhiqarCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -324,7 +324,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Maysan') {
+    } else if (EmailVeriyView.province == 'Maysan') {
       return await maysanCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -337,7 +337,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Muthanna') {
+    } else if (EmailVeriyView.province == 'Muthanna') {
       return await muthanaCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,
@@ -350,7 +350,7 @@ class DatabaseService {
         'workDays02': workDays02,
         'workDays03': workDays03,
       });
-    } else if (EmailVerification.province == 'Al Qadisiyyah') {
+    } else if (EmailVeriyView.province == 'Al Qadisiyyah') {
       return await qadiseyahCollection.doc(uid).set({
         'name': name,
         'speciality': speciality,

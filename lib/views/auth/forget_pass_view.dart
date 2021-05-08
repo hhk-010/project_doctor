@@ -24,6 +24,9 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: true,
+      actions: [
+        getAppActions(context),
+      ],
       title: LocaleKeys.view_doctor_passWord_reset.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
@@ -61,18 +64,16 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                   title: LocaleKeys.view_doctor_password_reset_email.tr(),
                   controller: _controller,
                   onPressed: () async {
-                    print(ResetPasswordData.email);
                     if (await isInternet()) {
                       if (ResetPasswordData.email != null && ResetPasswordData.email.isNotEmpty) {
                         await FirebaseAuth.instance.sendPasswordResetEmail(email: ResetPasswordData.email);
-                        getSuccess(_controller);
-
-                        await Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResetPasswordView2()));
+                        await getSuccess(_controller);
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResetPasswordView2()));
                       } else {
-                        getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr(), _controller);
+                        getFlushbar(context, LocaleKeys.error_sign_info.tr(), _controller);
                       }
                     } else {
-                      getFlushbar(context, LocaleKeys.view_snack_error_snack_connectivity.tr(), _controller);
+                      getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller);
                     }
                   }),
             ),
@@ -93,6 +94,7 @@ class _ResetPasswordView2State extends State<ResetPasswordView2> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: true,
+      action: getAppActions(context),
       title: LocaleKeys.view_doctor_passWord_reset.tr(),
       child: Stack(
         alignment: Alignment.topCenter,

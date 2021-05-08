@@ -2,17 +2,19 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:async';
 import 'dart:math';
-import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project_doctor/custom_widges/custom_button.dart';
+import 'package:project_doctor/custom_widges/custom_flushbar.dart';
+import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
-
+import 'package:project_doctor/services/connectivity.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/services/read_write_path.dart';
-import 'package:project_doctor/views/auth/loading_delete.dart';
 import 'package:provider/provider.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../../services/auth.dart';
 
 class DataFromMaptoVerify {
@@ -31,43 +33,43 @@ class DataFromMaptoVerify {
 }
 
 //-------------------------------------
-class DocMap extends StatefulWidget {
+class MapViewStream extends StatefulWidget {
   final String addresslatlng;
-  DocMap({this.addresslatlng});
+  MapViewStream({this.addresslatlng});
   @override
-  _DocMapState createState() => _DocMapState(addressLatlng: addresslatlng);
+  _MapViewStreamState createState() => _MapViewStreamState(addressLatlng: addresslatlng);
 }
 
-class _DocMapState extends State<DocMap> {
+class _MapViewStreamState extends State<MapViewStream> {
   final String addressLatlng;
-  _DocMapState({this.addressLatlng});
+  _MapViewStreamState({this.addressLatlng});
 
-  bool loading = false;
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
       initialData: null,
       value: DatabaseService().basicData,
-      child: FinalMap(addressLatlng: addressLatlng),
+      child: MapView(addressLatlng: addressLatlng),
     );
   }
 }
 
 //===============================================
-class FinalMap extends StatefulWidget {
+class MapView extends StatefulWidget {
   final String addressLatlng;
-  FinalMap({this.addressLatlng});
+  MapView({this.addressLatlng});
   final Storage dataStorage = Storage();
 
   @override
-  _FinalMapState createState() => _FinalMapState(addressLatlng: addressLatlng);
+  _MapViewState createState() => _MapViewState(addressLatlng: addressLatlng);
 }
 
-class _FinalMapState extends State<FinalMap> {
+class _MapViewState extends State<MapView> {
+  final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
   final AuthService _auth = AuthService();
 //==========================================
   final String addressLatlng;
-  _FinalMapState({this.addressLatlng});
+  _MapViewState({this.addressLatlng});
   String addressLat = '';
   String addressLng = '';
   double addressesLat = 0.0;
@@ -88,9 +90,7 @@ class _FinalMapState extends State<FinalMap> {
 
 //==========================================
   var latlng;
-
   List<Marker> mymarker = [];
-
   handletap(LatLng tappedpoint) {
     print(tappedpoint);
     latlng = tappedpoint.toString();
@@ -105,48 +105,14 @@ class _FinalMapState extends State<FinalMap> {
 
   double lattt = 0.0;
   double lnggg = 0.0;
-
   geolocate({String latlng}) {
     var firstindex = latlng.indexOf('(');
     var secondindex = latlng.indexOf(',');
     var thirdindex = latlng.indexOf(')');
     String lat = latlng.substring(firstindex + 1, secondindex);
     String lng = latlng.substring(secondindex + 1, thirdindex);
-
     lattt = double.parse(lat);
     lnggg = double.parse(lng);
-  }
-
-  //function to show a snackbar if the user didn't tap on the location
-  String error = '';
-  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
-
-  _showSnackBar() {
-    var lang = Localizations.localeOf(context).languageCode;
-
-    final _snackBar = new SnackBar(
-      content: Text(
-        error,
-        style: TextStyle(fontSize: 15, fontFamily: lang == 'ar' ? 'noto_arabic' : 'Helvetica'),
-      ),
-      backgroundColor: Colors.deepOrange,
-    );
-    ScaffoldMessenger.of(context).showSnackBar(_snackBar);
-  }
-
-  //==========================checking internet connection
-  bool _isInternet = true;
-  checkInternet() async {
-    try {
-      final response = await InternetAddress.lookup('google.com');
-      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
-        _isInternet = true; // internet
-        setState(() {});
-      }
-    } on SocketException catch (_) {
-      _isInternet = false; // no internet
-      setState(() {});
-    }
   }
 
   //--------vars to write--------------
@@ -160,15 +126,7 @@ class _FinalMapState extends State<FinalMap> {
   String _workDays01s = '';
   String _workDays02s = '';
   String _workDays03s = '';
-  bool isloading = false;
   //==============ended=================
-  @override
-  void initState() {
-    super.initState();
-    checkInternet();
-    super.initState();
-  }
-  //----------------------------------
 
   Future<File> _writeName(value) {
     setState(() {
@@ -246,7 +204,6 @@ class _FinalMapState extends State<FinalMap> {
     String name2 = DataFromMaptoVerify.name;
     List name1list = [];
     List name2list = [];
-
     int name1l = name1.length;
     int name2l = name2.length;
     int name1c = 0;
@@ -300,111 +257,82 @@ class _FinalMapState extends State<FinalMap> {
         }
       }
     }
-    return Scaffold(
-      key: _scaffoldkey,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50),
-        child: AppBar(
-          backgroundColor: Colors.deepOrange,
-          title: FittedBox(
-            fit: BoxFit.fitWidth,
-            child: Text(
-              LocaleKeys.view_doctor_add_location.tr(),
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-          ),
-          centerTitle: true,
-        ),
-      ),
-      body: Stack(
+    return BaseScaffold(
+      isAppbar: true,
+          action: getAppActions(context),
+
+
+      title: LocaleKeys.view_doctor_add_location.tr(),
+      child: Stack(
+        alignment: Alignment.topCenter,
         children: [
           GoogleMap(
             initialCameraPosition: CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 10),
             markers: Set.from(mymarker),
+          
             onTap: handletap,
             zoomControlsEnabled: false,
           ),
-          Container(
+          Align(
             alignment: Alignment.bottomCenter,
-            padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 15.0),
-            child: FloatingLoadingButton(
-              loadercolor: Colors.white,
-              isloading: isloading,
-              backgroundcolor: Colors.deepOrange,
-              child: FittedBox(
-                fit: BoxFit.fitWidth,
-                child: Text(
-                  LocaleKeys.view_buttons_ok.tr(),
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ),
-              onPressed: () async {
-                checkInternet();
-                if (_isInternet) {
-                  if (latlng == null) {
-                    error = LocaleKeys.view_snack_error_snack_map.tr();
-                    _showSnackBar();
-                  } else {
-                    await geolocate(latlng: latlng);
-                    if (lattt != null && lnggg != null) {
-                      double resultedAddress = await analyzeAddress(lattt, lnggg);
-                      print(resultedAddress);
-                      if (resultedAddress < 6) {
-                        setState(() => isloading = true);
-                        setState(() {
-                          finalResult = pow((lattt - lt), 2) + pow((lnggg - lg), 2);
-                          finalDistance = sqrt(finalResult);
-                          kmDistance = finalDistance * 100;
-                        });
-                        if (kmDistance < 3.0) {
-                          _writeName(DataFromMaptoVerify.name);
-                          _writeSpeciality(DataFromMaptoVerify.speciality);
-                          _writeNumber(DataFromMaptoVerify.phoneNumber);
-                          _writeProvince(DataFromMaptoVerify.province);
-                          _writeAddress(DataFromMaptoVerify.address);
-                          _writelat(lattt.toString());
-                          _writelng(lnggg.toString());
-                          _writeWorkDays01(json.encode(DataFromMaptoVerify.workDays01));
-                          _writeWorkDays02(json.encode(DataFromMaptoVerify.workDays02));
-                          _writeWorkDays03(json.encode(DataFromMaptoVerify.workDays03));
-                          final authResult = await _auth.registerWithEmailAndPassword(DataFromMaptoVerify.email, DataFromMaptoVerify.password);
-                          if (authResult != null) {
-                            setState(() => isloading = false);
-                            int count = 0;
-                            Navigator.popUntil(context, (route) {
-                              return count++ == 4;
-                            });
-                          } else {
-                            setState(() {
-                              isloading = false;
-                              error = LocaleKeys.view_snack_error_snack_register.tr();
-                            });
-                            _showSnackBar();
-                          }
-                        } else {
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 50),
+              child: CustomLoadingButton(
+                title: LocaleKeys.view_buttons_submit.tr(),
+                controller: _controller,
+                onPressed: () async {
+                  if (await isInternet()) {
+                    if (latlng == null) {
+                      getFlushbar(context, LocaleKeys.error_snack_map.tr(), _controller);
+                    } else {
+                      await geolocate(latlng: latlng);
+                      if (lattt != null && lnggg != null) {
+                        double resultedAddress = await analyzeAddress(lattt, lnggg);
+                        print(resultedAddress);
+                        if (resultedAddress < 6) {
                           setState(() {
-                            isloading = false;
-                            error = LocaleKeys.view_snack_error_snack_register.tr();
+                            finalResult = pow((lattt - lt), 2) + pow((lnggg - lg), 2);
+                            finalDistance = sqrt(finalResult);
+                            kmDistance = finalDistance * 100;
                           });
-                          _showSnackBar();
-                        }
-                      } else {
-                        error = LocaleKeys.view_snack_error_invalid_address.tr();
-                        _showSnackBar();
-                      }
+                          if (kmDistance < 3.0) {
+                            _writeName(DataFromMaptoVerify.name);
+                            _writeSpeciality(DataFromMaptoVerify.speciality);
+                            _writeNumber(DataFromMaptoVerify.phoneNumber);
+                            _writeProvince(DataFromMaptoVerify.province);
+                            _writeAddress(DataFromMaptoVerify.address);
+                            _writelat(lattt.toString());
+                            _writelng(lnggg.toString());
+                            _writeWorkDays01(json.encode(DataFromMaptoVerify.workDays01));
+                            _writeWorkDays02(json.encode(DataFromMaptoVerify.workDays02));
+                            _writeWorkDays03(json.encode(DataFromMaptoVerify.workDays03));
+                            final authResult = await _auth.registerWithEmailAndPassword(DataFromMaptoVerify.email, DataFromMaptoVerify.password);
+                            if (authResult != null) {
+                              int count = 0;
+                              getSuccess(_controller);
+                              Navigator.popUntil(context, (route) {
+                                return count++ == 4;
+                              });
+                            } else
+                              getFlushbar(context, LocaleKeys.error_snack_register.tr(), _controller);
+                          } else
+                            getFlushbar(context, LocaleKeys.error_snack_register.tr(), _controller);
+                       
+                      } else
+                        getFlushbar(context, LocaleKeys.error_invalid_address.tr(), _controller);
                     }
-                  }
-                } else {
-                  setState(() {
-                    error = LocaleKeys.view_snack_error_snack_connectivity.tr();
-                  });
-                }
-                _showSnackBar();
-              },
+                    }
+
+                  } else
+                    getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller);
+                },
+              ),
             ),
-          ),
+          )
         ],
       ),
     );
   }
 }
+
+

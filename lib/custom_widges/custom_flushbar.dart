@@ -7,9 +7,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
-getFlushbar(BuildContext context, String message, RoundedLoadingButtonController controller) {
+getFlushbar(BuildContext context, String message, RoundedLoadingButtonController controller) async {
   Flushbar(
-    title: LocaleKeys.view_snack_error_error_title.tr(),
+    title: LocaleKeys.error_error_title.tr(),
     message: message,
     forwardAnimationCurve: Curves.decelerate,
     reverseAnimationCurve: Curves.easeOut,
@@ -27,14 +27,12 @@ getFlushbar(BuildContext context, String message, RoundedLoadingButtonController
     ),
   )..show(context);
   controller.error();
-  Timer(Duration(seconds: 2), () {
-    controller.reset();
-  });
+  await Future.delayed(const Duration(seconds: 2), () {});
+  controller.reset();
 }
 
-void getSuccess(RoundedLoadingButtonController controller) {
+getSuccess(RoundedLoadingButtonController controller) async {
   controller.success();
-  Timer(Duration(seconds: 2), () {
-    controller.reset();
-  });
+  await Future.delayed(const Duration(seconds: 1), () {});
+  controller.reset();
 }

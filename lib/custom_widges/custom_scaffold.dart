@@ -9,6 +9,7 @@ class BaseScaffold extends StatelessWidget {
   final List<Widget> actions;
   final bool isAppbar;
   final Widget bottomNavigationBar;
+  final Widget action;
 
   const BaseScaffold({
     Key key,
@@ -17,6 +18,7 @@ class BaseScaffold extends StatelessWidget {
     this.actions,
     this.isAppbar,
     this.bottomNavigationBar,
+    this.action,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -46,22 +48,7 @@ class BaseScaffold extends StatelessWidget {
                       ),
                     ),
                   ),
-                  actions: [
-                    IconButton(
-                      icon: Icon(Icons.color_lens),
-                      onPressed: () => getThemeManager(context).toggleDarkLightTheme(),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.language),
-                      onPressed: () async {
-                        if (getLocale(context)) {
-                          await context.setLocale(Locale('ar'));
-                        } else {
-                          await context.setLocale(Locale('en'));
-                        }
-                      },
-                    ),
-                  ],
+                  actions: [action],
                 ),
               )
             : null,
@@ -83,4 +70,39 @@ class BaseScaffold extends StatelessWidget {
       ),
     );
   }
+}
+
+PopupMenuButton<String> getAppActions(BuildContext context) {
+  return PopupMenuButton<String>(
+      onSelected: (action) {
+        if (action == '0') {
+          if (getLocale(context))
+            context.setLocale(Locale('ar'));
+          else
+            context.setLocale(Locale('en'));
+        }
+        if (action == '1') getThemeManager(context).toggleDarkLightTheme();
+      },
+      itemBuilder: (BuildContext context) => [
+            PopupMenuItem(
+              value: '0',
+              child: ListTile(
+                leading: Icon(Icons.language),
+                title: Text(
+                  'popupMenu.language'.tr(),
+                  style: CStyle.getSubtitle(context),
+                ),
+              ),
+            ),
+            PopupMenuItem(
+              value: '1',
+              child: ListTile(
+                leading: Icon(Icons.color_lens),
+                title: Text(
+                  'popupMenu.theme'.tr(),
+                  style: CStyle.getSubtitle(context),
+                ),
+              ),
+            ),
+          ]);
 }

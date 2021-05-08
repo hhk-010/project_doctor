@@ -27,12 +27,16 @@ class _SignUpViewState extends State<SignUpView> {
   void initState() {
     super.initState();
     RegisterData.isPasswordVisible = false;
+    RegisterData.email = '';
+    RegisterData.password = '';
   }
 
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: true,
+           action: getAppActions(context),
+
       title: LocaleKeys.view_doctor_register.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
@@ -101,20 +105,17 @@ class _SignUpViewState extends State<SignUpView> {
                   controller: _controller,
                   onPressed: () async {
                     print(ModalRoute.of(context));
-                    if (RegisterData.email != null &&
-                        RegisterData.email.isNotEmpty &&
-                        RegisterData.password != null &&
-                        RegisterData.password.isNotEmpty) {
+                    if (RegisterData.email.isNotEmpty && RegisterData.password.isNotEmpty) {
                       if (ModalRoute.of(context) != null) {
+                        await getSuccess(_controller);
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => ProfileDataView(),
                           ),
                         );
-                        _controller.reset();
                       }
                     } else {
-                      getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr(), _controller);
+                      getFlushbar(context, LocaleKeys.error_sign_info.tr(), _controller);
                     }
                   }),
             ),
