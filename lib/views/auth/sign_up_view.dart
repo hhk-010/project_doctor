@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
@@ -8,8 +7,8 @@ import 'package:project_doctor/custom_widges/custom_button.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/data_model/auth_data.dart';
-import 'package:project_doctor/views/profile/personal_view.dart';
 import 'package:project_doctor/custom_widges/custom_home.dart';
+import 'package:project_doctor/views/profile/1_profile_data_view.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class SignUpView extends StatefulWidget {
@@ -22,7 +21,7 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
-  final RoundedLoadingButtonController _btnController = RoundedLoadingButtonController();
+  final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
 
   @override
   void initState() {
@@ -99,7 +98,7 @@ class _SignUpViewState extends State<SignUpView> {
               padding: const EdgeInsets.only(bottom: 100),
               child: CustomLoadingButton(
                   title: LocaleKeys.view_doctor_register.tr(),
-                  controller: _btnController,
+                  controller: _controller,
                   onPressed: () async {
                     print(ModalRoute.of(context));
                     if (RegisterData.email != null &&
@@ -112,14 +111,10 @@ class _SignUpViewState extends State<SignUpView> {
                             builder: (context) => ProfileDataView(),
                           ),
                         );
-                        _btnController.reset();
+                        _controller.reset();
                       }
                     } else {
-                      getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr())..show(context);
-                      _btnController.error();
-                      Timer(Duration(seconds: 2), () {
-                        _btnController.reset();
-                      });
+                      getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr(), _controller);
                     }
                   }),
             ),

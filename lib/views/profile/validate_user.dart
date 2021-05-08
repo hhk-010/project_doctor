@@ -6,7 +6,7 @@ import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/views/auth/loading_delete.dart';
-import 'package:project_doctor/views/profile/delete_doctor.dart';
+import 'package:project_doctor/views/profile/remove_profile_view.dart';
 import '../../services/auth.dart';
 
 class PreDeleteUser extends StatefulWidget {

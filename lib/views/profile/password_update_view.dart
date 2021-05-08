@@ -22,7 +22,7 @@ class _PasswordUpdateViewState extends State<PasswordUpdateView> {
   static bool _isPasswordValid;
   static String _oldPassword;
   static String _newPassword;
-  final RoundedLoadingButtonController _btnController = RoundedLoadingButtonController();
+  final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
   @override
   void initState() {
     _isPasswordVisible = false;
@@ -92,7 +92,7 @@ class _PasswordUpdateViewState extends State<PasswordUpdateView> {
               padding: const EdgeInsets.only(bottom: 100),
               child: CustomLoadingButton(
                 title: LocaleKeys.view_buttons_update.tr(),
-                controller: _btnController,
+                controller: _controller,
                 onPressed: () async {
                   if (await isInternet()) {
                     if (_oldPassword != null && _oldPassword.isNotEmpty && _newPassword != null && _newPassword.isNotEmpty) {
@@ -100,33 +100,33 @@ class _PasswordUpdateViewState extends State<PasswordUpdateView> {
                       _isPasswordValid = await AuthService().validatepass(_oldPassword);
                       if (_isPasswordValid) {
                         AuthService().updatepass(_newPassword);
-                        _btnController.success();
+                        _controller.success();
                         Timer(Duration(seconds: 2), () {
-                          _btnController.reset();
+                          _controller.reset();
                         });
                         int count = 0;
                         Navigator.popUntil(context, (route) {
                           return count++ == 2;
                         });
                       } else {
-                        getFlushbar(context, LocaleKeys.view_doctor_invalid_password.tr())..show(context);
-                        _btnController.error();
+                        getFlushbar(context, LocaleKeys.view_doctor_invalid_password.tr(), _controller);
+                        _controller.error();
                         Timer(Duration(seconds: 2), () {
-                          _btnController.reset();
+                          _controller.reset();
                         });
                       }
                     } else {
-                      getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr())..show(context);
-                      _btnController.error();
+                      getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr(), _controller);
+                      _controller.error();
                       Timer(Duration(seconds: 2), () {
-                        _btnController.reset();
+                        _controller.reset();
                       });
                     }
                   } else {
-                    getFlushbar(context, LocaleKeys.view_snack_error_snack_connectivity.tr())..show(context);
-                    _btnController.error();
+                    getFlushbar(context, LocaleKeys.view_snack_error_snack_connectivity.tr(), _controller);
+                    _controller.error();
                     Timer(Duration(seconds: 2), () {
-                      _btnController.reset();
+                      _controller.reset();
                     });
                   }
                 },

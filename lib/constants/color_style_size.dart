@@ -60,6 +60,7 @@ class CStyle {
   static InputDecoration getInputDecoration(BuildContext context) {
     return InputDecoration(
       hintStyle: getSubtitle(context),
+      labelStyle: CStyle.getSubtitle(context),
       border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(16.0)), borderSide: BorderSide(color: Colors.deepOrange, width: 2)),
       enabledBorder:
           OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(16.0)), borderSide: BorderSide(color: Colors.deepOrange, width: 2)),

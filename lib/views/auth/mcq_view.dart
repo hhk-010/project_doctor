@@ -8,6 +8,7 @@ import 'package:project_doctor/custom_widges/custom_mcq.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/views/auth/questions.dart';
 import 'package:project_doctor/views/auth/sign_up_view.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class QuestionView extends StatefulWidget {
   final Function registerToggleView;
@@ -20,6 +21,8 @@ class QuestionView extends StatefulWidget {
 }
 
 class _QuestionViewState extends State<QuestionView> {
+  final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
+
   List<int> counterList = Iterable<int>.generate(26).toList();
 
   @override
@@ -98,16 +101,18 @@ class _QuestionViewState extends State<QuestionView> {
           ),
           Positioned(
             bottom: 25,
-            child: BaseButton(
+            child: CustomLoadingButton(
+                controller: _controller,
                 title: 'Next',
                 onPressed: () {
                   if (QuestionsShuffle.value1 == QuestionsShuffle.answers[QuestionsShuffle.questions[questionIndex1]]) QuestionsShuffle.score += 1;
                   if (QuestionsShuffle.value2 == QuestionsShuffle.answers[QuestionsShuffle.questions[questionIndex2]]) QuestionsShuffle.score += 1;
                   if (QuestionsShuffle.value3 == QuestionsShuffle.answers[QuestionsShuffle.questions[questionIndex3]]) QuestionsShuffle.score += 1;
-                  if (QuestionsShuffle.score >= 3)
+                  if (QuestionsShuffle.score >= 3) {
+                    getSuccess(_controller);
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignUpView()));
-                  else
-                    getFlushbar(context,'Please, Answer the questions correctly')..show(context);
+                  } else
+                    getFlushbar(context, 'Please, Answer the questions correctly', _controller);
 
                   setState(() {
                     QuestionsShuffle.score = 0;

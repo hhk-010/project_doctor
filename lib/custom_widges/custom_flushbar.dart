@@ -1,11 +1,14 @@
+import 'dart:async';
+
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 
-Flushbar getFlushbar(BuildContext context, String message) {
-  return Flushbar(
+getFlushbar(BuildContext context, String message, RoundedLoadingButtonController controller) {
+  Flushbar(
     title: LocaleKeys.view_snack_error_error_title.tr(),
     message: message,
     forwardAnimationCurve: Curves.decelerate,
@@ -22,5 +25,16 @@ Flushbar getFlushbar(BuildContext context, String message) {
       size: 30,
       color: getColor(context, Colors.white, Colors.red),
     ),
-  );
+  )..show(context);
+  controller.error();
+  Timer(Duration(seconds: 2), () {
+    controller.reset();
+  });
+}
+
+void getSuccess(RoundedLoadingButtonController controller) {
+  controller.success();
+  Timer(Duration(seconds: 2), () {
+    controller.reset();
+  });
 }

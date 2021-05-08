@@ -6,7 +6,7 @@ import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/views/auth/email_verify_view.dart';
 import 'package:project_doctor/views/auth/mcq_view.dart';
 import 'package:project_doctor/views/auth/sign_in_view.dart';
-import 'package:project_doctor/views/profile/doctor04_profile.dart';
+import 'package:project_doctor/views/profile/4_profile_view.dart';
 import 'package:provider/provider.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/auth.dart';

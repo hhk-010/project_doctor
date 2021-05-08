@@ -13,6 +13,7 @@ class RegisterData {
   static String speciality;
   static String phoneNumber;
   static String province;
+  static String clinicAddress;
 }
 
 class ResetPasswordData {

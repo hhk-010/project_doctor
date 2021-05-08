@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,7 @@ class ResetPasswordView extends StatefulWidget {
 }
 
 class _ResetPasswordViewState extends State<ResetPasswordView> {
-  final RoundedLoadingButtonController _btnController = RoundedLoadingButtonController();
+  final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,30 +59,20 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
               padding: const EdgeInsets.only(bottom: 100),
               child: CustomLoadingButton(
                   title: LocaleKeys.view_doctor_password_reset_email.tr(),
-                  controller: _btnController,
+                  controller: _controller,
                   onPressed: () async {
                     print(ResetPasswordData.email);
                     if (await isInternet()) {
                       if (ResetPasswordData.email != null && ResetPasswordData.email.isNotEmpty) {
                         await FirebaseAuth.instance.sendPasswordResetEmail(email: ResetPasswordData.email);
-                        _btnController.success();
-                        Timer(Duration(seconds: 2), () {
-                          _btnController.reset();
-                        });
+                        getSuccess(_controller);
+
                         await Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResetPasswordView2()));
                       } else {
-                        getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr())..show(context);
-                        _btnController.error();
-                        Timer(Duration(seconds: 2), () {
-                          _btnController.reset();
-                        });
+                        getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr(), _controller);
                       }
                     } else {
-                      getFlushbar(context, LocaleKeys.view_snack_error_snack_connectivity.tr())..show(context);
-                      _btnController.error();
-                      Timer(Duration(seconds: 2), () {
-                        _btnController.reset();
-                      });
+                      getFlushbar(context, LocaleKeys.view_snack_error_snack_connectivity.tr(), _controller);
                     }
                   }),
             ),

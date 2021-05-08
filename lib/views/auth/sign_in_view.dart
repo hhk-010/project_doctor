@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
@@ -26,7 +25,7 @@ class SignInView extends StatefulWidget {
 class _SignInViewState extends State<SignInView> {
   // object for firebase auth
   final AuthService _auth = AuthService();
-  final RoundedLoadingButtonController _btnController = RoundedLoadingButtonController();
+  final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
 
   @override
   void initState() {
@@ -116,34 +115,21 @@ class _SignInViewState extends State<SignInView> {
               padding: const EdgeInsets.only(bottom: 100),
               child: CustomLoadingButton(
                 title: LocaleKeys.view_doctor_sign_in.tr(),
-                controller: _btnController,
+                controller: _controller,
                 onPressed: () async {
                   if (await isInternet()) {
                     if (SignInData.email != null && SignInData.email.isNotEmpty && SignInData.password != null && SignInData.password.isNotEmpty) {
                       dynamic authResult = await _auth.signInWithEmailAndPassword(SignInData.email, SignInData.password);
                       if (authResult != null) {
-                        _btnController.success();
-                        Timer(Duration(seconds: 2), () {});
+                        getSuccess(_controller);
                       } else {
-                        getFlushbar(context, LocaleKeys.view_snack_error_snack_sign_in.tr())..show(context);
-                        _btnController.error();
-                        Timer(Duration(seconds: 2), () {
-                          _btnController.reset();
-                        });
+                        getFlushbar(context, LocaleKeys.view_snack_error_snack_sign_in.tr(), _controller);
                       }
                     } else {
-                      getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr())..show(context);
-                      _btnController.error();
-                      Timer(Duration(seconds: 2), () {
-                        _btnController.reset();
-                      });
+                      getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr(), _controller);
                     }
                   } else {
-                    getFlushbar(context, LocaleKeys.view_snack_error_snack_connectivity.tr())..show(context);
-                    _btnController.error();
-                    Timer(Duration(seconds: 2), () {
-                      _btnController.reset();
-                    });
+                    getFlushbar(context, LocaleKeys.view_snack_error_snack_connectivity.tr(), _controller);
                   }
                 },
               ),

@@ -10,7 +10,7 @@ import 'package:project_doctor/views/auth/email_verify_view.dart';
 import 'package:project_doctor/views/auth/loading_delete.dart';
 import 'package:provider/provider.dart';
 import '../../services/database.dart';
-import 'doctor04_profile.dart';
+import '4_profile_view.dart';
 
 // ----------------class for snackbar error
 class SnackBarError {

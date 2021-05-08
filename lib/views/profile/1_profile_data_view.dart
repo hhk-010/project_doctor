@@ -8,7 +8,8 @@ import 'package:project_doctor/custom_widges/custom_button.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/data_model/auth_data.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/views/profile/clinic_view.dart';
+import 'package:project_doctor/views/profile/2_clinic_data_view.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class ProfileDataView extends StatefulWidget {
   @override
@@ -16,6 +17,8 @@ class ProfileDataView extends StatefulWidget {
 }
 
 class _ProfileDataViewState extends State<ProfileDataView> {
+  final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
+
   //-----------validate phonenumber------------
   int _number = 0;
   int finalNumber = 0;
@@ -293,7 +296,8 @@ class _ProfileDataViewState extends State<ProfileDataView> {
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: const EdgeInsets.only(bottom: 100),
-              child: BaseButton(
+              child: CustomLoadingButton(
+                controller: _controller,
                 title: LocaleKeys.view_buttons_next.tr(),
                 onPressed: () async {
                   if (RegisterData.name != null &&
@@ -319,9 +323,11 @@ class _ProfileDataViewState extends State<ProfileDataView> {
                         ),
                       );
                     } else
-                      getFlushbar(context, LocaleKeys.view_patient_age_format.tr())..show(context);
+                      getFlushbar(context, LocaleKeys.view_patient_age_format.tr(),_controller);
+                  
                   } else
-                    getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr())..show(context);
+                    getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr(),_controller);
+                 
                 },
               ),
             ),

@@ -2,20 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
+import 'package:project_doctor/custom_widges/custom_home.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/custom_widges/custom_button.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/data_model/auth_data.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/views/profile/clinic_view.dart';
+import 'package:project_doctor/views/profile/6_clinic_update_view.dart';
+import 'package:project_doctor/views/profile/password_update_view.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 
-class ProfileDataView extends StatefulWidget {
+class UpdateProfileDataView extends StatefulWidget {
   @override
-  _ProfileDataViewState createState() => _ProfileDataViewState();
+  _UpdateProfileDataViewState createState() => _UpdateProfileDataViewState();
 }
 
-class _ProfileDataViewState extends State<ProfileDataView> {
+class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
+  final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
+
   //-----------validate phonenumber------------
   int _number = 0;
   int finalNumber = 0;
@@ -33,7 +38,7 @@ class _ProfileDataViewState extends State<ProfileDataView> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: true,
-      title: LocaleKeys.view_doctor_doctor_form.tr(),
+      title: LocaleKeys.view_doctor_update_info.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
@@ -293,13 +298,12 @@ class _ProfileDataViewState extends State<ProfileDataView> {
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: const EdgeInsets.only(bottom: 100),
-              child: BaseButton(
+              child: CustomLoadingButton(
+                controller: _controller,
                 title: LocaleKeys.view_buttons_next.tr(),
                 onPressed: () async {
                   if (RegisterData.name != null &&
                       RegisterData.name.isNotEmpty &&
-                      RegisterData.speciality != null &&
-                      RegisterData.speciality.isNotEmpty &&
                       RegisterData.phoneNumber != null &&
                       RegisterData.phoneNumber.isNotEmpty &&
                       RegisterData.province != null &&
@@ -315,17 +319,38 @@ class _ProfileDataViewState extends State<ProfileDataView> {
                       print(finalTextNumber);
                       await Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => ClinicStream(),
+                          builder: (context) => UpdateInfo2(),
                         ),
                       );
                     } else
-                      getFlushbar(context, LocaleKeys.view_patient_age_format.tr())..show(context);
+                      getFlushbar(context, LocaleKeys.view_patient_age_format.tr(),_controller);
                   } else
-                    getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr())..show(context);
+                    getFlushbar(context, LocaleKeys.view_snack_error_sign_info.tr(),_controller);
                 },
               ),
             ),
-          )
+          ),
+          CustomFooter(
+            child: InkWell(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => PasswordUpdateView()));
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    LocaleKeys.view_doctor_change_password.tr(),
+                    style: CStyle.getFooter(context),
+                  ),
+                  Text('  '),
+                  Text(
+                    LocaleKeys.view_doctor_change.tr(),
+                    style: CStyle.getFooter(context).copyWith(color: Colors.red[400], fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
