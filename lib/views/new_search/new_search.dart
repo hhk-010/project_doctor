@@ -5,7 +5,7 @@ import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/views/auth/loading_delete.dart';
-import 'package:project_doctor/views/patient_pages/patient_sidebar.dart';
+import 'package:project_doctor/views/search_complain/patient_sidebar.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class NewSearch extends StatefulWidget {

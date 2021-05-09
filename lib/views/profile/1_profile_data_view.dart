@@ -6,7 +6,7 @@ import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/custom_widges/custom_button.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
-import 'package:project_doctor/data_model/auth_data.dart';
+import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/views/profile/2_clinic_data_view.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';

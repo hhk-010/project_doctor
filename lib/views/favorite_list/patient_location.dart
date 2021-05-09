@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
+import 'package:project_doctor/custom_widges/custom_button.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/data_model.dart';
-import 'package:project_doctor/views/auth/loading_delete.dart';
 
 class PatientLocation extends StatefulWidget {
   @override
@@ -346,11 +346,9 @@ class _PatientLocationState extends State<PatientLocation> {
                     Container(
                       height: getDeviceType(context, 30, 40, 50, 60),
                       width: isLoading01 ? getDeviceType(context, 30, 40, 50, 60) : getDeviceType(context, 130, 260, 150, 160),
-                      child: LoadingButton(
-                        isloading: isLoading01,
-                        backgroundcolor: Colors.deepOrange,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                        onpressed: () async {
+                      child: CustomLoadingButton(
+
+                        onPressed: () async {
                           setState(() => isLoading01 = true);
                           checkInternet();
                           if (!(SearchResultData.patientProvince == null || SearchResultData.patientProvince == '')) {
@@ -400,13 +398,8 @@ class _PatientLocationState extends State<PatientLocation> {
                           }
                           setState(() => isLoading01 = false);
                         },
-                        child: FittedBox(
-                          fit: BoxFit.fitWidth,
-                          child: Text(
-                            LocaleKeys.view_patient_invalid_device_location.tr(),
-                            style: TextStyle(color: Colors.white, fontSize: getDeviceType(context, 15, 18, 21, 24), fontWeight: FontWeight.bold),
-                          ),
-                        ),
+                        title: LocaleKeys.view_patient_invalid_device_location.tr(),
+                      
                       ),
                     ),
                     Padding(
@@ -419,15 +412,9 @@ class _PatientLocationState extends State<PatientLocation> {
                     Container(
                       height: getDeviceType(context, 30, 40, 50, 60),
                       width: isLoading02 ? getDeviceType(context, 30, 40, 50, 60) : getDeviceType(context, 130, 260, 150, 160),
-                      child: LoadingButtonIcon(
-                        isloading: isLoading02,
-                        backgroundcolor: Colors.deepOrange,
-                        icon: Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
-                        ),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                        onpressed: () async {
+                      child: CustomLoadingButton(
+                       
+                        onPressed: () async {
                           setState(() => isLoading02 = true);
                           if (!(SearchResultData.patientProvince == null || SearchResultData.patientProvince == '')) {
                             SearchResultData.geoLatlng = await getCoordinatesFromAddress(
@@ -447,13 +434,8 @@ class _PatientLocationState extends State<PatientLocation> {
                           }
                           setState(() => isLoading02 = false);
                         },
-                        label: FittedBox(
-                          fit: BoxFit.fitWidth,
-                          child: Text(
-                            LocaleKeys.view_buttons_google_map.tr(),
-                            style: TextStyle(color: Colors.white, fontSize: getDeviceType(context, 15, 18, 21, 24), fontWeight: FontWeight.bold),
-                          ),
-                        ),
+                        title: LocaleKeys.view_buttons_google_map.tr(),
+                      
                       ),
                     ),
                   ],

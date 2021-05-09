@@ -7,7 +7,7 @@ import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/custom_widges/custom_button.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
-import 'package:project_doctor/data_model/auth_data.dart';
+import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/views/profile/6_clinic_update_view.dart';
 import 'package:project_doctor/views/profile/password_update_view.dart';
@@ -54,7 +54,7 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextField(
-                    onChanged: (val) => setState(() => UpdateData.name = val),
+                    onChanged: (val) => setState(() => UpdateProfileData.name = val),
                     decoration: CStyle.getInputDecoration(context).copyWith(
                       hintText: LocaleKeys.view_doctor_name.tr(),
                       prefixIcon: Icon(
@@ -70,7 +70,7 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
                         Icons.phone,
                       ),
                     ),
-                    onChanged: (val) => setState(() => UpdateData.phoneNumber = val),
+                    onChanged: (val) => setState(() => UpdateProfileData.phoneNumber = val),
                   ),
                   Container(
                     height: getDeviceType(context, 42, 50, 63, 60),
@@ -82,7 +82,7 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
                           horizontal: getDeviceType(context, 15, 20, 25, 30),
                         ),
                         child: DropdownButton(
-                          value: UpdateData.speciality,
+                          value: UpdateProfileData.speciality,
                           isDense: false,
                           isExpanded: true,
                           icon: Icon(Icons.keyboard_arrow_down),
@@ -90,7 +90,7 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
                           underline: SizedBox(),
                           hint: Text(LocaleKeys.view_doctor_speciality.tr(), style: CStyle.getSubtitle(context)),
                           onChanged: (val) {
-                            UpdateData.speciality = val;
+                            UpdateProfileData.speciality = val;
                             setState(() {});
                           },
                           items: [
@@ -202,7 +202,7 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
                         ),
                         child: DropdownButton<String>(
                           onChanged: (val) => setState(() {
-                            UpdateData.province = val;
+                            UpdateProfileData.province = val;
                             DatabaseService.validationProvince = val;
                             DatabaseService.province = val;
                           }),
@@ -211,7 +211,7 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
                           icon: Icon(Icons.keyboard_arrow_down),
                           iconSize: getDeviceType(context, 30, 35, 40, 45),
                           underline: SizedBox(),
-                          value: UpdateData.province,
+                          value: UpdateProfileData.province,
                           hint: Text(LocaleKeys.view_doctor_province.tr(), style: CStyle.getSubtitle(context)),
                           items: [
                             DropdownMenuItem(
@@ -306,8 +306,8 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
                 controller: _controller,
                 title: LocaleKeys.view_buttons_next.tr(),
                 onPressed: () async {
-                  if (UpdateData.name != null && UpdateData.phoneNumber != null && UpdateData != null) {
-                    finalNumber = await validateNumber(UpdateData.phoneNumber);
+                  if (UpdateProfileData.name != null && UpdateProfileData.phoneNumber != null && UpdateProfileData != null) {
+                    finalNumber = await validateNumber(UpdateProfileData.phoneNumber);
                     finalTextNumber = finalNumber.toString();
                     if (finalNumber != null) {
                       if (finalTextNumber.substring(0, 1) == '7') {

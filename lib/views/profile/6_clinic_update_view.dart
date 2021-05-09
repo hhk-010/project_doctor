@@ -4,7 +4,7 @@ import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/custom_widges/custom_button.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
-import 'package:project_doctor/data_model/auth_data.dart';
+import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/connectivity.dart';
@@ -141,7 +141,7 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
   @override
   void initState() {
     super.initState();
-    UpdateData.clinicAddress = '';
+    UpdateProfileData.clinicAddress = '';
     _mainFromTime = TimeOfDay.now();
     _secondaryFromTime = TimeOfDay.now();
     _mainToTime = TimeOfDay(hour: 12, minute: 0);
@@ -440,7 +440,7 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                                 textDirection: ui.TextDirection.rtl,
                                 child: TextField(
                                   onChanged: (val) {
-                                    setState(() => UpdateData.clinicAddress = val);
+                                    setState(() => UpdateProfileData.clinicAddress = val);
                                   },
                                   decoration: CStyle.getInputDecoration(context).copyWith(
                                     hintText: 'مثال: الحارثيه شارع الكندي',
@@ -793,7 +793,7 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                           title: LocaleKeys.view_buttons_google_map.tr(),
                           onPressed: () async {
                             if (await isInternet()) {
-                              if (UpdateData.clinicAddress.isNotEmpty) {
+                              if (UpdateProfileData.clinicAddress.isNotEmpty) {
                                 if (e1.isNotEmpty && t1.isNotEmpty) {
                                   if (workDays02.isEmpty) {
                                     workDays02.add(e1[0]);
@@ -814,7 +814,7 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                                     workDays03.add(t2[0]);
                                   }
                                 }
-                                if (UpdateData.clinicAddress != '' &&
+                                if (UpdateProfileData.clinicAddress != '' &&
                                     currentWorkDays != '' &&
                                     mainFromTimeString != '' &&
                                     mainToTimeString != '' &&
@@ -823,7 +823,7 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                                     mainto &&
                                     ((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty)) &&
                                     ((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
-                                  latlng = await getCoordinatesFromAddress(provinces[UpdateData.province] + ' ' + UpdateData.clinicAddress);
+                                  latlng = await getCoordinatesFromAddress(provinces[UpdateProfileData.province] + ' ' + UpdateProfileData.clinicAddress);
 
                                   setState(() {
                                     if (workDays01[workDays01.length - 1].length < 11) {
@@ -838,11 +838,11 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                                   mainfrom = false;
                                   mainto = false;
                                   setState(() {
-                                    DataFromProfiletoUpdate.name = UpdateData.name;
-                                    DataFromProfiletoUpdate.speciality = UpdateData.speciality;
-                                    DataFromProfiletoUpdate.phoneNumber = UpdateData.phoneNumber;
-                                    DataFromProfiletoUpdate.province = UpdateData.province;
-                                    DataFromProfiletoUpdate.address = UpdateData.clinicAddress;
+                                    DataFromProfiletoUpdate.name = UpdateProfileData.name;
+                                    DataFromProfiletoUpdate.speciality = UpdateProfileData.speciality;
+                                    DataFromProfiletoUpdate.phoneNumber = UpdateProfileData.phoneNumber;
+                                    DataFromProfiletoUpdate.province = UpdateProfileData.province;
+                                    DataFromProfiletoUpdate.address = UpdateProfileData.clinicAddress;
                                     DataFromProfiletoUpdate.workDays01 = List<String>.from(workDays01);
                                     DataFromProfiletoUpdate.workDays02 = List<String>.from(workDays02);
                                     DataFromProfiletoUpdate.workDays03 = List<String>.from(workDays03);
