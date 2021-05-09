@@ -65,6 +65,7 @@ flutter:
     - assets/images/
     - assets/images/home/
     - assets/images/auth/
+    - assets/images/search/
     - assets/translations/
     - lang/en.json
     - lang/ar.json

@@ -35,8 +35,7 @@ class _SignUpViewState extends State<SignUpView> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: true,
-           action: getAppActions(context),
-
+      action: getAppActions(context),
       title: LocaleKeys.view_doctor_register.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
@@ -47,7 +46,7 @@ class _SignUpViewState extends State<SignUpView> {
             isIcon: false,
             width: MediaQuery.of(context).size.width,
             height: 300,
-            asset: getTheme(context) ? 'assets/images/auth/header_light.png' : 'assets/images/auth/header_dark.png',
+            asset: getTheme(context) ? 'assets/images/auth/sign_up_light.png' : 'assets/images/auth/sign_up_dark.png',
           ),
           Align(
             alignment: Alignment.center,

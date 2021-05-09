@@ -134,7 +134,7 @@ class FavoriteListData {
       this.lng});
 }
 
-class NewSearchData {
+class ProfileSearchData {
   static String province = '';
   static String name = '';
   static String speciality = '';
@@ -142,7 +142,7 @@ class NewSearchData {
   static bool specialitySelected = false;
 }
 
-class NewSearchListData {
+class ProfileSearchListData {
   var id;
   final String name;
   final String address;
@@ -154,7 +154,7 @@ class NewSearchListData {
   final List workDays03;
   final double lat;
   final double lng;
-  NewSearchListData(
+  ProfileSearchListData(
       {this.id,
       this.name,
       this.address,

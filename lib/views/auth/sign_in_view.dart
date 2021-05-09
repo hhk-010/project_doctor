@@ -39,8 +39,7 @@ class _SignInViewState extends State<SignInView> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: true,
-            action: getAppActions(context),
-
+      action: getAppActions(context),
       title: LocaleKeys.view_doctor_sign_in.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
@@ -51,12 +50,12 @@ class _SignInViewState extends State<SignInView> {
             isIcon: false,
             width: MediaQuery.of(context).size.width,
             height: 300,
-            asset: getTheme(context) ? 'assets/images/auth/header_light.png' : 'assets/images/auth/header_dark.png',
+            asset: getTheme(context) ? 'assets/images/auth/sign_in_light.png' : 'assets/images/auth/sign_in_dark.png',
           ),
           Align(
             alignment: Alignment.center,
             child: Padding(
-              padding: const EdgeInsets.only(top: 100),
+              padding: const EdgeInsets.only(top: 120),
               child: Container(
                 height: 200,
                 width: 300,
