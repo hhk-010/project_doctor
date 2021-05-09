@@ -4,9 +4,9 @@ import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/views/auth/loading_delete.dart';
-import 'package:project_doctor/views/search_complain/patient_sidebar.dart';
+import 'package:project_doctor/constants/loading_delete.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:project_doctor/views/search/search_complain/patient_sidebar.dart';
 
 class NewSearch extends StatefulWidget {
   @override

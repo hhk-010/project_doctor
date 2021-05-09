@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/CustomIcons.ttf
 ///
-///
+/// 
 ///
 import 'package:flutter/widgets.dart';
 
@@ -27,4 +27,5 @@ class CustomIcons {
   static const IconData history = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData home = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData support = IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData complain = IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
