@@ -14,7 +14,7 @@ import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/services/read_write_path.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/views/auth/sign_wrapper.dart';
-import 'package:project_doctor/views/profile/validate_user.dart';
+import 'package:project_doctor/views/profile/delete_profile_view.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 // class for getting the data from map to firebase through verfication.
@@ -131,7 +131,7 @@ class _EmailVeriyViewState extends State<EmailVeriyView> {
                 getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller);
             }
             if (action == '1') {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => PreDeleteUser()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => DeleteProfileView()));
             }
           },
           itemBuilder: (BuildContext context) => [

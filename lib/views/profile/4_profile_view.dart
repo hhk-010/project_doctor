@@ -1,18 +1,19 @@
-import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/custom_widges/custom_button.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
+import 'package:project_doctor/custom_widges/custom_profile.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/connectivity.dart';
 import 'package:project_doctor/services/database.dart';
+import 'package:project_doctor/views/home/main_view.dart';
 import 'package:project_doctor/views/profile/5_profile_update_view.dart';
-import 'package:project_doctor/views/profile/validate_user.dart';
+import 'package:project_doctor/views/profile/delete_profile_view.dart';
 import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
@@ -43,58 +44,55 @@ class _ProfileViewHeaderState extends State<ProfileViewHeader> {
       value: DatabaseService().usersDataStream,
       child: BaseScaffold(
         isAppbar: true,
-       
         title: LocaleKeys.view_doctor_profile.tr(),
-        action:
-          PopupMenuButton<String>(
-              onSelected: (action) async {
-                if (action == '0') {
-                  if (await isInternet()) {
-                    await _auth.signOut();
-                    Navigator.pop(context);
-                  } else
-                    getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller);
-                }
-                if (action == '1') {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => PreDeleteUser()));
-                }
-                if (action == '2') {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => UpdateProfileDataView()));
-                }
-              },
-              itemBuilder: (BuildContext context) => [
-                    PopupMenuItem(
-                      value: '0',
-                      child: ListTile(
-                        leading: Icon(Icons.logout),
-                        title: Text(
-                          'popupMenu.logout'.tr(),
-                          style: CStyle.getSubtitle(context),
-                        ),
+        action: PopupMenuButton<String>(
+            onSelected: (action) async {
+              if (action == '0') {
+                if (await isInternet()) {
+                  await _auth.signOut();
+                  Navigator.pop(context);
+                } else
+                  getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller);
+              }
+              if (action == '1') {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => DeleteProfileView()));
+              }
+              if (action == '2') {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => UpdateProfileDataView()));
+              }
+            },
+            itemBuilder: (BuildContext context) => [
+                  PopupMenuItem(
+                    value: '0',
+                    child: ListTile(
+                      leading: Icon(Icons.logout),
+                      title: Text(
+                        'popupMenu.logout'.tr(),
+                        style: CStyle.getSubtitle(context),
                       ),
                     ),
-                    PopupMenuItem(
-                      value: '1',
-                      child: ListTile(
-                        leading: Icon(Icons.person_remove),
-                        title: Text(
-                          'popupMenu.deleteAccount'.tr(),
-                          style: CStyle.getSubtitle(context),
-                        ),
+                  ),
+                  PopupMenuItem(
+                    value: '1',
+                    child: ListTile(
+                      leading: Icon(Icons.person_remove),
+                      title: Text(
+                        'popupMenu.deleteAccount'.tr(),
+                        style: CStyle.getSubtitle(context),
                       ),
                     ),
-                    PopupMenuItem(
-                      value: '2',
-                      child: ListTile(
-                        leading: Icon(Icons.update),
-                        title: Text(
-                          'popupMenu.UpdateProfile'.tr(),
-                          style: CStyle.getSubtitle(context),
-                        ),
+                  ),
+                  PopupMenuItem(
+                    value: '2',
+                    child: ListTile(
+                      leading: Icon(Icons.update),
+                      title: Text(
+                        'popupMenu.UpdateProfile'.tr(),
+                        style: CStyle.getSubtitle(context),
                       ),
                     ),
-                  ]),
-      
+                  ),
+                ]),
         child: ProfileViewBody(),
       ),
     );
@@ -264,158 +262,109 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
     return Stack(
       alignment: Alignment.topCenter,
       children: [
-        Align(
-          alignment: Alignment.topCenter,
-          child: Container(
-            padding: EdgeInsets.only(top: 50),
-            height: 500,
-            width: 350,
-            child: Container(
-              decoration: CStyle.box,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                child: Empty.isEmpty
-                    ? Column(
-                        children: [
-                          Text(
-                            LocaleKeys.view_buttons_prof_error.tr(),
-                            style: CStyle.getHeading(context),
-                          ),
-                          Text(
-                            LocaleKeys.view_buttons_data_error.tr(),
-                            style: CStyle.getTitleBlack(context),
-                          ),
-                        ],
-                      )
-                    : Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Center(
-                            child: CircleAvatar(
-                              backgroundColor: Colors.deepOrange,
-                              radius: 50,
-                              backgroundImage: AssetImage('assets/images/doctor.png'),
-                            ),
-                          ),
-                          Center(
-                            child: FittedBox(
-                              fit: BoxFit.fitWidth,
-                              child: Text(
-                                name,
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                          Center(
-                            child: Text(
-                              // _doctorAddress,
-                              (province).tr(),
-                            ),
-                          ),
-                          Divider(
-                            color: Colors.grey[600],
-                            thickness: 3,
-                            indent: 25,
-                            endIndent: 25,
-                          ),
-                          Text(
-                            LocaleKeys.view_doctor_speciality.tr(),
-                            style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            (speciality).tr(),
-                          ),
-                          Divider(
-                            color: Colors.grey,
-                            thickness: 1,
-                            indent: 0,
-                            endIndent: 0,
-                          ),
-                          Text(
-                            LocaleKeys.view_doctor_phoneNumber.tr(),
-                            style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            number,
-                          ),
-                          Divider(
-                            color: Colors.grey,
-                            thickness: 1,
-                            indent: 0,
-                            endIndent: 0,
-                          ),
-                          Text(
-                            LocaleKeys.view_doctor_clinic_address.tr(),
-                            style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            _address,
-                          ),
-                          Divider(
-                            color: Colors.grey,
-                            thickness: 1,
-                            indent: 0,
-                            endIndent: 0,
-                          ),
-                          Text(
-                            LocaleKeys.view_doctor_clinic_work.tr(),
-                            style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
-                          ),
-                          FittedBox(
-                            fit: BoxFit.fitWidth,
-                            child: Text(
-                              _finalMainDays + '\n' + _mainTime,
-                            ),
-                          ),
-                          Divider(
-                            color: Colors.grey,
-                            thickness: 1,
-                            indent: 0,
-                            endIndent: 0,
-                          ),
-                          _workDays02.isEmpty
-                              ? SizedBox(
-                                  height: 5,
-                                )
-                              : Container(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        LocaleKeys.view_doctor_another_clinic_work.tr(),
-                                        style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
-                                      ),
-                                      SizedBox(
-                                        height: 2,
-                                      ),
-                                      FittedBox(
-                                        fit: BoxFit.fitWidth,
-                                        child: Text(
-                                          _firstEDay + " " + _firstTime + '\n' + _secondEDay + " " + _secondTime,
-                                        ),
-                                      ),
-                                      Divider(
-                                        color: Colors.grey,
-                                        thickness: 1,
-                                        indent: 0,
-                                        endIndent: 0,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                        ],
+        Empty.isEmpty
+            ? Align(
+                alignment: Alignment.center,
+                child: Container(
+                  height: 100,
+                  width: 350,
+                  decoration: CStyle.box,
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        LocaleKeys.view_buttons_prof_error.tr(),
+                        style: CStyle.getHeading(context),
                       ),
+                      Text(
+                        LocaleKeys.view_buttons_data_error.tr(),
+                        style: CStyle.getTitleBlack(context),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            : Positioned(
+                top: 50,
+                child: Container(
+                  height: 600,
+                  width: 350,
+                  decoration: CStyle.box,
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 200,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.deepOrange,
+                                radius: 50,
+                                backgroundImage: AssetImage('assets/images/doctor.png'),
+                              ),
+                              Text(
+                                name,
+                                style: CStyle.getTitleBlack(context),
+                              ),
+                              Text(
+                                (province).tr(),
+                                style: CStyle.getFooter(context),
+                              ),
+                              Divider(
+                                color: Colors.grey[600],
+                                thickness: 3,
+                                indent: 25,
+                                endIndent: 25,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CustomProfileColumn(
+                              title: LocaleKeys.view_doctor_speciality.tr(),
+                              content: (speciality).tr(),
+                            ),
+                            CustomProfileColumn(
+                              title: LocaleKeys.view_doctor_phoneNumber.tr(),
+                              content: number,
+                            ),
+                            CustomProfileColumn(
+                              title: LocaleKeys.view_doctor_clinic_address.tr(),
+                              content: _address,
+                            ),
+                            CustomProfileColumn2(
+                              title: LocaleKeys.view_doctor_clinic_work.tr(),
+                              content: _finalMainDays + '\n' + _mainTime,
+                            ),
+                            _workDays02.isEmpty
+                                ? SizedBox(
+                                    height: 5,
+                                  )
+                                : CustomProfileColumn2(
+                                    title: LocaleKeys.view_doctor_another_clinic_work.tr(),
+                                    content: _firstEDay + " " + _firstTime + '\n' + _secondEDay + " " + _secondTime,
+                                  ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
         Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 50),
+            padding: const EdgeInsets.only(bottom: 40),
             child: BaseButton(
-              title: LocaleKeys.view_doctor_update_info.tr(),
-              onPressed: null,
+              title: 'Home Screen'.tr(),
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => MainView())),
             ),
           ),
         )
