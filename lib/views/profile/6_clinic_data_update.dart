@@ -1,45 +1,26 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/custom_widges/custom_button.dart';
+import 'package:project_doctor/custom_widges/custom_buttons.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/connectivity.dart';
-import 'dart:ui' as ui;
-import 'package:project_doctor/services/database.dart';
-import 'package:provider/provider.dart';
+import 'package:project_doctor/views/profile/7_map_data_update.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:weekday_selector/weekday_selector.dart';
-import '3_map_data_view.dart';
+import 'dart:ui' as ui;
 
 class ClinicDay {
   static String day1;
   static String day2;
 }
 
-class ClinicStream extends StatefulWidget {
+class UpdateClinicView extends StatefulWidget {
   @override
-  _ClinicStreamState createState() => _ClinicStreamState();
-}
-
-class _ClinicStreamState extends State<ClinicStream> {
-  @override
-  Widget build(BuildContext context) {
-    return StreamProvider<QuerySnapshot>.value(
-      initialData: null,
-      value: DatabaseService().usersDataStream,
-      child: ClinicView(),
-    );
-  }
-}
-
-class ClinicView extends StatefulWidget {
-  @override
-  _ClinicViewState createState() => _ClinicViewState();
+  _UpdateClinicViewState createState() => _UpdateClinicViewState();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -74,9 +55,7 @@ List boolToStringDays(BuildContext context, List workDays) {
   ];
 }
 
-////////////////////////////////////////////////////////////////////////////////////////
-class _ClinicViewState extends State<ClinicView> {
-  /////////////////////////////////////////////////////////////////////////////////////////
+class _UpdateClinicViewState extends State<UpdateClinicView> {
   final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
 
   List workDays01 = [];
@@ -121,8 +100,8 @@ class _ClinicViewState extends State<ClinicView> {
   bool thirdto = false;
   String latlng = '';
   int _x = 6;
-  bool registered = false;
 
+//===========geo encode address=======
   getCoordinatesFromAddress(String address) async {
     try {
       final query = address;
@@ -137,6 +116,7 @@ class _ClinicViewState extends State<ClinicView> {
     }
   }
 
+//===========province translation=====
   Map provinces = {
     'Baghdad': 'بغداد',
     'Erbil': 'اربيل',
@@ -157,11 +137,11 @@ class _ClinicViewState extends State<ClinicView> {
     'Nineveh': 'نينوى',
     'Wasit': 'واسط'
   };
-////////////////////////////////////////////////////////////////////////////////////////////////
+
   @override
   void initState() {
     super.initState();
-    RegisterData.clinicAddress = '';
+    UpdateProfileData.clinicAddress = '';
     _mainFromTime = TimeOfDay.now();
     _secondaryFromTime = TimeOfDay.now();
     _mainToTime = TimeOfDay(hour: 12, minute: 0);
@@ -180,13 +160,13 @@ class _ClinicViewState extends State<ClinicView> {
       workDays[_x] = false;
       _x -= 1;
     }
-    registered = false;
   }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
-///////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+
     final weekDaysList = {
       0: [workDays[0], LocaleKeys.view_time_day_sunday.tr(), "sunday"],
       1: [workDays[1], LocaleKeys.view_time_day_monday.tr(), "monday"],
@@ -210,19 +190,6 @@ class _ClinicViewState extends State<ClinicView> {
       for (int key in weekDaysList.keys) {
         if (!weekDaysList[key][0] && weekDaysList[key][2] != ClinicDay.day1) {
           exception2.add(DropdownMenuItem<String>(child: Text(weekDaysList[key][1]), value: weekDaysList[key][2]));
-        }
-      }
-    }
-
-    final doctorDocs = Provider.of<QuerySnapshot>(context);
-    if (doctorDocs != null) {
-      for (var x in doctorDocs.docs) {
-        if (RegisterData.name == x.data()['name'] &&
-            RegisterData.speciality == x.data()['speciality'] &&
-            RegisterData.province == x.data()['province']) {
-          setState(() {
-            registered = true;
-          });
         }
       }
     }
@@ -434,13 +401,12 @@ class _ClinicViewState extends State<ClinicView> {
       print(ternaryWorkingHours);
     }
 
-//////////////////////////////////////////////////////////////////////////////////////
     return BaseScaffold(
       isAppbar: true,
              action: getAppActions(context),
 
 
-      title: LocaleKeys.view_doctor_clinic_form.tr(),
+      title: LocaleKeys.view_doctor_update_info.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
@@ -474,7 +440,7 @@ class _ClinicViewState extends State<ClinicView> {
                                 textDirection: ui.TextDirection.rtl,
                                 child: TextField(
                                   onChanged: (val) {
-                                    setState(() => RegisterData.clinicAddress = val);
+                                    setState(() => UpdateProfileData.clinicAddress = val);
                                   },
                                   decoration: CStyle.getInputDecoration(context).copyWith(
                                     hintText: 'مثال: الحارثيه شارع الكندي',
@@ -827,7 +793,7 @@ class _ClinicViewState extends State<ClinicView> {
                           title: LocaleKeys.view_buttons_google_map.tr(),
                           onPressed: () async {
                             if (await isInternet()) {
-                              if (RegisterData.clinicAddress.isNotEmpty) {
+                              if (UpdateProfileData.clinicAddress.isNotEmpty) {
                                 if (e1.isNotEmpty && t1.isNotEmpty) {
                                   if (workDays02.isEmpty) {
                                     workDays02.add(e1[0]);
@@ -848,7 +814,7 @@ class _ClinicViewState extends State<ClinicView> {
                                     workDays03.add(t2[0]);
                                   }
                                 }
-                                if (RegisterData.clinicAddress != '' &&
+                                if (UpdateProfileData.clinicAddress != '' &&
                                     currentWorkDays != '' &&
                                     mainFromTimeString != '' &&
                                     mainToTimeString != '' &&
@@ -857,45 +823,38 @@ class _ClinicViewState extends State<ClinicView> {
                                     mainto &&
                                     ((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty)) &&
                                     ((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
-                                  latlng = await getCoordinatesFromAddress(provinces[RegisterData.province] + ' ' + RegisterData.clinicAddress);
-                                  if (!registered) {
-                                    setState(() {
-                                      if (workDays01[workDays01.length - 1].length < 11) {
-                                        workDays01.add(mainWorkingHours);
-                                      } else {
-                                        workDays01.remove(workDays01[workDays01.length - 1]);
-                                        workDays01.add(mainWorkingHours);
-                                      }
+                                  latlng = await getCoordinatesFromAddress(provinces[UpdateProfileData.province] + ' ' + UpdateProfileData.clinicAddress);
 
-                                      makeMePass = false;
-                                      print(workDays01);
-                                    });
-                                    mainfrom = false;
-                                    mainto = false;
-                                    setState(() {
-                                      DataFromMaptoVerify.email = RegisterData.email;
-                                      DataFromMaptoVerify.password = RegisterData.password;
-                                      DataFromMaptoVerify.name = RegisterData.name;
-                                      DataFromMaptoVerify.speciality = RegisterData.speciality;
-                                      DataFromMaptoVerify.phoneNumber = RegisterData.phoneNumber;
-                                      DataFromMaptoVerify.province = RegisterData.province;
-                                      DataFromMaptoVerify.address = RegisterData.clinicAddress;
-                                      DataFromMaptoVerify.workDays01 = List<String>.from(workDays01);
-                                      DataFromMaptoVerify.workDays02 = List<String>.from(workDays02);
-                                      DataFromMaptoVerify.workDays03 = List<String>.from(workDays03);
-                                    });
-                                    print(latlng);
-                                   await getSuccess(_controller);
-                                    await Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => MapViewStream(
-                                          addresslatlng: latlng.toString(),
-                                        ),
+                                  setState(() {
+                                    if (workDays01[workDays01.length - 1].length < 11) {
+                                      workDays01.add(mainWorkingHours);
+                                    } else {
+                                      workDays01.remove(workDays01[workDays01.length - 1]);
+                                      workDays01.add(mainWorkingHours);
+                                    }
+
+                                    makeMePass = false;
+                                  });
+                                  mainfrom = false;
+                                  mainto = false;
+                                  setState(() {
+                                    DataFromProfiletoUpdate.name = UpdateProfileData.name;
+                                    DataFromProfiletoUpdate.speciality = UpdateProfileData.speciality;
+                                    DataFromProfiletoUpdate.phoneNumber = UpdateProfileData.phoneNumber;
+                                    DataFromProfiletoUpdate.province = UpdateProfileData.province;
+                                    DataFromProfiletoUpdate.address = UpdateProfileData.clinicAddress;
+                                    DataFromProfiletoUpdate.workDays01 = List<String>.from(workDays01);
+                                    DataFromProfiletoUpdate.workDays02 = List<String>.from(workDays02);
+                                    DataFromProfiletoUpdate.workDays03 = List<String>.from(workDays03);
+                                  });
+                                  print(latlng);
+                                  await Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => UpdateaMapViewStream(
+                                        latlng: latlng,
                                       ),
-                                    );
-                                  } else if (registered) {
-                                    getFlushbar(context, LocaleKeys.error_already_registered.tr(), _controller);
-                                  }
+                                    ),
+                                  );
                                 } else if (currentWorkDays == '') {
                                   getFlushbar(context, LocaleKeys.error_selectmaindays.tr(), _controller);
                                 } else if (mainFromTimeString == '' || mainToTimeString == '' || !mainfrom || !mainto) {

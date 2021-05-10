@@ -18,7 +18,7 @@
   "Saladin": "Saladin",
   "Sulaymaniyah": "Sulaymaniyah",
   "Wasit": "Wasit",
-  "specialities": "=======================================",
+  "specialities": "===========================================",
   "Cardiologist": "Cardiologist",
   "Pulmonologist": "Pulmonologist",
   "Endocrinologist": "Endocrinologist",
@@ -662,5 +662,11 @@
     "choose_1st_exception_day": "Please , choose the first exception day",
     "error_title": "Hey !",
     "sign_info": "Fill in the required fields"
+  },
+  "regions": "=======================================",
+  "search": {
+    "name_speciality": "Search by Name/Speciality",
+    "complain": "Search by Complain",
+    "history": "Search History"
   }
 }

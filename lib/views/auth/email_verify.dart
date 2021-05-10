@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/custom_widges/custom_button.dart';
+import 'package:project_doctor/custom_widges/custom_buttons.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
 import 'package:project_doctor/custom_widges/custom_home.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
@@ -14,7 +14,7 @@ import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/services/read_write_path.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/views/auth/sign_wrapper.dart';
-import 'package:project_doctor/views/profile/delete_profile_view.dart';
+import 'package:project_doctor/views/profile/delete_profile.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 // class for getting the data from map to firebase through verfication.

@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/custom_widges/custom_button.dart';
+import 'package:project_doctor/custom_widges/custom_buttons.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
 import 'package:project_doctor/custom_widges/custom_home.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
@@ -24,9 +24,9 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: true,
-      actions: [
+      action:
         getAppActions(context),
-      ],
+    
       title: LocaleKeys.view_doctor_passWord_reset.tr(),
       child: Stack(
         alignment: Alignment.topCenter,

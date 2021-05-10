@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/custom_widges/custom_button.dart';
+import 'package:project_doctor/custom_widges/custom_buttons.dart';
 import 'package:project_doctor/custom_widges/custom_home.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:project_doctor/views/search/search_history/Profile.dart';
+import 'package:project_doctor/views/search/search_history/history_profile.dart';
 import 'package:project_doctor/views/search/search_profile/profile_search.dart';
 
 class SearchWrapper extends StatelessWidget {
@@ -36,17 +36,17 @@ class SearchWrapper extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    BaseButton(
-                      title: 'Search by Name',
+                    SearchWrapperButtons(
+                      title: 'search.name_speciality'.tr(),
                       onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileSearchView())),
                     ),
-                    BaseButton(
-                      title: 'Search by Complain',
+                    SearchWrapperButtons(
+                      title: 'search.complain'.tr(),
                       onPressed: null,
                     ),
-                    BaseButton(
-                      title: 'Search History',
-                      onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => LastSearchedDoctor())),
+                    SearchWrapperButtons(
+                      title: 'search.history'.tr(),
+                      onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchHistoryProfile())),
                     )
                   ],
                 ),

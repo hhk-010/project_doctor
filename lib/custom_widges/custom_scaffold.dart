@@ -6,7 +6,6 @@ import 'package:easy_localization/easy_localization.dart';
 class BaseScaffold extends StatelessWidget {
   final Widget child;
   final String title;
-  final List<Widget> actions;
   final bool isAppbar;
   final Widget bottomNavigationBar;
   final Widget action;
@@ -15,7 +14,6 @@ class BaseScaffold extends StatelessWidget {
     Key key,
     this.child,
     this.title,
-    this.actions,
     this.isAppbar,
     this.bottomNavigationBar,
     this.action,

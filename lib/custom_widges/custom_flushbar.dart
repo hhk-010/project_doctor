@@ -36,3 +36,27 @@ getSuccess(RoundedLoadingButtonController controller) async {
   await Future.delayed(const Duration(seconds: 1), () {});
   controller.reset();
 }
+
+getFavortiteFlushbar(
+  BuildContext context, String message,
+) async{
+   Flushbar(
+    title: LocaleKeys.error_error_title.tr(),
+    message: message,
+    forwardAnimationCurve: Curves.decelerate,
+    reverseAnimationCurve: Curves.easeOut,
+    borderRadius: BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16)),
+    duration: Duration(seconds: 2),
+    backgroundGradient: LinearGradient(colors: [
+      getColor(context, LightPalette.gradientTop, DarkPalette.gradientTop),
+      getColor(context, LightPalette.gradientBottom, DarkPalette.gradientBottom),
+    ]),
+    shouldIconPulse: false,
+    icon: Icon(
+      Icons.error,
+      size: 30,
+      color: getColor(context, Colors.white, Colors.red),
+    ),
+  )..show(context);
+
+}

@@ -2,12 +2,12 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/custom_widges/custom_button.dart';
+import 'package:project_doctor/custom_widges/custom_buttons.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
 import 'package:project_doctor/custom_widges/custom_mcq.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/views/auth/questions.dart';
-import 'package:project_doctor/views/auth/sign_up_view.dart';
+import 'package:project_doctor/views/auth/sign_up.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class QuestionView extends StatefulWidget {

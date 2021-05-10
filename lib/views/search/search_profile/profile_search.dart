@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/custom_widges/custom_button.dart';
+import 'package:project_doctor/custom_widges/custom_buttons.dart';
 import 'package:project_doctor/custom_widges/custom_dropdownbutton.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
@@ -9,7 +9,7 @@ import 'package:project_doctor/services/connectivity.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:project_doctor/views/search/search_profile/search_list.dart';
+import 'package:project_doctor/views/search/search_profile/profile_search_result.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class ProfileSearchView extends StatefulWidget {
@@ -298,7 +298,7 @@ class _ProfileSearchViewState extends State<ProfileSearchView> {
                     ],
                   ),
                   Container(
-                    height: getDeviceType(context, 42, 60, 63, 60),
+                    height: getDeviceType(context, 42, 55, 63, 60),
                     decoration: CStyle.box,
                     child: CheckboxListTile(
                       activeColor: LightPalette.button,
@@ -318,7 +318,7 @@ class _ProfileSearchViewState extends State<ProfileSearchView> {
                     ),
                   ),
                   Container(
-                    height: getDeviceType(context, 42, 60, 63, 60),
+                    height: getDeviceType(context, 42, 55, 63, 60),
                     decoration: CStyle.box,
                     child: CheckboxListTile(
                       activeColor: LightPalette.button,
@@ -368,6 +368,8 @@ class _ProfileSearchViewState extends State<ProfileSearchView> {
                     _specialitySelected
                         ? CustomDropDownButton(
                             hint: LocaleKeys.view_doctor_speciality.tr(),
+
+                            // value: ProfileSearchData.speciality,
                             onChanged: (val) => setState(() => ProfileSearchData.speciality = val),
                             items: [
                               DropdownMenuItem(
@@ -484,20 +486,27 @@ class _ProfileSearchViewState extends State<ProfileSearchView> {
             child: Padding(
               padding: const EdgeInsets.only(bottom: 100),
               child: CustomLoadingButton(
-                title: LocaleKeys.view_buttons_search.tr(),
-                controller: _controller,
-                onPressed: () async {
-                  if (!await isInternet())
-                    getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller);
-                  else if (ProfileSearchData.province == null)
-                    getFlushbar(context, LocaleKeys.view_new_search_select_province.tr(), _controller);
-                  else if (!_nameSelected && !_specialitySelected)
-                    getFlushbar(context, LocaleKeys.view_new_search_enter_name_speciality.tr(), _controller);
-                  else
-                    getSuccess(_controller);
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchListView()));
-                },
-              ),
+                  title: LocaleKeys.view_buttons_search.tr(),
+                  controller: _controller,
+                  onPressed: () async {
+                    print(ProfileSearchData.province);
+                    print(ProfileSearchData.speciality);
+                    print(ProfileSearchData.name);
+
+                    if (!await isInternet())
+                      getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller);
+                    else {
+                      if (ProfileSearchData.province == null)
+                        getFlushbar(context, LocaleKeys.view_new_search_select_province.tr(), _controller);
+                      else {
+                        if (ProfileSearchData.name.isNotEmpty || ProfileSearchData.speciality.isNotEmpty) {
+                          getSuccess(_controller);
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchListView()));
+                        } else
+                          getFlushbar(context, LocaleKeys.view_new_search_enter_name_speciality.tr(), _controller);
+                      }
+                    }
+                  }),
             ),
           ),
         ],

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:collection';
-import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project_doctor/custom_widges/custom_buttons.dart';
+import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class LastSearchedLocation extends StatefulWidget {
   final double lat;
@@ -15,6 +17,7 @@ class LastSearchedLocation extends StatefulWidget {
 }
 
 class _LastSearchedLocationState extends State<LastSearchedLocation> {
+  final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
   double lat;
   double lng;
   _LastSearchedLocationState({this.lat, this.lng});
@@ -31,22 +34,11 @@ class _LastSearchedLocationState extends State<LastSearchedLocation> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50),
-        child: AppBar(
-          backgroundColor: Colors.deepOrange,
-          title: FittedBox(
-              fit: BoxFit.fitWidth,
-              child: Text(
-                LocaleKeys.view_patient_doctor_location.tr(),
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              )),
-          centerTitle: true,
-          elevation: 0,
-        ),
-      ),
-      body: Stack(
+    return BaseScaffold(
+      title: LocaleKeys.view_patient_doctor_location.tr(),
+      action: getAppActions(context),
+      child: Stack(
+        alignment: Alignment.topCenter,
         children: [
           GoogleMap(
             onMapCreated: _onmapcreated,
@@ -54,23 +46,22 @@ class _LastSearchedLocationState extends State<LastSearchedLocation> {
             markers: _marker,
             zoomControlsEnabled: false,
           ),
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 25.0),
+          Align(
             alignment: Alignment.bottomCenter,
-            child: FloatingActionButton(
-              backgroundColor: Colors.deepOrange,
-              child: Text(
-                LocaleKeys.view_buttons_ok.tr(),
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 50),
+              child: CustomLoadingButton(
+                title: LocaleKeys.view_buttons_ok.tr(),
+                controller: _controller,
+                onPressed: () {
+                  int count = 0;
+                  Navigator.popUntil(context, (route) {
+                    return count++ == 2;
+                  });
+                },
               ),
-              onPressed: () {
-                int count = 0;
-                Navigator.popUntil(context, (route) {
-                  return count++ == 2;
-                });
-              },
             ),
-          ),
+          )
         ],
       ),
     );

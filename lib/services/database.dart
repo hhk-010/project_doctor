@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:project_doctor/services/data_model.dart';
-import 'package:project_doctor/views/auth/email_verify_view.dart';
+import 'package:project_doctor/views/auth/email_verify.dart';
 
 class DatabaseService {
   final String uid;

@@ -32,6 +32,36 @@ class BaseButton extends StatelessWidget {
   }
 }
 
+class SearchWrapperButtons extends StatelessWidget {
+  final String title;
+  final Function onPressed;
+
+  const SearchWrapperButtons({
+    Key key,
+    this.title,
+    this.onPressed,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: getDeviceType(context, 30, 60, 50, 60),
+      width: getDeviceType(context, 100, 300, 200, 250),
+      child: TextButton(
+        style: TextButton.styleFrom(
+          enableFeedback: true,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          primary: Colors.white,
+          backgroundColor: LightPalette.button,
+        ),
+        onPressed: onPressed,
+        child: Text(title, style: CStyle.getTitle(context)),
+      ),
+    );
+  }
+}
+
 class CustomLoadingButton extends StatelessWidget {
   final String title;
   final Function onPressed;

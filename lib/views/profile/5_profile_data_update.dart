@@ -2,21 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
+import 'package:project_doctor/custom_widges/custom_home.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:project_doctor/custom_widges/custom_button.dart';
+import 'package:project_doctor/custom_widges/custom_buttons.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/views/profile/2_clinic_data_view.dart';
+import 'package:project_doctor/views/profile/6_clinic_data_update.dart';
+import 'package:project_doctor/views/profile/password_update.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
-class ProfileDataView extends StatefulWidget {
+class UpdateProfileDataView extends StatefulWidget {
   @override
-  _ProfileDataViewState createState() => _ProfileDataViewState();
+  _UpdateProfileDataViewState createState() => _UpdateProfileDataViewState();
 }
 
-class _ProfileDataViewState extends State<ProfileDataView> {
+class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
   final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
 
   //-----------validate phonenumber------------
@@ -36,9 +38,10 @@ class _ProfileDataViewState extends State<ProfileDataView> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: true,
-           action: getAppActions(context),
+            action: getAppActions(context),
 
-      title: LocaleKeys.view_doctor_doctor_form.tr(),
+
+      title: LocaleKeys.view_doctor_update_info.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
@@ -51,7 +54,7 @@ class _ProfileDataViewState extends State<ProfileDataView> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextField(
-                    onChanged: (val) => setState(() => RegisterData.name = val),
+                    onChanged: (val) => setState(() => UpdateProfileData.name = val),
                     decoration: CStyle.getInputDecoration(context).copyWith(
                       hintText: LocaleKeys.view_doctor_name.tr(),
                       prefixIcon: Icon(
@@ -67,7 +70,7 @@ class _ProfileDataViewState extends State<ProfileDataView> {
                         Icons.phone,
                       ),
                     ),
-                    onChanged: (val) => setState(() => RegisterData.phoneNumber = val),
+                    onChanged: (val) => setState(() => UpdateProfileData.phoneNumber = val),
                   ),
                   Container(
                     height: getDeviceType(context, 42, 50, 63, 60),
@@ -79,7 +82,7 @@ class _ProfileDataViewState extends State<ProfileDataView> {
                           horizontal: getDeviceType(context, 15, 20, 25, 30),
                         ),
                         child: DropdownButton(
-                          value: RegisterData.speciality,
+                          value: UpdateProfileData.speciality,
                           isDense: false,
                           isExpanded: true,
                           icon: Icon(Icons.keyboard_arrow_down),
@@ -87,7 +90,7 @@ class _ProfileDataViewState extends State<ProfileDataView> {
                           underline: SizedBox(),
                           hint: Text(LocaleKeys.view_doctor_speciality.tr(), style: CStyle.getSubtitle(context)),
                           onChanged: (val) {
-                            RegisterData.speciality = val;
+                            UpdateProfileData.speciality = val;
                             setState(() {});
                           },
                           items: [
@@ -199,7 +202,7 @@ class _ProfileDataViewState extends State<ProfileDataView> {
                         ),
                         child: DropdownButton<String>(
                           onChanged: (val) => setState(() {
-                            RegisterData.province = val;
+                            UpdateProfileData.province = val;
                             DatabaseService.validationProvince = val;
                             DatabaseService.province = val;
                           }),
@@ -208,7 +211,7 @@ class _ProfileDataViewState extends State<ProfileDataView> {
                           icon: Icon(Icons.keyboard_arrow_down),
                           iconSize: getDeviceType(context, 30, 35, 40, 45),
                           underline: SizedBox(),
-                          value: RegisterData.province,
+                          value: UpdateProfileData.province,
                           hint: Text(LocaleKeys.view_doctor_province.tr(), style: CStyle.getSubtitle(context)),
                           items: [
                             DropdownMenuItem(
@@ -303,11 +306,8 @@ class _ProfileDataViewState extends State<ProfileDataView> {
                 controller: _controller,
                 title: LocaleKeys.view_buttons_next.tr(),
                 onPressed: () async {
-                  if (RegisterData.name != null &&
-                      RegisterData.speciality != null &&
-                      RegisterData.phoneNumber != null &&
-                      RegisterData.province != null) {
-                    finalNumber = await validateNumber(RegisterData.phoneNumber);
+                  if (UpdateProfileData.name != null && UpdateProfileData.phoneNumber != null && UpdateProfileData != null) {
+                    finalNumber = await validateNumber(UpdateProfileData.phoneNumber);
                     finalTextNumber = finalNumber.toString();
                     if (finalNumber != null) {
                       if (finalTextNumber.substring(0, 1) == '7') {
@@ -319,7 +319,7 @@ class _ProfileDataViewState extends State<ProfileDataView> {
                       await getSuccess(_controller);
                       await Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => ClinicStream(),
+                          builder: (context) => UpdateClinicView(),
                         ),
                       );
                     } else
@@ -327,6 +327,27 @@ class _ProfileDataViewState extends State<ProfileDataView> {
                   } else
                     getFlushbar(context, LocaleKeys.error_sign_info.tr(), _controller);
                 },
+              ),
+            ),
+          ),
+          CustomFooter(
+            child: InkWell(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => PasswordUpdateView()));
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    LocaleKeys.view_doctor_change_password.tr(),
+                    style: CStyle.getFooter(context),
+                  ),
+                  Text('  '),
+                  Text(
+                    LocaleKeys.view_doctor_change.tr(),
+                    style: CStyle.getFooter(context).copyWith(color: Colors.red[400], fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
             ),
           ),

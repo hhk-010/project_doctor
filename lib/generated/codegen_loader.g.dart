@@ -34,7 +34,7 @@ class CodegenLoader extends AssetLoader{
   "Saladin": "صلاح الدين",
   "Sulaymaniyah": "السليمانية",
   "Wasit": "واسط",
-  "specialities": "=======================================",
+  "specialities": "===========================================",
   "Cardiologist": "قلبيه",
   "Pulmonologist": "تنفسيه",
   "Endocrinologist": "غدد صماء",
@@ -678,15 +678,17 @@ class CodegenLoader extends AssetLoader{
     "choose_1st_exception_day": "حدد اليوم المستثنى الاول",
     "error_title": "خطأ !",
     "sign_info": "املأ الحقول المطلوبة"
+  },
+  "iraq_governate": "=======================================",
+  "search": {
+    "name_speciality": "البحث بالاسم / التخصص",
+    "complain": "البحث عن طريق  الاعراض",
+    "history": "سجل البحث"
   }
 };
 static const Map<String,dynamic> en = {
   "iraq_governate": "=======================================",
   "Baghdad": "Baghdad",
-  "Northern Region": "Northern Region of Iraq",
-  "Southern Region": "Southern Region of Iraq",
-  "Western Region": "Western Region of Iraq",
-  "Middle Region": "Middle Region of Iraq",
   "Al Anbar": "Al Anbar",
   "Babil": "Babil",
   "Basra": "Basra",
@@ -704,7 +706,7 @@ static const Map<String,dynamic> en = {
   "Saladin": "Saladin",
   "Sulaymaniyah": "Sulaymaniyah",
   "Wasit": "Wasit",
-  "specialities": "=======================================",
+  "specialities": "===========================================",
   "Cardiologist": "Cardiologist",
   "Pulmonologist": "Pulmonologist",
   "Endocrinologist": "Endocrinologist",
@@ -1319,7 +1321,7 @@ static const Map<String,dynamic> en = {
     "language": "Change Language",
     "theme": "Change Theme",
     "logout": "Log out",
-    "deleteAccount": "Delete Acccount",
+    "deleteAccount": "Delete Account",
     "UpdateProfile": "Update Account"
   },
   "error": {
@@ -1348,6 +1350,12 @@ static const Map<String,dynamic> en = {
     "choose_1st_exception_day": "Please , choose the first exception day",
     "error_title": "Hey !",
     "sign_info": "Fill in the required fields"
+  },
+  "regions": "=======================================",
+  "search": {
+    "name_speciality": "Search by Name/Speciality",
+    "complain": "Search by Complain",
+    "history": "Search History"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};

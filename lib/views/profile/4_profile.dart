@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
-import 'package:project_doctor/custom_widges/custom_button.dart';
+import 'package:project_doctor/custom_widges/custom_buttons.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
 import 'package:project_doctor/custom_widges/custom_profile.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
@@ -11,9 +11,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/auth.dart';
 import 'package:project_doctor/services/connectivity.dart';
 import 'package:project_doctor/services/database.dart';
-import 'package:project_doctor/views/home/main_view.dart';
-import 'package:project_doctor/views/profile/5_profile_update_view.dart';
-import 'package:project_doctor/views/profile/delete_profile_view.dart';
+import 'package:project_doctor/views/home/home.dart';
+import 'package:project_doctor/views/profile/5_profile_data_update.dart';
+import 'package:project_doctor/views/profile/delete_profile.dart';
 import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
@@ -364,10 +364,10 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
             padding: const EdgeInsets.only(bottom: 40),
             child: BaseButton(
               title: 'Home Screen'.tr(),
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => MainView())),
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeView())),
             ),
           ),
-        )
+        ),
       ],
     );
   }
