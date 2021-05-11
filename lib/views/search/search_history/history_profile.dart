@@ -419,7 +419,7 @@ class _SearchHistoryProfileState extends State<SearchHistoryProfile> {
               child: BaseButton(
                 title: 'view_patient_result.doctor_locat'.tr(),
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => LastSearchedLocation(
+                    builder: (context) => SearchHistoryLocation(
                           lat: _lat,
                           lng: _lng,
                         ))),

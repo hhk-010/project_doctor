@@ -259,9 +259,7 @@ class _MapViewState extends State<MapView> {
     }
     return BaseScaffold(
       isAppbar: true,
-          action: getAppActions(context),
-
-
+      action: getAppActions(context),
       title: LocaleKeys.view_doctor_add_location.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
@@ -269,7 +267,6 @@ class _MapViewState extends State<MapView> {
           GoogleMap(
             initialCameraPosition: CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 10),
             markers: Set.from(mymarker),
-          
             onTap: handletap,
             zoomControlsEnabled: false,
           ),
@@ -317,12 +314,10 @@ class _MapViewState extends State<MapView> {
                               getFlushbar(context, LocaleKeys.error_snack_register.tr(), _controller);
                           } else
                             getFlushbar(context, LocaleKeys.error_snack_register.tr(), _controller);
-                       
-                      } else
-                        getFlushbar(context, LocaleKeys.error_invalid_address.tr(), _controller);
+                        } else
+                          getFlushbar(context, LocaleKeys.error_invalid_address.tr(), _controller);
+                      }
                     }
-                    }
-
                   } else
                     getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller);
                 },
@@ -334,5 +329,3 @@ class _MapViewState extends State<MapView> {
     );
   }
 }
-
-

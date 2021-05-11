@@ -16,17 +16,6 @@ class Loading extends StatelessWidget {
   }
 }
 
-class DDDD extends StatefulWidget {
-  @override
-  _DDDDState createState() => _DDDDState();
-}
-
-class _DDDDState extends State<DDDD> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
 
 class LoadingButton extends StatelessWidget {
   final bool isloading;
@@ -58,34 +47,7 @@ class LoadingButton extends StatelessWidget {
   }
 }
 
-class FloatingLoadingButton extends StatelessWidget {
-  final bool isloading;
-  final Widget child;
-  final Function onPressed;
-  final Color backgroundcolor;
-  final Color loadercolor;
-  final ShapeBorder shape;
-  FloatingLoadingButton(
-      {@required this.isloading, @required this.child, @required this.onPressed, this.backgroundcolor, this.loadercolor, this.shape});
-  @override
-  Widget build(BuildContext context) {
-    return isloading
-        ? SizedBox(
-            width: 20,
-            height: 20,
-            child: CircularProgressIndicator(
-              strokeWidth: 4,
-              backgroundColor: Colors.deepOrange,
-              valueColor: AlwaysStoppedAnimation(this.loadercolor),
-            ))
-        : FloatingActionButton(
-            child: child,
-            onPressed: onPressed,
-            backgroundColor: backgroundcolor,
-            shape: shape,
-          );
-  }
-}
+
 
 class LoadingButtonIcon extends StatelessWidget {
   final bool isloading;

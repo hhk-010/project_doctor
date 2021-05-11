@@ -3,24 +3,25 @@ import 'dart:collection';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project_doctor/custom_widges/custom_buttons.dart';
+import 'package:project_doctor/custom_widges/custom_flushbar.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
-class LastSearchedLocation extends StatefulWidget {
+class SearchHistoryLocation extends StatefulWidget {
   final double lat;
   final double lng;
 
-  const LastSearchedLocation({Key key, this.lat, this.lng}) : super(key: key);
+  const SearchHistoryLocation({Key key, this.lat, this.lng}) : super(key: key);
   @override
-  _LastSearchedLocationState createState() => _LastSearchedLocationState(lat: lat, lng: lng);
+  _SearchHistoryLocationState createState() => _SearchHistoryLocationState(lat: lat, lng: lng);
 }
 
-class _LastSearchedLocationState extends State<LastSearchedLocation> {
+class _SearchHistoryLocationState extends State<SearchHistoryLocation> {
   final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
   double lat;
   double lng;
-  _LastSearchedLocationState({this.lat, this.lng});
+  _SearchHistoryLocationState({this.lat, this.lng});
 
   Set<Marker> _marker = HashSet<Marker>();
   // ignore: unused_field
@@ -36,6 +37,7 @@ class _LastSearchedLocationState extends State<LastSearchedLocation> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       title: LocaleKeys.view_patient_doctor_location.tr(),
+      isAppbar: true,
       action: getAppActions(context),
       child: Stack(
         alignment: Alignment.topCenter,
@@ -54,6 +56,7 @@ class _LastSearchedLocationState extends State<LastSearchedLocation> {
                 title: LocaleKeys.view_buttons_ok.tr(),
                 controller: _controller,
                 onPressed: () {
+                  getSuccess(_controller);
                   int count = 0;
                   Navigator.popUntil(context, (route) {
                     return count++ == 2;
