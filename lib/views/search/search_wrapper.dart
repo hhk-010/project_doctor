@@ -5,6 +5,7 @@ import 'package:project_doctor/custom_widges/custom_home.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:project_doctor/views/search/search_complain/get_age_complain.dart';
 import 'package:project_doctor/views/search/search_history/history_profile.dart';
 import 'package:project_doctor/views/search/search_profile/profile_search.dart';
 
@@ -42,7 +43,7 @@ class SearchWrapper extends StatelessWidget {
                     ),
                     SearchWrapperButtons(
                       title: 'search.complain'.tr(),
-                      onPressed: null,
+                      onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => AgeComplainView())),
                     ),
                     SearchWrapperButtons(
                       title: 'search.history'.tr(),

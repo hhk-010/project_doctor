@@ -213,7 +213,7 @@ class _UpdateMapViewState extends State<UpdateMapView> {
                                 DataFromProfiletoUpdate.workDays03);
                             DatabaseService.province = DataFromProfiletoUpdate.province;
                             int count = 0;
-                            getSuccess(_controller);
+                           await getSuccess(_controller);
                             Navigator.popUntil(context, (route) {
                               return count++ == 3;
                             });

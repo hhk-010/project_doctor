@@ -306,7 +306,7 @@ class _MapViewState extends State<MapView> {
                             final authResult = await _auth.registerWithEmailAndPassword(DataFromMaptoVerify.email, DataFromMaptoVerify.password);
                             if (authResult != null) {
                               int count = 0;
-                              getSuccess(_controller);
+                              await getSuccess(_controller);
                               Navigator.popUntil(context, (route) {
                                 return count++ == 4;
                               });

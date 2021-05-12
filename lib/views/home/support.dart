@@ -107,7 +107,7 @@ class SupportView extends StatelessWidget {
           CustomFooter(
             child: Text(
               LocaleKeys.view_support_cura_rights.tr(),
-              style: CStyle.getFooter(context),
+              style: CustomStyle.getFooter(context),
             ),
           )
         ],

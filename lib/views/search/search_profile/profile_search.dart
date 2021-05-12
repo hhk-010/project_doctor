@@ -110,29 +110,29 @@ class _ProfileSearchViewState extends State<ProfileSearchView> {
       ],
     };
     final Map specialities = {
-      "1": [LocaleKeys.medical_specialty_Internist.tr(), 'Internist'],
-      "2": [LocaleKeys.medical_specialty_Pediatrician.tr(), 'Pediatrician'],
-      "3": [LocaleKeys.medical_specialty_Cardiologist.tr(), 'Cardiologist'],
-      "4": [LocaleKeys.medical_specialty_Pulmonologist.tr(), 'Pulmonologist'],
-      "5": [LocaleKeys.medical_specialty_Endocrinologist.tr(), 'Endocrinologist'],
-      "6": [LocaleKeys.medical_specialty_Enterologist.tr(), 'Enterologist'],
-      "7": [LocaleKeys.medical_specialty_Neurologist.tr(), 'Neurologist'],
-      "8": [LocaleKeys.medical_specialty_Neurosurgeon.tr(), 'Neurosurgeon'],
-      "9": [LocaleKeys.medical_specialty_Heamatologist.tr(), 'Heamatologist'],
-      "10": [LocaleKeys.medical_specialty_Nephrologist.tr(), 'Nephrologist'],
-      "11": [LocaleKeys.medical_specialty_Rheumatologist.tr(), 'Rheumatologist'],
-      "12": [LocaleKeys.medical_specialty_Emergency_physician.tr(), 'Emergency physician'],
-      "13": [LocaleKeys.medical_specialty_Dermatologist.tr(), 'Dermatologist'],
-      "14": [LocaleKeys.medical_specialty_Psychiatrist.tr(), 'Psychiatrist'],
-      "15": [LocaleKeys.medical_specialty_Gynecologist.tr(), 'Gynecologist'],
-      "16": [LocaleKeys.medical_specialty_General_Surgeon.tr(), 'General Surgeon'],
-      "17": [LocaleKeys.medical_specialty_Pediatric_Surgeon.tr(), 'Pediatric Surgeon'],
-      "18": [LocaleKeys.medical_specialty_ThoracoVascular_Surgeon.tr(), 'ThoracoVascular Surgeon'],
-      "19": [LocaleKeys.medical_specialty_Orthopaedic_Surgeon.tr(), 'Orthopaedic Surgeon'],
-      "20": [LocaleKeys.medical_specialty_Urosurgeon.tr(), 'Urosurgeon'],
-      "21": [LocaleKeys.medical_specialty_Plastic_Surgeon.tr(), 'Plastic Surgeon'],
-      "22": [LocaleKeys.medical_specialty_Ophthalmologist.tr(), 'Ophthalmologist'],
-      "23": [LocaleKeys.medical_specialty_Laryngologist.tr(), 'Laryngologist'],
+      "1": ['Internist'.tr(), 'Internist'],
+      "2": ['Pediatrician'.tr(), 'Pediatrician'],
+      "3": ['Cardiologist'.tr(), 'Cardiologist'],
+      "4": ['Pulmonologist'.tr(), 'Pulmonologist'],
+      "5": ['Endocrinologist'.tr(), 'Endocrinologist'],
+      "6": ['Enterologist'.tr(), 'Enterologist'],
+      "7": ['Neurologist'.tr(), 'Neurologist'],
+      "8": ['Neurosurgeon'.tr(), 'Neurosurgeon'],
+      "9": ['Heamatologist'.tr(), 'Heamatologist'],
+      "10": ['Nephrologist'.tr(), 'Nephrologist'],
+      "11": ['Rheumatologist'.tr(), 'Rheumatologist'],
+      "12": ['Emergency physician'.tr(), 'Emergency physician'],
+      "13": ['Dermatologist'.tr(), 'Dermatologist'],
+      "14": ['Psychiatrist'.tr(), 'Psychiatrist'],
+      "15": ['Gynecologist'.tr(), 'Gynecologist'],
+      "16": ['General Surgeon'.tr(), 'General Surgeon'],
+      "17": ['Pediatric Surgeon'.tr(), 'Pediatric Surgeon'],
+      "18": ['ThoracoVascular Surgeon'.tr(), 'ThoracoVascular Surgeon'],
+      "19": ['Orthopaedic Surgeon'.tr(), 'Orthopaedic Surgeon'],
+      "20": ['Urosurgeon'.tr(), 'Urosurgeon'],
+      "21": ['Plastic Surgeon'.tr(), 'Plastic Surgeon'],
+      "22": ['Ophthalmologist'.tr(), 'Ophthalmologist'],
+      "23": ['Laryngologist'.tr(), 'Laryngologist'],
     };
     return BaseScaffold(
       title: LocaleKeys.view_buttons_search.tr(),
@@ -151,7 +151,7 @@ class _ProfileSearchViewState extends State<ProfileSearchView> {
                 children: [
                   Text(
                     LocaleKeys.view_doctor_province.tr(),
-                    style: CStyle.getTitleBlack(context),
+                    style: CustomStyle.getTitleBlack(context),
                   ),
                   Divider(
                     color: Colors.grey,
@@ -173,138 +173,138 @@ class _ProfileSearchViewState extends State<ProfileSearchView> {
                         value: province["1"][0],
                         child: Text(
                           province["1"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["2"][0],
                         child: Text(
                           province["2"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["3"][0],
                         child: Text(
                           province["3"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["4"][0],
                         child: Text(
                           province["4"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["5"][0],
                         child: Text(
                           province["5"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["6"][0],
                         child: Text(
                           province["6"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["7"][0],
                         child: Text(
                           province["7"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["8"][0],
                         child: Text(
                           province["8"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["9"][0],
                         child: Text(
                           province["9"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["10"][0],
                         child: Text(
                           province["10"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["11"][0],
                         child: Text(
                           province["11"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["12"][0],
                         child: Text(
                           province["12"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["13"][0],
                         child: Text(
                           province["13"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["14"][0],
                         child: Text(
                           province["14"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["15"][0],
                         child: Text(
                           province["15"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["16"][0],
                         child: Text(
                           province["16"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["17"][0],
                         child: Text(
                           province["17"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                       DropdownMenuItem(
                         value: province["18"][0],
                         child: Text(
                           province["18"][1],
-                          style: CStyle.getSubtitle(context),
+                          style: CustomStyle.getSubtitle(context),
                         ),
                       ),
                     ],
                   ),
                   Container(
                     height: getDeviceType(context, 42, 55, 63, 60),
-                    decoration: CStyle.box,
+                    decoration: CustomStyle.box,
                     child: CheckboxListTile(
                       activeColor: LightPalette.button,
                       title: Text(
                         LocaleKeys.view_new_search_name_search.tr(),
-                        style: CStyle.getSubtitle(context),
+                        style: CustomStyle.getSubtitle(context),
                       ),
                       value: _nameSelected,
                       onChanged: (val) => setState(() {
@@ -319,12 +319,12 @@ class _ProfileSearchViewState extends State<ProfileSearchView> {
                   ),
                   Container(
                     height: getDeviceType(context, 42, 55, 63, 60),
-                    decoration: CStyle.box,
+                    decoration: CustomStyle.box,
                     child: CheckboxListTile(
                       activeColor: LightPalette.button,
                       title: Text(
                         LocaleKeys.view_new_search_speciality_search.tr(),
-                        style: CStyle.getSubtitle(context),
+                        style: CustomStyle.getSubtitle(context),
                       ),
                       value: _specialitySelected,
                       onChanged: (val) => setState(() {
@@ -356,7 +356,7 @@ class _ProfileSearchViewState extends State<ProfileSearchView> {
                               setState(() => ProfileSearchData.name = val);
                             },
                             keyboardType: TextInputType.emailAddress,
-                            decoration: CStyle.getInputDecoration(context).copyWith(
+                            decoration: CustomStyle.getInputDecoration(context).copyWith(
                               hintText: LocaleKeys.view_new_search_enter_name.tr(),
                               suffixIcon: Icon(
                                 Icons.search,
@@ -368,110 +368,109 @@ class _ProfileSearchViewState extends State<ProfileSearchView> {
                     _specialitySelected
                         ? CustomDropDownButton(
                             hint: LocaleKeys.view_doctor_speciality.tr(),
-
-                            // value: ProfileSearchData.speciality,
+                            value: ProfileSearchData.speciality == '' ? null : ProfileSearchData.speciality,
                             onChanged: (val) => setState(() => ProfileSearchData.speciality = val),
                             items: [
                               DropdownMenuItem(
                                 value: specialities['1'][1],
                                 child: Text(
                                   specialities['1'][0],
-                                  style: CStyle.getSubtitle(context),
+                                  style: CustomStyle.getSubtitle(context),
                                 ),
                               ),
                               DropdownMenuItem(
                                 value: specialities["2"][1],
                                 child: Text(
                                   specialities["2"][0],
-                                  style: CStyle.getSubtitle(context),
+                                  style: CustomStyle.getSubtitle(context),
                                 ),
                               ),
                               DropdownMenuItem(
                                 value: specialities["3"][1],
                                 child: Text(
                                   specialities["3"][0],
-                                  style: CStyle.getSubtitle(context),
+                                  style: CustomStyle.getSubtitle(context),
                                 ),
                               ),
                               DropdownMenuItem(
                                 value: specialities["4"][1],
-                                child: Text(specialities["4"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["4"][0], style: CustomStyle.getSubtitle(context)),
                               ),
                               DropdownMenuItem(
                                 value: specialities["5"][1],
-                                child: Text(specialities["5"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["5"][0], style: CustomStyle.getSubtitle(context)),
                               ), //5
                               DropdownMenuItem(
                                 value: specialities["6"][1],
-                                child: Text(specialities["6"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["6"][0], style: CustomStyle.getSubtitle(context)),
                               ),
                               DropdownMenuItem(
                                 value: specialities["7"][1],
-                                child: Text(specialities["7"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["7"][0], style: CustomStyle.getSubtitle(context)),
                               ),
                               DropdownMenuItem(
                                 value: specialities["8"][1],
-                                child: Text(specialities["8"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["8"][0], style: CustomStyle.getSubtitle(context)),
                               ),
                               DropdownMenuItem(
                                 value: specialities["9"][1],
-                                child: Text(specialities["9"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["9"][0], style: CustomStyle.getSubtitle(context)),
                               ),
                               DropdownMenuItem(
                                 value: specialities["10"][1],
-                                child: Text(specialities["10"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["10"][0], style: CustomStyle.getSubtitle(context)),
                               ), //10
                               DropdownMenuItem(
                                 value: specialities["11"][1],
-                                child: Text(specialities["11"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["11"][0], style: CustomStyle.getSubtitle(context)),
                               ),
                               DropdownMenuItem(
                                 value: specialities["12"][1],
-                                child: Text(specialities["12"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["12"][0], style: CustomStyle.getSubtitle(context)),
                               ),
                               DropdownMenuItem(
                                 value: specialities["13"][1],
-                                child: Text(specialities['13'][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities['13'][0], style: CustomStyle.getSubtitle(context)),
                               ),
                               DropdownMenuItem(
                                 value: specialities["14"][1],
-                                child: Text(specialities["14"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["14"][0], style: CustomStyle.getSubtitle(context)),
                               ),
                               DropdownMenuItem(
                                 value: specialities["15"][1],
-                                child: Text(specialities["15"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["15"][0], style: CustomStyle.getSubtitle(context)),
                               ), //15
                               DropdownMenuItem(
                                 value: specialities["16"][1],
-                                child: Text(specialities["16"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["16"][0], style: CustomStyle.getSubtitle(context)),
                               ),
                               DropdownMenuItem(
                                 value: specialities["17"][1],
-                                child: Text(specialities["17"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["17"][0], style: CustomStyle.getSubtitle(context)),
                               ),
                               DropdownMenuItem(
                                 value: specialities["18"][1],
-                                child: Text(specialities["18"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["18"][0], style: CustomStyle.getSubtitle(context)),
                               ),
                               DropdownMenuItem(
                                 value: specialities["19"][1],
-                                child: Text(specialities["19"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["19"][0], style: CustomStyle.getSubtitle(context)),
                               ),
                               DropdownMenuItem(
                                 value: specialities["20"][1],
-                                child: Text(specialities["20"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["20"][0], style: CustomStyle.getSubtitle(context)),
                               ), //20
                               DropdownMenuItem(
                                 value: specialities["21"][1],
-                                child: Text(specialities["21"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["21"][0], style: CustomStyle.getSubtitle(context)),
                               ),
                               DropdownMenuItem(
                                 value: specialities["22"][1],
-                                child: Text(specialities["22"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["22"][0], style: CustomStyle.getSubtitle(context)),
                               ),
                               DropdownMenuItem(
                                 value: specialities["23"][1],
-                                child: Text(specialities["23"][0], style: CStyle.getSubtitle(context)),
+                                child: Text(specialities["23"][0], style: CustomStyle.getSubtitle(context)),
                               )
                             ],
                           )
@@ -500,7 +499,7 @@ class _ProfileSearchViewState extends State<ProfileSearchView> {
                         getFlushbar(context, LocaleKeys.view_new_search_select_province.tr(), _controller);
                       else {
                         if (ProfileSearchData.name.isNotEmpty || ProfileSearchData.speciality.isNotEmpty) {
-                          getSuccess(_controller);
+                          await getSuccess(_controller);
                           Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchListView()));
                         } else
                           getFlushbar(context, LocaleKeys.view_new_search_enter_name_speciality.tr(), _controller);

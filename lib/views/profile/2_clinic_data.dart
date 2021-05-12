@@ -452,7 +452,7 @@ class _ClinicViewState extends State<ClinicView> {
                 child: Column(
                   children: [
                     Container(
-                      decoration: CStyle.box,
+                      decoration: CustomStyle.box,
                       height: 400,
                       width: 350,
                       child: Padding(
@@ -463,7 +463,7 @@ class _ClinicViewState extends State<ClinicView> {
                             Center(
                               child: Text(
                                 LocaleKeys.view_doctor_detailed_address.tr(),
-                                style: CStyle.getTitleBlack(context),
+                                style: CustomStyle.getTitleBlack(context),
                               ),
                             ),
                             Padding(
@@ -476,11 +476,11 @@ class _ClinicViewState extends State<ClinicView> {
                                   onChanged: (val) {
                                     setState(() => RegisterData.clinicAddress = val);
                                   },
-                                  decoration: CStyle.getInputDecoration(context).copyWith(
+                                  decoration: CustomStyle.getInputDecoration(context).copyWith(
                                     hintText: 'مثال: الحارثيه شارع الكندي',
-                                    hintStyle: CStyle.getSubtitle(context).copyWith(fontFamily: 'noto_arabic', color: Colors.deepOrange),
+                                    hintStyle: CustomStyle.getSubtitle(context).copyWith(fontFamily: 'noto_arabic', color: Colors.deepOrange),
                                     labelText: 'عنوان العياده',
-                                    labelStyle: CStyle.getSubtitle(context).copyWith(fontFamily: 'noto_arabic', color: Colors.grey[750]),
+                                    labelStyle: CustomStyle.getSubtitle(context).copyWith(fontFamily: 'noto_arabic', color: Colors.grey[750]),
                                   ),
                                 ),
                               ),
@@ -488,7 +488,7 @@ class _ClinicViewState extends State<ClinicView> {
                             Center(
                               child: Text(
                                 LocaleKeys.view_doctor_work_days.tr(),
-                                style: CStyle.getTitleBlack(context),
+                                style: CustomStyle.getTitleBlack(context),
                               ),
                             ),
                             Padding(
@@ -535,8 +535,8 @@ class _ClinicViewState extends State<ClinicView> {
                                 ],
                                 textDirection: getLocale(context) ? ui.TextDirection.ltr : ui.TextDirection.rtl,
                                 selectedFillColor: Colors.deepOrange,
-                                selectedTextStyle: CStyle.getSubtitle(context),
-                                textStyle: CStyle.getSubtitle(context).copyWith(color: getColor(context, Colors.black, Colors.white)),
+                                selectedTextStyle: CustomStyle.getSubtitle(context),
+                                textStyle: CustomStyle.getSubtitle(context).copyWith(color: getColor(context, Colors.black, Colors.white)),
                                 selectedElevation: 0,
                                 elevation: 5,
                                 selectedShape: CircleBorder(
@@ -555,13 +555,13 @@ class _ClinicViewState extends State<ClinicView> {
                                     child: RichText(
                                       text: TextSpan(
                                           text: LocaleKeys.view_time_day_from.tr(),
-                                          style: CStyle.getTitle(context).copyWith(
+                                          style: CustomStyle.getTitle(context).copyWith(
                                             color: getColor(context, Colors.black, Colors.white),
                                           ),
                                           children: [
                                             TextSpan(
                                               text: '${_mainFromTime.format(context)}',
-                                              style: CStyle.getTitle(context).copyWith(
+                                              style: CustomStyle.getTitle(context).copyWith(
                                                 color: mainfrom ? Colors.deepOrange : getColor(context, Colors.black, Colors.white),
                                               ),
                                             ),
@@ -574,13 +574,13 @@ class _ClinicViewState extends State<ClinicView> {
                                     child: RichText(
                                       text: TextSpan(
                                           text: LocaleKeys.view_time_day_to.tr(),
-                                          style: CStyle.getTitle(context).copyWith(
+                                          style: CustomStyle.getTitle(context).copyWith(
                                             color: getColor(context, Colors.black, Colors.white),
                                           ),
                                           children: [
                                             TextSpan(
                                                 text: '${_mainToTime.format(context)}',
-                                                style: CStyle.getTitle(context).copyWith(
+                                                style: CustomStyle.getTitle(context).copyWith(
                                                   color: mainto ? Colors.deepOrange : getColor(context, Colors.black, Colors.white),
                                                 )),
                                           ]),
@@ -593,7 +593,7 @@ class _ClinicViewState extends State<ClinicView> {
                             SwitchListTile(
                                 activeColor: Colors.deepOrange,
                                 dense: true,
-                                title: Text(LocaleKeys.view_doctor_expcetion_days.tr(), style: CStyle.getSubtitle(context)),
+                                title: Text(LocaleKeys.view_doctor_expcetion_days.tr(), style: CustomStyle.getSubtitle(context)),
                                 value: _daySwitch01,
                                 onChanged: (bool s) {
                                   setState(() {
@@ -613,7 +613,7 @@ class _ClinicViewState extends State<ClinicView> {
                       child: Container(
                         height: 250,
                         width: 350,
-                        decoration: CStyle.box,
+                        decoration: CustomStyle.box,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
                           child: Column(
@@ -622,7 +622,7 @@ class _ClinicViewState extends State<ClinicView> {
                               Center(
                                 child: Text(
                                   LocaleKeys.view_doctor_expcetion_days.tr(),
-                                  style: CStyle.getTitleBlack(context),
+                                  style: CustomStyle.getTitleBlack(context),
                                 ),
                               ),
                               Padding(
@@ -662,13 +662,13 @@ class _ClinicViewState extends State<ClinicView> {
                                       child: RichText(
                                         text: TextSpan(
                                             text: LocaleKeys.view_time_day_from.tr(),
-                                            style: CStyle.getTitle(context).copyWith(
+                                            style: CustomStyle.getTitle(context).copyWith(
                                               color: getColor(context, Colors.black, Colors.white),
                                             ),
                                             children: [
                                               TextSpan(
                                                 text: '${_secondaryFromTime.format(context)}',
-                                                style: CStyle.getTitle(context).copyWith(
+                                                style: CustomStyle.getTitle(context).copyWith(
                                                   color: secfrom ? Colors.deepOrange : getColor(context, Colors.black, Colors.white),
                                                 ),
                                               ),
@@ -681,13 +681,13 @@ class _ClinicViewState extends State<ClinicView> {
                                       child: RichText(
                                         text: TextSpan(
                                             text: LocaleKeys.view_time_day_to.tr(),
-                                            style: CStyle.getTitle(context).copyWith(
+                                            style: CustomStyle.getTitle(context).copyWith(
                                               color: getColor(context, Colors.black, Colors.white),
                                             ),
                                             children: [
                                               TextSpan(
                                                 text: '${_secondaryToTime.format(context)}',
-                                                style: CStyle.getTitle(context).copyWith(
+                                                style: CustomStyle.getTitle(context).copyWith(
                                                   color: secto ? Colors.deepOrange : getColor(context, Colors.black, Colors.white),
                                                 ),
                                               ),
@@ -703,7 +703,7 @@ class _ClinicViewState extends State<ClinicView> {
                                   dense: true,
                                   title: Text(
                                     LocaleKeys.view_doctor_expcetion_days.tr(),
-                                    style: CStyle.getSubtitle(context),
+                                    style: CustomStyle.getSubtitle(context),
                                   ),
                                   value: _daySwitch02,
                                   onChanged: (bool s) {
@@ -725,7 +725,7 @@ class _ClinicViewState extends State<ClinicView> {
                       child: Container(
                         height: 200,
                         width: 350,
-                        decoration: CStyle.box,
+                        decoration: CustomStyle.box,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
                           child: Column(
@@ -734,7 +734,7 @@ class _ClinicViewState extends State<ClinicView> {
                               Center(
                                 child: Text(
                                   LocaleKeys.view_doctor_expcetion_days.tr(),
-                                  style: CStyle.getTitleBlack(context),
+                                  style: CustomStyle.getTitleBlack(context),
                                 ),
                               ),
                               Padding(
@@ -774,13 +774,13 @@ class _ClinicViewState extends State<ClinicView> {
                                       child: RichText(
                                         text: TextSpan(
                                             text: LocaleKeys.view_time_day_from.tr(),
-                                            style: CStyle.getTitle(context).copyWith(
+                                            style: CustomStyle.getTitle(context).copyWith(
                                               color: getColor(context, Colors.black, Colors.white),
                                             ),
                                             children: [
                                               TextSpan(
                                                 text: '${_ternaryFromTime.format(context)}',
-                                                style: CStyle.getTitle(context).copyWith(
+                                                style: CustomStyle.getTitle(context).copyWith(
                                                   color: thirdfrom ? Colors.deepOrange : getColor(context, Colors.black, Colors.white),
                                                 ),
                                               ),
@@ -793,13 +793,13 @@ class _ClinicViewState extends State<ClinicView> {
                                       child: RichText(
                                         text: TextSpan(
                                             text: LocaleKeys.view_time_day_to.tr(),
-                                            style: CStyle.getTitle(context).copyWith(
+                                            style: CustomStyle.getTitle(context).copyWith(
                                               color: getColor(context, Colors.black, Colors.white),
                                             ),
                                             children: [
                                               TextSpan(
                                                 text: '${_ternaryToTime.format(context)}',
-                                                style: CStyle.getTitle(context).copyWith(
+                                                style: CustomStyle.getTitle(context).copyWith(
                                                   color: thirdto ? Colors.deepOrange : getColor(context, Colors.black, Colors.white),
                                                 ),
                                               ),

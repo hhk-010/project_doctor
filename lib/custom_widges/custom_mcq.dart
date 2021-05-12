@@ -17,16 +17,16 @@ class CustomQuestion extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 350,
-      decoration: CStyle.box,
+      decoration: CustomStyle.box,
       padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(QuestionsShuffle.questions[questionIndex], textAlign: TextAlign.justify, style: CStyle.getSubtitle(context)),
+          Text(QuestionsShuffle.questions[questionIndex], textAlign: TextAlign.justify, style: CustomStyle.getSubtitle(context)),
           DropdownButton(
             isExpanded: true,
             hint: Text(answer == null ? 'Choose the Right answer' : answer,
-                style: CStyle.getTitle(context).copyWith(
+                style: CustomStyle.getTitle(context).copyWith(
                   color:
                       answer == null ? getColor(context, Colors.grey[600], Colors.grey[500]) : getColor(context, Colors.grey[900], Colors.grey[100]),
                 )),

@@ -8,15 +8,15 @@ import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:project_doctor/services/connectivity.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:project_doctor/views/search/search_complain/patient05_result.dart';
+import 'package:project_doctor/views/search/search_complain/result_profile.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
-class PatientSearchmap extends StatefulWidget {
+class FavoriteGetMapView extends StatefulWidget {
   @override
-  _PatientSearchmapState createState() => _PatientSearchmapState();
+  _FavoriteGetMapViewState createState() => _FavoriteGetMapViewState();
 }
 
-class _PatientSearchmapState extends State<PatientSearchmap> {
+class _FavoriteGetMapViewState extends State<FavoriteGetMapView> {
   final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
 
   List<Marker> _mymarker = [];
@@ -80,7 +80,8 @@ class _PatientSearchmapState extends State<PatientSearchmap> {
                         else {
                           SearchResultData.distance = await SearchResultData()
                               .getDistance(SearchResultData.patientLat, SearchResultData.patientLng, SearchResultData.lat, SearchResultData.lng);
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => PatientResult()));
+                              await getSuccess(_controller);
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileResultView()));
                         }
                       }
                     }

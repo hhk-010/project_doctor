@@ -29,7 +29,7 @@ class BaseScaffold extends StatelessWidget {
             ? PreferredSize(
                 preferredSize: Size.fromHeight(getDeviceType(context, 40, 50, 60, 70)),
                 child: AppBar(
-                  title: Text(title, style: CStyle.getHeading(context)),
+                  title: Text(title, style: CustomStyle.getHeading(context)),
                   centerTitle: true,
                   elevation: 0.0,
                   flexibleSpace: Container(
@@ -88,7 +88,7 @@ PopupMenuButton<String> getAppActions(BuildContext context) {
                 leading: Icon(Icons.language),
                 title: Text(
                   'popupMenu.language'.tr(),
-                  style: CStyle.getSubtitle(context),
+                  style: CustomStyle.getSubtitle(context),
                 ),
               ),
             ),
@@ -98,7 +98,7 @@ PopupMenuButton<String> getAppActions(BuildContext context) {
                 leading: Icon(Icons.color_lens),
                 title: Text(
                   'popupMenu.theme'.tr(),
-                  style: CStyle.getSubtitle(context),
+                  style: CustomStyle.getSubtitle(context),
                 ),
               ),
             ),

@@ -9,7 +9,7 @@ import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/views/favorite/favorite_list.dart';
-import 'package:project_doctor/views/favorite/patient_location.dart';
+import 'package:project_doctor/views/favorite/get_location_wrapper.dart';
 import 'package:project_doctor/views/search/search_history/read_write_path.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -302,11 +302,11 @@ class _SearchListTileState extends State<SearchListTile> {
                 ),
                 title: Text(
                   widget.searchResultList.name,
-                  style: CStyle.getTitleBlack(context).copyWith(fontFamily: 'noto_arabic'),
+                  style: CustomStyle.getTitleBlack(context).copyWith(fontFamily: 'noto_arabic'),
                 ),
                 subtitle: Text(
                   (widget.searchResultList.speciality).tr(),
-                  style: CStyle.getSubtitle(context),
+                  style: CustomStyle.getSubtitle(context),
                 ),
                 onTap: () {
                   setState(() => FavoriteTile.favoriteListSelected = false);
@@ -393,7 +393,7 @@ class _SearchListTileState extends State<SearchListTile> {
                         ' ' +
                         _secondToAmPm;
                   }
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => PatientLocation()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => FavoriteLocationWrapper()));
                 },
               ),
             ),

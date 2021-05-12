@@ -13,7 +13,7 @@ class DarkPalette {
   static const Color button = Color(0xFFF8961E);
 }
 
-class CStyle {
+class CustomStyle {
   static TextStyle getHeading(context) {
     return TextStyle(
         fontSize: getDeviceType(context, 18, 20, 24, 30),
@@ -61,7 +61,7 @@ class CStyle {
   static InputDecoration getInputDecoration(BuildContext context) {
     return InputDecoration(
       hintStyle: getSubtitle(context),
-      labelStyle: CStyle.getSubtitle(context),
+      labelStyle: CustomStyle.getSubtitle(context),
       border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(16.0)), borderSide: BorderSide(color: Colors.deepOrange, width: 2)),
       enabledBorder:
           OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(16.0)), borderSide: BorderSide(color: Colors.orange, width: 2)),

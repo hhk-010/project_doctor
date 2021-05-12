@@ -38,9 +38,7 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: true,
-            action: getAppActions(context),
-
-
+      action: getAppActions(context),
       title: LocaleKeys.view_doctor_update_info.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
@@ -55,7 +53,7 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
                 children: [
                   TextField(
                     onChanged: (val) => setState(() => UpdateProfileData.name = val),
-                    decoration: CStyle.getInputDecoration(context).copyWith(
+                    decoration: CustomStyle.getInputDecoration(context).copyWith(
                       hintText: LocaleKeys.view_doctor_name.tr(),
                       prefixIcon: Icon(
                         Icons.info,
@@ -64,7 +62,7 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
                   ),
                   TextField(
                     keyboardType: TextInputType.phone,
-                    decoration: CStyle.getInputDecoration(context).copyWith(
+                    decoration: CustomStyle.getInputDecoration(context).copyWith(
                       hintText: LocaleKeys.view_doctor_phoneNumber.tr(),
                       prefixIcon: Icon(
                         Icons.phone,
@@ -74,7 +72,7 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
                   ),
                   Container(
                     height: getDeviceType(context, 42, 50, 63, 60),
-                    decoration: CStyle.box,
+                    decoration: CustomStyle.box,
                     child: Center(
                       child: Padding(
                         padding: EdgeInsets.symmetric(
@@ -88,7 +86,7 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
                           icon: Icon(Icons.keyboard_arrow_down),
                           iconSize: getDeviceType(context, 30, 35, 40, 45),
                           underline: SizedBox(),
-                          hint: Text(LocaleKeys.view_doctor_speciality.tr(), style: CStyle.getSubtitle(context)),
+                          hint: Text(LocaleKeys.view_doctor_speciality.tr(), style: CustomStyle.getSubtitle(context)),
                           onChanged: (val) {
                             UpdateProfileData.speciality = val;
                             setState(() {});
@@ -96,95 +94,95 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
                           items: [
                             DropdownMenuItem(
                               value: 'Internist',
-                              child: Text(LocaleKeys.medical_specialty_Internist.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Internist'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Pediatrician',
-                              child: Text(LocaleKeys.medical_specialty_Pediatrician.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Pediatrician'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Cardiologist',
-                              child: Text(LocaleKeys.medical_specialty_Cardiologist.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Cardiologist'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Pulmonologist',
-                              child: Text(LocaleKeys.medical_specialty_Pulmonologist.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Pulmonologist'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Endocrinologist',
-                              child: Text(LocaleKeys.medical_specialty_Endocrinologist.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Endocrinologist'.tr(), style: CustomStyle.getSubtitle(context)),
                             ), //5
                             DropdownMenuItem(
                               value: 'Enterologist',
-                              child: Text(LocaleKeys.medical_specialty_Enterologist.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Enterologist'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Neurologist',
-                              child: Text(LocaleKeys.medical_specialty_Neurologist.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Neurologist'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Neurosurgeon',
-                              child: Text(LocaleKeys.medical_specialty_Neurosurgeon.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Neurosurgeon'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Heamatologist',
-                              child: Text(LocaleKeys.medical_specialty_Heamatologist.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Heamatologist'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Nephrologist',
-                              child: Text(LocaleKeys.medical_specialty_Nephrologist.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Nephrologist'.tr(), style: CustomStyle.getSubtitle(context)),
                             ), //10
                             DropdownMenuItem(
                               value: 'Rheumatologist',
-                              child: Text(LocaleKeys.medical_specialty_Rheumatologist.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Rheumatologist'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Emergency physician',
-                              child: Text(LocaleKeys.medical_specialty_Emergency_physician.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Emergency physician'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Dermatologist',
-                              child: Text(LocaleKeys.medical_specialty_Dermatologist.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Dermatologist'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Psychiatrist',
-                              child: Text(LocaleKeys.medical_specialty_Psychiatrist.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Psychiatrist'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Gynecologist',
-                              child: Text(LocaleKeys.medical_specialty_Gynecologist.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Gynecologist'.tr(), style: CustomStyle.getSubtitle(context)),
                             ), //15
                             DropdownMenuItem(
                               value: 'General Surgeon',
-                              child: Text(LocaleKeys.medical_specialty_General_Surgeon.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('General Surgeon'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Pediatric Surgeon',
-                              child: Text(LocaleKeys.medical_specialty_Pediatric_Surgeon.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Pediatric Surgeon'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'ThoracoVascular Surgeon',
-                              child: Text(LocaleKeys.medical_specialty_ThoracoVascular_Surgeon.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('ThoracoVascular Surgeon'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Orthopaedic Surgeon',
-                              child: Text(LocaleKeys.medical_specialty_Orthopaedic_Surgeon.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Orthopaedic Surgeon'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Urosurgeon',
-                              child: Text(LocaleKeys.medical_specialty_Urosurgeon.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Urosurgeon'.tr(), style: CustomStyle.getSubtitle(context)),
                             ), //20
                             DropdownMenuItem(
                               value: 'Plastic Surgeon',
-                              child: Text(LocaleKeys.medical_specialty_Plastic_Surgeon.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Plastic Surgeon'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Ophthalmologist',
-                              child: Text(LocaleKeys.medical_specialty_Ophthalmologist.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Ophthalmologist'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Laryngologist',
-                              child: Text(LocaleKeys.medical_specialty_Laryngologist.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text('Laryngologist'.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                           ],
                         ),
@@ -193,7 +191,7 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
                   ),
                   Container(
                     height: getDeviceType(context, 42, 50, 63, 60),
-                    decoration: CStyle.box,
+                    decoration: CustomStyle.box,
                     child: Center(
                       child: Padding(
                         padding: EdgeInsets.symmetric(
@@ -212,82 +210,82 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
                           iconSize: getDeviceType(context, 30, 35, 40, 45),
                           underline: SizedBox(),
                           value: UpdateProfileData.province,
-                          hint: Text(LocaleKeys.view_doctor_province.tr(), style: CStyle.getSubtitle(context)),
+                          hint: Text(LocaleKeys.view_doctor_province.tr(), style: CustomStyle.getSubtitle(context)),
                           items: [
                             DropdownMenuItem(
                               value: "Erbil",
                               child: Text(
                                 LocaleKeys.iraq_provinces_Erbil.tr(),
-                                style: CStyle.getSubtitle(context),
+                                style: CustomStyle.getSubtitle(context),
                               ),
                             ),
                             DropdownMenuItem(
                               value: "Al Anbar",
-                              child: Text(LocaleKeys.iraq_provinces_Al_Anbar.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Al_Anbar.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: "Basra",
-                              child: Text(LocaleKeys.iraq_provinces_Basra.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Basra.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: "Al Qadisiyyah",
-                              child: Text(LocaleKeys.iraq_provinces_Al_Qadisiyyah.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Al_Qadisiyyah.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: "Muthanna",
-                              child: Text(LocaleKeys.iraq_provinces_Muthanna.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Muthanna.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: "Najaf"[0],
-                              child: Text(LocaleKeys.iraq_provinces_Najaf.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Najaf.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: "Babil",
-                              child: Text(LocaleKeys.iraq_provinces_Babil.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Babil.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: 'Baghdad',
-                              child: Text(LocaleKeys.iraq_provinces_Baghdad.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Baghdad.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: "Duhok",
-                              child: Text(LocaleKeys.iraq_provinces_Duhok.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Duhok.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: "Diyala",
-                              child: Text(LocaleKeys.iraq_provinces_Diyala.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Diyala.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: "Dhi Qar",
-                              child: Text(LocaleKeys.iraq_provinces_Dhi_Qar.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Dhi_Qar.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: "Sulaymaniyah",
-                              child: Text(LocaleKeys.iraq_provinces_Sulaymaniyah.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Sulaymaniyah.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: "Saladin",
-                              child: Text(LocaleKeys.iraq_provinces_Saladin.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Saladin.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: "Karbala",
-                              child: Text(LocaleKeys.iraq_provinces_Karbala.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Karbala.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: "Kirkuk",
-                              child: Text(LocaleKeys.iraq_provinces_Kirkuk.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Kirkuk.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: "Maysan",
-                              child: Text(LocaleKeys.iraq_provinces_Maysan.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Maysan.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: "Nineveh",
-                              child: Text(LocaleKeys.iraq_provinces_Nineveh.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Nineveh.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                             DropdownMenuItem(
                               value: "Wasit",
-                              child: Text(LocaleKeys.iraq_provinces_Wasit.tr(), style: CStyle.getSubtitle(context)),
+                              child: Text(LocaleKeys.iraq_provinces_Wasit.tr(), style: CustomStyle.getSubtitle(context)),
                             ),
                           ],
                         ),
@@ -340,12 +338,12 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
                 children: [
                   Text(
                     LocaleKeys.view_doctor_change_password.tr(),
-                    style: CStyle.getFooter(context),
+                    style: CustomStyle.getFooter(context),
                   ),
                   Text('  '),
                   Text(
                     LocaleKeys.view_doctor_change.tr(),
-                    style: CStyle.getFooter(context).copyWith(color: Colors.red[400], fontWeight: FontWeight.bold),
+                    style: CustomStyle.getFooter(context).copyWith(color: Colors.red[400], fontWeight: FontWeight.bold),
                   ),
                 ],
               ),

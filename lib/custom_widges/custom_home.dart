@@ -72,7 +72,7 @@ Future getDialog(context, String title, String dialogContext) {
           TextButton(
             child: Text(
               LocaleKeys.view_buttons_ok.tr(),
-              style: CStyle.getTitle(context).copyWith(color: LightPalette.gradientTop),
+              style: CustomStyle.getTitle(context).copyWith(color: LightPalette.gradientTop),
             ),
             onPressed: () {
               Navigator.of(context).pop();

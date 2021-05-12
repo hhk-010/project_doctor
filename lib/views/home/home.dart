@@ -4,8 +4,8 @@ import 'package:project_doctor/custom_widges/custom_home.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/generated/custom_icons.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
-import 'package:project_doctor/views/auth/sign_up.dart';
 import 'package:project_doctor/views/auth/sign_wrapper.dart';
+import 'package:project_doctor/views/favorite/favorite_list.dart';
 import 'package:project_doctor/views/home/support.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/views/search/search_history/history_profile.dart';
@@ -58,7 +58,7 @@ class _HomeViewState extends State<HomeView> {
                   if (index == 0) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchWrapper()));
                   if (index == 1) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchHistoryProfile()));
                   if (index == 2) Navigator.of(context).push(MaterialPageRoute(builder: (context) => Intermediate()));
-                  if (index == 3) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignUpView()));
+                  if (index == 3) Navigator.of(context).push(MaterialPageRoute(builder: (context) => FavoriteListView()));
                   if (index == 4) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SupportView()));
                 },
                 items: [
@@ -139,7 +139,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 width: 350,
                 height: 300,
                 padding: const EdgeInsets.all(16.0),
-                decoration: CStyle.box,
+                decoration: CustomStyle.box,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -147,23 +147,23 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                     Center(
                       child: Text(
                         LocaleKeys.view_home_title.tr(),
-                        style: CStyle.getHeading(context).copyWith(color: getColor(context, Colors.black87, Colors.white)),
+                        style: CustomStyle.getHeading(context).copyWith(color: getColor(context, Colors.black87, Colors.white)),
                       ),
                     ),
                     Text(
                       LocaleKeys.view_home_search_complain.tr(),
                       textAlign: TextAlign.justify,
-                      style: CStyle.getSubtitle(context),
+                      style: CustomStyle.getSubtitle(context),
                     ),
                     Text(
                       LocaleKeys.view_home_search_name.tr(),
                       textAlign: TextAlign.justify,
-                      style: CStyle.getSubtitle(context),
+                      style: CustomStyle.getSubtitle(context),
                     ),
                     Text(
                       LocaleKeys.view_home_register_doctor.tr(),
                       textAlign: TextAlign.justify,
-                      style: CStyle.getSubtitle(context),
+                      style: CustomStyle.getSubtitle(context),
                     ),
                   ],
                 ),

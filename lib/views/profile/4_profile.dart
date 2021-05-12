@@ -68,7 +68,7 @@ class _ProfileViewHeaderState extends State<ProfileViewHeader> {
                       leading: Icon(Icons.logout),
                       title: Text(
                         'popupMenu.logout'.tr(),
-                        style: CStyle.getSubtitle(context),
+                        style: CustomStyle.getSubtitle(context),
                       ),
                     ),
                   ),
@@ -78,7 +78,7 @@ class _ProfileViewHeaderState extends State<ProfileViewHeader> {
                       leading: Icon(Icons.person_remove),
                       title: Text(
                         'popupMenu.deleteAccount'.tr(),
-                        style: CStyle.getSubtitle(context),
+                        style: CustomStyle.getSubtitle(context),
                       ),
                     ),
                   ),
@@ -88,7 +88,7 @@ class _ProfileViewHeaderState extends State<ProfileViewHeader> {
                       leading: Icon(Icons.update),
                       title: Text(
                         'popupMenu.UpdateProfile'.tr(),
-                        style: CStyle.getSubtitle(context),
+                        style: CustomStyle.getSubtitle(context),
                       ),
                     ),
                   ),
@@ -268,18 +268,18 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                 child: Container(
                   height: 100,
                   width: 350,
-                  decoration: CStyle.box,
+                  decoration: CustomStyle.box,
                   padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
                         LocaleKeys.view_buttons_prof_error.tr(),
-                        style: CStyle.getHeading(context),
+                        style: CustomStyle.getHeading(context),
                       ),
                       Text(
                         LocaleKeys.view_buttons_data_error.tr(),
-                        style: CStyle.getTitleBlack(context),
+                        style: CustomStyle.getTitleBlack(context),
                       ),
                     ],
                   ),
@@ -290,71 +290,67 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                 child: Container(
                   height: 600,
                   width: 350,
-                  decoration: CStyle.box,
+                  decoration: CustomStyle.box,
                   padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 200,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: Colors.deepOrange,
-                                radius: 50,
-                                backgroundImage: AssetImage('assets/images/doctor.png'),
-                              ),
-                              Text(
-                                name,
-                                style: CStyle.getTitleBlack(context),
-                              ),
-                              Text(
-                                (province).tr(),
-                                style: CStyle.getFooter(context),
-                              ),
-                              Divider(
-                                color: Colors.grey[600],
-                                thickness: 3,
-                                indent: 25,
-                                endIndent: 25,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Column(
+                  child: ListView(
+                    children: [
+                      Container(
+                        height: 200,
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            CustomProfileColumn(
-                              title: LocaleKeys.view_doctor_speciality.tr(),
-                              content: (speciality).tr(),
+                            CircleAvatar(
+                              backgroundColor: Colors.deepOrange,
+                              radius: 50,
+                              backgroundImage: AssetImage('assets/images/doctor.png'),
                             ),
-                            CustomProfileColumn(
-                              title: LocaleKeys.view_doctor_phoneNumber.tr(),
-                              content: number,
+                            Text(
+                              name,
+                              style: CustomStyle.getTitleBlack(context),
                             ),
-                            CustomProfileColumn(
-                              title: LocaleKeys.view_doctor_clinic_address.tr(),
-                              content: _address,
+                            Text(
+                              (province).tr(),
+                              style: CustomStyle.getFooter(context),
                             ),
-                            CustomProfileColumn2(
-                              title: LocaleKeys.view_doctor_clinic_work.tr(),
-                              content: _finalMainDays + '\n' + _mainTime,
+                            Divider(
+                              color: Colors.grey[600],
+                              thickness: 3,
+                              indent: 25,
+                              endIndent: 25,
                             ),
-                            _workDays02.isEmpty
-                                ? SizedBox(
-                                    height: 5,
-                                  )
-                                : CustomProfileColumn2(
-                                    title: LocaleKeys.view_doctor_another_clinic_work.tr(),
-                                    content: _firstEDay + " " + _firstTime + '\n' + _secondEDay + " " + _secondTime,
-                                  ),
                           ],
                         ),
-                      ],
-                    ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          CustomProfileColumn(
+                            title: LocaleKeys.view_doctor_speciality.tr(),
+                            content: (speciality).tr(),
+                          ),
+                          CustomProfileColumn(
+                            title: LocaleKeys.view_doctor_phoneNumber.tr(),
+                            content: number,
+                          ),
+                          CustomProfileColumn(
+                            title: LocaleKeys.view_doctor_clinic_address.tr(),
+                            content: _address,
+                          ),
+                          CustomProfileColumn2(
+                            title: LocaleKeys.view_doctor_clinic_work.tr(),
+                            content: _finalMainDays + '\n' + _mainTime,
+                          ),
+                          _workDays02.isEmpty
+                              ? SizedBox(
+                                  height: 5,
+                                )
+                              : CustomProfileColumn2(
+                                  title: LocaleKeys.view_doctor_another_clinic_work.tr(),
+                                  content: _firstEDay + " " + _firstTime + '\n' + _secondEDay + " " + _secondTime,
+                                ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),

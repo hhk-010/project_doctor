@@ -2,33 +2,34 @@ import 'dart:convert';
 import 'dart:math';
 import 'dart:io';
 import 'dart:async';
-import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:project_doctor/constants/loading_delete.dart';
+import 'package:project_doctor/constants/color_style_size.dart';
+import 'package:project_doctor/custom_widges/custom_loading.dart';
+import 'package:project_doctor/custom_widges/custom_buttons.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
+import 'package:project_doctor/custom_widges/custom_profile.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/services/read_write_path.dart';
-import 'package:project_doctor/views/search/search_complain/patient03_get_location.dart';
-import 'package:project_doctor/views/search/search_complain/patient06_result_map.dart';
+import 'package:project_doctor/views/search/search_complain/get_location_wrapper.dart';
+import 'package:project_doctor/views/search/search_complain/result_map.dart';
 import 'package:project_doctor/views/search/search_history/read_write_path.dart';
 import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class PatientResult extends StatefulWidget {
+class ProfileResultView extends StatefulWidget {
   final Storage storage = Storage();
   @override
-  _PatientResultState createState() => _PatientResultState();
+  _ProfileResultViewState createState() => _ProfileResultViewState();
 }
 
-class _PatientResultState extends State<PatientResult> {
- final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
+class _ProfileResultViewState extends State<ProfileResultView> {
+  final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
   String favored01 = '';
   String favored02 = '';
   String favored03 = '';
@@ -96,53 +97,51 @@ class _PatientResultState extends State<PatientResult> {
       initialData: null,
       value: DatabaseService().usersDataStream,
       child: BaseScaffold(
-        title:  LocaleKeys.view_patient_result_resulted.tr(),
+        title: LocaleKeys.view_patient_result_resulted.tr(),
         isAppbar: true,
-        action:          IconButton(
-                onPressed: () async {
-                  await widget.storage.readFavorite01().then((value) => setState(() => Favorite.favorite01 = value));
-                  await widget.storage.readFavorite02().then((value) => setState(() => Favorite.favorite02 = value));
-                  await widget.storage.readFavorite03().then((value) => setState(() => Favorite.favorite03 = value));
-                  await widget.storage.readFavorite04().then((value) => setState(() => Favorite.favorite04 = value));
-                  await widget.storage.readFavorite05().then((value) => setState(() => Favorite.favorite05 = value));
-                  await widget.storage.readFavorite06().then((value) => setState(() => Favorite.favorite06 = value));
-                  await widget.storage.readFavorite07().then((value) => setState(() => Favorite.favorite07 = value));
-                  await widget.storage.readFavorite08().then((value) => setState(() => Favorite.favorite08 = value));
-                  await widget.storage.readFavorite09().then((value) => setState(() => Favorite.favorite09 = value));
-                  await widget.storage.readFavorite10().then((value) => setState(() => Favorite.favorite10 = value));
-                  setState(() => Favorite.favoriteIdlist = [
-                        Favorite.favorite01,
-                        Favorite.favorite02,
-                        Favorite.favorite03,
-                        Favorite.favorite04,
-                        Favorite.favorite05,
-                        Favorite.favorite06,
-                        Favorite.favorite07,
-                        Favorite.favorite08,
-                        Favorite.favorite09,
-                        Favorite.favorite10
-                      ]);
+        action: IconButton(
+          onPressed: () async {
+            await widget.storage.readFavorite01().then((value) => setState(() => Favorite.favorite01 = value));
+            await widget.storage.readFavorite02().then((value) => setState(() => Favorite.favorite02 = value));
+            await widget.storage.readFavorite03().then((value) => setState(() => Favorite.favorite03 = value));
+            await widget.storage.readFavorite04().then((value) => setState(() => Favorite.favorite04 = value));
+            await widget.storage.readFavorite05().then((value) => setState(() => Favorite.favorite05 = value));
+            await widget.storage.readFavorite06().then((value) => setState(() => Favorite.favorite06 = value));
+            await widget.storage.readFavorite07().then((value) => setState(() => Favorite.favorite07 = value));
+            await widget.storage.readFavorite08().then((value) => setState(() => Favorite.favorite08 = value));
+            await widget.storage.readFavorite09().then((value) => setState(() => Favorite.favorite09 = value));
+            await widget.storage.readFavorite10().then((value) => setState(() => Favorite.favorite10 = value));
+            setState(() => Favorite.favoriteIdlist = [
+                  Favorite.favorite01,
+                  Favorite.favorite02,
+                  Favorite.favorite03,
+                  Favorite.favorite04,
+                  Favorite.favorite05,
+                  Favorite.favorite06,
+                  Favorite.favorite07,
+                  Favorite.favorite08,
+                  Favorite.favorite09,
+                  Favorite.favorite10
+                ]);
 
-                  if (Favorite.favoriteIdlist.contains(_ResultDoctorProfileState.iD)) {
-                    getFlushbar(context, LocaleKeys.view_patient_added_previously.tr(), _controller);
-                  } else {
-                    await _writeFavorite01(_ResultDoctorProfileState.iD);
-                    await _writeFavorite02(Favorite.favorite01);
-                    await _writeFavorite03(Favorite.favorite02);
-                    await _writeFavorite04(Favorite.favorite03);
-                    await _writeFavorite05(Favorite.favorite04);
-                    await _writeFavorite06(Favorite.favorite05);
-                    await _writeFavorite07(Favorite.favorite06);
-                    await _writeFavorite08(Favorite.favorite07);
-                    await _writeFavorite09(Favorite.favorite08);
-                    await _writeFavorite10(Favorite.favorite09);
-                    getFlushbar(context, LocaleKeys.view_patient_added_successfully.tr(), _controller);
-                  }
-                },
-                icon: Icon(Icons.star),
-              ),
-
-    
+            if (Favorite.favoriteIdlist.contains(_ResultDoctorProfileState.iD)) {
+              getFlushbar(context, LocaleKeys.view_patient_added_previously.tr(), _controller);
+            } else {
+              await _writeFavorite01(_ResultDoctorProfileState.iD);
+              await _writeFavorite02(Favorite.favorite01);
+              await _writeFavorite03(Favorite.favorite02);
+              await _writeFavorite04(Favorite.favorite03);
+              await _writeFavorite05(Favorite.favorite04);
+              await _writeFavorite06(Favorite.favorite05);
+              await _writeFavorite07(Favorite.favorite06);
+              await _writeFavorite08(Favorite.favorite07);
+              await _writeFavorite09(Favorite.favorite08);
+              await _writeFavorite10(Favorite.favorite09);
+              getFlushbar(context, LocaleKeys.view_patient_added_successfully.tr(), _controller);
+            }
+          },
+          icon: Icon(Icons.star),
+        ),
         child: ResultDoctorProfile(),
       ),
     );
@@ -211,26 +210,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
   String x = '';
   //==========
   bool isLoading = false;
-  Future<void> _makePhoneCall(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
   static String iD = '';
-
-  // final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-  // String _doctorAddress = '';
-  // _getAddressFromLatLng() async {
-  //   List<Placemark> p = await geolocator.placemarkFromCoordinates(_lat, _lng);
-  //   Placemark place = p[0];
-  //   setState(() {
-  //     _doctorAddress = "${place.locality}, ${place.country}";
-  //   });
-  // }
-
   String _nameR = '';
   String _specialityR = '';
   String _phoneNumberR = '';
@@ -444,225 +424,102 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
       _writeWorkDays03(json.encode(_workDays03));
     }
 
-    TextStyle _textStyle = TextStyle(fontSize: 12, color: Colors.black, fontWeight: FontWeight.bold);
     return isLoading
         ? Loading()
-        : Center(
-            child: Container(
-              width: 100,
-              padding: EdgeInsets.only(top: 50),
-              child: ListView(
-                children: [
-                  Container(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Center(
-                            child: CircleAvatar(
+        : Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              Positioned(
+                top: 50,
+                child: Container(
+                  height: 600,
+                  width: 350,
+                  decoration: CustomStyle.box,
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  child: ListView(
+                    children: [
+                      Container(
+                        height: 200,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            CircleAvatar(
                               backgroundColor: Colors.deepOrange,
                               radius: 50,
                               backgroundImage: AssetImage('assets/images/doctor.png'),
                             ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Center(
-                            child: FittedBox(
-                              fit: BoxFit.fitWidth,
-                              child: Text(
-                                _name,
-                                style: _textStyle.copyWith(fontSize: 16, fontFamily: 'noto_arabic'),
-                                textAlign: TextAlign.center,
-                              ),
+                            Text(
+                              _name,
+                              style: CustomStyle.getTitleBlack(context),
                             ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Center(
-                            child: Text(
-                              // _doctorAddress,
+                            Text(
                               (_province).tr(),
-                              style: _textStyle.copyWith(fontSize: 12),
+                              style: CustomStyle.getFooter(context),
                             ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Divider(
-                            color: Colors.grey[600],
-                            thickness: 3,
-                            indent: 25,
-                            endIndent: 25,
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            LocaleKeys.view_doctor_speciality.tr(),
-                            style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 2,
-                          ),
-                          Text(
-                            (_speciality).tr(),
-                            style: _textStyle,
-                          ),
-                          Divider(
-                            color: Colors.grey,
-                            thickness: 1,
-                            indent: 0,
-                            endIndent: 0,
-                          ),
-                          Text(
-                            LocaleKeys.view_doctor_phoneNumber.tr(),
-                            style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 2,
-                          ),
-                          GestureDetector(
-                            onTap: () => setState(() {
-                              _makePhoneCall('tel:$_phone');
-                            }),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.phone,
-                                  color: Colors.deepOrange,
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text(
-                                  _phone,
-                                  style: _textStyle,
-                                ),
-                              ],
+                            Divider(
+                              color: Colors.grey[600],
+                              thickness: 3,
+                              indent: 25,
+                              endIndent: 25,
                             ),
-                          ),
-                          Divider(
-                            color: Colors.grey,
-                            thickness: 1,
-                            indent: 0,
-                            endIndent: 0,
-                          ),
-                          Text(
-                            LocaleKeys.view_doctor_clinic_address.tr(),
-                            style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 2,
-                          ),
-                          Text(
-                            _address,
-                            style: _textStyle.copyWith(fontFamily: 'noto_arabic'),
-                          ),
-                          Divider(
-                            color: Colors.grey,
-                            thickness: 1,
-                            indent: 0,
-                            endIndent: 0,
-                          ),
-                          Text(
-                            LocaleKeys.view_doctor_clinic_work.tr(),
-                            style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 2,
-                          ),
-                          Text(
-                            _finalMainDays + '\n' + _mainTime,
-                            style: _textStyle,
-                          ),
-                          Divider(
-                            color: Colors.grey,
-                            thickness: 1,
-                            indent: 0,
-                            endIndent: 0,
-                          ),
-                          _workDays02.isEmpty
-                              ? SizedBox(
-                                  height: 5,
-                                )
-                              : Container(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        LocaleKeys.view_doctor_another_clinic_work.tr(),
-                                        style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
-                                      ),
-                                      SizedBox(
-                                        height: 2,
-                                      ),
-                                      FittedBox(
-                                        fit: BoxFit.fitWidth,
-                                        child: Text(
-                                          _firstEDay + " " + _firstTime + '\n' + _secondEDay + " " + _secondTime,
-                                          style: _textStyle,
-                                        ),
-                                      ),
-                                      Divider(
-                                        color: Colors.grey,
-                                        thickness: 1,
-                                        indent: 0,
-                                        endIndent: 0,
-                                      ),
-                                    ],
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            CustomProfileColumn(
+                              title: LocaleKeys.view_doctor_speciality.tr(),
+                              content: (_speciality).tr(),
+                            ),
+                            CustomProfilePhoneCalling(
+                              title: LocaleKeys.view_doctor_phoneNumber.tr(),
+                              content: _phone,
+                            ),
+                            CustomProfileColumn(
+                              title: LocaleKeys.view_doctor_clinic_address.tr(),
+                              content: _address,
+                            ),
+                            CustomProfileColumn2(
+                              title: LocaleKeys.view_doctor_clinic_work.tr(),
+                              content: _finalMainDays + '\n' + _mainTime,
+                            ),
+                            _workDays02.isEmpty
+                                ? SizedBox(
+                                    height: 5,
+                                  )
+                                : CustomProfileColumn2(
+                                    title: LocaleKeys.view_doctor_another_clinic_work.tr(),
+                                    content: _firstEDay + " " + _firstTime + '\n' + _secondEDay + " " + _secondTime,
                                   ),
-                                ),
-                          Text(
-                            LocaleKeys.view_patient_result_distances.tr(),
-                            style: TextStyle(fontSize: 12, color: Colors.indigo, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            realnearby + LocaleKeys.view_patient_result_km.tr(), //' Km away',
-                            style: _textStyle,
-                          ),
-                        ],
+                            CustomProfileColumn(
+                              title: LocaleKeys.view_patient_result_distances.tr(),
+                              content: realnearby + LocaleKeys.view_patient_result_km.tr(),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  Container(
-                    height: 50,
-                    width: 150,
-                    child: TextButton.icon(
-                      style: TextButton.styleFrom(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                        backgroundColor: Colors.deepOrange,
-                      ),
-                      icon: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => PatientResultMap(
-                              lat: _lat,
-                              lng: _lng,
-                            ),
-                          ),
-                        );
-                      },
-                      label: Text(
-                        LocaleKeys.view_patient_result_doctor_locat.tr(),
-                        style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 40),
+                  child: BaseButton(
+                      title: LocaleKeys.view_patient_result_doctor_locat.tr(),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => MapResultView(
+                                  lat: _lat,
+                                  lng: _lng,
+                                )));
+                      }),
+                ),
+              ),
+            ],
           );
   }
 }

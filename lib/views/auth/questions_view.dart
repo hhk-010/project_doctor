@@ -52,7 +52,7 @@ class _QuestionViewState extends State<QuestionView> {
             top: 15,
             child: Text(
               'To Register, Answer the Questions:',
-              style: CStyle.getTitleBlack(context),
+              style: CustomStyle.getTitleBlack(context),
             ),
           ),
           Positioned(

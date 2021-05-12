@@ -141,7 +141,7 @@ class _EmailVeriyViewState extends State<EmailVeriyView> {
                     leading: Icon(Icons.logout),
                     title: Text(
                       'popupMenu.logout'.tr(),
-                      style: CStyle.getSubtitle(context),
+                      style: CustomStyle.getSubtitle(context),
                     ),
                   ),
                 ),
@@ -151,7 +151,7 @@ class _EmailVeriyViewState extends State<EmailVeriyView> {
                     leading: Icon(Icons.person_remove),
                     title: Text(
                       'popupMenu.deleteAccount'.tr(),
-                      style: CStyle.getSubtitle(context),
+                      style: CustomStyle.getSubtitle(context),
                     ),
                   ),
                 ),
@@ -178,15 +178,15 @@ class _EmailVeriyViewState extends State<EmailVeriyView> {
                 children: [
                   Text(
                     LocaleKeys.view_email_verification_email_sent.tr(),
-                    style: CStyle.getTitleBlack(context),
+                    style: CustomStyle.getTitleBlack(context),
                   ),
                   Container(
-                    decoration: CStyle.box,
+                    decoration: CustomStyle.box,
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Text(
                         _email,
-                        style: CStyle.getSubtitle(context),
+                        style: CustomStyle.getSubtitle(context),
                       ),
                     ),
                   ),
@@ -194,7 +194,7 @@ class _EmailVeriyViewState extends State<EmailVeriyView> {
                     width: 300,
                     child: Text(
                       'view_email_verification.confirm'.tr(),
-                      style: CStyle.getSubtitle(context),
+                      style: CustomStyle.getSubtitle(context),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -229,7 +229,7 @@ class _EmailVeriyViewState extends State<EmailVeriyView> {
                   children: [
                     Text(
                       LocaleKeys.view_email_verification_didnot_receive.tr(),
-                      style: CStyle.getFooter(context),
+                      style: CustomStyle.getFooter(context),
                     ),
                     GestureDetector(
                       onTap: () async {
@@ -237,7 +237,7 @@ class _EmailVeriyViewState extends State<EmailVeriyView> {
                       },
                       child: Text(
                         LocaleKeys.view_email_verification_resend.tr(),
-                        style: CStyle.getFooter(context).copyWith(color: Colors.red[400], fontWeight: FontWeight.bold),
+                        style: CustomStyle.getFooter(context).copyWith(color: Colors.red[400], fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],

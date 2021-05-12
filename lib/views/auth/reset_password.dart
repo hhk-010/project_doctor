@@ -50,7 +50,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                 },
                 cursorColor: Colors.grey,
                 keyboardType: TextInputType.emailAddress,
-                decoration: CStyle.getInputDecoration(context).copyWith(
+                decoration: CustomStyle.getInputDecoration(context).copyWith(
                   hintText: LocaleKeys.view_doctor_enter_your_email.tr(),
                 ),
               ),
@@ -117,17 +117,17 @@ class _ResetPasswordView2State extends State<ResetPasswordView2> {
                 children: [
                   Text(
                     LocaleKeys.view_email_verification_email_sent.tr(),
-                    style: CStyle.getTitleBlack(context),
+                    style: CustomStyle.getTitleBlack(context),
                   ),
                   Container(
                     width: 200,
                     height: 60,
-                    decoration: CStyle.box,
+                    decoration: CustomStyle.box,
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Text(
                         ResetPasswordData.email,
-                        style: CStyle.getSubtitle(context),
+                        style: CustomStyle.getSubtitle(context),
                       ),
                     ),
                   ),
@@ -139,7 +139,7 @@ class _ResetPasswordView2State extends State<ResetPasswordView2> {
                   ),
                   Text(
                     LocaleKeys.view_doctor_check_reset_email.tr(),
-                    style: CStyle.getSubtitle(context),
+                    style: CustomStyle.getSubtitle(context),
                     textAlign: TextAlign.center,
                   ),
                 ],

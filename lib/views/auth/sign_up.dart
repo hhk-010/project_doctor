@@ -64,7 +64,7 @@ class _SignUpViewState extends State<SignUpView> {
                       },
                       cursorColor: Colors.grey,
                       keyboardType: TextInputType.emailAddress,
-                      decoration: CStyle.getInputDecoration(context).copyWith(
+                      decoration: CustomStyle.getInputDecoration(context).copyWith(
                         hintText: LocaleKeys.view_doctor_enter_your_email.tr(),
                       ),
                     ),
@@ -75,7 +75,7 @@ class _SignUpViewState extends State<SignUpView> {
                       },
                       cursorColor: Colors.grey,
                       keyboardType: TextInputType.text,
-                      decoration: CStyle.getInputDecoration(context).copyWith(
+                      decoration: CustomStyle.getInputDecoration(context).copyWith(
                         hintText: LocaleKeys.view_doctor_enter_your_password.tr(),
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -131,12 +131,12 @@ class _SignUpViewState extends State<SignUpView> {
                 children: [
                   Text(
                     LocaleKeys.view_doctor_does_have_account.tr(),
-                    style: CStyle.getFooter(context),
+                    style: CustomStyle.getFooter(context),
                   ),
                   Text('  '),
                   Text(
                     LocaleKeys.view_doctor_sign_in.tr(),
-                    style: CStyle.getFooter(context).copyWith(
+                    style: CustomStyle.getFooter(context).copyWith(
                       color: Colors.red[400],
                       fontWeight: FontWeight.bold,
                     ),

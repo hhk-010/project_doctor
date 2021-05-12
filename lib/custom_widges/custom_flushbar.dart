@@ -31,16 +31,17 @@ getFlushbar(BuildContext context, String message, RoundedLoadingButtonController
   controller.reset();
 }
 
-getSuccess(RoundedLoadingButtonController controller) async {
+ getSuccess(RoundedLoadingButtonController controller) async {
   controller.success();
   await Future.delayed(const Duration(seconds: 1), () {});
   controller.reset();
 }
 
 getFavortiteFlushbar(
-  BuildContext context, String message,
-) async{
-   Flushbar(
+  BuildContext context,
+  String message,
+) async {
+  Flushbar(
     title: LocaleKeys.error_error_title.tr(),
     message: message,
     forwardAnimationCurve: Curves.decelerate,
@@ -58,5 +59,4 @@ getFavortiteFlushbar(
       color: getColor(context, Colors.white, Colors.red),
     ),
   )..show(context);
-
 }

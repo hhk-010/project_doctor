@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
+import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/data_model.dart';
@@ -55,30 +56,11 @@ class _FavoriteListViewState extends State<FavoriteListView> {
     return StreamProvider<QuerySnapshot>.value(
       value: DatabaseService().baghdadDoctorDataProfileStream,
       initialData: null,
-      child: Scaffold(
-        backgroundColor: Colors.grey[200],
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(
-            getDeviceType(context, 36, 56, 56, 56),
-          ),
-          child: AppBar(
-            backgroundColor: Colors.deepOrange,
-            title: Text(
-              LocaleKeys.view_favorite_list_preferred.tr(),
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-                fontSize: getDeviceType(context, 16, 25, 35, 45),
-              ),
-            ),
-            centerTitle: true,
-            iconTheme: IconThemeData(
-              color: Colors.white,
-            ),
-          ),
-        ),
-     
-        body: Favorite01(),
+      child: BaseScaffold(
+        title: LocaleKeys.view_favorite_list_preferred.tr(),
+        isAppbar: true,
+        action: getAppActions(context),
+        child: Favorite01(),
       ),
     );
   }
@@ -896,8 +878,7 @@ class _FavoriteTileState extends State<FavoriteTile> {
                         _mainfrom = day.substring(day.indexOf('m') + 2, day.indexOf('t') - 1);
                         _mainTo = day.substring(day.indexOf('t') + 3, day.length);
                         _mainfromTime = _mainfrom.substring(0, _mainfrom.indexOf(' '));
-                        _mainfromAmPm =
-                            (_mainfrom.substring(_mainfrom.indexOf(' ') + 1, _mainfrom.indexOf('M') + 1)).tr();
+                        _mainfromAmPm = (_mainfrom.substring(_mainfrom.indexOf(' ') + 1, _mainfrom.indexOf('M') + 1)).tr();
                         _mainToTime = _mainTo.substring(0, _mainTo.indexOf(' '));
                         _mainToAmPm = (_mainTo.substring(_mainTo.indexOf(' ') + 1, _mainTo.length)).tr();
                         _mainTime = LocaleKeys.view_time_day_from.tr() +
@@ -938,7 +919,7 @@ class _FavoriteTileState extends State<FavoriteTile> {
                     _secondfromTime = _secondfrom.substring(0, _secondfrom.indexOf(' '));
                     _secondfromAmPm = (_secondfrom.substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length)).tr();
                     _secondToTime = _secondTo.substring(0, _secondTo.indexOf(' '));
-                    _secondToAmPm =(_secondTo.substring(_secondTo.indexOf(' ') + 1, _secondTo.length)).tr();
+                    _secondToAmPm = (_secondTo.substring(_secondTo.indexOf(' ') + 1, _secondTo.length)).tr();
                     SearchResultData.secondTime = LocaleKeys.view_time_day_from.tr() +
                         _secondfromTime +
                         ' ' +

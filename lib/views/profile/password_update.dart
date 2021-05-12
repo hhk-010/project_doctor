@@ -56,7 +56,7 @@ class _PasswordUpdateViewState extends State<PasswordUpdateView> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextFormField(
-                    decoration: CStyle.getInputDecoration(context).copyWith(
+                    decoration: CustomStyle.getInputDecoration(context).copyWith(
                       hintText: LocaleKeys.view_doctor_current_password.tr(),
                     ),
                     onChanged: (val) {
@@ -68,7 +68,7 @@ class _PasswordUpdateViewState extends State<PasswordUpdateView> {
                     onChanged: (val) {
                       setState(() => _newPassword = val);
                     },
-                    decoration: CStyle.getInputDecoration(context).copyWith(
+                    decoration: CustomStyle.getInputDecoration(context).copyWith(
                       hintText: LocaleKeys.view_doctor_new_password_hint.tr(),
                       suffixIcon: IconButton(
                         icon: Icon(

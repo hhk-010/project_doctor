@@ -55,7 +55,7 @@ class _DeleteProfileViewState extends State<DeleteProfileView> {
                 children: [
                   TextField(
                     obscureText: !_passwordVisible,
-                    decoration: CStyle.getInputDecoration(context).copyWith(
+                    decoration: CustomStyle.getInputDecoration(context).copyWith(
                       hintText: LocaleKeys.view_doctor_current_password.tr(),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -70,7 +70,7 @@ class _DeleteProfileViewState extends State<DeleteProfileView> {
                     },
                   ),
                   TextFormField(
-                    decoration: CStyle.getInputDecoration(context).copyWith(
+                    decoration: CustomStyle.getInputDecoration(context).copyWith(
                       hintText: LocaleKeys.view_doctor_enter_your_email.tr(),
                     ),
                     keyboardType: TextInputType.emailAddress,
@@ -97,7 +97,7 @@ class _DeleteProfileViewState extends State<DeleteProfileView> {
                       if (passwordvalid) {
                         dynamic authResult = await AuthService().deleteUser(email, _oldPassword);
                         if (authResult != null) {
-                          getSuccess(_controller);
+                        await  getSuccess(_controller);
                           int count = 0;
                           Navigator.popUntil(context, (route) {
                             return count++ == 2;

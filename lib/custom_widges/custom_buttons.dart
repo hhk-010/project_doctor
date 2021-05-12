@@ -26,7 +26,7 @@ class BaseButton extends StatelessWidget {
           backgroundColor: LightPalette.button,
         ),
         onPressed: onPressed,
-        child: Text(title, style: CStyle.getTitle(context)),
+        child: Text(title, style: CustomStyle.getTitle(context)),
       ),
     );
   }
@@ -56,7 +56,7 @@ class SearchWrapperButtons extends StatelessWidget {
           backgroundColor: LightPalette.button,
         ),
         onPressed: onPressed,
-        child: Text(title, style: CStyle.getTitle(context)),
+        child: Text(title, style: CustomStyle.getTitle(context)),
       ),
     );
   }
@@ -81,7 +81,7 @@ class CustomLoadingButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         title,
-        style: CStyle.getTitle(context),
+        style: CustomStyle.getTitle(context),
       ),
     );
   }

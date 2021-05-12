@@ -15,6 +15,7 @@ class CodegenLoader extends AssetLoader{
   }
 
   static const Map<String,dynamic> ar = {
+  "Or": " أو ",
   "regions": "=======================================",
   "Baghdad": "بغداد",
   "Al Anbar": "الانبار",
@@ -173,7 +174,7 @@ class CodegenLoader extends AssetLoader{
     "add_complains": "الاعراض الاخرى",
     "result_speciality": "الاعراض التي تعاني منها تتفق مع الاختصاص الطبي",
     "get_location": "للاستمرار يجب تحديد موقعك من خلال احدى الخيارين",
-    "auto_location": "تحديد موقع الجهاز الحالي",
+    "auto_location": "موقع الجهاز الحالي",
     "speciality_result": "الاختصاص الطبي",
     "your_location": "حدد موقعك",
     "region": "موقعك الجغرافي في العراق",
@@ -638,6 +639,7 @@ class CodegenLoader extends AssetLoader{
   "other breast problems": "مشاكل اخرى في الثدي"
 };
 static const Map<String,dynamic> en = {
+  "Or": " Or ",
   "iraq_governate": "=======================================",
   "Baghdad": "Baghdad",
   "Al Anbar": "Al Anbar",
@@ -795,8 +797,8 @@ static const Map<String,dynamic> en = {
     "first_choose_complain": "First choose your Complaint ",
     "add_complains": "Additional Complaints",
     "result_speciality": "Your complaints are associated with the Following Speciality:",
-    "get_location": "To Continue, You Must Specify your current location through either:",
-    "auto_location": "Auto Device Location",
+    "get_location": "To Continue, You Must Specify your location through either:",
+    "auto_location": "Current Location",
     "speciality_result": "Medical Speciality",
     "your_location": "Your Location",
     "region": "Location",

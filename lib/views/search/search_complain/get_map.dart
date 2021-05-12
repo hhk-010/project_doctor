@@ -7,23 +7,23 @@ import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/connectivity.dart';
-import 'package:project_doctor/views/search/search_complain/patient03_get_location.dart';
-import 'package:project_doctor/views/search/search_complain/patient05_result.dart';
+import 'package:project_doctor/views/search/search_complain/get_location_wrapper.dart';
+import 'package:project_doctor/views/search/search_complain/result_profile.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
-class PatientMap extends StatefulWidget {
+class GetMapView extends StatefulWidget {
   final String speciality;
   final String province;
-  PatientMap({this.speciality, this.province});
+  GetMapView({this.speciality, this.province});
   @override
-  _PatientMapState createState() => _PatientMapState(speciality: speciality, province: province);
+  _GetMapViewState createState() => _GetMapViewState(speciality: speciality, province: province);
 }
 
-class _PatientMapState extends State<PatientMap> {
+class _GetMapViewState extends State<GetMapView> {
   final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
   String speciality;
   String province;
-  _PatientMapState({this.speciality, this.province});
+  _GetMapViewState({this.speciality, this.province});
 
   var patientlatlng;
   List<Marker> _mymarker = [];
@@ -54,8 +54,6 @@ class _PatientMapState extends State<PatientMap> {
     patlatt = double.parse(lat);
     patlngg = double.parse(lng);
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -97,8 +95,10 @@ class _PatientMapState extends State<PatientMap> {
                         double result = sqrt(sum);
                         if (result * 100 > 150)
                           getFlushbar(context, LocaleKeys.view_patient_invalid_location.tr(), _controller);
-                        else
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => PatientResult()));
+                        else {
+                          await getSuccess(_controller);
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileResultView()));
+                        }
                       }
                     }
                   }),

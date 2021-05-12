@@ -1,4 +1,5 @@
 {
+  "Or": " Or ",
   "iraq_governate": "=======================================",
   "Baghdad": "Baghdad",
   "Al Anbar": "Al Anbar",
@@ -61,7 +62,6 @@
   "to": "To ",
   "AM": "AM",
   "PM": "PM",
-
   "view_doctor": {
     "home_title": "Welcome to Cura",
     "home_patient_title": "I'm a Patient\n",
@@ -157,8 +157,8 @@
     "first_choose_complain": "First choose your Complaint ",
     "add_complains": "Additional Complaints",
     "result_speciality": "Your complaints are associated with the Following Speciality:",
-    "get_location": "To Continue, You Must Specify your current location through either:",
-    "auto_location": "Auto Device Location",
+    "get_location": "To Continue, You Must Specify your location through either:",
+    "auto_location": "Current Location",
     "speciality_result": "Medical Speciality",
     "your_location": "Your Location",
     "region": "Location",
@@ -250,7 +250,6 @@
     "Southern_Region": "Southern Region of Iraq",
     "Western_Region": "Western Region of Iraq"
   },
-
   "view_time_day": {
     "sun": "S",
     "mon": "M",
@@ -323,7 +322,6 @@
     "complain": "Search by Complain",
     "history": "Search History"
   },
-
   "body_regions": "=======================================",
   "heart_lung": "Heart & Lungs",
   "git": "Gastro Intestinal Tract",
@@ -623,8 +621,4 @@
   "breast lump": "Breast lump",
   "breast skin lesion": "Breast skin lesion",
   "other breast problems": "Other breast problems"
-
-
-
 }
-
