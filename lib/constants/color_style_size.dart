@@ -18,7 +18,7 @@ class DarkPalette {
 class CustomStyle {
   static TextStyle getHeading(context) {
     return TextStyle(
-        fontSize: getDeviceType(context, 18, 20, 24, 30),
+        fontSize: getDeviceType(context, 16, 20, 24, 28),
         fontWeight: FontWeight.bold,
         color: Colors.white,
         fontFamily: getLocale(context) ? 'Montserrat' : 'noto_arabic');
@@ -26,7 +26,7 @@ class CustomStyle {
 
   static TextStyle getTitle(context) {
     return TextStyle(
-        fontSize: getDeviceType(context, 14, 16, 20, 24),
+        fontSize: getDeviceType(context, 12, 16, 20, 24),
         fontWeight: FontWeight.bold,
         color: Colors.white,
         fontFamily: getLocale(context) ? 'Montserrat' : 'noto_arabic');
@@ -34,7 +34,7 @@ class CustomStyle {
 
   static TextStyle getTitleBlack(context) {
     return TextStyle(
-      fontSize: getDeviceType(context, 14, 16, 20, 24),
+      fontSize: getDeviceType(context, 12, 16, 20, 24),
       fontWeight: FontWeight.bold,
       fontFamily: getLocale(context) ? 'Montserrat' : 'noto_arabic',
     );
@@ -42,7 +42,7 @@ class CustomStyle {
 
   static TextStyle getSubtitle(context) {
     return TextStyle(
-        fontSize: getDeviceType(context, 12, 14, 18, 20), fontWeight: FontWeight.bold, fontFamily: getLocale(context) ? 'OpenSans' : 'noto_arabic');
+        fontSize: getDeviceType(context, 10, 14, 18, 20), fontWeight: FontWeight.bold, fontFamily: getLocale(context) ? 'OpenSans' : 'noto_arabic');
   }
 
   static TextStyle getFooter(context) {
@@ -52,6 +52,7 @@ class CustomStyle {
       fontFamily: getLocale(context) ? 'OpenSans' : 'noto_arabic',
     );
   }
+
 
   static BoxDecoration box = BoxDecoration(
     borderRadius: BorderRadius.all(Radius.circular(16.0)),

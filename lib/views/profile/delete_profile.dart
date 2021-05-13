@@ -39,44 +39,50 @@ class _DeleteProfileViewState extends State<DeleteProfileView> {
         children: [
           HomeAlignWidgets(
             alignment: Alignment.topCenter,
-            padding: EdgeInsets.only(top: 50),
+            padding: EdgeInsets.only(top: getDeviceType(context, 25, 50, 75, 100)),
             isIcon: false,
-            height: 140,
-            width: 140,
+            height: getDeviceType(context, 120, 140, 160, 200),
+            width: getDeviceType(context, 120, 140, 160, 200),
             asset: 'assets/images/delete.png',
           ),
           Align(
             alignment: Alignment.center,
             child: Container(
-              height: 200,
-              width: 300,
+              height: getDeviceType(context, 175, 200, 200, 250),
+              width: getDeviceType(context, 250, 300, 350, 450),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  TextField(
-                    obscureText: !_passwordVisible,
-                    decoration: CustomStyle.getInputDecoration(context).copyWith(
-                      hintText: LocaleKeys.view_doctor_current_password.tr(),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _passwordVisible ? Icons.visibility : Icons.visibility_off,
-                          color: Colors.deepOrange,
+                  Container(
+                    height: getDeviceType(context, 40, 50, 60, 70),
+                    child: TextField(
+                      obscureText: !_passwordVisible,
+                      decoration: CustomStyle.getInputDecoration(context).copyWith(
+                        hintText: LocaleKeys.view_doctor_current_password.tr(),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                            color: Colors.deepOrange,
+                          ),
+                          onPressed: () => setState(() => _passwordVisible = !_passwordVisible),
                         ),
-                        onPressed: () => setState(() => _passwordVisible = !_passwordVisible),
                       ),
+                      onChanged: (val) {
+                        _oldPassword = val;
+                      },
                     ),
-                    onChanged: (val) {
-                      _oldPassword = val;
-                    },
                   ),
-                  TextFormField(
-                    decoration: CustomStyle.getInputDecoration(context).copyWith(
-                      hintText: LocaleKeys.view_doctor_enter_your_email.tr(),
+                  Container(
+                    height: getDeviceType(context, 40, 50, 60, 70),
+                    child: TextField(
+                      decoration: CustomStyle.getInputDecoration(context).copyWith(
+                        hintText: LocaleKeys.view_doctor_enter_your_email.tr(),
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                      onChanged: (val) {
+                        email = val;
+                      },
                     ),
-                    keyboardType: TextInputType.emailAddress,
-                    onChanged: (val) {
-                      email = val;
-                    },
                   ),
                 ],
               ),
@@ -85,7 +91,9 @@ class _DeleteProfileViewState extends State<DeleteProfileView> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: EdgeInsets.only(bottom: 100),
+              padding: EdgeInsets.only(
+                bottom: getDeviceType(context, 50, 100, 150, 200),
+              ),
               child: CustomLoadingButton(
                 title: LocaleKeys.view_doctor_delete.tr(),
                 controller: _controller,
@@ -97,7 +105,7 @@ class _DeleteProfileViewState extends State<DeleteProfileView> {
                       if (passwordvalid) {
                         dynamic authResult = await AuthService().deleteUser(email, _oldPassword);
                         if (authResult != null) {
-                        await  getSuccess(_controller);
+                          await getSuccess(_controller);
                           int count = 0;
                           Navigator.popUntil(context, (route) {
                             return count++ == 2;

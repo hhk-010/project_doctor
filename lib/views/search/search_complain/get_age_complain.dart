@@ -1274,7 +1274,7 @@ class _AgeComplainViewState extends State<AgeComplainView> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 30),
+              padding: EdgeInsets.only(bottom: getDeviceType(context, 15, 30, 50, 70)),
               child: CustomLoadingButton(
                 title: LocaleKeys.view_buttons_next.tr(),
                 controller: _controller,
@@ -1316,10 +1316,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 25),
+            padding: EdgeInsets.only(top: getDeviceType(context, 10, 25, 50, 70)),
             child: Container(
-              width: 350,
-              height: 650,
+              width: getDeviceType(context, 275, 350, 450, 550),
+              height: getDeviceType(context, 450, 650, 750, 900),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1327,7 +1327,8 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                     Container(
                       decoration: CustomStyle.box,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: getDeviceType(context, 8, 16, 24, 32), vertical: getDeviceType(context, 4, 8, 16, 32)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -1344,32 +1345,35 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                               endIndent: 90,
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: TextField(
-                                  keyboardType: TextInputType.numberWithOptions(decimal: true),
-                                  /*inputFormatters: [
-                                    FilteringTextInputFormatter.allow(
-                                        RegExp('[0-9.,]')),
-                                  ],*/
-                                  controller: ageController,
-                                  onChanged: (ageController) {
-                                    if (ageController.isEmpty) {
-                                      setState(() {
-                                        _age = '';
-                                      });
-                                    } else {
-                                      setState(() {
-                                        _age = ageController.toString();
-                                      });
-                                    }
-                                  },
-                                  decoration: CustomStyle.getInputDecoration(context).copyWith(
-                                    hintText: LocaleKeys.view_patient_age.tr(),
-                                    prefixIcon: Icon(
-                                      Icons.person_search,
-                                      color: Colors.deepOrange,
-                                    ),
-                                  )),
+                              padding: EdgeInsets.all(getDeviceType(context, 8, 16, 24, 32)),
+                              child: Container(
+                                height: getDeviceType(context, 40, 50, 60, 70),
+                                child: TextField(
+                                    keyboardType: TextInputType.numberWithOptions(decimal: true),
+                                    /*inputFormatters: [
+                                      FilteringTextInputFormatter.allow(
+                                          RegExp('[0-9.,]')),
+                                    ],*/
+                                    controller: ageController,
+                                    onChanged: (ageController) {
+                                      if (ageController.isEmpty) {
+                                        setState(() {
+                                          _age = '';
+                                        });
+                                      } else {
+                                        setState(() {
+                                          _age = ageController.toString();
+                                        });
+                                      }
+                                    },
+                                    decoration: CustomStyle.getInputDecoration(context).copyWith(
+                                      hintText: LocaleKeys.view_patient_age.tr(),
+                                      prefixIcon: Icon(
+                                        Icons.person_search,
+                                        color: Colors.deepOrange,
+                                      ),
+                                    )),
+                              ),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1441,7 +1445,7 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: getDeviceType(context, 8, 16, 24, 32)),
                     CustomComplainColumn(
                       isMainTitle: true,
                       child1: CustomComplainDropDownButton(
@@ -1465,7 +1469,7 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                         },
                       ),
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: getDeviceType(context, 8, 16, 24, 32)),
                     Visibility(
                       visible: _visibile01,
                       child: CustomComplainColumn(
@@ -1492,7 +1496,7 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: getDeviceType(context, 8, 16, 24, 32)),
                     Visibility(
                       visible: _visibile02,
                       child: CustomComplainColumn(
@@ -1519,7 +1523,7 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: getDeviceType(context, 8, 16, 24, 32)),
                     Visibility(
                       visible: _visibile03,
                       child: CustomComplainColumn(
@@ -1546,7 +1550,7 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: getDeviceType(context, 8, 16, 24, 32)),
                     Visibility(
                       visible: _visibile04,
                       child: CustomComplainColumn(
@@ -1573,7 +1577,7 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: getDeviceType(context, 8, 16, 24, 32)),
                     Visibility(
                       visible: _visibile05,
                       child: CustomComplainColumn(
@@ -1600,7 +1604,7 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: getDeviceType(context, 8, 16, 24, 32)),
                     Visibility(
                       visible: _visibile06,
                       child: CustomComplainColumn(

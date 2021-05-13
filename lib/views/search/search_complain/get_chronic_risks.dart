@@ -97,7 +97,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 25),
+              padding: EdgeInsets.only(bottom: getDeviceType(context, 15, 25, 50, 70)),
               child: BaseButton(
                 title: LocaleKeys.view_buttons_next.tr(),
                 onPressed: () async {
@@ -121,21 +121,21 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 25),
+            padding: EdgeInsets.only(top: getDeviceType(context, 15, 25, 50, 75)),
             child: Container(
-              width: 350,
-              height: 650,
+              width: getDeviceType(context, 275, 350, 450, 550),
+              height: getDeviceType(context, 425, 650, 750, 1000),
               child: Flexible(
                 child: ListView(
                   shrinkWrap: true,
                   children: [
                     Container(
                       decoration: CustomStyle.box,
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(getDeviceType(context, 4, 8, 16, 24)),
                       child: Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 16),
+                            padding: EdgeInsets.only(top: getDeviceType(context, 8, 16, 24, 32)),
                             child: Text(
                               'chronic_disease'.tr(),
                               style: CustomStyle.getTitleBlack(context),
@@ -387,16 +387,14 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 15,
-                    ),
+                    SizedBox(height: getDeviceType(context, 8, 16, 24, 32)),
                     Container(
                       decoration: CustomStyle.box,
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(getDeviceType(context, 4, 8, 16, 24)),
                       child: Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 25),
+                            padding: EdgeInsets.only(top: getDeviceType(context, 15, 25, 50, 70)),
                             child: Text(
                               'life_style'.tr(),
                               style: CustomStyle.getTitleBlack(context),

@@ -200,7 +200,12 @@ class _ClinicViewState extends State<ClinicView> {
       exception1 = [];
       for (int key in weekDaysList.keys) {
         if (!weekDaysList[key][0] && weekDaysList[key][2] != ClinicDay.day2) {
-          exception1.add(DropdownMenuItem<String>(child: Text(weekDaysList[key][1]), value: weekDaysList[key][2]));
+          exception1.add(DropdownMenuItem<String>(
+              child: Text(
+                weekDaysList[key][1],
+                style: CustomStyle.getSubtitle(context),
+              ),
+              value: weekDaysList[key][2]));
         }
       }
     }
@@ -209,7 +214,12 @@ class _ClinicViewState extends State<ClinicView> {
       exception2 = [];
       for (int key in weekDaysList.keys) {
         if (!weekDaysList[key][0] && weekDaysList[key][2] != ClinicDay.day1) {
-          exception2.add(DropdownMenuItem<String>(child: Text(weekDaysList[key][1]), value: weekDaysList[key][2]));
+          exception2.add(DropdownMenuItem<String>(
+              child: Text(
+                weekDaysList[key][1],
+                style: CustomStyle.getSubtitle(context),
+              ),
+              value: weekDaysList[key][2]));
         }
       }
     }
@@ -437,9 +447,7 @@ class _ClinicViewState extends State<ClinicView> {
 //////////////////////////////////////////////////////////////////////////////////////
     return BaseScaffold(
       isAppbar: true,
-             action: getAppActions(context),
-
-
+      action: getAppActions(context),
       title: LocaleKeys.view_doctor_clinic_form.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
@@ -447,16 +455,19 @@ class _ClinicViewState extends State<ClinicView> {
           Align(
             alignment: Alignment.topCenter,
             child: Padding(
-              padding: const EdgeInsets.only(top: 25),
+              padding: EdgeInsets.only(
+                top: getDeviceType(context, 15, 25, 50, 75),
+              ),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     Container(
                       decoration: CustomStyle.box,
-                      height: 400,
-                      width: 350,
+                      height: getDeviceType(context, 300, 400, 500, 600),
+                      width: getDeviceType(context, 275, 350, 450, 550),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: getDeviceType(context, 4, 8, 16, 32), vertical: getDeviceType(context, 8, 16, 24, 32)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -467,20 +478,23 @@ class _ClinicViewState extends State<ClinicView> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 15,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: getDeviceType(context, 8, 16, 24, 32),
                               ),
                               child: Directionality(
                                 textDirection: ui.TextDirection.rtl,
-                                child: TextField(
-                                  onChanged: (val) {
-                                    setState(() => RegisterData.clinicAddress = val);
-                                  },
-                                  decoration: CustomStyle.getInputDecoration(context).copyWith(
-                                    hintText: 'مثال: الحارثيه شارع الكندي',
-                                    hintStyle: CustomStyle.getSubtitle(context).copyWith(fontFamily: 'noto_arabic', color: Colors.deepOrange),
-                                    labelText: 'عنوان العياده',
-                                    labelStyle: CustomStyle.getSubtitle(context).copyWith(fontFamily: 'noto_arabic', color: Colors.grey[750]),
+                                child: Container(
+                                  height: getDeviceType(context, 40, 50, 60, 70),
+                                  child: TextField(
+                                    onChanged: (val) {
+                                      setState(() => RegisterData.clinicAddress = val);
+                                    },
+                                    decoration: CustomStyle.getInputDecoration(context).copyWith(
+                                      hintText: 'مثال: الحارثيه شارع الكندي',
+                                      hintStyle: CustomStyle.getSubtitle(context).copyWith(fontFamily: 'noto_arabic', color: Colors.deepOrange),
+                                      labelText: 'عنوان العياده',
+                                      labelStyle: CustomStyle.getSubtitle(context).copyWith(fontFamily: 'noto_arabic', color: Colors.grey[750]),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -492,8 +506,8 @@ class _ClinicViewState extends State<ClinicView> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 15,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: getDeviceType(context, 8, 16, 24, 32),
                               ),
                               child: WeekdaySelector(
                                 onChanged: (int day) {
@@ -545,8 +559,8 @@ class _ClinicViewState extends State<ClinicView> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 15,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: getDeviceType(context, 8, 16, 24, 32),
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -606,16 +620,17 @@ class _ClinicViewState extends State<ClinicView> {
                       ),
                     ),
                     SizedBox(
-                      height: 15,
+                      height: getDeviceType(context, 10, 15, 25, 35),
                     ),
                     Visibility(
                       visible: _visibile01,
                       child: Container(
-                        height: 250,
-                        width: 350,
+                        height: getDeviceType(context, 200, 250, 300, 350),
+                        width: getDeviceType(context, 275, 350, 450, 550),
                         decoration: CustomStyle.box,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: getDeviceType(context, 4, 8, 16, 32), vertical: getDeviceType(context, 8, 16, 24, 32)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -626,12 +641,13 @@ class _ClinicViewState extends State<ClinicView> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 15,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: getDeviceType(context, 8, 16, 24, 32),
                                 ),
                                 child: DropdownButton(
                                   hint: Text(
                                     LocaleKeys.view_doctor_select_days.tr(),
+                                    style: CustomStyle.getSubtitle(context),
                                   ),
                                   isExpanded: true,
                                   items: exception1,
@@ -652,8 +668,8 @@ class _ClinicViewState extends State<ClinicView> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 15,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: getDeviceType(context, 8, 16, 24, 32),
                                 ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -718,16 +734,17 @@ class _ClinicViewState extends State<ClinicView> {
                       ),
                     ),
                     SizedBox(
-                      height: 15,
+                      height: getDeviceType(context, 10, 15, 25, 35),
                     ),
                     Visibility(
                       visible: _visibile02,
                       child: Container(
-                        height: 200,
-                        width: 350,
+                        height: getDeviceType(context, 150, 200, 250, 300),
+                        width: getDeviceType(context, 275, 350, 450, 550),
                         decoration: CustomStyle.box,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: getDeviceType(context, 4, 8, 16, 32), vertical: getDeviceType(context, 8, 16, 24, 32)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -738,12 +755,13 @@ class _ClinicViewState extends State<ClinicView> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 15,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: getDeviceType(context, 8, 16, 24, 32),
                                 ),
                                 child: DropdownButton(
                                   hint: Text(
                                     LocaleKeys.view_doctor_select_days.tr(),
+                                    style: CustomStyle.getSubtitle(context),
                                   ),
                                   isExpanded: true,
                                   items: exception2,
@@ -764,8 +782,8 @@ class _ClinicViewState extends State<ClinicView> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 15,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: getDeviceType(context, 8, 16, 24, 32),
                                 ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -816,12 +834,12 @@ class _ClinicViewState extends State<ClinicView> {
                       ),
                     ),
                     SizedBox(
-                      height: 25,
+                      height: getDeviceType(context, 15, 25, 35, 45),
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Padding(
-                        padding: const EdgeInsets.only(bottom: 50),
+                        padding: EdgeInsets.only(bottom: getDeviceType(context, 25, 50, 75, 100)),
                         child: CustomLoadingButton(
                           controller: _controller,
                           title: LocaleKeys.view_buttons_google_map.tr(),
@@ -885,7 +903,7 @@ class _ClinicViewState extends State<ClinicView> {
                                       DataFromMaptoVerify.workDays03 = List<String>.from(workDays03);
                                     });
                                     print(latlng);
-                                   await getSuccess(_controller);
+                                    await getSuccess(_controller);
                                     await Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) => MapViewStream(

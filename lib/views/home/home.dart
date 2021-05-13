@@ -6,8 +6,8 @@ import 'package:project_doctor/generated/custom_icons.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:project_doctor/views/auth/sign_wrapper.dart';
 import 'package:project_doctor/views/favorite/favorite_list.dart';
-import 'package:project_doctor/views/home/support.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:project_doctor/views/profile/2_clinic_data.dart';
 import 'package:project_doctor/views/search/search_history/history_profile.dart';
 import 'dart:ui' as ui;
 import 'package:project_doctor/views/search/search_wrapper.dart';
@@ -47,7 +47,7 @@ class _HomeViewState extends State<HomeView> {
             ),
             child: BottomNavigationBar(
                 elevation: 0,
-                iconSize: 24,
+                iconSize: getDeviceType(context, 20, 24, 28, 32),
                 type: BottomNavigationBarType.fixed,
                 selectedItemColor: Colors.white,
                 unselectedItemColor: Colors.white,
@@ -59,7 +59,7 @@ class _HomeViewState extends State<HomeView> {
                   if (index == 1) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchHistoryProfile()));
                   if (index == 2) Navigator.of(context).push(MaterialPageRoute(builder: (context) => Intermediate()));
                   if (index == 3) Navigator.of(context).push(MaterialPageRoute(builder: (context) => FavoriteListView()));
-                  if (index == 4) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SupportView()));
+                  if (index == 4) Navigator.of(context).push(MaterialPageRoute(builder: (context) => ClinicStream()));
                 },
                 items: [
                   BottomNavigationBarItem(icon: Icon(CustomIcons.search), label: "Search"),
@@ -98,20 +98,20 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             padding: EdgeInsets.all(0.0),
             isIcon: false,
             width: MediaQuery.of(context).size.width,
-            height: 350,
+            height: getDeviceType(context, 250, 350, 450, 600),
             asset: getTheme(context) ? 'assets/images/home/header_light.png' : 'assets/images/home/header_dark.png',
           ),
           HomeAlignWidgets(
             alignment: Alignment.topCenter,
-            padding: const EdgeInsets.only(top: 75),
+            padding: EdgeInsets.only(top: getDeviceType(context, 50, 75, 120, 160)),
             isIcon: false,
-            width: 120,
-            height: 140,
+            width: getDeviceType(context, 100, 120, 140, 180),
+            height: getDeviceType(context, 120, 140, 160, 210),
             asset: 'assets/images/home/logo.png',
           ),
           HomeAlignWidgets(
             alignment: Alignment.topLeft,
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(getDeviceType(context, 8, 8, 24, 32)),
             isIcon: true,
             onTap: () async {
               if (getLocale(context)) {
@@ -121,34 +121,35 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               }
             },
             icon: getLocale(context) ? Image.asset('assets/images/home/ar.png') : Image.asset('assets/images/home/en.png'),
-            iconSize: 40,
+            iconSize: getDeviceType(context, 30, 40, 50, 60),
           ),
           HomeAlignWidgets(
             alignment: Alignment.topRight,
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(getDeviceType(context, 8, 8, 24, 32)),
             isIcon: true,
             onTap: () => getThemeManager(context).toggleDarkLightTheme(),
             icon: getTheme(context) ? Image.asset('assets/images/home/moon.png') : Image.asset('assets/images/home/sun.png'),
-            iconSize: 40,
+            iconSize: getDeviceType(context, 30, 40, 50, 60),
           ),
           Align(
             alignment: Alignment.center,
             child: Padding(
-              padding: const EdgeInsets.only(top: 210),
+              padding: EdgeInsets.only(
+                top: getDeviceType(context, 150, 210, 250, 300),
+              ),
               child: Container(
-                width: 350,
-                height: 300,
-                padding: const EdgeInsets.all(16.0),
+                width: getDeviceType(context, 250, 350, 450, 500),
+                height: getDeviceType(context, 250, 300, 400, 450),
+                padding: EdgeInsets.all(
+                  getDeviceType(context, 8, 16, 24, 32),
+                ),
                 decoration: CustomStyle.box,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Center(
-                      child: Text(
-                        LocaleKeys.view_home_title.tr(),
-                        style: CustomStyle.getHeading(context).copyWith(color: getColor(context, Colors.black87, Colors.white)),
-                      ),
+                      child: Text(LocaleKeys.view_home_title.tr(), style: CustomStyle.getTitleBlack(context)),
                     ),
                     Text(
                       LocaleKeys.view_home_search_complain.tr(),

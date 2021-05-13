@@ -17,20 +17,16 @@ class SupportView extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.topCenter,
-            child: Padding(
-              padding: EdgeInsets.all(0.0),
-              child: Transform(
-                alignment: Alignment.center,
-                transform: Matrix4.rotationY(math.pi),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 350,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image:
-                            getTheme(context) ? AssetImage("assets/images/home/header_light.png") : AssetImage("assets/images/home/header_dark.png"),
-                        fit: BoxFit.fill),
-                  ),
+            child: Transform(
+              alignment: Alignment.center,
+              transform: Matrix4.rotationY(math.pi),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: getDeviceType(context, 250, 350, 450, 600),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: getTheme(context) ? AssetImage("assets/images/home/header_light.png") : AssetImage("assets/images/home/header_dark.png"),
+                      fit: BoxFit.fill),
                 ),
               ),
             ),
@@ -38,13 +34,13 @@ class SupportView extends StatelessWidget {
           Align(
             alignment: Alignment.topCenter,
             child: Padding(
-              padding: const EdgeInsets.only(top: 75),
+              padding: EdgeInsets.only(top: getDeviceType(context, 50, 75, 120, 160)),
               child: Transform(
                 alignment: Alignment.center,
                 transform: Matrix4.rotationY(math.pi),
                 child: Container(
-                  width: 140,
-                  height: 160,
+                  width: getDeviceType(context, 100, 120, 140, 180),
+                  height: getDeviceType(context, 120, 140, 160, 210),
                   decoration: BoxDecoration(
                     image: DecorationImage(image: AssetImage("assets/images/home/support.png"), fit: BoxFit.fill),
                   ),
@@ -55,9 +51,11 @@ class SupportView extends StatelessWidget {
           Align(
             alignment: Alignment.center,
             child: Padding(
-              padding: const EdgeInsets.only(top: 250),
+              padding: EdgeInsets.only(
+                top: getDeviceType(context, 150, 250, 300, 350),
+              ),
               child: Container(
-                height: 350,
+                height: getDeviceType(context, 250, 350, 450, 550),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

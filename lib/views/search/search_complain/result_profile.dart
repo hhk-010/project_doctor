@@ -430,22 +430,22 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             alignment: Alignment.topCenter,
             children: [
               Positioned(
-                top: 50,
+                top: getDeviceType(context, 25, 50, 75, 125),
                 child: Container(
-                  height: 600,
-                  width: 350,
+                  height: getDeviceType(context, 430, 600, 700, 900),
+                  width: getDeviceType(context, 260, 350, 450, 550),
                   decoration: CustomStyle.box,
                   padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                   child: ListView(
                     children: [
                       Container(
-                        height: 200,
+                        height: getDeviceType(context, 150, 200, 250, 300),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             CircleAvatar(
                               backgroundColor: Colors.deepOrange,
-                              radius: 50,
+                              radius: getDeviceType(context, 35, 50, 60, 75),
                               backgroundImage: AssetImage('assets/images/doctor.png'),
                             ),
                             Text(
@@ -507,7 +507,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 40),
+                  padding: EdgeInsets.only(bottom: getDeviceType(context, 15, 40, 75, 125)),
                   child: BaseButton(
                       title: LocaleKeys.view_patient_result_doctor_locat.tr(),
                       onPressed: () {

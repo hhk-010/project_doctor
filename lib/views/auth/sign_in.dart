@@ -49,48 +49,56 @@ class _SignInViewState extends State<SignInView> {
             padding: EdgeInsets.all(0.0),
             isIcon: false,
             width: MediaQuery.of(context).size.width,
-            height: 300,
+            height: getDeviceType(context, 225, 300, 500, 700),
             asset: getTheme(context) ? 'assets/images/auth/sign_in_light.png' : 'assets/images/auth/sign_in_dark.png',
           ),
           Align(
             alignment: Alignment.center,
             child: Padding(
-              padding: const EdgeInsets.only(top: 120),
+              padding: EdgeInsets.only(
+                top: getDeviceType(context, 120, 120, 300, 500),
+              ),
               child: Container(
-                height: 200,
-                width: 300,
+                height: getDeviceType(context, 175, 200, 250, 250),
+                width: getDeviceType(context, 250, 300, 350, 400),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    TextField(
-                      onChanged: (val) {
-                        setState(() => SignInData.email = val);
-                      },
-                      cursorColor: Colors.grey,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: CustomStyle.getInputDecoration(context).copyWith(
-                        hintText: LocaleKeys.view_doctor_enter_your_email.tr(),
+                    Container(
+                      height: getDeviceType(context, 40, 50, 60, 70),
+                      child: TextField(
+                        onChanged: (val) {
+                          setState(() => SignInData.email = val);
+                        },
+                        cursorColor: Colors.grey,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: CustomStyle.getInputDecoration(context).copyWith(
+                          hintText: LocaleKeys.view_doctor_enter_your_email.tr(),
+                        ),
                       ),
                     ),
-                    TextField(
-                      obscureText: !SignInData.isPasswordVisible,
-                      onChanged: (val) {
-                        setState(() => SignInData.password = val);
-                      },
-                      cursorColor: Colors.grey,
-                      keyboardType: TextInputType.text,
-                      decoration: CustomStyle.getInputDecoration(context).copyWith(
-                        hintText: LocaleKeys.view_doctor_enter_your_password.tr(),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            SignInData.isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                            color: Colors.deepOrange,
+                    Container(
+                      height: getDeviceType(context, 40, 50, 60, 70),
+                      child: TextField(
+                        obscureText: !SignInData.isPasswordVisible,
+                        onChanged: (val) {
+                          setState(() => SignInData.password = val);
+                        },
+                        cursorColor: Colors.grey,
+                        keyboardType: TextInputType.text,
+                        decoration: CustomStyle.getInputDecoration(context).copyWith(
+                          hintText: LocaleKeys.view_doctor_enter_your_password.tr(),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              SignInData.isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                              color: Colors.deepOrange,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                SignInData.isPasswordVisible = !SignInData.isPasswordVisible;
+                              });
+                            },
                           ),
-                          onPressed: () {
-                            setState(() {
-                              SignInData.isPasswordVisible = !SignInData.isPasswordVisible;
-                            });
-                          },
                         ),
                       ),
                     ),
@@ -118,7 +126,9 @@ class _SignInViewState extends State<SignInView> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 100),
+              padding: EdgeInsets.only(
+                bottom: getDeviceType(context, 50, 100, 125, 150),
+              ),
               child: CustomLoadingButton(
                 title: LocaleKeys.view_doctor_sign_in.tr(),
                 controller: _controller,

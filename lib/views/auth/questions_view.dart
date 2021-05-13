@@ -44,20 +44,19 @@ class _QuestionViewState extends State<QuestionView> {
       textDirection: TextDirection.ltr,
       child: BaseScaffold(
         isAppbar: true,
-           action: getAppActions(context),
-
+        action: getAppActions(context),
         title: "Questions",
         child: Stack(alignment: Alignment.topCenter, children: [
           Positioned(
-            top: 15,
+            top: getDeviceType(context, 10, 15, 25, 35),
             child: Text(
               'To Register, Answer the Questions:',
               style: CustomStyle.getTitleBlack(context),
             ),
           ),
           Positioned(
-            top: 50,
-            height: getDeviceType(context, 550, 620, 700, 750),
+            top: getDeviceType(context, 35, 50, 75, 100),
+            height: getDeviceType(context, 425, 620, 750, 900),
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -72,7 +71,7 @@ class _QuestionViewState extends State<QuestionView> {
                     },
                   ),
                   SizedBox(
-                    height: getDeviceType(context, 15, 15, 30, 35),
+                    height: getDeviceType(context, 10, 15, 30, 35),
                   ),
                   CustomQuestion(
                     questionIndex: questionIndex2,
@@ -85,7 +84,7 @@ class _QuestionViewState extends State<QuestionView> {
                     },
                   ),
                   SizedBox(
-                    height: getDeviceType(context, 15, 15, 30, 35),
+                    height: getDeviceType(context, 10, 15, 30, 35),
                   ),
                   CustomQuestion(
                     questionIndex: questionIndex3,
@@ -102,7 +101,7 @@ class _QuestionViewState extends State<QuestionView> {
             ),
           ),
           Positioned(
-            bottom: 25,
+            bottom: getDeviceType(context, 15, 25, 65, 100),
             child: CustomLoadingButton(
                 controller: _controller,
                 title: 'Next',

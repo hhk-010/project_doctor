@@ -161,18 +161,18 @@ class _EmailVeriyViewState extends State<EmailVeriyView> {
         children: [
           HomeAlignWidgets(
             alignment: Alignment.topCenter,
-            padding: EdgeInsets.only(top: 50),
+            padding: EdgeInsets.only(top: getDeviceType(context, 25, 50, 75, 100)),
             isIcon: false,
-            height: 140,
-            width: 140,
+            height: getDeviceType(context, 120, 140, 160, 200),
+            width: getDeviceType(context, 120, 140, 160, 200),
             asset: 'assets/images/password.png',
           ),
           Align(
             alignment: Alignment.center,
             child: Container(
-              padding: EdgeInsets.only(top: 50),
-              height: 450,
-              width: 350,
+              padding: EdgeInsets.only(top: getDeviceType(context, 25, 50, 75, 100)),
+              height: getDeviceType(context, 350, 450, 550, 650),
+              width: getDeviceType(context, 250, 350, 450, 550),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -183,7 +183,9 @@ class _EmailVeriyViewState extends State<EmailVeriyView> {
                   Container(
                     decoration: CustomStyle.box,
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(
+                        getDeviceType(context, 8, 16, 24, 32),
+                      ),
                       child: Text(
                         _email,
                         style: CustomStyle.getSubtitle(context),
@@ -191,7 +193,7 @@ class _EmailVeriyViewState extends State<EmailVeriyView> {
                     ),
                   ),
                   SizedBox(
-                    width: 300,
+                    width: getDeviceType(context, 200, 300, 400, 500),
                     child: Text(
                       'view_email_verification.confirm'.tr(),
                       style: CustomStyle.getSubtitle(context),
@@ -221,9 +223,11 @@ class _EmailVeriyViewState extends State<EmailVeriyView> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 50),
+              padding: EdgeInsets.only(
+                bottom: getDeviceType(context, 50, 100, 150, 200),
+              ),
               child: Container(
-                height: 50,
+                height: getDeviceType(context, 40, 50, 60, 70),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

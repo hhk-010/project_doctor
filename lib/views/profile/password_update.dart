@@ -33,53 +33,60 @@ class _PasswordUpdateViewState extends State<PasswordUpdateView> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: true,
-           action: getAppActions(context),
-
+      action: getAppActions(context),
       title: LocaleKeys.view_doctor_update_password.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
           HomeAlignWidgets(
             alignment: Alignment.topCenter,
-            padding: EdgeInsets.only(top: 50),
+            padding: EdgeInsets.only(
+              top: getDeviceType(context, 25, 50, 75, 100),
+            ),
             isIcon: false,
-            height: 140,
-            width: 140,
+            height: getDeviceType(context, 120, 140, 160, 200),
+            width: getDeviceType(context, 120, 140, 160, 200),
             asset: 'assets/images/update_password.png',
           ),
           Align(
             alignment: Alignment.center,
             child: Container(
-              height: 150,
-              width: 300,
+              height: getDeviceType(context, 150, 150, 200, 250),
+              width: getDeviceType(context, 250, 300, 350, 450),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  TextFormField(
-                    decoration: CustomStyle.getInputDecoration(context).copyWith(
-                      hintText: LocaleKeys.view_doctor_current_password.tr(),
+                  Container(
+                    height: getDeviceType(context, 40, 50, 60, 70),
+                    child: TextField(
+                      decoration: CustomStyle.getInputDecoration(context).copyWith(
+                        hintText: LocaleKeys.view_doctor_current_password.tr(),
+                      ),
+                      onChanged: (val) {
+                        _oldPassword = val;
+                      },
                     ),
-                    onChanged: (val) {
-                      _oldPassword = val;
-                    },
                   ),
-                  TextFormField(
-                    obscureText: !_isPasswordVisible,
-                    onChanged: (val) {
-                      setState(() => _newPassword = val);
-                    },
-                    decoration: CustomStyle.getInputDecoration(context).copyWith(
-                      hintText: LocaleKeys.view_doctor_new_password_hint.tr(),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                          color: Colors.deepOrange,
+                  Container(
+                    height: getDeviceType(context, 40, 50, 60, 70),
+                    child: TextField(
+                      obscureText: !_isPasswordVisible,
+                      onChanged: (val) {
+                        setState(() => _newPassword = val);
+                      },
+                      decoration: CustomStyle.getInputDecoration(context).copyWith(
+                        hintText: LocaleKeys.view_doctor_new_password_hint.tr(),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                            color: Colors.deepOrange,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isPasswordVisible = !_isPasswordVisible;
+                            });
+                          },
                         ),
-                        onPressed: () {
-                          setState(() {
-                            _isPasswordVisible = !_isPasswordVisible;
-                          });
-                        },
                       ),
                     ),
                   ),
@@ -90,7 +97,9 @@ class _PasswordUpdateViewState extends State<PasswordUpdateView> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 100),
+              padding: EdgeInsets.only(
+                bottom: getDeviceType(context, 50, 100, 150, 200),
+              ),
               child: CustomLoadingButton(
                 title: LocaleKeys.view_buttons_update.tr(),
                 controller: _controller,

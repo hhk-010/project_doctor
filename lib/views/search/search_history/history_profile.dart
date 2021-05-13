@@ -310,10 +310,13 @@ class _SearchHistoryProfileState extends State<SearchHistoryProfile> {
               ? Align(
                   alignment: Alignment.center,
                   child: Container(
-                    height: 150,
-                    width: 350,
+                    height: getDeviceType(context, 100, 150, 200, 250),
+                    width: getDeviceType(context, 250, 350, 400, 450),
                     decoration: CustomStyle.box,
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: getDeviceType(context, 8, 16, 24, 32),
+                      vertical: getDeviceType(context, 8, 16, 24, 32),
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -330,22 +333,25 @@ class _SearchHistoryProfileState extends State<SearchHistoryProfile> {
                   ),
                 )
               : Positioned(
-                  top: 50,
+                  top: getDeviceType(context, 25, 50, 75, 125),
                   child: Container(
-                    height: 600,
-                    width: 350,
+                    height: getDeviceType(context, 430, 600, 700, 900),
+                    width: getDeviceType(context, 260, 350, 450, 550),
                     decoration: CustomStyle.box,
-                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: getDeviceType(context, 8, 16, 24, 32),
+                      vertical: getDeviceType(context, 8, 16, 24, 32),
+                    ),
                     child: ListView(
                       children: [
                         Container(
-                          height: 200,
+                          height: getDeviceType(context, 150, 200, 250, 300),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               CircleAvatar(
                                 backgroundColor: Colors.deepOrange,
-                                radius: 50,
+                                radius: getDeviceType(context, 35, 50, 60, 75),
                                 backgroundImage: AssetImage('assets/images/doctor.png'),
                               ),
                               Text(
@@ -402,7 +408,9 @@ class _SearchHistoryProfileState extends State<SearchHistoryProfile> {
               ? Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 40),
+                    padding: EdgeInsets.only(
+                      bottom: getDeviceType(context, 15, 40, 75, 125),
+                    ),
                     child: BaseButton(
                       title: 'view_patient_result.doctor_locat'.tr(),
                       onPressed: () => Navigator.of(context).push(MaterialPageRoute(
@@ -413,9 +421,7 @@ class _SearchHistoryProfileState extends State<SearchHistoryProfile> {
                     ),
                   ),
                 )
-              : SizedBox(
-                  height: 0,
-                ),
+              : SizedBox(height: 0),
         ],
       ),
     );

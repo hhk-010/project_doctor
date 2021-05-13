@@ -24,16 +24,17 @@ class SearchWrapper extends StatelessWidget {
             padding: EdgeInsets.all(0.0),
             isIcon: false,
             width: MediaQuery.of(context).size.width,
-            height: 300,
+            height: getDeviceType(context, 250, 300, 500, 700),
             asset: getTheme(context) ? 'assets/images/search/search_wrapper_light.png' : 'assets/images/search/search_wrapper_dark.png',
           ),
           Align(
             alignment: Alignment.center,
             child: Padding(
-              padding: const EdgeInsets.only(top: 200),
+              padding: EdgeInsets.only(
+                top: getDeviceType(context, 250, 200, 500, 650),
+              ),
               child: Container(
-                height: 300,
-                width: 300,
+                height: getDeviceType(context, 200, 300, 350, 400),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

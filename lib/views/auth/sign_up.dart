@@ -45,48 +45,56 @@ class _SignUpViewState extends State<SignUpView> {
             padding: EdgeInsets.all(0.0),
             isIcon: false,
             width: MediaQuery.of(context).size.width,
-            height: 300,
+            height: getDeviceType(context, 225, 300, 500, 700),
             asset: getTheme(context) ? 'assets/images/auth/sign_up_light.png' : 'assets/images/auth/sign_up_dark.png',
           ),
           Align(
             alignment: Alignment.center,
             child: Padding(
-              padding: const EdgeInsets.only(top: 100),
+              padding: EdgeInsets.only(
+                top: getDeviceType(context, 120, 120, 300, 500),
+              ),
               child: Container(
-                height: 200,
-                width: 300,
+                height: getDeviceType(context, 175, 200, 250, 250),
+                width: getDeviceType(context, 250, 300, 350, 400),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    TextField(
-                      onChanged: (val) {
-                        setState(() => RegisterData.email = val);
-                      },
-                      cursorColor: Colors.grey,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: CustomStyle.getInputDecoration(context).copyWith(
-                        hintText: LocaleKeys.view_doctor_enter_your_email.tr(),
+                    Container(
+                      height: getDeviceType(context, 40, 50, 60, 70),
+                      child: TextField(
+                        onChanged: (val) {
+                          setState(() => RegisterData.email = val);
+                        },
+                        cursorColor: Colors.grey,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: CustomStyle.getInputDecoration(context).copyWith(
+                          hintText: LocaleKeys.view_doctor_enter_your_email.tr(),
+                        ),
                       ),
                     ),
-                    TextField(
-                      obscureText: !RegisterData.isPasswordVisible,
-                      onChanged: (val) {
-                        setState(() => RegisterData.password = val);
-                      },
-                      cursorColor: Colors.grey,
-                      keyboardType: TextInputType.text,
-                      decoration: CustomStyle.getInputDecoration(context).copyWith(
-                        hintText: LocaleKeys.view_doctor_enter_your_password.tr(),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            RegisterData.isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                            color: Colors.deepOrange,
+                    Container(
+                      height: getDeviceType(context, 40, 50, 60, 70),
+                      child: TextField(
+                        obscureText: !RegisterData.isPasswordVisible,
+                        onChanged: (val) {
+                          setState(() => RegisterData.password = val);
+                        },
+                        cursorColor: Colors.grey,
+                        keyboardType: TextInputType.text,
+                        decoration: CustomStyle.getInputDecoration(context).copyWith(
+                          hintText: LocaleKeys.view_doctor_enter_your_password.tr(),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              RegisterData.isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                              color: Colors.deepOrange,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                RegisterData.isPasswordVisible = !RegisterData.isPasswordVisible;
+                              });
+                            },
                           ),
-                          onPressed: () {
-                            setState(() {
-                              RegisterData.isPasswordVisible = !RegisterData.isPasswordVisible;
-                            });
-                          },
                         ),
                       ),
                     ),
@@ -101,7 +109,9 @@ class _SignUpViewState extends State<SignUpView> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 100),
+              padding: EdgeInsets.only(
+                bottom: getDeviceType(context, 50, 100, 125, 150),
+              ),
               child: CustomLoadingButton(
                   title: LocaleKeys.view_doctor_register.tr(),
                   controller: _controller,

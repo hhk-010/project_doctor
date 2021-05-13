@@ -21,14 +21,17 @@ class SpecialityResultView extends StatelessWidget {
               alignment: Alignment.center,
               child: Container(
                 decoration: CustomStyle.box,
-                width: 350,
-                height: 350,
-                padding: EdgeInsets.symmetric(vertical: 25, horizontal: 16),
+                width: getDeviceType(context, 250, 350, 450, 550),
+                height: getDeviceType(context, 250, 350, 450, 550),
+                padding: EdgeInsets.symmetric(
+                  vertical: getDeviceType(context, 16, 24, 32, 38),
+                  horizontal: getDeviceType(context, 8, 16, 24, 32),
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(
-                      height: 100,
+                      height: getDeviceType(context, 75, 100, 125, 150),
                       child: Image(
                         image: AssetImage('assets/images/speciality.png'),
                       ),
@@ -48,7 +51,7 @@ class SpecialityResultView extends StatelessWidget {
                       child: ListTile(
                         leading: Icon(
                           Icons.person_add,
-                          size: 40,
+                          size: getDeviceType(context, 30, 40, 50, 60),
                           color: Colors.deepOrangeAccent,
                         ),
                         title: FittedBox(
@@ -67,7 +70,9 @@ class SpecialityResultView extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: EdgeInsets.only(bottom: 50),
+                padding: EdgeInsets.only(
+                  bottom: getDeviceType(context, 25, 50, 75, 100),
+                ),
                 child: BaseButton(
                   title: LocaleKeys.view_buttons_next.tr(),
                   onPressed: () {

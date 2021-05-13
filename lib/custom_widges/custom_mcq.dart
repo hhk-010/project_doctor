@@ -16,7 +16,7 @@ class CustomQuestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 350,
+      width: getDeviceType(context, 275, 350, 450, 650),
       decoration: CustomStyle.box,
       padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
       child: Column(
@@ -31,12 +31,12 @@ class CustomQuestion extends StatelessWidget {
                       answer == null ? getColor(context, Colors.grey[600], Colors.grey[500]) : getColor(context, Colors.grey[900], Colors.grey[100]),
                 )),
             items: [
-              getMenuItem('0', questionIndex, 0),
-              getMenuItem('1', questionIndex, 1),
-              getMenuItem('2', questionIndex, 2),
-              getMenuItem('3', questionIndex, 3),
-              getMenuItem('4', questionIndex, 4),
-              getMenuItem('5', questionIndex, 5),
+              getMenuItem(context, '0', questionIndex, 0),
+              getMenuItem(context, '1', questionIndex, 1),
+              getMenuItem(context, '2', questionIndex, 2),
+              getMenuItem(context, '3', questionIndex, 3),
+              getMenuItem(context, '4', questionIndex, 4),
+              getMenuItem(context, '5', questionIndex, 5),
             ],
             onChanged: onChanged,
           ),
@@ -46,7 +46,7 @@ class CustomQuestion extends StatelessWidget {
   }
 }
 
-DropdownMenuItem<String> getMenuItem(String value, int questionIndex, int index) {
+DropdownMenuItem<String> getMenuItem(BuildContext context, String value, int questionIndex, int index) {
   return DropdownMenuItem<String>(
     value: value,
     child: Align(
@@ -54,6 +54,7 @@ DropdownMenuItem<String> getMenuItem(String value, int questionIndex, int index)
       child: Text(
         QuestionsShuffle.choices[QuestionsShuffle.questions[questionIndex]][index],
         textDirection: TextDirection.ltr,
+        style: CustomStyle.getSubtitle(context),
       ),
     ),
   );

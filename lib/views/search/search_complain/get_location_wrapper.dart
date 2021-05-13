@@ -164,12 +164,14 @@ class _LocationWrapperState extends State<LocationWrapper> {
         alignment: Alignment.topCenter,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 50),
+            padding: EdgeInsets.only(
+              top: getDeviceType(context, 25, 50, 75, 100),
+            ),
             child: Container(
-              width: 350,
-              height: 150,
+              width: getDeviceType(context, 250, 350, 450, 550),
+              height: getDeviceType(context, 125, 150, 250, 300),
               decoration: CustomStyle.box,
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+              padding: EdgeInsets.all(getDeviceType(context, 16, 16, 24, 32)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -316,7 +318,6 @@ class _LocationWrapperState extends State<LocationWrapper> {
                     ],
                     onChanged: (value) {
                       setState(() => region = value);
-
                     },
                   )
                 ],
@@ -325,91 +326,94 @@ class _LocationWrapperState extends State<LocationWrapper> {
           ),
           Align(
             alignment: Alignment.center,
-            child: Container(
-              decoration: CustomStyle.box,
-              height: 300,
-              width: 350,
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Center(
-                    child: Text(
-                      LocaleKeys.view_patient_get_location.tr(),
-                      style: CustomStyle.getSubtitle(context),
-                      textAlign: TextAlign.center,
+            child: Padding(
+              padding: EdgeInsets.only(top: getDeviceType(context, 50, 25, 200, 200)),
+              child: Container(
+                decoration: CustomStyle.box,
+                height: getDeviceType(context, 200, 300, 350, 400),
+                width: getDeviceType(context, 250, 350, 450, 550),
+                padding: EdgeInsets.all(getDeviceType(context, 16, 16, 24, 32)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Center(
+                      child: Text(
+                        LocaleKeys.view_patient_get_location.tr(),
+                        style: CustomStyle.getSubtitle(context),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                  ),
-                  CustomLoadingButton(
-                    title: 'view_patient.auto_location'.tr(),
-                    controller: _controller1,
-                    onPressed: () async {
-                      if (!(region == null || region == '')) {
-                        if (await isInternet()) {
+                    CustomLoadingButton(
+                      title: 'view_patient.auto_location'.tr(),
+                      controller: _controller1,
+                      onPressed: () async {
+                        if (!(region == null || region == '')) {
+                          if (await isInternet()) {
+                            MyVariables.geoLatlng = await getCoordinatesFromAddress(region + ',' + district[region]);
+                            MyVariables.geolat = double.parse(
+                                MyVariables.geoLatlng.substring(MyVariables.geoLatlng.indexOf('{') + 1, MyVariables.geoLatlng.indexOf(',')));
+                            MyVariables.geolng = double.parse(
+                                MyVariables.geoLatlng.substring(MyVariables.geoLatlng.indexOf(',') + 1, MyVariables.geoLatlng.indexOf('}')));
+                            await _getCurrentLocation();
+                            if (_currentPosition == null) {
+                              getFlushbar(context, LocaleKeys.error_geolocator_message.tr(), _controller1);
+                            } else {
+                              setState(() {
+                                MyVariables.speciality = FinalScore.speciality;
+                                MyVariables.province = region;
+                                DatabaseService.province = region;
+                                MyVariables.lat = _currentPosition.latitude;
+                                MyVariables.lng = _currentPosition.longitude;
+                              });
+                              double sum = pow(MyVariables.geolat - MyVariables.lat, 2) + pow(MyVariables.geolng - MyVariables.lng, 2);
+                              double result = sqrt(sum);
+                              if (result * 100 < 100) {
+                                setState(() => MyVariables.usingMap = false);
+                                await getSuccess(_controller1);
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileResultView()));
+                              } else {
+                                getFlushbar(context, LocaleKeys.view_patient_invalid_device_location.tr(), _controller1);
+                              }
+                            }
+                          } else
+                            getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller1);
+                        } else
+                          getFlushbar(context, LocaleKeys.view_doctor_province_validator.tr(), _controller1);
+                      },
+                    ),
+                    Text(
+                      'Or'.tr(),
+                      style: CustomStyle.getTitleBlack(context),
+                    ),
+                    CustomLoadingButton(
+                      title: LocaleKeys.view_buttons_google_map.tr(),
+                      controller: _controller2,
+                      onPressed: () async {
+                        if (!(region == null || region == '')) {
+                          setState(() {
+                            MyVariables.usingMap = true;
+                            DatabaseService.province = region;
+                          });
                           MyVariables.geoLatlng = await getCoordinatesFromAddress(region + ',' + district[region]);
                           MyVariables.geolat = double.parse(
                               MyVariables.geoLatlng.substring(MyVariables.geoLatlng.indexOf('{') + 1, MyVariables.geoLatlng.indexOf(',')));
                           MyVariables.geolng = double.parse(
                               MyVariables.geoLatlng.substring(MyVariables.geoLatlng.indexOf(',') + 1, MyVariables.geoLatlng.indexOf('}')));
-                          await _getCurrentLocation();
-                          if (_currentPosition == null) {
-                            getFlushbar(context, LocaleKeys.error_geolocator_message.tr(), _controller1);
-                          } else {
-                            setState(() {
-                              MyVariables.speciality = FinalScore.speciality;
-                              MyVariables.province = region;
-                              DatabaseService.province = region;
-                              MyVariables.lat = _currentPosition.latitude;
-                              MyVariables.lng = _currentPosition.longitude;
-                            });
-                            double sum = pow(MyVariables.geolat - MyVariables.lat, 2) + pow(MyVariables.geolng - MyVariables.lng, 2);
-                            double result = sqrt(sum);
-                            if (result * 100 < 100) {
-                              setState(() => MyVariables.usingMap = false);
-                              await getSuccess(_controller1);
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileResultView()));
-                            } else {
-                              getFlushbar(context, LocaleKeys.view_patient_invalid_device_location.tr(), _controller1);
-                            }
-                          }
-                        } else
-                          getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller1);
-                      } else
-                        getFlushbar(context, LocaleKeys.view_doctor_province_validator.tr(), _controller1);
-                    },
-                  ),
-                  Text(
-                    'Or'.tr(),
-                    style: CustomStyle.getTitleBlack(context),
-                  ),
-                  CustomLoadingButton(
-                    title: LocaleKeys.view_buttons_google_map.tr(),
-                    controller: _controller2,
-                    onPressed: () async {
-                      if (!(region == null || region == '')) {
-                        setState(() {
-                          MyVariables.usingMap = true;
-                          DatabaseService.province = region;
-                        });
-                        MyVariables.geoLatlng = await getCoordinatesFromAddress(region + ',' + district[region]);
-                        MyVariables.geolat =
-                            double.parse(MyVariables.geoLatlng.substring(MyVariables.geoLatlng.indexOf('{') + 1, MyVariables.geoLatlng.indexOf(',')));
-                        MyVariables.geolng =
-                            double.parse(MyVariables.geoLatlng.substring(MyVariables.geoLatlng.indexOf(',') + 1, MyVariables.geoLatlng.indexOf('}')));
-                        await getSuccess(_controller2);
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => GetMapView(
-                              speciality: FinalScore.speciality,
-                              province: region,
+                          await getSuccess(_controller2);
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => GetMapView(
+                                speciality: FinalScore.speciality,
+                                province: region,
+                              ),
                             ),
-                          ),
-                        );
-                      } else
-                        getFlushbar(context, LocaleKeys.view_doctor_province_validator.tr(), _controller2);
-                    },
-                  ),
-                ],
+                          );
+                        } else
+                          getFlushbar(context, LocaleKeys.view_doctor_province_validator.tr(), _controller2);
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

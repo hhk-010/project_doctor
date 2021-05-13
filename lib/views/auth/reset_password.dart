@@ -24,26 +24,26 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: true,
-      action:
-        getAppActions(context),
-    
+      action: getAppActions(context),
       title: LocaleKeys.view_doctor_passWord_reset.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
           HomeAlignWidgets(
             alignment: Alignment.topCenter,
-            padding: EdgeInsets.only(top: 50),
+            padding: EdgeInsets.only(
+              top: getDeviceType(context, 25, 50, 75, 100),
+            ),
             isIcon: false,
-            height: 140,
-            width: 140,
+            height: getDeviceType(context, 120, 140, 160, 200),
+            width: getDeviceType(context, 120, 140, 160, 200),
             asset: 'assets/images/reset_password.png',
           ),
           Align(
             alignment: Alignment.center,
             child: Container(
-              height: 200,
-              width: 300,
+              height: getDeviceType(context, 175, 200, 200, 250),
+              width: getDeviceType(context, 250, 300, 350, 450),
               child: TextField(
                 onChanged: (val) {
                   setState(() => ResetPasswordData.email = val);
@@ -59,7 +59,9 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 100),
+              padding: EdgeInsets.only(
+                bottom: getDeviceType(context, 50, 100, 150, 200),
+              ),
               child: CustomLoadingButton(
                   title: LocaleKeys.view_doctor_password_reset_email.tr(),
                   controller: _controller,
@@ -101,17 +103,17 @@ class _ResetPasswordView2State extends State<ResetPasswordView2> {
         children: [
           HomeAlignWidgets(
             alignment: Alignment.topCenter,
-            padding: EdgeInsets.only(top: 50),
+            padding: EdgeInsets.only(top: getDeviceType(context, 25, 50, 75, 100)),
             isIcon: false,
-            height: 140,
-            width: 140,
+            height: getDeviceType(context, 120, 140, 160, 200),
+            width: getDeviceType(context, 120, 140, 160, 200),
             asset: 'assets/images/password.png',
           ),
           Align(
             alignment: Alignment.center,
             child: Container(
-              width: 300,
-              height: 300,
+              height: getDeviceType(context, 200, 300, 400, 500),
+              width: getDeviceType(context, 250, 300, 400, 500),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -120,14 +122,14 @@ class _ResetPasswordView2State extends State<ResetPasswordView2> {
                     style: CustomStyle.getTitleBlack(context),
                   ),
                   Container(
-                    width: 200,
-                    height: 60,
+                    width: getDeviceType(context, 150, 200, 250, 300),
+                    height: getDeviceType(context, 50, 60, 70, 80),
                     decoration: CustomStyle.box,
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Text(
                         ResetPasswordData.email,
-                        style: CustomStyle.getSubtitle(context),
+                        style: CustomStyle.getTitleBlack(context),
                       ),
                     ),
                   ),
@@ -149,7 +151,9 @@ class _ResetPasswordView2State extends State<ResetPasswordView2> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-                padding: const EdgeInsets.only(bottom: 100),
+                padding: EdgeInsets.only(
+                  bottom: getDeviceType(context, 50, 100, 150, 200),
+                ),
                 child: BaseButton(
                   title: LocaleKeys.view_email_verification_continue.tr(),
                   onPressed: () {

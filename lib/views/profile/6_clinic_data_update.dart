@@ -180,7 +180,12 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
       exception1 = [];
       for (int key in weekDaysList.keys) {
         if (!weekDaysList[key][0] && weekDaysList[key][2] != ClinicDay.day2) {
-          exception1.add(DropdownMenuItem<String>(child: Text(weekDaysList[key][1]), value: weekDaysList[key][2]));
+          exception1.add(DropdownMenuItem<String>(
+              child: Text(
+                weekDaysList[key][1],
+                style: CustomStyle.getSubtitle(context),
+              ),
+              value: weekDaysList[key][2]));
         }
       }
     }
@@ -189,7 +194,12 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
       exception2 = [];
       for (int key in weekDaysList.keys) {
         if (!weekDaysList[key][0] && weekDaysList[key][2] != ClinicDay.day1) {
-          exception2.add(DropdownMenuItem<String>(child: Text(weekDaysList[key][1]), value: weekDaysList[key][2]));
+          exception2.add(DropdownMenuItem<String>(
+              child: Text(
+                weekDaysList[key][1],
+                style: CustomStyle.getSubtitle(context),
+              ),
+              value: weekDaysList[key][2]));
         }
       }
     }
@@ -403,7 +413,7 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
 
     return BaseScaffold(
       isAppbar: true,
-             action: getAppActions(context),
+      action: getAppActions(context),
       title: LocaleKeys.view_doctor_update_info.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
@@ -411,16 +421,19 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
           Align(
             alignment: Alignment.topCenter,
             child: Padding(
-              padding: const EdgeInsets.only(top: 25),
+              padding: EdgeInsets.only(
+                top: getDeviceType(context, 15, 25, 50, 75),
+              ),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     Container(
                       decoration: CustomStyle.box,
-                      height: 400,
-                      width: 350,
+                      height: getDeviceType(context, 300, 400, 500, 600),
+                      width: getDeviceType(context, 275, 350, 450, 550),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: getDeviceType(context, 4, 8, 16, 32), vertical: getDeviceType(context, 8, 16, 24, 32)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -431,20 +444,23 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 15,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: getDeviceType(context, 8, 16, 24, 32),
                               ),
                               child: Directionality(
                                 textDirection: ui.TextDirection.rtl,
-                                child: TextField(
-                                  onChanged: (val) {
-                                    setState(() => UpdateProfileData.clinicAddress = val);
-                                  },
-                                  decoration: CustomStyle.getInputDecoration(context).copyWith(
-                                    hintText: 'مثال: الحارثيه شارع الكندي',
-                                    hintStyle: CustomStyle.getSubtitle(context).copyWith(fontFamily: 'noto_arabic', color: Colors.deepOrange),
-                                    labelText: 'عنوان العياده',
-                                    labelStyle: CustomStyle.getSubtitle(context).copyWith(fontFamily: 'noto_arabic', color: Colors.grey[750]),
+                                child: Container(
+                                  height: getDeviceType(context, 40, 50, 60, 70),
+                                  child: TextField(
+                                    onChanged: (val) {
+                                      setState(() => UpdateProfileData.clinicAddress = val);
+                                    },
+                                    decoration: CustomStyle.getInputDecoration(context).copyWith(
+                                      hintText: 'مثال: الحارثيه شارع الكندي',
+                                      hintStyle: CustomStyle.getSubtitle(context).copyWith(fontFamily: 'noto_arabic', color: Colors.deepOrange),
+                                      labelText: 'عنوان العياده',
+                                      labelStyle: CustomStyle.getSubtitle(context).copyWith(fontFamily: 'noto_arabic', color: Colors.grey[750]),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -456,8 +472,8 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 15,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: getDeviceType(context, 8, 16, 24, 32),
                               ),
                               child: WeekdaySelector(
                                 onChanged: (int day) {
@@ -509,8 +525,8 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 15,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: getDeviceType(context, 8, 16, 24, 32),
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -570,16 +586,17 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                       ),
                     ),
                     SizedBox(
-                      height: 15,
+                      height: getDeviceType(context, 10, 15, 25, 35),
                     ),
                     Visibility(
                       visible: _visibile01,
                       child: Container(
-                        height: 250,
-                        width: 350,
+                        height: getDeviceType(context, 200, 250, 300, 350),
+                        width: getDeviceType(context, 275, 350, 450, 550),
                         decoration: CustomStyle.box,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: getDeviceType(context, 4, 8, 16, 32), vertical: getDeviceType(context, 8, 16, 24, 32)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -590,8 +607,8 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 15,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: getDeviceType(context, 8, 16, 24, 32),
                                 ),
                                 child: DropdownButton(
                                   hint: Text(
@@ -616,8 +633,8 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 15,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: getDeviceType(context, 8, 16, 24, 32),
                                 ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -682,16 +699,17 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                       ),
                     ),
                     SizedBox(
-                      height: 15,
+                      height: getDeviceType(context, 10, 15, 25, 35),
                     ),
                     Visibility(
                       visible: _visibile02,
                       child: Container(
-                        height: 200,
-                        width: 350,
+                        height: getDeviceType(context, 150, 200, 250, 300),
+                        width: getDeviceType(context, 275, 350, 450, 550),
                         decoration: CustomStyle.box,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: getDeviceType(context, 4, 8, 16, 32), vertical: getDeviceType(context, 8, 16, 24, 32)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -702,8 +720,8 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 15,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: getDeviceType(context, 8, 16, 24, 32),
                                 ),
                                 child: DropdownButton(
                                   hint: Text(
@@ -728,8 +746,8 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 15,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: getDeviceType(context, 8, 16, 24, 32),
                                 ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -780,12 +798,12 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                       ),
                     ),
                     SizedBox(
-                      height: 25,
+                      height: getDeviceType(context, 15, 25, 35, 45),
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Padding(
-                        padding: const EdgeInsets.only(bottom: 50),
+                        padding: EdgeInsets.only(bottom: getDeviceType(context, 25, 50, 75, 100)),
                         child: CustomLoadingButton(
                           controller: _controller,
                           title: LocaleKeys.view_buttons_google_map.tr(),
@@ -821,7 +839,8 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                                     mainto &&
                                     ((e1.isNotEmpty && t1.isNotEmpty) || (e1.isEmpty && t1.isEmpty)) &&
                                     ((e2.isNotEmpty && t2.isNotEmpty) || (e2.isEmpty && t2.isEmpty))) {
-                                  latlng = await getCoordinatesFromAddress(provinces[UpdateProfileData.province] + ' ' + UpdateProfileData.clinicAddress);
+                                  latlng =
+                                      await getCoordinatesFromAddress(provinces[UpdateProfileData.province] + ' ' + UpdateProfileData.clinicAddress);
 
                                   setState(() {
                                     if (workDays01[workDays01.length - 1].length < 11) {

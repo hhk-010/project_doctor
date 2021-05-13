@@ -15,9 +15,9 @@ class CustomComplainColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: CustomStyle.box,
-      height: 250,
+      height: getDeviceType(context, 200, 250, 300, 350),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: getDeviceType(context, 8, 16, 24, 32), vertical: getDeviceType(context, 4, 8, 16, 24)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

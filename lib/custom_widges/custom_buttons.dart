@@ -14,8 +14,8 @@ class BaseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: getDeviceType(context, 30, 50, 50, 60),
-      width: getDeviceType(context, 100, 200, 200, 250),
+      height: getDeviceType(context, 40, 50, 60, 75),
+      width: getDeviceType(context, 150, 200, 250, 300),
       child: TextButton(
         style: TextButton.styleFrom(
           enableFeedback: true,
@@ -44,8 +44,8 @@ class SearchWrapperButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: getDeviceType(context, 30, 60, 50, 60),
-      width: getDeviceType(context, 100, 300, 200, 250),
+      height: getDeviceType(context, 45, 60, 70, 80),
+      width: getDeviceType(context, 200, 250, 300, 350),
       child: TextButton(
         style: TextButton.styleFrom(
           enableFeedback: true,
@@ -73,8 +73,8 @@ class CustomLoadingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return RoundedLoadingButton(
       elevation: 0,
-      height: 50,
-      width: 200,
+      height: getDeviceType(context, 40, 50, 60, 70),
+      width: getDeviceType(context, 150, 200, 300, 400),
       successColor: Colors.green,
       color: LightPalette.button,
       controller: controller,

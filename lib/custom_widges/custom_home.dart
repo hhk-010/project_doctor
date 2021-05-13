@@ -90,8 +90,8 @@ class CustomFooter extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: SizedBox(
-        width: getDeviceType(context, 150, 250, 300, 350),
-        height: getDeviceType(context, 30, 40, 75, 75),
+        width: getDeviceType(context, 250, 300, 400, 500),
+        height: getDeviceType(context, 35, 40, 50, 60),
         child: Column(
           children: [
             Divider(
