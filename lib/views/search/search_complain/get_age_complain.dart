@@ -383,7 +383,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateCardioRespiratory() {
       for (String key in cardioRespiratory.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(cardioRespiratory[key][0]),
+          child: Text(
+            cardioRespiratory[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: cardioRespiratory[key][1],
         ));
       }
@@ -392,7 +395,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateGastroIntestinal() {
       for (String key in gastroIntestinal.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(gastroIntestinal[key][0]),
+          child: Text(
+            gastroIntestinal[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: gastroIntestinal[key][1],
         ));
       }
@@ -401,7 +407,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populatePeiranalAbdomen() {
       for (String key in peiranalAbdomen.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(peiranalAbdomen[key][0]),
+          child: Text(
+            peiranalAbdomen[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: peiranalAbdomen[key][1],
         ));
       }
@@ -410,7 +419,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateNeurology() {
       for (String key in neurology.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(neurology[key][0]),
+          child: Text(
+            neurology[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: neurology[key][1],
         ));
       }
@@ -419,7 +431,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populatePsychology() {
       for (String key in psychology.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(psychology[key][0]),
+          child: Text(
+            psychology[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: psychology[key][1],
         ));
       }
@@ -428,7 +443,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateMusckuloskeletal() {
       for (String key in musckuloskeletal.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(musckuloskeletal[key][0]),
+          child: Text(
+            musckuloskeletal[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: musckuloskeletal[key][1],
         ));
       }
@@ -437,7 +455,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateHeadNeckBack() {
       for (String key in headNeckBack.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(headNeckBack[key][0]),
+          child: Text(
+            headNeckBack[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: headNeckBack[key][1],
         ));
       }
@@ -446,7 +467,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateUpperLimb() {
       for (String key in upperLimb.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(upperLimb[key][0]),
+          child: Text(
+            upperLimb[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: upperLimb[key][1],
         ));
       }
@@ -455,7 +479,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateHand() {
       for (String key in hand.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(hand[key][0]),
+          child: Text(
+            hand[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: hand[key][1],
         ));
       }
@@ -464,7 +491,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateLowerLimb() {
       for (String key in lowerLimb.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(lowerLimb[key][0]),
+          child: Text(
+            lowerLimb[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: lowerLimb[key][1],
         ));
       }
@@ -473,7 +503,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateOthers() {
       for (String key in others.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(others[key][0]),
+          child: Text(
+            others[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: others[key][1],
         ));
       }
@@ -482,7 +515,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateInjuriesSuicideIntoxicationBurn() {
       for (String key in injuriesSuicideIntoxicationBurn.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(injuriesSuicideIntoxicationBurn[key][0]),
+          child: Text(
+            injuriesSuicideIntoxicationBurn[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: injuriesSuicideIntoxicationBurn[key][1],
         ));
       }
@@ -491,7 +527,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateMouth() {
       for (String key in mouth.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(mouth[key][0]),
+          child: Text(
+            mouth[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: mouth[key][1],
         ));
       }
@@ -500,7 +539,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateAppetite() {
       for (String key in appetite.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(appetite[key][0]),
+          child: Text(
+            appetite[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: appetite[key][1],
         ));
       }
@@ -509,7 +551,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateEntThroat() {
       for (String key in entThroat.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(entThroat[key][0]),
+          child: Text(
+            entThroat[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: entThroat[key][1],
         ));
       }
@@ -518,7 +563,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateEntNose() {
       for (String key in entNose.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(entNose[key][0]),
+          child: Text(
+            entNose[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: entNose[key][1],
         ));
       }
@@ -527,7 +575,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateEntEar() {
       for (String key in entEar.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(entEar[key][0]),
+          child: Text(
+            entEar[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: entEar[key][1],
         ));
       }
@@ -536,7 +587,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateDermatology() {
       for (String key in dermatology.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(dermatology[key][0]),
+          child: Text(
+            dermatology[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: dermatology[key][1],
         ));
       }
@@ -545,7 +599,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populateGynecology() {
       for (String key in gynecology.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(gynecology[key][0]),
+          child: Text(
+            gynecology[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: gynecology[key][1],
         ));
       }
@@ -554,7 +611,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populatEuroKidney() {
       for (String key in uroKidney.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(uroKidney[key][0]),
+          child: Text(
+            uroKidney[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: uroKidney[key][1],
         ));
       }
@@ -563,7 +623,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populatMaleGenital() {
       for (String key in maleGenital.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(maleGenital[key][0]),
+          child: Text(
+            maleGenital[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: maleGenital[key][1],
         ));
       }
@@ -572,7 +635,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populatOphthalmology() {
       for (String key in ophthalmology.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(ophthalmology[key][0]),
+          child: Text(
+            ophthalmology[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: ophthalmology[key][1],
         ));
       }
@@ -581,7 +647,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
     void populatBreast() {
       for (String key in breast.keys) {
         menuitems.add(DropdownMenuItem<String>(
-          child: Text(breast[key][0]),
+          child: Text(
+            breast[key][0],
+            style: CustomStyle.getSubtitle(context),
+          ),
           value: breast[key][1],
         ));
       }
@@ -1257,7 +1326,6 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                   children: [
                     Container(
                       decoration: CustomStyle.box,
-                      height: 200,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                         child: Column(

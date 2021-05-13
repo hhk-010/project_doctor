@@ -450,7 +450,7 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                             ),
                             Text(
                               _name,
-                              style: CustomStyle.getTitleBlack(context),
+                              style: CustomStyle.getTitleBlack(context).copyWith(fontFamily: 'noto_arabic'),
                             ),
                             Text(
                               (_province).tr(),

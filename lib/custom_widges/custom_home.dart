@@ -47,10 +47,10 @@ Future getDialog(context, String title, String dialogContext) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16.0))),
         title: Text(
           title,
-          style: TextStyle(fontSize: 20),
+          style: CustomStyle.getTitleBlack(context),
           textAlign: TextAlign.center,
         ),
         content: SingleChildScrollView(
@@ -59,10 +59,7 @@ Future getDialog(context, String title, String dialogContext) {
             children: [
               Text(
                 dialogContext,
-                style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 14,
-                ),
+                style: CustomStyle.getSubtitle(context).copyWith(fontWeight: FontWeight.normal),
                 textAlign: TextAlign.justify,
               ),
             ],

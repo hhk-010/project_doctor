@@ -1,7 +1,9 @@
 import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/custom_widges/custom_buttons.dart';
+import 'package:project_doctor/custom_widges/custom_flushbar.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -16,12 +18,12 @@ class FavoriteMapResultView extends StatefulWidget {
 
 class _FavoriteMapResultViewState extends State<FavoriteMapResultView> {
   final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
+  GoogleMapController _mapController;
 
   Set<Marker> _marker = HashSet<Marker>();
-  // ignore: unused_field
-  GoogleMapController _mapController;
-  void _onmapcreated(GoogleMapController controller) {
+  void _onMapCreated(GoogleMapController controller) {
     _mapController = controller;
+    changeMapMode(context, _mapController);
     setState(() {
       _marker.add(Marker(markerId: MarkerId('0'), position: LatLng(SearchResultData.lat, SearchResultData.lng)));
     });
@@ -36,7 +38,7 @@ class _FavoriteMapResultViewState extends State<FavoriteMapResultView> {
       child: Stack(
         children: [
           GoogleMap(
-            onMapCreated: _onmapcreated,
+            onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(target: LatLng(SearchResultData.lat, SearchResultData.lng), zoom: 10),
             markers: _marker,
             zoomControlsEnabled: false,
@@ -48,7 +50,8 @@ class _FavoriteMapResultViewState extends State<FavoriteMapResultView> {
               child: CustomLoadingButton(
                 title: LocaleKeys.view_buttons_ok.tr(),
                 controller: _controller,
-                onPressed: () {
+                onPressed: () async {
+                  await getSuccess(_controller);
                   int count = 0;
                   Navigator.popUntil(
                       context,

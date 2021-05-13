@@ -1,7 +1,9 @@
 import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/custom_widges/custom_buttons.dart';
+import 'package:project_doctor/custom_widges/custom_flushbar.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -20,14 +22,15 @@ class MapResultView extends StatefulWidget {
 
 class _MapResultViewState extends State<MapResultView> {
   final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
+  GoogleMapController _mapController;
+
   double lat;
   double lng;
   _MapResultViewState({this.lat, this.lng});
   Set<Marker> _marker = HashSet<Marker>();
-  // ignore: unused_field
-  GoogleMapController _mapController;
-  void _onmapcreated(GoogleMapController controller) {
+  void _onMapCreated(GoogleMapController controller) {
     _mapController = controller;
+    changeMapMode(context, _mapController);
     setState(() {
       _marker.add(Marker(markerId: MarkerId('0'), position: LatLng(lat, lng)));
     });
@@ -42,10 +45,11 @@ class _MapResultViewState extends State<MapResultView> {
       child: Stack(
         children: [
           GoogleMap(
-            onMapCreated: _onmapcreated,
+            onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(target: LatLng(lat, lng), zoom: 10),
             markers: _marker,
             zoomControlsEnabled: false,
+            
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -54,7 +58,8 @@ class _MapResultViewState extends State<MapResultView> {
               child: CustomLoadingButton(
                 title: LocaleKeys.view_buttons_ok.tr(),
                 controller: _controller,
-                onPressed: () {
+                onPressed: () async {
+                  await getSuccess(_controller);
                   int count = 0;
                   Navigator.popUntil(context, (route) => MyVariables.usingMap ? count++ == 7 : count++ == 6);
                 },

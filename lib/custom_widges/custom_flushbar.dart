@@ -9,7 +9,14 @@ import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 getFlushbar(BuildContext context, String message, RoundedLoadingButtonController controller) async {
   Flushbar(
-    title: LocaleKeys.error_error_title.tr(),
+    titleText: Text(
+      LocaleKeys.error_error_title.tr(),
+      style: CustomStyle.getTitle(context),
+    ),
+    messageText: Text(
+      message,
+      style: CustomStyle.getSubtitle(context).copyWith(color: Colors.white),
+    ),
     message: message,
     forwardAnimationCurve: Curves.decelerate,
     reverseAnimationCurve: Curves.easeOut,
@@ -31,7 +38,7 @@ getFlushbar(BuildContext context, String message, RoundedLoadingButtonController
   controller.reset();
 }
 
- getSuccess(RoundedLoadingButtonController controller) async {
+getSuccess(RoundedLoadingButtonController controller) async {
   controller.success();
   await Future.delayed(const Duration(seconds: 1), () {});
   controller.reset();

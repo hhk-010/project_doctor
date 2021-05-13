@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/custom_widges/custom_buttons.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
@@ -21,6 +22,8 @@ class GetMapView extends StatefulWidget {
 
 class _GetMapViewState extends State<GetMapView> {
   final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
+  GoogleMapController _mapController;
+
   String speciality;
   String province;
   _GetMapViewState({this.speciality, this.province});
@@ -30,9 +33,7 @@ class _GetMapViewState extends State<GetMapView> {
 
   handletap(LatLng tappedpoint) {
     print(tappedpoint);
-
     patientlatlng = tappedpoint.toString();
-
     setState(() {
       _mymarker = [];
       _mymarker.add(Marker(
@@ -69,6 +70,11 @@ class _GetMapViewState extends State<GetMapView> {
             markers: Set.from(_mymarker),
             onTap: handletap,
             zoomControlsEnabled: false,
+            onMapCreated: (GoogleMapController controller) {
+              _mapController = controller;
+              changeMapMode(context, _mapController);
+              setState(() {});
+            },
           ),
           Align(
             alignment: Alignment.bottomCenter,

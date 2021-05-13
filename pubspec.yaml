@@ -62,8 +62,7 @@ flutter:
     - assets/images/auth/
     - assets/images/search/
     - assets/translations/
-    - lang/en.json
-    - lang/ar.json
+    - assets/map/
 
   fonts:
     - family: noto_arabic

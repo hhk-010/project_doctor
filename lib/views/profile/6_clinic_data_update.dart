@@ -404,8 +404,6 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
     return BaseScaffold(
       isAppbar: true,
              action: getAppActions(context),
-
-
       title: LocaleKeys.view_doctor_update_info.tr(),
       child: Stack(
         alignment: Alignment.topCenter,
@@ -848,6 +846,7 @@ class _UpdateClinicViewState extends State<UpdateClinicView> {
                                     DataFromProfiletoUpdate.workDays03 = List<String>.from(workDays03);
                                   });
                                   print(latlng);
+                                  await getSuccess(_controller);
                                   await Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) => UpdateaMapViewStream(

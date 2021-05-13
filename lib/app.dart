@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ThemeBuilder(
       statusBarColorBuilder: (theme) => theme.primaryColor,
-      defaultThemeMode: ThemeMode.light,
+      defaultThemeMode: ThemeMode.system,
       lightTheme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primaryColor: LightPalette.gradientTop,

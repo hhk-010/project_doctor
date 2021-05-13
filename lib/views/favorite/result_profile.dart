@@ -190,7 +190,7 @@ class _FavoriteProfileResultViewState extends State<FavoriteProfileResultView> {
                         ),
                         Text(
                           SearchResultData.name,
-                          style: CustomStyle.getTitleBlack(context),
+                          style: CustomStyle.getTitleBlack(context).copyWith(fontFamily: 'noto_arabic'),
                         ),
                         Text(
                           (SearchResultData.province).tr(),

@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/custom_widges/custom_buttons.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
@@ -18,6 +19,7 @@ class FavoriteGetMapView extends StatefulWidget {
 
 class _FavoriteGetMapViewState extends State<FavoriteGetMapView> {
   final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
+  GoogleMapController _mapController;
 
   List<Marker> _mymarker = [];
   String patientlatlng;
@@ -56,6 +58,11 @@ class _FavoriteGetMapViewState extends State<FavoriteGetMapView> {
             markers: Set.from(_mymarker),
             onTap: handletap,
             zoomControlsEnabled: false,
+            onMapCreated: (GoogleMapController controller) {
+              _mapController = controller;
+              changeMapMode(context, _mapController);
+              setState(() {});
+            },
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -80,7 +87,7 @@ class _FavoriteGetMapViewState extends State<FavoriteGetMapView> {
                         else {
                           SearchResultData.distance = await SearchResultData()
                               .getDistance(SearchResultData.patientLat, SearchResultData.patientLng, SearchResultData.lat, SearchResultData.lng);
-                              await getSuccess(_controller);
+                          await getSuccess(_controller);
                           Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileResultView()));
                         }
                       }

@@ -10,6 +10,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/database.dart';
 import 'package:project_doctor/services/read_write_path.dart';
+import 'package:project_doctor/views/favorite/get_location_wrapper.dart';
 import 'package:project_doctor/views/search/search_history/read_write_path.dart';
 import 'package:provider/provider.dart';
 
@@ -812,7 +813,7 @@ class _FavoriteTileState extends State<FavoriteTile> {
                     IconButton(
                       onPressed: () {
                         Navigator.pop(context);
-                        Navigator.pushNamed(context, '/favorite list');
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => FavoriteListView()));
                       },
                       icon: Icon(
                         Icons.replay_rounded,
@@ -930,7 +931,7 @@ class _FavoriteTileState extends State<FavoriteTile> {
                         ' ' +
                         _secondToAmPm;
                   }
-                  Navigator.pushNamed(context, '/patient location');
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => FavoriteLocationWrapper()));
                 },
               ),
             ),

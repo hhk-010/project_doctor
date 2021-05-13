@@ -304,7 +304,10 @@ class _UpdateProfileDataViewState extends State<UpdateProfileDataView> {
                 controller: _controller,
                 title: LocaleKeys.view_buttons_next.tr(),
                 onPressed: () async {
-                  if (UpdateProfileData.name != null && UpdateProfileData.phoneNumber != null && UpdateProfileData != null) {
+                  if (UpdateProfileData.name != null &&
+                      UpdateProfileData.phoneNumber != null &&
+                      UpdateProfileData.speciality != null &&
+                      UpdateProfileData.province != null) {
                     finalNumber = await validateNumber(UpdateProfileData.phoneNumber);
                     finalTextNumber = finalNumber.toString();
                     if (finalNumber != null) {

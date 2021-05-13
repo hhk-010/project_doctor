@@ -94,6 +94,9 @@ class _SignInViewState extends State<SignInView> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: MediaQuery.of(context).viewInsets.bottom,
+                    ),
                     Align(
                         alignment: Alignment.centerRight,
                         child: GestureDetector(

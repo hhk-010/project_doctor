@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:collection';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/custom_widges/custom_buttons.dart';
 import 'package:project_doctor/custom_widges/custom_flushbar.dart';
 import 'package:project_doctor/custom_widges/custom_scaffold.dart';
@@ -19,15 +20,17 @@ class SearchHistoryLocation extends StatefulWidget {
 
 class _SearchHistoryLocationState extends State<SearchHistoryLocation> {
   final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
+  GoogleMapController _mapController;
+
   double lat;
   double lng;
   _SearchHistoryLocationState({this.lat, this.lng});
 
   Set<Marker> _marker = HashSet<Marker>();
-  // ignore: unused_field
-  GoogleMapController _mapController;
-  void _onmapcreated(GoogleMapController controller) {
+
+  void _onMapCreated(GoogleMapController controller) {
     _mapController = controller;
+    changeMapMode(context, _mapController);
     setState(() {
       _marker.add(Marker(markerId: MarkerId('0'), position: LatLng(lat, lng)));
     });
@@ -43,7 +46,8 @@ class _SearchHistoryLocationState extends State<SearchHistoryLocation> {
         alignment: Alignment.topCenter,
         children: [
           GoogleMap(
-            onMapCreated: _onmapcreated,
+            mapType: MapType.normal,
+            onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(target: LatLng(lat, lng), zoom: 10),
             markers: _marker,
             zoomControlsEnabled: false,
@@ -55,8 +59,8 @@ class _SearchHistoryLocationState extends State<SearchHistoryLocation> {
               child: CustomLoadingButton(
                 title: LocaleKeys.view_buttons_ok.tr(),
                 controller: _controller,
-                onPressed: () async{
-                 await getSuccess(_controller);
+                onPressed: () async {
+                  await getSuccess(_controller);
                   int count = 0;
                   Navigator.popUntil(context, (route) {
                     return count++ == 2;

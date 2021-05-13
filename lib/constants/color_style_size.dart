@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LightPalette {
   static const Color gradientTop = Color(0xFFFD6636);
@@ -95,4 +97,11 @@ double getDeviceType(context, double small, double mobile, double tablet, double
 // get current locale
 bool getLocale(BuildContext context) {
   return EasyLocalization.of(context).locale.toString() == 'en' ? true : false;
+}
+
+changeMapMode(BuildContext context, GoogleMapController controller) async {
+  if (getTheme(context))
+    controller.setMapStyle(await rootBundle.loadString("assets/map/light.json"));
+  else
+    controller.setMapStyle(await rootBundle.loadString("assets/map/dark.json"));
 }

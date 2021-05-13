@@ -5,9 +5,7 @@ import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/custom_widges/custom_home.dart';
-
 import 'dart:math' as math;
-
 import 'package:url_launcher/url_launcher.dart';
 
 class SupportView extends StatelessWidget {
@@ -15,7 +13,6 @@ class SupportView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseScaffold(
       isAppbar: false,
-     
       child: Stack(
         children: [
           Align(
@@ -60,7 +57,7 @@ class SupportView extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(top: 250),
               child: Container(
-                height: 300,
+                height: 350,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -92,6 +89,17 @@ class SupportView extends StatelessWidget {
                       title: LocaleKeys.view_support_website.tr(),
                       onPressed: () async {
                         const url = 'https://sites.google.com/view/cura-mobile/home';
+                        if (await canLaunch(url)) {
+                          await launch(url);
+                        } else {
+                          throw 'Could Not Launch $url';
+                        }
+                      },
+                    ),
+                    BaseButton(
+                      title: LocaleKeys.view_support_contact_us.tr(),
+                      onPressed: () async {
+                        const url = 'mailto:hhk.01831@gmail.com';
                         if (await canLaunch(url)) {
                           await launch(url);
                         } else {

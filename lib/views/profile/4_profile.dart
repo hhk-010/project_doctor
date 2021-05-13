@@ -306,7 +306,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                             ),
                             Text(
                               name,
-                              style: CustomStyle.getTitleBlack(context),
+                              style: CustomStyle.getTitleBlack(context).copyWith(fontFamily: 'noto_arabic'),
                             ),
                             Text(
                               (province).tr(),

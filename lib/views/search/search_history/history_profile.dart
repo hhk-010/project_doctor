@@ -9,7 +9,7 @@ import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:project_doctor/services/read_write_path.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:project_doctor/views/search/search_history/history_location.dart';
+import 'package:project_doctor/views/search/search_history/history_map.dart';
 import 'package:project_doctor/views/search/search_history/read_write_path.dart';
 
 class SearchHistoryProfile extends StatefulWidget {
@@ -350,7 +350,7 @@ class _SearchHistoryProfileState extends State<SearchHistoryProfile> {
                               ),
                               Text(
                                 _name,
-                                style: CustomStyle.getTitleBlack(context),
+                                style: CustomStyle.getTitleBlack(context).copyWith(fontFamily: 'noto_arabic'),
                               ),
                               Text(
                                 (_province).tr(),

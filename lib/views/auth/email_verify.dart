@@ -206,7 +206,7 @@ class _EmailVeriyViewState extends State<EmailVeriyView> {
                         if (FirebaseAuth.instance.currentUser.emailVerified) {
                           await DatabaseService(uid: FirebaseAuth.instance.currentUser.uid).updateUserData(
                               _name, _speciality, _phoneNumber, _province, _lat, _lng, _address, _workDays01, _workDays02, _workDays03);
-                          // await getSuccess(_controller);
+                          await getSuccess(_controller);
                           await Navigator.of(context).push(MaterialPageRoute(builder: (context) => Intermediate()));
                         } else
                           getFlushbar(context, LocaleKeys.error_snack_verification.tr(), _controller);

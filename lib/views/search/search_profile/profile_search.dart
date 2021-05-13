@@ -343,140 +343,137 @@ class _ProfileSearchViewState extends State<ProfileSearchView> {
           ),
           Align(
             alignment: Alignment.center,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 250),
-              child: Container(
-                height: 200,
-                width: 300,
-                child: Column(
-                  children: [
-                    _nameSelected
-                        ? TextField(
-                            onChanged: (val) {
-                              setState(() => ProfileSearchData.name = val);
-                            },
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: CustomStyle.getInputDecoration(context).copyWith(
-                              hintText: LocaleKeys.view_new_search_enter_name.tr(),
-                              suffixIcon: Icon(
-                                Icons.search,
-                                color: Colors.deepOrange,
+            child: Container(
+              height: 50,
+              width: 300,
+              child: Column(
+                children: [
+                  _nameSelected
+                      ? TextField(
+                          onChanged: (val) {
+                            setState(() => ProfileSearchData.name = val);
+                          },
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: CustomStyle.getInputDecoration(context).copyWith(
+                            hintText: LocaleKeys.view_new_search_enter_name.tr(),
+                            suffixIcon: Icon(
+                              Icons.search,
+                              color: Colors.deepOrange,
+                            ),
+                          ),
+                        )
+                      : Container(),
+                  _specialitySelected
+                      ? CustomDropDownButton(
+                          hint: LocaleKeys.view_doctor_speciality.tr(),
+                          value: ProfileSearchData.speciality == '' ? null : ProfileSearchData.speciality,
+                          onChanged: (val) => setState(() => ProfileSearchData.speciality = val),
+                          items: [
+                            DropdownMenuItem(
+                              value: specialities['1'][1],
+                              child: Text(
+                                specialities['1'][0],
+                                style: CustomStyle.getSubtitle(context),
                               ),
                             ),
-                          )
-                        : Container(),
-                    _specialitySelected
-                        ? CustomDropDownButton(
-                            hint: LocaleKeys.view_doctor_speciality.tr(),
-                            value: ProfileSearchData.speciality == '' ? null : ProfileSearchData.speciality,
-                            onChanged: (val) => setState(() => ProfileSearchData.speciality = val),
-                            items: [
-                              DropdownMenuItem(
-                                value: specialities['1'][1],
-                                child: Text(
-                                  specialities['1'][0],
-                                  style: CustomStyle.getSubtitle(context),
-                                ),
+                            DropdownMenuItem(
+                              value: specialities["2"][1],
+                              child: Text(
+                                specialities["2"][0],
+                                style: CustomStyle.getSubtitle(context),
                               ),
-                              DropdownMenuItem(
-                                value: specialities["2"][1],
-                                child: Text(
-                                  specialities["2"][0],
-                                  style: CustomStyle.getSubtitle(context),
-                                ),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["3"][1],
+                              child: Text(
+                                specialities["3"][0],
+                                style: CustomStyle.getSubtitle(context),
                               ),
-                              DropdownMenuItem(
-                                value: specialities["3"][1],
-                                child: Text(
-                                  specialities["3"][0],
-                                  style: CustomStyle.getSubtitle(context),
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: specialities["4"][1],
-                                child: Text(specialities["4"][0], style: CustomStyle.getSubtitle(context)),
-                              ),
-                              DropdownMenuItem(
-                                value: specialities["5"][1],
-                                child: Text(specialities["5"][0], style: CustomStyle.getSubtitle(context)),
-                              ), //5
-                              DropdownMenuItem(
-                                value: specialities["6"][1],
-                                child: Text(specialities["6"][0], style: CustomStyle.getSubtitle(context)),
-                              ),
-                              DropdownMenuItem(
-                                value: specialities["7"][1],
-                                child: Text(specialities["7"][0], style: CustomStyle.getSubtitle(context)),
-                              ),
-                              DropdownMenuItem(
-                                value: specialities["8"][1],
-                                child: Text(specialities["8"][0], style: CustomStyle.getSubtitle(context)),
-                              ),
-                              DropdownMenuItem(
-                                value: specialities["9"][1],
-                                child: Text(specialities["9"][0], style: CustomStyle.getSubtitle(context)),
-                              ),
-                              DropdownMenuItem(
-                                value: specialities["10"][1],
-                                child: Text(specialities["10"][0], style: CustomStyle.getSubtitle(context)),
-                              ), //10
-                              DropdownMenuItem(
-                                value: specialities["11"][1],
-                                child: Text(specialities["11"][0], style: CustomStyle.getSubtitle(context)),
-                              ),
-                              DropdownMenuItem(
-                                value: specialities["12"][1],
-                                child: Text(specialities["12"][0], style: CustomStyle.getSubtitle(context)),
-                              ),
-                              DropdownMenuItem(
-                                value: specialities["13"][1],
-                                child: Text(specialities['13'][0], style: CustomStyle.getSubtitle(context)),
-                              ),
-                              DropdownMenuItem(
-                                value: specialities["14"][1],
-                                child: Text(specialities["14"][0], style: CustomStyle.getSubtitle(context)),
-                              ),
-                              DropdownMenuItem(
-                                value: specialities["15"][1],
-                                child: Text(specialities["15"][0], style: CustomStyle.getSubtitle(context)),
-                              ), //15
-                              DropdownMenuItem(
-                                value: specialities["16"][1],
-                                child: Text(specialities["16"][0], style: CustomStyle.getSubtitle(context)),
-                              ),
-                              DropdownMenuItem(
-                                value: specialities["17"][1],
-                                child: Text(specialities["17"][0], style: CustomStyle.getSubtitle(context)),
-                              ),
-                              DropdownMenuItem(
-                                value: specialities["18"][1],
-                                child: Text(specialities["18"][0], style: CustomStyle.getSubtitle(context)),
-                              ),
-                              DropdownMenuItem(
-                                value: specialities["19"][1],
-                                child: Text(specialities["19"][0], style: CustomStyle.getSubtitle(context)),
-                              ),
-                              DropdownMenuItem(
-                                value: specialities["20"][1],
-                                child: Text(specialities["20"][0], style: CustomStyle.getSubtitle(context)),
-                              ), //20
-                              DropdownMenuItem(
-                                value: specialities["21"][1],
-                                child: Text(specialities["21"][0], style: CustomStyle.getSubtitle(context)),
-                              ),
-                              DropdownMenuItem(
-                                value: specialities["22"][1],
-                                child: Text(specialities["22"][0], style: CustomStyle.getSubtitle(context)),
-                              ),
-                              DropdownMenuItem(
-                                value: specialities["23"][1],
-                                child: Text(specialities["23"][0], style: CustomStyle.getSubtitle(context)),
-                              )
-                            ],
-                          )
-                        : Container()
-                  ],
-                ),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["4"][1],
+                              child: Text(specialities["4"][0], style: CustomStyle.getSubtitle(context)),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["5"][1],
+                              child: Text(specialities["5"][0], style: CustomStyle.getSubtitle(context)),
+                            ), //5
+                            DropdownMenuItem(
+                              value: specialities["6"][1],
+                              child: Text(specialities["6"][0], style: CustomStyle.getSubtitle(context)),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["7"][1],
+                              child: Text(specialities["7"][0], style: CustomStyle.getSubtitle(context)),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["8"][1],
+                              child: Text(specialities["8"][0], style: CustomStyle.getSubtitle(context)),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["9"][1],
+                              child: Text(specialities["9"][0], style: CustomStyle.getSubtitle(context)),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["10"][1],
+                              child: Text(specialities["10"][0], style: CustomStyle.getSubtitle(context)),
+                            ), //10
+                            DropdownMenuItem(
+                              value: specialities["11"][1],
+                              child: Text(specialities["11"][0], style: CustomStyle.getSubtitle(context)),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["12"][1],
+                              child: Text(specialities["12"][0], style: CustomStyle.getSubtitle(context)),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["13"][1],
+                              child: Text(specialities['13'][0], style: CustomStyle.getSubtitle(context)),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["14"][1],
+                              child: Text(specialities["14"][0], style: CustomStyle.getSubtitle(context)),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["15"][1],
+                              child: Text(specialities["15"][0], style: CustomStyle.getSubtitle(context)),
+                            ), //15
+                            DropdownMenuItem(
+                              value: specialities["16"][1],
+                              child: Text(specialities["16"][0], style: CustomStyle.getSubtitle(context)),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["17"][1],
+                              child: Text(specialities["17"][0], style: CustomStyle.getSubtitle(context)),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["18"][1],
+                              child: Text(specialities["18"][0], style: CustomStyle.getSubtitle(context)),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["19"][1],
+                              child: Text(specialities["19"][0], style: CustomStyle.getSubtitle(context)),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["20"][1],
+                              child: Text(specialities["20"][0], style: CustomStyle.getSubtitle(context)),
+                            ), //20
+                            DropdownMenuItem(
+                              value: specialities["21"][1],
+                              child: Text(specialities["21"][0], style: CustomStyle.getSubtitle(context)),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["22"][1],
+                              child: Text(specialities["22"][0], style: CustomStyle.getSubtitle(context)),
+                            ),
+                            DropdownMenuItem(
+                              value: specialities["23"][1],
+                              child: Text(specialities["23"][0], style: CustomStyle.getSubtitle(context)),
+                            )
+                          ],
+                        )
+                      : Container()
+                ],
               ),
             ),
           ),

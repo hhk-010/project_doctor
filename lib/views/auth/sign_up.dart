@@ -90,6 +90,9 @@ class _SignUpViewState extends State<SignUpView> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: MediaQuery.of(context).viewInsets.bottom,
+                    ),
                   ],
                 ),
               ),
