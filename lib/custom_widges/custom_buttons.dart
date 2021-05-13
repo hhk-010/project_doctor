@@ -45,7 +45,7 @@ class SearchWrapperButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: getDeviceType(context, 45, 60, 70, 80),
-      width: getDeviceType(context, 200, 250, 300, 350),
+      width: getDeviceType(context, 210, 260, 310, 350),
       child: TextButton(
         style: TextButton.styleFrom(
           enableFeedback: true,
@@ -56,7 +56,7 @@ class SearchWrapperButtons extends StatelessWidget {
           backgroundColor: LightPalette.button,
         ),
         onPressed: onPressed,
-        child: Text(title, style: CustomStyle.getTitle(context)),
+        child: FittedBox(fit: BoxFit.fitWidth, child: Text(title, style: CustomStyle.getTitle(context))),
       ),
     );
   }

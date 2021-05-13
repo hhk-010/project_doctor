@@ -1457,7 +1457,7 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                         hint: complainSelected01 == null ? LocaleKeys.view_patient_choose_complain.tr() : (complainSelected01).tr(),
                         items: menuitems,
                         onChanged: disabledropdown01 ? null : (value) => secondselected(value),
-                        color: complainSelected01 == null ? Colors.grey[700] : Colors.black,
+                        color: complainSelected01 == null ? Colors.grey[700] : getColor(context, Colors.black, Colors.white),
                       ),
                       child3: CustomComplainSwitch(
                         value: _switch01,
@@ -1480,11 +1480,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                           genderSelect: genderSelect,
                         ),
                         child2: CustomDropDownButton(
-                          hint: complainSelected02 == null ? LocaleKeys.view_patient_choose_complain.tr() : (complainSelected02).tr(),
-                          items: menuitems,
-                          onChanged: disabledropdown02 ? null : (value) => secondselected2(value),
-                          color: complainSelected02 == null ? Colors.grey[700] : Colors.black,
-                        ),
+                            hint: complainSelected02 == null ? LocaleKeys.view_patient_choose_complain.tr() : (complainSelected02).tr(),
+                            items: menuitems,
+                            onChanged: disabledropdown02 ? null : (value) => secondselected2(value),
+                            color: complainSelected02 == null ? Colors.grey[700] : getColor(context, Colors.black, Colors.white)),
                         child3: CustomComplainSwitch(
                           value: _switch02,
                           onChanged: (bool s) {
@@ -1510,7 +1509,7 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                           hint: complainSelected03 == null ? LocaleKeys.view_patient_choose_complain.tr() : (complainSelected03).tr(),
                           items: menuitems,
                           onChanged: disabledropdown03 ? null : (value) => secondselected3(value),
-                          color: complainSelected03 == null ? Colors.grey[700] : Colors.black,
+                          color: complainSelected03 == null ? Colors.grey[700] : getColor(context, Colors.black, Colors.white),
                         ),
                         child3: CustomComplainSwitch(
                           value: _switch03,
@@ -1537,7 +1536,7 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                           hint: complainSelected04 == null ? LocaleKeys.view_patient_choose_complain.tr() : (complainSelected04).tr(),
                           items: menuitems,
                           onChanged: disabledropdown04 ? null : (value) => secondselected4(value),
-                          color: complainSelected04 == null ? Colors.grey[700] : Colors.black,
+                          color: complainSelected04 == null ? Colors.grey[700] : getColor(context, Colors.black, Colors.white),
                         ),
                         child3: CustomComplainSwitch(
                           value: _switch04,
@@ -1564,7 +1563,7 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                           hint: complainSelected05 == null ? LocaleKeys.view_patient_choose_complain.tr() : (complainSelected05).tr(),
                           items: menuitems,
                           onChanged: disabledropdown05 ? null : (value) => secondselected5(value),
-                          color: complainSelected05 == null ? Colors.grey[700] : Colors.black,
+                          color: complainSelected05 == null ? Colors.grey[700] : getColor(context, Colors.black, Colors.white),
                         ),
                         child3: CustomComplainSwitch(
                           value: _switch05,
@@ -1591,7 +1590,7 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                           hint: complainSelected06 == null ? LocaleKeys.view_patient_choose_complain.tr() : (complainSelected06).tr(),
                           items: menuitems,
                           onChanged: disabledropdown06 ? null : (value) => secondselected6(value),
-                          color: complainSelected06 == null ? Colors.grey[700] : Colors.black,
+                          color: complainSelected06 == null ? Colors.grey[700] : getColor(context, Colors.black, Colors.white),
                         ),
                         child3: CustomComplainSwitch(
                           value: _switch06,
@@ -1618,7 +1617,7 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                           hint: complainSelected07 == null ? LocaleKeys.view_patient_choose_complain.tr() : (complainSelected07).tr(),
                           items: menuitems,
                           onChanged: disabledropdown07 ? null : (value) => secondselected7(value),
-                          color: complainSelected07 == null ? Colors.grey[700] : Colors.black,
+                          color: complainSelected07 == null ? Colors.grey[700] : getColor(context, Colors.black, Colors.white),
                         ),
                         child3: SizedBox(
                           height: 0,
