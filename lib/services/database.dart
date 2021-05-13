@@ -8,127 +8,82 @@ class DatabaseService {
   static String province = '';
   static String preDeleteProvince = '';
   static String validationProvince = '';
-  final CollectionReference baghdadCollection =
-      FirebaseFirestore.instance.collection('doctorInfo');
+  final CollectionReference baghdadCollection = FirebaseFirestore.instance.collection('doctorInfo');
 
-  final CollectionReference babilCollection =
-      FirebaseFirestore.instance.collection('babilDoctorInfo');
+  final CollectionReference babilCollection = FirebaseFirestore.instance.collection('babilDoctorInfo');
 
-  final CollectionReference basrahCollection =
-      FirebaseFirestore.instance.collection('basrahDoctorInfo');
+  final CollectionReference basrahCollection = FirebaseFirestore.instance.collection('basrahDoctorInfo');
 
-  final CollectionReference erbilCollection =
-      FirebaseFirestore.instance.collection('erbilDoctorInfo');
+  final CollectionReference erbilCollection = FirebaseFirestore.instance.collection('erbilDoctorInfo');
 
-  final CollectionReference duhokCollection =
-      FirebaseFirestore.instance.collection('duhokDoctorInfo');
+  final CollectionReference duhokCollection = FirebaseFirestore.instance.collection('duhokDoctorInfo');
 
-  final CollectionReference suleymaniahCollection =
-      FirebaseFirestore.instance.collection('suleymaniahDoctorInfo');
+  final CollectionReference suleymaniahCollection = FirebaseFirestore.instance.collection('suleymaniahDoctorInfo');
 
-  final CollectionReference kirkokCollection =
-      FirebaseFirestore.instance.collection('kirkokDoctorInfo');
+  final CollectionReference kirkokCollection = FirebaseFirestore.instance.collection('kirkokDoctorInfo');
 
-  final CollectionReference diyalaCollection =
-      FirebaseFirestore.instance.collection('diyalaDoctorInfo');
+  final CollectionReference diyalaCollection = FirebaseFirestore.instance.collection('diyalaDoctorInfo');
 
-  final CollectionReference saladinCollection =
-      FirebaseFirestore.instance.collection('saladinDoctorInfo');
+  final CollectionReference saladinCollection = FirebaseFirestore.instance.collection('saladinDoctorInfo');
 
-  final CollectionReference ninvehCollection =
-      FirebaseFirestore.instance.collection('ninvehDoctorInfo');
+  final CollectionReference ninvehCollection = FirebaseFirestore.instance.collection('ninvehDoctorInfo');
 
-  final CollectionReference anbarCollection =
-      FirebaseFirestore.instance.collection('anbarDoctorInfo');
+  final CollectionReference anbarCollection = FirebaseFirestore.instance.collection('anbarDoctorInfo');
 
-  final CollectionReference karbalaCollection =
-      FirebaseFirestore.instance.collection('karbalaDoctorInfo');
+  final CollectionReference karbalaCollection = FirebaseFirestore.instance.collection('karbalaDoctorInfo');
 
-  final CollectionReference wasitCollection =
-      FirebaseFirestore.instance.collection('wasitDoctorInfo');
+  final CollectionReference wasitCollection = FirebaseFirestore.instance.collection('wasitDoctorInfo');
 
-  final CollectionReference najafCollection =
-      FirebaseFirestore.instance.collection('najafDoctorInfo');
+  final CollectionReference najafCollection = FirebaseFirestore.instance.collection('najafDoctorInfo');
 
-  final CollectionReference maysanCollection =
-      FirebaseFirestore.instance.collection('maysanDoctorInfo');
+  final CollectionReference maysanCollection = FirebaseFirestore.instance.collection('maysanDoctorInfo');
 
-  final CollectionReference dhiqarCollection =
-      FirebaseFirestore.instance.collection('dhiqarDoctorInfo');
+  final CollectionReference dhiqarCollection = FirebaseFirestore.instance.collection('dhiqarDoctorInfo');
 
-  final CollectionReference muthanaCollection =
-      FirebaseFirestore.instance.collection('muthanaDoctorInfo');
+  final CollectionReference muthanaCollection = FirebaseFirestore.instance.collection('muthanaDoctorInfo');
 
-  final CollectionReference qadiseyahCollection =
-      FirebaseFirestore.instance.collection('qadiseyahDoctorInfo');
+  final CollectionReference qadiseyahCollection = FirebaseFirestore.instance.collection('qadiseyahDoctorInfo');
 
 //Collections for our own database========
 
-  final CollectionReference baghdadBasicCollection =
-      FirebaseFirestore.instance.collection('basicData');
+  final CollectionReference baghdadBasicCollection = FirebaseFirestore.instance.collection('basicData');
 
-  final CollectionReference babilBasicCollection =
-      FirebaseFirestore.instance.collection('babilBasicData');
+  final CollectionReference babilBasicCollection = FirebaseFirestore.instance.collection('babilBasicData');
 
-  final CollectionReference basrahBasicCollection =
-      FirebaseFirestore.instance.collection('basrahBasicData');
+  final CollectionReference basrahBasicCollection = FirebaseFirestore.instance.collection('basrahBasicData');
 
-  final CollectionReference erbilBasicCollection =
-      FirebaseFirestore.instance.collection('erbilBasicData');
+  final CollectionReference erbilBasicCollection = FirebaseFirestore.instance.collection('erbilBasicData');
 
-  final CollectionReference duhokBasicCollection =
-      FirebaseFirestore.instance.collection('duhokBasicData');
+  final CollectionReference duhokBasicCollection = FirebaseFirestore.instance.collection('duhokBasicData');
 
-  final CollectionReference suleymaniahBasicCollection =
-      FirebaseFirestore.instance.collection('suleymaniahBasicData');
+  final CollectionReference suleymaniahBasicCollection = FirebaseFirestore.instance.collection('suleymaniahBasicData');
 
-  final CollectionReference kirkokBasicCollection =
-      FirebaseFirestore.instance.collection('kirkokBasicData');
+  final CollectionReference kirkokBasicCollection = FirebaseFirestore.instance.collection('kirkokBasicData');
 
-  final CollectionReference diyalaBasicCollection =
-      FirebaseFirestore.instance.collection('diyalaBasicData');
+  final CollectionReference diyalaBasicCollection = FirebaseFirestore.instance.collection('diyalaBasicData');
 
-  final CollectionReference saladinBasicCollection =
-      FirebaseFirestore.instance.collection('saladinBasicData');
+  final CollectionReference saladinBasicCollection = FirebaseFirestore.instance.collection('saladinBasicData');
 
-  final CollectionReference ninevehBasicCollection =
-      FirebaseFirestore.instance.collection('ninevehBasicData');
+  final CollectionReference ninevehBasicCollection = FirebaseFirestore.instance.collection('ninevehBasicData');
 
-  final CollectionReference anbarBasicCollection =
-      FirebaseFirestore.instance.collection('anbarBasicData');
+  final CollectionReference anbarBasicCollection = FirebaseFirestore.instance.collection('anbarBasicData');
 
-  final CollectionReference karbalaBasicCollection =
-      FirebaseFirestore.instance.collection('karbalaBasicData');
+  final CollectionReference karbalaBasicCollection = FirebaseFirestore.instance.collection('karbalaBasicData');
 
-  final CollectionReference wasitBasicCollection =
-      FirebaseFirestore.instance.collection('wasitBasicData');
+  final CollectionReference wasitBasicCollection = FirebaseFirestore.instance.collection('wasitBasicData');
 
-  final CollectionReference najafBasicCollection =
-      FirebaseFirestore.instance.collection('najafBasicData');
+  final CollectionReference najafBasicCollection = FirebaseFirestore.instance.collection('najafBasicData');
 
-  final CollectionReference dhiqarBasicCollection =
-      FirebaseFirestore.instance.collection('maysanBasicData');
+  final CollectionReference dhiqarBasicCollection = FirebaseFirestore.instance.collection('maysanBasicData');
 
-  final CollectionReference maysanBasicCollection =
-      FirebaseFirestore.instance.collection('dhiqarBasicData');
+  final CollectionReference maysanBasicCollection = FirebaseFirestore.instance.collection('dhiqarBasicData');
 
-  final CollectionReference muthanaBasicCollection =
-      FirebaseFirestore.instance.collection('muthanaBasicData');
+  final CollectionReference muthanaBasicCollection = FirebaseFirestore.instance.collection('muthanaBasicData');
 
-  final CollectionReference qadiseyahBasicCollection =
-      FirebaseFirestore.instance.collection('qadiseyahBasicData');
+  final CollectionReference qadiseyahBasicCollection = FirebaseFirestore.instance.collection('qadiseyahBasicData');
 
-  Future updateUserData(
-      String name,
-      String speciality,
-      String phoneNumber,
-      String province,
-      double lat,
-      double lng,
-      String address,
-      List workDays01,
-      List workDays02,
-      List workDays03) async {
+  Future updateUserData(String name, String speciality, String phoneNumber, String province, double lat, double lng, String address, List workDays01,
+      List workDays02, List workDays03) async {
     if (EmailVeriyView.province == 'Baghdad') {
       return await baghdadCollection.doc(uid).set({
         'name': name,

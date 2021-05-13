@@ -7,7 +7,7 @@ import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:project_doctor/views/auth/sign_wrapper.dart';
 import 'package:project_doctor/views/favorite/favorite_list.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:project_doctor/views/profile/2_clinic_data.dart';
+import 'package:project_doctor/views/home/support.dart';
 import 'package:project_doctor/views/search/search_history/history_profile.dart';
 import 'dart:ui' as ui;
 import 'package:project_doctor/views/search/search_wrapper.dart';
@@ -59,7 +59,7 @@ class _HomeViewState extends State<HomeView> {
                   if (index == 1) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchHistoryProfile()));
                   if (index == 2) Navigator.of(context).push(MaterialPageRoute(builder: (context) => Intermediate()));
                   if (index == 3) Navigator.of(context).push(MaterialPageRoute(builder: (context) => FavoriteListView()));
-                  if (index == 4) Navigator.of(context).push(MaterialPageRoute(builder: (context) => ClinicStream()));
+                  if (index == 4) Navigator.of(context).push(MaterialPageRoute(builder: (context) => SupportView()));
                 },
                 items: [
                   BottomNavigationBarItem(icon: Icon(CustomIcons.search), label: "Search"),

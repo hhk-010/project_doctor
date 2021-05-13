@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -52,7 +51,7 @@ class MyApp extends StatelessWidget {
         },
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          builder: DevicePreview.appBuilder,
+          // builder: DevicePreview.appBuilder,
           title: 'Cura Mobile',
           theme: lightTheme,
           darkTheme: darkTheme,
