@@ -435,7 +435,10 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                   height: getDeviceType(context, 430, 600, 700, 900),
                   width: getDeviceType(context, 260, 350, 450, 550),
                   decoration: CustomStyle.box,
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: getDeviceType(context, 8, 16, 24, 32),
+                    vertical: getDeviceType(context, 8, 16, 24, 32),
+                  ),
                   child: ListView(
                     children: [
                       Container(

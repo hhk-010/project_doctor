@@ -172,7 +172,10 @@ class _FavoriteProfileResultViewState extends State<FavoriteProfileResultView> {
               height: getDeviceType(context, 430, 600, 700, 900),
               width: getDeviceType(context, 260, 350, 450, 550),
               decoration: CustomStyle.box,
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+              padding: EdgeInsets.symmetric(
+                horizontal: getDeviceType(context, 8, 16, 24, 32),
+                vertical: getDeviceType(context, 8, 16, 24, 32),
+              ),
               child: ListView(
                 children: [
                   Container(
@@ -204,7 +207,6 @@ class _FavoriteProfileResultViewState extends State<FavoriteProfileResultView> {
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomProfileColumn(
                         title: LocaleKeys.view_doctor_speciality.tr(),

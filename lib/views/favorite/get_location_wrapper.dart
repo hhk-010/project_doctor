@@ -11,6 +11,7 @@ import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/services/connectivity.dart';
 import 'package:project_doctor/services/data_model.dart';
+import 'package:project_doctor/services/geolocation.dart';
 import 'package:project_doctor/views/favorite/get_map.dart';
 import 'package:project_doctor/views/favorite/result_profile.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
@@ -42,19 +43,6 @@ class _FavoriteLocationWrapperState extends State<FavoriteLocationWrapper> {
       print(e);
       return '{0.0,0.0}';
     }
-  }
-
-  Position _currentPosition;
-  _getCurrentLocation() {
-    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best).then((Position position) {
-      setState(() {
-        _currentPosition = position;
-      });
-
-      //_getAddressFromLatLng();
-    }).catchError((e) {
-      print(e);
-    });
   }
 
   @override
@@ -352,7 +340,7 @@ class _FavoriteLocationWrapperState extends State<FavoriteLocationWrapper> {
                                 .substring(SearchResultData.geoLatlng.indexOf('{') + 1, SearchResultData.geoLatlng.indexOf(',')));
                             SearchResultData.geoLng = double.parse(SearchResultData.geoLatlng
                                 .substring(SearchResultData.geoLatlng.indexOf(',') + 1, SearchResultData.geoLatlng.indexOf('}')));
-                            await _getCurrentLocation();
+                            Position _currentPosition = await determinePosition();
                             if (_currentPosition == null) {
                               getFlushbar(context, LocaleKeys.error_geolocator_message.tr(), _controller1);
                             } else {
