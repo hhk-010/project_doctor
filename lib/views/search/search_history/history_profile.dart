@@ -342,17 +342,15 @@ class _SearchHistoryProfileState extends State<SearchHistoryProfile> {
                       horizontal: getDeviceType(context, 8, 16, 24, 32),
                       vertical: getDeviceType(context, 8, 16, 24, 32),
                     ),
-                    child: ListView(
-                      children: [
-                        Container(
-                          height: getDeviceType(context, 150, 200, 250, 300),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Column(
                             children: [
                               CircleAvatar(
                                 backgroundColor: Colors.deepOrange,
                                 radius: getDeviceType(context, 35, 50, 60, 75),
-                                backgroundImage: AssetImage('assets/images/doctor.png'),
+                                backgroundImage: AssetImage('assets/images/register.png'),
                               ),
                               Text(
                                 _name,
@@ -370,37 +368,32 @@ class _SearchHistoryProfileState extends State<SearchHistoryProfile> {
                               ),
                             ],
                           ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            CustomProfileColumn(
-                              title: LocaleKeys.view_doctor_speciality.tr(),
-                              content: (_speciality).tr(),
-                            ),
-                            CustomProfilePhoneCalling(
-                              title: LocaleKeys.view_doctor_phoneNumber.tr(),
-                              content: _phone,
-                            ),
-                            CustomProfileColumn(
-                              title: LocaleKeys.view_doctor_clinic_address.tr(),
-                              content: _address,
-                            ),
-                            CustomProfileColumn2(
-                              title: LocaleKeys.view_doctor_clinic_work.tr(),
-                              content: finalMainDays + '\n' + mainTime,
-                            ),
-                            _workDays02.isEmpty
-                                ? SizedBox(
-                                    height: 5,
-                                  )
-                                : CustomProfileColumn2(
-                                    title: LocaleKeys.view_doctor_another_clinic_work.tr(),
-                                    content: _firstEDay + " " + _firstTime + '\n' + _secondEDay + " " + _secondTime,
-                                  ),
-                          ],
-                        ),
-                      ],
+                          CustomProfileColumn(
+                            title: LocaleKeys.view_doctor_speciality.tr(),
+                            content: (_speciality).tr(),
+                          ),
+                          CustomProfilePhoneCalling(
+                            title: LocaleKeys.view_doctor_phoneNumber.tr(),
+                            content: _phone,
+                          ),
+                          CustomProfileColumn(
+                            title: LocaleKeys.view_doctor_clinic_address.tr(),
+                            content: _address,
+                          ),
+                          CustomProfileColumn2(
+                            title: LocaleKeys.view_doctor_clinic_work.tr(),
+                            content: finalMainDays + '\n' + mainTime,
+                          ),
+                          _workDays02.isEmpty
+                              ? SizedBox(
+                                  height: 5,
+                                )
+                              : CustomProfileColumn2(
+                                  title: LocaleKeys.view_doctor_another_clinic_work.tr(),
+                                  content: _firstEDay + " " + _firstTime + '\n' + _secondEDay + " " + _secondTime,
+                                ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -298,65 +298,60 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                     horizontal: getDeviceType(context, 8, 16, 24, 32),
                     vertical: getDeviceType(context, 8, 16, 24, 32),
                   ),
-                  child: ListView(
-                    children: [
-                      Container(
-                        height: getDeviceType(context, 150, 200, 250, 300),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.deepOrange,
-                              radius: getDeviceType(context, 35, 50, 60, 75),
-                              backgroundImage: AssetImage('assets/images/doctor.png'),
-                            ),
-                            Text(
-                              name,
-                              style: CustomStyle.getTitleBlack(context).copyWith(fontFamily: 'noto_arabic'),
-                            ),
-                            Text(
-                              (province).tr(),
-                              style: CustomStyle.getFooter(context),
-                            ),
-                            Divider(
-                              color: Colors.grey[600],
-                              thickness: 3,
-                              indent: 25,
-                              endIndent: 25,
-                            ),
-                          ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Container(
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.deepOrange,
+                                radius: getDeviceType(context, 35, 50, 60, 75),
+                                backgroundImage: AssetImage('assets/images/register.png'),
+                              ),
+                              Text(
+                                name,
+                                style: CustomStyle.getTitleBlack(context).copyWith(fontFamily: 'noto_arabic'),
+                              ),
+                              Text(
+                                (province).tr(),
+                                style: CustomStyle.getFooter(context),
+                              ),
+                              Divider(
+                                color: Colors.grey[600],
+                                thickness: 3,
+                                indent: 25,
+                                endIndent: 25,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          CustomProfileColumn(
-                            title: LocaleKeys.view_doctor_speciality.tr(),
-                            content: (speciality).tr(),
-                          ),
-                          CustomProfileColumn(
-                            title: LocaleKeys.view_doctor_phoneNumber.tr(),
-                            content: number,
-                          ),
-                          CustomProfileColumn(
-                            title: LocaleKeys.view_doctor_clinic_address.tr(),
-                            content: _address,
-                          ),
-                          CustomProfileColumn2(
-                            title: LocaleKeys.view_doctor_clinic_work.tr(),
-                            content: _finalMainDays + '\n' + _mainTime,
-                          ),
-                          _workDays02.isEmpty
-                              ? SizedBox(
-                                  height: 5,
-                                )
-                              : CustomProfileColumn2(
-                                  title: LocaleKeys.view_doctor_another_clinic_work.tr(),
-                                  content: _firstEDay + " " + _firstTime + '\n' + _secondEDay + " " + _secondTime,
-                                ),
-                        ],
-                      ),
-                    ],
+                        CustomProfileColumn(
+                          title: LocaleKeys.view_doctor_speciality.tr(),
+                          content: (speciality).tr(),
+                        ),
+                        CustomProfileColumn(
+                          title: LocaleKeys.view_doctor_phoneNumber.tr(),
+                          content: number,
+                        ),
+                        CustomProfileColumn(
+                          title: LocaleKeys.view_doctor_clinic_address.tr(),
+                          content: _address,
+                        ),
+                        CustomProfileColumn2(
+                          title: LocaleKeys.view_doctor_clinic_work.tr(),
+                          content: _finalMainDays + '\n' + _mainTime,
+                        ),
+                        _workDays02.isEmpty
+                            ? SizedBox(
+                                height: 5,
+                              )
+                            : CustomProfileColumn2(
+                                title: LocaleKeys.view_doctor_another_clinic_work.tr(),
+                                content: _firstEDay + " " + _firstTime + '\n' + _secondEDay + " " + _secondTime,
+                              ),
+                      ],
+                    ),
                   ),
                 ),
               ),

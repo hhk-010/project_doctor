@@ -219,7 +219,8 @@
     "data_error": "حدث خطأ اثناء التسجيل , قم بتحديث معلوماتك لطفا ، ثم فم بتسجيل الدخول",
     "prof_error": "خطأ !!",
     "last_searched_doctor": "اخر نتيجه بحث",
-    "log_out": "الخروج"
+    "log_out": "الخروج",
+    "home_screen": "الشاشة الرئيسية"
   },
   "view_last_search": {
     "back": "رجوع",

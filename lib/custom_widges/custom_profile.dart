@@ -10,7 +10,6 @@ class CustomProfileColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: getDeviceType(context, 65, 75, 90, 110),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +42,6 @@ class CustomProfileColumn2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: getDeviceType(context, 75, 95, 120, 130),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,12 +50,9 @@ class CustomProfileColumn2 extends StatelessWidget {
             title,
             style: CustomStyle.getFooter(context).copyWith(color: Colors.red),
           ),
-          FittedBox(
-            fit: BoxFit.fitWidth,
-            child: Text(
-              content,
-              style: CustomStyle.getFooter(context),
-            ),
+          Text(
+            content,
+            style: CustomStyle.getSubtitle(context),
           ),
           Divider(
             color: Colors.grey,
@@ -79,7 +74,6 @@ class CustomProfilePhoneCalling extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: getDeviceType(context, 65, 75, 90, 110),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,

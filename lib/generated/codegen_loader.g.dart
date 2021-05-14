@@ -235,7 +235,8 @@ class CodegenLoader extends AssetLoader{
     "data_error": "حدث خطأ اثناء التسجيل , قم بتحديث معلوماتك لطفا ، ثم فم بتسجيل الدخول",
     "prof_error": "خطأ !!",
     "last_searched_doctor": "اخر نتيجه بحث",
-    "log_out": "الخروج"
+    "log_out": "الخروج",
+    "home_screen": "الشاشة الرئيسية"
   },
   "view_last_search": {
     "back": "رجوع",
@@ -859,7 +860,8 @@ static const Map<String,dynamic> en = {
     "data_error": "An error had occurred , please update your information and sign in again",
     "prof_error": "Error !!",
     "last_searched_doctor": "Last Searched Doctor",
-    "log_out": "Log out"
+    "log_out": "Log out",
+    "home_screen": "Home Screen"
   },
   "view_last_search": {
     "back": "Back",
