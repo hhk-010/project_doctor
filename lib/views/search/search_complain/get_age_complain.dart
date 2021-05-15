@@ -1350,10 +1350,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                                 height: getDeviceType(context, 40, 50, 60, 70),
                                 child: TextField(
                                     keyboardType: TextInputType.numberWithOptions(decimal: true),
-                                    /*inputFormatters: [
-                                      FilteringTextInputFormatter.allow(
-                                          RegExp('[0-9.,]')),
-                                    ],*/
+                                    inputFormatters: <TextInputFormatter>[
+                                      LengthLimitingTextInputFormatter(3),
+                                      FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
+                                    ],
                                     controller: ageController,
                                     onChanged: (ageController) {
                                       if (ageController.isEmpty) {

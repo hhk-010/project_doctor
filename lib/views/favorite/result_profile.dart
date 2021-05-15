@@ -176,12 +176,10 @@ class _FavoriteProfileResultViewState extends State<FavoriteProfileResultView> {
                 horizontal: getDeviceType(context, 8, 16, 24, 32),
                 vertical: getDeviceType(context, 8, 16, 24, 32),
               ),
-              child: ListView(
-                children: [
-                  Container(
-                    height: getDeviceType(context, 150, 200, 250, 300),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Column(
                       children: [
                         CircleAvatar(
                           backgroundColor: Colors.deepOrange,
@@ -204,47 +202,42 @@ class _FavoriteProfileResultViewState extends State<FavoriteProfileResultView> {
                         ),
                       ],
                     ),
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      CustomProfileColumn(
-                        title: LocaleKeys.view_doctor_speciality.tr(),
-                        content: (SearchResultData.speciality).tr(),
-                      ),
-                      CustomProfilePhoneCalling(
-                        title: LocaleKeys.view_doctor_phoneNumber.tr(),
-                        content: SearchResultData.phoneNumber,
-                      ),
-                      CustomProfileColumn(
-                        title: LocaleKeys.view_doctor_clinic_address.tr(),
-                        content: SearchResultData.address,
-                      ),
-                      CustomProfileColumn2(
-                        title: LocaleKeys.view_doctor_clinic_work.tr(),
-                        content: SearchResultData.workDays01.toString(),
-                      ),
-                      SearchResultData.firstDay.isEmpty
-                          ? SizedBox(
-                              height: 5,
-                            )
-                          : CustomProfileColumn2(
-                              title: LocaleKeys.view_doctor_another_clinic_work.tr(),
-                              content: SearchResultData.firstDay +
-                                  " " +
-                                  SearchResultData.firstTime +
-                                  '\n' +
-                                  SearchResultData.secondDay +
-                                  " " +
-                                  SearchResultData.secondTime,
-                            ),
-                      CustomProfileColumn(
-                        title: LocaleKeys.view_patient_result_distances.tr(),
-                        content: SearchResultData.distance.toString() + " " + LocaleKeys.view_patient_result_km.tr(),
-                      ),
-                    ],
-                  ),
-                ],
+                    CustomProfileColumn(
+                      title: LocaleKeys.view_doctor_speciality.tr(),
+                      content: (SearchResultData.speciality).tr(),
+                    ),
+                    CustomProfilePhoneCalling(
+                      title: LocaleKeys.view_doctor_phoneNumber.tr(),
+                      content: SearchResultData.phoneNumber,
+                    ),
+                    CustomProfileColumn(
+                      title: LocaleKeys.view_doctor_clinic_address.tr(),
+                      content: SearchResultData.address,
+                    ),
+                    CustomProfileColumn2(
+                      title: LocaleKeys.view_doctor_clinic_work.tr(),
+                      content: SearchResultData.workDays01.toString(),
+                    ),
+                    SearchResultData.firstDay.isEmpty
+                        ? SizedBox(
+                            height: 5,
+                          )
+                        : CustomProfileColumn2(
+                            title: LocaleKeys.view_doctor_another_clinic_work.tr(),
+                            content: SearchResultData.firstDay +
+                                " " +
+                                SearchResultData.firstTime +
+                                '\n' +
+                                SearchResultData.secondDay +
+                                " " +
+                                SearchResultData.secondTime,
+                          ),
+                    CustomProfileColumn(
+                      title: LocaleKeys.view_patient_result_distances.tr(),
+                      content: SearchResultData.distance.toString() + " " + LocaleKeys.view_patient_result_km.tr(),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

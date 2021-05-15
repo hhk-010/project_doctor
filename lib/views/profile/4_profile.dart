@@ -301,30 +301,28 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        Container(
-                          child: Column(
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: Colors.deepOrange,
-                                radius: getDeviceType(context, 35, 50, 60, 75),
-                                backgroundImage: AssetImage('assets/images/register.png'),
-                              ),
-                              Text(
-                                name,
-                                style: CustomStyle.getTitleBlack(context).copyWith(fontFamily: 'noto_arabic'),
-                              ),
-                              Text(
-                                (province).tr(),
-                                style: CustomStyle.getFooter(context),
-                              ),
-                              Divider(
-                                color: Colors.grey[600],
-                                thickness: 3,
-                                indent: 25,
-                                endIndent: 25,
-                              ),
-                            ],
-                          ),
+                        Column(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.deepOrange,
+                              radius: getDeviceType(context, 35, 50, 60, 75),
+                              backgroundImage: AssetImage('assets/images/register.png'),
+                            ),
+                            Text(
+                              name,
+                              style: CustomStyle.getTitleBlack(context).copyWith(fontFamily: 'noto_arabic'),
+                            ),
+                            Text(
+                              (province).tr(),
+                              style: CustomStyle.getFooter(context),
+                            ),
+                            Divider(
+                              color: Colors.grey[600],
+                              thickness: 3,
+                              indent: 25,
+                              endIndent: 25,
+                            ),
+                          ],
                         ),
                         CustomProfileColumn(
                           title: LocaleKeys.view_doctor_speciality.tr(),
