@@ -125,9 +125,8 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
             child: Container(
               width: getDeviceType(context, 275, 350, 450, 550),
               height: getDeviceType(context, 425, 650, 750, 1000),
-              child: Flexible(
-                child: ListView(
-                  shrinkWrap: true,
+              child: SingleChildScrollView(
+                child: Column(
                   children: [
                     Container(
                       decoration: CustomStyle.box,
@@ -148,6 +147,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                             endIndent: 30,
                           ),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 'cd_HTN'.tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -164,6 +164,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "cd_DM".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -181,6 +182,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "cd_heart".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -198,6 +200,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "cd_heartFailure".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -215,6 +218,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "cd_ctd".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -232,6 +236,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "cd_ckd".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -249,6 +254,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "cd_liver".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -266,6 +272,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "cd_lung".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -283,6 +290,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "cd_ashma".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -300,6 +308,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "cd_thyroid".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -317,6 +326,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "cd_epilepsy".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -334,6 +344,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "cd_intestine".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -351,6 +362,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "cd_cva".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -368,6 +380,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "cd_tumor".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -407,6 +420,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                             endIndent: 30,
                           ),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 'obesity'.tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -423,6 +437,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "physical_inactive".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -440,6 +455,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "alcohol".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -457,6 +473,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "smoking".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -474,6 +491,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                                 });
                               }),
                           CheckboxListTile(
+                              activeColor: LightPalette.button,
                               title: Text(
                                 "family".tr(),
                                 style: CustomStyle.getSubtitle(context),
@@ -492,6 +510,7 @@ class _ChronicDiseaseRiskFactorViewState extends State<ChronicDiseaseRiskFactorV
                               }),
                           gender == "Female"
                               ? CheckboxListTile(
+                                  activeColor: LightPalette.button,
                                   title: Text(
                                     "pregnancy".tr(),
                                     style: CustomStyle.getSubtitle(context),

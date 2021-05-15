@@ -137,7 +137,7 @@ class _SignInViewState extends State<SignInView> {
                     if (SignInData.email.isNotEmpty && SignInData.password.isNotEmpty) {
                       dynamic authResult = await _auth.signInWithEmailAndPassword(SignInData.email, SignInData.password);
                       if (authResult != null) {
-                        await getSuccess(_controller);
+                        // await getSuccess(_controller);
                       } else {
                         getFlushbar(context, LocaleKeys.error_snack_sign_in.tr(), _controller);
                       }

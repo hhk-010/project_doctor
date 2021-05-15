@@ -366,7 +366,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                     bottom: getDeviceType(context, 15, 40, 75, 125),
                   ),
                   child: BaseButton(
-                    title: 'Home Screen'.tr(),
+                    title: 'view_buttons.home_screen'.tr(),
                     onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeView())),
                   ),
                 ),

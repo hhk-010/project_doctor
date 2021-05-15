@@ -298,47 +298,42 @@ class _ProfileSearchViewState extends State<ProfileSearchView> {
                     ],
                   ),
                   Container(
-                    height: getDeviceType(context, 40, 50, 60, 70),
                     decoration: CustomStyle.box,
-                    child: Center(
-                      child: CheckboxListTile(
-                        activeColor: LightPalette.button,
-                        title: Text(
-                          LocaleKeys.view_new_search_name_search.tr(),
-                          style: CustomStyle.getSubtitle(context),
-                        ),
-                        value: _nameSelected,
-                        onChanged: (val) => setState(() {
-                          _nameSelected = !_nameSelected;
-                          ProfileSearchData.nameSelected = _nameSelected;
-                          if (_specialitySelected) {
-                            _specialitySelected = !_specialitySelected;
-                            ProfileSearchData.speciality = '';
-                          }
-                        }),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: getDeviceType(context, 40, 50, 60, 70),
-                    decoration: CustomStyle.box,
-                    child: Center(
-                      child: CheckboxListTile(
-                        activeColor: LightPalette.button,
-                        title: Text(
-                          LocaleKeys.view_new_search_speciality_search.tr(),
-                          style: CustomStyle.getSubtitle(context),
-                        ),
-                        value: _specialitySelected,
-                        onChanged: (val) => setState(() {
-                          _specialitySelected = !_specialitySelected;
-                          ProfileSearchData.specialitySelected = _specialitySelected;
-                          if (_nameSelected) {
+                    child: Column(
+                      children: [
+                        CheckboxListTile(
+                          activeColor: LightPalette.button,
+                          title: Text(
+                            LocaleKeys.view_new_search_name_search.tr(),
+                            style: CustomStyle.getSubtitle(context),
+                          ),
+                          value: _nameSelected,
+                          onChanged: (val) => setState(() {
                             _nameSelected = !_nameSelected;
-                            ProfileSearchData.name = '';
-                          }
-                        }),
-                      ),
+                            ProfileSearchData.nameSelected = _nameSelected;
+                            if (_specialitySelected) {
+                              _specialitySelected = !_specialitySelected;
+                              ProfileSearchData.speciality = '';
+                            }
+                          }),
+                        ),
+                        CheckboxListTile(
+                          activeColor: LightPalette.button,
+                          title: Text(
+                            LocaleKeys.view_new_search_speciality_search.tr(),
+                            style: CustomStyle.getSubtitle(context),
+                          ),
+                          value: _specialitySelected,
+                          onChanged: (val) => setState(() {
+                            _specialitySelected = !_specialitySelected;
+                            ProfileSearchData.specialitySelected = _specialitySelected;
+                            if (_nameSelected) {
+                              _nameSelected = !_nameSelected;
+                              ProfileSearchData.name = '';
+                            }
+                          }),
+                        ),
+                      ],
                     ),
                   ),
                 ],

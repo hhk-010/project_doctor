@@ -220,7 +220,7 @@
     "prof_error": "Error !!",
     "last_searched_doctor": "Last Searched Doctor",
     "log_out": "Log out",
-    "home_screen" : "Home Screen"
+    "home_screen": "Home Screen"
   },
   "view_last_search": {
     "back": "Back",
@@ -320,7 +320,7 @@
   "regions": "=======================================",
   "search": {
     "name_speciality": "Search by Name/Speciality",
-    "complain": "Search by Complain",
+    "complain": "Search by Complaint",
     "history": "Search History"
   },
   "body_regions": "=======================================",
