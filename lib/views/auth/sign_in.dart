@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
@@ -26,7 +27,8 @@ class SignInView extends StatefulWidget {
 class _SignInViewState extends State<SignInView> {
   // object for firebase auth
   final AuthService _auth = AuthService();
-  final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
+  final RoundedLoadingButtonController _controller =
+      RoundedLoadingButtonController();
 
   @override
   void initState() {
@@ -51,7 +53,9 @@ class _SignInViewState extends State<SignInView> {
             isIcon: false,
             width: MediaQuery.of(context).size.width,
             height: getDeviceType(context, 225, 300, 500, 700),
-            asset: getTheme(context) ? 'assets/images/auth/sign_in_light.png' : 'assets/images/auth/sign_in_dark.png',
+            asset: getTheme(context)
+                ? 'assets/images/auth/sign_in_light.png'
+                : 'assets/images/auth/sign_in_dark.png',
           ),
           Align(
             alignment: Alignment.center,
@@ -73,8 +77,10 @@ class _SignInViewState extends State<SignInView> {
                         },
                         cursorColor: Colors.grey,
                         keyboardType: TextInputType.emailAddress,
-                        decoration: CustomStyle.getInputDecoration(context).copyWith(
-                          hintText: LocaleKeys.view_doctor_enter_your_email.tr(),
+                        decoration:
+                            CustomStyle.getInputDecoration(context).copyWith(
+                          hintText:
+                              LocaleKeys.view_doctor_enter_your_email.tr(),
                         ),
                       ),
                     ),
@@ -87,16 +93,21 @@ class _SignInViewState extends State<SignInView> {
                         },
                         cursorColor: Colors.grey,
                         keyboardType: TextInputType.text,
-                        decoration: CustomStyle.getInputDecoration(context).copyWith(
-                          hintText: LocaleKeys.view_doctor_enter_your_password.tr(),
+                        decoration:
+                            CustomStyle.getInputDecoration(context).copyWith(
+                          hintText:
+                              LocaleKeys.view_doctor_enter_your_password.tr(),
                           suffixIcon: IconButton(
                             icon: Icon(
-                              SignInData.isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                              SignInData.isPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
                               color: Colors.deepOrange,
                             ),
                             onPressed: () {
                               setState(() {
-                                SignInData.isPasswordVisible = !SignInData.isPasswordVisible;
+                                SignInData.isPasswordVisible =
+                                    !SignInData.isPasswordVisible;
                               });
                             },
                           ),
@@ -135,18 +146,24 @@ class _SignInViewState extends State<SignInView> {
                 controller: _controller,
                 onPressed: () async {
                   if (await isInternet()) {
-                    if (SignInData.email.isNotEmpty && SignInData.password.isNotEmpty) {
-                      dynamic authResult = await _auth.signInWithEmailAndPassword(SignInData.email, SignInData.password);
+                    if (SignInData.email.isNotEmpty &&
+                        SignInData.password.isNotEmpty) {
+                      dynamic authResult =
+                          await _auth.signInWithEmailAndPassword(
+                              SignInData.email, SignInData.password);
                       if (authResult != null) {
                         // await getSuccess(_controller);
                       } else {
-                        getFlushbar(context, LocaleKeys.error_snack_sign_in.tr(), _controller);
+                        getFlushbar(context,
+                            LocaleKeys.error_snack_sign_in.tr(), _controller);
                       }
                     } else {
-                      getFlushbar(context, LocaleKeys.error_sign_info.tr(), _controller);
+                      getFlushbar(context, LocaleKeys.error_sign_info.tr(),
+                          _controller);
                     }
                   } else {
-                    getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller);
+                    getFlushbar(context,
+                        LocaleKeys.error_snack_connectivity.tr(), _controller);
                   }
                 },
               ),
@@ -167,7 +184,8 @@ class _SignInViewState extends State<SignInView> {
                   Text('  '),
                   Text(
                     LocaleKeys.view_doctor_register.tr(),
-                    style: CustomStyle.getFooter(context).copyWith(color: Colors.red[400], fontWeight: FontWeight.bold),
+                    style: CustomStyle.getFooter(context).copyWith(
+                        color: Colors.red[400], fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
