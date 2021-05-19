@@ -48,10 +48,10 @@ class _HomeViewState extends State<HomeView> {
             child: BottomNavigationBar(
                 elevation: 0,
                 iconSize: getDeviceType(context, 20, 24, 28, 32),
-                type: BottomNavigationBarType.fixed,
-                selectedItemColor: Colors.white,
-                unselectedItemColor: Colors.white,
                 backgroundColor: Colors.transparent,
+                type: BottomNavigationBarType.fixed,
+                unselectedItemColor: Colors.white,
+                selectedItemColor: Colors.white,
                 showSelectedLabels: false,
                 showUnselectedLabels: false,
                 onTap: (index) {

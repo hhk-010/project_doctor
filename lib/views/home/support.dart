@@ -25,7 +25,9 @@ class SupportView extends StatelessWidget {
                 height: getDeviceType(context, 250, 350, 450, 600),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: getTheme(context) ? AssetImage("assets/images/home/header_light.png") : AssetImage("assets/images/home/header_dark.png"),
+                      image: getTheme(context)
+                          ? AssetImage("assets/images/home/header_light.png")
+                          : AssetImage("assets/images/home/header_dark.png"),
                       fit: BoxFit.fill),
                 ),
               ),

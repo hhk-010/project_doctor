@@ -106,9 +106,12 @@ class _QuestionViewState extends State<QuestionView> {
                 controller: _controller,
                 title: 'Next',
                 onPressed: () async {
-                  if (QuestionsShuffle.value1 == QuestionsShuffle.answers[QuestionsShuffle.questions[questionIndex1]]) QuestionsShuffle.score += 1;
-                  if (QuestionsShuffle.value2 == QuestionsShuffle.answers[QuestionsShuffle.questions[questionIndex2]]) QuestionsShuffle.score += 1;
-                  if (QuestionsShuffle.value3 == QuestionsShuffle.answers[QuestionsShuffle.questions[questionIndex3]]) QuestionsShuffle.score += 1;
+                  if (QuestionsShuffle.value1 == QuestionsShuffle.answers[QuestionsShuffle.questions[questionIndex1]])
+                    QuestionsShuffle.score += 1;
+                  if (QuestionsShuffle.value2 == QuestionsShuffle.answers[QuestionsShuffle.questions[questionIndex2]])
+                    QuestionsShuffle.score += 1;
+                  if (QuestionsShuffle.value3 == QuestionsShuffle.answers[QuestionsShuffle.questions[questionIndex3]])
+                    QuestionsShuffle.score += 1;
                   if (QuestionsShuffle.score >= 3) {
                     await getSuccess(_controller);
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignUpView()));

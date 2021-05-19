@@ -149,8 +149,17 @@ class _SignInViewState extends State<SignInView> {
                     getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller);
                   }
                 },
+
+
+                
               ),
             ),
+
+
+
+
+
+
           ),
           CustomFooter(
             child: InkWell(
