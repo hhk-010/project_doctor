@@ -10,7 +10,6 @@ import 'package:project_doctor/services/connectivity.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/views/favorite/result_profile.dart';
-import 'package:project_doctor/views/search/search_complain/result_profile.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class FavoriteGetMapView extends StatefulWidget {

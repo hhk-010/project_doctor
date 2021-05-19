@@ -637,7 +637,9 @@ class CodegenLoader extends AssetLoader{
   "breast discharge": "خراج من الثدي",
   "breast lump": "تورم في الثدي",
   "breast skin lesion": "مشاكل جلدية في الثدي",
-  "other breast problems": "مشاكل اخرى في الثدي"
+  "other breast problems": "مشاكل اخرى في الثدي",
+  "added": "===================================",
+  "empty_search_list": "عذرا , لا توجد نتائج بحث مطابقة ..."
 };
 static const Map<String,dynamic> en = {
   "Or": " Or ",
@@ -961,7 +963,7 @@ static const Map<String,dynamic> en = {
   "regions": "=======================================",
   "search": {
     "name_speciality": "Search by Name/Speciality",
-    "complain": "Search by Complain",
+    "complain": "Search by Complaint",
     "history": "Search History"
   },
   "body_regions": "=======================================",
@@ -1262,7 +1264,8 @@ static const Map<String,dynamic> en = {
   "breast discharge": "Breast discharge",
   "breast lump": "Breast lump",
   "breast skin lesion": "Breast skin lesion",
-  "other breast problems": "Other breast problems"
+  "other breast problems": "Other breast problems",
+  "empty_search_list": "sorry , there is no similar search result ..."
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

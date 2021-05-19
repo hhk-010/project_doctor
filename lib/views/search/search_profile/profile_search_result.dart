@@ -142,10 +142,8 @@ class _ResultListState extends State<ResultList> {
           searchResultList: streamData != null
               ? newList.length != 0
                   ? newList[index]
-                  : ProfileSearchListData(
-                      name: 'Estate', speciality: 'O', address: 'District')
-              : ProfileSearchListData(
-                  name: 'Estate', speciality: 'Offer', address: 'District'),
+                  : ProfileSearchListData(name: 'Estate', speciality: 'O', address: 'District')
+              : ProfileSearchListData(name: 'Estate', speciality: 'Offer', address: 'District'),
         );
       },
     );
@@ -276,8 +274,7 @@ class _SearchListTileState extends State<SearchListTile> {
                     IconButton(
                       onPressed: () {
                         Navigator.pop(context);
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => SearchListView()));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchListView()));
                       },
                       icon: Icon(
                         Icons.replay_rounded,
@@ -305,8 +302,7 @@ class _SearchListTileState extends State<SearchListTile> {
                 ),
                 title: Text(
                   widget.searchResultList.name,
-                  style: CustomStyle.getTitleBlack(context)
-                      .copyWith(fontFamily: 'noto_arabic'),
+                  style: CustomStyle.getTitleBlack(context).copyWith(fontFamily: 'noto_arabic'),
                 ),
                 subtitle: Text(
                   (widget.searchResultList.speciality).tr(),
@@ -321,20 +317,15 @@ class _SearchListTileState extends State<SearchListTile> {
                   _writePhoneNumber(widget.searchResultList.phoneNumber);
                   _writeLat(widget.searchResultList.lat.toString());
                   _writeLng(widget.searchResultList.lng.toString());
-                  _writeworkDays01(
-                      json.encode(widget.searchResultList.workDays01));
-                  _writeWorkDays02(
-                      json.encode(widget.searchResultList.workDays02));
-                  _writeWorkDays03(
-                      json.encode(widget.searchResultList.workDays03));
+                  _writeworkDays01(json.encode(widget.searchResultList.workDays01));
+                  _writeWorkDays02(json.encode(widget.searchResultList.workDays02));
+                  _writeWorkDays03(json.encode(widget.searchResultList.workDays03));
                   SearchResultData.id = widget.searchResultList.id;
                   SearchResultData.name = widget.searchResultList.name;
-                  SearchResultData.speciality =
-                      widget.searchResultList.speciality;
+                  SearchResultData.speciality = widget.searchResultList.speciality;
                   SearchResultData.address = widget.searchResultList.address;
                   SearchResultData.province = widget.searchResultList.province;
-                  SearchResultData.phoneNumber =
-                      widget.searchResultList.phoneNumber;
+                  SearchResultData.phoneNumber = widget.searchResultList.phoneNumber;
                   SearchResultData.lat = widget.searchResultList.lat;
                   SearchResultData.lng = widget.searchResultList.lng;
                   workDays1 = widget.searchResultList.workDays01;
@@ -346,21 +337,12 @@ class _SearchListTileState extends State<SearchListTile> {
                       if (day.length < 12) {
                         SearchResultData.workDays01.add((day).tr());
                       } else {
-                        _mainfrom = day.substring(
-                            day.indexOf('m') + 2, day.indexOf('t') - 1);
-                        _mainTo =
-                            day.substring(day.indexOf('t') + 3, day.length);
-                        _mainfromTime =
-                            _mainfrom.substring(0, _mainfrom.indexOf(' '));
-                        _mainfromAmPm = (_mainfrom.substring(
-                                _mainfrom.indexOf(' ') + 1,
-                                _mainfrom.indexOf('M') + 1))
-                            .tr();
-                        _mainToTime =
-                            _mainTo.substring(0, _mainTo.indexOf(' '));
-                        _mainToAmPm = (_mainTo.substring(
-                                _mainTo.indexOf(' ') + 1, _mainTo.length))
-                            .tr();
+                        _mainfrom = day.substring(day.indexOf('m') + 2, day.indexOf('t') - 1);
+                        _mainTo = day.substring(day.indexOf('t') + 3, day.length);
+                        _mainfromTime = _mainfrom.substring(0, _mainfrom.indexOf(' '));
+                        _mainfromAmPm = (_mainfrom.substring(_mainfrom.indexOf(' ') + 1, _mainfrom.indexOf('M') + 1)).tr();
+                        _mainToTime = _mainTo.substring(0, _mainTo.indexOf(' '));
+                        _mainToAmPm = (_mainTo.substring(_mainTo.indexOf(' ') + 1, _mainTo.length)).tr();
                         _mainTime = LocaleKeys.view_time_day_from.tr() +
                             _mainfromTime +
                             ' ' +
@@ -376,61 +358,41 @@ class _SearchListTileState extends State<SearchListTile> {
                   }
                   if (workDays2.isNotEmpty && workDays2.length == 2) {
                     SearchResultData.firstDay = (workDays2[0]).tr();
-                    _firstfrom = workDays2[1].substring(
-                        workDays2[1].indexOf('m') + 2,
-                        workDays2[1].indexOf('t') - 1);
-                    _firstTo = workDays2[1].substring(
-                        workDays2[1].indexOf('t') + 3, workDays2[1].length);
-                    _firstfromTime =
-                        _firstfrom.substring(0, _firstfrom.indexOf(' '));
-                    _firstfromAmPm = (_firstfrom.substring(
-                            _firstfrom.indexOf(' ') + 1, _firstfrom.length))
-                        .tr();
+                    _firstfrom = workDays2[1].substring(workDays2[1].indexOf('m') + 2, workDays2[1].indexOf('t') - 1);
+                    _firstTo = workDays2[1].substring(workDays2[1].indexOf('t') + 3, workDays2[1].length);
+                    _firstfromTime = _firstfrom.substring(0, _firstfrom.indexOf(' '));
+                    _firstfromAmPm = (_firstfrom.substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length)).tr();
                     _firstToTime = _firstTo.substring(0, _firstTo.indexOf(' '));
-                    _firstToAmPm = (_firstTo.substring(
-                            _firstTo.indexOf(' ') + 1, _firstTo.length))
-                        .tr();
-                    SearchResultData.firstTime =
-                        LocaleKeys.view_time_day_from.tr() +
-                            _firstfromTime +
-                            ' ' +
-                            _firstfromAmPm +
-                            ' ' +
-                            LocaleKeys.view_time_day_to.tr() +
-                            _firstToTime +
-                            ' ' +
-                            _firstToAmPm;
+                    _firstToAmPm = (_firstTo.substring(_firstTo.indexOf(' ') + 1, _firstTo.length)).tr();
+                    SearchResultData.firstTime = LocaleKeys.view_time_day_from.tr() +
+                        _firstfromTime +
+                        ' ' +
+                        _firstfromAmPm +
+                        ' ' +
+                        LocaleKeys.view_time_day_to.tr() +
+                        _firstToTime +
+                        ' ' +
+                        _firstToAmPm;
                   }
                   if (workDays3.isNotEmpty && workDays3.length == 2) {
                     SearchResultData.secondDay = (workDays3[0]).tr();
-                    _secondfrom = workDays3[1].substring(
-                        workDays3[1].indexOf('m') + 2,
-                        workDays3[1].indexOf('t') - 1);
-                    _secondTo = workDays3[1].substring(
-                        workDays3[1].indexOf('t') + 3, workDays3[1].length);
-                    _secondfromTime =
-                        _secondfrom.substring(0, _secondfrom.indexOf(' '));
-                    _secondfromAmPm = (_secondfrom.substring(
-                            _firstfrom.indexOf(' ') + 1, _firstfrom.length))
-                        .tr();
-                    _secondToTime =
-                        _secondTo.substring(0, _secondTo.indexOf(' '));
-                    _secondToAmPm = (_secondTo.substring(
-                            _secondTo.indexOf(' ') + 1, _secondTo.length))
-                        .tr();
-                    SearchResultData.secondTime =
-                        LocaleKeys.view_time_day_from.tr() +
-                            _secondfromTime +
-                            ' ' +
-                            _secondfromAmPm +
-                            ' ' +
-                            LocaleKeys.view_time_day_to.tr() +
-                            _secondToTime +
-                            ' ' +
-                            _secondToAmPm;
+                    _secondfrom = workDays3[1].substring(workDays3[1].indexOf('m') + 2, workDays3[1].indexOf('t') - 1);
+                    _secondTo = workDays3[1].substring(workDays3[1].indexOf('t') + 3, workDays3[1].length);
+                    _secondfromTime = _secondfrom.substring(0, _secondfrom.indexOf(' '));
+                    _secondfromAmPm = (_secondfrom.substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length)).tr();
+                    _secondToTime = _secondTo.substring(0, _secondTo.indexOf(' '));
+                    _secondToAmPm = (_secondTo.substring(_secondTo.indexOf(' ') + 1, _secondTo.length)).tr();
+                    SearchResultData.secondTime = LocaleKeys.view_time_day_from.tr() +
+                        _secondfromTime +
+                        ' ' +
+                        _secondfromAmPm +
+                        ' ' +
+                        LocaleKeys.view_time_day_to.tr() +
+                        _secondToTime +
+                        ' ' +
+                        _secondToAmPm;
                   }
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => FavoriteLocationWrapper()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => FavoriteLocationWrapper()));
                 },
               ),
             ),

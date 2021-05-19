@@ -49,7 +49,6 @@ getFavortiteFlushbar(
   String message,
 ) async {
   Flushbar(
-    title: LocaleKeys.error_error_title.tr(),
     message: message,
     forwardAnimationCurve: Curves.decelerate,
     reverseAnimationCurve: Curves.easeOut,

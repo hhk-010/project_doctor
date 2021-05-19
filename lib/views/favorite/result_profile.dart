@@ -11,7 +11,6 @@ import 'package:project_doctor/services/read_write_path.dart';
 import 'package:project_doctor/views/favorite/result_map.dart';
 import 'package:project_doctor/views/favorite/favorite_list.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class FavoriteProfileResultView extends StatefulWidget {
   final Storage storage = Storage();
@@ -20,7 +19,6 @@ class FavoriteProfileResultView extends StatefulWidget {
 }
 
 class _FavoriteProfileResultViewState extends State<FavoriteProfileResultView> {
-  final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
   String favored01 = '';
   String favored02 = '';
   String favored03 = '';
@@ -113,7 +111,7 @@ class _FavoriteProfileResultViewState extends State<FavoriteProfileResultView> {
               ]);
           if (!FavoriteTile.favoriteListSelected) {
             if (Favorite.favoriteIdlist.contains(SearchResultData.id.toString())) {
-              getFlushbar(context, LocaleKeys.view_patient_added_previously.tr(), _controller);
+              getFavortiteFlushbar(context, LocaleKeys.view_patient_added_previously.tr());
             } else {
               await _writeFavorite01(SearchResultData.id.toString());
               await _writeFavorite02(Favorite.favorite01);
@@ -125,7 +123,10 @@ class _FavoriteProfileResultViewState extends State<FavoriteProfileResultView> {
               await _writeFavorite08(Favorite.favorite07);
               await _writeFavorite09(Favorite.favorite08);
               await _writeFavorite10(Favorite.favorite09);
-              getFlushbar(context, LocaleKeys.view_patient_added_successfully.tr(), _controller);
+              getFavortiteFlushbar(
+                context,
+                LocaleKeys.view_patient_added_successfully.tr(),
+              );
             }
           } else {
             int count = 1;
@@ -155,7 +156,7 @@ class _FavoriteProfileResultViewState extends State<FavoriteProfileResultView> {
               }
               count++;
             }
-            getFlushbar(context, LocaleKeys.view_search_result_list_removed_successfully.tr(), _controller);
+            getFavortiteFlushbar(context, LocaleKeys.view_search_result_list_removed_successfully.tr());
           }
         },
         icon: Icon(

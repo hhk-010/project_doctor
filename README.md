@@ -15,7 +15,7 @@
 - easy_localization key generation 
     - flutter pub run easy_localization:generate -S "assets/translations"
     - flutter pub run easy_localization:generate -S "assets/translations" -f keys -o locale_keys.g.dart
-    - set a string : *LocaleKeys.app_buttons_ok.tr()*
+    - set a string : *"string".tr()*
 - flutter_native_splash
     - flutter pub run flutter_native_splash:create
 - current cura package name
