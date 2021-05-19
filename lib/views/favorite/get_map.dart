@@ -9,6 +9,7 @@ import 'package:project_doctor/generated/locale_keys.g.dart';
 import 'package:project_doctor/services/connectivity.dart';
 import 'package:project_doctor/services/data_model.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:project_doctor/views/favorite/result_profile.dart';
 import 'package:project_doctor/views/search/search_complain/result_profile.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
@@ -18,7 +19,8 @@ class FavoriteGetMapView extends StatefulWidget {
 }
 
 class _FavoriteGetMapViewState extends State<FavoriteGetMapView> {
-  final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
+  final RoundedLoadingButtonController _controller =
+      RoundedLoadingButtonController();
   GoogleMapController _mapController;
 
   List<Marker> _mymarker = [];
@@ -54,7 +56,8 @@ class _FavoriteGetMapViewState extends State<FavoriteGetMapView> {
       child: Stack(
         children: [
           GoogleMap(
-            initialCameraPosition: CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 8),
+            initialCameraPosition:
+                CameraPosition(target: LatLng(33.312805, 44.361488), zoom: 8),
             markers: Set.from(_mymarker),
             onTap: handletap,
             zoomControlsEnabled: false,
@@ -73,22 +76,43 @@ class _FavoriteGetMapViewState extends State<FavoriteGetMapView> {
                   controller: _controller,
                   onPressed: () async {
                     if (!await isInternet())
-                      getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller);
+                      getFlushbar(
+                          context,
+                          LocaleKeys.error_snack_connectivity.tr(),
+                          _controller);
                     else {
                       if (patientlatlng == null)
-                        getFlushbar(context, LocaleKeys.error_snack_map_patient.tr(), _controller);
+                        getFlushbar(
+                            context,
+                            LocaleKeys.error_snack_map_patient.tr(),
+                            _controller);
                       else {
                         geolocate(patientlatlng);
-                        double sum = pow(SearchResultData.geoLat - SearchResultData.patientLat, 2) +
-                            pow(SearchResultData.geoLng - SearchResultData.patientLng, 2);
+                        double sum = pow(
+                                SearchResultData.geoLat -
+                                    SearchResultData.patientLat,
+                                2) +
+                            pow(
+                                SearchResultData.geoLng -
+                                    SearchResultData.patientLng,
+                                2);
                         double result = sqrt(sum);
                         if (result * 100 > 150000)
-                          getFlushbar(context, LocaleKeys.view_patient_invalid_location.tr(), _controller);
+                          getFlushbar(
+                              context,
+                              LocaleKeys.view_patient_invalid_location.tr(),
+                              _controller);
                         else {
                           SearchResultData.distance = await SearchResultData()
-                              .getDistance(SearchResultData.patientLat, SearchResultData.patientLng, SearchResultData.lat, SearchResultData.lng);
+                              .getDistance(
+                                  SearchResultData.patientLat,
+                                  SearchResultData.patientLng,
+                                  SearchResultData.lat,
+                                  SearchResultData.lng);
                           await getSuccess(_controller);
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileResultView()));
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  FavoriteProfileResultView()));
                         }
                       }
                     }

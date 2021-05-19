@@ -19,7 +19,8 @@ class AgeComplainView extends StatefulWidget {
 }
 
 class _AgeComplainViewState extends State<AgeComplainView> {
-  final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
+  final RoundedLoadingButtonController _controller =
+      RoundedLoadingButtonController();
   final ageController = TextEditingController();
   String _age = '';
   //======finding decimal age====
@@ -136,7 +137,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
       "11": [('weakness').tr(), 'weakness'],
       "1": [('coma').tr(), 'coma'],
       "5": [('memory loss').tr(), 'memory loss'],
-      "12": [('other neurological problems').tr(), 'other neurological problems'],
+      "12": [
+        ('other neurological problems').tr(),
+        'other neurological problems'
+      ],
       "2": [('fit').tr(), 'fit'],
     };
 
@@ -152,7 +156,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
       "1": [('cognitive impairment').tr(), 'cognitive impairment'],
       "9": [('hyperactivity').tr(), 'hyperactivity'],
       "6": [('suicide').tr(), 'suicide'],
-      "14": [('other psychological problems').tr(), 'other psychological problems'],
+      "14": [
+        ('other psychological problems').tr(),
+        'other psychological problems'
+      ],
       "8": [('attention deficit').tr(), 'attention deficit'],
     };
     final musckuloskeletal = {
@@ -309,7 +316,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
       "3": [('skin rash').tr(), 'skin rash'],
       "6": [('skin lesion').tr(), 'skin lesion'],
       "11": [('female hirsutism').tr(), 'female hirsutism'],
-      "12": [("other dermatological problems").tr(), 'other dermatological problems'],
+      "12": [
+        ("other dermatological problems").tr(),
+        'other dermatological problems'
+      ],
     };
 
     final gynecology = {
@@ -322,7 +332,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
       "6": [('female hirsutism').tr(), 'female hirsutism'],
       "7": [('prolong pregnancy').tr(), 'prolong pregnancy'],
       "8": [('postmenopausal bleeding').tr(), 'postmenopausal bleeding'],
-      "9": [('other gynecological and obstetrical problems').tr(), 'other gynecological and obstetrical problems'],
+      "9": [
+        ('other gynecological and obstetrical problems').tr(),
+        'other gynecological and obstetrical problems'
+      ],
     };
 
     final uroKidney = {
@@ -368,7 +381,10 @@ class _AgeComplainViewState extends State<AgeComplainView> {
       "16": [('ophthalmoplegia').tr(), 'ophthalmoplegia'],
       "1": [('open eye').tr(), 'open eye'],
       "5": [('lid drop').tr(), 'lid drop'],
-      "17": [('other ophthalmological problems').tr(), 'other ophthalmological problems'],
+      "17": [
+        ('other ophthalmological problems').tr(),
+        'other ophthalmological problems'
+      ],
     };
     final breast = {
       "28": [('galactorrhea').tr(), 'galactorrhea'],
@@ -1274,24 +1290,32 @@ class _AgeComplainViewState extends State<AgeComplainView> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: EdgeInsets.only(bottom: getDeviceType(context, 15, 30, 50, 70)),
+              padding: EdgeInsets.only(
+                  bottom: getDeviceType(context, 15, 30, 50, 70)),
               child: CustomLoadingButton(
                 title: LocaleKeys.view_buttons_next.tr(),
                 controller: _controller,
                 onPressed: () async {
                   FinalScore.age = await getage(_age);
                   if (_age == '') {
-                    getFlushbar(context, LocaleKeys.error_age_message.tr(), _controller);
+                    getFlushbar(context, LocaleKeys.error_age_message.tr(),
+                        _controller);
                   } else if (FinalScore.age == null) {
-                    getFlushbar(context, LocaleKeys.view_patient_age_format.tr(), _controller);
+                    getFlushbar(context,
+                        LocaleKeys.view_patient_age_format.tr(), _controller);
                   } else if (FinalScore.age > 130) {
-                    getFlushbar(context, LocaleKeys.error_age_message_error.tr(), _controller);
+                    getFlushbar(context,
+                        LocaleKeys.error_age_message_error.tr(), _controller);
                   } else {
                     if (genderSelect == '') {
-                      getFlushbar(context, LocaleKeys.error_gender_message.tr(), _controller);
+                      getFlushbar(context, LocaleKeys.error_gender_message.tr(),
+                          _controller);
                     } else {
                       if (complainSelected01 == null) {
-                        getFlushbar(context, LocaleKeys.error_complain_message.tr(), _controller);
+                        getFlushbar(
+                            context,
+                            LocaleKeys.error_complain_message.tr(),
+                            _controller);
                       } else {
                         await getSuccess(_controller);
                         Navigator.of(context).push(
@@ -1308,15 +1332,16 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                             ),
                           ),
                         );
-                      }
-                    }
-                  }
-                },
+                      } //complaint
+                    } //gender
+                  } //age
+                }, //on pressed
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: getDeviceType(context, 10, 25, 50, 70)),
+            padding:
+                EdgeInsets.only(top: getDeviceType(context, 10, 25, 50, 70)),
             child: Container(
               width: getDeviceType(context, 275, 350, 450, 550),
               height: getDeviceType(context, 450, 650, 750, 900),
@@ -1327,8 +1352,9 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                     Container(
                       decoration: CustomStyle.box,
                       child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: getDeviceType(context, 8, 16, 24, 32), vertical: getDeviceType(context, 4, 8, 16, 32)),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: getDeviceType(context, 8, 16, 24, 32),
+                            vertical: getDeviceType(context, 4, 8, 16, 32)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -1345,14 +1371,18 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                               endIndent: 90,
                             ),
                             Padding(
-                              padding: EdgeInsets.all(getDeviceType(context, 8, 16, 24, 32)),
+                              padding: EdgeInsets.all(
+                                  getDeviceType(context, 8, 16, 24, 32)),
                               child: Container(
                                 height: getDeviceType(context, 40, 50, 60, 70),
                                 child: TextField(
-                                    keyboardType: TextInputType.numberWithOptions(decimal: true),
+                                    keyboardType:
+                                        TextInputType.numberWithOptions(
+                                            decimal: true),
                                     inputFormatters: <TextInputFormatter>[
                                       LengthLimitingTextInputFormatter(3),
-                                      FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
+                                      FilteringTextInputFormatter.allow(
+                                          RegExp(r'^\d+\.?\d{0,2}')),
                                     ],
                                     controller: ageController,
                                     onChanged: (ageController) {
@@ -1366,8 +1396,11 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                                         });
                                       }
                                     },
-                                    decoration: CustomStyle.getInputDecoration(context).copyWith(
-                                      hintText: LocaleKeys.view_patient_age.tr(),
+                                    decoration:
+                                        CustomStyle.getInputDecoration(context)
+                                            .copyWith(
+                                      hintText:
+                                          LocaleKeys.view_patient_age.tr(),
                                       prefixIcon: Icon(
                                         Icons.person_search,
                                         color: Colors.deepOrange,
@@ -1454,10 +1487,16 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                         genderSelect: genderSelect,
                       ),
                       child2: CustomDropDownButton(
-                        hint: complainSelected01 == null ? LocaleKeys.view_patient_choose_complain.tr() : (complainSelected01).tr(),
+                        hint: complainSelected01 == null
+                            ? LocaleKeys.view_patient_choose_complain.tr()
+                            : (complainSelected01).tr(),
                         items: menuitems,
-                        onChanged: disabledropdown01 ? null : (value) => secondselected(value),
-                        color: complainSelected01 == null ? Colors.grey[700] : getColor(context, Colors.black, Colors.white),
+                        onChanged: disabledropdown01
+                            ? null
+                            : (value) => secondselected(value),
+                        color: complainSelected01 == null
+                            ? Colors.grey[700]
+                            : getColor(context, Colors.black, Colors.white),
                       ),
                       child3: CustomComplainSwitch(
                         value: _switch01,
@@ -1480,10 +1519,17 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                           genderSelect: genderSelect,
                         ),
                         child2: CustomDropDownButton(
-                            hint: complainSelected02 == null ? LocaleKeys.view_patient_choose_complain.tr() : (complainSelected02).tr(),
+                            hint: complainSelected02 == null
+                                ? LocaleKeys.view_patient_choose_complain.tr()
+                                : (complainSelected02).tr(),
                             items: menuitems,
-                            onChanged: disabledropdown02 ? null : (value) => secondselected2(value),
-                            color: complainSelected02 == null ? Colors.grey[700] : getColor(context, Colors.black, Colors.white)),
+                            onChanged: disabledropdown02
+                                ? null
+                                : (value) => secondselected2(value),
+                            color: complainSelected02 == null
+                                ? Colors.grey[700]
+                                : getColor(
+                                    context, Colors.black, Colors.white)),
                         child3: CustomComplainSwitch(
                           value: _switch02,
                           onChanged: (bool s) {
@@ -1506,10 +1552,16 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                           genderSelect: genderSelect,
                         ),
                         child2: CustomDropDownButton(
-                          hint: complainSelected03 == null ? LocaleKeys.view_patient_choose_complain.tr() : (complainSelected03).tr(),
+                          hint: complainSelected03 == null
+                              ? LocaleKeys.view_patient_choose_complain.tr()
+                              : (complainSelected03).tr(),
                           items: menuitems,
-                          onChanged: disabledropdown03 ? null : (value) => secondselected3(value),
-                          color: complainSelected03 == null ? Colors.grey[700] : getColor(context, Colors.black, Colors.white),
+                          onChanged: disabledropdown03
+                              ? null
+                              : (value) => secondselected3(value),
+                          color: complainSelected03 == null
+                              ? Colors.grey[700]
+                              : getColor(context, Colors.black, Colors.white),
                         ),
                         child3: CustomComplainSwitch(
                           value: _switch03,
@@ -1533,10 +1585,16 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                           genderSelect: genderSelect,
                         ),
                         child2: CustomDropDownButton(
-                          hint: complainSelected04 == null ? LocaleKeys.view_patient_choose_complain.tr() : (complainSelected04).tr(),
+                          hint: complainSelected04 == null
+                              ? LocaleKeys.view_patient_choose_complain.tr()
+                              : (complainSelected04).tr(),
                           items: menuitems,
-                          onChanged: disabledropdown04 ? null : (value) => secondselected4(value),
-                          color: complainSelected04 == null ? Colors.grey[700] : getColor(context, Colors.black, Colors.white),
+                          onChanged: disabledropdown04
+                              ? null
+                              : (value) => secondselected4(value),
+                          color: complainSelected04 == null
+                              ? Colors.grey[700]
+                              : getColor(context, Colors.black, Colors.white),
                         ),
                         child3: CustomComplainSwitch(
                           value: _switch04,
@@ -1560,10 +1618,16 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                           genderSelect: genderSelect,
                         ),
                         child2: CustomDropDownButton(
-                          hint: complainSelected05 == null ? LocaleKeys.view_patient_choose_complain.tr() : (complainSelected05).tr(),
+                          hint: complainSelected05 == null
+                              ? LocaleKeys.view_patient_choose_complain.tr()
+                              : (complainSelected05).tr(),
                           items: menuitems,
-                          onChanged: disabledropdown05 ? null : (value) => secondselected5(value),
-                          color: complainSelected05 == null ? Colors.grey[700] : getColor(context, Colors.black, Colors.white),
+                          onChanged: disabledropdown05
+                              ? null
+                              : (value) => secondselected5(value),
+                          color: complainSelected05 == null
+                              ? Colors.grey[700]
+                              : getColor(context, Colors.black, Colors.white),
                         ),
                         child3: CustomComplainSwitch(
                           value: _switch05,
@@ -1587,10 +1651,16 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                           genderSelect: genderSelect,
                         ),
                         child2: CustomDropDownButton(
-                          hint: complainSelected06 == null ? LocaleKeys.view_patient_choose_complain.tr() : (complainSelected06).tr(),
+                          hint: complainSelected06 == null
+                              ? LocaleKeys.view_patient_choose_complain.tr()
+                              : (complainSelected06).tr(),
                           items: menuitems,
-                          onChanged: disabledropdown06 ? null : (value) => secondselected6(value),
-                          color: complainSelected06 == null ? Colors.grey[700] : getColor(context, Colors.black, Colors.white),
+                          onChanged: disabledropdown06
+                              ? null
+                              : (value) => secondselected6(value),
+                          color: complainSelected06 == null
+                              ? Colors.grey[700]
+                              : getColor(context, Colors.black, Colors.white),
                         ),
                         child3: CustomComplainSwitch(
                           value: _switch06,
@@ -1614,10 +1684,16 @@ class _AgeComplainViewState extends State<AgeComplainView> {
                           genderSelect: genderSelect,
                         ),
                         child2: CustomDropDownButton(
-                          hint: complainSelected07 == null ? LocaleKeys.view_patient_choose_complain.tr() : (complainSelected07).tr(),
+                          hint: complainSelected07 == null
+                              ? LocaleKeys.view_patient_choose_complain.tr()
+                              : (complainSelected07).tr(),
                           items: menuitems,
-                          onChanged: disabledropdown07 ? null : (value) => secondselected7(value),
-                          color: complainSelected07 == null ? Colors.grey[700] : getColor(context, Colors.black, Colors.white),
+                          onChanged: disabledropdown07
+                              ? null
+                              : (value) => secondselected7(value),
+                          color: complainSelected07 == null
+                              ? Colors.grey[700]
+                              : getColor(context, Colors.black, Colors.white),
                         ),
                         child3: SizedBox(
                           height: 0,

@@ -621,5 +621,7 @@
   "breast discharge": "خراج من الثدي",
   "breast lump": "تورم في الثدي",
   "breast skin lesion": "مشاكل جلدية في الثدي",
-  "other breast problems": "مشاكل اخرى في الثدي"
+  "other breast problems": "مشاكل اخرى في الثدي",
+  "added":"===================================",
+  "empty_search_list":"عذرا , لا توجد نتائج بحث مطابقة ..."
 }

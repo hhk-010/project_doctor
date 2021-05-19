@@ -142,7 +142,7 @@
     "removed_successfully": "Doctor's been removed from favorite list successfully",
     "doctor_info": "Doctor's Information",
     "search_result": "Search Result",
-    "your_location": "Your Location"
+    "your_location": "Your Location"   
   },
   "view_patient": {
     "male": "Male",
@@ -621,5 +621,7 @@
   "breast discharge": "Breast discharge",
   "breast lump": "Breast lump",
   "breast skin lesion": "Breast skin lesion",
-  "other breast problems": "Other breast problems"
+  "other breast problems": "Other breast problems",
+  
+  "empty_search_list":"sorry , there is no similar search result ..."
 }

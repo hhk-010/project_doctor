@@ -29,7 +29,8 @@ class ProfileResultView extends StatefulWidget {
 }
 
 class _ProfileResultViewState extends State<ProfileResultView> {
-  final RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
+  final RoundedLoadingButtonController _controller =
+      RoundedLoadingButtonController();
   String favored01 = '';
   String favored02 = '';
   String favored03 = '';
@@ -101,16 +102,36 @@ class _ProfileResultViewState extends State<ProfileResultView> {
         isAppbar: true,
         action: IconButton(
           onPressed: () async {
-            await widget.storage.readFavorite01().then((value) => setState(() => Favorite.favorite01 = value));
-            await widget.storage.readFavorite02().then((value) => setState(() => Favorite.favorite02 = value));
-            await widget.storage.readFavorite03().then((value) => setState(() => Favorite.favorite03 = value));
-            await widget.storage.readFavorite04().then((value) => setState(() => Favorite.favorite04 = value));
-            await widget.storage.readFavorite05().then((value) => setState(() => Favorite.favorite05 = value));
-            await widget.storage.readFavorite06().then((value) => setState(() => Favorite.favorite06 = value));
-            await widget.storage.readFavorite07().then((value) => setState(() => Favorite.favorite07 = value));
-            await widget.storage.readFavorite08().then((value) => setState(() => Favorite.favorite08 = value));
-            await widget.storage.readFavorite09().then((value) => setState(() => Favorite.favorite09 = value));
-            await widget.storage.readFavorite10().then((value) => setState(() => Favorite.favorite10 = value));
+            await widget.storage
+                .readFavorite01()
+                .then((value) => setState(() => Favorite.favorite01 = value));
+            await widget.storage
+                .readFavorite02()
+                .then((value) => setState(() => Favorite.favorite02 = value));
+            await widget.storage
+                .readFavorite03()
+                .then((value) => setState(() => Favorite.favorite03 = value));
+            await widget.storage
+                .readFavorite04()
+                .then((value) => setState(() => Favorite.favorite04 = value));
+            await widget.storage
+                .readFavorite05()
+                .then((value) => setState(() => Favorite.favorite05 = value));
+            await widget.storage
+                .readFavorite06()
+                .then((value) => setState(() => Favorite.favorite06 = value));
+            await widget.storage
+                .readFavorite07()
+                .then((value) => setState(() => Favorite.favorite07 = value));
+            await widget.storage
+                .readFavorite08()
+                .then((value) => setState(() => Favorite.favorite08 = value));
+            await widget.storage
+                .readFavorite09()
+                .then((value) => setState(() => Favorite.favorite09 = value));
+            await widget.storage
+                .readFavorite10()
+                .then((value) => setState(() => Favorite.favorite10 = value));
             setState(() => Favorite.favoriteIdlist = [
                   Favorite.favorite01,
                   Favorite.favorite02,
@@ -124,8 +145,10 @@ class _ProfileResultViewState extends State<ProfileResultView> {
                   Favorite.favorite10
                 ]);
 
-            if (Favorite.favoriteIdlist.contains(_ResultDoctorProfileState.iD)) {
-              getFlushbar(context, LocaleKeys.view_patient_added_previously.tr(), _controller);
+            if (Favorite.favoriteIdlist
+                .contains(_ResultDoctorProfileState.iD)) {
+              getFlushbar(context,
+                  LocaleKeys.view_patient_added_previously.tr(), _controller);
             } else {
               await _writeFavorite01(_ResultDoctorProfileState.iD);
               await _writeFavorite02(Favorite.favorite01);
@@ -137,7 +160,8 @@ class _ProfileResultViewState extends State<ProfileResultView> {
               await _writeFavorite08(Favorite.favorite07);
               await _writeFavorite09(Favorite.favorite08);
               await _writeFavorite10(Favorite.favorite09);
-              getFlushbar(context, LocaleKeys.view_patient_added_successfully.tr(), _controller);
+              getFlushbar(context,
+                  LocaleKeys.view_patient_added_successfully.tr(), _controller);
             }
           },
           icon: Icon(Icons.star),
@@ -297,21 +321,29 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
     final doctorListProvider = Provider.of<QuerySnapshot>(context);
     if (doctorListProvider != null) {
       for (var docu in doctorListProvider.docs) {
-        sum = ((docu.data()['lat'] - MyVariables.lat) * (docu.data()['lat'] - MyVariables.lat)) +
-            ((docu.data()['lng'] - MyVariables.lng) * (docu.data()['lng'] - MyVariables.lng));
+        sum = ((docu.data()['lat'] - MyVariables.lat) *
+                (docu.data()['lat'] - MyVariables.lat)) +
+            ((docu.data()['lng'] - MyVariables.lng) *
+                (docu.data()['lng'] - MyVariables.lng));
         result = sqrt(sum);
-        if (result > distance && (FinalScore.speciality == docu.data()['speciality'] || FinalScore.speciality2 == docu.data()['speciality'])) {
+        if (result > distance &&
+            (FinalScore.speciality == docu.data()['speciality'] ||
+                FinalScore.speciality2 == docu.data()['speciality'])) {
           setState(() {
             distance = result;
           });
         }
       }
       for (var docu in doctorListProvider.docs) {
-        sum = ((docu.data()['lat'] - MyVariables.lat) * (docu.data()['lat'] - MyVariables.lat)) +
-            ((docu.data()['lng'] - MyVariables.lng) * (docu.data()['lng'] - MyVariables.lng));
+        sum = ((docu.data()['lat'] - MyVariables.lat) *
+                (docu.data()['lat'] - MyVariables.lat)) +
+            ((docu.data()['lng'] - MyVariables.lng) *
+                (docu.data()['lng'] - MyVariables.lng));
         result = sqrt(sum);
 
-        if (result <= distance && (FinalScore.speciality == docu.data()['speciality'] || FinalScore.speciality2 == docu.data()['speciality'])) {
+        if (result <= distance &&
+            (FinalScore.speciality == docu.data()['speciality'] ||
+                FinalScore.speciality2 == docu.data()['speciality'])) {
           setState(() {
             distance = result;
             iD = docu.id.toString();
@@ -346,9 +378,13 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                 _mainfrom = x.substring(x.indexOf('m') + 2, x.indexOf('t') - 1);
                 _mainTo = x.substring(x.indexOf('t') + 3, x.length);
                 _mainfromTime = _mainfrom.substring(0, _mainfrom.indexOf(' '));
-                _mainfromAmPm = (_mainfrom.substring(_mainfrom.indexOf(' ') + 1, _mainfrom.indexOf('M') + 1)).tr();
+                _mainfromAmPm = (_mainfrom.substring(
+                        _mainfrom.indexOf(' ') + 1, _mainfrom.indexOf('M') + 1))
+                    .tr();
                 _mainToTime = _mainTo.substring(0, _mainTo.indexOf(' '));
-                _mainToAmPm = (_mainTo.substring(_mainTo.indexOf(' ') + 1, _mainTo.length)).tr();
+                _mainToAmPm = (_mainTo.substring(
+                        _mainTo.indexOf(' ') + 1, _mainTo.length))
+                    .tr();
                 _mainTime = LocaleKeys.view_time_day_from.tr() +
                     _mainfromTime +
                     ' ' +
@@ -369,12 +405,19 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             _mainDays = '';
             if (_workDays02.isNotEmpty && _workDays02.length == 2) {
               _firstEDay = (_workDays02[0]).tr();
-              _firstfrom = _workDays02[1].substring(_workDays02[1].indexOf('m') + 2, _workDays02[1].indexOf('t') - 1);
-              _firstTo = _workDays02[1].substring(_workDays02[1].indexOf('t') + 3, _workDays02[1].length);
+              _firstfrom = _workDays02[1].substring(
+                  _workDays02[1].indexOf('m') + 2,
+                  _workDays02[1].indexOf('t') - 1);
+              _firstTo = _workDays02[1].substring(
+                  _workDays02[1].indexOf('t') + 3, _workDays02[1].length);
               _firstfromTime = _firstfrom.substring(0, _firstfrom.indexOf(' '));
-              _firstfromAmPm = (_firstfrom.substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length)).tr();
+              _firstfromAmPm = (_firstfrom.substring(
+                      _firstfrom.indexOf(' ') + 1, _firstfrom.length))
+                  .tr();
               _firstToTime = _firstTo.substring(0, _firstTo.indexOf(' '));
-              _firstToAmPm = (_firstTo.substring(_firstTo.indexOf(' ') + 1, _firstTo.length)).tr();
+              _firstToAmPm = (_firstTo.substring(
+                      _firstTo.indexOf(' ') + 1, _firstTo.length))
+                  .tr();
               _firstTime = LocaleKeys.view_time_day_from.tr() +
                   _firstfromTime +
                   ' ' +
@@ -387,12 +430,20 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             }
             if (_workDays03.isNotEmpty && _workDays03.length == 2) {
               _secondEDay = (_workDays03[0]).tr();
-              _secondfrom = _workDays03[1].substring(_workDays03[1].indexOf('m') + 2, _workDays03[1].indexOf('t') - 1);
-              _secondTo = _workDays03[1].substring(_workDays03[1].indexOf('t') + 3, _workDays03[1].length);
-              _secondfromTime = _secondfrom.substring(0, _secondfrom.indexOf(' '));
-              _secondfromAmPm = (_secondfrom.substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length)).tr();
+              _secondfrom = _workDays03[1].substring(
+                  _workDays03[1].indexOf('m') + 2,
+                  _workDays03[1].indexOf('t') - 1);
+              _secondTo = _workDays03[1].substring(
+                  _workDays03[1].indexOf('t') + 3, _workDays03[1].length);
+              _secondfromTime =
+                  _secondfrom.substring(0, _secondfrom.indexOf(' '));
+              _secondfromAmPm = (_secondfrom.substring(
+                      _firstfrom.indexOf(' ') + 1, _firstfrom.length))
+                  .tr();
               _secondToTime = _secondTo.substring(0, _secondTo.indexOf(' '));
-              _secondToAmPm = (_secondTo.substring(_secondTo.indexOf(' ') + 1, _secondTo.length)).tr();
+              _secondToAmPm = (_secondTo.substring(
+                      _secondTo.indexOf(' ') + 1, _secondTo.length))
+                  .tr();
               _secondTime = LocaleKeys.view_time_day_from.tr() +
                   _secondfromTime +
                   ' ' +
@@ -405,7 +456,8 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
             }
           });
         }
-        if ((_name == '' || _name == null) && (_speciality == '' || _speciality == null)) {
+        if ((_name == '' || _name == null) &&
+            (_speciality == '' || _speciality == null)) {
           setState(() => isLoading = true);
         } else {
           setState(() => isLoading = false);
@@ -447,11 +499,13 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                             CircleAvatar(
                               backgroundColor: Colors.deepOrange,
                               radius: getDeviceType(context, 35, 50, 60, 75),
-                              backgroundImage: AssetImage('assets/images/register.png'),
+                              backgroundImage:
+                                  AssetImage('assets/images/register.png'),
                             ),
                             Text(
                               _name,
-                              style: CustomStyle.getTitleBlack(context).copyWith(fontFamily: 'noto_arabic'),
+                              style: CustomStyle.getTitleBlack(context)
+                                  .copyWith(fontFamily: 'noto_arabic'),
                             ),
                             Text(
                               (_province).tr(),
@@ -486,12 +540,21 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
                                 height: 5,
                               )
                             : CustomProfileColumn2(
-                                title: LocaleKeys.view_doctor_another_clinic_work.tr(),
-                                content: _firstEDay + " " + _firstTime + '\n' + _secondEDay + " " + _secondTime,
+                                title: LocaleKeys
+                                    .view_doctor_another_clinic_work
+                                    .tr(),
+                                content: _firstEDay +
+                                    " " +
+                                    _firstTime +
+                                    '\n' +
+                                    _secondEDay +
+                                    " " +
+                                    _secondTime,
                               ),
                         CustomProfileColumn(
                           title: LocaleKeys.view_patient_result_distances.tr(),
-                          content: realnearby + LocaleKeys.view_patient_result_km.tr(),
+                          content: realnearby +
+                              LocaleKeys.view_patient_result_km.tr(),
                         ),
                       ],
                     ),
@@ -501,16 +564,21 @@ class _ResultDoctorProfileState extends State<ResultDoctorProfile> {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: getDeviceType(context, 15, 40, 75, 125)),
+                  padding: EdgeInsets.only(
+                      bottom: getDeviceType(context, 15, 40, 75, 125)),
                   child: BaseButton(
-                      title: LocaleKeys.view_patient_result_doctor_locat.tr(),
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => MapResultView(
-                                  lat: _lat,
-                                  lng: _lng,
-                                )));
-                      }),
+                    title: LocaleKeys.view_patient_result_doctor_locat.tr(),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => MapResultView(
+                            lat: _lat,
+                            lng: _lng,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
