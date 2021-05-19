@@ -28,16 +28,36 @@ class _FavoriteListViewState extends State<FavoriteListView> {
     SelectedPage.favoriteSelected = true;
     SelectedPage.lastSearchSelected = false;
     SelectedPage.newSearchSelected = false;
-    widget.storage.readFavorite01().then((value) => setState(() => Favorite.favorite01 = value));
-    widget.storage.readFavorite02().then((value) => setState(() => Favorite.favorite02 = value));
-    widget.storage.readFavorite03().then((value) => setState(() => Favorite.favorite03 = value));
-    widget.storage.readFavorite04().then((value) => setState(() => Favorite.favorite04 = value));
-    widget.storage.readFavorite05().then((value) => setState(() => Favorite.favorite05 = value));
-    widget.storage.readFavorite06().then((value) => setState(() => Favorite.favorite06 = value));
-    widget.storage.readFavorite07().then((value) => setState(() => Favorite.favorite07 = value));
-    widget.storage.readFavorite08().then((value) => setState(() => Favorite.favorite08 = value));
-    widget.storage.readFavorite09().then((value) => setState(() => Favorite.favorite09 = value));
-    widget.storage.readFavorite10().then((value) => setState(() => Favorite.favorite10 = value));
+    widget.storage
+        .readFavorite01()
+        .then((value) => setState(() => Favorite.favorite01 = value));
+    widget.storage
+        .readFavorite02()
+        .then((value) => setState(() => Favorite.favorite02 = value));
+    widget.storage
+        .readFavorite03()
+        .then((value) => setState(() => Favorite.favorite03 = value));
+    widget.storage
+        .readFavorite04()
+        .then((value) => setState(() => Favorite.favorite04 = value));
+    widget.storage
+        .readFavorite05()
+        .then((value) => setState(() => Favorite.favorite05 = value));
+    widget.storage
+        .readFavorite06()
+        .then((value) => setState(() => Favorite.favorite06 = value));
+    widget.storage
+        .readFavorite07()
+        .then((value) => setState(() => Favorite.favorite07 = value));
+    widget.storage
+        .readFavorite08()
+        .then((value) => setState(() => Favorite.favorite08 = value));
+    widget.storage
+        .readFavorite09()
+        .then((value) => setState(() => Favorite.favorite09 = value));
+    widget.storage
+        .readFavorite10()
+        .then((value) => setState(() => Favorite.favorite10 = value));
     setState(() => Favorite.favoriteIdlist = [
           Favorite.favorite01,
           Favorite.favorite02,
@@ -679,8 +699,10 @@ class _FavoriteListTileState extends State<FavoriteListTile> {
           favoriteList: searchResultData != null
               ? Favorite.favoriteList18.length != 0
                   ? Favorite.favoriteList18[index]
-                  : FavoriteListData(name: 'Estate', speciality: 'O', address: 'District')
-              : FavoriteListData(name: 'Estate', speciality: 'Offer', address: 'District'),
+                  : FavoriteListData(
+                      name: 'Estate', speciality: 'O', address: 'District')
+              : FavoriteListData(
+                  name: 'Estate', speciality: 'Offer', address: 'District'),
         );
       },
     );
@@ -813,7 +835,8 @@ class _FavoriteTileState extends State<FavoriteTile> {
                     IconButton(
                       onPressed: () {
                         Navigator.pop(context);
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => FavoriteListView()));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => FavoriteListView()));
                       },
                       icon: Icon(
                         Icons.replay_rounded,
@@ -864,7 +887,8 @@ class _FavoriteTileState extends State<FavoriteTile> {
                   SearchResultData.speciality = widget.favoriteList.speciality;
                   SearchResultData.address = widget.favoriteList.address;
                   SearchResultData.province = widget.favoriteList.province;
-                  SearchResultData.phoneNumber = widget.favoriteList.phoneNumber;
+                  SearchResultData.phoneNumber =
+                      widget.favoriteList.phoneNumber;
                   SearchResultData.lat = widget.favoriteList.lat;
                   SearchResultData.lng = widget.favoriteList.lng;
                   workDays1 = widget.favoriteList.workDays01;
@@ -876,12 +900,21 @@ class _FavoriteTileState extends State<FavoriteTile> {
                       if (day.length < 12) {
                         SearchResultData.workDays01.add((day).tr());
                       } else {
-                        _mainfrom = day.substring(day.indexOf('m') + 2, day.indexOf('t') - 1);
-                        _mainTo = day.substring(day.indexOf('t') + 3, day.length);
-                        _mainfromTime = _mainfrom.substring(0, _mainfrom.indexOf(' '));
-                        _mainfromAmPm = (_mainfrom.substring(_mainfrom.indexOf(' ') + 1, _mainfrom.indexOf('M') + 1)).tr();
-                        _mainToTime = _mainTo.substring(0, _mainTo.indexOf(' '));
-                        _mainToAmPm = (_mainTo.substring(_mainTo.indexOf(' ') + 1, _mainTo.length)).tr();
+                        _mainfrom = day.substring(
+                            day.indexOf('m') + 2, day.indexOf('t') - 1);
+                        _mainTo =
+                            day.substring(day.indexOf('t') + 3, day.length);
+                        _mainfromTime =
+                            _mainfrom.substring(0, _mainfrom.indexOf(' '));
+                        _mainfromAmPm = (_mainfrom.substring(
+                                _mainfrom.indexOf(' ') + 1,
+                                _mainfrom.indexOf('M') + 1))
+                            .tr();
+                        _mainToTime =
+                            _mainTo.substring(0, _mainTo.indexOf(' '));
+                        _mainToAmPm = (_mainTo.substring(
+                                _mainTo.indexOf(' ') + 1, _mainTo.length))
+                            .tr();
                         _mainTime = LocaleKeys.view_time_day_from.tr() +
                             _mainfromTime +
                             ' ' +
@@ -897,41 +930,61 @@ class _FavoriteTileState extends State<FavoriteTile> {
                   }
                   if (workDays2.isNotEmpty && workDays2.length == 2) {
                     SearchResultData.firstDay = (workDays2[0]).tr();
-                    _firstfrom = workDays2[1].substring(workDays2[1].indexOf('m') + 2, workDays2[1].indexOf('t') - 1);
-                    _firstTo = workDays2[1].substring(workDays2[1].indexOf('t') + 3, workDays2[1].length);
-                    _firstfromTime = _firstfrom.substring(0, _firstfrom.indexOf(' '));
-                    _firstfromAmPm = (_firstfrom.substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length)).tr();
+                    _firstfrom = workDays2[1].substring(
+                        workDays2[1].indexOf('m') + 2,
+                        workDays2[1].indexOf('t') - 1);
+                    _firstTo = workDays2[1].substring(
+                        workDays2[1].indexOf('t') + 3, workDays2[1].length);
+                    _firstfromTime =
+                        _firstfrom.substring(0, _firstfrom.indexOf(' '));
+                    _firstfromAmPm = (_firstfrom.substring(
+                            _firstfrom.indexOf(' ') + 1, _firstfrom.length))
+                        .tr();
                     _firstToTime = _firstTo.substring(0, _firstTo.indexOf(' '));
-                    _firstToAmPm = (_firstTo.substring(_firstTo.indexOf(' ') + 1, _firstTo.length)).tr();
-                    SearchResultData.firstTime = LocaleKeys.view_time_day_from.tr() +
-                        _firstfromTime +
-                        ' ' +
-                        _firstfromAmPm +
-                        ' ' +
-                        LocaleKeys.view_time_day_to.tr() +
-                        _firstToTime +
-                        ' ' +
-                        _firstToAmPm;
+                    _firstToAmPm = (_firstTo.substring(
+                            _firstTo.indexOf(' ') + 1, _firstTo.length))
+                        .tr();
+                    SearchResultData.firstTime =
+                        LocaleKeys.view_time_day_from.tr() +
+                            _firstfromTime +
+                            ' ' +
+                            _firstfromAmPm +
+                            ' ' +
+                            LocaleKeys.view_time_day_to.tr() +
+                            _firstToTime +
+                            ' ' +
+                            _firstToAmPm;
                   }
                   if (workDays3.isNotEmpty && workDays3.length == 2) {
                     SearchResultData.secondDay = (workDays3[0]).tr();
-                    _secondfrom = workDays3[1].substring(workDays3[1].indexOf('m') + 2, workDays3[1].indexOf('t') - 1);
-                    _secondTo = workDays3[1].substring(workDays3[1].indexOf('t') + 3, workDays3[1].length);
-                    _secondfromTime = _secondfrom.substring(0, _secondfrom.indexOf(' '));
-                    _secondfromAmPm = (_secondfrom.substring(_firstfrom.indexOf(' ') + 1, _firstfrom.length)).tr();
-                    _secondToTime = _secondTo.substring(0, _secondTo.indexOf(' '));
-                    _secondToAmPm = (_secondTo.substring(_secondTo.indexOf(' ') + 1, _secondTo.length)).tr();
-                    SearchResultData.secondTime = LocaleKeys.view_time_day_from.tr() +
-                        _secondfromTime +
-                        ' ' +
-                        _secondfromAmPm +
-                        ' ' +
-                        LocaleKeys.view_time_day_to.tr() +
-                        _secondToTime +
-                        ' ' +
-                        _secondToAmPm;
+                    _secondfrom = workDays3[1].substring(
+                        workDays3[1].indexOf('m') + 2,
+                        workDays3[1].indexOf('t') - 1);
+                    _secondTo = workDays3[1].substring(
+                        workDays3[1].indexOf('t') + 3, workDays3[1].length);
+                    _secondfromTime =
+                        _secondfrom.substring(0, _secondfrom.indexOf(' '));
+                    _secondfromAmPm = (_secondfrom.substring(
+                            _firstfrom.indexOf(' ') + 1, _firstfrom.length))
+                        .tr();
+                    _secondToTime =
+                        _secondTo.substring(0, _secondTo.indexOf(' '));
+                    _secondToAmPm = (_secondTo.substring(
+                            _secondTo.indexOf(' ') + 1, _secondTo.length))
+                        .tr();
+                    SearchResultData.secondTime =
+                        LocaleKeys.view_time_day_from.tr() +
+                            _secondfromTime +
+                            ' ' +
+                            _secondfromAmPm +
+                            ' ' +
+                            LocaleKeys.view_time_day_to.tr() +
+                            _secondToTime +
+                            ' ' +
+                            _secondToAmPm;
                   }
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => FavoriteLocationWrapper()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => FavoriteLocationWrapper()));
                 },
               ),
             ),
