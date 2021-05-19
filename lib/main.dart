@@ -23,7 +23,8 @@ Future<void> main() async {
       saveLocale: false,
       useOnlyLangCode: true,
       // child: MyApp(),
-      child: DevicePreview(enabled: !kReleaseMode, builder: (context) => MyApp()),
+      child:
+          DevicePreview(enabled: !kReleaseMode, builder: (context) => MyApp()),
     ),
   );
 }
