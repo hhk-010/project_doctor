@@ -14,9 +14,8 @@ import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class FavoriteGetMapView extends StatefulWidget {
   @override
-  _FavoriteGetMapViewState createState() => _FavoriteGetMapViewState();
+        _FavoriteGetMapViewState createState() => _FavoriteGetMapViewState();
 }
-
 class _FavoriteGetMapViewState extends State<FavoriteGetMapView> {
   final RoundedLoadingButtonController _controller =
       RoundedLoadingButtonController();

@@ -14,4 +14,14 @@
         "**/.vscode": true,
         "**/pubspec.lock": true,
     },
+    "files.autoSave": "afterDelay",
+    "editor.formatOnSave": true,
+    "[makefile]": {
+
+        "editor.insertSpaces": false
+    },
+    "editor.formatOnType": true,
+    "editor.fontFamily": "cascadia code",
+    "editor.wordWrapColumn": 140,
+    "editor.wordWrap": "wordWrapColumn",
 }

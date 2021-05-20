@@ -376,8 +376,8 @@ class _FavoriteLocationWrapperState extends State<FavoriteLocationWrapper> {
                       controller: _controller2,
                       onPressed: () async {
                         if (!(SearchResultData.patientProvince == null || SearchResultData.patientProvince == '')) {
-                          SearchResultData.geoLatlng =
-                              await getCoordinatesFromAddress(SearchResultData.patientProvince + ' , ' + district[SearchResultData.patientProvince]);
+                          SearchResultData.geoLatlng = await getCoordinatesFromAddress(
+                              SearchResultData.patientProvince + ' , ' + district[SearchResultData.patientProvince]);
                           SearchResultData.geoLat = double.parse(SearchResultData.geoLatlng
                               .substring(SearchResultData.geoLatlng.indexOf('{') + 1, SearchResultData.geoLatlng.indexOf(',')));
                           SearchResultData.geoLng = double.parse(SearchResultData.geoLatlng

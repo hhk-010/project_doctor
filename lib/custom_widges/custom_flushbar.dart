@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';

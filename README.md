@@ -12,9 +12,8 @@
 - Flutter build command
     - flutter build apk --split-per-abi
     - flutter build appbundle
-- easy_localization key generation 
+- easy_localization key generation
     - flutter pub run easy_localization:generate -S "assets/translations"
-    - flutter pub run easy_localization:generate -S "assets/translations" -f keys -o locale_keys.g.dart
     - set a string : *"string".tr()*
 - flutter_native_splash
     - flutter pub run flutter_native_splash:create
