@@ -1,4 +1,3 @@
-
 class FinalScore {
   static int finale;
   static String speciality = '';
@@ -36,10 +35,7 @@ countfinal() {
     FinalScore.endoscore: ['Endocrinologist', 'Internist'],
     FinalScore.gitscore: ['Enterologist', 'Internist'],
     FinalScore.generalscore: ['General Surgeon', 'General Surgeon'],
-    FinalScore.thoracicscore: [
-      'ThoracoVascular Surgeon',
-      'ThoracoVascular Surgeon'
-    ],
+    FinalScore.thoracicscore: ['ThoracoVascular Surgeon', 'ThoracoVascular Surgeon'],
     FinalScore.erscore: ['Emergency physician', 'Emergency physician'],
     FinalScore.internscore: ['Internist', 'Internist'],
     FinalScore.gynescore: ['Gynecologist', 'Gynecologist'],

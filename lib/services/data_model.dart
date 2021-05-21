@@ -1,5 +1,40 @@
 import 'dart:math';
 
+class SignInData {
+  static String email;
+  static String password;
+  static bool isPasswordVisible;
+}
+
+class RegisterData {
+  static bool isPasswordVisible;
+  static String email;
+  static String password;
+  static String name;
+  static String gender;
+  static String speciality;
+  static String phoneNumber;
+  static String province;
+  static String clinicAddress;
+}
+
+class UpdateProfileData {
+  static String name;
+  static String gender;
+  static String speciality;
+  static String phoneNumber;
+  static String province;
+  static String clinicAddress;
+}
+
+class ResetPasswordData {
+  static String email;
+}
+
+class UpdateDataSecurityInfo {
+  static String speciality;
+}
+
 class UserID {
   final String uid;
 
@@ -96,15 +131,15 @@ class FavoriteListData {
       this.lng});
 }
 
-class NewSearchData {
+class ProfileSearchData {
   static String province = '';
-  static String Name = '';
+  static String name = '';
   static String speciality = '';
   static bool nameSelected = false;
   static bool specialitySelected = false;
 }
 
-class NewSearchListData {
+class ProfileSearchListData {
   var id;
   final String name;
   final String address;
@@ -116,7 +151,7 @@ class NewSearchListData {
   final List workDays03;
   final double lat;
   final double lng;
-  NewSearchListData(
+  ProfileSearchListData(
       {this.id,
       this.name,
       this.address,
@@ -162,9 +197,7 @@ class SearchResultData {
   static bool mapSelected;
 }
 
-class SelectedPage {
-  static bool complaintSelected = false;
-  static bool lastSearchSelected = false;
-  static bool favoriteSelected = false;
-  static bool newSearchSelected = false;
+class PatientLocation {
+  static bool locationSelected = false;
+  static bool mapSelected = false;
 }

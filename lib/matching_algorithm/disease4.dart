@@ -10,8 +10,7 @@ class Disease4 {
   String rf2;
   String rf3;
   String rf4;
-  Disease4(this.name, this.sym1, this.sym2, this.sym3, this.sym4, this.rf1,
-      this.rf2, this.rf3, this.rf4);
+  Disease4(this.name, this.sym1, this.sym2, this.sym3, this.sym4, this.rf1, this.rf2, this.rf3, this.rf4);
 }
 
 maindisease4(
@@ -44,139 +43,35 @@ maindisease4(
     String alcohol,
     String smok,
     gender) {
-  var obs = Disease4(
-      'obstetric diseases',
-      'abnormal vaginal bleeding',
-      'prolong pregnancy',
-      'abdominal pain',
-      'vaginal discharge',
-      'miscarriage',
-      'menorrhagia',
-      'null',
-      'pregnancy');
-  var gyne = Disease4(
-      'gyne diseases',
-      'amenorrhea',
-      'abnormal cycle',
-      'abnormal vaginal bleeding',
-      'vaginal discharge',
-      'decrease  libido',
-      'genital region mass',
-      'pain during cycle',
-      'female infertility');
-  var gyne2 = Disease4(
-      'gyne diseases',
-      'oligomenorrhea',
-      'postmenopausal bleeding',
-      'abdominal pain',
-      'other gynecological and obstetrical problems',
-      'null',
-      'null',
-      'null',
-      'null');
-  var obs2 = Disease4(
-      'obstetric diseases',
-      'abnormal vaginal bleeding',
-      'prolong pregnancy',
-      'abdominal pain',
-      'vaginal discharge',
-      'miscarriage',
-      'menorrhagia',
-      'null',
-      'pregnancy');
-  var gyne3 = Disease4(
-      'gyne diseases',
-      'amenorrhea',
-      'abnormal cycle',
-      'abnormal vaginal bleeding',
-      'vaginal discharge',
-      'decrease  libido',
-      'genital region mass',
-      'pain during cycle',
-      'female infertility');
-  var gyne4 = Disease4(
-      'gyne diseases',
-      'oligomenorrhea',
-      'postmenopausal bleeding',
-      'abdominal pain',
-      'other gynecological and obstetrical problems',
-      'null',
-      'null',
-      'null',
-      'null');
-  var obs3 = Disease4(
-      'obstetric diseases',
-      'abnormal vaginal bleeding',
-      'prolong pregnancy',
-      'abdominal pain',
-      'vaginal discharge',
-      'null',
-      'menorrhagia',
-      'null',
-      'pregnancy');
-  var gyne5 = Disease4(
-      'gyne diseases',
-      'amenorrhea',
-      'abnormal cycle',
-      'abnormal vaginal bleeding',
-      'vaginal discharge',
-      'decrease  libido',
-      'genital region mass',
-      'pain during cycle',
-      'female infertility');
-  var gyne6 = Disease4(
-      'gyne diseases',
-      'oligomenorrhea',
-      'postmenopausal bleeding',
-      'abdominal pain',
-      'other gynecological and obstetrical problems',
-      'null',
-      'null',
-      'null',
-      'null');
+  var obs = Disease4('obstetric diseases', 'abnormal vaginal bleeding', 'prolong pregnancy', 'abdominal pain', 'vaginal discharge',
+      'miscarriage', 'menorrhagia', 'null', 'pregnancy');
+  var gyne = Disease4('gyne diseases', 'amenorrhea', 'abnormal cycle', 'abnormal vaginal bleeding', 'vaginal discharge', 'decrease  libido',
+      'genital region mass', 'pain during cycle', 'female infertility');
+  var gyne2 = Disease4('gyne diseases', 'oligomenorrhea', 'postmenopausal bleeding', 'abdominal pain',
+      'other gynecological and obstetrical problems', 'null', 'null', 'null', 'null');
+  var obs2 = Disease4('obstetric diseases', 'abnormal vaginal bleeding', 'prolong pregnancy', 'abdominal pain', 'vaginal discharge',
+      'miscarriage', 'menorrhagia', 'null', 'pregnancy');
+  var gyne3 = Disease4('gyne diseases', 'amenorrhea', 'abnormal cycle', 'abnormal vaginal bleeding', 'vaginal discharge',
+      'decrease  libido', 'genital region mass', 'pain during cycle', 'female infertility');
+  var gyne4 = Disease4('gyne diseases', 'oligomenorrhea', 'postmenopausal bleeding', 'abdominal pain',
+      'other gynecological and obstetrical problems', 'null', 'null', 'null', 'null');
+  var obs3 = Disease4('obstetric diseases', 'abnormal vaginal bleeding', 'prolong pregnancy', 'abdominal pain', 'vaginal discharge', 'null',
+      'menorrhagia', 'null', 'pregnancy');
+  var gyne5 = Disease4('gyne diseases', 'amenorrhea', 'abnormal cycle', 'abnormal vaginal bleeding', 'vaginal discharge',
+      'decrease  libido', 'genital region mass', 'pain during cycle', 'female infertility');
+  var gyne6 = Disease4('gyne diseases', 'oligomenorrhea', 'postmenopausal bleeding', 'abdominal pain',
+      'other gynecological and obstetrical problems', 'null', 'null', 'null', 'null');
 
   var obst = [obs, obs2, obs3, gyne, gyne2, gyne3, gyne4, gyne5, gyne6];
   var ob = 0;
   var obgy = obst.length;
-  var obsym = [
-    obst[ob].sym1,
-    obst[ob].sym2,
-    obst[ob].sym3,
-    obst[ob].sym4,
-    obst[ob].rf1,
-    obst[ob].rf2,
-    obst[ob].rf3,
-    obst[ob].rf4
-  ];
+  var obsym = [obst[ob].sym1, obst[ob].sym2, obst[ob].sym3, obst[ob].sym4, obst[ob].rf1, obst[ob].rf2, obst[ob].rf3, obst[ob].rf4];
   var obskey = 0;
   var obslen = obsym.length;
 
   var chiefcom = cc;
   var others = [s2, s3, s4, s5, s6, s7];
-  var riskf = [
-    c1,
-    c2,
-    c3,
-    c4,
-    c5,
-    c6,
-    c7,
-    c8,
-    c9,
-    c10,
-    c11,
-    c12,
-    c13,
-    c14,
-    c15,
-    preg,
-    ob,
-    fam,
-    inact,
-    smok,
-    alcohol,
-    gender
-  ];
+  var riskf = [c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, preg, ob, fam, inact, smok, alcohol, gender];
   var o = 0;
   var oo = others.length;
   // ignore: unused_local_variable
@@ -214,16 +109,7 @@ maindisease4(
     ob += 1;
     obgy -= 1;
     if (obgy > 0) {
-      obsym = [
-        obst[ob].sym1,
-        obst[ob].sym2,
-        obst[ob].sym3,
-        obst[ob].sym4,
-        obst[ob].rf1,
-        obst[ob].rf2,
-        obst[ob].rf3,
-        obst[ob].rf4
-      ];
+      obsym = [obst[ob].sym1, obst[ob].sym2, obst[ob].sym3, obst[ob].sym4, obst[ob].rf1, obst[ob].rf2, obst[ob].rf3, obst[ob].rf4];
       obskey = 0;
       obslen = obsym.length;
     }
