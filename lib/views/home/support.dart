@@ -89,22 +89,14 @@ class SupportView extends StatelessWidget {
                       title: LocaleKeys.view_support_website.tr(),
                       onPressed: () async {
                         const url = 'https://sites.google.com/view/cura-mobile/home';
-                        if (await canLaunch(url)) {
-                          await launch(url);
-                        } else {
-                          throw 'Could Not Launch $url';
-                        }
+                        await launch(url);
                       },
                     ),
                     BaseButton(
                       title: LocaleKeys.view_support_contact_us.tr(),
                       onPressed: () async {
                         const url = 'mailto:hhk.01831@gmail.com';
-                        if (await canLaunch(url)) {
-                          await launch(url);
-                        } else {
-                          throw 'Could Not Launch $url';
-                        }
+                        await launch(url);
                       },
                     ),
                   ],

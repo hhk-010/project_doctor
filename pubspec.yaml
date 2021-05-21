@@ -26,7 +26,7 @@ dependencies:
   weekday_selector: ^0.4.0
   path_provider: ^2.0.1
   device_preview: ^0.7.1
-  url_launcher: ^6.0.2
+  url_launcher: ^6.0.4
   easy_localization: ^3.0.0
   stacked_themes: ^0.3.2
   another_flushbar: ^1.10.20
