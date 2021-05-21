@@ -8,7 +8,6 @@ import 'package:project_doctor/custom_widges/custom_scaffold.dart';
 import 'package:project_doctor/custom_widges/custom_search_complain.dart';
 import 'package:project_doctor/matching_algorithm/final_score.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';
-import 'package:project_doctor/services/data_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:project_doctor/views/search/search_complain/get_chronic_risks.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
@@ -75,15 +74,6 @@ class _AgeComplainViewState extends State<AgeComplainView> {
   var regionSelected = TextEditingController();
   List radioGender = ["Male", "Female"];
   String genderSelect = '';
-
-  @override
-  void initState() {
-    super.initState();
-    SelectedPage.complaintSelected = true;
-    SelectedPage.favoriteSelected = false;
-    SelectedPage.lastSearchSelected = false;
-    SelectedPage.newSearchSelected = false;
-  }
 
   @override
   Widget build(BuildContext context) {

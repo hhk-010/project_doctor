@@ -27,10 +27,6 @@ class _ProfileSearchViewState extends State<ProfileSearchView> {
     ProfileSearchData.province = null;
     ProfileSearchData.name = '';
     ProfileSearchData.speciality = '';
-    SelectedPage.complaintSelected = false;
-    SelectedPage.favoriteSelected = false;
-    SelectedPage.lastSearchSelected = false;
-    SelectedPage.newSearchSelected = true;
   }
 
   @override
@@ -490,10 +486,6 @@ class _ProfileSearchViewState extends State<ProfileSearchView> {
                   title: LocaleKeys.view_buttons_search.tr(),
                   controller: _controller,
                   onPressed: () async {
-                    print(ProfileSearchData.province);
-                    print(ProfileSearchData.speciality);
-                    print(ProfileSearchData.name);
-
                     if (!await isInternet())
                       getFlushbar(context, LocaleKeys.error_snack_connectivity.tr(), _controller);
                     else {

@@ -131,10 +131,6 @@ class _SearchHistoryProfileState extends State<SearchHistoryProfile> {
   @override
   void initState() {
     super.initState();
-    SelectedPage.complaintSelected = false;
-    SelectedPage.favoriteSelected = false;
-    SelectedPage.lastSearchSelected = true;
-    SelectedPage.newSearchSelected = false;
     widget.readFromStorage.readName().then((String value) {
       setState(() {
         _name = value;

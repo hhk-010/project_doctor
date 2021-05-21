@@ -24,10 +24,6 @@ class _FavoriteListViewState extends State<FavoriteListView> {
   @override
   void initState() {
     super.initState();
-    SelectedPage.complaintSelected = false;
-    SelectedPage.favoriteSelected = true;
-    SelectedPage.lastSearchSelected = false;
-    SelectedPage.newSearchSelected = false;
     widget.storage
         .readFavorite01()
         .then((value) => setState(() => Favorite.favorite01 = value));

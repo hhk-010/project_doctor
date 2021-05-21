@@ -35,9 +35,6 @@ class UpdateDataSecurityInfo {
   static String speciality;
 }
 
-
-
-
 class UserID {
   final String uid;
 
@@ -200,9 +197,7 @@ class SearchResultData {
   static bool mapSelected;
 }
 
-class SelectedPage {
-  static bool complaintSelected = false;
-  static bool lastSearchSelected = false;
-  static bool favoriteSelected = false;
-  static bool newSearchSelected = false;
+class PatientLocation {
+  static bool locationSelected = false;
+  static bool mapSelected = false;
 }
