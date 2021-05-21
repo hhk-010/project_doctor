@@ -1,4 +1,3 @@
-// import 'package:device_preview/device_preview.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,7 @@ import 'package:project_doctor/app.dart';
 import 'package:project_doctor/generated/codegen_loader.g.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await ThemeManager.initialise();

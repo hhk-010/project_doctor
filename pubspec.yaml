@@ -1,5 +1,5 @@
 name: project_doctor
-description: An app created to solve the problem of choosing doctor speciality
+description: Cross-Platoform Health related app
 
 publish_to: 'none'
 
@@ -35,7 +35,6 @@ dependencies:
   data_connection_checker: ^0.3.4
 
 
-  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -46,7 +45,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/curao.png"
+  image_path: "assets/images/logo.png"
 
 flutter_native_splash:
   android : true

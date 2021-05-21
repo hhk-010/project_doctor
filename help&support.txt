@@ -1,4 +1,4 @@
-use commmand promot to navigate to the following directory 
+// use commmand promot to navigate to the following directory 
 Java binary at: C:\Program Files\Android\Android Studio\jre\bin\java
 
 // Release certificate fingerprint
