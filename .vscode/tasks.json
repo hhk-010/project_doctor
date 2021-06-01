@@ -10,6 +10,16 @@
 			],
 			"problemMatcher": [],
 			"label": "flutter: flutter pub get"
+		},
+		{
+			
+			"label": "easy localization generate",
+			"type": "shell",
+			"command": "flutter pub run easy_localization:generate -S 'assets/translations'",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
 		}
 	]
 }
