@@ -14,7 +14,7 @@
     - flutter build appbundle
 - easy_localization key generation
     - flutter pub run easy_localization:generate -S "assets/translations"
-    - set a string : *"string".tr()*
+    - set a string : *"string".to()*
 - flutter_native_splash
     - flutter pub run flutter_native_splash:create
 - current cura package name
