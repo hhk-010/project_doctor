@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:project_doctor/constants/color_style_size.dart';
 import 'package:project_doctor/generated/locale_keys.g.dart';

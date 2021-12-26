@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          home: HomeView(), 
+          home: HomeView(),
           routes: {
             '/home_view': (context) => HomeView(),
             '/support_view': (context) => SupportView(),

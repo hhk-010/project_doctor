@@ -3,7 +3,7 @@ description: Cross-Platoform Health related app
 
 publish_to: 'none'
 
-version: 2.1.0+1
+version: 2.3.0+8
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -19,7 +19,7 @@ dependencies:
   flutter_google_places: ^0.3.0
   firebase_auth: ^1.1.4
   cloud_firestore: ^1.0.2
-  firebase_core: ^1.1.1
+  # firebase_core: ^1.1.1
   provider: ^5.0.0
   flutter_spinkit: ^5.0.0
   shared_preferences: ^2.0.5
