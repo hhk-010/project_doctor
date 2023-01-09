@@ -34,7 +34,6 @@ dependencies:
   connectivity: ^3.0.3
   data_connection_checker: ^0.3.4
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -64,16 +63,3 @@ flutter:
     - assets/translations/
     - assets/map/
 
-  fonts:
-    - family: noto_arabic
-      fonts:
-        - asset: assets/fonts/noto_arabic.ttf
-    - family: Montserrat
-      fonts:
-        - asset: assets/fonts/Montserrat-Regular.ttf
-    - family: OpenSans
-      fonts:
-        - asset: assets/fonts/OpenSans-Regular.ttf
-    - family: CustomIcons
-      fonts:
-      - asset: assets/fonts/CustomIcons.ttf
